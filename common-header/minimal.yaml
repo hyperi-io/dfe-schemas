@@ -14,22 +14,26 @@ versions:
         type: timestamp
         default: "now64(3)"
         order: 0
-        comment: "@generated: now64(3)"
+        expr: "@generated: now64(3)"
+        comment: "Insertion timestamp (ms precision)"
 
       - name: _timestamp
         type: datetime
         use_case: range
         order: 1
-        comment: "@source: timestamp | now()"
+        expr: "@source: timestamp | now()"
+        comment: "Event timestamp from source data"
 
       - name: _uuid
         type: uuid
         default: "generateUUIDv7()"
-        comment: "@generated: generateUUIDv7()"
+        expr: "@generated: generateUUIDv7()"
+        comment: "Time-ordered unique event identifier"
 
       - name: _org_id
         type: string
         attribute: [lowcardinality]
         use_case: dimension
         order: 2
-        comment: "@source: org_id"
+        expr: "@source: org_id"
+        comment: "Tenant/organisation identifier"

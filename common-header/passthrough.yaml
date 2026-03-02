@@ -14,20 +14,24 @@ versions:
         type: timestamp
         default: "now64(3)"
         order: 0
-        comment: "@generated: now64(3)"
+        expr: "@generated: now64(3)"
+        comment: "Insertion timestamp (ms precision)"
 
       - name: _uuid
         type: uuid
         default: "generateUUIDv7()"
-        comment: "@generated: generateUUIDv7()"
+        expr: "@generated: generateUUIDv7()"
+        comment: "Time-ordered unique event identifier"
 
       - name: _org_id
         type: string
         attribute: [lowcardinality]
         use_case: dimension
         order: 1
-        comment: "@source: org_id"
+        expr: "@source: org_id"
+        comment: "Tenant/organisation identifier"
 
       - name: _json
         type: json
-        comment: "@captured: raw_payload as JSON"
+        expr: "@captured: raw_payload as JSON"
+        comment: "Original event payload as structured JSON"

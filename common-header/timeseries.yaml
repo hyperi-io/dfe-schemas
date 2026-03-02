@@ -14,46 +14,55 @@ versions:
         type: timestamp
         default: "now64(3)"
         order: 0
-        comment: "@generated: now64(3)"
+        expr: "@generated: now64(3)"
+        comment: "Insertion timestamp (ms precision)"
 
       - name: _timestamp
         type: datetime
         use_case: range
         order: 1
-        comment: "@source: timestamp | now()"
+        expr: "@source: timestamp | now()"
+        comment: "Event timestamp from source data"
 
       - name: _timestamp_received
         type: datetime
-        comment: "@source: first(timestamp_received/received_at)"
+        expr: "@source: first(timestamp_received/received_at)"
+        comment: "When the event was first received by the collector"
 
       - name: _uuid
         type: uuid
         default: "generateUUIDv7()"
-        comment: "@generated: generateUUIDv7()"
+        expr: "@generated: generateUUIDv7()"
+        comment: "Time-ordered unique event identifier"
 
       - name: _org_id
         type: string
         attribute: [lowcardinality]
         use_case: dimension
         order: 2
-        comment: "@source: org_id"
+        expr: "@source: org_id"
+        comment: "Tenant/organisation identifier"
 
       - name: _source
         type: string
         attribute: [lowcardinality]
         use_case: dimension
         order: 3
-        comment: "@source: first(_source) | topic_name"
+        expr: "@source: first(_source) | topic_name"
+        comment: "Data source label (e.g. syslog, crowdstrike_edr)"
 
       - name: _raw
         type: text
         use_case: text_search
-        comment: "@captured: raw_payload"
+        expr: "@captured: raw_payload"
+        comment: "Original event payload as text"
 
       - name: _json
         type: json
-        comment: "@captured: raw_payload as JSON"
+        expr: "@captured: raw_payload as JSON"
+        comment: "Original event payload as structured JSON"
 
       - name: _tags
         type: json
-        comment: "@source: first(tags/_tags/meta/metadata.tags)"
+        expr: "@source: first(tags/_tags/meta/metadata.tags)"
+        comment: "Event metadata tags"

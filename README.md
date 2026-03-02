@@ -42,49 +42,68 @@ dfe-schemas/
 
 ## Per-File Schema Versioning
 
-Every schema YAML file carries its own version history.  Git rollback is
-repo-wide, so per-file versioning lives **inside** the YAML — you can have
-v1, v2, and v3 in one file and pin any consumer to any version.
+Every schema YAML file carries its own version history using a **version tree**.
+Each version entry contains a complete column snapshot — no filtering or
+reconstruction logic needed.
 
 ### File format
 
 ```yaml
-# Top-level metadata
 current: "1.1.0"                    # Default version when no pin specified
 
-versions:                           # Human-readable version history
+versions:
   "1.0.0":
     date: "2026-01-15"
     type: model                     # model | addition | revision
     summary: "Initial 9-column common header"
+    columns:
+      - name: _timestamp
+        type: datetime
+        use_case: range
+        order: 1
+        expr: "@source: timestamp | now()"
+        comment: "Event timestamp from source data"
+      # ... complete column list for 1.0.0
+
   "1.1.0":
     date: "2026-03-15"
     type: addition
     summary: "Added _geo_point column"
-
-# Column definitions with lifecycle annotations
-columns:
-  - name: _timestamp
-    type: datetime
-    use_case: range
-    order: 1
-    comment: "@source: timestamp | now()"
-    since: "1.0.0"                  # Introduced in this version
-
-  - name: _geo_point
-    type: geo_point
-    attribute: [nullable]
-    since: "1.1.0"                  # Added in 1.1.0
+    columns:
+      - name: _timestamp
+        type: datetime
+        use_case: range
+        order: 1
+        expr: "@source: timestamp | now()"
+        comment: "Event timestamp from source data"
+      - name: _geo_point
+        type: geo_point
+        attribute: [nullable]
+        comment: "Geographic coordinates"
+      # ... complete column list for 1.1.0
 ```
 
-### Version fields
+### Why version tree (not since/until)?
+
+Each version carries a **complete column snapshot**. To load version 1.0.0,
+you read `versions."1.0.0".columns` — no filtering logic, no reconstruction.
+
+- **Direct lookup** — O(1) version resolution
+- **Dropped columns** — simply omit them from the new version's snapshot
+- **Changed types** — the new version snapshot has the new type
+- **Readable diffs** — git shows what changed between version entries
+- **Immutable snapshots** — published versions are never modified
+
+### Version metadata
 
 | Field | Required | Description |
 |-------|----------|-------------|
 | `current` | Yes | Default version when consumer doesn't specify a pin |
-| `versions` | Yes | Dict of version → `{date, type, summary}` |
-| `since` | Yes (per column) | Version when this column was introduced (inclusive) |
-| `until` | No (per column) | Version when this column was removed (exclusive) |
+| `versions` | Yes | Dict of version → `{date, type, summary, columns}` |
+| `date` | Yes (per version) | When the version was created |
+| `type` | Yes (per version) | Change category: `model`, `addition`, `revision` |
+| `summary` | Yes (per version) | Human-readable change description |
+| `columns` | Yes (per version) | Complete column snapshot for this version |
 
 ### Version type semantics (SchemaVer-inspired)
 
@@ -97,12 +116,6 @@ Uses SemVer format (`MAJOR.MINOR.PATCH`) with SchemaVer semantics:
 | **REVISION** | Patch | Comment updated, attribute tweaked | No DDL change |
 
 ### How version pinning works
-
-Consumers specify a version; the engine filters columns:
-
-```
-columns where since <= target AND (until is None OR until > target)
-```
 
 - **Source YAML** pins the header profile version via `header.version`:
   ```yaml
@@ -119,62 +132,21 @@ columns where since <= target AND (until is None OR until > target)
 - **Different sources can pin different versions** — one source on header v1.0.0,
   another on v1.1.0, from the same file
 
-### Dropped columns
+### Immutable versions
 
-Add `until` to the column.  The entry remains as version history:
+Published version entries are **never modified**. To change a schema:
 
-```yaml
-columns:
-  - name: _legacy_field
-    type: string
-    since: "1.0.0"
-    until: "2.0.0"         # Removed in v2.0.0
-```
+1. Add a new version entry with the updated column snapshot
+2. Update `current` to point to the new version
+3. Commit
 
-At version 2.0.0+, `_legacy_field` does not appear.  At 1.x.x, it does.
-
-### Changed column types
-
-Two entries for the same column name with `until`/`since` boundaries:
-
-```yaml
-columns:
-  # v1 had _raw as text (full-text indexed)
-  - name: _raw
-    type: text
-    use_case: text_search
-    comment: "@captured: raw_payload"
-    since: "1.0.0"
-    until: "2.0.0"
-
-  # v2 changed _raw to string (no full-text)
-  - name: _raw
-    type: string
-    comment: "@captured: raw_payload"
-    since: "2.0.0"
-```
-
-Version 1.x.x gets `_raw` as `text`.  Version 2.0.0+ gets `_raw` as `string`.
-
-### Reconstructing any version
-
-The engine can reconstruct any historical version from a single file:
-
-```python
-# Load current default
-columns = SchemaLoader.load_columns("timeseries.yaml")
-
-# Load specific version
-columns = SchemaLoader.load_columns("timeseries.yaml", version="1.0.0")
-
-# Load profile with version pin
-columns = SchemaLoader.load_profile("timeseries", version="1.0.0")
-```
+The engine's API enforces this — it only supports creating new versions
+(cloning from an existing version as the base), never modifying published ones.
 
 ### Backward compatibility
 
-Files without `current`/`since` metadata work unchanged — all columns are
-returned.  This ensures existing unversioned schema files continue to work.
+Files without `current`/`versions` metadata (flat `columns:` list) work unchanged.
+This ensures existing unversioned schema files continue to work.
 
 ---
 
@@ -193,17 +165,17 @@ fields.  The profile determines which header columns are included.
 
 ### timeseries (default) — 9 columns
 
-| Column | Type | Attributes | ORDER BY | Comment (DDL Expression) |
-|--------|------|------------|----------|--------------------------|
-| `_timestamp_load` | `timestamp` | | 0 | `@generated: now64(3)` |
-| `_timestamp` | `datetime` | use_case: range | 1 | `@source: timestamp \| now()` |
-| `_timestamp_received` | `datetime` | | | `@source: first(timestamp_received/received_at)` |
-| `_uuid` | `uuid` | | | `@generated: generateUUIDv7()` |
-| `_org_id` | `string` | lowcardinality, dimension | 2 | `@source: org_id` |
-| `_source` | `string` | lowcardinality, dimension | 3 | `@source: first(_source) \| topic_name` |
-| `_raw` | `text` | text_search | | `@captured: raw_payload` |
-| `_json` | `json` | | | `@captured: raw_payload as JSON` |
-| `_tags` | `json` | | | `@source: first(tags/_tags/meta/metadata.tags)` |
+| Column | Type | Attributes | ORDER BY | Expr | Comment |
+|--------|------|------------|----------|------|---------|
+| `_timestamp_load` | `timestamp` | | 0 | `@generated: now64(3)` | Insertion timestamp (ms precision) |
+| `_timestamp` | `datetime` | use_case: range | 1 | `@source: timestamp \| now()` | Event timestamp from source data |
+| `_timestamp_received` | `datetime` | | | `@source: first(timestamp_received/received_at)` | When the event was first received |
+| `_uuid` | `uuid` | | | `@generated: generateUUIDv7()` | Time-ordered unique event identifier |
+| `_org_id` | `string` | lowcardinality, dimension | 2 | `@source: org_id` | Tenant/organisation identifier |
+| `_source` | `string` | lowcardinality, dimension | | `@source: first(_source) \| topic_name` | Data source label |
+| `_raw` | `text` | text_search | | `@captured: raw_payload` | Original event payload as text |
+| `_json` | `json` | | | `@captured: raw_payload as JSON` | Original event payload as JSON |
+| `_tags` | `json` | | | `@source: first(tags/_tags/meta/metadata.tags)` | Event metadata tags |
 
 ### minimal — 4 columns
 
@@ -223,8 +195,8 @@ columns:
     type: timestamp
     default: "now64(3)"
     order: 0
-    comment: "@generated: now64(3)"
-    since: "1.0.0"
+    expr: "@generated: now64(3)"
+    comment: "Insertion timestamp (ms precision)"
 ```
 
 | Field | Required | Description |
@@ -235,12 +207,28 @@ columns:
 | `use_case` | No | Query intent: `range`, `dimension`, `text_search`, `fulltext`, `bloom` |
 | `default` | No | ClickHouse DEFAULT expression |
 | `order` | No | Position in ORDER BY (0-based) |
-| `comment` | No | Human description + DDL expression (see below) |
+| `expr` | No | DFE directive — tells the loader how to populate this column |
+| `comment` | No | Human-readable column description |
 | `ch_override` | No | Exact ClickHouse type — bypasses primitive mapping |
-| `since` | Yes* | Version when introduced (semver) |
-| `until` | No | Version when removed (semver, exclusive) |
 
-\* Required for versioned files.  Optional for backward compatibility with unversioned files.
+### DDL output
+
+When generating DDL, `expr` and `comment` are combined into the ClickHouse
+`COMMENT` clause:
+
+```sql
+-- Both expr and comment present:
+`_timestamp` DateTime64(3) COMMENT '@source: timestamp | now() — Event timestamp from source data'
+
+-- Expr only:
+`_uuid` UUID DEFAULT generateUUIDv7() COMMENT '@generated: generateUUIDv7()'
+
+-- Comment only:
+`matched_uuid` UUID COMMENT 'UUID of the matching source record'
+```
+
+The loader parses `@` directives from the COMMENT string. The human-readable
+description (after ` — `) is informational.
 
 ### 13 Primitive Types
 
@@ -260,9 +248,9 @@ columns:
 | `geo_point` | `Tuple(Float64, Float64)` | Geographic coordinates |
 | `enum` | `Enum8`/`Enum16` | Enumerated types |
 
-### DDL Expressions (comment field)
+### DFE Expressions (expr field)
 
-The `comment` field carries directives that tell the **loader** how to
+The `expr` field carries directives that tell the **loader** how to
 populate each column.  These are the DFE DDL Expression Language:
 
 | Directive | Meaning | Example |
@@ -273,6 +261,8 @@ populate each column.  These are the DFE DDL Expression Language:
 | `@source: first(a/b/c)` | First match from multiple fields | `@source: first(tags/_tags/meta)` |
 | `@captured: what` | Captured from raw payload before transforms | `@captured: raw_payload` |
 | `@captured: what as TYPE` | Captured and cast | `@captured: raw_payload as JSON` |
+| `@computed: expr` | Computed from other fields during data prep | `@computed: geoip(client_ip).country` |
+| `@config: path` | Mapping is configurable | `@config: routing.org_id_field` |
 
 See [dfe-loader/docs/DDL-EXPRESSION.md](https://github.com/hyperi-io/dfe-loader/blob/main/docs/DDL-EXPRESSION.md) for the full expression language reference.
 
@@ -292,8 +282,7 @@ common header in hunt results tables.
 | `hunt_name` | `string` (lowcardinality) | Parent hunt name |
 | `severity` | `string` (lowcardinality) | Detection severity |
 
-This schema is also versioned with `current`/`since` — the same per-file
-versioning system applies to all schema types.
+This schema uses the same per-file version tree system as all other schema types.
 
 ---
 
@@ -332,7 +321,7 @@ columns = SchemaLoader.load_columns("path/to/schema.yaml", version="2.0.0")
 
 # Read version metadata
 meta = SchemaLoader.load_version_metadata("path/to/schema.yaml")
-# → {"current": "1.0.0", "versions": {"1.0.0": {...}}}
+# → {"current": "1.0.0", "versions": {"1.0.0": {"date": "...", "type": "...", "summary": "..."}}}
 ```
 
 ### Rust (dfe-loader)
@@ -352,8 +341,8 @@ fn resolve_profiles_dir() -> PathBuf {
 }
 ```
 
-The Rust loader should parse `current` and `since`/`until` from the YAML
-and apply the same filtering logic when a version pin is specified.
+The Rust loader should parse `current` and `versions.<ver>.columns` from the
+YAML, reading the column snapshot for the requested version directly.
 
 ---
 
@@ -377,7 +366,7 @@ Changes go through this repo:
 ```bash
 cd schemas                     # enter the submodule
 git checkout -b my-change
-# edit YAML files — add new version entry, add/modify columns
+# edit YAML files — add new version entry with complete column snapshot
 git commit -am "feat: add _geo_point to timeseries (1.1.0)"
 git push origin my-change
 # open PR, merge to main

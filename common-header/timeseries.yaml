@@ -4,27 +4,39 @@
 # Fields: _timestamp_load, _timestamp, _timestamp_received, _uuid,
 #         _org_id, _source, _raw, _json, _tags
 
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-01-15"
+    type: model
+    summary: "Initial 9-column common header"
+
 columns:
   - name: _timestamp_load
     type: timestamp
     default: "now64(3)"
     order: 0
     comment: "@generated: now64(3)"
+    since: "1.0.0"
 
   - name: _timestamp
     type: datetime
     use_case: range
     order: 1
     comment: "@source: timestamp | now()"
+    since: "1.0.0"
 
   - name: _timestamp_received
     type: datetime
     comment: "@source: first(timestamp_received/received_at)"
+    since: "1.0.0"
 
   - name: _uuid
     type: uuid
     default: "generateUUIDv7()"
     comment: "@generated: generateUUIDv7()"
+    since: "1.0.0"
 
   - name: _org_id
     type: string
@@ -32,6 +44,7 @@ columns:
     use_case: dimension
     order: 2
     comment: "@source: org_id"
+    since: "1.0.0"
 
   - name: _source
     type: string
@@ -39,16 +52,20 @@ columns:
     use_case: dimension
     order: 3
     comment: "@source: first(_source) | topic_name"
+    since: "1.0.0"
 
   - name: _raw
     type: text
     use_case: text_search
     comment: "@captured: raw_payload"
+    since: "1.0.0"
 
   - name: _json
     type: json
     comment: "@captured: raw_payload as JSON"
+    since: "1.0.0"
 
   - name: _tags
     type: json
     comment: "@source: first(tags/_tags/meta/metadata.tags)"
+    since: "1.0.0"

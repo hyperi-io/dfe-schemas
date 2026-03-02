@@ -4,32 +4,46 @@
 # These define the lean output for scheduled detection rules:
 # matched record UUID + rule metadata.
 
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-01-15"
+    type: model
+    summary: "Initial 6-column hunt detection schema"
+
 columns:
   - name: matched_uuid
     type: uuid
     comment: "UUID of the matching source record"
+    since: "1.0.0"
 
   - name: rule_id
     type: string
     attribute: [lowcardinality]
     comment: "Rule identifier"
+    since: "1.0.0"
 
   - name: rule_name
     type: string
     attribute: [lowcardinality]
     comment: "Human-readable rule name"
+    since: "1.0.0"
 
   - name: source_table
     type: string
     attribute: [lowcardinality]
     comment: "Source table that was scanned"
+    since: "1.0.0"
 
   - name: hunt_name
     type: string
     attribute: [lowcardinality]
     comment: "Parent hunt name"
+    since: "1.0.0"
 
   - name: severity
     type: string
     attribute: [lowcardinality]
     comment: "Detection severity"
+    since: "1.0.0"

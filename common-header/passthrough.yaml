@@ -3,17 +3,27 @@
 # Transparent bridge — no timestamp injection.
 # Fields: _timestamp_load, _uuid, _org_id, _json
 
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-01-15"
+    type: model
+    summary: "Initial 4-column passthrough header"
+
 columns:
   - name: _timestamp_load
     type: timestamp
     default: "now64(3)"
     order: 0
     comment: "@generated: now64(3)"
+    since: "1.0.0"
 
   - name: _uuid
     type: uuid
     default: "generateUUIDv7()"
     comment: "@generated: generateUUIDv7()"
+    since: "1.0.0"
 
   - name: _org_id
     type: string
@@ -21,7 +31,9 @@ columns:
     use_case: dimension
     order: 1
     comment: "@source: org_id"
+    since: "1.0.0"
 
   - name: _json
     type: json
     comment: "@captured: raw_payload as JSON"
+    since: "1.0.0"

@@ -1,0 +1,35 @@
+# Hunt detection output columns
+#
+# Appended after common header columns in the hunt results table.
+# These define the lean output for scheduled detection rules:
+# matched record UUID + rule metadata.
+
+columns:
+  - name: matched_uuid
+    type: uuid
+    comment: "UUID of the matching source record"
+
+  - name: rule_id
+    type: string
+    attribute: [lowcardinality]
+    comment: "Rule identifier"
+
+  - name: rule_name
+    type: string
+    attribute: [lowcardinality]
+    comment: "Human-readable rule name"
+
+  - name: source_table
+    type: string
+    attribute: [lowcardinality]
+    comment: "Source table that was scanned"
+
+  - name: hunt_name
+    type: string
+    attribute: [lowcardinality]
+    comment: "Parent hunt name"
+
+  - name: severity
+    type: string
+    attribute: [lowcardinality]
+    comment: "Detection severity"

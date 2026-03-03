@@ -30,6 +30,13 @@ versions:
         expr: "@source: dimensions"
         comment: "Metric dimensions as JSON (e.g. InstanceId, FunctionName)"
 
+      - name: unit
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: unit"
+        comment: "CloudWatch unit (e.g. Percent, Bytes, Count)"
+
       - name: timestamp
         type: datetime
         use_case: range

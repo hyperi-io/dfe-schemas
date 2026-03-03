@@ -1,0 +1,49 @@
+# Meta schema: AWS CloudWatch Logs
+#
+# CloudWatch Logs FilterLogEvents — log entries from CloudWatch log groups.
+
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-03-03"
+    type: model
+    summary: "Initial CloudWatch Logs schema"
+    columns:
+      - name: event_id
+        type: string
+        use_case: bloom
+        expr: "@source: eventId"
+        comment: "Unique log event identifier"
+
+      - name: log_group_name
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: logGroupName"
+        comment: "CloudWatch log group name"
+
+      - name: log_stream_name
+        type: string
+        use_case: dimension
+        expr: "@source: logStreamName"
+        comment: "CloudWatch log stream name"
+
+      - name: timestamp
+        type: datetime
+        use_case: range
+        expr: "@source: timestamp"
+        comment: "Event timestamp (epoch milliseconds)"
+
+      - name: ingestion_time
+        type: datetime
+        attribute: [nullable]
+        use_case: range
+        expr: "@source: ingestionTime"
+        comment: "When CloudWatch ingested the event"
+
+      - name: message
+        type: text
+        use_case: fulltext
+        expr: "@source: message"
+        comment: "Log event message content"

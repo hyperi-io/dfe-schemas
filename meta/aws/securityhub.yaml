@@ -1,0 +1,82 @@
+# Meta schema: AWS SecurityHub
+#
+# SecurityHub findings — aggregated security findings across AWS services.
+
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-03-03"
+    type: model
+    summary: "Initial SecurityHub schema"
+    columns:
+      - name: finding_id
+        type: string
+        use_case: bloom
+        expr: "@source: Id"
+        comment: "Unique finding identifier"
+
+      - name: title
+        type: string
+        expr: "@source: Title"
+        comment: "Human-readable finding title"
+
+      - name: severity_label
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: Severity.Label"
+        comment: "Severity label (CRITICAL, HIGH, MEDIUM, LOW, INFORMATIONAL)"
+
+      - name: severity_normalized
+        type: integer
+        use_case: range
+        expr: "@source: Severity.Normalized"
+        comment: "Normalised severity score (0-100)"
+
+      - name: workflow_status
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: Workflow.Status"
+        comment: "Workflow status (NEW, NOTIFIED, RESOLVED, SUPPRESSED)"
+
+      - name: record_state
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: RecordState"
+        comment: "Record state (ACTIVE, ARCHIVED)"
+
+      - name: compliance_status
+        type: string
+        attribute: [lowcardinality, nullable]
+        use_case: dimension
+        expr: "@source: Compliance.Status"
+        comment: "Compliance status (PASSED, FAILED, NOT_AVAILABLE)"
+
+      - name: aws_account_id
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: AwsAccountId"
+        comment: "AWS account ID"
+
+      - name: created_at
+        type: datetime
+        use_case: range
+        expr: "@source: CreatedAt"
+        comment: "When the finding was created"
+
+      - name: updated_at
+        type: datetime
+        use_case: range
+        expr: "@source: UpdatedAt"
+        comment: "When the finding was last updated"
+
+      - name: resource_type
+        type: string
+        attribute: [lowcardinality, nullable]
+        use_case: dimension
+        expr: "@source: Resources[0].Type"
+        comment: "Type of the primary affected resource"

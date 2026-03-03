@@ -1,0 +1,63 @@
+# Meta schema: M365 DLP Alerts
+#
+# Graph Security alerts filtered by DataLossPrevention category.
+
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-03-03"
+    type: model
+    summary: "Initial M365 DLP schema"
+    columns:
+      - name: alert_id
+        type: string
+        use_case: bloom
+        expr: "@source: id"
+        comment: "Unique alert identifier"
+
+      - name: title
+        type: string
+        expr: "@source: title"
+        comment: "Alert title"
+
+      - name: category
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: category"
+        comment: "Alert category (DataLossPrevention)"
+
+      - name: severity
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: severity"
+        comment: "Alert severity (high, medium, low)"
+
+      - name: status
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: status"
+        comment: "Alert status (newAlert, inProgress, resolved)"
+
+      - name: created_datetime
+        type: datetime
+        use_case: range
+        expr: "@source: createdDateTime"
+        comment: "When the alert was created"
+
+      - name: description
+        type: text
+        attribute: [nullable]
+        use_case: fulltext
+        expr: "@source: description"
+        comment: "Alert description"
+
+      - name: provider
+        type: string
+        attribute: [lowcardinality, nullable]
+        use_case: dimension
+        expr: "@source: vendorInformation.provider"
+        comment: "Security provider that generated the alert"

@@ -1,0 +1,59 @@
+# Meta schema: GCP Cloud Logging
+#
+# Cloud Logging entries — application and infrastructure logs from GCP.
+
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-03-03"
+    type: model
+    summary: "Initial GCP Cloud Logging schema"
+    columns:
+      - name: log_name
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: logName"
+        comment: "Log name identifier"
+
+      - name: severity
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: severity"
+        comment: "Log severity (WARNING, ERROR, CRITICAL, etc.)"
+
+      - name: insert_id
+        type: string
+        use_case: bloom
+        expr: "@source: insertId"
+        comment: "Unique log entry identifier"
+
+      - name: text_payload
+        type: text
+        attribute: [nullable]
+        use_case: fulltext
+        expr: "@source: textPayload"
+        comment: "Plain text log message"
+
+      - name: resource_type
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: resource.type"
+        comment: "Resource type (gce_instance, cloud_function, etc.)"
+
+      - name: trace_id
+        type: string
+        attribute: [nullable]
+        use_case: bloom
+        expr: "@source: trace"
+        comment: "Distributed trace identifier"
+
+      - name: span_id
+        type: string
+        attribute: [nullable]
+        use_case: bloom
+        expr: "@source: spanId"
+        comment: "Span identifier within the trace"

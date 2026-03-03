@@ -1,0 +1,83 @@
+# Meta schema: Azure Activity Log
+#
+# Azure Monitor activity log — management plane operations on Azure resources.
+
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-03-03"
+    type: model
+    summary: "Initial Azure Activity Log schema"
+    columns:
+      - name: event_id
+        type: string
+        use_case: bloom
+        expr: "@source: first(eventDataId/id)"
+        comment: "Unique activity log event identifier"
+
+      - name: event_timestamp
+        type: datetime
+        use_case: range
+        expr: "@source: eventTimestamp"
+        comment: "When the operation occurred"
+
+      - name: operation_name
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: operationName.value"
+        comment: "Operation name (e.g. Microsoft.Storage/storageAccounts/write)"
+
+      - name: category
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: first(category.value/eventCategory.value)"
+        comment: "Event category (Administrative, Security, ServiceHealth)"
+
+      - name: level
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: level"
+        comment: "Event level (Informational, Warning, Error, Critical)"
+
+      - name: status
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: status.value"
+        comment: "Operation status (Succeeded, Failed, Started)"
+
+      - name: caller
+        type: string
+        use_case: dimension
+        expr: "@source: caller"
+        comment: "User or service principal that initiated the operation"
+
+      - name: correlation_id
+        type: string
+        use_case: bloom
+        expr: "@source: correlationId"
+        comment: "Correlation identifier for tracing related events"
+
+      - name: resource_group
+        type: string
+        attribute: [lowcardinality, nullable]
+        use_case: dimension
+        expr: "@source: resourceGroupName"
+        comment: "Azure resource group name"
+
+      - name: resource_type
+        type: string
+        attribute: [lowcardinality, nullable]
+        use_case: dimension
+        expr: "@source: resourceType.value"
+        comment: "Azure resource type"
+
+      - name: resource_id
+        type: string
+        attribute: [nullable]
+        expr: "@source: resourceId"
+        comment: "Full Azure resource identifier"

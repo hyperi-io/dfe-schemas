@@ -1,0 +1,68 @@
+# Meta schema: GCP Security Command Center
+#
+# SCC findings — security and compliance findings across GCP organisation.
+
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-03-03"
+    type: model
+    summary: "Initial GCP SCC schema"
+    columns:
+      - name: finding_name
+        type: string
+        use_case: bloom
+        expr: "@source: finding.name"
+        comment: "Full finding resource name"
+
+      - name: category
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: finding.category"
+        comment: "Finding category (e.g. WEAK_CRYPTOGRAPHY, OPEN_FIREWALL)"
+
+      - name: severity
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: finding.severity"
+        comment: "Finding severity (CRITICAL, HIGH, MEDIUM, LOW)"
+
+      - name: state
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: finding.state"
+        comment: "Finding state (ACTIVE, INACTIVE)"
+
+      - name: resource_name
+        type: string
+        expr: "@source: finding.resourceName"
+        comment: "Full name of the affected resource"
+
+      - name: create_time
+        type: datetime
+        use_case: range
+        expr: "@source: finding.createTime"
+        comment: "When the finding was created"
+
+      - name: event_time
+        type: datetime
+        use_case: range
+        expr: "@source: finding.eventTime"
+        comment: "When the finding was last observed"
+
+      - name: external_uri
+        type: string
+        attribute: [nullable]
+        expr: "@source: finding.externalUri"
+        comment: "External URI for finding details"
+
+      - name: parent_source
+        type: string
+        attribute: [lowcardinality, nullable]
+        use_case: dimension
+        expr: "@source: finding.parent"
+        comment: "Source that produced the finding"

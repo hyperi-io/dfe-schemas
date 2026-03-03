@@ -1,0 +1,80 @@
+# Meta schema: Azure Sentinel
+#
+# Microsoft Sentinel incidents — security incidents from SIEM correlation.
+
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-03-03"
+    type: model
+    summary: "Initial Azure Sentinel schema"
+    columns:
+      - name: incident_id
+        type: string
+        use_case: bloom
+        expr: "@source: first(name/id)"
+        comment: "Unique incident identifier"
+
+      - name: title
+        type: string
+        expr: "@source: properties.title"
+        comment: "Incident title"
+
+      - name: severity
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: properties.severity"
+        comment: "Incident severity (Critical, High, Medium, Low, Informational)"
+
+      - name: status
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: properties.status"
+        comment: "Incident status (Active, Closed, New)"
+
+      - name: classification
+        type: string
+        attribute: [lowcardinality, nullable]
+        use_case: dimension
+        expr: "@source: properties.classification"
+        comment: "Classification (TruePositive, FalsePositive, BenignPositive, Undetermined)"
+
+      - name: first_activity_utc
+        type: datetime
+        use_case: range
+        expr: "@source: properties.firstActivityTimeUtc"
+        comment: "First alert or event time in the incident"
+
+      - name: last_activity_utc
+        type: datetime
+        use_case: range
+        expr: "@source: properties.lastActivityTimeUtc"
+        comment: "Most recent activity time"
+
+      - name: created_utc
+        type: datetime
+        use_case: range
+        expr: "@source: properties.createdTimeUtc"
+        comment: "When the incident was created"
+
+      - name: alerts_count
+        type: integer
+        use_case: range
+        expr: "@source: properties.additionalData.alertsCount"
+        comment: "Number of alerts in the incident"
+
+      - name: owner_email
+        type: string
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: properties.owner.email"
+        comment: "Assigned owner email address"
+
+      - name: description
+        type: text
+        use_case: fulltext
+        expr: "@source: properties.description"
+        comment: "Incident description"

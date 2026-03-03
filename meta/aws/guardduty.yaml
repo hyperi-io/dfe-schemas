@@ -1,0 +1,74 @@
+# Meta schema: AWS GuardDuty
+#
+# GuardDuty findings — threat detection for AWS accounts and workloads.
+
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-03-03"
+    type: model
+    summary: "Initial GuardDuty schema"
+    columns:
+      - name: finding_id
+        type: string
+        use_case: bloom
+        expr: "@source: first(Id/id)"
+        comment: "Unique finding identifier"
+
+      - name: finding_type
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: first(Type/type)"
+        comment: "Finding type (e.g. Recon:EC2/PortProbeUnprotectedPort)"
+
+      - name: severity
+        type: float
+        use_case: range
+        expr: "@source: first(Severity/severity)"
+        comment: "Severity score (0-10)"
+
+      - name: title
+        type: string
+        expr: "@source: Title"
+        comment: "Human-readable finding title"
+
+      - name: description
+        type: text
+        use_case: fulltext
+        expr: "@source: Description"
+        comment: "Detailed finding description"
+
+      - name: region
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: Region"
+        comment: "AWS region where the finding was detected"
+
+      - name: resource_type
+        type: string
+        attribute: [lowcardinality, nullable]
+        use_case: dimension
+        expr: "@source: Resource.ResourceType"
+        comment: "Type of the affected resource"
+
+      - name: created_at
+        type: datetime
+        use_case: range
+        expr: "@source: first(CreatedAt/createdAt)"
+        comment: "When the finding was first created"
+
+      - name: updated_at
+        type: datetime
+        use_case: range
+        expr: "@source: first(UpdatedAt/updatedAt)"
+        comment: "When the finding was last updated"
+
+      - name: account_id
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: AccountId"
+        comment: "AWS account ID"

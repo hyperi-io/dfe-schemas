@@ -1,0 +1,76 @@
+# Meta schema: M365 Unified Audit Log
+#
+# Office 365 Management Activity API — unified audit events across M365 workloads.
+
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-03-03"
+    type: model
+    summary: "Initial M365 Audit Log schema"
+    columns:
+      - name: event_id
+        type: string
+        use_case: bloom
+        expr: "@source: Id"
+        comment: "Unique audit event identifier"
+
+      - name: creation_time
+        type: datetime
+        use_case: range
+        expr: "@source: CreationTime"
+        comment: "When the event occurred"
+
+      - name: operation
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: Operation"
+        comment: "Operation performed (e.g. UserLoggedIn, FileAccessed)"
+
+      - name: workload
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: Workload"
+        comment: "M365 workload (Exchange, SharePoint, AzureActiveDirectory)"
+
+      - name: user_id
+        type: string
+        use_case: dimension
+        expr: "@source: first(UserId/UserIds)"
+        comment: "User principal name"
+
+      - name: client_ip
+        type: ip
+        attribute: [nullable]
+        use_case: range
+        expr: "@source: ClientIP"
+        comment: "Client IP address"
+
+      - name: result_status
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: ResultStatus"
+        comment: "Operation result (Succeeded, PartiallySucceeded, Failed)"
+
+      - name: object_id
+        type: string
+        attribute: [nullable]
+        expr: "@source: ObjectId"
+        comment: "Primary object (mailbox, SharePoint item, etc.)"
+
+      - name: record_type
+        type: integer
+        use_case: dimension
+        expr: "@source: RecordType"
+        comment: "Audit record type identifier"
+
+      - name: correlation_id
+        type: string
+        attribute: [nullable]
+        use_case: bloom
+        expr: "@source: first(Id/CorrelationId)"
+        comment: "Correlation identifier for related events"

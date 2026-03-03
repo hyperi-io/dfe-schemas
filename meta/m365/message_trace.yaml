@@ -1,0 +1,24 @@
+# Meta schema: M365 Message Trace
+#
+# Graph API email activity reports — CSV-based aggregate metrics.
+
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-03-03"
+    type: model
+    summary: "Initial M365 Message Trace schema"
+    columns:
+      - name: report_date
+        type: date
+        use_case: range
+        expr: "@source: Report Refresh Date"
+        comment: "Report as-of date"
+
+      - name: report_period
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: Report Period"
+        comment: "Report period (e.g. D1, D7)"

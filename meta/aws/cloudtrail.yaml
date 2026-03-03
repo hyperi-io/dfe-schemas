@@ -1,0 +1,75 @@
+# Meta schema: AWS CloudTrail
+#
+# CloudTrail LookupEvents — API audit trail for AWS account activity.
+
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-03-03"
+    type: model
+    summary: "Initial CloudTrail schema"
+    columns:
+      - name: event_id
+        type: string
+        use_case: bloom
+        expr: "@source: EventId"
+        comment: "Unique CloudTrail event identifier"
+
+      - name: event_name
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: EventName"
+        comment: "API action name (e.g. ConsoleLogin, AssumeRole)"
+
+      - name: event_time
+        type: datetime
+        use_case: range
+        expr: "@source: EventTime"
+        comment: "When the API call occurred"
+
+      - name: event_source
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: EventSource"
+        comment: "AWS service (e.g. ec2.amazonaws.com)"
+
+      - name: username
+        type: string
+        use_case: dimension
+        expr: "@source: Username"
+        comment: "IAM user or role that performed the action"
+
+      - name: source_ip
+        type: ip
+        use_case: range
+        expr: "@source: first(SourceIPAddress/sourceIPAddress)"
+        comment: "IP address of the caller"
+
+      - name: access_key_id
+        type: string
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: AccessKeyId"
+        comment: "Access key used for the API call"
+
+      - name: user_agent
+        type: text
+        expr: "@source: UserAgent"
+        comment: "Client user agent string"
+
+      - name: error_code
+        type: string
+        attribute: [lowcardinality, nullable]
+        use_case: dimension
+        expr: "@source: ErrorCode"
+        comment: "Error code if the API call failed"
+
+      - name: resource_type
+        type: string
+        attribute: [lowcardinality, nullable]
+        use_case: dimension
+        expr: "@source: Resources[0].ResourceType"
+        comment: "Type of the primary affected resource"

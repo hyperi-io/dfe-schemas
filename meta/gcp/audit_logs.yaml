@@ -1,0 +1,70 @@
+# Meta schema: GCP Cloud Audit Logs
+#
+# Cloud Audit Logs — admin activity and data access events from GCP services.
+
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-03-03"
+    type: model
+    summary: "Initial GCP Audit Logs schema"
+    columns:
+      - name: log_name
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: logName"
+        comment: "Log name (e.g. cloudaudit.googleapis.com/activity)"
+
+      - name: severity
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: severity"
+        comment: "Log severity (INFO, NOTICE, WARNING, ERROR, CRITICAL)"
+
+      - name: method_name
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: protoPayload.methodName"
+        comment: "API method called (e.g. storage.buckets.create)"
+
+      - name: principal_email
+        type: string
+        use_case: dimension
+        expr: "@source: protoPayload.authenticationInfo.principalEmail"
+        comment: "Service account or user email that performed the action"
+
+      - name: resource_name
+        type: string
+        expr: "@source: protoPayload.resourceName"
+        comment: "Full resource name (projects/*, buckets/*, etc.)"
+
+      - name: resource_type
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: resource.type"
+        comment: "Resource type (gce_instance, gcs_bucket, etc.)"
+
+      - name: caller_ip
+        type: ip
+        attribute: [nullable]
+        use_case: range
+        expr: "@source: protoPayload.requestMetadata.callerIp"
+        comment: "IP address of the caller"
+
+      - name: service_name
+        type: string
+        attribute: [lowcardinality, nullable]
+        use_case: dimension
+        expr: "@source: protoPayload.serviceName"
+        comment: "GCP service name (e.g. storage.googleapis.com)"
+
+      - name: insert_id
+        type: string
+        use_case: bloom
+        expr: "@source: insertId"
+        comment: "Unique log entry identifier"

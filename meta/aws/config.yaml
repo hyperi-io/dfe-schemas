@@ -1,0 +1,57 @@
+# Meta schema: AWS Config
+#
+# AWS Config resource snapshots — configuration state of AWS resources.
+
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-03-03"
+    type: model
+    summary: "Initial AWS Config schema"
+    columns:
+      - name: resource_type
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: ResourceType"
+        comment: "AWS resource type (e.g. AWS::EC2::Instance)"
+
+      - name: resource_id
+        type: string
+        use_case: bloom
+        expr: "@source: ResourceId"
+        comment: "Unique resource identifier"
+
+      - name: resource_name
+        type: string
+        use_case: dimension
+        expr: "@source: ResourceName"
+        comment: "Human-readable resource name"
+
+      - name: aws_region
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: AwsRegion"
+        comment: "AWS region"
+
+      - name: availability_zone
+        type: string
+        attribute: [lowcardinality, nullable]
+        use_case: dimension
+        expr: "@source: AvailabilityZone"
+        comment: "Availability zone"
+
+      - name: capture_time
+        type: datetime
+        use_case: range
+        expr: "@source: ConfigurationItemCaptureTime"
+        comment: "When the configuration snapshot was taken"
+
+      - name: configuration_state
+        type: string
+        attribute: [lowcardinality, nullable]
+        use_case: dimension
+        expr: "@source: ConfigurationItemStatus"
+        comment: "Configuration item status"

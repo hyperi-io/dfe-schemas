@@ -1,0 +1,16 @@
+# Test additional fields for dfe_aws_cloudtrail_test source.
+#
+# Appended on top of meta/aws/cloudtrail.yaml. Single column for
+# wiring verification only — not for production use.
+
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-05-11"
+    type: addition
+    summary: "Single test field appended for additional_fields wiring test"
+    columns:
+      - name: test_field
+        type: string
+        comment: "Test column — verifies additional_fields composition"

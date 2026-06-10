@@ -1,14 +1,14 @@
 # Common header profile: timeseries (default)
 #
-# Full event ingestion — logs, alerts, audit trails.
+# Full event ingestion - logs, alerts, audit trails.
 #
 # Requires: ClickHouse 26.2+ (JSON type GA, text index GA)
 
-current: "1.1.0"
+current: "1.0.0"
 
 versions:
-  "1.1.0":
-    date: "2026-04-10"
+  "1.0.0":
+    date: "2026-06-10"
     type: model
     summary: "JSON max_dynamic_paths=2048, text index on _raw, CH 26.2+ hard deck"
     columns:
@@ -20,14 +20,14 @@ versions:
         comment: "Insertion timestamp (ms precision)"
 
       - name: _timestamp
-        type: datetime
+        type: timestamp
         use_case: range
         order: 1
         expr: "@source: timestamp | now()"
         comment: "Event timestamp from source data"
 
       - name: _timestamp_received
-        type: datetime
+        type: timestamp
         expr: "@source: first(timestamp_received/received_at)"
         comment: "When the event was first received by the receiver"
 
@@ -39,7 +39,7 @@ versions:
 
       - name: _org_id
         type: string
-        attribute: [lowcardinality]
+        attribute: [lowcardinality, not_null]
         use_case: dimension
         order: 2
         expr: "@source: org_id"
@@ -69,8 +69,3 @@ versions:
         type: json
         expr: "@source: first(tags/_tags/meta/metadata.tags)"
         comment: "Event metadata tags"
-
-  "1.0.0":
-    date: "2026-01-15"
-    type: model
-    summary: "Initial DFE 2.2 common header"

@@ -1,0 +1,120 @@
+# Hunt detection checkpoint columns
+#
+# Not to be used with common header fields.
+# These define the metrics for scheduled detection rules.
+
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-06-10"
+    type: model
+    summary: "Initial detection checkpoint schema"
+    columns:
+      - name: customer_name
+        type: string
+        attribute: [lowcardinality, not_null]
+        order: 0
+        comment: "Name of the customer that was scanned"
+
+      - name: rule_name
+        type: string
+        attribute: [lowcardinality, not_null]
+        order: 2
+        comment: "Name of the rule that was executed"
+      
+      - name: thread_id
+        type: string
+        attribute: [lowcardinality, not_null]
+        comment: "Identifier for the execution thread"
+
+      - name: log_buffer
+        type: integer
+        ch_override: Int32
+        comment: "Log-ingestion lag buffer in seconds, subtracted from the scheduled start time so late-arriving logs land before the scan window closes"
+        codec: "ZSTD(1)"
+      
+      - name: query_schedule_time
+        type: datetime
+        attribute: [not_null]
+        comment: "Scheduled time for the rule execution"
+      
+      - name: execution_time
+        type: datetime
+        attribute: [not_null]
+        comment: "Actual time when the rule execution started"
+      
+      - name: end_time
+        type: datetime
+        attribute: [not_null]
+        comment: "Actual time when the rule execution ended"
+      
+      - name: previous_successful_checkpoint
+        type: datetime
+        attribute: [not_null]
+        comment: "query_checkpoint_time of the previous successful run for this customer/hunt/rule; forms the inclusive lower bound of this runs scan window"
+
+      - name: query_checkpoint_time
+        type: datetime
+        attribute: [not_null]
+        order: 3
+        comment: "Scan-window high-watermark (scheduled_start_time minus log_buffer seconds); the exclusive upper bound of this runs window and the lower bound of the next run"
+      
+      - name: execution_time_ms
+        type: integer
+        ch_override: Int32
+        comment: "Wall-clock time of the detection query execution in milliseconds (end_time minus execution_time)"
+        codec: "ZSTD(1)"
+      
+      - name: hunt_name
+        type: string
+        attribute: [lowcardinality, not_null]
+        order: 1
+        comment: "Name of the parent hunt"
+      
+      - name: query_id
+        type: string
+        attribute: [lowcardinality, not_null]
+        comment: "Per-execution UUID assigned to the query and passed to ClickHouse, used to correlate this run with system.query_log"
+      
+      - name: explain_plan
+        type: string
+        attribute: [not_null]
+        comment: "Query execution plan for performance analysis"
+      
+      - name: explain_duration_ms
+        type: integer
+        ch_override: Int32
+        comment: "Time taken to generate the explain plan in milliseconds"
+        codec: "ZSTD(1)"
+      
+      - name: scheduling_mode
+        type: string
+        default: "'adaptive'"
+        attribute: [lowcardinality, not_null]
+        comment: "Scheduling mode for the rule execution: adaptive (REFRESH AFTER backpressure) or cron (rigid, deprecated). Defaults to adaptive"
+      
+      - name: read_rows
+        type: integer
+        attribute: [not_null]
+        comment: "Number of rows read during query execution"
+      
+      - name: read_bytes
+        type: integer
+        attribute: [not_null]
+        comment: "Number of bytes read during query execution"
+      
+      - name: memory_usage
+        type: integer
+        attribute: [not_null]
+        comment: "Peak memory usage in bytes during query execution"
+      
+      - name: result_rows
+        type: integer
+        attribute: [not_null]
+        comment: "Number of rows returned by the detection query"
+      
+      - name: query_fingerprint
+        type: string
+        attribute: [lowcardinality, not_null]
+        comment: "Fingerprint of the query for identifying similar queries across executions"

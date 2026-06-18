@@ -6,10 +6,10 @@
 #
 #  License:      BUSL-1.1
 #  Copyright:    (c) 2026 HYPERI PTY LIMITED
-"""Render ddl/ from the dfe-schemas YAML via dfe-engine's DDLFileWriter.
+"""Render argocd/ddl/ from the dfe-schemas YAML via dfe-engine's DDLFileWriter.
 
-This is the ONLY producer of the committed ``ddl/`` tree. CI renders and
-diff-checks it (see .github/workflows/ci.yml); the Argo migration Job
+This is the ONLY producer of the committed ``argocd/ddl/`` tree. CI renders
+and diff-checks it (see .github/workflows/ci.yml); the Argo migration Job
 (argocd/) applies it to ClickHouse independently of dfe-engine. Requires
 dfe-engine importable in the environment (CI installs it).
 """
@@ -37,7 +37,7 @@ def main() -> int:
         )
         return 2
 
-    written = DDLFileWriter().write_all(repo_root / "ddl")
+    written = DDLFileWriter().write_all(repo_root / "argocd" / "ddl")
     for path in written:
         print(path.relative_to(repo_root))
     return 0

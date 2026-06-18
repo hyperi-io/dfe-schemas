@@ -1,8 +1,8 @@
-# Root kustomization for the DFE core-schema Argo CD Application
-# (argocd/application.yaml points here with path: "."). It lives at the
-# repo root so the rendered ddl/ tree (the SSoT, also human-runnable) is
-# below the kustomization -- Argo's kustomize forbids file references that
-# escape the kustomization directory (no "../").
+# Kustomization for the DFE core-schema Argo CD Application
+# (argocd/application.yaml points here with path: "argocd"). The whole
+# deploy unit is self-contained under argocd/ so the rendered ddl/ tree
+# sits below this kustomization -- Argo's kustomize forbids file
+# references that escape the kustomization directory (no "../").
 #
 # configMapGenerator hashes the ConfigMap name from the SQL content, so a
 # change to ddl/ changes the Job's volume reference and Argo (Replace=true
@@ -17,7 +17,7 @@ kind: Kustomization
 namespace: dfe
 
 resources:
-  - argocd/job.yaml
+  - job.yaml
 
 configMapGenerator:
   - name: dfe-core-ddl

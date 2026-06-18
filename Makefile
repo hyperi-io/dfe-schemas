@@ -14,4 +14,4 @@ render:
 	$(PY) scripts/render_ddl.py
 
 check: validate render
-	git diff --exit-code ddl/ || { echo "ddl/ is stale -- run 'make render' and commit"; exit 1; }
+	git diff --exit-code argocd/ddl/ || { echo "argocd/ddl/ is stale -- run 'make render' and commit"; exit 1; }

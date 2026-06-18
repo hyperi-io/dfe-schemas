@@ -24,18 +24,16 @@ spec:
           image: clickhouse/clickhouse-client:latest
           command: ["/bin/bash", "-c"]
           args:
+            # clickhouse-client reads CLICKHOUSE_HOST/PORT/USER/PASSWORD from
+            # the env (injected below) -- never put the password on argv, it
+            # would be visible in the pod process list.
             - |
               set -euo pipefail
-              CH=(clickhouse-client
-                  --host "${CLICKHOUSE_HOST}"
-                  --port "${CLICKHOUSE_PORT:-9000}"
-                  --user "${CLICKHOUSE_USER}"
-                  --password "${CLICKHOUSE_PASSWORD}")
               for f in /ddl/*.sql; do
                 db="${f##*/}"; db="${db%%.*}"
                 echo "==> ${f} -> database ${db}"
-                "${CH[@]}" --query "CREATE DATABASE IF NOT EXISTS ${db}"
-                sed "s/{db}/${db}/g" "${f}" | "${CH[@]}" --multiquery
+                clickhouse-client --query "CREATE DATABASE IF NOT EXISTS ${db}"
+                sed "s/{db}/${db}/g" "${f}" | clickhouse-client --multiquery
               done
               echo "Core schema applied."
           env:

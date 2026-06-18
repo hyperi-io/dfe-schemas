@@ -1,0 +1,48 @@
+# Minimal CI for dfe-schemas: validate every schema YAML against the
+# dfe-engine meta-schema, and verify the committed ddl/ matches a fresh
+# render. No semantic-release (deliberate -- VERSION is managed by hand).
+#
+# Renders via dfe-engine (the DDLFileWriter lives there); dfe-engine is
+# checked out and uv-synced the same way its own Dockerfile builds it.
+#
+# NOTE: action refs should be SHA-pinned per HyperI CI policy before this
+# is promoted; left as tags here so they are not invented.
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ${{ vars.GH_RUNNER_DEFAULT || 'ubuntu-latest' }}
+    steps:
+      - name: Checkout dfe-schemas
+        uses: actions/checkout@v4
+
+      - name: Checkout dfe-engine (renderer)
+        uses: actions/checkout@v4
+        with:
+          repository: hyperi-io/dfe-engine
+          ref: main
+          token: ${{ secrets.DFE_ENGINE_RO_TOKEN }}
+          path: .dfe-engine
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Install dfe-engine
+        working-directory: .dfe-engine
+        run: uv sync --frozen --no-dev
+
+      - name: Validate schemas
+        run: .dfe-engine/.venv/bin/python scripts/validate_schemas.py
+
+      - name: Render DDL and check for drift
+        run: |
+          .dfe-engine/.venv/bin/python scripts/render_ddl.py
+          git diff --exit-code ddl/ \
+            || { echo "ddl/ is stale -- run 'make render' and commit"; exit 1; }

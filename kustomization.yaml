@@ -1,0 +1,27 @@
+# Root kustomization for the DFE core-schema Argo CD Application
+# (argocd/application.yaml points here with path: "."). It lives at the
+# repo root so the rendered ddl/ tree (the SSoT, also human-runnable) is
+# below the kustomization -- Argo's kustomize forbids file references that
+# escape the kustomization directory (no "../").
+#
+# configMapGenerator hashes the ConfigMap name from the SQL content, so a
+# change to ddl/ changes the Job's volume reference and Argo (Replace=true
+# on the Job) re-runs the migration. The DDL is all CREATE ... IF NOT
+# EXISTS, so re-runs are safe regardless.
+#
+# Only the core tables are applied. Profile reference tables
+# (ddl/profiles/*.sql) are documentation, not deployed.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: dfe
+
+resources:
+  - argocd/job.yaml
+
+configMapGenerator:
+  - name: dfe-core-ddl
+    files:
+      - ddl/dfe.default.sql
+      - ddl/dfe_audit.detection_checkpoint.sql
+      - ddl/dfe_hunts.detection.sql

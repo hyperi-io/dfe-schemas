@@ -1,0 +1,29 @@
+# Argo CD Application that deploys the DFE core ClickHouse schema
+# (databases, tables, views) independently of dfe-engine. This is what
+# makes "core tables/views deploy with OR without dfe-engine running"
+# true: Argo applies the rendered ddl/ via an idempotent migration Job.
+#
+# The AppProject `dfe` and the `dfe-clickhouse-admin` Secret (host, port,
+# user, password) are provisioned by dfe-infra.
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: dfe-core-schema
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: dfe
+  source:
+    repoURL: https://github.com/hyperi-io/dfe-schemas.git
+    targetRevision: main
+    path: .
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: dfe
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

@@ -1,0 +1,60 @@
+# Idempotent ClickHouse migration Job. For each ddl/*.sql it derives the
+# database from the filename prefix (e.g. dfe_audit.detection_checkpoint.sql
+# -> database dfe_audit), creates the database if absent, substitutes the
+# {db} placeholder, and applies the file. All DDL is CREATE ... IF NOT
+# EXISTS, so re-running is safe. Replace=true lets Argo recreate the Job
+# (Jobs are immutable) whenever the hashed ConfigMap reference changes.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: dfe-core-schema-migrate
+  annotations:
+    argocd.argoproj.io/sync-options: Replace=true
+spec:
+  backoffLimit: 3
+  ttlSecondsAfterFinished: 86400
+  template:
+    metadata:
+      name: dfe-core-schema-migrate
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: migrate
+          # Pin via dfe-infra versions.yaml before promotion.
+          image: clickhouse/clickhouse-client:latest
+          command: ["/bin/bash", "-c"]
+          args:
+            - |
+              set -euo pipefail
+              CH=(clickhouse-client
+                  --host "${CLICKHOUSE_HOST}"
+                  --port "${CLICKHOUSE_PORT:-9000}"
+                  --user "${CLICKHOUSE_USER}"
+                  --password "${CLICKHOUSE_PASSWORD}")
+              for f in /ddl/*.sql; do
+                db="${f##*/}"; db="${db%%.*}"
+                echo "==> ${f} -> database ${db}"
+                "${CH[@]}" --query "CREATE DATABASE IF NOT EXISTS ${db}"
+                sed "s/{db}/${db}/g" "${f}" | "${CH[@]}" --multiquery
+              done
+              echo "Core schema applied."
+          env:
+            - name: CLICKHOUSE_HOST
+              valueFrom:
+                secretKeyRef: { name: dfe-clickhouse-admin, key: host }
+            - name: CLICKHOUSE_PORT
+              valueFrom:
+                secretKeyRef: { name: dfe-clickhouse-admin, key: port, optional: true }
+            - name: CLICKHOUSE_USER
+              valueFrom:
+                secretKeyRef: { name: dfe-clickhouse-admin, key: user }
+            - name: CLICKHOUSE_PASSWORD
+              valueFrom:
+                secretKeyRef: { name: dfe-clickhouse-admin, key: password }
+          volumeMounts:
+            - name: ddl
+              mountPath: /ddl
+      volumes:
+        - name: ddl
+          configMap:
+            name: dfe-core-ddl

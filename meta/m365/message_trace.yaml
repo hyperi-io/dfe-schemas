@@ -3,6 +3,7 @@
 # Graph API email activity reports — CSV-based aggregate metrics.
 
 current: "1.0.0"
+resource_type: core
 
 versions:
   "1.0.0":
@@ -15,6 +16,7 @@ versions:
         use_case: range
         expr: "@source: Report Refresh Date"
         comment: "Report as-of date"
+        _field_type: base
 
       - name: report_period
         type: string
@@ -22,3 +24,4 @@ versions:
         use_case: dimension
         expr: "@source: Report Period"
         comment: "Report period (e.g. D1, D7)"
+        _field_type: base

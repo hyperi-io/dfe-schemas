@@ -3,6 +3,7 @@
 # CloudTrail LookupEvents — API audit trail for AWS account activity.
 
 current: "1.0.0"
+resource_type: core
 
 versions:
   "1.0.0":
@@ -15,6 +16,7 @@ versions:
         use_case: bloom
         expr: "@source: EventId"
         comment: "Unique CloudTrail event identifier"
+        _field_type: base
 
       - name: event_name
         type: string
@@ -22,12 +24,14 @@ versions:
         use_case: dimension
         expr: "@source: EventName"
         comment: "API action name (e.g. ConsoleLogin, AssumeRole)"
+        _field_type: base
 
       - name: event_time
         type: datetime
         use_case: range
         expr: "@source: EventTime"
         comment: "When the API call occurred"
+        _field_type: base
 
       - name: event_source
         type: string
@@ -35,18 +39,21 @@ versions:
         use_case: dimension
         expr: "@source: EventSource"
         comment: "AWS service (e.g. ec2.amazonaws.com)"
+        _field_type: base
 
       - name: username
         type: string
         use_case: dimension
         expr: "@source: Username"
         comment: "IAM user or role that performed the action"
+        _field_type: base
 
       - name: source_ip
         type: ip
         use_case: range
         expr: "@source: first(SourceIPAddress/sourceIPAddress)"
         comment: "IP address of the caller"
+        _field_type: base
 
       - name: access_key_id
         type: string
@@ -54,11 +61,13 @@ versions:
         use_case: dimension
         expr: "@source: AccessKeyId"
         comment: "Access key used for the API call"
+        _field_type: base
 
       - name: user_agent
         type: text
         expr: "@source: UserAgent"
         comment: "Client user agent string"
+        _field_type: base
 
       - name: error_code
         type: string
@@ -66,6 +75,7 @@ versions:
         use_case: dimension
         expr: "@source: ErrorCode"
         comment: "Error code if the API call failed"
+        _field_type: base
 
       - name: resource_type
         type: string
@@ -73,3 +83,4 @@ versions:
         use_case: dimension
         expr: "@source: Resources[0].ResourceType"
         comment: "Type of the primary affected resource"
+        _field_type: base

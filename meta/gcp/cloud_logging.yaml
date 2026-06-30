@@ -3,6 +3,7 @@
 # Cloud Logging entries — application and infrastructure logs from GCP.
 
 current: "1.0.0"
+resource_type: core
 
 versions:
   "1.0.0":
@@ -16,6 +17,7 @@ versions:
         use_case: dimension
         expr: "@source: logName"
         comment: "Log name identifier"
+        _field_type: base
 
       - name: severity
         type: string
@@ -23,12 +25,14 @@ versions:
         use_case: dimension
         expr: "@source: severity"
         comment: "Log severity (WARNING, ERROR, CRITICAL, etc.)"
+        _field_type: base
 
       - name: insert_id
         type: string
         use_case: bloom
         expr: "@source: insertId"
         comment: "Unique log entry identifier"
+        _field_type: base
 
       - name: text_payload
         type: text
@@ -36,6 +40,7 @@ versions:
         use_case: fulltext
         expr: "@source: textPayload"
         comment: "Plain text log message"
+        _field_type: base
 
       - name: resource_type
         type: string
@@ -43,6 +48,7 @@ versions:
         use_case: dimension
         expr: "@source: resource.type"
         comment: "Resource type (gce_instance, cloud_function, etc.)"
+        _field_type: base
 
       - name: trace_id
         type: string
@@ -50,6 +56,7 @@ versions:
         use_case: bloom
         expr: "@source: trace"
         comment: "Distributed trace identifier"
+        _field_type: base
 
       - name: span_id
         type: string
@@ -57,3 +64,4 @@ versions:
         use_case: bloom
         expr: "@source: spanId"
         comment: "Span identifier within the trace"
+        _field_type: base

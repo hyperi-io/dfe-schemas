@@ -3,6 +3,7 @@
 # CloudWatch Logs FilterLogEvents — log entries from CloudWatch log groups.
 
 current: "1.0.0"
+resource_type: core
 
 versions:
   "1.0.0":
@@ -15,6 +16,7 @@ versions:
         use_case: bloom
         expr: "@source: eventId"
         comment: "Unique log event identifier"
+        _field_type: base
 
       - name: log_group_name
         type: string
@@ -22,18 +24,21 @@ versions:
         use_case: dimension
         expr: "@source: logGroupName"
         comment: "CloudWatch log group name"
+        _field_type: base
 
       - name: log_stream_name
         type: string
         use_case: dimension
         expr: "@source: logStreamName"
         comment: "CloudWatch log stream name"
+        _field_type: base
 
       - name: timestamp
         type: datetime
         use_case: range
         expr: "@source: timestamp"
         comment: "Event timestamp (epoch milliseconds)"
+        _field_type: base
 
       - name: ingestion_time
         type: datetime
@@ -41,9 +46,11 @@ versions:
         use_case: range
         expr: "@source: ingestionTime"
         comment: "When CloudWatch ingested the event"
+        _field_type: base
 
       - name: message
         type: text
         use_case: fulltext
         expr: "@source: message"
         comment: "Log event message content"
+        _field_type: base

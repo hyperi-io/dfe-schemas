@@ -3,6 +3,7 @@
 # SCC findings — security and compliance findings across GCP organisation.
 
 current: "1.0.0"
+resource_type: core
 
 versions:
   "1.0.0":
@@ -15,6 +16,7 @@ versions:
         use_case: bloom
         expr: "@source: finding.name"
         comment: "Full finding resource name"
+        _field_type: base
 
       - name: category
         type: string
@@ -22,6 +24,7 @@ versions:
         use_case: dimension
         expr: "@source: finding.category"
         comment: "Finding category (e.g. WEAK_CRYPTOGRAPHY, OPEN_FIREWALL)"
+        _field_type: base
 
       - name: severity
         type: string
@@ -29,6 +32,7 @@ versions:
         use_case: dimension
         expr: "@source: finding.severity"
         comment: "Finding severity (CRITICAL, HIGH, MEDIUM, LOW)"
+        _field_type: base
 
       - name: state
         type: string
@@ -36,29 +40,34 @@ versions:
         use_case: dimension
         expr: "@source: finding.state"
         comment: "Finding state (ACTIVE, INACTIVE)"
+        _field_type: base
 
       - name: resource_name
         type: string
         expr: "@source: finding.resourceName"
         comment: "Full name of the affected resource"
+        _field_type: base
 
       - name: create_time
         type: datetime
         use_case: range
         expr: "@source: finding.createTime"
         comment: "When the finding was created"
+        _field_type: base
 
       - name: event_time
         type: datetime
         use_case: range
         expr: "@source: finding.eventTime"
         comment: "When the finding was last observed"
+        _field_type: base
 
       - name: external_uri
         type: string
         attribute: [nullable]
         expr: "@source: finding.externalUri"
         comment: "External URI for finding details"
+        _field_type: base
 
       - name: parent_source
         type: string
@@ -66,3 +75,4 @@ versions:
         use_case: dimension
         expr: "@source: finding.parent"
         comment: "Source that produced the finding"
+        _field_type: base

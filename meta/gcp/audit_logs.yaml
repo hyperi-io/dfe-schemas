@@ -3,6 +3,7 @@
 # Cloud Audit Logs — admin activity and data access events from GCP services.
 
 current: "1.0.0"
+resource_type: core
 
 versions:
   "1.0.0":
@@ -16,6 +17,7 @@ versions:
         use_case: dimension
         expr: "@source: logName"
         comment: "Log name (e.g. cloudaudit.googleapis.com/activity)"
+        _field_type: base
 
       - name: severity
         type: string
@@ -23,6 +25,7 @@ versions:
         use_case: dimension
         expr: "@source: severity"
         comment: "Log severity (INFO, NOTICE, WARNING, ERROR, CRITICAL)"
+        _field_type: base
 
       - name: method_name
         type: string
@@ -30,17 +33,20 @@ versions:
         use_case: dimension
         expr: "@source: protoPayload.methodName"
         comment: "API method called (e.g. storage.buckets.create)"
+        _field_type: base
 
       - name: principal_email
         type: string
         use_case: dimension
         expr: "@source: protoPayload.authenticationInfo.principalEmail"
         comment: "Service account or user email that performed the action"
+        _field_type: base
 
       - name: resource_name
         type: string
         expr: "@source: protoPayload.resourceName"
         comment: "Full resource name (projects/*, buckets/*, etc.)"
+        _field_type: base
 
       - name: resource_type
         type: string
@@ -48,6 +54,7 @@ versions:
         use_case: dimension
         expr: "@source: resource.type"
         comment: "Resource type (gce_instance, gcs_bucket, etc.)"
+        _field_type: base
 
       - name: caller_ip
         type: ip
@@ -55,6 +62,7 @@ versions:
         use_case: range
         expr: "@source: protoPayload.requestMetadata.callerIp"
         comment: "IP address of the caller"
+        _field_type: base
 
       - name: service_name
         type: string
@@ -62,9 +70,11 @@ versions:
         use_case: dimension
         expr: "@source: protoPayload.serviceName"
         comment: "GCP service name (e.g. storage.googleapis.com)"
+        _field_type: base
 
       - name: insert_id
         type: string
         use_case: bloom
         expr: "@source: insertId"
         comment: "Unique log entry identifier"
+        _field_type: base

@@ -5,6 +5,7 @@
 # discriminator. Fields specific to one type are nullable.
 
 current: "1.0.0"
+resource_type: core
 
 versions:
   "1.0.0":
@@ -18,24 +19,28 @@ versions:
         use_case: dimension
         expr: "@computed: if(has(activityDisplayName), 'directory_audit', 'signin')"
         comment: "Record type discriminator (signin or directory_audit)"
+        _field_type: base
 
       - name: event_id
         type: string
         use_case: bloom
         expr: "@source: id"
         comment: "Unique event identifier"
+        _field_type: base
 
       - name: event_time
         type: datetime
         use_case: range
         expr: "@source: first(createdDateTime/activityDateTime)"
         comment: "Event timestamp (createdDateTime for signIns, activityDateTime for audits)"
+        _field_type: base
 
       - name: user_principal_name
         type: string
         use_case: dimension
         expr: "@source: first(userPrincipalName/initiatedBy.user.userPrincipalName)"
         comment: "User principal name (UPN / email)"
+        _field_type: base
 
       - name: user_id
         type: string
@@ -43,6 +48,7 @@ versions:
         use_case: dimension
         expr: "@source: first(userId/initiatedBy.user.id)"
         comment: "Entra ID user object identifier"
+        _field_type: base
 
       - name: app_display_name
         type: string
@@ -50,6 +56,7 @@ versions:
         use_case: dimension
         expr: "@source: appDisplayName"
         comment: "Application display name (signIns only)"
+        _field_type: base
 
       - name: ip_address
         type: ip
@@ -57,6 +64,7 @@ versions:
         use_case: range
         expr: "@source: ipAddress"
         comment: "Client IP address (signIns only)"
+        _field_type: base
 
       - name: status_error_code
         type: integer
@@ -64,6 +72,7 @@ versions:
         use_case: dimension
         expr: "@source: status.errorCode"
         comment: "Sign-in error code (0 = success, signIns only)"
+        _field_type: base
 
       - name: operation_type
         type: string
@@ -71,6 +80,7 @@ versions:
         use_case: dimension
         expr: "@source: operationType"
         comment: "Operation type (Add, Delete, Update — directoryAudits only)"
+        _field_type: base
 
       - name: activity_display_name
         type: string
@@ -78,6 +88,7 @@ versions:
         use_case: dimension
         expr: "@source: activityDisplayName"
         comment: "Activity display name (directoryAudits only)"
+        _field_type: base
 
       - name: result
         type: string
@@ -85,6 +96,7 @@ versions:
         use_case: dimension
         expr: "@source: result"
         comment: "Operation result (success, failure — directoryAudits only)"
+        _field_type: base
 
       - name: location_country
         type: string
@@ -92,3 +104,4 @@ versions:
         use_case: dimension
         expr: "@source: location.countryOrRegion"
         comment: "Country or region of the sign-in (signIns only)"
+        _field_type: base

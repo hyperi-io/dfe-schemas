@@ -403,3 +403,13 @@ a submodule checkout.
 | **dfe-receiver** | Rust | Field validation | common-header |
 | **dfe-archiver** | Rust | Table detection | common-header |
 | **dfe-control-plane** | Python | Schema management UI | All (via dfe-engine) |
+
+---
+
+## Scripts
+
+| Script | Purpose | Usage |
+|--------|---------|-------|
+| `scripts/validate_schemas.py` | Validate every schema YAML against dfe-engine meta-schema and TypeRegistry | `make validate` (needs dfe-engine importable) |
+| `scripts/render_ddl.py` | Render reference ClickHouse DDL into `argocd/ddl/` | `make render` (needs dfe-engine; sets `DFE_SCHEMAS_DIR` to this repo) |
+| `scripts/annotate_meta_schemas.py` | Add missing `resource_type: core` and column `_field_type: base` under `meta/` and `common-header/` (never overwrites existing keys) | `python3 scripts/annotate_meta_schemas.py` (stdlib only; `--dry-run`, `--fix-spacing`, `--schema-dir`) |

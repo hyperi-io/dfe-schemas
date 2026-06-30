@@ -3,6 +3,7 @@
 # Graph Security alerts v2 — all security alert types across M365 services.
 
 current: "1.0.0"
+resource_type: core
 
 versions:
   "1.0.0":
@@ -15,11 +16,13 @@ versions:
         use_case: bloom
         expr: "@source: id"
         comment: "Unique alert identifier"
+        _field_type: base
 
       - name: title
         type: string
         expr: "@source: title"
         comment: "Alert title"
+        _field_type: base
 
       - name: category
         type: string
@@ -27,6 +30,7 @@ versions:
         use_case: dimension
         expr: "@source: category"
         comment: "Alert category"
+        _field_type: base
 
       - name: severity
         type: string
@@ -34,6 +38,7 @@ versions:
         use_case: dimension
         expr: "@source: severity"
         comment: "Alert severity (high, medium, low)"
+        _field_type: base
 
       - name: status
         type: string
@@ -41,12 +46,14 @@ versions:
         use_case: dimension
         expr: "@source: status"
         comment: "Alert status (newAlert, inProgress, resolved, dismissed)"
+        _field_type: base
 
       - name: created_datetime
         type: datetime
         use_case: range
         expr: "@source: createdDateTime"
         comment: "When the alert was created"
+        _field_type: base
 
       - name: description
         type: text
@@ -54,6 +61,7 @@ versions:
         use_case: fulltext
         expr: "@source: description"
         comment: "Alert description"
+        _field_type: base
 
       - name: provider
         type: string
@@ -61,6 +69,7 @@ versions:
         use_case: dimension
         expr: "@source: vendorInformation.provider"
         comment: "Security provider that generated the alert"
+        _field_type: base
 
       - name: determination
         type: string
@@ -68,3 +77,4 @@ versions:
         use_case: dimension
         expr: "@source: determination"
         comment: "Threat assessment determination"
+        _field_type: base

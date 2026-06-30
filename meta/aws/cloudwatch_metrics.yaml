@@ -3,6 +3,7 @@
 # CloudWatch Monitoring GetMetricData — time-series metric data points.
 
 current: "1.0.0"
+resource_type: core
 
 versions:
   "1.0.0":
@@ -16,6 +17,7 @@ versions:
         use_case: dimension
         expr: "@source: namespace"
         comment: "CloudWatch namespace (e.g. AWS/EC2, AWS/Lambda)"
+        _field_type: base
 
       - name: metric_name
         type: string
@@ -23,12 +25,14 @@ versions:
         use_case: dimension
         expr: "@source: metric_name"
         comment: "Metric name (e.g. CPUUtilization, Invocations)"
+        _field_type: base
 
       - name: dimensions
         type: json
         attribute: [nullable]
         expr: "@source: dimensions"
         comment: "Metric dimensions as JSON (e.g. InstanceId, FunctionName)"
+        _field_type: base
 
       - name: unit
         type: string
@@ -36,18 +40,21 @@ versions:
         use_case: dimension
         expr: "@source: unit"
         comment: "CloudWatch unit (e.g. Percent, Bytes, Count)"
+        _field_type: base
 
       - name: timestamp
         type: datetime
         use_case: range
         expr: "@source: timestamp"
         comment: "Data point timestamp"
+        _field_type: base
 
       - name: value
         type: float
         use_case: range
         expr: "@source: value"
         comment: "Metric value"
+        _field_type: base
 
       - name: stat
         type: string
@@ -55,3 +62,4 @@ versions:
         use_case: dimension
         expr: "@source: stat"
         comment: "Statistic type (Average, Sum, Maximum, Minimum, SampleCount)"
+        _field_type: base

@@ -3,6 +3,7 @@
 # Office 365 Management Activity API — unified audit events across M365 workloads.
 
 current: "1.0.0"
+resource_type: core
 
 versions:
   "1.0.0":
@@ -15,12 +16,14 @@ versions:
         use_case: bloom
         expr: "@source: Id"
         comment: "Unique audit event identifier"
+        _field_type: base
 
       - name: creation_time
         type: datetime
         use_case: range
         expr: "@source: CreationTime"
         comment: "When the event occurred"
+        _field_type: base
 
       - name: operation
         type: string
@@ -28,6 +31,7 @@ versions:
         use_case: dimension
         expr: "@source: Operation"
         comment: "Operation performed (e.g. UserLoggedIn, FileAccessed)"
+        _field_type: base
 
       - name: workload
         type: string
@@ -35,12 +39,14 @@ versions:
         use_case: dimension
         expr: "@source: Workload"
         comment: "M365 workload (Exchange, SharePoint, AzureActiveDirectory)"
+        _field_type: base
 
       - name: user_id
         type: string
         use_case: dimension
         expr: "@source: first(UserId/UserIds)"
         comment: "User principal name"
+        _field_type: base
 
       - name: client_ip
         type: ip
@@ -48,6 +54,7 @@ versions:
         use_case: range
         expr: "@source: ClientIP"
         comment: "Client IP address"
+        _field_type: base
 
       - name: result_status
         type: string
@@ -55,18 +62,21 @@ versions:
         use_case: dimension
         expr: "@source: ResultStatus"
         comment: "Operation result (Succeeded, PartiallySucceeded, Failed)"
+        _field_type: base
 
       - name: object_id
         type: string
         attribute: [nullable]
         expr: "@source: ObjectId"
         comment: "Primary object (mailbox, SharePoint item, etc.)"
+        _field_type: base
 
       - name: record_type
         type: integer
         use_case: dimension
         expr: "@source: RecordType"
         comment: "Audit record type identifier"
+        _field_type: base
 
       - name: correlation_id
         type: string
@@ -74,3 +84,4 @@ versions:
         use_case: bloom
         expr: "@source: first(Id/CorrelationId)"
         comment: "Correlation identifier for related events"
+        _field_type: base

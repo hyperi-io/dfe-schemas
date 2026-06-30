@@ -3,6 +3,7 @@
 # Microsoft Sentinel incidents — security incidents from SIEM correlation.
 
 current: "1.0.0"
+resource_type: core
 
 versions:
   "1.0.0":
@@ -15,11 +16,13 @@ versions:
         use_case: bloom
         expr: "@source: first(name/id)"
         comment: "Unique incident identifier"
+        _field_type: base
 
       - name: title
         type: string
         expr: "@source: properties.title"
         comment: "Incident title"
+        _field_type: base
 
       - name: severity
         type: string
@@ -27,6 +30,7 @@ versions:
         use_case: dimension
         expr: "@source: properties.severity"
         comment: "Incident severity (Critical, High, Medium, Low, Informational)"
+        _field_type: base
 
       - name: status
         type: string
@@ -34,6 +38,7 @@ versions:
         use_case: dimension
         expr: "@source: properties.status"
         comment: "Incident status (Active, Closed, New)"
+        _field_type: base
 
       - name: classification
         type: string
@@ -41,30 +46,35 @@ versions:
         use_case: dimension
         expr: "@source: properties.classification"
         comment: "Classification (TruePositive, FalsePositive, BenignPositive, Undetermined)"
+        _field_type: base
 
       - name: first_activity_utc
         type: datetime
         use_case: range
         expr: "@source: properties.firstActivityTimeUtc"
         comment: "First alert or event time in the incident"
+        _field_type: base
 
       - name: last_activity_utc
         type: datetime
         use_case: range
         expr: "@source: properties.lastActivityTimeUtc"
         comment: "Most recent activity time"
+        _field_type: base
 
       - name: created_utc
         type: datetime
         use_case: range
         expr: "@source: properties.createdTimeUtc"
         comment: "When the incident was created"
+        _field_type: base
 
       - name: alerts_count
         type: integer
         use_case: range
         expr: "@source: properties.additionalData.alertsCount"
         comment: "Number of alerts in the incident"
+        _field_type: base
 
       - name: owner_email
         type: string
@@ -72,9 +82,11 @@ versions:
         use_case: dimension
         expr: "@source: properties.owner.email"
         comment: "Assigned owner email address"
+        _field_type: base
 
       - name: description
         type: text
         use_case: fulltext
         expr: "@source: properties.description"
         comment: "Incident description"
+        _field_type: base

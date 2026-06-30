@@ -3,6 +3,7 @@
 # AWS Config resource snapshots — configuration state of AWS resources.
 
 current: "1.0.0"
+resource_type: core
 
 versions:
   "1.0.0":
@@ -16,18 +17,21 @@ versions:
         use_case: dimension
         expr: "@source: ResourceType"
         comment: "AWS resource type (e.g. AWS::EC2::Instance)"
+        _field_type: base
 
       - name: resource_id
         type: string
         use_case: bloom
         expr: "@source: ResourceId"
         comment: "Unique resource identifier"
+        _field_type: base
 
       - name: resource_name
         type: string
         use_case: dimension
         expr: "@source: ResourceName"
         comment: "Human-readable resource name"
+        _field_type: base
 
       - name: aws_region
         type: string
@@ -35,6 +39,7 @@ versions:
         use_case: dimension
         expr: "@source: AwsRegion"
         comment: "AWS region"
+        _field_type: base
 
       - name: availability_zone
         type: string
@@ -42,12 +47,14 @@ versions:
         use_case: dimension
         expr: "@source: AvailabilityZone"
         comment: "Availability zone"
+        _field_type: base
 
       - name: capture_time
         type: datetime
         use_case: range
         expr: "@source: ConfigurationItemCaptureTime"
         comment: "When the configuration snapshot was taken"
+        _field_type: base
 
       - name: configuration_state
         type: string
@@ -55,3 +62,4 @@ versions:
         use_case: dimension
         expr: "@source: ConfigurationItemStatus"
         comment: "Configuration item status"
+        _field_type: base

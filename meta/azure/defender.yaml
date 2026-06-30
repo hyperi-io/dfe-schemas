@@ -3,6 +3,7 @@
 # Defender for Cloud security alerts — threat detection across Azure resources.
 
 current: "1.0.0"
+resource_type: core
 
 versions:
   "1.0.0":
@@ -15,6 +16,7 @@ versions:
         use_case: bloom
         expr: "@source: first(name/id)"
         comment: "Unique alert identifier"
+        _field_type: base
 
       - name: alert_type
         type: string
@@ -22,11 +24,13 @@ versions:
         use_case: dimension
         expr: "@source: properties.alertType"
         comment: "Alert type category"
+        _field_type: base
 
       - name: display_name
         type: string
         expr: "@source: properties.alertDisplayName"
         comment: "Human-readable alert title"
+        _field_type: base
 
       - name: severity
         type: string
@@ -34,6 +38,7 @@ versions:
         use_case: dimension
         expr: "@source: properties.severity"
         comment: "Alert severity (High, Medium, Low)"
+        _field_type: base
 
       - name: status
         type: string
@@ -41,18 +46,21 @@ versions:
         use_case: dimension
         expr: "@source: properties.status"
         comment: "Alert status (Active, Dismissed, Resolved)"
+        _field_type: base
 
       - name: description
         type: text
         use_case: fulltext
         expr: "@source: properties.description"
         comment: "Detailed alert description"
+        _field_type: base
 
       - name: created_utc
         type: datetime
         use_case: range
         expr: "@source: first(properties.timeGeneratedUtc/properties.startTimeUtc)"
         comment: "When the alert was generated"
+        _field_type: base
 
       - name: detected_utc
         type: datetime
@@ -60,9 +68,11 @@ versions:
         use_case: range
         expr: "@source: properties.detectedTimeUtc"
         comment: "When the threat was detected"
+        _field_type: base
 
       - name: resource_id
         type: string
         attribute: [nullable]
         expr: "@source: id"
         comment: "Full Azure resource identifier of the alert"
+        _field_type: base

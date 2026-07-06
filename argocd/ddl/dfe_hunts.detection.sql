@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS {db}.detection
     `_uuid` Nullable(UUID) DEFAULT generateUUIDv7() COMMENT '@generated: generateUUIDv7() — Time-ordered unique event identifier',
     `_org_id` LowCardinality(String) CODEC(ZSTD(1)) COMMENT '@source: org_id — Tenant/organisation identifier',
     `_source` LowCardinality(Nullable(String)) CODEC(ZSTD(1)) COMMENT '@source: first(_source) | topic_name — Data source label (e.g. beats, syslog, crowdstrike_edr)',
-    `_json` Nullable(JSON) CODEC(ZSTD(3)) COMMENT '@captured: raw_payload as JSON — Original event payload as structured JSON',
+    `_json` JSON CODEC(ZSTD(3)) COMMENT '@captured: raw_payload as JSON — Original event payload as structured JSON',
     `matched_uuid` Nullable(UUID) COMMENT 'UUID of the matching source record',
     `rule_id` LowCardinality(Nullable(String)) CODEC(ZSTD(1)) COMMENT 'Rule identifier',
     `rule_name` LowCardinality(Nullable(String)) CODEC(ZSTD(1)) COMMENT 'Human-readable rule name',

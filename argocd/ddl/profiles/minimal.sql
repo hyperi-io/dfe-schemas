@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS {db}._minimal_profile
     `_timestamp` DateTime64(3,'UTC') CODEC(Delta, LZ4) COMMENT '@source: timestamp | now() — Event timestamp from source data',
     `_uuid` Nullable(UUID) DEFAULT generateUUIDv7() COMMENT '@generated: generateUUIDv7() — Time-ordered unique event identifier',
     `_org_id` LowCardinality(String) CODEC(ZSTD(1)) COMMENT '@source: org_id — Tenant/organisation identifier',
-    `_json` Nullable(JSON) CODEC(ZSTD(3)) COMMENT '@captured: raw_payload as JSON — Original event payload as structured JSON',
+    `_json` JSON CODEC(ZSTD(3)) COMMENT '@captured: raw_payload as JSON — Original event payload as structured JSON',
     INDEX idx__timestamp `_timestamp` TYPE minmax GRANULARITY 4,
     INDEX idx__org_id `_org_id` TYPE set(0) GRANULARITY 4,
     PROJECTION timestamp_optimized (SELECT * ORDER BY `_timestamp`)

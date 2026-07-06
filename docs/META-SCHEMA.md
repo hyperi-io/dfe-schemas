@@ -488,7 +488,7 @@ CREATE TABLE IF NOT EXISTS {db}.windows_audit
         COMMENT '@source: org_id — Tenant/organisation identifier',
     `_raw` Nullable(String) CODEC(ZSTD(3))
         COMMENT '@captured: raw_payload — Original event payload as text',
-    `_json` Nullable(JSON) CODEC(ZSTD(3))
+    `_json` JSON CODEC(ZSTD(3))
         COMMENT '@captured: raw_payload as JSON — Original event payload as JSON',
     `user_name` Nullable(String) CODEC(ZSTD(1))
         COMMENT '@source: first(user_id/uid/id) — User identifier',

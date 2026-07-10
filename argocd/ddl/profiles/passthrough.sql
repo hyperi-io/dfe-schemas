@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS {db}._passthrough_profile
     `_timestamp_load` DateTime64(3,'UTC') DEFAULT now64(3) CODEC(Delta, LZ4) COMMENT '@generated: now64(3) — Insertion timestamp (ms precision)',
     `_uuid` Nullable(UUID) DEFAULT generateUUIDv7() COMMENT '@generated: generateUUIDv7() — Time-ordered unique event identifier',
     `_org_id` LowCardinality(String) CODEC(ZSTD(1)) COMMENT '@source: org_id — Tenant/organisation identifier',
-    `_json` Nullable(JSON) CODEC(ZSTD(3)) COMMENT '@captured: raw_payload as JSON — Original event payload as structured JSON',
+    `_json` JSON CODEC(ZSTD(3)) COMMENT '@captured: raw_payload as JSON — Original event payload as structured JSON',
     INDEX idx__org_id `_org_id` TYPE set(0) GRANULARITY 4
 )
 ENGINE = MergeTree()

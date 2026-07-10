@@ -8,7 +8,7 @@
 
 CREATE TABLE IF NOT EXISTS {db}.detection_checkpoint
 (
-    customer_name LowCardinality(String) CODEC(LZ4),
+    _org_id LowCardinality(String) CODEC(LZ4),
     rule_name LowCardinality(String) CODEC(LZ4),
     thread_id LowCardinality(String) CODEC(LZ4),
     log_buffer UInt32 CODEC(Delta, ZSTD),
@@ -30,4 +30,4 @@ CREATE TABLE IF NOT EXISTS {db}.detection_checkpoint
     query_fingerprint LowCardinality(String) DEFAULT '' CODEC(LZ4)
 ) ENGINE = MergeTree()
 PARTITION BY toYYYYMM(query_checkpoint_time)
-ORDER BY (customer_name, hunt_name, rule_name, query_checkpoint_time);
+ORDER BY (_org_id, hunt_name, rule_name, query_checkpoint_time);

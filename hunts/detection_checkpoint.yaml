@@ -11,11 +11,11 @@ versions:
     type: model
     summary: "Initial detection checkpoint schema"
     columns:
-      - name: customer_name
+      - name: _org_id
         type: string
         attribute: [lowcardinality, not_null]
         order: 0
-        comment: "Name of the customer that was scanned"
+        comment: "Org id (tenant identifier) that was scanned"
 
       - name: rule_name
         type: string
@@ -52,7 +52,7 @@ versions:
       - name: previous_successful_checkpoint
         type: datetime
         attribute: [not_null]
-        comment: "query_checkpoint_time of the previous successful run for this customer/hunt/rule; forms the inclusive lower bound of this runs scan window"
+        comment: "query_checkpoint_time of the previous successful run for this org/hunt/rule; forms the inclusive lower bound of this runs scan window"
 
       - name: query_checkpoint_time
         type: datetime

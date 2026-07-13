@@ -1,32 +1,17 @@
 # Meta Schema System
 
-**Status:** Active
-**Last Updated:** 2026-03-03
+A **meta schema** is a YAML file that defines the columns for a ClickHouse
+table - the single source of intent for what a table should look like. The
+engine reads it, generates DDL, and applies it to ClickHouse. There is no
+schema registry, no intermediate store, no sync state. This page is the
+FORMAT reference; the engine classes that consume it are documented in the
+dfe-engine repo (`docs/data-plane/schema-classes.md`).
 
----
-
-## Overview
-
-A **meta schema** is a YAML file that defines the columns for a ClickHouse table. It is the
-single source of intent for what a table should look like. The engine reads the meta schema,
-generates DDL, and applies it to ClickHouse. There is no schema registry, no intermediate
-store, no sync state.
-
-```
-Meta Schema YAML (intent)
-    │
-    ▼
-dfe-engine (SchemaBuilderV2)
-    │  Loads profile + meta + derived + additional
-    │  Composes columns
-    │  Validates against TypeRegistry
-    │  Generates DDL
-    │
-    ▼
-ClickHouse DDL (deployed truth)
-    │
-    ▼
-Rust K8s services read schema from system.columns at runtime
+```mermaid
+flowchart TB
+    YAML[Meta schema YAML - intent] --> B["dfe-engine SchemaBuilderV2<br/>load profile + meta + derived + additional<br/>compose - validate - generate DDL"]
+    B --> DDL[(ClickHouse DDL - deployed truth)]
+    DDL --> RUST[Rust services read system.columns at runtime]
 ```
 
 Two sources of truth exist:
@@ -44,19 +29,21 @@ Meta schemas are YAML files in the `schemas/` submodule (the
 hunt result schemas, and source-specific schemas all use the same format.
 
 ```
-schemas/                          ← git submodule (dfe-schemas repo)
-├── common-header/
-│   ├── timeseries.yaml           ← 9-column default profile
-│   ├── minimal.yaml              ← 4-column high-volume profile
-│   └── passthrough.yaml          ← 4-column transparent bridge
-├── hunt-results/
-│   └── detection.yaml            ← 6-column detection output
-├── ddl/                          ← generated reference SQL files
-│   ├── dfe.default.sql
-│   ├── dfe_audit.detection_checkpoint.sql
-│   ├── dfe_hunts.detection.sql
-│   └── profiles/
-└── README.md
+schemas/                          <- git submodule (dfe-schemas repo)
+|-- common-header/
+|   |-- timeseries.yaml           <- 9-column default profile
+|   |-- minimal.yaml              <- 5-column high-volume profile
+|   '-- passthrough.yaml          <- 4-column transparent bridge
+|-- meta/                         <- source meta schemas (aws/ azure/ gcp/ m365/)
+|-- additional/                   <- extra-field overlays (aws/)
+|-- hunts/
+|   |-- results.yaml              <- hunt detection output columns
+|   '-- detection_checkpoint.yaml <- runner checkpoint table
+|-- argocd/
+|   |-- ddl/                      <- generated reference SQL (make render)
+|   '-- application.yaml + job.yaml + kustomization.yaml
+|-- scripts/                      <- validate / render / annotate
+'-- README.md
 ```
 
 ---
@@ -127,7 +114,7 @@ columns:
 
 ## Column Definition Reference
 
-Each column is a `SchemaColumn` with up to 9 fields. Only `name` and `type` are required.
+Each column is a `SchemaColumn`. Only `name` and `type` are required.
 
 ```yaml
 columns:
@@ -155,6 +142,8 @@ columns:
 | `expr` | `str \| null` | `null` | DFE directive that tells the loader how to populate this column (see [DFE Expressions](#dfe-expressions)). |
 | `comment` | `str \| null` | `null` | Human-readable description. |
 | `ch_override` | `str \| null` | `null` | Exact ClickHouse type string — bypasses primitive mapping entirely. No auto-Nullable, no auto-codec. |
+| `_field_type` | `str \| null` | `null` | Column classification annotation (`base` = shipped by DFE). Maps to the engine model's `field_type`. |
+| `max_dynamic_paths` | `int \| null` | `null` | JSON-column dynamic-path budget. Present in shipped profile YAML; engine-side DDL wiring is pending (tracked in the 2nd-pass review report). |
 
 ### How `expr` and `comment` Become DDL
 
@@ -628,23 +617,23 @@ The deployed ClickHouse table is always authoritative at runtime.
 
 ```
 dfe-schemas/
-├── common-header/          # Common header profiles (shipped, read-only)
-│   ├── timeseries.yaml
-│   ├── minimal.yaml
-│   └── passthrough.yaml
-├── hunt-results/           # Hunt output schemas (shipped, read-only)
-│   └── detection.yaml
-├── meta/                   # Source-specific meta schemas (add yours here)
-│   ├── syslog.yaml
-│   ├── windows_audit.yaml
-│   └── crowdstrike_edr.yaml
-├── derived/                # Source-specific overrides (optional)
-│   └── windows_custom.yaml
-├── additional/             # Extra fields (optional)
-│   └── windows_extra.yaml
-├── ddl/                    # Generated reference SQL (auto-generated)
-└── README.md
+|-- common-header/          # Common header profiles (shipped, read-only)
+|   |-- timeseries.yaml
+|   |-- minimal.yaml
+|   '-- passthrough.yaml
+|-- hunts/                  # Hunt output + checkpoint schemas (shipped)
+|   |-- results.yaml
+|   '-- detection_checkpoint.yaml
+|-- meta/                   # Source meta schemas, grouped by provider
+|   |-- aws/  azure/  gcp/  m365/
+|-- additional/             # Extra-field overlays (optional, e.g. aws/)
+|-- argocd/ddl/             # Generated reference SQL (make render)
+'-- README.md
 ```
+
+Derived-schema overlays (`derived/`) are supported by the loader but the
+directory does not exist yet - create it beside `additional/` when first
+needed.
 
 ### Creating a New Meta Schema
 
@@ -765,266 +754,10 @@ Both dfe-engine (Python) and dfe-loader (Rust) use the same resolution order:
 
 ---
 
-## AI Coder Reference
+## Engine class reference
 
-### File Map
-
-| File | What It Contains |
-|------|-----------------|
-| `src/dfe_engine/source/models.py` | `SchemaColumn`, `SourceSchema`, `SourceHeader`, `Source` Pydantic models |
-| `src/dfe_engine/source/type_registry.py` | `TypeRegistry` class, `ResolvedType` dataclass |
-| `src/dfe_engine/source/type_registry.yaml` | 13 primitives, use_case constraints, attribute constraints, ch_override catalogue |
-| `src/dfe_engine/schema/schema_loader.py` | `SchemaLoader` — YAML loading, composition, validation |
-| `src/dfe_engine/schema/schema_ddl.py` | `DDLGenerator`, `DDLConfig` — column/index/view DDL generation |
-| `src/dfe_engine/schema/schema_builder_v2.py` | `SchemaBuilderV2`, `SchemaBuildResult` — Source → DDL orchestration |
-| `src/dfe_engine/schema/schema_manager.py` | `SchemaManager` — version write operations (add, clone, create) |
-| `src/dfe_engine/schema/ddl_writer.py` | `DDLFileWriter` — reference SQL file generation |
-| `src/dfe_engine/fieldmap/view_generator.py` | `ViewGenerator` — standard field map → view DDL |
-| `schemas/common-header/*.yaml` | Common header profile definitions |
-| `schemas/hunt-results/detection.yaml` | Hunt detection output schema |
-
-### Key Classes and Methods
-
-#### SchemaColumn (`source/models.py`)
-
-```python
-from dfe_engine.source.models import SchemaColumn
-
-col = SchemaColumn(
-    name="user_name",
-    type="string",
-    attribute=["lowcardinality"],
-    use_case="dimension",
-    expr="@source: first(user_id/uid/id)",
-    comment="User identifier",
-)
-
-# Validate against TypeRegistry
-errors = col.validate_against_registry(TypeRegistry.default())
-```
-
-#### TypeRegistry (`source/type_registry.py`)
-
-```python
-from dfe_engine.source.type_registry import TypeRegistry
-
-registry = TypeRegistry.default()  # Loads type_registry.yaml
-
-# Resolve primitive to ClickHouse type
-resolved = registry.resolve("string", attributes=["lowcardinality"])
-# → ResolvedType(ch_type='LowCardinality(Nullable(String))', codec='ZSTD(1)')
-
-# Validate constraints
-registry.validate_use_case("integer", "dimension")   # OK
-registry.validate_use_case("integer", "fulltext")     # raises ValueError
-registry.validate_attribute("json", "lowcardinality") # raises ValueError
-```
-
-#### SchemaLoader (`schema/schema_loader.py`)
-
-```python
-from dfe_engine.schema.schema_loader import SchemaLoader
-
-# Load versioned schema
-columns = SchemaLoader.load_columns("meta/syslog.yaml", version="1.0.0")
-
-# Load common header profile
-profile = SchemaLoader.load_profile("timeseries", version="1.0.0")
-
-# Composition
-columns = SchemaLoader.apply_derived_schema(columns, "derived.yaml")
-columns = SchemaLoader.apply_additional_fields(columns, "additional.yaml")
-full = SchemaLoader.compose(profile, columns)
-
-# Validation
-errors = SchemaLoader.validate_columns(full, TypeRegistry.default())
-
-# ORDER BY extraction
-order_cols = SchemaLoader.get_order_by_columns(full)  # ['_timestamp_load', '_timestamp', '_org_id']
-
-# Version metadata (without loading columns)
-meta = SchemaLoader.load_version_metadata("meta/syslog.yaml")
-# → {"current": "1.0.0", "versions": {"1.0.0": {"date": "...", "type": "model", "summary": "..."}}}
-```
-
-#### SchemaBuilderV2 (`schema/schema_builder_v2.py`)
-
-```python
-from dfe_engine.schema.schema_builder_v2 import SchemaBuilderV2
-from dfe_engine.source.models import Source
-
-builder = SchemaBuilderV2(
-    registry=TypeRegistry.default(),
-    schemas_base_dir=Path("schemas/"),
-)
-
-# Build from Source model (full pipeline)
-result = builder.build(source)
-result.create_table_ddl      # CREATE TABLE statement
-result.columns                # list[SchemaColumn]
-result.validation_errors      # list[str]
-result.view_ddls              # {"sigma": "CREATE VIEW ...", "ecs": "CREATE VIEW ..."}
-
-# Build DDL from pre-assembled columns
-ddl = builder.build_ddl_only(columns, "my_table", DDLConfig(ttl_days=90))
-
-# Generate ALTER statements
-add_ddl = builder.generate_alter_add(source, new_column, after="existing_col")
-modify_ddl = builder.generate_alter_modify(source, modified_column)
-```
-
-#### DDLGenerator (`schema/schema_ddl.py`)
-
-```python
-from dfe_engine.schema.schema_ddl import DDLGenerator, DDLConfig
-
-gen = DDLGenerator(TypeRegistry.default())
-
-# Full CREATE TABLE
-ddl = gen.generate_create_table("my_table", columns, DDLConfig(ttl_days=90))
-
-# ALTER TABLE
-add_ddl = gen.generate_alter_add_column("my_table", column, after="prev_col")
-modify_ddl = gen.generate_alter_modify_column("my_table", column)
-
-# View DDL
-view_ddl = gen.generate_view("my_table", {"SourceIP": "source_ip"}, "sigma")
-sigma_ddl = gen.generate_sigma_view("my_table", {"SourceIP": "source_ip"})
-```
-
-#### SchemaManager (`schema/schema_manager.py`)
-
-```python
-from dfe_engine.schema.schema_manager import SchemaManager
-
-# Create brand-new meta schema
-SchemaManager.create_meta_schema(
-    "meta/new_source.yaml",
-    columns=[{"name": "event_type", "type": "string"}],
-    initial_version="1.0.0",
-    summary="Initial schema",
-)
-
-# Add new version to existing file
-SchemaManager.add_version(
-    "meta/syslog.yaml", "1.1.0",
-    columns=[...],  # Complete column snapshot
-    type="addition",
-    summary="Added geo_country column",
-)
-
-# Clone version with modifications
-SchemaManager.clone_version(
-    "meta/syslog.yaml", "2.0.0",
-    source_version="1.1.0",
-    type="model",
-    summary="Changed message type",
-    column_modifications=[
-        {"action": "update", "name": "message", "column": {"type": "string"}},
-        {"action": "add", "column": {"name": "new_field", "type": "integer"}},
-        {"action": "remove", "name": "old_field"},
-    ],
-)
-
-# Clone entire schema file
-SchemaManager.clone_meta_schema("meta/syslog.yaml", "meta/syslog_custom.yaml")
-```
-
-#### DDLFileWriter (`schema/ddl_writer.py`)
-
-```python
-from dfe_engine.schema.ddl_writer import DDLFileWriter
-
-writer = DDLFileWriter()
-
-# Generate all reference DDL files
-files = writer.generate_all()  # dict of {relative_path: sql_content}
-
-# Write to disk
-written_paths = writer.write_all(Path("schemas/ddl"))
-```
-
-### Common Tasks
-
-#### Task: Add a column to an existing meta schema
-
-```python
-SchemaManager.clone_version(
-    "meta/syslog.yaml", "1.1.0",
-    source_version="1.0.0",
-    type="addition",
-    summary="Added process_name column",
-    column_modifications=[
-        {"action": "add", "column": {
-            "name": "process_name",
-            "type": "string",
-            "use_case": "dimension",
-            "expr": "@source: process_name",
-        }},
-    ],
-)
-```
-
-#### Task: Generate DDL for a Source without persisting
-
-```python
-source = Source.model_validate(yaml_data)
-builder = SchemaBuilderV2(schemas_base_dir=Path("schemas/"))
-result = builder.build(source)
-print(result.create_table_ddl)
-```
-
-#### Task: Validate a column definition
-
-```python
-col = SchemaColumn(name="x", type="integer", use_case="fulltext")
-errors = col.validate_against_registry(TypeRegistry.default())
-# → ["Column 'x': use_case 'fulltext' is not valid for primitive 'integer'..."]
-```
-
-### Validation Rules to Know
-
-1. **Primitive must exist** in TypeRegistry (one of 13 values)
-2. **Use case must be valid for the primitive** (e.g. `dimension` is not valid for `text`)
-3. **Attributes must be valid for the primitive** (e.g. `lowcardinality` is not valid for `json`)
-4. **`ch_override` must match** the supported ClickHouse types catalogue
-5. **Duplicate column names** are rejected (normalised: dots and hyphens become underscores)
-6. **Published versions are immutable** — SchemaManager refuses to modify existing versions
-
-### Gotchas
-
-- **`expr` vs `comment`**: Both end up in the ClickHouse COMMENT clause, separated by ` — `. The `expr` field carries the `@directive`, the `comment` field is human description. Don't put directives in `comment`.
-- **`default` does triple duty**: It's `DEFAULT expr` normally, `MATERIALIZED expr` when `materialized` is in attributes, `ALIAS expr` when `alias` is in attributes.
-- **Profile columns win**: `SchemaLoader.compose()` drops source columns that duplicate profile names. You cannot override profile columns from a meta schema.
-- **Enum type**: Requires either `ch_override` (e.g. `"Enum8('a'=1, 'b'=2)"`) or `default` field with enum values (e.g. `"'active'=1, 'inactive'=2"`). Without either, a placeholder `Enum8('')` is used.
-- **`type_registry.yaml` uses PyYAML**: DirectoryConfigStore loads YAML with `yaml.safe_load` (YAML 1.1). Values like `off`, `yes`, `no` become booleans. This doesn't affect meta schemas (loaded via ruamel.yaml / YAML 1.2) but is relevant if you're using DirectoryConfigStore for config.
-- **Nullable ORDER BY**: Columns in ORDER BY should use `not_null` attribute. The engine warns but doesn't reject nullable ORDER BY columns.
-- **`timestamp` vs `datetime`**: Both map to `DateTime64(3,'UTC')` but `timestamp` is NOT nullable by default and uses `Delta, LZ4` codec. Use `timestamp` for ORDER BY time columns, `datetime` for nullable event timestamps.
-- **Shipped schemas are read-only**: `is_shipped_schema()` detects paths inside the submodule or bundled profiles. Create custom schemas outside these directories.
-- **Profile name must match filename**: `SchemaLoader.load_profile("timeseries")` looks for `timeseries.yaml`. The `SourceHeader` model defaults to `type: "time_series"` (with underscore) but the actual file is `timeseries.yaml` (no underscore). Always use the filename-matching value (`timeseries`, `minimal`, `passthrough`) when setting `header.type` in Source YAML.
-
-### Data Flow Summary
-
-```
-Source YAML          Meta Schema YAML       Common Header YAML
-(source config)      (column defs)          (profile columns)
-      │                    │                       │
-      ▼                    ▼                       ▼
-SchemaBuilderV2.build(source)
-      │
-      ├── 1. Load profile columns (SchemaLoader.load_profile)
-      ├── 2. Load meta schema columns (SchemaLoader.load_columns)
-      ├── 3. Apply derived schema overrides (SchemaLoader.apply_derived_schema)
-      ├── 4. Apply additional fields (SchemaLoader.apply_additional_fields)
-      ├── 5. Compose: profile + source (SchemaLoader.compose)
-      ├── 6. Validate against TypeRegistry (SchemaLoader.validate_columns)
-      ├── 7. Generate CREATE TABLE DDL (DDLGenerator.generate_create_table)
-      └── 8. Generate view DDLs (ViewGenerator.generate_views_for_source)
-      │
-      ▼
-SchemaBuildResult
-  ├── .create_table_ddl    → deployed to ClickHouse
-  ├── .columns             → list[SchemaColumn]
-  ├── .view_ddls           → {"sigma": "CREATE VIEW ...", ...}
-  └── .validation_errors   → []
-```
+The engine-side classes that consume this format (SchemaLoader,
+SchemaBuilderV2, DDLGenerator, SchemaManager, DDLFileWriter), with worked
+examples, validation rules, and gotchas, are documented in the dfe-engine
+repo: docs/data-plane/schema-classes.md. One home per fact - this page owns
+the YAML FORMAT only.

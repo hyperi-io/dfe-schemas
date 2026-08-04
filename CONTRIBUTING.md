@@ -5,9 +5,8 @@ terms outlined below.
 
 ## Commit Message Format
 
-HyperI projects use [Conventional Commits](https://www.conventionalcommits.org/)
-and [semantic-release](https://semantic-release.gitbook.io/) for automated
-versioning and changelog generation. All commits must follow this format:
+HyperI projects use [Conventional Commits](https://www.conventionalcommits.org/).
+All commits must follow this format:
 
 ```
 <type>(<scope>): <subject>
@@ -19,8 +18,8 @@ versioning and changelog generation. All commits must follow this format:
 
 ### Types
 
-| Type | Description | Version Bump |
-|------|-------------|--------------|
+| Type | Description | Severity signalled |
+|------|-------------|--------------------|
 | `feat` | A new feature | Minor (0.X.0) |
 | `fix` | A bug fix | Patch (0.0.X) |
 | `docs` | Documentation only | None |
@@ -63,16 +62,20 @@ BREAKING CHANGE: Named exports are now used instead of default exports.
 Scope is optional but recommended. Use it to indicate the area of the codebase
 affected (e.g., `api`, `auth`, `core`, `cli`, `docs`).
 
-## Semantic Versioning
+## Versioning
 
-This project follows [Semantic Versioning 2.0.0](https://semver.org/):
+This repo ships content, not an image, so it carries no version number of its
+own. It is tagged in lockstep with the DFE stack release, and that tag is
+recorded in `dfe-infra`'s `versions.yaml` alongside every other component -
+see [stack-versioning](https://github.com/hyperi-io/dfe-docs/blob/main/deployment/stack-versioning.md).
+The tag follows [Semantic Versioning 2.0.0](https://semver.org/):
 
 - **MAJOR** (X.0.0): Breaking changes that require users to modify their code
 - **MINOR** (0.X.0): New features that are backwards-compatible
 - **PATCH** (0.0.X): Bug fixes and minor improvements
 
-Versions are automatically determined by semantic-release based on commit
-messages. Do not manually update version numbers.
+Do not add a version number to the tree. Schema YAML files carry their own
+independent version trees - see [docs/meta-schema.md](docs/meta-schema.md).
 
 ## Developer Certificate of Origin
 
@@ -165,15 +168,9 @@ surviving CI.
 
 ## CI/CD Workflow
 
-When your pull request is merged to `main`:
-
-1. **semantic-release** analyses commit messages since the last release
-2. Determines the next version number based on commit types
-3. Generates/updates the CHANGELOG
-4. Creates a new GitHub release with release notes
-5. Publishes the package (if applicable)
-
-This happens automatically - no manual intervention required.
+CI validates every schema YAML against the dfe-engine meta-schema, on every
+push and pull request. Nothing is published from this repo and no release is
+cut on merge - the lockstep tag is applied when the stack release is cut.
 
 ## Questions
 

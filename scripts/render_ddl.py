@@ -8,10 +8,10 @@
 #  Copyright:    (c) 2026 HYPERI PTY LIMITED
 """Render argocd/ddl/ from the dfe-schemas YAML via dfe-engine's DDLFileWriter.
 
-This is the ONLY producer of the committed ``argocd/ddl/`` tree. CI renders
-and diff-checks it (see .github/workflows/ci.yml); the Argo migration Job
-(argocd/) applies it to ClickHouse independently of dfe-engine. Requires
-dfe-engine importable in the environment (CI installs it).
+The writer emits a version-nested tree, which is not the flat layout the
+Argo migration Job mounts from ``argocd/ddl/``, and the committed flat files
+have been hand-edited since. Reconciling the two is tracked in issue #9, so
+CI does not gate on this render. Requires dfe-engine importable.
 """
 
 from __future__ import annotations

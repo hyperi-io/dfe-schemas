@@ -38,7 +38,7 @@ dfe-schemas/
 |-- additional/        # extra-field overlays (aws/)
 |-- hunts/             # hunt output (results.yaml) + runner checkpoint schema
 |-- argocd/            # self-contained Argo CD deploy unit (kustomize + Job)
-|   '-- ddl/           # generated reference SQL (make render - do not hand-edit)
+|   '-- ddl/           # reference SQL applied by the Job (see issue #9)
 |-- scripts/           # validate_schemas / render_ddl / annotate_meta_schemas
 |-- docs/meta-schema.md  # the YAML format reference (version tree, columns, types)
 '-- Makefile           # validate / render / check
@@ -78,8 +78,10 @@ Rust services slave from the DEPLOYED ClickHouse schema at runtime
 3. Copy changed common-header profiles to the consumers' bundled fallback
    locations (dfe-engine: `src/dfe_engine/schema/profiles/`) so package
    installs work without a submodule checkout.
-4. `make render` and commit the refreshed `argocd/ddl/` (CI gates on
-   freshness).
+4. Update `argocd/ddl/` to match. `make render` does not yet reproduce that
+   flat tree - reconciling the renderer with the deployed layout is tracked in
+   [issue #9](https://github.com/hyperi-io/dfe-schemas/issues/9), so this step
+   is manual and CI does not gate on it.
 
 Shipped files here are read-only defaults - customise by pointing
 `DFE_SCHEMAS_DIR` at your own directory with only the profiles you override.

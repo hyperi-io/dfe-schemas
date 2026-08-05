@@ -3,9 +3,9 @@
 # Requires dfe-engine importable. Set PY to an interpreter that has it,
 # e.g. PY=../dfe-engine/.venv/bin/python, or run inside such a venv.
 #
-# `check` fails until issue #9 is resolved: the renderer emits a
-# version-nested tree, argocd/ddl/ is the flat tree kustomize mounts, and
-# the committed files have been hand-edited since. CI runs `validate` only.
+# `check` uses `git status --porcelain`, not `git diff`: a render can add or
+# remove a file as well as change one, and git diff is blind to an untracked
+# addition.
 
 PY ?= python
 
@@ -19,4 +19,4 @@ render:
 
 check: validate render
 	test -z "$$(git status --porcelain argocd/ddl/)" \
-	  || { echo "argocd/ddl/ does not match a fresh render -- see issue #9"; git status --short argocd/ddl/; exit 1; }
+	  || { echo "argocd/ddl/ is stale -- run 'make render' and commit"; git status --short argocd/ddl/; exit 1; }

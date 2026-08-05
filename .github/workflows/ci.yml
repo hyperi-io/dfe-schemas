@@ -8,11 +8,12 @@
 # uv-synced the way its own Dockerfile builds it. It is private, so the
 # checkout uses a token minted from the org CI GitHub App.
 #
-# The reference-DDL render is not gated here. dfe-engine's DDLFileWriter
-# emits a version-nested tree while argocd/ddl/ is the flat tree kustomize
-# mounts, so a render only adds untracked files and a diff-check passes
-# regardless of drift. Reconciliation is tracked in issue #9; `make render`
-# and `make check` still run locally.
+# The drift check uses `git status --porcelain`, not `git diff`: a render can
+# add or remove a file as well as change one, and git diff is blind to an
+# untracked addition.
+#
+# argocd/ddl/dfe_hunts.detection.sql is hand-maintained and therefore not
+# covered - see dfe-engine#127.
 #
 # Action refs should be SHA-pinned per HyperI CI policy before this is
 # promoted; Renovate's helpers:pinGitHubActionDigests raises that PR.
@@ -59,3 +60,13 @@ jobs:
 
       - name: Validate schemas
         run: .dfe-engine/.venv/bin/python scripts/validate_schemas.py
+
+      - name: Render DDL and check for drift
+        run: |
+          .dfe-engine/.venv/bin/python scripts/render_ddl.py
+          if [ -n "$(git status --porcelain argocd/ddl/)" ]; then
+            echo "argocd/ddl/ does not match a fresh render -- run 'make render' and commit"
+            git status --short argocd/ddl/
+            git diff -- argocd/ddl/
+            exit 1
+          fi

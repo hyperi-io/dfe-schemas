@@ -79,10 +79,7 @@ Rust services slave from the DEPLOYED ClickHouse schema at runtime
    locations (dfe-engine: `src/dfe_engine/schema/profiles/`) so package
    installs work without a submodule checkout.
 4. `make render` and commit the refreshed `argocd/ddl/` (CI gates on
-   freshness). `dfe_hunts.detection.sql` is the exception - it stays
-   hand-maintained until
-   [dfe-engine#127](https://github.com/hyperi-io/dfe-engine/issues/127)
-   settles the table name.
+   freshness).
 
 Shipped files here are read-only defaults - customise by pointing
 `DFE_SCHEMAS_DIR` at your own directory with only the profiles you override.

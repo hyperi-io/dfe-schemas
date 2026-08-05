@@ -31,7 +31,7 @@ jobs:
     runs-on: ${{ vars.GH_RUNNER_DEFAULT || 'ubuntu-latest' }}
     steps:
       - name: Checkout dfe-schemas
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Mint a read token for dfe-engine
         id: engine-token
@@ -44,7 +44,7 @@ jobs:
           permission-contents: read
 
       - name: Checkout dfe-engine (schema loader)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: hyperi-io/dfe-engine
           ref: main
@@ -52,7 +52,7 @@ jobs:
           path: .dfe-engine
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v5
+        uses: astral-sh/setup-uv@v9
 
       - name: Install dfe-engine
         working-directory: .dfe-engine

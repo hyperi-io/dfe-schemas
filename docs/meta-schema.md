@@ -109,6 +109,14 @@ columns:
 | `type` | Yes (per version) | Change category: `model`, `addition`, `revision` |
 | `summary` | Yes (per version) | Human-readable change description |
 | `columns` | Yes (per version) | Complete column snapshot for this version |
+| `profile_exclude` | No (per version) | Common-header columns to drop when this schema is composed onto a profile |
+
+`profile_exclude` trims the header for a table that does not need all of it.
+`hunts/results.yaml` uses it to drop `_raw` and `_tags`: a detection row
+references its source by `matched_uuid`, so a second copy of the payload text
+plus an ngram index over it is storage for nothing. Naming a column that the
+profile does not have is a no-op, not an error - a profile can legitimately
+lack it (`minimal` has no `_raw`).
 
 ---
 

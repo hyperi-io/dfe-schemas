@@ -4,9 +4,44 @@
 # These define the lean output for scheduled detection rules:
 # matched record UUID + rule metadata.
 
-current: "1.0.0"
+current: "1.0.1"
 
 versions:
+  "1.0.1":
+    date: "2026-08-05"
+    type: revision
+    summary: "Declare the trimmed common header - a detection references its source by matched_uuid, so a second copy of the payload text and an ngram index over it earn nothing"
+    profile_exclude: [_raw, _tags]
+    columns:
+      - name: matched_uuid
+        type: uuid
+        comment: "UUID of the matching source record"
+
+      - name: rule_id
+        type: string
+        attribute: [lowcardinality]
+        comment: "Rule identifier"
+
+      - name: rule_name
+        type: string
+        attribute: [lowcardinality]
+        comment: "Human-readable rule name"
+
+      - name: source_table
+        type: string
+        attribute: [lowcardinality]
+        comment: "Source table that was scanned"
+
+      - name: hunt_name
+        type: string
+        attribute: [lowcardinality]
+        comment: "Parent hunt name"
+
+      - name: severity
+        type: string
+        attribute: [lowcardinality]
+        comment: "Detection severity"
+
   "1.0.0":
     date: "2026-06-10"
     type: model

@@ -1,17 +1,22 @@
 #  Project:      dfe-schemas
 #  File:         scripts/render_ddl.py
-#  Purpose:      Render reference ClickHouse DDL from the schema YAML using
-#                dfe-engine's DDLFileWriter, into the committed ddl/ tree.
+#  Purpose:      Render the deployed ClickHouse DDL from the schema YAML using
+#                dfe-engine's DDLFileWriter, into the committed argocd/ddl/.
 #  Language:     Python
 #
 #  License:      BUSL-1.1
 #  Copyright:    (c) 2026 HYPERI PTY LIMITED
 """Render argocd/ddl/ from the dfe-schemas YAML via dfe-engine's DDLFileWriter.
 
-The writer emits a version-nested tree, which is not the flat layout the
-Argo migration Job mounts from ``argocd/ddl/``, and the committed flat files
-have been hand-edited since. Reconciling the two is tracked in issue #9, so
-CI does not gate on this render. Requires dfe-engine importable.
+This is the only producer of the committed ``argocd/ddl/`` tree; CI renders and
+checks it for drift. The Argo migration Job (argocd/) applies it to ClickHouse
+independently of dfe-engine, deriving each database from the ``<db>.<table>``
+filename and substituting the ``{db}`` placeholder.
+
+``DDLFileWriter.write_all`` is deliberately not used: it emits a version-nested
+reference tree, and the deploy unit needs the flat one kustomize mounts.
+
+Requires dfe-engine importable in the environment (CI installs it).
 """
 
 from __future__ import annotations
@@ -20,9 +25,13 @@ import os
 import sys
 from pathlib import Path
 
+# Profiles rendered as reference SQL under ddl/profiles/. Documentation only -
+# argocd/kustomization.yaml mounts the core tables and not these.
+_PROFILES = ("timeseries", "minimal", "passthrough")
+
 
 def main() -> int:
-    """Render all reference DDL files into ``<repo>/ddl``."""
+    """Render the deployed DDL files into ``<repo>/argocd/ddl``."""
     repo_root = Path(__file__).resolve().parent.parent
     # Point the engine's schema loader at THIS repo, not a submodule.
     os.environ["DFE_SCHEMAS_DIR"] = str(repo_root)
@@ -37,8 +46,28 @@ def main() -> int:
         )
         return 2
 
-    written = DDLFileWriter().write_all(repo_root / "argocd" / "ddl")
-    for path in written:
+    writer = DDLFileWriter()
+    ddl_dir = repo_root / "argocd" / "ddl"
+
+    # dfe_hunts.detection.sql is not rendered: the writer builds that table as
+    # `hunt_results` off the full common header while the deployed file is
+    # `detection` off a trimmed one (dfe-engine#127). It stays hand-maintained,
+    # and ungated, until that naming is settled.
+    targets: list[tuple[Path, str]] = [
+        (ddl_dir / "dfe.default.sql", writer.generate_default_table()),
+        (
+            ddl_dir / "dfe_audit.detection_checkpoint.sql",
+            writer.generate_detection_checkpoint_table(),
+        ),
+    ]
+    targets += [
+        (ddl_dir / "profiles" / f"{name}.sql", writer.generate_profile_table(name))
+        for name in _PROFILES
+    ]
+
+    for path, sql in targets:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(sql, encoding="utf-8", newline="\n")
         print(path.relative_to(repo_root))
     return 0
 

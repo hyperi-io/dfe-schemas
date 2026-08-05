@@ -49,16 +49,13 @@ def main() -> int:
     writer = DDLFileWriter()
     ddl_dir = repo_root / "argocd" / "ddl"
 
-    # dfe_hunts.detection.sql is not rendered: the writer builds that table as
-    # `hunt_results` off the full common header while the deployed file is
-    # `detection` off a trimmed one (dfe-engine#127). It stays hand-maintained,
-    # and ungated, until that naming is settled.
     targets: list[tuple[Path, str]] = [
         (ddl_dir / "dfe.default.sql", writer.generate_default_table()),
         (
             ddl_dir / "dfe_audit.detection_checkpoint.sql",
             writer.generate_detection_checkpoint_table(),
         ),
+        (ddl_dir / "dfe_hunts.detection.sql", writer.generate_detection_table()),
     ]
     targets += [
         (ddl_dir / "profiles" / f"{name}.sql", writer.generate_profile_table(name))

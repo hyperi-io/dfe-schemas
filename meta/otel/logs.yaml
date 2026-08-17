@@ -1,9 +1,9 @@
 # Meta schema: OpenTelemetry logs
 #
 # OTLP log records in the flattened JSON shape collector file/HTTP
-# exporters emit. Also a default datagen reference set: the `datagen:`
+# exporters emit. Also a default synthetic data reference set: the `synthetic:`
 # blocks (per-column hints and the version-level scenarios) are
-# generation hints for the DFE datagen component and are ignored by the
+# generation hints for the DFE synthetic data generator and are ignored by the
 # schema loader.
 
 current: "1.0.0"
@@ -13,7 +13,7 @@ versions:
   "1.0.0":
     date: "2026-08-18"
     type: model
-    summary: "Initial OTel logs schema + datagen reference scenarios"
+    summary: "Initial OTel logs schema + synthetic data reference scenarios"
     columns:
       - name: timestamp
         type: datetime
@@ -75,9 +75,9 @@ versions:
         comment: "Log record body"
         _field_type: base
 
-    # Coherent event shapes for the datagen component: severity text, number
+    # Coherent event shapes for the synthetic data generator: severity text, number
     # band, service and body always agree.
-    datagen:
+    synthetic:
       scenarios:
         - name: request-ok
           weight: 30

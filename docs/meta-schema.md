@@ -152,13 +152,15 @@ columns:
 | `ch_override` | `str \| null` | `null` | Exact ClickHouse type string — bypasses primitive mapping entirely. No auto-Nullable, no auto-codec. |
 | `_field_type` | `str \| null` | `null` | Column classification annotation (`base` = shipped by DFE). Maps to the engine model's `field_type`. |
 | `max_dynamic_paths` | `int \| null` | `null` | JSON-column dynamic-path budget. Present in shipped profile YAML; engine-side DDL wiring is pending (tracked in the 2nd-pass review report). |
-| `datagen` | `map \| null` | `null` | Generation hints for the DFE datagen component (see [Datagen Hints](#datagen-hints)). Ignored by the schema loader and DDL generation. |
+| `synthetic` | `map \| null` | `null` | Synthetic data generation hints (see [Synthetic Data Hints](#synthetic-data-hints)). Ignored by the schema loader and DDL generation. |
 
-### Datagen Hints
+### Synthetic Data Hints
 
-A column may carry an optional `datagen:` mapping that the DFE datagen
-component uses when generating synthetic reference data from this schema.
-The schema loader ignores the key, so hints never affect validation or DDL.
+A column may carry an optional `synthetic:` mapping that the DFE synthetic
+data generator uses when producing synthetic data from this schema - a
+realistic continuous inbound stream for sales demos, and repeatable data
+for testing. The schema loader ignores the key, so hints never affect
+validation or DDL.
 Hints are applied in priority order - `static` > `values` > `templates` >
 `provider` > `minimum`/`maximum` - and columns without hints fall back to
 the engine's semantic heuristics (name/type based).
@@ -173,10 +175,10 @@ the engine's semantic heuristics (name/type based).
 | `minimum` / `maximum` | number | Bounds for numeric generation. |
 | `format` | `str` | Timestamp rendering: `iso8601` (default), `epoch_s`, `epoch_ms`, or a strftime pattern. |
 
-### Datagen Scenarios
+### Synthetic Data Scenarios
 
 Correlated columns must not draw independently (an sshd message under
-`appname: cron` reads as fake). A version entry may carry a `datagen:`
+`appname: cron` reads as fake). A version entry may carry a `synthetic:`
 mapping BESIDE `columns:` whose `scenarios:` list defines coherent event
 shapes - one weighted scenario is drawn per event, and its
 `values`/`templates` override per-column hints for the columns it names:
@@ -185,7 +187,7 @@ shapes - one weighted scenario is drawn per event, and its
 versions:
   "1.0.0":
     columns: [...]
-    datagen:
+    synthetic:
       scenarios:
         - name: sshd-auth
           weight: 35

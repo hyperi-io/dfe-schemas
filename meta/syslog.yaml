@@ -2,8 +2,8 @@
 #
 # RFC 5424-shaped syslog events as commonly forwarded in JSON (rsyslog /
 # syslog-ng JSON templates, fluent-bit syslog input). Also the default
-# datagen reference set: the `datagen:` blocks (per-column hints and the
-# version-level scenarios) are generation hints for the DFE datagen
+# synthetic data reference set: the `synthetic:` blocks (per-column hints and the
+# version-level scenarios) are generation hints for the DFE synthetic-data
 # component and are ignored by the schema loader.
 
 current: "1.0.0"
@@ -13,7 +13,7 @@ versions:
   "1.0.0":
     date: "2026-08-18"
     type: model
-    summary: "Initial syslog schema + datagen reference scenarios"
+    summary: "Initial syslog schema + synthetic data reference scenarios"
     columns:
       - name: timestamp
         type: datetime
@@ -76,9 +76,9 @@ versions:
         comment: "Log message body"
         _field_type: base
 
-    # Coherent event shapes for the datagen component: one scenario is drawn
+    # Coherent event shapes for the synthetic data generator: one scenario is drawn
     # per event so app_name/facility/severity/message always agree.
-    datagen:
+    synthetic:
       scenarios:
         - name: sshd-auth
           weight: 35

@@ -1,9 +1,9 @@
 # Meta schema: Elastic Filebeat
 #
 # Filebeat events in their native nested ECS JSON shape (host.name,
-# event.module, log.file.path). Also a default datagen reference set:
-# the `datagen:` blocks (per-column hints and the version-level
-# scenarios) are generation hints for the DFE datagen component and are
+# event.module, log.file.path). Also a default synthetic data reference set:
+# the `synthetic:` blocks (per-column hints and the version-level
+# scenarios) are generation hints for the DFE synthetic data generator and are
 # ignored by the schema loader.
 
 current: "1.0.0"
@@ -13,7 +13,7 @@ versions:
   "1.0.0":
     date: "2026-08-18"
     type: model
-    summary: "Initial Filebeat (ECS) schema + datagen reference scenarios"
+    summary: "Initial Filebeat (ECS) schema + synthetic data reference scenarios"
     columns:
       - name: timestamp
         type: datetime
@@ -37,7 +37,7 @@ versions:
         expr: "@source: agent.type"
         comment: "Shipping agent type"
         _field_type: base
-        datagen:
+        synthetic:
           static: filebeat
 
       - name: agent_version
@@ -46,7 +46,7 @@ versions:
         expr: "@source: agent.version"
         comment: "Shipping agent version"
         _field_type: base
-        datagen:
+        synthetic:
           values: ["8.16.2", "8.17.0", "9.0.1"]
           weights: [30, 50, 20]
 
@@ -111,9 +111,9 @@ versions:
         comment: "Log line content"
         _field_type: base
 
-    # Coherent event shapes for the datagen component: module, dataset,
+    # Coherent event shapes for the synthetic data generator: module, dataset,
     # source file, process and message always agree.
-    datagen:
+    synthetic:
       scenarios:
         - name: system-syslog
           weight: 30

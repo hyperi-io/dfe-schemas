@@ -152,6 +152,56 @@ columns:
 | `ch_override` | `str \| null` | `null` | Exact ClickHouse type string — bypasses primitive mapping entirely. No auto-Nullable, no auto-codec. |
 | `_field_type` | `str \| null` | `null` | Column classification annotation (`base` = shipped by DFE). Maps to the engine model's `field_type`. |
 | `max_dynamic_paths` | `int \| null` | `null` | JSON-column dynamic-path budget. Present in shipped profile YAML; engine-side DDL wiring is pending (tracked in the 2nd-pass review report). |
+| `datagen` | `map \| null` | `null` | Generation hints for the DFE datagen component (see [Datagen Hints](#datagen-hints)). Ignored by the schema loader and DDL generation. |
+
+### Datagen Hints
+
+A column may carry an optional `datagen:` mapping that the DFE datagen
+component uses when generating synthetic reference data from this schema.
+The schema loader ignores the key, so hints never affect validation or DDL.
+Hints are applied in priority order - `static` > `values` > `templates` >
+`provider` > `minimum`/`maximum` - and columns without hints fall back to
+the engine's semantic heuristics (name/type based).
+
+| Hint | Type | Description |
+|------|------|-------------|
+| `static` | any | Emit this exact value for every event. |
+| `values` | `list` | Categorical vocabulary to draw from. |
+| `weights` | `list[float]` | Draw weights aligned with `values`. |
+| `templates` | `list[str]` | Message templates with `{placeholder}` tokens filled from the event's entity context (`{username}`, `{ipv4}`, `{external_ipv4}`, `{port}`, `{http_status}`, ...). |
+| `provider` | `str` | Faker provider method to call (e.g. `user_agent`). |
+| `minimum` / `maximum` | number | Bounds for numeric generation. |
+| `format` | `str` | Timestamp rendering: `iso8601` (default), `epoch_s`, `epoch_ms`, or a strftime pattern. |
+
+### Datagen Scenarios
+
+Correlated columns must not draw independently (an sshd message under
+`appname: cron` reads as fake). A version entry may carry a `datagen:`
+mapping BESIDE `columns:` whose `scenarios:` list defines coherent event
+shapes - one weighted scenario is drawn per event, and its
+`values`/`templates` override per-column hints for the columns it names:
+
+```yaml
+versions:
+  "1.0.0":
+    columns: [...]
+    datagen:
+      scenarios:
+        - name: sshd-auth
+          weight: 35
+          values:
+            app_name: sshd
+            facility: [auth, authpriv]     # list draws uniformly
+            severity: [info, info, notice] # repeat entries to weight
+          templates:
+            message:
+              - "Failed password for {username} from {external_ipv4} port {port} ssh2"
+```
+
+Columns a scenario does not name fall back to per-column hints, then
+heuristics. The shipped reference sets (`meta/syslog.yaml`,
+`meta/otel/logs.yaml`, `meta/beats/filebeat.yaml`) use scenarios for the
+correlated columns and hints for the rest.
 
 ### How `expr` and `comment` Become DDL
 

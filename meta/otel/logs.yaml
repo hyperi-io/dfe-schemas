@@ -1,0 +1,152 @@
+# Meta schema: OpenTelemetry logs
+#
+# OTLP log records in the flattened JSON shape collector file/HTTP
+# exporters emit. Also a default datagen reference set: the `datagen:`
+# blocks (per-column hints and the version-level scenarios) are
+# generation hints for the DFE datagen component and are ignored by the
+# schema loader.
+
+current: "1.0.0"
+resource_type: core
+
+versions:
+  "1.0.0":
+    date: "2026-08-18"
+    type: model
+    summary: "Initial OTel logs schema + datagen reference scenarios"
+    columns:
+      - name: timestamp
+        type: datetime
+        use_case: range
+        expr: "@source: first(timestamp/timeUnixNano)"
+        comment: "Log record timestamp"
+        _field_type: base
+
+      - name: severity_text
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: severityText"
+        comment: "Severity text (OTel SeverityText)"
+        _field_type: base
+
+      - name: severity_number
+        type: integer
+        attribute: [nullable]
+        use_case: range
+        expr: "@source: severityNumber"
+        comment: "Severity number (OTel SeverityNumber, 1-24)"
+        _field_type: base
+
+      - name: service_name
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: first(service_name/serviceName)"
+        comment: "Emitting service (resource service.name)"
+        _field_type: base
+
+      - name: trace_id
+        type: string
+        use_case: bloom
+        expr: "@source: traceId"
+        comment: "W3C trace id (32 hex chars)"
+        _field_type: base
+
+      - name: span_id
+        type: string
+        use_case: bloom
+        expr: "@source: spanId"
+        comment: "Span id (16 hex chars)"
+        _field_type: base
+
+      - name: host_name
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: first(host_name/hostName)"
+        comment: "Emitting host (resource host.name)"
+        _field_type: base
+
+      - name: body
+        type: text
+        use_case: fulltext
+        expr: "@source: body"
+        comment: "Log record body"
+        _field_type: base
+
+    # Coherent event shapes for the datagen component: severity text, number
+    # band, service and body always agree.
+    datagen:
+      scenarios:
+        - name: request-ok
+          weight: 30
+          values:
+            severity_text: INFO
+            severity_number: [9, 10]
+            service_name: [dfe-receiver, checkout-api, auth-svc]
+          templates:
+            body:
+              - "request complete method=GET path=/api/v1/health status=200 duration_ms={duration_ms}"
+              - "request complete method=POST path=/api/v1/ingest status=200 duration_ms={duration_ms}"
+              - "request complete method=GET path=/api/v1/sources status=200 duration_ms={duration_ms}"
+        - name: request-client-error
+          weight: 8
+          values:
+            severity_text: WARN
+            severity_number: [13, 14]
+            service_name: [dfe-receiver, checkout-api, auth-svc]
+          templates:
+            body:
+              - "request complete method=POST path=/api/v1/ingest status=403 duration_ms={duration_ms}"
+              - "request complete method=GET path=/api/v1/hunts status=404 duration_ms={duration_ms}"
+        - name: request-server-error
+          weight: 4
+          values:
+            severity_text: ERROR
+            severity_number: [17, 18]
+            service_name: [checkout-api, billing-worker]
+          templates:
+            body:
+              - "request complete method=POST path=/api/v1/orders status=500 duration_ms={duration_ms}"
+              - "upstream returned status=502 target={fqdn} duration_ms={duration_ms}"
+        - name: pipeline
+          weight: 25
+          values:
+            severity_text: INFO
+            severity_number: [9, 10]
+            service_name: [dfe-loader, dfe-receiver]
+          templates:
+            body:
+              - "batch flushed rows={count} table=dfe.default"
+              - "consumer lag partition=0 lag={count}"
+              - "connection established peer={ipv4}:{port}"
+        - name: auth-ok
+          weight: 15
+          values:
+            severity_text: INFO
+            severity_number: [9]
+            service_name: auth-svc
+          templates:
+            body:
+              - "auth ok subject={email} method=oidc"
+        - name: auth-fail
+          weight: 8
+          values:
+            severity_text: WARN
+            severity_number: [13]
+            service_name: auth-svc
+          templates:
+            body:
+              - "auth failed subject={email} reason=token_expired"
+              - "auth failed subject={email} reason=invalid_signature"
+        - name: retry
+          weight: 10
+          values:
+            severity_text: WARN
+            severity_number: [13, 14]
+            service_name: [checkout-api, billing-worker]
+          templates:
+            body:
+              - "retrying upstream call attempt=2 backoff_ms={duration_ms} target={fqdn}"
+              - "circuit breaker OPEN target={fqdn} cooldown_s=30"

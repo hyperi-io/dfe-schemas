@@ -1,0 +1,149 @@
+# Meta schema: Syslog
+#
+# RFC 5424-shaped syslog events as commonly forwarded in JSON (rsyslog /
+# syslog-ng JSON templates, fluent-bit syslog input). Also the default
+# datagen reference set: the `datagen:` blocks (per-column hints and the
+# version-level scenarios) are generation hints for the DFE datagen
+# component and are ignored by the schema loader.
+
+current: "1.0.0"
+resource_type: core
+
+versions:
+  "1.0.0":
+    date: "2026-08-18"
+    type: model
+    summary: "Initial syslog schema + datagen reference scenarios"
+    columns:
+      - name: timestamp
+        type: datetime
+        use_case: range
+        expr: "@source: first(timestamp/@timestamp/time)"
+        comment: "Event timestamp"
+        _field_type: base
+
+      - name: hostname
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: first(hostname/host)"
+        comment: "Host that emitted the event"
+        _field_type: base
+
+      - name: app_name
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: first(appname/app_name/program)"
+        comment: "Application/program name (RFC 5424 APP-NAME)"
+        _field_type: base
+
+      - name: proc_id
+        type: integer
+        attribute: [nullable]
+        expr: "@source: first(procid/proc_id/pid)"
+        comment: "Process ID (RFC 5424 PROCID)"
+        _field_type: base
+
+      - name: facility
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: facility"
+        comment: "Syslog facility keyword"
+        _field_type: base
+
+      - name: severity
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: severity"
+        comment: "Syslog severity keyword"
+        _field_type: base
+
+      - name: source_ip
+        type: ip
+        attribute: [nullable]
+        use_case: range
+        expr: "@source: first(source_ip/src_ip)"
+        comment: "Peer address the event arrived from (relay or origin)"
+        _field_type: base
+
+      - name: message
+        type: text
+        use_case: fulltext
+        expr: "@source: message"
+        comment: "Log message body"
+        _field_type: base
+
+    # Coherent event shapes for the datagen component: one scenario is drawn
+    # per event so app_name/facility/severity/message always agree.
+    datagen:
+      scenarios:
+        - name: sshd-auth
+          weight: 35
+          values:
+            app_name: sshd
+            facility: [auth, authpriv]
+            severity: [info, info, notice, err]
+          templates:
+            message:
+              - "Failed password for {username} from {external_ipv4} port {port} ssh2"
+              - "Accepted publickey for {username} from {ipv4} port {port} ssh2: RSA SHA256:{uuid}"
+              - "Invalid user admin from {external_ipv4} port {port}"
+              - "Connection closed by {external_ipv4} port {port} [preauth]"
+              - "pam_unix(sshd:session): session opened for user {username} by (uid=0)"
+        - name: cron
+          weight: 20
+          values:
+            app_name: cron
+            facility: cron
+            severity: info
+          templates:
+            message:
+              - "(root) CMD (command -v debian-sa1 > /dev/null && debian-sa1 1 1)"
+              - "(root) CMD (test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily ))"
+              - "({username}) CMD (/home/{username}/bin/backup.sh)"
+        - name: sudo
+          weight: 12
+          values:
+            app_name: sudo
+            facility: authpriv
+            severity: [notice, info]
+          templates:
+            message:
+              - "{username} : TTY=pts/0 ; PWD=/home/{username} ; USER=root ; COMMAND=/usr/bin/systemctl restart {service}"
+              - "pam_unix(sudo:session): session opened for user root by {username}(uid={uid})"
+              - "pam_unix(sudo:session): session closed for user root"
+        - name: systemd
+          weight: 18
+          values:
+            app_name: systemd
+            facility: daemon
+            severity: info
+          templates:
+            message:
+              - "Started Session {pid} of User {username}."
+              - "Reached target Timers."
+              - "Starting Daily apt upgrade and clean activities..."
+              - "Finished Daily apt download activities."
+        - name: nginx
+          weight: 10
+          values:
+            app_name: nginx
+            facility: daemon
+            severity: [err, warning]
+          templates:
+            message:
+              - "upstream timed out (110: Connection timed out) while reading response header from upstream, client: {external_ipv4}"
+              - "connect() failed (111: Connection refused) while connecting to upstream, client: {external_ipv4}"
+        - name: dhclient
+          weight: 5
+          values:
+            app_name: dhclient
+            facility: daemon
+            severity: info
+          templates:
+            message:
+              - "DHCPACK of {ipv4} from 10.20.0.1"
+              - "DHCPREQUEST for {ipv4} on eth0 to 10.20.0.1 port 67"

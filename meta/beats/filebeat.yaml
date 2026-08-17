@@ -1,0 +1,166 @@
+# Meta schema: Elastic Filebeat
+#
+# Filebeat events in their native nested ECS JSON shape (host.name,
+# event.module, log.file.path). Also a default datagen reference set:
+# the `datagen:` blocks (per-column hints and the version-level
+# scenarios) are generation hints for the DFE datagen component and are
+# ignored by the schema loader.
+
+current: "1.0.0"
+resource_type: core
+
+versions:
+  "1.0.0":
+    date: "2026-08-18"
+    type: model
+    summary: "Initial Filebeat (ECS) schema + datagen reference scenarios"
+    columns:
+      - name: timestamp
+        type: datetime
+        use_case: range
+        expr: "@source: @timestamp"
+        comment: "Event timestamp (ECS @timestamp)"
+        _field_type: base
+
+      - name: host_name
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: host.name"
+        comment: "Host the event was collected from"
+        _field_type: base
+
+      - name: agent_type
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: agent.type"
+        comment: "Shipping agent type"
+        _field_type: base
+        datagen:
+          static: filebeat
+
+      - name: agent_version
+        type: string
+        attribute: [lowcardinality]
+        expr: "@source: agent.version"
+        comment: "Shipping agent version"
+        _field_type: base
+        datagen:
+          values: ["8.16.2", "8.17.0", "9.0.1"]
+          weights: [30, 50, 20]
+
+      - name: event_module
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: event.module"
+        comment: "Filebeat module that produced the event"
+        _field_type: base
+
+      - name: event_dataset
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: event.dataset"
+        comment: "Module dataset (ECS event.dataset)"
+        _field_type: base
+
+      - name: log_file_path
+        type: string
+        use_case: dimension
+        expr: "@source: log.file.path"
+        comment: "Source file the line was read from"
+        _field_type: base
+
+      - name: source_ip
+        type: ip
+        attribute: [nullable]
+        use_case: range
+        expr: "@source: source.ip"
+        comment: "Source address (ECS source.ip)"
+        _field_type: base
+
+      - name: user_name
+        type: string
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: user.name"
+        comment: "User associated with the event (ECS user.name)"
+        _field_type: base
+
+      - name: process_name
+        type: string
+        attribute: [lowcardinality, nullable]
+        use_case: dimension
+        expr: "@source: process.name"
+        comment: "Process that emitted the line (ECS process.name)"
+        _field_type: base
+
+      - name: process_pid
+        type: integer
+        attribute: [nullable]
+        expr: "@source: process.pid"
+        comment: "Process ID (ECS process.pid)"
+        _field_type: base
+
+      - name: message
+        type: text
+        use_case: fulltext
+        expr: "@source: message"
+        comment: "Log line content"
+        _field_type: base
+
+    # Coherent event shapes for the datagen component: module, dataset,
+    # source file, process and message always agree.
+    datagen:
+      scenarios:
+        - name: system-syslog
+          weight: 30
+          values:
+            event_module: system
+            event_dataset: system.syslog
+            log_file_path: /var/log/syslog
+            process_name: [systemd, cron]
+          templates:
+            message:
+              - "Started Session {pid} of User {username}."
+              - "Reached target Timers."
+              - "(root) CMD (test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily ))"
+              - "Finished Daily apt download activities."
+        - name: system-auth
+          weight: 35
+          values:
+            event_module: system
+            event_dataset: system.auth
+            log_file_path: /var/log/auth.log
+            process_name: [sshd, sudo]
+          templates:
+            message:
+              - "Failed password for {username} from {external_ipv4} port {port} ssh2"
+              - "Accepted password for {username} from {ipv4} port {port} ssh2"
+              - "session opened for user {username} by (uid=0)"
+              - "pam_unix(sudo:session): session opened for user root by {username}(uid={uid})"
+        - name: nginx-access
+          weight: 25
+          values:
+            event_module: nginx
+            event_dataset: nginx.access
+            log_file_path: /var/log/nginx/access.log
+            process_name: nginx
+          templates:
+            message:
+              - "{external_ipv4} - - [{apache_ts}] \"GET /index.html HTTP/1.1\" {http_status} {count} \"-\" \"{user_agent}\""
+              - "{external_ipv4} - - [{apache_ts}] \"POST /api/login HTTP/1.1\" {http_status} {count} \"-\" \"{user_agent}\""
+              - "{external_ipv4} - - [{apache_ts}] \"GET /assets/app.js HTTP/1.1\" {http_status} {count} \"-\" \"{user_agent}\""
+        - name: nginx-error
+          weight: 10
+          values:
+            event_module: nginx
+            event_dataset: nginx.error
+            log_file_path: /var/log/nginx/error.log
+            process_name: nginx
+          templates:
+            message:
+              - "upstream timed out (110: Connection timed out) while reading response header from upstream, client: {external_ipv4}"
+              - "connect() failed (111: Connection refused) while connecting to upstream, client: {external_ipv4}"

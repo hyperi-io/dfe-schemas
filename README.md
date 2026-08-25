@@ -20,12 +20,11 @@ Override the submodule path with `DFE_SCHEMAS_DIR`:
 export DFE_SCHEMAS_DIR=/opt/dfe/schemas
 ```
 
-Validate and render locally (needs dfe-engine importable - point `PY` at an
-interpreter that has it):
+Validate locally (needs dfe-engine importable - point `PY` at an interpreter
+that has it):
 
 ```bash
 make validate PY=../dfe-engine/.venv/bin/python
-make render PY=../dfe-engine/.venv/bin/python
 ```
 
 ## Structure
@@ -37,11 +36,11 @@ dfe-schemas/
 |-- meta/              # source meta schemas, by provider (aws/ azure/ gcp/ m365/)
 |-- additional/        # extra-field overlays (aws/)
 |-- hunts/             # hunt output (results.yaml) + runner checkpoint schema
-|-- argocd/            # self-contained Argo CD deploy unit (kustomize + Job)
-|   '-- ddl/           # generated deploy SQL (make render - do not hand-edit)
-|-- scripts/           # validate_schemas / render_ddl / annotate_meta_schemas
+|-- tables/            # tables in exact ClickHouse types: otel/ + engine internal/
+|-- scripts/           # validate_schemas / annotate_meta_schemas
 |-- docs/meta-schema.md  # the YAML format reference (version tree, columns, types)
-'-- Makefile           # validate / render / check
+|-- docs/tables.md     # the tables/ format reference (clauses, exact CH columns)
+'-- Makefile           # validate
 ```
 
 Every schema YAML carries its own **version tree** - each version entry is a
@@ -51,11 +50,14 @@ independently. Full format reference, column fields, the 13-primitive type
 system, and the `@directive` expression language:
 [docs/meta-schema.md](docs/meta-schema.md).
 
-## Deploying without the engine
+## How these reach ClickHouse
 
-`argocd/` is a self-contained Argo CD Application: a kustomization hashes the
-rendered `ddl/` into a ConfigMap and a Job applies it to ClickHouse - so the
-core tables deploy with or without dfe-engine present.
+One applier, three callers. The `dfe-schema` entry point in the dfe-engine
+image reads this tree and reconciles ClickHouse against it: dfe-infra runs it
+as a Job before the data plane starts, dfe-docker runs it as a compose
+init service, and the engine repeats it idempotently at boot. Rendering SQL
+here and applying it separately was a SECOND definition of the same tables, so
+it is gone -- there is one DDL path and it reads these files.
 
 ## Consumers
 
@@ -78,8 +80,6 @@ Rust services slave from the DEPLOYED ClickHouse schema at runtime
 3. Copy changed common-header profiles to the consumers' bundled fallback
    locations (dfe-engine: `src/dfe_engine/schema/profiles/`) so package
    installs work without a submodule checkout.
-4. `make render` and commit the refreshed `argocd/ddl/` (CI gates on
-   freshness).
 
 Shipped files here are read-only defaults - customise by pointing
 `DFE_SCHEMAS_DIR` at your own directory with only the profiles you override.

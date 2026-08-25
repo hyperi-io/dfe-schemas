@@ -1,0 +1,109 @@
+# otel_metrics_sum -- counter metric values
+#
+# Seeded from the HyperDX collector preset the DFE stack deploys, then held
+# here so it can be optimised like any other DFE table. The exporter runs with
+# `create_schema: false` and only ever INSERTs.
+#
+# Two deltas from the upstream shape, both about retention: `_timestamp_load`
+# joins the common header on every otel table, and PARTITION BY is load time
+# rather than event time so a closed partition stays closed. ORDER BY is
+# deliberately untouched -- these are queried on event time and service.
+
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-08-26"
+    type: model
+    summary: "One row per sum reading, carrying its temporality and monotonicity"
+    table:
+      name: "otel_metrics_sum"
+      engine: "MergeTree"
+      partition_by: "toDate(_timestamp_load)"
+      order_by: "ServiceName, MetricName, toStartOfHour(TimeUnix), cityHash64(Attributes), TimeUnix"
+      index_granularity: 8192
+      indexes:
+        - "INDEX idx_res_attr_key mapKeys(ResourceAttributes) TYPE bloom_filter(0.01) GRANULARITY 1"
+        - "INDEX idx_res_attr_value mapValues(ResourceAttributes) TYPE bloom_filter(0.01) GRANULARITY 1"
+        - "INDEX idx_scope_attr_key mapKeys(ScopeAttributes) TYPE bloom_filter(0.01) GRANULARITY 1"
+        - "INDEX idx_scope_attr_value mapValues(ScopeAttributes) TYPE bloom_filter(0.01) GRANULARITY 1"
+        - "INDEX idx_attr_key mapKeys(Attributes) TYPE bloom_filter(0.01) GRANULARITY 1"
+        - "INDEX idx_attr_value mapValues(Attributes) TYPE bloom_filter(0.01) GRANULARITY 1"
+        - "INDEX idx_time_minmax TimeUnix TYPE minmax GRANULARITY 1"
+    columns:
+      - name: "ResourceAttributes"
+        ch_type: "Map(LowCardinality(String), String)"
+        codec: "ZSTD(1)"
+      - name: "ResourceSchemaUrl"
+        ch_type: "String"
+        codec: "ZSTD(1)"
+      - name: "ScopeName"
+        ch_type: "String"
+        codec: "ZSTD(1)"
+      - name: "ScopeVersion"
+        ch_type: "String"
+        codec: "ZSTD(1)"
+      - name: "ScopeAttributes"
+        ch_type: "Map(LowCardinality(String), String)"
+        codec: "ZSTD(1)"
+      - name: "ScopeDroppedAttrCount"
+        ch_type: "UInt32"
+        codec: "ZSTD(1)"
+      - name: "ScopeSchemaUrl"
+        ch_type: "String"
+        codec: "ZSTD(1)"
+      - name: "ServiceName"
+        ch_type: "String"
+        lowcardinality: true
+        codec: "ZSTD(1)"
+      - name: "MetricName"
+        ch_type: "String"
+        lowcardinality: true
+        codec: "ZSTD(1)"
+      - name: "MetricDescription"
+        ch_type: "String"
+        codec: "ZSTD(1)"
+      - name: "MetricUnit"
+        ch_type: "String"
+        codec: "ZSTD(1)"
+      - name: "Attributes"
+        ch_type: "Map(LowCardinality(String), String)"
+        codec: "ZSTD(1)"
+      - name: "StartTimeUnix"
+        ch_type: "DateTime"
+        codec: "Delta(4), ZSTD(1)"
+      - name: "TimeUnix"
+        ch_type: "DateTime"
+        codec: "Delta(4), ZSTD(1)"
+      - name: "Value"
+        ch_type: "Float64"
+        codec: "ZSTD(1)"
+      - name: "Flags"
+        ch_type: "UInt32"
+        codec: "ZSTD(1)"
+      - name: "Exemplars.FilteredAttributes"
+        ch_type: "Array(Map(LowCardinality(String), String))"
+        codec: "ZSTD(1)"
+      - name: "Exemplars.TimeUnix"
+        ch_type: "Array(DateTime)"
+        codec: "ZSTD(1)"
+      - name: "Exemplars.Value"
+        ch_type: "Array(Float64)"
+        codec: "ZSTD(1)"
+      - name: "Exemplars.SpanId"
+        ch_type: "Array(String)"
+        codec: "ZSTD(1)"
+      - name: "Exemplars.TraceId"
+        ch_type: "Array(String)"
+        codec: "ZSTD(1)"
+      - name: "AggregationTemporality"
+        ch_type: "Int32"
+        codec: "ZSTD(1)"
+      - name: "IsMonotonic"
+        ch_type: "Bool"
+        codec: "Delta(1), ZSTD(1)"
+      - name: "_timestamp_load"
+        ch_type: "DateTime64(3,'UTC')"
+        default: "now64(3)"
+        codec: "Delta, LZ4"
+        comment: "Insertion timestamp (ms precision)"

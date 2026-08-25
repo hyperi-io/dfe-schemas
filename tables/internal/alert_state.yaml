@@ -1,0 +1,54 @@
+# alert_state -- alert cooldown
+#
+# Engine working state rather than user data, so the columns are exact
+# ClickHouse types with no meta-schema mapping behind them.
+#
+# The engine is an INTENT resolved per topology, never a literal: a literal is
+# correct on a single node and lands on one replica of a cluster, where a
+# restart that reconnects elsewhere finds no table.
+
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-08-26"
+    type: model
+    summary: "When each rule last fired, per org and group"
+    table:
+      name: "alert_state"
+      engine: "ReplacingMergeTree(last_fired_at)"
+      index_granularity: 2048
+      ttl_days: 30
+      ttl_columns: ["last_fired_at"]
+    columns:
+      - name: "hunt_name"
+        ch_type: "String"
+        lowcardinality: true
+        codec: "LZ4"
+        order: 0
+      - name: "rule_name"
+        ch_type: "String"
+        lowcardinality: true
+        codec: "LZ4"
+        order: 1
+      - name: "_org_id"
+        ch_type: "String"
+        lowcardinality: true
+        codec: "LZ4"
+        order: 2
+      - name: "group_key"
+        ch_type: "String"
+        default: "''"
+        codec: "ZSTD"
+        order: 3
+      - name: "last_fired_at"
+        ch_type: "DateTime"
+        codec: "DoubleDelta, LZ4"
+      - name: "fire_count"
+        ch_type: "UInt32"
+        default: "1"
+        codec: "Delta, ZSTD"
+      - name: "suppressed_count"
+        ch_type: "UInt64"
+        default: "0"
+        codec: "Delta, ZSTD"

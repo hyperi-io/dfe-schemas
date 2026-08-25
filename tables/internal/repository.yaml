@@ -1,0 +1,51 @@
+# repository -- the scope-aligned small-object store
+#
+# Engine working state rather than user data, so the columns are exact
+# ClickHouse types with no meta-schema mapping behind them.
+#
+# The engine is an INTENT resolved per topology, never a literal: a literal is
+# correct on a single node and lands on one replica of a cluster, where a
+# restart that reconnects elsewhere finds no table.
+
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-08-26"
+    type: model
+    summary: "UI preferences, small JSON and small files; no _org_id by design, and a delete is a tombstone row"
+    table:
+      name: "repository"
+      engine: "ReplacingMergeTree(updated_at, is_deleted)"
+      index_granularity: 2048
+    columns:
+      - name: "scope"
+        ch_type: "String"
+        lowcardinality: true
+        order: 0
+      - name: "scope_id"
+        ch_type: "String"
+        order: 1
+      - name: "namespace"
+        ch_type: "String"
+        lowcardinality: true
+        order: 2
+      - name: "key"
+        ch_type: "String"
+        order: 3
+      - name: "content_type"
+        ch_type: "String"
+        lowcardinality: true
+      - name: "value"
+        ch_type: "String"
+        codec: "ZSTD(3)"
+      - name: "size"
+        ch_type: "UInt32"
+      - name: "updated_by"
+        ch_type: "String"
+      - name: "updated_at"
+        ch_type: "DateTime64(3)"
+      - name: "is_deleted"
+        ch_type: "UInt8"
+        default: "0"
+        comment: "tombstone"

@@ -1,0 +1,30 @@
+# hunt_watermark -- how far each hunt has processed
+#
+# Engine working state rather than user data, so the columns are exact
+# ClickHouse types with no meta-schema mapping behind them.
+#
+# The engine is an INTENT resolved per topology, never a literal: a literal is
+# correct on a single node and lands on one replica of a cluster, where a
+# restart that reconnects elsewhere finds no table.
+
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-08-26"
+    type: model
+    summary: "One watermark row per hunt, newest write winning after merge"
+    table:
+      name: "hunt_watermark"
+      engine: "ReplacingMergeTree(updated)"
+      index_granularity: 2048
+    columns:
+      - name: "hunt_id"
+        ch_type: "String"
+        order: 0
+      - name: "watermark"
+        ch_type: "Int64"
+        comment: "epoch seconds processed up to"
+      - name: "updated"
+        ch_type: "DateTime64(3)"
+        default: "now64(3)"

@@ -1,0 +1,35 @@
+# hunt_schedule -- the schedule KEDA wakes on
+#
+# Engine working state rather than user data, so the columns are exact
+# ClickHouse types with no meta-schema mapping behind them.
+#
+# The engine is an INTENT resolved per topology, never a literal: a literal is
+# correct on a single node and lands on one replica of a cluster, where a
+# restart that reconnects elsewhere finds no table.
+
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-08-26"
+    type: model
+    summary: "One row per hunt; `enabled` is a soft tombstone so a removal needs no delete"
+    table:
+      name: "hunt_schedule"
+      engine: "ReplacingMergeTree(updated)"
+      index_granularity: 2048
+    columns:
+      - name: "hunt_id"
+        ch_type: "String"
+        order: 0
+      - name: "interval_seconds"
+        ch_type: "Int64"
+      - name: "phase_offset"
+        ch_type: "Int64"
+      - name: "enabled"
+        ch_type: "UInt8"
+        default: "1"
+        comment: "soft tombstone"
+      - name: "updated"
+        ch_type: "DateTime64(3)"
+        default: "now64(3)"

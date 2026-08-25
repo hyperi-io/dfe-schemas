@@ -12,15 +12,21 @@ Walks the schema directories, loads each file through ``SchemaLoader``
 (structural + Pydantic validation), then runs ``validate_columns`` against
 the ``TypeRegistry`` (type/use_case/attribute/ch_override semantics).
 Exits non-zero on the first batch of errors. Requires dfe-engine importable.
+
+``tables/`` is validated separately: those files are written in exact
+ClickHouse types, so the check is that each one builds a TableSpec.
 """
 
 from __future__ import annotations
 
+import os
 import sys
 from pathlib import Path
 
 # Directories that contain column-bearing schema YAML.
 SCHEMA_DIRS = ("common-header", "meta", "hunts", "additional")
+
+TABLES_DIR = "tables"
 
 
 def main() -> int:
@@ -52,13 +58,37 @@ def main() -> int:
             continue
         errors.extend(f"{rel}: {err}" for err in SchemaLoader.validate_columns(columns, registry))
 
+    # The loader resolves refs against the schemas root, and the root being
+    # validated is this checkout.
+    os.environ.setdefault("DFE_SCHEMAS_DIR", str(repo_root))
+    table_files = sorted((repo_root / TABLES_DIR).rglob("*.yaml"))
+    checked_tables = 0
+    try:
+        from dfe_engine.schema.table_loader import load_table_spec, load_view_ddl
+    except ImportError:
+        print(
+            f"NOT VALIDATED: {len(table_files)} files under {TABLES_DIR}/ -- "
+            "the installed dfe-engine has no table loader",
+            file=sys.stderr,
+        )
+    else:
+        for path in table_files:
+            rel = path.relative_to(repo_root)
+            ref = str(rel.with_suffix(""))
+            try:
+                load_table_spec(ref, "dfe")
+                load_view_ddl(ref, "dfe")
+                checked_tables += 1
+            except Exception as exc:
+                errors.append(f"{rel}: {exc}")
+
     if errors:
         print("Schema validation FAILED:")
         for err in errors:
             print(f"  - {err}")
         return 1
 
-    print(f"Validated {len(files)} schema files: OK")
+    print(f"Validated {len(files)} schema files and {checked_tables} table definitions: OK")
     return 0
 
 

@@ -1,0 +1,51 @@
+# otel_traces_trace_id_ts -- the trace-id time lookup
+#
+# Seeded from the HyperDX collector preset the DFE stack deploys, then held
+# here so it can be optimised like any other DFE table. The exporter runs with
+# `create_schema: false` and only ever INSERTs.
+#
+# Two deltas from the upstream shape, both about retention: `_timestamp_load`
+# joins the common header on every otel table, and PARTITION BY is load time
+# rather than event time so a closed partition stays closed. ORDER BY is
+# deliberately untouched -- these are queried on event time and service.
+
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-08-26"
+    type: model
+    summary: "First and last timestamp per trace id, maintained by a materialised view over otel_traces"
+    table:
+      name: "otel_traces_trace_id_ts"
+      engine: "MergeTree"
+      partition_by: "toDate(_timestamp_load)"
+      order_by: "TraceId, Start"
+      index_granularity: 8192
+      indexes:
+        - "INDEX idx_trace_id TraceId TYPE bloom_filter(0.01) GRANULARITY 1"
+    # A materialised view has no columns to reconcile, only a SELECT; its
+    # target is the table above. `{db}` is substituted at apply time.
+    materialized_view:
+      name: otel_traces_trace_id_ts_mv
+      to: otel_traces_trace_id_ts
+      select: |-
+        SELECT TraceId, min(Timestamp) AS Start, max(Timestamp) AS End
+        FROM {db}.otel_traces
+        WHERE TraceId != ''
+        GROUP BY TraceId
+    columns:
+      - name: "TraceId"
+        ch_type: "String"
+        codec: "ZSTD(1)"
+      - name: "Start"
+        ch_type: "DateTime"
+        codec: "Delta(4), ZSTD(1)"
+      - name: "End"
+        ch_type: "DateTime"
+        codec: "Delta(4), ZSTD(1)"
+      - name: "_timestamp_load"
+        ch_type: "DateTime64(3,'UTC')"
+        default: "now64(3)"
+        codec: "Delta, LZ4"
+        comment: "Insertion timestamp (ms precision)"

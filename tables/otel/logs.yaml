@@ -1,0 +1,156 @@
+# otel_logs -- the OTel log records
+#
+# Seeded from the HyperDX collector preset the DFE stack deploys, then held
+# here so it can be optimised like any other DFE table. The exporter runs with
+# `create_schema: false` and only ever INSERTs.
+#
+# Two deltas from the upstream shape, both about retention: `_timestamp_load`
+# joins the common header on every otel table, and PARTITION BY is load time
+# rather than event time so a closed partition stays closed. ORDER BY is
+# deliberately untouched -- these are queried on event time and service.
+
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-08-26"
+    type: model
+    summary: "Every OTel log record, with the k8s resource attributes materialised out and Body parsed into a typed JSON column"
+    table:
+      name: "otel_logs"
+      engine: "MergeTree"
+      partition_by: "toDate(_timestamp_load)"
+      order_by: "toStartOfFiveMinutes(Timestamp), ServiceName, Timestamp"
+      index_granularity: 8192
+      indexes:
+        - "INDEX idx_trace_id TraceId TYPE text(tokenizer = 'array') GRANULARITY 100000000"
+        - "INDEX idx_res_attr_key mapKeys(ResourceAttributes) TYPE text(tokenizer = 'array') GRANULARITY 100000000"
+        - "INDEX idx_res_attr_value mapValues(ResourceAttributes) TYPE text(tokenizer = 'array') GRANULARITY 100000000"
+        - "INDEX idx_scope_attr_key mapKeys(ScopeAttributes) TYPE text(tokenizer = 'array') GRANULARITY 100000000"
+        - "INDEX idx_scope_attr_value mapValues(ScopeAttributes) TYPE text(tokenizer = 'array') GRANULARITY 100000000"
+        - "INDEX idx_log_attr_key mapKeys(LogAttributes) TYPE text(tokenizer = 'array') GRANULARITY 100000000"
+        - "INDEX idx_log_attr_value mapValues(LogAttributes) TYPE text(tokenizer = 'array') GRANULARITY 100000000"
+        - "INDEX idx_lower_body lower(Body) TYPE text(tokenizer = 'splitByNonAlpha') GRANULARITY 100000000"
+    columns:
+      - name: "Timestamp"
+        ch_type: "DateTime64(9)"
+        codec: "Delta(8), ZSTD(1)"
+        comment: "Event timestamp with nanosecond precision"
+      - name: "TraceId"
+        ch_type: "String"
+        codec: "ZSTD(1)"
+        comment: "W3C trace identifier"
+      - name: "SpanId"
+        ch_type: "String"
+        codec: "ZSTD(1)"
+        comment: "W3C span identifier"
+      - name: "TraceFlags"
+        ch_type: "UInt8"
+        comment: "W3C trace flags"
+      - name: "SeverityText"
+        ch_type: "String"
+        lowcardinality: true
+        codec: "ZSTD(1)"
+        comment: "Log severity as text"
+      - name: "SeverityNumber"
+        ch_type: "UInt8"
+        comment: "Log severity as number (1-24)"
+      - name: "ServiceName"
+        ch_type: "String"
+        lowcardinality: true
+        codec: "ZSTD(1)"
+        comment: "Service that emitted the log"
+      - name: "Body"
+        ch_type: "String"
+        codec: "ZSTD(1)"
+        comment: "Log message body"
+      - name: "ResourceSchemaUrl"
+        ch_type: "String"
+        lowcardinality: true
+        codec: "ZSTD(1)"
+        comment: "Schema URL for the resource"
+      - name: "ResourceAttributes"
+        ch_type: "Map(LowCardinality(String), String)"
+        codec: "ZSTD(1)"
+        comment: "Resource attributes as key-value pairs"
+      - name: "ScopeSchemaUrl"
+        ch_type: "String"
+        lowcardinality: true
+        codec: "ZSTD(1)"
+        comment: "Schema URL for the instrumentation scope"
+      - name: "ScopeName"
+        ch_type: "String"
+        codec: "ZSTD(1)"
+        comment: "Instrumentation scope name"
+      - name: "ScopeVersion"
+        ch_type: "String"
+        lowcardinality: true
+        codec: "ZSTD(1)"
+        comment: "Instrumentation scope version"
+      - name: "ScopeAttributes"
+        ch_type: "Map(LowCardinality(String), String)"
+        codec: "ZSTD(1)"
+        comment: "Instrumentation scope attributes"
+      - name: "LogAttributes"
+        ch_type: "Map(LowCardinality(String), String)"
+        codec: "ZSTD(1)"
+        comment: "Log record attributes"
+      - name: "EventName"
+        ch_type: "String"
+        codec: "ZSTD(1)"
+        comment: "Event name for log records representing events"
+      - name: "__otel_materialized_k8s.cluster.name"
+        ch_type: "String"
+        lowcardinality: true
+        materialized: "ResourceAttributes['k8s.cluster.name']"
+        codec: "ZSTD(1)"
+      - name: "__otel_materialized_k8s.container.name"
+        ch_type: "String"
+        lowcardinality: true
+        materialized: "ResourceAttributes['k8s.container.name']"
+        codec: "ZSTD(1)"
+      - name: "__otel_materialized_k8s.deployment.name"
+        ch_type: "String"
+        lowcardinality: true
+        materialized: "ResourceAttributes['k8s.deployment.name']"
+        codec: "ZSTD(1)"
+      - name: "__otel_materialized_k8s.namespace.name"
+        ch_type: "String"
+        lowcardinality: true
+        materialized: "ResourceAttributes['k8s.namespace.name']"
+        codec: "ZSTD(1)"
+      - name: "__otel_materialized_k8s.node.name"
+        ch_type: "String"
+        lowcardinality: true
+        materialized: "ResourceAttributes['k8s.node.name']"
+        codec: "ZSTD(1)"
+      - name: "__otel_materialized_k8s.pod.name"
+        ch_type: "String"
+        lowcardinality: true
+        materialized: "ResourceAttributes['k8s.pod.name']"
+        codec: "ZSTD(1)"
+      - name: "__otel_materialized_k8s.pod.uid"
+        ch_type: "String"
+        lowcardinality: true
+        materialized: "ResourceAttributes['k8s.pod.uid']"
+        codec: "ZSTD(1)"
+      - name: "__otel_materialized_deployment.environment.name"
+        ch_type: "String"
+        lowcardinality: true
+        materialized: "ResourceAttributes['deployment.environment.name']"
+        codec: "ZSTD(1)"
+      - name: "_timestamp_load"
+        ch_type: "DateTime64(3,'UTC')"
+        default: "now64(3)"
+        codec: "Delta, LZ4"
+        comment: "Insertion timestamp (ms precision)"
+      # Body STAYS the text of record: a plain-text line is not valid JSON and
+      # a JSON column would reject the whole insert batch, so the isValidJSON
+      # guard degrades those rows to {} instead. `inherit` takes
+      # max_dynamic_paths from the common header's _json so the two JSON
+      # columns in the stack cannot drift apart.
+      - name: "BodyJson"
+        ch_type: "JSON"
+        materialized: "CAST(if(isValidJSON(Body), Body, '{}'), 'JSON')"
+        max_dynamic_paths: inherit
+        comment: "Body parsed as JSON; empty for a body that is not JSON"

@@ -36,8 +36,10 @@ dfe-schemas/
 |-- meta/              # source meta schemas, by provider (aws/ azure/ gcp/ m365/)
 |-- additional/        # extra-field overlays (aws/)
 |-- hunts/             # hunt output (results.yaml) + runner checkpoint schema
+|-- tables/            # tables in exact ClickHouse types: otel/ + engine internal/
 |-- scripts/           # validate_schemas / annotate_meta_schemas
 |-- docs/meta-schema.md  # the YAML format reference (version tree, columns, types)
+|-- docs/tables.md     # the tables/ format reference (clauses, exact CH columns)
 '-- Makefile           # validate
 ```
 

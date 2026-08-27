@@ -1,0 +1,20 @@
+# detection_checkpoint -- hunt execution checkpoint tracking
+#
+# Columns come from hunts/detection_checkpoint.yaml; this file carries only the
+# DDL config. Retention and the partition both ride `query_checkpoint_time`,
+# the only time column this table has, and monthly because one row per hunt run
+# is too few to earn a daily part.
+
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-08-27"
+    type: model
+    summary: "Thirty-day retention aligned to the monthly checkpoint-time partition"
+    table:
+      name: "detection_checkpoint"
+      partition_column: "query_checkpoint_time"
+      partition_granularity: "month"
+      ttl_days: 30
+      ttl_columns: ["query_checkpoint_time"]

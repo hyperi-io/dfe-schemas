@@ -7,7 +7,17 @@ dfe-archiver).
 
 ## Usage
 
-Mount as a git submodule in each consuming project:
+Two consumption modes, one content.
+
+As a Python package (the schema trees ship as package data, plus the
+`dfe_schemas.clickhouse` engine resolver and the declared deploy defaults):
+
+```bash
+pip install dfe-schemas
+python -c "import dfe_schemas; print(dfe_schemas.schemas_root())"
+```
+
+Or mount as a git submodule in each consuming project:
 
 ```bash
 git submodule add https://github.com/hyperi-io/dfe-schemas.git schemas

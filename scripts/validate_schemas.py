@@ -64,7 +64,11 @@ def main() -> int:
     table_files = sorted((repo_root / TABLES_DIR).rglob("*.yaml"))
     checked_tables = 0
     try:
-        from dfe_engine.schema.table_loader import load_table_spec, load_view_ddl
+        from dfe_engine.schema.table_loader import (
+            load_table_config,
+            load_table_spec,
+            load_view_ddl,
+        )
     except ImportError:
         print(
             f"NOT VALIDATED: {len(table_files)} files under {TABLES_DIR}/ -- "
@@ -76,8 +80,15 @@ def main() -> int:
             rel = path.relative_to(repo_root)
             ref = str(rel.with_suffix(""))
             try:
-                load_table_spec(ref, "dfe")
-                load_view_ddl(ref, "dfe")
+                entry = SchemaLoader.load_version_entry(path, require_columns=False)
+                # A config-only definition (tables/core/) declares DDL config for
+                # a table whose columns come from composition, so it validates
+                # through the config loader rather than the spec loader.
+                if "columns" in entry:
+                    load_table_spec(ref, "dfe")
+                    load_view_ddl(ref, "dfe")
+                else:
+                    load_table_config(ref, "dfe")
                 checked_tables += 1
             except Exception as exc:
                 errors.append(f"{rel}: {exc}")

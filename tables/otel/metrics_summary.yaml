@@ -4,10 +4,11 @@
 # here so it can be optimised like any other DFE table. The exporter runs with
 # `create_schema: false` and only ever INSERTs.
 #
-# Two deltas from the upstream shape, both about retention: `_timestamp_load`
-# joins the common header on every otel table, and PARTITION BY is load time
-# rather than event time so a closed partition stays closed. ORDER BY is
-# deliberately untouched -- these are queried on event time and service.
+# Three deltas from the upstream shape, all about retention: `_timestamp_load`
+# joins the common header on every otel table, PARTITION BY is load time rather
+# than event time so a closed partition stays closed, and TTL rides that same
+# column so an expiring partition drops as whole parts. ORDER BY is deliberately
+# untouched -- these are queried on event time and service.
 
 current: "1.0.0"
 
@@ -20,6 +21,8 @@ versions:
       name: "otel_metrics_summary"
       engine: "MergeTree"
       partition_by: "toDate(_timestamp_load)"
+      ttl_days: 30
+      ttl_columns: ["_timestamp_load"]
       order_by: "ServiceName, MetricName, toStartOfHour(TimeUnix), cityHash64(Attributes), TimeUnix"
       index_granularity: 8192
       indexes:

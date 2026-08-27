@@ -1,0 +1,19 @@
+# detection -- hunt detection results
+#
+# Columns come from the common-header profile composed with hunts/results.yaml;
+# this file carries only the DDL config. TTL names the partition column because
+# ttl_only_drop_parts drops a part only once every row in it has expired.
+
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-08-27"
+    type: model
+    summary: "Thirty-day retention aligned to the load-time partition"
+    table:
+      name: "detection"
+      partition_column: "_timestamp_load"
+      partition_granularity: "day"
+      ttl_days: 30
+      ttl_columns: ["_timestamp_load"]

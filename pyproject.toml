@@ -1,0 +1,52 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "dfe-schemas"
+version = "0.1.0"
+description = "DFE table schemas and the ClickHouse DDL mechanics that render them"
+readme = "README.md"
+license = "BUSL-1.1"
+license-files = ["LICENSE"]
+requires-python = ">=3.11"
+authors = [{ name = "HYPERI PTY LIMITED" }]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Repository = "https://github.com/hyperi-io/dfe-schemas"
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "dfe_schemas",
+    "tables",
+    "hunts",
+    "common-header",
+    "meta",
+    "additional",
+    "tests",
+    "README.md",
+    "LICENSE",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["dfe_schemas"]
+# The schema trees stay at the repo root (the dfe-engine submodule consumes
+# them there); the wheel carries the same trees as package data.
+[tool.hatch.build.targets.wheel.force-include]
+"tables" = "dfe_schemas/data/tables"
+"hunts" = "dfe_schemas/data/hunts"
+"common-header" = "dfe_schemas/data/common-header"
+"meta" = "dfe_schemas/data/meta"
+"additional" = "dfe_schemas/data/additional"
+
+[tool.uv]
+# Supply-chain cooldown (standards/universal/ci.md): never resolve a package
+# version published in the last 7 days.
+exclude-newer = "7 days"
+
+[dependency-groups]
+dev = ["pytest>=8"]

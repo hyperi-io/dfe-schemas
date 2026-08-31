@@ -118,7 +118,7 @@ def _annotate_columns(lines: list[str]) -> int:
 
         end = _column_block_end(lines, i)
         block = lines[i:end]
-        if any(l.lstrip().startswith("_field_type:") for l in block):
+        if any(entry.lstrip().startswith("_field_type:") for entry in block):
             i = end
             continue
 
@@ -219,7 +219,7 @@ def main() -> int:
                 continue
 
             new_text, changed, cols = annotate_text(raw)
-        except Exception as exc:  # noqa: BLE001 - CLI boundary
+        except Exception as exc:  # CLI boundary: any failure is reported, not raised
             print(f"{rel}: {exc}", file=sys.stderr)
             return 1
 
@@ -241,7 +241,9 @@ def main() -> int:
             action = "Would update" if args.dry_run else "Updated"
             print(f"{action} {files_changed} file(s), {total_columns} column(s)")
     else:
-        print("All schemas already annotated" if not args.fix_spacing else "Spacing already correct")
+        print(
+            "All schemas already annotated" if not args.fix_spacing else "Spacing already correct"
+        )
     return 0
 
 

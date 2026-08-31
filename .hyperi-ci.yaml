@@ -1,0 +1,33 @@
+# Project:   dfe-schemas
+# File:      .hyperi-ci.yaml
+# Purpose:   HyperI CI configuration
+#
+# License:   BUSL-1.1
+# Copyright: (c) 2026 HYPERI PTY LIMITED
+#
+# Override defaults with HYPERCI_* env vars.
+
+license: BUSL-1.1
+
+# Declared, never inferred (standards/universal/repo-classification.md).
+# Category 2 (product): part of the DFE suite, BUSL-1.1, already public, and
+# the wheel is on PyPI so other orgs deploying the suite can consume it.
+classification: product
+
+build:
+  type: package
+
+test:
+  python:
+    # The package sits at the repo root, not under src/. hyperi-ci appends a
+    # fixed `--cov=src`, so the real package has to be named here.
+    args:
+      - "-v"
+      - "--tb=short"
+      - "--cov=dfe_schemas"
+
+publish:
+  enabled: true
+  # Wheel + sdist to PyPI. No container and no chart here -- this repo ships
+  # schema content and the ClickHouse DDL mechanics that render it, nothing
+  # that runs. `destinations_oss` is left at its default (python: pypi).

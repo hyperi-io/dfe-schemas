@@ -7,24 +7,16 @@ dfe-archiver).
 
 ## Usage
 
-Two consumption modes, one content.
-
-As a Python package (the schema trees ship as package data, plus the
-`dfe_schemas.clickhouse` engine resolver and the declared deploy defaults):
+Install the Python package. The schema trees ship as package data under
+`dfe_schemas/data/`, alongside the `dfe_schemas.clickhouse` engine resolver and
+the declared deploy defaults:
 
 ```bash
 pip install dfe-schemas
 python -c "import dfe_schemas; print(dfe_schemas.schemas_root())"
 ```
 
-Or mount as a git submodule in each consuming project:
-
-```bash
-git submodule add https://github.com/hyperi-io/dfe-schemas.git schemas
-git submodule update --init --recursive
-```
-
-Override the submodule path with `DFE_SCHEMAS_DIR`:
+Point `DFE_SCHEMAS_DIR` at your own directory to override the shipped trees:
 
 ```bash
 export DFE_SCHEMAS_DIR=/opt/dfe/schemas
@@ -85,11 +77,13 @@ Rust services slave from the DEPLOYED ClickHouse schema at runtime
 
 1. Branch here, add a NEW version entry (complete column snapshot - never
    modify a published version), update `current`, commit, PR to main.
-2. Bump the submodule pin in each consumer
-   (`git submodule update --remote schemas`, commit the pin).
-3. Copy changed common-header profiles to the consumers' bundled fallback
-   locations (dfe-engine: `src/dfe_engine/schema/profiles/`) so package
-   installs work without a submodule checkout.
+2. Cut a release (CI `workflow_dispatch`, `from-head=true`) so the wheel
+   carrying the new trees reaches PyPI.
+3. Raise the `dfe-schemas` floor in each consumer and relock
+   (dfe-engine: `pyproject.toml` + `uv.lock`).
+4. Copy changed common-header profiles to the consumers' bundled fallback
+   locations (dfe-engine: `src/dfe_engine/schema/profiles/`), which is what
+   answers when neither `DFE_SCHEMAS_DIR` nor the package is available.
 
 Shipped files here are read-only defaults - customise by pointing
 `DFE_SCHEMAS_DIR` at your own directory with only the profiles you override.

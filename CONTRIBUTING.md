@@ -64,18 +64,18 @@ affected (e.g., `api`, `auth`, `core`, `cli`, `docs`).
 
 ## Versioning
 
-This repo ships content, not an image, so it carries no version number of its
-own. It is tagged in lockstep with the DFE stack release, and that tag is
-recorded in `dfe-infra`'s `versions.yaml` alongside every other component -
-see [stack-versioning](https://github.com/hyperi-io/dfe-docs/blob/main/deployment/stack-versioning.md).
-The tag follows [Semantic Versioning 2.0.0](https://semver.org/):
+This repo publishes the `dfe-schemas` wheel to PyPI, and semantic-release owns
+its version. Land correctly-typed conventional commits and the CI derives the
+bump - never hand-edit `VERSION`, `CHANGELOG.md`, or the version in
+`pyproject.toml`. The tag follows
+[Semantic Versioning 2.0.0](https://semver.org/):
 
 - **MAJOR** (X.0.0): Breaking changes that require users to modify their code
 - **MINOR** (0.X.0): New features that are backwards-compatible
 - **PATCH** (0.0.X): Bug fixes and minor improvements
 
-Do not add a version number to the tree. Schema YAML files carry their own
-independent version trees - see [docs/meta-schema.md](docs/meta-schema.md).
+Schema YAML files carry their own independent version trees, unrelated to the
+package version - see [docs/meta-schema.md](docs/meta-schema.md).
 
 ## Developer Certificate of Origin
 
@@ -168,9 +168,14 @@ surviving CI.
 
 ## CI/CD Workflow
 
-CI validates every schema YAML against the dfe-engine meta-schema, on every
-push and pull request. Nothing is published from this repo and no release is
-cut on merge - the lockstep tag is applied when the stack release is cut.
+Two workflows run on every push and pull request. `ci.yml` is the standard
+hyperi-ci pipeline - quality, tests, build. `validate-schemas.yml` validates
+every schema YAML against the dfe-engine meta-schema, which needs a cross-repo
+checkout hyperi-ci has no stage for.
+
+A push never publishes. To cut a release, run the CI workflow by hand
+(`workflow_dispatch`) with `from-head=true`; semantic-release picks the
+version, tags it, and the release tail publishes the wheel to PyPI.
 
 ## Questions
 

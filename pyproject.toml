@@ -4,7 +4,10 @@ build-backend = "hatchling.build"
 
 [project]
 name = "dfe-schemas"
-version = "0.1.0"
+# Seed for the first hyperi-ci release only: with no v* tag in the repo,
+# predict-version ships this value verbatim, then CI stamps every release after
+# it. 0.2.0 because PyPI already holds 0.1.0 and refuses a re-upload.
+version = "0.2.0"
 description = "DFE table schemas and the ClickHouse DDL mechanics that render them"
 readme = "README.md"
 license = "BUSL-1.1"
@@ -34,8 +37,8 @@ include = [
 
 [tool.hatch.build.targets.wheel]
 packages = ["dfe_schemas"]
-# The schema trees stay at the repo root (the dfe-engine submodule consumes
-# them there); the wheel carries the same trees as package data.
+# The schema trees stay at the repo root so this checkout reads as itself; the
+# wheel carries the same trees as package data, which is how consumers get them.
 [tool.hatch.build.targets.wheel.force-include]
 "tables" = "dfe_schemas/data/tables"
 "hunts" = "dfe_schemas/data/hunts"
@@ -49,4 +52,42 @@ packages = ["dfe_schemas"]
 exclude-newer = "7 days"
 
 [dependency-groups]
-dev = ["pytest>=8"]
+dev = ["pytest>=8", "pytest-cov>=7.1.0"]
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["tests"]
+python_files = "test_*.py"
+
+[tool.coverage.report]
+fail_under = 80
+
+[tool.coverage.run]
+source = ["dfe_schemas"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+# Schema content, not code -- and the wheel build copies these trees verbatim.
+extend-exclude = [
+    "additional",
+    "common-header",
+    "hunts",
+    "meta",
+    "pipelines",
+    "tables",
+]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "B", "S", "I", "UP", "N", "PT", "RUF", "PIE"]
+ignore = [
+    # This package renders ClickHouse DDL and probes system tables; every query
+    # is built from schema definitions and database names, never user input.
+    "S608",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["S101"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"

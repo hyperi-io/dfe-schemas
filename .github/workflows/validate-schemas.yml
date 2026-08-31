@@ -1,0 +1,64 @@
+# Project:   dfe-schemas
+# File:      .github/workflows/validate-schemas.yml
+# Purpose:   Validate every schema YAML against the dfe-engine meta-schema
+#
+# License:   BUSL-1.1
+# Copyright: (c) 2026 HYPERI PTY LIMITED
+#
+# Kept OUT of ci.yml (the hyperi-ci caller) because hyperi-ci has no stage for
+# it: the meta-schema models, the TypeRegistry and the loader live in
+# dfe-engine, so the check needs a cross-repo checkout of a PRIVATE repo, and
+# folding it into this repo's own pytest suite would put dfe-engine in
+# dfe-schemas' dependency graph -- a cycle, since dfe-engine now depends on the
+# dfe-schemas wheel.
+#
+# The dfe-engine venv installs dfe-schemas from PyPI as a dependency; what gets
+# validated is still THIS checkout, because validate_schemas.py passes explicit
+# paths and points DFE_SCHEMAS_DIR at the repo root.
+
+name: Validate schemas
+
+"on":
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ${{ vars.GH_RUNNER_DEFAULT || 'ubuntu-latest' }}
+    steps:
+      - name: Checkout dfe-schemas
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Mint a read token for dfe-engine
+        id: engine-token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          client-id: ${{ vars.GH_APP_CLIENT_ID }}
+          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: dfe-engine
+          permission-contents: read
+
+      - name: Checkout dfe-engine (schema loader)
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: hyperi-io/dfe-engine
+          ref: main
+          token: ${{ steps.engine-token.outputs.token }}
+          path: .dfe-engine
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+
+      - name: Install dfe-engine
+        working-directory: .dfe-engine
+        run: uv sync --frozen --no-dev
+
+      - name: Validate schemas
+        run: .dfe-engine/.venv/bin/python scripts/validate_schemas.py

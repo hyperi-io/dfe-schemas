@@ -100,7 +100,9 @@ def test_a_replicated_database_needs_no_on_cluster(db_engine):
 
 
 def test_an_atomic_database_with_cluster_macros_fans_out():
-    resolver = EngineResolver(client=_FakeClient(db_engine="Atomic", macros=("shard", "replica", "cluster")))
+    resolver = EngineResolver(
+        client=_FakeClient(db_engine="Atomic", macros=("shard", "replica", "cluster"))
+    )
     resolved = resolver.resolve(EngineSpec("MergeTree"), "db")
 
     assert resolved.clause == "ReplicatedMergeTree"
@@ -108,7 +110,9 @@ def test_an_atomic_database_with_cluster_macros_fans_out():
 
 
 def test_it_falls_back_to_a_multi_host_cluster_when_no_macro_names_one():
-    resolver = EngineResolver(client=_FakeClient(db_engine="Atomic", macros=("shard", "replica"), clusters=("found",)))
+    resolver = EngineResolver(
+        client=_FakeClient(db_engine="Atomic", macros=("shard", "replica"), clusters=("found",))
+    )
     resolved = resolver.resolve(EngineSpec("MergeTree"), "db")
 
     assert resolved.on_cluster == " ON CLUSTER found"
@@ -197,9 +201,9 @@ def test_a_different_database_is_sensed_again():
 
 def test_topology_reports_the_coarse_form():
     single = EngineResolver().resolve(EngineSpec("MergeTree"), "db")
-    clustered = EngineResolver(client=_FakeClient(db_engine="Atomic", macros=("shard", "replica"))).resolve(
-        EngineSpec("MergeTree"), "db"
-    )
+    clustered = EngineResolver(
+        client=_FakeClient(db_engine="Atomic", macros=("shard", "replica"))
+    ).resolve(EngineSpec("MergeTree"), "db")
 
     assert single.topology == "single"
     assert clustered.topology == "replicated"

@@ -1,55 +1,54 @@
-# Minimal CI for dfe-schemas: validate every schema YAML against the
-# dfe-engine meta-schema.
+# Project:   dfe-schemas
+# File:      .github/workflows/ci.yml
+# Purpose:   CI pipeline -- quality, test, build, release, publish
 #
-# No semantic-release: this repo is versioned by a git tag cut in lockstep
-# with the dfe-infra stack release and recorded in that repo's versions.yaml.
+# License:   BUSL-1.1
+# Copyright: (c) 2026 HYPERI PTY LIMITED
 #
-# The meta-schema and loader live in dfe-engine, so it is checked out and
-# uv-synced the way its own Dockerfile builds it. It is private, so the
-# checkout uses a token minted from the org CI GitHub App.
-#
-# Action refs should be SHA-pinned per HyperI CI policy before this is
-# promoted; Renovate's helpers:pinGitHubActionDigests raises that PR.
+# Thin caller of the shared hyperi-ci reusable workflow, the same shape every
+# other HyperI Python repo uses. A push validates and never publishes; a
+# workflow_dispatch with from-head=true mints the release (semantic-release
+# picks the version, tags it, and the release tail publishes the wheel to
+# PyPI). The repo-specific meta-schema validation lives in its own workflow
+# (validate-schemas.yml) because it needs a cross-repo dfe-engine checkout
+# that hyperi-ci has no stage for.
+
 name: CI
 
-on:
+"on":
   push:
     branches: ["**"]
   pull_request:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      tag:
+        type: string
+        required: false
+        default: ""
+        description: "Tag to re-publish (existing tag). Omit + set from-head to release HEAD."
+      from-head:
+        type: string
+        required: false
+        default: ""
+        description: "'true' to release/retry the current HEAD -- the CI creates the tag (issue #35)."
+      bump:
+        type: string
+        required: false
+        default: "auto"
+        description: "Version resolution for from-head: auto | patch | minor (forced) | X.Y.Z (exact version)."
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+  packages: write
 
 jobs:
-  validate:
-    runs-on: ${{ vars.GH_RUNNER_DEFAULT || 'ubuntu-latest' }}
-    steps:
-      - name: Checkout dfe-schemas
-        uses: actions/checkout@v7
-
-      - name: Mint a read token for dfe-engine
-        id: engine-token
-        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
-        with:
-          client-id: ${{ vars.GH_APP_CLIENT_ID }}
-          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
-          owner: ${{ github.repository_owner }}
-          repositories: dfe-engine
-          permission-contents: read
-
-      - name: Checkout dfe-engine (schema loader)
-        uses: actions/checkout@v7
-        with:
-          repository: hyperi-io/dfe-engine
-          ref: main
-          token: ${{ steps.engine-token.outputs.token }}
-          path: .dfe-engine
-
-      - name: Install uv
-        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
-
-      - name: Install dfe-engine
-        working-directory: .dfe-engine
-        run: uv sync --frozen --no-dev
-
-      - name: Validate schemas
-        run: .dfe-engine/.venv/bin/python scripts/validate_schemas.py
+  ci:
+    uses: hyperi-io/hyperi-ci/.github/workflows/python-ci.yml@main
+    with:
+      tag: ${{ inputs.tag || '' }}
+      from-head: ${{ inputs.from-head || '' }}
+      bump: ${{ inputs.bump || 'auto' }}
+    secrets: inherit

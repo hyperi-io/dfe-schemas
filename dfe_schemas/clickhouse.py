@@ -216,7 +216,9 @@ class EngineResolver:
 
             # A Replicated/Shared database propagates DDL and replicates data on
             # its own, so the argumentless form is right and ON CLUSTER is not.
-            db_engine = self._scalar(f"SELECT engine FROM system.databases WHERE name = '{database}'")
+            db_engine = self._scalar(
+                f"SELECT engine FROM system.databases WHERE name = '{database}'"
+            )
             if db_engine in ("Replicated", "Shared"):
                 return self._cache(database, Topology.REPLICATED)
 
@@ -228,14 +230,18 @@ class EngineResolver:
 
             return self._cache(database, Topology.SINGLE)
         except Exception as exc:
-            logger.warning(f"engine sensing failed for db={database}: {exc}; falling through cascade")
+            logger.warning(
+                f"engine sensing failed for db={database}: {exc}; falling through cascade"
+            )
             return None
 
     def _cluster_name(self, database: str) -> str | None:
         """The cluster to fan DDL over: the macro-declared one, else the first
         multi-host cluster the server reports."""
         try:
-            macro_cluster = self._scalar("SELECT substitution FROM system.macros WHERE macro = 'cluster'")
+            macro_cluster = self._scalar(
+                "SELECT substitution FROM system.macros WHERE macro = 'cluster'"
+            )
             if macro_cluster:
                 return macro_cluster
             rows = self._rows(

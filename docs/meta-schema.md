@@ -572,7 +572,7 @@ SETTINGS
 |-------|---------|-------------|
 | `db` | `"{db}"` | Database placeholder (replaced at deploy time) |
 | `engine` | `"MergeTree"` | Table engine: `MergeTree`, `ReplicatedMergeTree`, `SharedMergeTree` |
-| `ttl_days` | `90` | Data retention in days. `None` disables TTL. |
+| `ttl_days` | `None` | Data retention in days. `None` takes the deployment default on a time-series table, and disables TTL where no default is set. |
 | `ttl_columns` | `["_timestamp", "_timestamp_load"]` | Columns used in TTL expressions |
 | `partition_column` | `"_timestamp_load"` | `PARTITION BY toYYYYMMDD(column)` |
 | `index_granularity` | `2048` | ClickHouse granule size |

@@ -21,7 +21,6 @@ versions:
       name: "otel_metrics_gauge"
       engine: "MergeTree"
       partition_by: "toDate(_timestamp_load)"
-      ttl_days: 30
       ttl_columns: ["_timestamp_load"]
       order_by: "ServiceName, MetricName, toStartOfHour(TimeUnix), cityHash64(Attributes), TimeUnix"
       index_granularity: 8192

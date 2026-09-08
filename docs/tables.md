@@ -47,7 +47,7 @@ versions:
 | `partition_by` | Raw PARTITION BY expression. |
 | `order_by` | Raw ORDER BY expression. Used when the sorting key is expressions rather than bare columns. |
 | `index_granularity` | Rows per granule. 8192 for range scans, 2048 for point lookups. |
-| `ttl_days` / `ttl_columns` | Retention. Omit both for a table that keeps everything. |
+| `ttl_days` / `ttl_columns` | Retention. `ttl_columns` alone takes the deployment default (`DFE_CLICKHOUSE_DEFAULT_TTL_DAYS`, 90 days unless the deploy sets otherwise); `ttl_days` overrides it for this table. Omit both for a table that keeps everything. The default applies to time-series tables (`core/`, `otel/`); the engine's state tables under `internal/` and `detection_checkpoint` declare their own. |
 | `indexes` | Data-skipping indexes, emitted verbatim. |
 
 An ORDER BY built from bare columns is expressed on the columns instead: give

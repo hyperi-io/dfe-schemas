@@ -118,7 +118,7 @@ versions:
             service_name: [dfe-loader, dfe-receiver]
           templates:
             body:
-              - "batch flushed rows={count} table=dfe.default"
+              - "batch flushed rows={count} table=dfe.main"
               - "consumer lag partition=0 lag={count}"
               - "connection established peer={ipv4}:{port}"
         - name: auth-ok

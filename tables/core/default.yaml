@@ -1,4 +1,4 @@
-# default -- the landing table every source writes into
+# main -- the landing table every source writes into
 #
 # Columns come from the deployment's common-header profile; this file carries
 # only the DDL config. TTL names the partition column because
@@ -13,7 +13,7 @@ versions:
     type: model
     summary: "Deployment-default retention aligned to the load-time partition"
     table:
-      name: "default"
+      name: "main"
       partition_column: "_timestamp_load"
       partition_granularity: "day"
       ttl_columns: ["_timestamp_load"]

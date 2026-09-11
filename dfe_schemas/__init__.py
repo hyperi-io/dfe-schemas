@@ -9,7 +9,7 @@
 """DFE table schemas plus the ClickHouse DDL mechanics that render them.
 
 Installed as a wheel, the schema trees (``tables/``, ``hunts/``,
-``common-header/``, ``meta/``, ``pipelines/``, ``additional/``) ship as
+``common-header/``, ``meta/``, ``additional/``, ``sources/``) ship as
 package data; in a git checkout (the dfe-engine submodule path) the same
 trees sit at the repository root. :func:`schemas_root` resolves either.
 """

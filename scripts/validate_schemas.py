@@ -15,6 +15,7 @@ Exits non-zero on the first batch of errors. Requires dfe-engine importable.
 
 ``tables/`` is validated separately: those files are written in exact
 ClickHouse types, so the check is that each one builds a TableSpec.
+``sources/`` likewise: each file must build a Source.
 """
 
 from __future__ import annotations
@@ -27,6 +28,12 @@ from pathlib import Path
 SCHEMA_DIRS = ("common-header", "meta", "hunts", "additional")
 
 TABLES_DIR = "tables"
+
+SOURCES_DIR = "sources"
+
+# A definition here carries no `source`: the engine fills it from the
+# deployment's landing-table setting. Validation supplies one to build the model.
+SOURCE_NAME_PLACEHOLDER = "validate"
 
 
 def main() -> int:
@@ -93,13 +100,38 @@ def main() -> int:
             except Exception as exc:
                 errors.append(f"{rel}: {exc}")
 
+    source_files = sorted((repo_root / SOURCES_DIR).rglob("*.yaml"))
+    checked_sources = 0
+    try:
+        from dfe_engine.source.models import Source
+    except ImportError:
+        print(
+            f"NOT VALIDATED: {len(source_files)} files under {SOURCES_DIR}/ -- "
+            "the installed dfe-engine has no source model",
+            file=sys.stderr,
+        )
+    else:
+        import yaml
+
+        for path in source_files:
+            rel = path.relative_to(repo_root)
+            try:
+                doc = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+                Source.model_validate({**doc, "source": SOURCE_NAME_PLACEHOLDER})
+                checked_sources += 1
+            except Exception as exc:
+                errors.append(f"{rel}: {exc}")
+
     if errors:
         print("Schema validation FAILED:")
         for err in errors:
             print(f"  - {err}")
         return 1
 
-    print(f"Validated {len(files)} schema files and {checked_tables} table definitions: OK")
+    print(
+        f"Validated {len(files)} schema files, {checked_tables} table definitions "
+        f"and {checked_sources} source definitions: OK"
+    )
     return 0
 
 

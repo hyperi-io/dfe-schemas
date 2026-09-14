@@ -1,0 +1,44 @@
+--provider
+runzero
+--provider-name
+runZero
+--store
+assets
+--store
+services
+--store
+software
+--store
+vulnerabilities
+--store
+sites
+--store
+certificates
+--store
+findings
+--store
+tasks
+--row-key
+services=service_id
+--row-key
+software=software_id
+--row-key
+vulnerabilities=vulnerability_id
+--row-key
+findings=finding_code
+--describe
+assets=Assets: one row per device the console has scanned or imported, with its addresses, names, OS and hardware fingerprints, and per-asset counters.
+--describe
+services=Services: one row per network service, with the parent asset denormalised onto it; service_* keys are the service's own and id is the SERVICE id.
+--describe
+software=Software: one row per software instance found on an asset, with the parent asset denormalised onto it; software_* keys are the instance's own and id is the ASSET id.
+--describe
+vulnerabilities=Vulnerabilities: one row per vulnerability instance on an asset, with the parent asset denormalised onto it; vulnerability_* keys are the instance's own and id is the ASSET id.
+--describe
+sites=Sites: one row per site, with its asset, service, software and vulnerability counters and recalculation timestamps.
+--describe
+certificates=Certificates: one row per TLS certificate seen on a service, with issuer and subject attributes, fingerprints and validity.
+--describe
+findings=Findings: one row per finding code raised against the organisation; there is no id, finding_code identifies the row.
+--describe
+tasks=Tasks: one row per scan or import task, with its schedule, timing and result sizes.

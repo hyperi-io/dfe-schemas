@@ -1,0 +1,100 @@
+# Additional fields: store-snapshot envelope
+#
+# The envelope every frame of a store-snapshot dump carries, as dfe-fetcher's
+# dump shape emits it: one `begin` marker, the store's rows, one `end` marker,
+# all on the store's topic and all stamped with the same `snapshot_id` and
+# `snapshot_at`. The provider's record sits under `record`, which is where the
+# per-store meta schema (meta/runzero/*.yaml) reads from; the envelope's
+# `timestamp` repeats `snapshot_at` and already feeds the header's `_timestamp`,
+# so it needs no column here.
+#
+# Bound to each snapshot store's source through `schema.additional_fields`, so
+# the columns are declared once for every store. A store as of its latest
+# complete dump is the `row` frames whose `snapshot_id` has an `end` frame with a
+# matching `row_count`; a dump that aborted has no `end` and is never read.
+
+current: "1.0.0"
+resource_type: core
+
+versions:
+  "1.0.0":
+    date: "2026-09-13"
+    type: model
+    summary: "Snapshot envelope columns for store-snapshot dumps"
+    columns:
+      - name: kind
+        type: string
+        attribute: [lowcardinality, not_null]
+        use_case: dimension
+        expr: "@source: kind"
+        comment: "Frame kind: begin, row, oversize or end"
+        _field_type: base
+
+      - name: snapshot_id
+        type: uuid
+        attribute: [not_null]
+        use_case: dimension
+        expr: "@source: snapshot_id"
+        comment: "The dump this frame belongs to, a UUIDv7 minted at snapshot_at"
+        _field_type: base
+
+      - name: snapshot_at
+        type: datetime
+        attribute: [not_null]
+        use_case: range
+        expr: "@source: snapshot_at"
+        comment: "When the dump started; every frame of one dump carries the same value"
+        _field_type: base
+
+      - name: store
+        type: string
+        attribute: [lowcardinality, not_null]
+        use_case: dimension
+        expr: "@source: store"
+        comment: "The dumped store as <connection>.<unit>"
+        _field_type: base
+
+      - name: seq
+        type: integer
+        attribute: [not_null]
+        use_case: range
+        expr: "@source: seq"
+        comment: "0-based frame position: the row's own on row and oversize, 0 on begin, the row count on end"
+        _field_type: base
+
+      - name: total
+        type: integer
+        attribute: [nullable]
+        expr: "@source: total"
+        comment: "begin only: the store's own row count when the connector knows it"
+        _field_type: base
+
+      - name: row_count
+        type: integer
+        attribute: [nullable]
+        expr: "@source: row_count"
+        comment: "end only: row and oversize frames emitted, which is what a consumer must count"
+        _field_type: base
+
+      - name: completed_at
+        type: datetime
+        attribute: [nullable]
+        use_case: range
+        expr: "@source: completed_at"
+        comment: "end only: when the dump finished"
+        _field_type: base
+
+      - name: bytes
+        type: integer
+        attribute: [nullable]
+        expr: "@source: bytes"
+        comment: "oversize only: size of the record that was not sent"
+        _field_type: base
+
+      - name: row_key
+        type: string
+        attribute: [nullable]
+        use_case: bloom
+        expr: "@source: row_key"
+        comment: "oversize only: the identity of the record that was not sent, per the unit's row_key"
+        _field_type: base

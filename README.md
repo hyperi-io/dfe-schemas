@@ -35,12 +35,15 @@ make validate PY=../dfe-engine/.venv/bin/python
 dfe-schemas/
 |-- common-header/     # header profiles: timeseries (9 col, default),
 |                      #   minimal (5 col), passthrough (4 col)
-|-- meta/              # source meta schemas, by provider (aws/ azure/ gcp/ m365/)
-|-- additional/        # extra-field overlays (aws/)
+|-- meta/              # source meta schemas, by provider (aws/ azure/ gcp/ m365/
+|                      #   runzero/ ...)
+|-- additional/        # extra-field overlays: aws/, and snapshot/envelope.yaml,
+|                      #   the store-snapshot envelope every dump store composes
 |-- hunts/             # hunt output (results.yaml) + runner checkpoint schema
 |-- tables/            # tables in exact ClickHouse types: otel/ + engine internal/
 |-- sources/           # engine-owned source definitions (main, the landing table)
-|-- scripts/           # validate_schemas / annotate_meta_schemas
+|-- scripts/           # validate_schemas / annotate_meta_schemas /
+|                      #   generate_meta_schemas (a meta schema from live rows)
 |-- docs/meta-schema.md  # the YAML format reference (version tree, columns, types)
 |-- docs/tables.md     # the tables/ format reference (clauses, exact CH columns)
 '-- Makefile           # validate

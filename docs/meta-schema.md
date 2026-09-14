@@ -34,8 +34,8 @@ schemas/                          <- git submodule (dfe-schemas repo)
 |   |-- timeseries.yaml           <- 9-column default profile
 |   |-- minimal.yaml              <- 5-column high-volume profile
 |   '-- passthrough.yaml          <- 4-column transparent bridge
-|-- meta/                         <- source meta schemas (aws/ azure/ gcp/ m365/)
-|-- additional/                   <- extra-field overlays (aws/)
+|-- meta/                         <- source meta schemas (aws/ azure/ gcp/ m365/ runzero/)
+|-- additional/                   <- extra-field overlays (aws/, snapshot/)
 |-- hunts/
 |   |-- results.yaml              <- hunt detection output columns
 |   '-- detection_checkpoint.yaml <- runner checkpoint table
@@ -685,8 +685,8 @@ dfe-schemas/
 |   |-- results.yaml
 |   '-- detection_checkpoint.yaml
 |-- meta/                   # Source meta schemas, grouped by provider
-|   |-- aws/  azure/  gcp/  m365/
-|-- additional/             # Extra-field overlays (optional, e.g. aws/)
+|   |-- aws/  azure/  gcp/  m365/  runzero/
+|-- additional/             # Extra-field overlays (aws/, snapshot/)
 |-- argocd/ddl/             # Generated reference SQL (make render)
 '-- README.md
 ```
@@ -694,6 +694,30 @@ dfe-schemas/
 Derived-schema overlays (`derived/`) are supported by the loader but the
 directory does not exist yet - create it beside `additional/` when first
 needed.
+
+### Generating a Meta Schema from Live Rows
+
+A provider whose export is wider than its documentation (runZero's is) gets
+its meta schema from a dump of real rows, not from the docs:
+`scripts/generate_meta_schemas.py` reads a directory of `<store>.jsonl` files
+(one JSON object per line), takes the union of keys across every row, types
+each column from the values it saw, and writes `meta/<provider>/<store>.yaml`
+in the version-tree layout. The typing rules, the row-key handling and the
+`ch_override: Array(...)` escape for list values are in the script's
+docstring; the provider's arguments live in an `@` file beside it
+(`scripts/meta-runzero.args`), so a regeneration is one command and
+`--check` proves the checked-in files still match the dump.
+
+### Store-Snapshot Stores
+
+A store that arrives as a periodic full dump (dfe-fetcher's dump shape) lands
+every frame inside a snapshot envelope: `kind`, `snapshot_id`, `snapshot_at`,
+`store`, `seq`, the `end` marker's `row_count` and `completed_at`, with the
+provider's record under `record`. The envelope columns are declared once in
+`additional/snapshot/envelope.yaml` and composed onto each store through
+`schema.additional_fields`; the per-store meta schema reads
+`@source: record.<key>`. The envelope's `timestamp` repeats `snapshot_at`, so
+the header's `_timestamp` groups a whole dump with no extra wiring.
 
 ### Creating a New Meta Schema
 

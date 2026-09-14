@@ -3,6 +3,12 @@
 Rendered by CI and committed back at the end of a release -- do not edit by
 hand. Release notes also appear on the GitHub Releases page, one per tag.
 
+## [0.2.3](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.2...v0.2.3) (2026-09-14)
+
+### Bug Fixes
+
+* **meta:** add the runZero meta schemas and the snapshot envelope ([6d672c4](https://github.com/hyperi-io/dfe-schemas/commit/6d672c42b9c162eb9e05f24e0f18630500671605))
+
 ## [0.2.2](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.1...v0.2.2) (2026-09-11)
 
 ### Bug Fixes

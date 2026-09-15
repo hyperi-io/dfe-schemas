@@ -3,6 +3,12 @@
 Rendered by CI and committed back at the end of a release -- do not edit by
 hand. Release notes also appear on the GitHub Releases page, one per tag.
 
+## [0.2.4](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.3...v0.2.4) (2026-09-15)
+
+### Bug Fixes
+
+* **registries:** schema allow-lists live here ([5bcd003](https://github.com/hyperi-io/dfe-schemas/commit/5bcd0030981a7daba1368b3561b5c33ffac161fe))
+
 ## [0.2.3](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.2...v0.2.3) (2026-09-14)
 
 ### Bug Fixes

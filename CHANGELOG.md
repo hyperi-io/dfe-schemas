@@ -3,6 +3,14 @@
 Rendered by CI and committed back at the end of a release -- do not edit by
 hand. Release notes also appear on the GitHub Releases page, one per tag.
 
+## [0.2.5](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.4...v0.2.5) (2026-09-15)
+
+### Bug Fixes
+
+* **scripts:** an older engine skips the argument check ([c9e5810](https://github.com/hyperi-io/dfe-schemas/commit/c9e581068cf7af3998cc5aeed61c820ae07f1791))
+* **scripts:** validate engine arguments on sources ([5f148cb](https://github.com/hyperi-io/dfe-schemas/commit/5f148cb720549df5719f3261f674811e0c4d094b))
+* **sources:** main uses timeseries header 1.0.1 ([c8342b5](https://github.com/hyperi-io/dfe-schemas/commit/c8342b50fc8e4badfc6ac5550d64729d91d11bdb))
+
 ## [0.2.4](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.3...v0.2.4) (2026-09-15)
 
 ### Bug Fixes

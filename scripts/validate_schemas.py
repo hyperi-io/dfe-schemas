@@ -1,7 +1,7 @@
 #  Project:      dfe-schemas
 #  File:         scripts/validate_schemas.py
 #  Purpose:      Validate every schema YAML against the meta-schema models and
-#                the TypeRegistry, using dfe-engine's loader.
+#                the registries, using dfe-engine's loader.
 #  Language:     Python
 #
 #  License:      BUSL-1.1
@@ -31,14 +31,45 @@ TABLES_DIR = "tables"
 
 SOURCES_DIR = "sources"
 
+REGISTRIES_DIR = "registries"
+
+ENGINE_ARGUMENT_RULES = ("none", "optional", "required")
+
 # A definition here carries no `source`: the engine fills it from the
 # deployment's landing-table setting. Validation supplies one to build the model.
 SOURCE_NAME_PLACEHOLDER = "validate"
 
 
+def _engine_registry_errors(*, path: Path) -> list[str]:
+    """Every malformed entry in the engine registry, as one message each."""
+    import yaml
+
+    engines = (yaml.safe_load(path.read_text(encoding="utf-8")) or {}).get("engines") or []
+    errors = []
+    names = set()
+    for entry in engines:
+        name = entry.get("name") or ""
+        if not (name) or ("(" in name) or (name.startswith(("Replicated", "Shared"))):
+            errors.append(f"{name!r}: name must be a bare MergeTree-family variant")
+        if name in names:
+            errors.append(f"{name!r}: listed twice")
+        names.add(name)
+        rule = entry.get("arguments")
+        if rule not in ENGINE_ARGUMENT_RULES:
+            errors.append(f"{name!r}: arguments must be one of {ENGINE_ARGUMENT_RULES}")
+        if bool(entry.get("argument_hint")) != (rule != "none"):
+            errors.append(f"{name!r}: argument_hint is set exactly when arguments is not none")
+        if not (entry.get("description")):
+            errors.append(f"{name!r}: description is required")
+    if "MergeTree" not in names:
+        errors.append("MergeTree must be listed: it is the default engine")
+    return errors
+
+
 def main() -> int:
     """Validate every schema YAML; return 1 if any file is invalid."""
     repo_root = Path(__file__).resolve().parent.parent
+    registries = repo_root / REGISTRIES_DIR
 
     try:
         from dfe_engine.schema.schema_loader import SchemaLoader, SchemaLoadError
@@ -50,8 +81,11 @@ def main() -> int:
         )
         return 2
 
-    registry = TypeRegistry.default()
-    errors: list[str] = []
+    registry = TypeRegistry.from_file(registries / "types.yaml")
+    errors: list[str] = [
+        f"{REGISTRIES_DIR}/engines.yaml: {err}"
+        for err in _engine_registry_errors(path=registries / "engines.yaml")
+    ]
     files: list[Path] = []
     for sub in SCHEMA_DIRS:
         files.extend(sorted((repo_root / sub).rglob("*.yaml")))

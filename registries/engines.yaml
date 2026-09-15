@@ -1,0 +1,42 @@
+# Engine Registry - the ClickHouse table engines a source may select.
+#
+# List MergeTree-family VARIANTS only. The Replicated/Shared prefix is added at
+# DDL time from the deployment topology and is never declared here.
+#
+# arguments: none (bare variant), optional (the args box may stay empty),
+# required (the variant is refused without them). argument_hint is what goes
+# inside the parentheses. See the Registries section of README.md.
+
+engines:
+  - name: MergeTree
+    description: Keeps every row as inserted.
+    arguments: none
+    argument_hint: ""
+  - name: ReplacingMergeTree
+    description: Keeps the latest row per sorting key, by version column when given.
+    arguments: optional
+    argument_hint: "version_column[, is_deleted_column]"
+  - name: SummingMergeTree
+    description: Sums numeric columns across rows sharing a sorting key.
+    arguments: optional
+    argument_hint: "column[, column...]"
+  - name: AggregatingMergeTree
+    description: Merges AggregateFunction column states per sorting key.
+    arguments: none
+    argument_hint: ""
+  - name: CollapsingMergeTree
+    description: Cancels row pairs whose sign column is 1 and -1.
+    arguments: required
+    argument_hint: "sign_column"
+  - name: VersionedCollapsingMergeTree
+    description: Cancels row pairs by sign column, ordered by version column.
+    arguments: required
+    argument_hint: "sign_column, version_column"
+  - name: GraphiteMergeTree
+    description: Graphite rollup; needs a graphite_rollup section in the server config.
+    arguments: required
+    argument_hint: "config_section"
+  - name: CoalescingMergeTree
+    description: Keeps the latest non-NULL value per column per sorting key (ClickHouse 25.6+).
+    arguments: optional
+    argument_hint: "column[, column...]"

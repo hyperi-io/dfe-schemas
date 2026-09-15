@@ -146,12 +146,25 @@ def main() -> int:
         )
     else:
         import yaml
+        from dfe_engine.source.engine_registry import EngineRegistry
+
+        engines = EngineRegistry.from_file(registries / "engines.yaml")
+        # The engine saves a source only when its engine follows the variant's argument rule; an older dfe-engine has no such check.
+        check_arguments = getattr(engines, "validate_arguments", None)
+        if check_arguments is None:
+            print(
+                f"NOT VALIDATED: engine arguments under {SOURCES_DIR}/ -- "
+                "the installed dfe-engine has no argument check",
+                file=sys.stderr,
+            )
 
         for path in source_files:
             rel = path.relative_to(repo_root)
             try:
                 doc = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
-                Source.model_validate({**doc, "source": SOURCE_NAME_PLACEHOLDER})
+                source = Source.model_validate({**doc, "source": SOURCE_NAME_PLACEHOLDER})
+                if check_arguments is not None and source.schema_config.engine:
+                    check_arguments(source.schema_config.engine)
                 checked_sources += 1
             except Exception as exc:
                 errors.append(f"{rel}: {exc}")

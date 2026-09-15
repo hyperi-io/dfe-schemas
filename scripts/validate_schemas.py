@@ -148,10 +148,13 @@ def main() -> int:
         import yaml
         from dfe_engine.source.engine_registry import EngineRegistry
 
-        engines = EngineRegistry.from_file(registries / "engines.yaml")
-        # The engine saves a source only when its engine follows the variant's argument rule; an older dfe-engine has no such check.
-        check_arguments = getattr(engines, "validate_arguments", None)
-        if check_arguments is None:
+        # The engine saves a source only when its engine follows the variant's argument rule; an older dfe-engine has no such check and cannot read this registry format.
+        check_arguments = None
+        if hasattr(EngineRegistry, "validate_arguments"):
+            check_arguments = EngineRegistry.from_file(
+                registries / "engines.yaml"
+            ).validate_arguments
+        else:
             print(
                 f"NOT VALIDATED: engine arguments under {SOURCES_DIR}/ -- "
                 "the installed dfe-engine has no argument check",

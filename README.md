@@ -42,6 +42,7 @@ dfe-schemas/
 |-- hunts/             # hunt output (results.yaml) + runner checkpoint schema
 |-- tables/            # tables in exact ClickHouse types: otel/ + engine internal/
 |-- sources/           # engine-owned source definitions (main, the landing table)
+|-- registries/        # allow-lists: engines.yaml, types.yaml, field-maps/<standard>/
 |-- scripts/           # validate_schemas / annotate_meta_schemas /
 |                      #   generate_meta_schemas (a meta schema from live rows)
 |-- docs/meta-schema.md  # the YAML format reference (version tree, columns, types)
@@ -55,6 +56,18 @@ revision), published versions are immutable, and consumers pin versions
 independently. Full format reference, column fields, the 13-primitive type
 system, and the `@directive` expression language:
 [docs/meta-schema.md](docs/meta-schema.md).
+
+## Registries
+
+The fixed lists dfe-engine validates and renders against live in `registries/`, and nowhere else.
+
+| File | What it lists | Read by the engine for |
+|------|---------------|------------------------|
+| `engines.yaml` | Table engine variants a source may select. `arguments` is `none`, `optional` or `required`; `argument_hint` is what goes inside the parentheses | Source save validation and the UI engine dropdown |
+| `types.yaml` | Column primitives and their ClickHouse type, codec and nullability, plus use-case, attribute and `ch_override` rules | Column validation and DDL rendering |
+| `field-maps/<standard>/_default.yaml` | Default field map for each view standard (cim, ecs, ocsf, sigma) | Seeding the field-map store |
+
+`make validate` checks every entry.
 
 ## How these reach ClickHouse
 
@@ -85,9 +98,6 @@ Rust services slave from the DEPLOYED ClickHouse schema at runtime
    carrying the new trees reaches PyPI.
 3. Raise the `dfe-schemas` floor in each consumer and relock
    (dfe-engine: `pyproject.toml` + `uv.lock`).
-4. Copy changed common-header profiles to the consumers' bundled fallback
-   locations (dfe-engine: `src/dfe_engine/schema/profiles/`), which is what
-   answers when neither `DFE_SCHEMAS_DIR` nor the package is available.
 
 Shipped files here are read-only defaults - customise by pointing
 `DFE_SCHEMAS_DIR` at your own directory with only the profiles you override.

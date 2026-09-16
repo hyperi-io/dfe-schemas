@@ -1,0 +1,41 @@
+# hunt_runner_heartbeat -- the last tick each hunt runner started
+#
+# Engine working state rather than user data, so the columns are exact
+# ClickHouse types with no meta-schema mapping behind them.
+#
+# A lease says a hunt is executing right now, so it is absent on an idle runner
+# and cannot answer "is a runner alive". The beat is written at the top of
+# every tick, whether or not anything is due. `poll_seconds` rides along so
+# liveness is judged against the cadence the runner was started with rather
+# than a setting the reader might resolve differently.
+#
+# `runner_id` is the pod hostname, so every rollout mints keys the liveness
+# query will never count again; the TTL drops a runner's last beat a week after
+# it stopped.
+
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-09-16"
+    type: model
+    summary: "Moved out of dfe-engine code; columns unchanged from internal_tables.hunt_runner_heartbeat_spec"
+    table:
+      name: "hunt_runner_heartbeat"
+      engine: "ReplacingMergeTree(updated)"
+      index_granularity: 2048
+      ttl_days: 7
+      ttl_columns: ["updated"]
+    columns:
+      - name: "runner_id"
+        ch_type: "String"
+        order: 0
+      - name: "seen"
+        ch_type: "Int64"
+        comment: "epoch seconds of the tick, the runner's clock"
+      - name: "poll_seconds"
+        ch_type: "Float64"
+        comment: "seconds between this runner's ticks"
+      - name: "updated"
+        ch_type: "DateTime64(3)"
+        default: "now64(3)"

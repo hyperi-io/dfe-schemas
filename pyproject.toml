@@ -18,6 +18,10 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent",
 ]
+# ruamel.yaml, not PyYAML, and the same floor dfe-engine carries: YAML 1.1
+# resolves `on`, `off`, `yes` and `no` as booleans and 1.2 does not, so two
+# parsers over one schema tree is two answers.
+dependencies = ["ruamel.yaml>=0.19.1"]
 
 [project.urls]
 Repository = "https://github.com/hyperi-io/dfe-schemas"
@@ -25,6 +29,7 @@ Repository = "https://github.com/hyperi-io/dfe-schemas"
 [tool.hatch.build.targets.sdist]
 include = [
     "dfe_schemas",
+    "manifest.yaml",
     "tables",
     "hunts",
     "common-header",
@@ -32,6 +37,9 @@ include = [
     "additional",
     "sources",
     "registries",
+    "views",
+    "roles",
+    "topics",
     "tests",
     "README.md",
     "LICENSE",
@@ -42,6 +50,7 @@ packages = ["dfe_schemas"]
 # The schema trees stay at the repo root so this checkout reads as itself; the
 # wheel carries the same trees as package data, which is how consumers get them.
 [tool.hatch.build.targets.wheel.force-include]
+"manifest.yaml" = "dfe_schemas/data/manifest.yaml"
 "tables" = "dfe_schemas/data/tables"
 "hunts" = "dfe_schemas/data/hunts"
 "common-header" = "dfe_schemas/data/common-header"
@@ -49,6 +58,9 @@ packages = ["dfe_schemas"]
 "additional" = "dfe_schemas/data/additional"
 "sources" = "dfe_schemas/data/sources"
 "registries" = "dfe_schemas/data/registries"
+"views" = "dfe_schemas/data/views"
+"roles" = "dfe_schemas/data/roles"
+"topics" = "dfe_schemas/data/topics"
 
 [tool.uv]
 # Supply-chain cooldown (standards/universal/ci.md): never resolve a package
@@ -80,7 +92,11 @@ extend-exclude = [
     "meta",
     "pipelines",
     "registries",
+    "roles",
+    "sources",
     "tables",
+    "topics",
+    "views",
 ]
 
 [tool.ruff.lint]

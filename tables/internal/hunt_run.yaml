@@ -1,0 +1,43 @@
+# hunt_run -- one row per hunt fire
+#
+# Engine working state rather than user data, so the columns are exact
+# ClickHouse types with no meta-schema mapping behind them.
+#
+# A `requested` row is an operator pressing run now; the worker replaces it
+# with a `completed` row carrying the INSERT's row count. Ordered by
+# (hunt_id, fire) rather than hunt_id alone, so a pending request cannot merge
+# away the row count of the run before it. That keeps a row per fire, which is
+# the run history the API reads.
+#
+# The engine is an INTENT resolved per topology, never a literal: a literal is
+# correct on a single node and lands on one replica of a cluster, where a
+# restart that reconnects elsewhere finds no table.
+
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-09-16"
+    type: model
+    summary: "Moved out of dfe-engine code; columns unchanged from internal_tables.hunt_run_spec"
+    table:
+      name: "hunt_run"
+      engine: "ReplacingMergeTree(updated)"
+      index_granularity: 2048
+    columns:
+      - name: "hunt_id"
+        ch_type: "String"
+        order: 0
+      - name: "fire"
+        ch_type: "Int64"
+        order: 1
+        comment: "the scheduled fire this run covers"
+      - name: "status"
+        ch_type: "String"
+        comment: "requested (run now) or completed"
+      - name: "rows_written"
+        ch_type: "Int64"
+        comment: "rows the run's INSERT wrote"
+      - name: "updated"
+        ch_type: "DateTime64(3)"
+        default: "now64(3)"

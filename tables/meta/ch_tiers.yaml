@@ -1,0 +1,32 @@
+# dfe_meta.ch_tiers -- the quota-tier registry, projected into ClickHouse
+#
+# gitops stays the source of truth; this is a read-only projection the CH RBAC
+# reconciler TRUNCATEs and re-INSERTs on every pass. Only the DDL moved here.
+#
+# The tiers themselves are declared in roles/clickhouse.yaml -- this table is
+# what an operator queries to see which tiers a deployment ended up with.
+
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-09-16"
+    type: model
+    summary: "Moved out of dfe-engine's governance/ch/render.py; columns unchanged"
+    table:
+      name: "ch_tiers"
+      engine: "ReplacingMergeTree(updated_at)"
+      index_granularity: 2048
+    columns:
+      - name: "name"
+        ch_type: "String"
+        order: 0
+      - name: "kind"
+        ch_type: "String"
+        comment: "analyst or hunt"
+      - name: "is_default"
+        ch_type: "UInt8"
+        comment: "the fallback tier FOR ITS KIND"
+      - name: "updated_at"
+        ch_type: "DateTime"
+        default: "now()"

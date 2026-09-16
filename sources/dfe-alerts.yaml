@@ -1,0 +1,54 @@
+# Source: dfe-alerts
+#
+# The hunt detection results table as a queryable Source, which is what lets a
+# correlation hunt query previous detection output and gives the table its
+# field-mapping views.
+#
+# Table: dfe.detection. Header: timeseries minus _raw and _tags, plus the
+# detection columns from hunts/results.yaml.
+#
+# Copy-on-adopt: the engine writes a deployment's own copy on seed, and never
+# edits this one.
+
+resource_type: core
+display_name: DFE Alerts
+description: >-
+  Hunt detection results - matched records from scheduled detection rules.
+  Contains matched_uuid linking back to the original source record, plus rule
+  metadata (rule_id, rule_name, hunt_name, severity).
+state: active
+deployed_version: "1.0.1"
+current: "1.0.1"
+
+versions:
+  "1.0.1":
+    date_time: "2026-09-16"
+    header:
+      type: timeseries
+      version: "1.0.1"
+    match:
+      field: _source
+      value: dfe-alerts
+    schema:
+      ttl_days: 365
+      engine: MergeTree
+      # hunts/results.yaml, the file this repo actually ships. The engine's
+      # copy pointed at hunt-results/detection.yaml, a path no dfe-schemas
+      # release has carried.
+      additional_fields: hunts/results.yaml
+    views:
+      - standard: sigma
+  "1.0.0":
+    date_time: "2026-01-15"
+    header:
+      type: timeseries
+      version: "1.0.0"
+    match:
+      field: _source
+      value: dfe-alerts
+    schema:
+      ttl_days: 365
+      engine: MergeTree
+      additional_fields: hunts/results.yaml
+    views:
+      - standard: sigma

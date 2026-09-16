@@ -1,0 +1,119 @@
+# The Kafka bootstrap topic set, the naming rule and the derivation rule
+#
+# One definition, because four things used to name topics: the Strimzi
+# KafkaTopic CRs, the single-tier broker-CLI Job, compose's kafka-init, and the
+# engine's own topic CLI. Where two of them disagreed, one tier silently
+# shipped without a topic its apps were configured to write to, and the failure
+# surfaced as produce errors at the worst possible moment -- a DLQ write IS the
+# failure path.
+#
+# The BOOTSTRAP set below is what a deploy guarantees exists before the apps
+# start. A source defined after deploy gets its topics from the naming rule,
+# not from this list.
+#
+# Partitions and replication factor here are the product defaults. A
+# deployment's broker sizing overrides them, and the applier clamps the
+# replication factor to the broker count -- asking for more replicas than
+# brokers leaves a topic un-Ready forever. Partition counts are INCREASE-ONLY:
+# Kafka can raise a topic's count and never lower it.
+
+current: "1.0.0"
+resource_type: core
+
+versions:
+  "1.0.0":
+    date: "2026-09-16"
+    type: model
+    summary: "The landing topic, the five DLQ topics, the naming rule and the compose derivation, moved out of the dfe-infra chart and dfe-docker's resolver"
+
+    naming:
+      # The topic a source's records arrive on, before any transform.
+      land_suffix: "_land"
+      # The topic a source's transform writes, and the loader then reads. Only
+      # a source that HAS a transform has one.
+      load_suffix: "_load"
+      # The _source label of the platform's landing table.
+      default_landing_label: "main"
+
+    defaults:
+      # 16 MiB: filebeat truncates at its own 10 MiB ceiling, and enrichment
+      # re-enters Kafka measuring about 1.48x the source event. The broker's
+      # message.max.bytes, its replica.fetch.max.bytes and every topic's
+      # max.message.bytes must agree -- raise one alone and a produce is
+      # rejected or a follower stalls.
+      max_message_bytes: 16777216
+      landing:
+        partitions: 12
+        replication_factor: 3
+        # Kafka is the buffer in front of dfe-archiver, so time retention is
+        # how long a consumer may be down before events are lost.
+        retention_hours: 24
+      dlq:
+        # Poison messages are low-volume and read by a human, not a consumer
+        # group.
+        partitions: 1
+        replication_factor: 3
+        # A poisoned message is the record an operator must still find days
+        # later, and it exists nowhere else once its source offset is
+        # committed.
+        retention_hours: 168
+
+    bootstrap:
+      # Created up-front so a BARE deploy can come up: dfe-loader auto-discovers
+      # *_land topics and treats "none found" as fatal, so with no topic it
+      # crashloops until someone publishes -- which nothing can do through a
+      # loader that is down.
+      landing:
+        - name: main_land
+          kind: landing
+      # One dead-letter topic per fleet app, plus one shared topic for the
+      # transform family. The fleet's containers run a read-only rootfs, so the
+      # file DLQ backend is a no-op and Kafka is every app's DLQ backend. These
+      # names are product policy; each app chart points its DLQ at the matching
+      # one.
+      dlq:
+        - name: dfe_receiver_dlq
+          kind: dlq
+          app: dfe-receiver
+        - name: dfe_loader_dlq
+          kind: dlq
+          app: dfe-loader
+        - name: dfe_archiver_dlq
+          kind: dlq
+          app: dfe-archiver
+        - name: dfe_fetcher_dlq
+          kind: dlq
+          app: dfe-fetcher
+        - name: dfe_transform_dlq
+          kind: dlq
+          app: dfe-transform
+
+    # How a deployment's full topic set is derived from the bootstrap set plus
+    # its own sources and transforms. The compose tiers derived this in their
+    # own resolver and the k8s tiers in a chart helper; both read it from here
+    # now.
+    derivation:
+      # Every active source contributes its landing topic, and one with a
+      # transform contributes the transform's topic too.
+      per_source: true
+      # An IDLE transform's sink is EXCLUDED rather than unioned in. scalo's
+      # resolver drops `<base>_land` from an auto-discovered subscription
+      # whenever `<base>_load` exists, so pre-creating the sink of a transform
+      # that produces nothing silences the loader on a stack where every
+      # container is healthy.
+      exclude_idle_transform_sinks: true
+      # The landing topic is skipped when a source resolves to its own name, so
+      # naming the default source is not an error.
+      skip_duplicate_default: true
+
+    # What the engine's boot identity may do to a topic. Alter is here because
+    # raising a partition count when a source's throughput changes is a real
+    # operational need and destroys nothing. Delete is withheld: a compromised
+    # engine principal must not be able to drop the bus, and deletion belongs
+    # to a separate operator identity. `dfe kafka topics delete` therefore
+    # fails against a default cluster, which is the correct answer for a
+    # command nothing in the product calls.
+    permissions:
+      create: true
+      alter: true
+      delete: false

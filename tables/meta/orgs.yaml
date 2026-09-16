@@ -1,0 +1,40 @@
+# dfe_meta.orgs -- the org registry, projected into ClickHouse
+#
+# gitops stays the source of truth; this is a read-only projection the CH RBAC
+# reconciler TRUNCATEs and re-INSERTs on every pass, so it always reflects
+# current config, removals included. Only the DDL moved here -- the projection
+# is still the reconciler's.
+#
+# It lands in the `meta` database, not the data database: that split is the one
+# the governance layer already renders, and a row here describes the
+# deployment rather than an event.
+#
+# The engine is an INTENT resolved per topology, never a literal. The literal
+# ReplacingMergeTree(updated_at) this replaced carried no ON CLUSTER, so on a
+# cluster the table existed only on whichever node the reconcile connected to.
+
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-09-16"
+    type: model
+    summary: "Moved out of dfe-engine's governance/ch/render.py; columns unchanged"
+    table:
+      name: "orgs"
+      engine: "ReplacingMergeTree(updated_at)"
+      index_granularity: 2048
+    columns:
+      - name: "name"
+        ch_type: "String"
+        order: 0
+      - name: "org_ids"
+        ch_type: "Array(String)"
+        comment: "the _org_id values this org's pinned CH user may read"
+      - name: "display_name"
+        ch_type: "String"
+      - name: "enabled"
+        ch_type: "UInt8"
+      - name: "updated_at"
+        ch_type: "DateTime"
+        default: "now()"

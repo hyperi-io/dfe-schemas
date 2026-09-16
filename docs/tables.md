@@ -1,9 +1,13 @@
 # Table definitions (`tables/`)
 
 `tables/` holds tables written directly in ClickHouse types, as opposed to the
-`meta/` schemas that map DFE's 13 primitives onto ClickHouse. Two sets live
-here: the OTel telemetry tables the collector writes into, and the engine's own
-working state.
+`meta/` schemas that map DFE's 13 primitives onto ClickHouse. Four sets live
+here: `core/` (the landing table and the detection pair, whose columns come
+from a common-header profile), `otel/` (the telemetry tables the collector
+writes into and HyperDX reads), `internal/` (the engine's own working state,
+including the applier's migration ledger and its lock) and `meta/` (the
+governance projection, which lands in `dfe_meta` rather than the data
+database).
 
 They are here for the same reason every other schema is -- one definition, in
 one repo. Owning the OTel tables is also what makes them correct on a cluster:

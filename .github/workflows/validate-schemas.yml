@@ -1,16 +1,23 @@
 # Project:   dfe-schemas
 # File:      .github/workflows/validate-schemas.yml
-# Purpose:   Validate every schema YAML against the dfe-engine meta-schema
+# Purpose:   Render the apply manifest, and validate the meta schemas
 #
 # License:   BUSL-1.1
 # Copyright: (c) 2026 HYPERI PTY LIMITED
 #
-# Kept OUT of ci.yml (the hyperi-ci caller) because hyperi-ci has no stage for
-# it: the meta-schema models, the TypeRegistry and the loader live in
-# dfe-engine, so the check needs a cross-repo checkout of a PRIVATE repo, and
-# folding it into this repo's own pytest suite would put dfe-engine in
-# dfe-schemas' dependency graph -- a cycle, since dfe-engine now depends on the
-# dfe-schemas wheel.
+# Two jobs, and the split is the point.
+#
+# `render` needs NOTHING but this package: it loads the apply manifest and
+# renders every object for every topology, so the source of truth checks its
+# own content. That is the half that matters most now that a table is defined
+# here and nowhere else.
+#
+# `validate` still borrows dfe-engine's loader for the meta-schema models,
+# which is why it checks out a private repo. Kept OUT of ci.yml (the hyperi-ci
+# caller) because hyperi-ci has no stage for a cross-repo checkout, and folding
+# it into this repo's pytest suite would put dfe-engine in dfe-schemas'
+# dependency graph -- a cycle, since dfe-engine depends on the dfe-schemas
+# wheel.
 #
 # The dfe-engine venv installs dfe-schemas from PyPI as a dependency; what gets
 # validated is still THIS checkout, because validate_schemas.py passes explicit
@@ -29,6 +36,21 @@ permissions:
   contents: read
 
 jobs:
+  render:
+    runs-on: ${{ vars.GH_RUNNER_DEFAULT || 'ubuntu-latest' }}
+    steps:
+      - name: Checkout dfe-schemas
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+
+      - name: Install this package
+        run: uv sync
+
+      - name: Render every object for every topology
+        run: uv run python scripts/render_manifest.py
+
   validate:
     runs-on: ${{ vars.GH_RUNNER_DEFAULT || 'ubuntu-latest' }}
     steps:

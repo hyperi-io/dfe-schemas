@@ -1,0 +1,66 @@
+# schema_migrations -- the ledger of what the applier has applied
+#
+# Engine working state rather than user data, so the columns are exact
+# ClickHouse types with no meta-schema mapping behind them.
+#
+# Declared here like any other table so the engine carries no DDL of its own,
+# not even for its own bookkeeping. The applier creates it before anything
+# else, which is why it is first in the manifest.
+#
+# Keyed on (database, object) so the latest row per object wins; `applied_at`
+# is the ReplacingMergeTree version. The checksum is sha256 over the rendered
+# statement with whitespace collapsed and the topology token removed, so the
+# same schema reads the same on a single node and on a cluster.
+#
+# No TTL: a ledger that expires cannot answer which version an object came
+# from.
+
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-09-16"
+    type: model
+    summary: "One row per applied object: its kind, version, checksum and the statement that ran"
+    table:
+      name: "schema_migrations"
+      engine: "ReplacingMergeTree(applied_at)"
+      index_granularity: 2048
+    columns:
+      - name: "database"
+        ch_type: "String"
+        lowcardinality: true
+        order: 0
+      - name: "object"
+        ch_type: "String"
+        order: 1
+      - name: "kind"
+        ch_type: "String"
+        lowcardinality: true
+        comment: "database, table, materialized_view, view, role or topic"
+      - name: "schemas_version"
+        ch_type: "String"
+        lowcardinality: true
+        comment: "the dfe-schemas release this object was rendered from"
+      - name: "engine_version"
+        ch_type: "String"
+        lowcardinality: true
+        comment: "the dfe-engine release that applied it"
+      - name: "checksum"
+        ch_type: "String"
+        comment: "sha256 of the normalised rendered statement"
+      - name: "statement"
+        ch_type: "String"
+        codec: "ZSTD(3)"
+        comment: "the statement as it ran, topology token included"
+      - name: "action"
+        ch_type: "String"
+        lowcardinality: true
+        comment: "created, altered or unchanged"
+      - name: "topology"
+        ch_type: "String"
+        lowcardinality: true
+        comment: "single, replicated or replicated_on_cluster"
+      - name: "applied_at"
+        ch_type: "DateTime64(3)"
+        default: "now64(3)"

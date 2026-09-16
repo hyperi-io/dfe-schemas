@@ -56,6 +56,7 @@ __all__ = [
     "ResolvedEngine",
     "Topology",
     "parse_engine",
+    "render_engine",
 ]
 
 
@@ -136,6 +137,31 @@ def _engine_clause(spec: EngineSpec, topology: Topology) -> str:
     return f"Replicated{spec.variant}"
 
 
+def render_engine(
+    spec: EngineSpec, topology: Topology, *, cluster: str | None = None
+) -> ResolvedEngine:
+    """Render *spec* under a topology chosen by the caller.
+
+    The one place a topology becomes an ``ENGINE`` clause and an ``ON CLUSTER``
+    suffix. :meth:`EngineResolver.resolve` calls it once its cascade has picked
+    a topology, and an offline renderer calls it with the topology as a
+    parameter -- which is how the same definition can be rendered for every
+    topology without a live server and without a literal anywhere.
+
+    ``cluster`` is only read under
+    :attr:`Topology.REPLICATED_ON_CLUSTER`; without one, nothing fans out.
+    """
+    on_cluster = ""
+    if topology is Topology.REPLICATED_ON_CLUSTER and cluster:
+        on_cluster = f" ON CLUSTER {cluster}"
+    return ResolvedEngine(
+        clause=_engine_clause(spec, topology),
+        on_cluster=on_cluster,
+        topology="single" if topology is Topology.SINGLE else "replicated",
+        origin="rendered",
+    )
+
+
 class EngineResolver:
     """Resolves a table's engine down the cascade, caching what it senses.
 
@@ -172,19 +198,19 @@ class EngineResolver:
     def resolve(self, spec: EngineSpec, database: str) -> ResolvedEngine:
         """Resolve ``spec`` against ``database``."""
         topology, origin = self._cascade(database)
-        on_cluster = ""
-        if topology is Topology.REPLICATED_ON_CLUSTER:
-            cluster = self._cluster_name(database)
-            on_cluster = f" ON CLUSTER {cluster}" if cluster else ""
-        clause = _engine_clause(spec, topology)
+        cluster = (
+            self._cluster_name(database) if topology is Topology.REPLICATED_ON_CLUSTER else None
+        )
+        rendered = render_engine(spec, topology, cluster=cluster)
         logger.debug(
             f"engine resolved: db={database} variant={spec.variant} "
-            f"-> {clause}{on_cluster} (topology={topology.value}, via {origin})"
+            f"-> {rendered.clause}{rendered.on_cluster} "
+            f"(topology={topology.value}, via {origin})"
         )
         return ResolvedEngine(
-            clause=clause,
-            on_cluster=on_cluster,
-            topology="single" if topology is Topology.SINGLE else "replicated",
+            clause=rendered.clause,
+            on_cluster=rendered.on_cluster,
+            topology=rendered.topology,
             origin=origin,
         )
 

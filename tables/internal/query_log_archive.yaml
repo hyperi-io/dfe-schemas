@@ -1,0 +1,97 @@
+# query_log_archive -- system.query_log, parsed by DFE attribution
+#
+# Every DFE query carries a log_comment JSON of tenant / user / feature / kind
+# / id, and ClickHouse records it verbatim in system.query_log alongside the
+# real cost columns. The materialised view lifts those rows the moment CH
+# flushes them and explodes the JSON into typed columns, which is what the cost
+# leaderboard reads.
+#
+# system.query_log is per-node and append-only, so the view reads each node's
+# local log and writes to the topology-resolved target. Nothing here is a
+# literal engine: same rule as every other table.
+#
+# The apply is non-fatal in the engine and stays that way -- a server with
+# query logging disabled never materialises the source table, and no part of
+# DFE fails without the cost leaderboard.
+#
+# Attribution pattern and the archive idea are from PostHog (MIT); see the
+# consumer's THIRD-PARTY-NOTICES.
+
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-09-16"
+    type: model
+    summary: "Moved out of dfe-engine's clickhouse/query_log_archive.py; columns and 30-day TTL unchanged"
+    table:
+      name: "query_log_archive"
+      engine: "MergeTree"
+      index_granularity: 8192
+      ttl_days: 30
+      ttl_columns: ["event_time"]
+    materialized_view:
+      name: query_log_archive_mv
+      to: query_log_archive
+      # Only finished, DFE-tagged, valid-JSON rows: untagged CH-internal
+      # queries are skipped, which keeps the archive small and relevant.
+      select: |-
+        SELECT
+            event_time,
+            query_id,
+            query_duration_ms,
+            read_rows,
+            read_bytes,
+            result_rows,
+            memory_usage,
+            query_kind,
+            user AS ch_user,
+            JSONExtractString(log_comment, 'service') AS service,
+            JSONExtractString(log_comment, 'tenant_id') AS tenant_id,
+            JSONExtractString(log_comment, 'feature') AS feature,
+            JSONExtractString(log_comment, 'kind') AS kind,
+            JSONExtractString(log_comment, 'id') AS dfe_id,
+            JSONExtractString(log_comment, 'trace_id') AS trace_id,
+            log_comment
+        FROM system.query_log
+        WHERE type = 'QueryFinish' AND log_comment != '' AND isValidJSON(log_comment)
+    columns:
+      - name: "event_time"
+        ch_type: "DateTime"
+        order: 0
+      - name: "query_id"
+        ch_type: "String"
+        order: 1
+      - name: "query_duration_ms"
+        ch_type: "UInt64"
+      - name: "read_rows"
+        ch_type: "UInt64"
+      - name: "read_bytes"
+        ch_type: "UInt64"
+      - name: "result_rows"
+        ch_type: "UInt64"
+      - name: "memory_usage"
+        ch_type: "UInt64"
+      - name: "query_kind"
+        ch_type: "String"
+        lowcardinality: true
+      - name: "ch_user"
+        ch_type: "String"
+        lowcardinality: true
+      - name: "service"
+        ch_type: "String"
+        lowcardinality: true
+      - name: "tenant_id"
+        ch_type: "String"
+      - name: "feature"
+        ch_type: "String"
+        lowcardinality: true
+      - name: "kind"
+        ch_type: "String"
+        lowcardinality: true
+      - name: "dfe_id"
+        ch_type: "String"
+      - name: "trace_id"
+        ch_type: "String"
+      - name: "log_comment"
+        ch_type: "String"

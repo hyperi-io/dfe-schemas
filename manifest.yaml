@@ -1,0 +1,564 @@
+# The apply manifest -- every object a DFE deployment creates, in the order it
+# is created.
+#
+# This is the ONE list the applier iterates. Adding a table is an entry here
+# plus its definition file; it is never a code change in dfe-engine, and it is
+# never a Job, an init container or a chart template anywhere else.
+#
+# Every object carries:
+#   id          unique across the manifest, so two definitions can never claim
+#               one name
+#   kind        database | table | materialized_view | view | role | topic
+#   database    which declared database it lands in, by KEY. The real name
+#               comes from the deployment parameter below -- a literal here
+#               would grant, create and query against a database a deployment
+#               that renamed its own does not have
+#   defines     the definition file, relative to the schemas root, without a
+#               suffix. Absent where the object needs none
+#   topology    `resolved` renders per topology (single, replicated,
+#               replicated_on_cluster); `fixed` renders the same everywhere
+#   additive    whether an additive change to this object may be applied
+#               automatically. A changed type, ORDER BY, PARTITION BY, TTL or
+#               codec is drift either way and is refused
+#   depends_on  ids declared EARLIER in this list. The renderer fails on a
+#               forward or unknown reference, which is what makes the order
+#               above a dependency order rather than a preference
+#
+# schema_migrations is first after the database because the applier records
+# every other object into it, its own row included.
+
+manifest_version: 1
+
+# The deployment supplies these; nothing here is a literal.
+parameters:
+  data_database:
+    description: The one database every DFE table lands in, telemetry included
+    setting: DFE_CLICKHOUSE_DATA_DATABASE
+    default: dfe
+  default_ttl_days:
+    description: Retention for a time-series table that declares none
+    setting: DFE_CLICKHOUSE_DEFAULT_TTL_DAYS
+    default: 90
+  topology:
+    description: >-
+      single, replicated or replicated_on_cluster. Sensed from the live server
+      where there is one; this setting is the fallback and never emits ON
+      CLUSTER on its own.
+    setting: DFE_CLICKHOUSE_TOPOLOGY
+    default: single
+
+databases:
+  - key: data
+    parameter: data_database
+  - key: meta
+    # Fixed: the governance projection is the deployment's own metadata, and it
+    # is kept out of the data database on purpose.
+    name: dfe_meta
+
+objects:
+  # -- the data database and the applier's own bookkeeping ------------------
+
+  - id: db.data
+    kind: database
+    database: data
+    topology: resolved
+    additive: false
+    depends_on: []
+
+  - id: data.schema_migrations
+    kind: table
+    database: data
+    defines: tables/internal/schema_migrations
+    topology: resolved
+    additive: true
+    depends_on: [db.data]
+
+  - id: data.schema_lock
+    kind: table
+    database: data
+    defines: tables/internal/schema_lock
+    topology: resolved
+    additive: true
+    depends_on: [db.data]
+
+  # -- the data path --------------------------------------------------------
+
+  - id: data.main
+    kind: table
+    database: data
+    defines: tables/core/main
+    header: timeseries
+    topology: resolved
+    additive: true
+    depends_on: [db.data]
+
+  - id: data.detection
+    kind: table
+    database: data
+    defines: tables/core/detection
+    header: timeseries
+    compose: hunts/results
+    topology: resolved
+    additive: true
+    depends_on: [db.data]
+
+  - id: data.detection_checkpoint
+    kind: table
+    database: data
+    defines: tables/core/detection_checkpoint
+    compose: hunts/detection_checkpoint
+    topology: resolved
+    additive: true
+    depends_on: [db.data]
+
+  # -- the engine's own state ----------------------------------------------
+
+  - id: data.hunt_lease
+    kind: table
+    database: data
+    defines: tables/internal/hunt_lease
+    topology: resolved
+    additive: true
+    depends_on: [db.data]
+
+  - id: data.hunt_watermark
+    kind: table
+    database: data
+    defines: tables/internal/hunt_watermark
+    topology: resolved
+    additive: true
+    depends_on: [db.data]
+
+  - id: data.hunt_state
+    kind: table
+    database: data
+    defines: tables/internal/hunt_state
+    topology: resolved
+    additive: true
+    depends_on: [db.data]
+
+  - id: data.hunt_schedule
+    kind: table
+    database: data
+    defines: tables/internal/hunt_schedule
+    topology: resolved
+    additive: true
+    depends_on: [db.data]
+
+  - id: data.hunt_run
+    kind: table
+    database: data
+    defines: tables/internal/hunt_run
+    topology: resolved
+    additive: true
+    depends_on: [db.data]
+
+  - id: data.hunt_runner_heartbeat
+    kind: table
+    database: data
+    defines: tables/internal/hunt_runner_heartbeat
+    topology: resolved
+    additive: true
+    depends_on: [db.data]
+
+  - id: data.repository
+    kind: table
+    database: data
+    defines: tables/internal/repository
+    topology: resolved
+    additive: true
+    depends_on: [db.data]
+
+  - id: data.alert_state
+    kind: table
+    database: data
+    defines: tables/internal/alert_state
+    topology: resolved
+    additive: true
+    depends_on: [db.data]
+
+  # -- OTel telemetry -------------------------------------------------------
+  #
+  # DFE owns these rather than letting the exporter create them. The exporter
+  # creates over whichever connection the Service resolved and senses no
+  # topology, so the same table ended up plain on one replica and Replicated on
+  # the others. It runs with create_schema: false.
+  #
+  # Logs first: an operator watching an apply wants the table carrying the
+  # telemetry they are reading confirmed before the metric shapes.
+
+  - id: data.otel_logs
+    kind: table
+    database: data
+    defines: tables/otel/logs
+    topology: resolved
+    additive: true
+    depends_on: [db.data]
+
+  - id: data.otel_traces
+    kind: table
+    database: data
+    defines: tables/otel/traces
+    topology: resolved
+    additive: true
+    depends_on: [db.data]
+
+  - id: data.otel_traces_trace_id_ts
+    kind: table
+    database: data
+    defines: tables/otel/traces_trace_id_ts
+    topology: resolved
+    additive: true
+    depends_on: [db.data]
+
+  - id: data.otel_traces_trace_id_ts_mv
+    kind: materialized_view
+    database: data
+    defines: tables/otel/traces_trace_id_ts
+    topology: resolved
+    # A materialised view holds aggregated state, so a changed SELECT is a
+    # deliberate migration rather than an apply.
+    additive: false
+    depends_on: [data.otel_traces, data.otel_traces_trace_id_ts]
+
+  - id: data.otel_metrics_gauge
+    kind: table
+    database: data
+    defines: tables/otel/metrics_gauge
+    topology: resolved
+    additive: true
+    depends_on: [db.data]
+
+  - id: data.otel_metrics_sum
+    kind: table
+    database: data
+    defines: tables/otel/metrics_sum
+    topology: resolved
+    additive: true
+    depends_on: [db.data]
+
+  - id: data.otel_metrics_histogram
+    kind: table
+    database: data
+    defines: tables/otel/metrics_histogram
+    topology: resolved
+    additive: true
+    depends_on: [db.data]
+
+  - id: data.otel_metrics_exponential_histogram
+    kind: table
+    database: data
+    defines: tables/otel/metrics_exponential_histogram
+    topology: resolved
+    additive: true
+    depends_on: [db.data]
+
+  - id: data.otel_metrics_summary
+    kind: table
+    database: data
+    defines: tables/otel/metrics_summary
+    topology: resolved
+    additive: true
+    depends_on: [db.data]
+
+  # -- the query-cost archive ----------------------------------------------
+  #
+  # Non-fatal at apply: a server with query logging disabled never
+  # materialises system.query_log, and no part of DFE fails without the cost
+  # leaderboard.
+
+  - id: data.query_log_archive
+    kind: table
+    database: data
+    defines: tables/internal/query_log_archive
+    topology: resolved
+    additive: true
+    optional: true
+    depends_on: [db.data]
+
+  - id: data.query_log_archive_mv
+    kind: materialized_view
+    database: data
+    defines: tables/internal/query_log_archive
+    topology: resolved
+    additive: false
+    optional: true
+    depends_on: [data.query_log_archive]
+
+  # -- the governance projection -------------------------------------------
+
+  - id: db.meta
+    kind: database
+    database: meta
+    topology: resolved
+    additive: false
+    depends_on: []
+
+  - id: meta.orgs
+    kind: table
+    database: meta
+    defines: tables/meta/orgs
+    topology: resolved
+    additive: true
+    depends_on: [db.meta]
+
+  - id: meta.ch_tiers
+    kind: table
+    database: meta
+    defines: tables/meta/ch_tiers
+    topology: resolved
+    additive: true
+    depends_on: [db.meta]
+
+  # -- roles, profiles, quotas and grants ----------------------------------
+  #
+  # ClickHouse access objects are cluster-wide state, not per-database, so they
+  # render the same under every topology. They come after the tables the
+  # tenant row policies are written against.
+
+  - id: role.tenant
+    kind: role
+    database: data
+    defines: roles/clickhouse
+    section: tenant
+    topology: fixed
+    additive: true
+    depends_on: [db.data]
+
+  - id: role.analyst_tier_1
+    kind: role
+    database: data
+    defines: roles/clickhouse
+    section: tiers
+    key: analyst_tier_1
+    topology: fixed
+    additive: true
+    depends_on: [db.data]
+
+  - id: role.analyst_tier_2
+    kind: role
+    database: data
+    defines: roles/clickhouse
+    section: tiers
+    key: analyst_tier_2
+    topology: fixed
+    additive: true
+    depends_on: [db.data]
+
+  - id: role.analyst_tier_3
+    kind: role
+    database: data
+    defines: roles/clickhouse
+    section: tiers
+    key: analyst_tier_3
+    topology: fixed
+    additive: true
+    depends_on: [db.data]
+
+  - id: role.hunt_tier_1
+    kind: role
+    database: data
+    defines: roles/clickhouse
+    section: tiers
+    key: hunt_tier_1
+    topology: fixed
+    additive: true
+    depends_on: [db.data]
+
+  - id: role.hunt_tier_2
+    kind: role
+    database: data
+    defines: roles/clickhouse
+    section: tiers
+    key: hunt_tier_2
+    topology: fixed
+    additive: true
+    depends_on: [db.data]
+
+  - id: role.hunt_tier_3
+    kind: role
+    database: data
+    defines: roles/clickhouse
+    section: tiers
+    key: hunt_tier_3
+    topology: fixed
+    additive: true
+    depends_on: [db.data]
+
+  - id: role.loader
+    kind: role
+    database: data
+    defines: roles/clickhouse
+    section: service_roles
+    key: loader
+    topology: fixed
+    additive: true
+    depends_on: [db.data]
+
+  - id: role.query_reader
+    kind: role
+    database: data
+    defines: roles/clickhouse
+    section: service_roles
+    key: query_reader
+    topology: fixed
+    additive: true
+    depends_on: [db.data]
+
+  - id: role.hunt_runner
+    kind: role
+    database: data
+    defines: roles/clickhouse
+    section: service_roles
+    key: hunt_runner
+    topology: fixed
+    additive: true
+    depends_on: [db.data]
+
+  - id: role.otel_reader
+    kind: role
+    database: data
+    defines: roles/clickhouse
+    section: service_roles
+    key: otel_reader
+    topology: fixed
+    additive: true
+    depends_on: [db.data]
+
+  # -- the built-in views ---------------------------------------------------
+  #
+  # A plain view holds no state, so a changed SELECT is applied with CREATE OR
+  # REPLACE. Each grants SELECT to the query_reader role as part of its own
+  # apply, which is why every one depends on that role.
+
+  - id: view.dfe_v_analytics_event_counts
+    kind: view
+    database: data
+    defines: views/dfe_v_analytics_event_counts
+    topology: resolved
+    additive: true
+    depends_on: [role.query_reader]
+
+  - id: view.dfe_v_overview_active_sources
+    kind: view
+    database: data
+    defines: views/dfe_v_overview_active_sources
+    topology: resolved
+    additive: true
+    depends_on: [data.main, role.query_reader]
+
+  - id: view.dfe_v_overview_detections
+    kind: view
+    database: data
+    defines: views/dfe_v_overview_detections
+    topology: resolved
+    additive: true
+    depends_on: [data.detection, role.query_reader]
+
+  - id: view.dfe_v_overview_hunt_fleet_health
+    kind: view
+    database: data
+    defines: views/dfe_v_overview_hunt_fleet_health
+    topology: resolved
+    additive: true
+    depends_on: [data.hunt_schedule, data.hunt_state, role.query_reader]
+
+  - id: view.dfe_v_overview_ingest_by_source
+    kind: view
+    database: data
+    defines: views/dfe_v_overview_ingest_by_source
+    topology: resolved
+    additive: true
+    depends_on: [data.main, role.query_reader]
+
+  - id: view.dfe_v_overview_pipeline_lag
+    kind: view
+    database: data
+    defines: views/dfe_v_overview_pipeline_lag
+    topology: resolved
+    additive: true
+    depends_on: [data.main, role.query_reader]
+
+  - id: view.dfe_v_overview_storage_growth
+    kind: view
+    database: data
+    defines: views/dfe_v_overview_storage_growth
+    topology: resolved
+    additive: true
+    depends_on: [role.query_reader]
+
+  - id: view.dfe_v_system_health
+    kind: view
+    database: data
+    defines: views/dfe_v_system_health
+    topology: resolved
+    additive: true
+    depends_on: [role.query_reader]
+
+  - id: view.dfe_v_system_table_sizes
+    kind: view
+    database: data
+    defines: views/dfe_v_system_table_sizes
+    topology: resolved
+    additive: true
+    depends_on: [role.query_reader]
+
+  # -- the Kafka bootstrap topic set ---------------------------------------
+  #
+  # Topics are not a ClickHouse object and carry no topology. A deployment with
+  # no bus skips them and still converges: the brokerless tiers run the
+  # receiver straight into the loader over gRPC.
+
+  - id: topic.main_land
+    kind: topic
+    defines: topics/kafka
+    section: landing
+    key: main_land
+    topology: fixed
+    additive: true
+    depends_on: []
+
+  - id: topic.dfe_receiver_dlq
+    kind: topic
+    defines: topics/kafka
+    section: dlq
+    key: dfe_receiver_dlq
+    topology: fixed
+    additive: true
+    depends_on: []
+
+  - id: topic.dfe_loader_dlq
+    kind: topic
+    defines: topics/kafka
+    section: dlq
+    key: dfe_loader_dlq
+    topology: fixed
+    additive: true
+    depends_on: []
+
+  - id: topic.dfe_archiver_dlq
+    kind: topic
+    defines: topics/kafka
+    section: dlq
+    key: dfe_archiver_dlq
+    topology: fixed
+    additive: true
+    depends_on: []
+
+  - id: topic.dfe_fetcher_dlq
+    kind: topic
+    defines: topics/kafka
+    section: dlq
+    key: dfe_fetcher_dlq
+    topology: fixed
+    additive: true
+    depends_on: []
+
+  - id: topic.dfe_transform_dlq
+    kind: topic
+    defines: topics/kafka
+    section: dlq
+    key: dfe_transform_dlq
+    topology: fixed
+    additive: true
+    depends_on: []

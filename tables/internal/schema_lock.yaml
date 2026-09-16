@@ -1,0 +1,48 @@
+# schema_lock -- the lease that keeps one applier at a time
+#
+# Engine working state rather than user data, so the columns are exact
+# ClickHouse types with no meta-schema mapping behind them.
+#
+# The same lease shape the hunt runner already trusts: a holder plus an expiry,
+# ReplacingMergeTree on `acquired_at` so the newest claim wins. A second
+# replica reads the row, waits, then reports without applying, and an operator
+# running an apply by hand takes the same lock.
+#
+# `CREATE TABLE IF NOT EXISTS` races benignly; concurrent ALTER TABLE ADD
+# COLUMN against one table does not, which is what this exists to stop.
+#
+# TTL on `expires_at` is a floor, not the lock: an expired lease is released by
+# the applier reading its expiry, and the TTL only stops the table growing a
+# row per stale holder forever.
+
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-09-16"
+    type: model
+    summary: "One row per lock name: who holds it, until when"
+    table:
+      name: "schema_lock"
+      engine: "ReplacingMergeTree(acquired_at)"
+      index_granularity: 2048
+      ttl_days: 7
+      ttl_columns: ["expires_at"]
+    columns:
+      - name: "lock_name"
+        ch_type: "String"
+        lowcardinality: true
+        order: 0
+      - name: "holder"
+        ch_type: "String"
+        comment: "pod hostname or operator session that took the lease"
+      - name: "acquired_at"
+        ch_type: "DateTime64(3)"
+        default: "now64(3)"
+      - name: "expires_at"
+        ch_type: "DateTime"
+        comment: "when the lease lapses, so a crashed holder does not hold it forever"
+      - name: "released"
+        ch_type: "UInt8"
+        default: "0"
+        comment: "soft release, so a completed pass needs no delete"

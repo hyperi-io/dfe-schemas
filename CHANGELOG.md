@@ -3,6 +3,12 @@
 Rendered by CI and committed back at the end of a release -- do not edit by
 hand. Release notes also appear on the GitHub Releases page, one per tag.
 
+## [0.2.6](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.5...v0.2.6) (2026-09-16)
+
+### Bug Fixes
+
+* one apply manifest, and the package is the only schema source of truth ([cb091f5](https://github.com/hyperi-io/dfe-schemas/commit/cb091f504444320a80e6b0cd53a7067d493ba949))
+
 ## [0.2.5](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.4...v0.2.5) (2026-09-15)
 
 ### Bug Fixes

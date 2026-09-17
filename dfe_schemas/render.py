@@ -197,6 +197,7 @@ class Renderer:
         default_ttl_days: int | None = 90,
         cluster: str = "dfe_cluster",
         broker_count: int = 1,
+        kafka_tiered_storage: bool = False,
     ) -> None:
         self._manifest = manifest
         self._topology = topology
@@ -204,6 +205,7 @@ class Renderer:
         self._default_ttl_days = default_ttl_days
         self._cluster = cluster
         self._broker_count = broker_count
+        self._kafka_tiered_storage = kafka_tiered_storage
         self._root = manifest.root
         self._registry = TypeRegistry.load(root=self._root)
         self._topics: TopicPolicy | None = None
@@ -644,6 +646,7 @@ class Renderer:
             self._required(obj, "section"),
             self._required(obj, "key"),
             broker_count=self._broker_count,
+            kafka_tiered_storage=self._kafka_tiered_storage,
         )
         return self._finish(
             obj,

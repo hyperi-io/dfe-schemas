@@ -17,6 +17,11 @@ message is on.
 Replication factor is CLAMPED to the broker count here rather than at each call
 site: asking for more replicas than there are brokers leaves a topic un-Ready
 forever, and the single-broker tiers are the common case in dev.
+
+Tiered storage is opted into per TOPIC as well as per broker, so a deployment
+whose broker tiers renders ``remote.storage.enable`` on the landing topic. With
+the broker-wide switch on and the topic key absent the broker moves nothing and
+reports nothing, and the first symptom is a full volume.
 """
 
 from __future__ import annotations
@@ -71,6 +76,7 @@ class TopicPolicy:
     load_suffix: str
     default_landing_label: str
     defaults: dict[str, Any]
+    tiered: dict[str, Any]
     bootstrap: dict[str, list[dict[str, Any]]]
     derivation: dict[str, Any]
     permissions: dict[str, bool]
@@ -83,32 +89,73 @@ class TopicPolicy:
         """The topic a source's transform writes, and the loader then reads."""
         return f"{source}{self.load_suffix}"
 
-    def spec(self, section: str, key: str, *, broker_count: int = 1) -> TopicSpec:
+    def spec(
+        self,
+        section: str,
+        key: str,
+        *,
+        broker_count: int = 1,
+        kafka_tiered_storage: bool = False,
+    ) -> TopicSpec:
         """One bootstrap topic, by the section and name the manifest gives it."""
         entries = self.bootstrap.get(section)
         if entries is None:
             raise SchemaError(f"topics/kafka.yaml declares no bootstrap section {section!r}")
         for entry in entries:
             if entry.get("name") == key:
-                return self._spec(entry, section, broker_count=broker_count)
+                return self._spec(
+                    entry,
+                    section,
+                    broker_count=broker_count,
+                    kafka_tiered_storage=kafka_tiered_storage,
+                )
         known = ", ".join(str(entry.get("name")) for entry in entries)
         raise SchemaError(f"no topic {key!r} in bootstrap.{section}; declared: {known}")
 
-    def bootstrap_specs(self, *, broker_count: int = 1) -> list[TopicSpec]:
+    def bootstrap_specs(
+        self, *, broker_count: int = 1, kafka_tiered_storage: bool = False
+    ) -> list[TopicSpec]:
         """Every bootstrap topic, landing first then the dead-letter set."""
         specs: list[TopicSpec] = []
         for section in ("landing", "dlq"):
             for entry in self.bootstrap.get(section) or ():
-                specs.append(self._spec(entry, section, broker_count=broker_count))
+                specs.append(
+                    self._spec(
+                        entry,
+                        section,
+                        broker_count=broker_count,
+                        kafka_tiered_storage=kafka_tiered_storage,
+                    )
+                )
         return specs
 
-    def _spec(self, entry: dict[str, Any], section: str, *, broker_count: int) -> TopicSpec:
+    def _tiered_config(self, section: str, *, kafka_tiered_storage: bool) -> dict[str, str]:
+        """The tiering keys this section carries, or nothing.
+
+        Nothing is emitted where the deployment does not tier: an explicit
+        "false" would override a broker-level setting on a cluster that does.
+        """
+        if not kafka_tiered_storage:
+            return {}
+        if section not in (self.tiered.get("sections") or ()):
+            return {}
+        return {str(k): str(v) for k, v in (self.tiered.get("config") or {}).items()}
+
+    def _spec(
+        self,
+        entry: dict[str, Any],
+        section: str,
+        *,
+        broker_count: int,
+        kafka_tiered_storage: bool = False,
+    ) -> TopicSpec:
         defaults = self.defaults.get(section) or {}
         replication = min(int(defaults["replication_factor"]), max(broker_count, 1))
         config = {
             "max.message.bytes": str(int(self.defaults["max_message_bytes"])),
             "retention.ms": str(int(defaults["retention_hours"]) * _MS_PER_HOUR),
         }
+        config.update(self._tiered_config(section, kafka_tiered_storage=kafka_tiered_storage))
         return TopicSpec(
             name=str(entry["name"]),
             partitions=int(entry.get("partitions", defaults["partitions"])),
@@ -128,6 +175,7 @@ def load_topic_policy(*, root: Path | None = None) -> TopicPolicy:
         load_suffix=naming["load_suffix"],
         default_landing_label=naming["default_landing_label"],
         defaults=entry.get("defaults") or {},
+        tiered=entry.get("tiered") or {},
         bootstrap=entry.get("bootstrap") or {},
         derivation=entry.get("derivation") or {},
         permissions=entry.get("permissions") or {},

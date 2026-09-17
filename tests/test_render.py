@@ -202,6 +202,24 @@ def test_a_topic_replication_factor_is_clamped_to_the_brokers(manifest):
     assert three["replication_factor"] == 3
 
 
+def test_the_landing_topic_renders_its_tiering_key_only_when_asked(manifest):
+    """A scale deploy with tiered storage on must still tier its landing topic."""
+    obj = next(o for o in manifest.objects if o.id == "topic.main_land")
+    off = Renderer(manifest).render(obj).topic
+    on = Renderer(manifest, kafka_tiered_storage=True).render(obj).topic
+    assert off is not None
+    assert on is not None
+    assert "remote.storage.enable" not in off["config"]
+    assert on["config"]["remote.storage.enable"] == "true"
+
+
+def test_a_dlq_renders_no_tiering_key_even_when_the_deployment_tiers(manifest):
+    obj = next(o for o in manifest.objects if o.id == "topic.dfe_loader_dlq")
+    dlq = Renderer(manifest, kafka_tiered_storage=True).render(obj).topic
+    assert dlq is not None
+    assert "remote.storage.enable" not in dlq["config"]
+
+
 def test_a_dlq_keeps_a_poisoned_message_for_a_week(rendered):
     dlq = rendered[Topology.SINGLE]["topic.dfe_receiver_dlq"]
     assert dlq.topic["config"]["retention.ms"] == str(168 * 3_600_000)

@@ -80,7 +80,7 @@ def test_the_tree_declares_at_least_one_tokenizer():
     assert _declarations(), "no tokenizer declaration found; the pattern has gone stale"
 
 
-@pytest.mark.parametrize("path, number, name", _declarations())
+@pytest.mark.parametrize(("path", "number", "name"), _declarations())
 def test_every_declared_tokenizer_is_one_the_server_accepts(path, number, name):
     """A retired name is refused at CREATE, so the table never exists."""
     replacement = RETIRED.get(name)

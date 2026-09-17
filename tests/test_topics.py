@@ -77,3 +77,30 @@ def test_the_describe_form_is_deterministic(policy):
         "kafka-topic main_land partitions=12 replication_factor=3 "
         "max.message.bytes=16777216 retention.ms=86400000"
     )
+
+
+def test_the_landing_topic_tiers_where_the_deployment_does(policy):
+    """Without the per-topic key the broker holds the plugin and moves nothing."""
+    landing = policy.spec("landing", "main_land", broker_count=3, kafka_tiered_storage=True)
+    assert landing.config["remote.storage.enable"] == "true"
+
+
+def test_no_tiering_key_is_rendered_where_the_deployment_does_not_tier(policy):
+    """Absent, not "false" -- a false would fight a broker that does tier."""
+    landing = policy.spec("landing", "main_land", broker_count=3, kafka_tiered_storage=False)
+    assert "remote.storage.enable" not in landing.config
+
+
+def test_a_dlq_is_never_tiered(policy):
+    """A DLQ is small and read by a human, so tiering costs a remote fetch."""
+    dlq = policy.spec("dlq", "dfe_loader_dlq", broker_count=3, kafka_tiered_storage=True)
+    assert "remote.storage.enable" not in dlq.config
+
+
+def test_tiering_rides_the_landing_topic_and_not_every_topic(policy):
+    tiered = {
+        spec.name
+        for spec in policy.bootstrap_specs(broker_count=3, kafka_tiered_storage=True)
+        if "remote.storage.enable" in spec.config
+    }
+    assert tiered == {"main_land"}

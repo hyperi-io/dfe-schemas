@@ -46,6 +46,15 @@ parameters:
       CLUSTER on its own.
     setting: DFE_CLICKHOUSE_TOPOLOGY
     default: single
+  kafka_tiered_storage:
+    description: >-
+      Whether this deployment's broker moves closed log segments to object
+      storage. Tiered storage is per-topic as well as per-broker, so with the
+      broker-wide switch on and the topic key absent every segment stays on
+      local disk. Off renders no key at all rather than "false", which would
+      fight a broker-level setting on a cluster that does tier.
+    setting: DFE_KAFKA_TIERED_STORAGE
+    default: false
 
 databases:
   - key: data

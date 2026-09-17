@@ -3,6 +3,14 @@
 Rendered by CI and committed back at the end of a release -- do not edit by
 hand. Release notes also appear on the GitHub Releases page, one per tag.
 
+## [0.2.7](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.6...v0.2.7) (2026-09-17)
+
+### Bug Fixes
+
+* **header:** name the tokenizer ClickHouse actually has ([8934979](https://github.com/hyperi-io/dfe-schemas/commit/893497998a2674ae8f8a6a506fd7aaed91367ad5))
+* **tests:** pass parametrize its argument names as a tuple ([754fdb8](https://github.com/hyperi-io/dfe-schemas/commit/754fdb82250b7a0b67bf0c74cb0f7816389da057))
+* **topics:** the landing topic tiers where the deployment does ([1dd39b4](https://github.com/hyperi-io/dfe-schemas/commit/1dd39b4921d686124d16ab4d08a37d0695804549))
+
 ## [0.2.6](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.5...v0.2.6) (2026-09-16)
 
 ### Bug Fixes

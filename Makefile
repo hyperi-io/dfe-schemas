@@ -10,7 +10,7 @@
 # meta-schema models: set PY to an interpreter that has it, e.g.
 # PY=../dfe-engine/.venv/bin/python, or run inside such a venv.
 
-PY ?= python
+PY ?= uv run python
 
 .PHONY: quality test build check render validate
 

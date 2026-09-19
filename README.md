@@ -205,8 +205,12 @@ topologies on `origin/main`. Coverage is gated at 80% and measures 92.97%.
 Two ways green lies. `make test` fails on a dirty repo root: the tokenizer guard
 rglobs `schemas_root()`, which in a checkout IS the repo root, and excludes
 nothing, so a `git worktree` under `.worktrees/` or a nested non-editable venv
-gets read as this repo's content. Clean, it runs 185 tests -- this checkout had
-four worktrees and 8 such failures. And `make validate` is the only step needing
+gets read as this repo's content, and the count of parametrised cases moves with
+it. This checkout had four worktrees under `.worktrees/`, collected 185 cases and
+failed 8 of them against `timeseries.yaml` files belonging to other branches. CI
+is green because a fresh runner has no worktree and no non-editable install.
+
+And `make validate` is the only step needing
 another repo, which is why it runs from `validate-schemas.yml` and not `ci.yml`
 ([docs/architecture.md](docs/architecture.md) has the reason).
 

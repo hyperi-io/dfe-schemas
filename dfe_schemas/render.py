@@ -57,9 +57,21 @@ __all__ = [
     "split_use_case",
 ]
 
+
 # A use case names the question a column is asked; the template is the engine's
 # answer, and changes without the vocabulary changing. A shape no template
 # expresses is written out in the definition's own `indexes` list instead.
+def _index_name(column: str, suffix: str | None = None) -> str:
+    """Quote an index name.
+
+    The templates backtick the column and left the index NAME bare, so a column
+    carrying a hyphen or a slash -- `fortinet_firewall_app-type` -- parsed as
+    `idx_fortinet_firewall_app` and then choked on the rest.
+    """
+    stem = f"idx_{column}" if suffix is None else f"idx_{column}_{suffix}"
+    return f"`{stem}`"
+
+
 _INDEX_TEMPLATES: dict[str, str] = {
     "dimension": "INDEX {name} {col} TYPE set(0) GRANULARITY 4",
     "range": "INDEX {name} {col} TYPE minmax GRANULARITY 4",
@@ -484,7 +496,7 @@ class Renderer:
 
         if use_case == "key_search":
             return [
-                template.format(name=f"idx_{column.name}_{suffix}", col=quoted)
+                template.format(name=_index_name(column.name, suffix), col=quoted)
                 for suffix, template in _KEY_SEARCH_TEMPLATES
             ]
 
@@ -495,7 +507,9 @@ class Renderer:
                     f"dimension count, as similarity_search(<dims>)"
                 )
             return [
-                _SIMILARITY_SEARCH_TEMPLATE.format(name=f"idx_{column.name}", col=quoted, dims=dims)
+                _SIMILARITY_SEARCH_TEMPLATE.format(
+                    name=_index_name(column.name), col=quoted, dims=dims
+                )
             ]
 
         if use_case == "exact_match":
@@ -504,12 +518,19 @@ class Renderer:
                 if "lowcardinality" in column.attribute
                 else _EXACT_MATCH_HIGH_CARDINALITY
             )
-            return [template.format(name=f"idx_{column.name}", col=quoted)]
+            return [template.format(name=_index_name(column.name), col=quoted)]
 
         template = _INDEX_TEMPLATES.get(use_case)
         if template is None:
-            return []
-        return [template.format(name=f"idx_{column.name}", col=quoted)]
+            # Returning [] here rendered a valid table with no index and no
+            # error, so a retired or misspelled use case looked like a column
+            # that simply wanted none.
+            known = sorted({*_INDEX_TEMPLATES, "exact_match", "key_search", "similarity_search"})
+            raise SchemaError(
+                f"column {column.name!r}: unknown index use case {use_case!r}. "
+                f"Valid: {', '.join(known)}"
+            )
+        return [template.format(name=_index_name(column.name), col=quoted)]
 
     def _partition(self, columns: list[Column], config: _TableConfig) -> str | None:
         """PARTITION BY: a raw expression wins over the column plus granularity."""

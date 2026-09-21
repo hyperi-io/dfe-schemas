@@ -354,6 +354,11 @@ def _apply_attributes(base_type: str, attribute: tuple[str, ...], *, nullable: b
         nullable = False
     ch_type = f"Nullable({base_type})" if nullable else base_type
     if "lowcardinality" in attribute:
+        if not _DICTIONARY_ENCODABLE.match(base_type):
+            raise SchemaError(
+                f"{base_type} cannot take the 'lowcardinality' attribute: ClickHouse "
+                f"dictionary-encodes numbers, strings, Date and DateTime only (code 43)"
+            )
         ch_type = f"LowCardinality({ch_type})"
     return ch_type
 
@@ -369,6 +374,14 @@ def _with_max_dynamic_paths(ch_type: str, max_dynamic_paths: int | None) -> str:
         return ch_type
     return f"JSON(max_dynamic_paths={max_dynamic_paths})"
 
+
+# What ClickHouse will put inside LowCardinality. The registry's own rule is
+# per PRIMITIVE, so `type: string` plus `ch_override: Array(String)` passes it
+# and then fails the CREATE -- this is the check on the type that is emitted.
+_DICTIONARY_ENCODABLE = re.compile(
+    r"^(String|FixedString\(\d+\)|Date|Date32|DateTime(\(.*\))?|"
+    r"U?Int(8|16|32|64|128|256)|Float(32|64)|Decimal.*|Enum.*)$"
+)
 
 # Identifier charset for anything spliced into a DDL position. Everything the
 # package ships is committed here, so this catches an edit rather than an

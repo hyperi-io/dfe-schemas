@@ -63,7 +63,8 @@ each key column an `order` and leave `order_by` out.
 |---|---|
 | `name` | Column name, verbatim. |
 | `ch_type` | Exact ClickHouse type, without any `LowCardinality` wrapper. |
-| `lowcardinality` | Wraps `ch_type` in `LowCardinality(...)`. |
+| `cardinality` | `low`, `high` or `unknown` (the default). `low` wraps `ch_type` in `LowCardinality(...)`. |
+| `lowcardinality` | Retired -- the old boolean spelling of `cardinality: low`. |
 | `order` | Position in the sorting key, from 0. |
 | `default` | DEFAULT expression. |
 | `materialized` | MATERIALIZED expression. Mutually exclusive with `default`. |
@@ -72,8 +73,8 @@ each key column an `order` and leave `order_by` out.
 | `max_dynamic_paths` | Typed sub-paths a `JSON` column holds before the rest spill to a shared map. `inherit` reads the value from the common header's `_json`. |
 
 A nested `LowCardinality` is part of the type and stays in `ch_type`
-(`Map(LowCardinality(String), String)`); only a top-level wrapper becomes the
-`lowcardinality` flag.
+(`Map(LowCardinality(String), String)`); only a top-level wrapper is declared as
+`cardinality: low`.
 
 ## `materialized_view`
 

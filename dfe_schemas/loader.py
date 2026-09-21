@@ -36,6 +36,8 @@ from ruamel.yaml import YAML
 from dfe_schemas import schemas_root
 
 __all__ = [
+    "CARDINALITIES",
+    "DEFAULT_CARDINALITY",
     "Column",
     "SchemaError",
     "TypeRegistry",
@@ -50,6 +52,14 @@ __all__ = [
 
 COMMON_HEADER_DIR = "common-header"
 REGISTRIES_DIR = "registries"
+
+# How many distinct values a column holds. One declaration, because it decides
+# both the LowCardinality wrapper and whether exact_match can hold every value.
+CARDINALITIES = ("low", "high", "unknown")
+DEFAULT_CARDINALITY = "unknown"
+LOW_CARDINALITY = "low"
+# The retired spelling: a column declaring it means `cardinality: low`.
+_LOWCARDINALITY_ATTRIBUTE = "lowcardinality"
 
 # ClickHouse's own default is 1024; the header declares 2048 and a tables/
 # column asking to inherit takes whatever the header says.
@@ -103,12 +113,17 @@ class Column:
     ``ch_override`` is the exact ClickHouse type a ``tables/**`` column names;
     ``primitive`` is what the rest of the tree declares and the registry maps.
     Exactly one of the two carries the type.
+
+    ``cardinality`` is the single home for how many distinct values the column
+    holds: ``low`` is what wraps the type in ``LowCardinality`` and what lets
+    ``exact_match`` render ``set(0)`` instead of a bloom filter.
     """
 
     name: str
     primitive: str = "string"
     ch_override: str | None = None
     attribute: tuple[str, ...] = ()
+    cardinality: str = DEFAULT_CARDINALITY
     use_case: str | None = None
     order: int | None = None
     default: str | None = None
@@ -125,6 +140,30 @@ def _attributes(raw: dict[str, Any]) -> tuple[str, ...]:
     return tuple(declared)
 
 
+def _cardinality(raw: dict[str, Any], *, lowcardinality: bool, source: Path, name: str) -> str:
+    """The column's declared cardinality, with the retired attribute folded in.
+
+    A column that still says ``lowcardinality`` declares ``low``, so the
+    storage decision and the index decision read one field rather than two that
+    nothing keeps in agreement. Declaring the two against each other is refused
+    rather than silently resolved -- the disagreement is the defect.
+    """
+    declared = raw.get("cardinality")
+    if declared is None:
+        return LOW_CARDINALITY if lowcardinality else DEFAULT_CARDINALITY
+    if declared not in CARDINALITIES:
+        raise SchemaError(
+            f"column {name!r} in {source}: cardinality {declared!r} is not one of "
+            f"{', '.join(CARDINALITIES)}"
+        )
+    if lowcardinality and declared != LOW_CARDINALITY:
+        raise SchemaError(
+            f"column {name!r} in {source}: cardinality {declared!r} contradicts the "
+            f"{_LOWCARDINALITY_ATTRIBUTE} attribute; drop the attribute and keep the cardinality"
+        )
+    return declared
+
+
 def _exact_column(raw: dict[str, Any], source: Path, json_paths: int) -> Column:
     """A ``tables/**`` column: an exact ClickHouse type, no primitive behind it."""
     name = raw.get("name")
@@ -133,9 +172,6 @@ def _exact_column(raw: dict[str, Any], source: Path, json_paths: int) -> Column:
         raise SchemaError(f"column needs both 'name' and 'ch_type' in {source}: {raw!r}")
 
     attribute: list[str] = []
-    if raw.get("lowcardinality"):
-        attribute.append("lowcardinality")
-
     default = raw.get("default")
     if "materialized" in raw:
         if default is not None:
@@ -151,6 +187,9 @@ def _exact_column(raw: dict[str, Any], source: Path, json_paths: int) -> Column:
         name=name,
         ch_override=ch_type,
         attribute=tuple(attribute),
+        cardinality=_cardinality(
+            raw, lowcardinality=bool(raw.get("lowcardinality")), source=source, name=name
+        ),
         order=raw.get("order"),
         default=default,
         codec=raw.get("codec"),
@@ -165,11 +204,18 @@ def _primitive_column(raw: dict[str, Any], source: Path) -> Column:
     primitive = raw.get("type")
     if not name or not primitive:
         raise SchemaError(f"column needs both 'name' and 'type' in {source}: {raw!r}")
+    declared = _attributes(raw)
     return Column(
         name=name,
         primitive=primitive,
         ch_override=raw.get("ch_override"),
-        attribute=_attributes(raw),
+        attribute=tuple(a for a in declared if a != _LOWCARDINALITY_ATTRIBUTE),
+        cardinality=_cardinality(
+            raw,
+            lowcardinality=_LOWCARDINALITY_ATTRIBUTE in declared,
+            source=source,
+            name=name,
+        ),
         use_case=raw.get("use_case"),
         order=raw.get("order"),
         default=raw.get("default"),
@@ -325,7 +371,9 @@ class TypeRegistry:
         set one alongside an exact type.
         """
         if column.ch_override:
-            ch_type = _apply_attributes(column.ch_override, column.attribute, nullable=False)
+            ch_type = _wrap(
+                column.ch_override, column.attribute, nullable=False, cardinality=column.cardinality
+            )
             return ResolvedType(
                 ch_type=_with_max_dynamic_paths(ch_type, column.max_dynamic_paths),
                 codec=column.codec,
@@ -337,8 +385,11 @@ class TypeRegistry:
             raise SchemaError(
                 f"column {column.name!r}: unknown primitive {column.primitive!r} (known: {known})"
             )
-        ch_type = _apply_attributes(
-            definition["ch_type"], column.attribute, nullable=definition.get("nullable", True)
+        ch_type = _wrap(
+            definition["ch_type"],
+            column.attribute,
+            nullable=definition.get("nullable", True),
+            cardinality=column.cardinality,
         )
         return ResolvedType(
             ch_type=_with_max_dynamic_paths(ch_type, column.max_dynamic_paths),
@@ -346,17 +397,22 @@ class TypeRegistry:
         )
 
 
-def _apply_attributes(base_type: str, attribute: tuple[str, ...], *, nullable: bool) -> str:
-    """Wrap a base type in Nullable and LowCardinality, in ClickHouse's order."""
+def _wrap(base_type: str, attribute: tuple[str, ...], *, nullable: bool, cardinality: str) -> str:
+    """Wrap a base type in Nullable and LowCardinality, in ClickHouse's order.
+
+    Only ``cardinality: low`` puts LowCardinality on a column: on a
+    high-cardinality one the dictionary costs more than it saves, and
+    ``unknown`` is the safe way to be wrong.
+    """
     if "nullable" in attribute:
         nullable = True
     if "not_null" in attribute:
         nullable = False
     ch_type = f"Nullable({base_type})" if nullable else base_type
-    if "lowcardinality" in attribute:
+    if cardinality == LOW_CARDINALITY:
         if not _DICTIONARY_ENCODABLE.match(base_type):
             raise SchemaError(
-                f"{base_type} cannot take the 'lowcardinality' attribute: ClickHouse "
+                f"{base_type} cannot be declared 'cardinality: low': ClickHouse "
                 f"dictionary-encodes numbers, strings, Date and DateTime only (code 43)"
             )
         ch_type = f"LowCardinality({ch_type})"

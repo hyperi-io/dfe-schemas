@@ -33,6 +33,7 @@ from typing import Any
 
 from dfe_schemas.clickhouse import EngineSpec, Topology, parse_engine, render_engine
 from dfe_schemas.loader import (
+    LOW_CARDINALITY,
     Column,
     SchemaError,
     TypeRegistry,
@@ -79,8 +80,9 @@ _INDEX_TEMPLATES: dict[str, str] = {
     "substring_search": "INDEX {name} {col} TYPE text(tokenizer=ngrams(3)) GRANULARITY 1",
 }
 
-# exact_match picks on declared cardinality: set(0) holds every distinct value
-# of a LowCardinality column exactly, bloom_filter stays bounded on the rest.
+# exact_match reads the column's declared cardinality: set(0) holds every
+# distinct value of a `low` column exactly, and bloom_filter stays bounded on
+# `high` and on `unknown`, which is the safe way to be wrong.
 _EXACT_MATCH_LOW_CARDINALITY = "INDEX {name} {col} TYPE set(0) GRANULARITY 4"
 _EXACT_MATCH_HIGH_CARDINALITY = "INDEX {name} {col} TYPE bloom_filter GRANULARITY 4"
 
@@ -515,7 +517,7 @@ class Renderer:
         if use_case == "exact_match":
             template = (
                 _EXACT_MATCH_LOW_CARDINALITY
-                if "lowcardinality" in column.attribute
+                if column.cardinality == LOW_CARDINALITY
                 else _EXACT_MATCH_HIGH_CARDINALITY
             )
             return [template.format(name=_index_name(column.name), col=quoted)]

@@ -348,7 +348,7 @@ in these positions destroys index effectiveness.
 
 ## Use Cases
 
-A use case names **the question you ask the column** — never the ClickHouse index
+A use case names **the question you ask the column** -- never the ClickHouse index
 that answers it. You declare the question, the engine picks the primitive, and it
 can pick a different one on a later ClickHouse without your schema changing.
 
@@ -383,12 +383,12 @@ Invalid combinations are rejected at validation time (e.g. `word_search` on an `
 ### Generated ClickHouse Indexes
 
 What the engine emits today, on ClickHouse 26.3. These are the engine's answers,
-not part of the vocabulary — read them to size the cost, not to name a column.
+not part of the vocabulary -- read them to size the cost, not to name a column.
 
 | Use Case | Index Type | Granularity | Notes |
 |----------|-----------|-------------|-------|
 | `dimension` | `set(0)` | 4 | Exact distinct values per granule |
-| `exact_match` | `set(0)` with the `lowcardinality` attribute, else `bloom_filter` | 4 | The bloom filter is probabilistic — false positives, no false negatives |
+| `exact_match` | `set(0)` with the `lowcardinality` attribute, else `bloom_filter` | 4 | The bloom filter is probabilistic -- false positives, no false negatives |
 | `range` | `minmax` | 4 | Stores min/max per granule |
 | `word_search` | `text(tokenizer=splitByNonAlpha)` | 1 | GA text index (v26.2+). Deterministic, row-level filtering. |
 | `substring_search` | `text(tokenizer=ngrams(3))` | 1 | Character n-gram text index for substring matching. |

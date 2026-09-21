@@ -70,18 +70,40 @@ primitives:
     codec: "ZSTD(1)"
     nullable: false
 
-# Use case -> valid primitive constraints (1:M)
+  # ClickHouse refuses Map and Array inside Nullable, so neither can be null.
+  map:
+    ch_type: "Map(LowCardinality(String), String)"
+    codec: "ZSTD(1)"
+    nullable: false
+
+  vector:
+    ch_type: "Array(Float32)"
+    codec: "ZSTD(1)"
+    nullable: false
+
+# Use case -> valid primitive constraints (1:M).
+# A use case names the QUESTION the user asks, never the ClickHouse index that
+# answers it -- the engine picks that, and may change it without a rename.
 use_cases:
   dimension:
     valid_primitives: [string, integer, boolean, enum, ip, uuid]
-  fulltext:
-    valid_primitives: [string, text]
-  text_search:
-    valid_primitives: [string, text]
+  exact_match:
+    valid_primitives: [string, uuid]
   range:
     valid_primitives: [integer, float, datetime, timestamp, date, ip]
-  bloom:
-    valid_primitives: [string, uuid]
+  word_search:
+    valid_primitives: [string, text]
+  substring_search:
+    valid_primitives: [string, text]
+  key_search:
+    valid_primitives: [map]
+  # The only use case that takes an argument: ClickHouse needs the vector
+  # dimension count up front and cannot infer it from the column. The user
+  # supplies a fact about their own data (`similarity_search(768)`); the engine
+  # still picks the method and the distance metric.
+  similarity_search:
+    valid_primitives: [vector]
+    parameters: [dims]
 
 # Attribute -> valid primitive constraints (1:M)
 attributes:

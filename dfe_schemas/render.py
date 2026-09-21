@@ -54,18 +54,58 @@ __all__ = [
     "checksum",
     "qualified_name",
     "referenced_objects",
+    "split_use_case",
 ]
 
-# GA text index (26.2+): a deterministic inverted index with row-level
-# filtering. A column's use_case picks one; a shape these cannot express is
-# written out in the definition's own `indexes` list instead.
+# A use case names the question a column is asked; the template is the engine's
+# answer, and changes without the vocabulary changing. A shape no template
+# expresses is written out in the definition's own `indexes` list instead.
 _INDEX_TEMPLATES: dict[str, str] = {
     "dimension": "INDEX {name} {col} TYPE set(0) GRANULARITY 4",
-    "fulltext": "INDEX {name} {col} TYPE text(tokenizer=splitByNonAlpha) GRANULARITY 1",
-    "text_search": "INDEX {name} {col} TYPE text(tokenizer=ngrams(3)) GRANULARITY 1",
     "range": "INDEX {name} {col} TYPE minmax GRANULARITY 4",
-    "bloom": "INDEX {name} {col} TYPE bloom_filter GRANULARITY 4",
+    "word_search": "INDEX {name} {col} TYPE text(tokenizer=splitByNonAlpha) GRANULARITY 1",
+    "substring_search": "INDEX {name} {col} TYPE text(tokenizer=ngrams(3)) GRANULARITY 1",
 }
+
+# exact_match picks on declared cardinality: set(0) holds every distinct value
+# of a LowCardinality column exactly, bloom_filter stays bounded on the rest.
+_EXACT_MATCH_LOW_CARDINALITY = "INDEX {name} {col} TYPE set(0) GRANULARITY 4"
+_EXACT_MATCH_HIGH_CARDINALITY = "INDEX {name} {col} TYPE bloom_filter GRANULARITY 4"
+
+# A text index refuses a Map column outright ("Text index must be created on
+# columns of type with base type of String or FixedString"), so key_search
+# indexes the keys and the values apart -- the shape the shipped otel tables use.
+_KEY_SEARCH_TEMPLATES: tuple[tuple[str, str], ...] = (
+    ("key", "INDEX {name} mapKeys({col}) TYPE text(tokenizer=array) GRANULARITY 1"),
+    ("value", "INDEX {name} mapValues({col}) TYPE text(tokenizer=array) GRANULARITY 1"),
+)
+
+# hnsw is the only method ClickHouse 26.3 implements and the index will not
+# build without a dimension count, which is the one thing only the user knows.
+_SIMILARITY_SEARCH_TEMPLATE = (
+    "INDEX {name} {col} TYPE vector_similarity('hnsw', 'cosineDistance', {dims}) GRANULARITY 1"
+)
+
+_USE_CASE_RE = re.compile(r"^(?P<name>[a-z_]+)(?:\((?P<arg>\d+)\))?$")
+
+
+def split_use_case(declared: str | None) -> tuple[str | None, int | None]:
+    """Split a declared use case into its name and its optional integer argument.
+
+    ``similarity_search(768)`` is the only shape that carries one, because
+    ClickHouse cannot infer a vector's dimension count from the column.
+    """
+    if not declared:
+        return None, None
+    match = _USE_CASE_RE.match(declared.strip())
+    if match is None:
+        raise SchemaError(
+            f"use case {declared!r} is not a name, optionally with an integer "
+            f"argument -- for example 'word_search' or 'similarity_search(768)'"
+        )
+    arg = match.group("arg")
+    return match.group("name"), int(arg) if arg else None
+
 
 _PARTITION_FUNCS = {"day": "toYYYYMMDD", "month": "toYYYYMM"}
 
@@ -400,9 +440,7 @@ class Renderer:
     def _body(self, columns: list[Column], config: _TableConfig) -> list[str]:
         body = [f"    {self._column_def(column)}" for column in columns]
         for column in columns:
-            index = self._index_def(column)
-            if index:
-                body.append(f"    {index}")
+            body.extend(f"    {index}" for index in self._index_defs(column))
         body.extend(f"    {index}" for index in config.extra_indexes)
         if config.projection_order_by and config.projection_order_by in {c.name for c in columns}:
             body.append(
@@ -436,11 +474,42 @@ class Renderer:
             parts.append(f"CODEC({resolved.codec})")
         return " ".join(parts)
 
-    def _index_def(self, column: Column) -> str | None:
-        template = _INDEX_TEMPLATES.get(column.use_case or "")
+    def _index_defs(self, column: Column) -> list[str]:
+        """The INDEX lines a column's use case asks for -- none, one, or two."""
+        use_case, dims = split_use_case(column.use_case)
+        if use_case is None:
+            return []
+
+        quoted = f"`{column.name}`"
+
+        if use_case == "key_search":
+            return [
+                template.format(name=f"idx_{column.name}_{suffix}", col=quoted)
+                for suffix, template in _KEY_SEARCH_TEMPLATES
+            ]
+
+        if use_case == "similarity_search":
+            if dims is None:
+                raise SchemaError(
+                    f"column {column.name!r}: similarity_search needs the vector "
+                    f"dimension count, as similarity_search(<dims>)"
+                )
+            return [
+                _SIMILARITY_SEARCH_TEMPLATE.format(name=f"idx_{column.name}", col=quoted, dims=dims)
+            ]
+
+        if use_case == "exact_match":
+            template = (
+                _EXACT_MATCH_LOW_CARDINALITY
+                if "lowcardinality" in column.attribute
+                else _EXACT_MATCH_HIGH_CARDINALITY
+            )
+            return [template.format(name=f"idx_{column.name}", col=quoted)]
+
+        template = _INDEX_TEMPLATES.get(use_case)
         if template is None:
-            return None
-        return template.format(name=f"idx_{column.name}", col=f"`{column.name}`")
+            return []
+        return [template.format(name=f"idx_{column.name}", col=quoted)]
 
     def _partition(self, columns: list[Column], config: _TableConfig) -> str | None:
         """PARTITION BY: a raw expression wins over the column plus granularity."""

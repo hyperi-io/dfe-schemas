@@ -61,7 +61,7 @@ versions:
 
       - name: _raw
         type: text
-        use_case: text_search
+        use_case: substring_search
         index: "text(tokenizer = 'splitByNonAlpha') GRANULARITY 64"
         expr: "@captured: raw_payload"
         comment: "Original event payload as text (full-text indexed)"
@@ -135,7 +135,7 @@ versions:
 
       - name: _raw
         type: text
-        use_case: text_search
+        use_case: substring_search
         index: "text(tokenizer = 'splitByNonAlpha') GRANULARITY 64"
         expr: "@captured: raw_payload"
         comment: "Original event payload as text (full-text indexed)"

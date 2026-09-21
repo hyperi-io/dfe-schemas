@@ -18,7 +18,7 @@ versions:
     columns:
       - name: service_id
         type: uuid
-        use_case: bloom
+        use_case: exact_match
         expr: "@source: record.service_id"
         comment: "Row key of the export"
         _field_type: base
@@ -237,7 +237,7 @@ versions:
 
       - name: id
         type: uuid
-        use_case: bloom
+        use_case: exact_match
         expr: "@source: record.id"
         _field_type: base
 

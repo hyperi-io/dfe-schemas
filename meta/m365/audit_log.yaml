@@ -13,7 +13,7 @@ versions:
     columns:
       - name: event_id
         type: string
-        use_case: bloom
+        use_case: exact_match
         expr: "@source: Id"
         comment: "Unique audit event identifier"
         _field_type: base
@@ -81,7 +81,7 @@ versions:
       - name: correlation_id
         type: string
         attribute: [nullable]
-        use_case: bloom
+        use_case: exact_match
         expr: "@source: first(Id/CorrelationId)"
         comment: "Correlation identifier for related events"
         _field_type: base

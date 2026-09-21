@@ -13,7 +13,7 @@ versions:
     columns:
       - name: event_id
         type: string
-        use_case: bloom
+        use_case: exact_match
         expr: "@source: eventId"
         comment: "Unique log event identifier"
         _field_type: base
@@ -50,7 +50,7 @@ versions:
 
       - name: message
         type: text
-        use_case: fulltext
+        use_case: word_search
         expr: "@source: message"
         comment: "Log event message content"
         _field_type: base

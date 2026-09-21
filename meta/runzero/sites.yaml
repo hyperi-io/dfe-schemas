@@ -18,7 +18,7 @@ versions:
     columns:
       - name: id
         type: uuid
-        use_case: bloom
+        use_case: exact_match
         expr: "@source: record.id"
         comment: "Row key of the export"
         _field_type: base
@@ -45,7 +45,7 @@ versions:
 
       - name: client_id
         type: uuid
-        use_case: bloom
+        use_case: exact_match
         expr: "@source: record.client_id"
         _field_type: base
 
@@ -146,7 +146,7 @@ versions:
 
       - name: last_task_id
         type: uuid
-        use_case: bloom
+        use_case: exact_match
         expr: "@source: record.last_task_id"
         _field_type: base
 
@@ -164,7 +164,7 @@ versions:
 
       - name: organization_id
         type: uuid
-        use_case: bloom
+        use_case: exact_match
         expr: "@source: record.organization_id"
         _field_type: base
 

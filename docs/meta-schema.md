@@ -80,7 +80,7 @@ versions:
 
       - name: message
         type: text
-        use_case: fulltext
+        use_case: word_search
         comment: "Log message body"
 ```
 
@@ -96,7 +96,7 @@ columns:
     use_case: dimension
   - name: message
     type: text
-    use_case: fulltext
+    use_case: word_search
 ```
 
 ### Version Metadata Fields
@@ -142,9 +142,9 @@ columns:
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
 | `name` | `str` | *(required)* | Column name. System fields use `_` prefix to avoid collision with source data. |
-| `type` | `str` | *(required)* | Primitive type — one of 13 values (see [Type System](#type-system)). |
+| `type` | `str` | *(required)* | Primitive type — one of 15 values (see [Type System](#type-system)). |
 | `attribute` | `list[str]` | `[]` | Storage attributes: `lowcardinality`, `nullable`, `not_null`, `materialized`, `alias`. Accepts a single string or list. |
-| `use_case` | `str \| null` | `null` | Query pattern hint that determines index generation: `dimension`, `fulltext`, `text_search`, `range`, `bloom`. |
+| `use_case` | `str \| null` | `null` | The question the column is asked, which determines index generation: `dimension`, `exact_match`, `range`, `word_search`, `substring_search`, `key_search`, `similarity_search(<dims>)`. |
 | `default` | `str \| null` | `null` | Raw ClickHouse DEFAULT expression (e.g. `"now64(3)"`, `"generateUUIDv7()"`). Used as MATERIALIZED or ALIAS expr when those attributes are set. |
 | `order` | `int \| null` | `null` | Position in ORDER BY / PRIMARY KEY (0-based). Only columns with `order` set are included in the key. |
 | `expr` | `str \| null` | `null` | DFE directive that tells the loader how to populate this column (see [DFE Expressions](#dfe-expressions)). |
@@ -225,7 +225,7 @@ clause. The loader parses `@` directives from the COMMENT at runtime:
 
 ## Type System
 
-### 13 Primitives
+### 15 Primitives
 
 Primitives are human-readable type names that map to ClickHouse types with sensible
 defaults. You don't need to know ClickHouse storage internals — pick the primitive
@@ -246,6 +246,11 @@ that describes your data.
 | `json` | Structured/semi-structured data | `JSON` | `ZSTD(3)` | Yes |
 | `geo_point` | Latitude/longitude pair | `Point` | `ZSTD(1)` | Yes |
 | `enum` | Fixed set of allowed values | `Enum8(...)` | `ZSTD(1)` | **No** |
+| `map` | String-keyed attributes (labels, tags) | `Map(LowCardinality(String), String)` | `ZSTD(1)` | **No** |
+| `vector` | Embedding for similarity search | `Array(Float32)` | `ZSTD(1)` | **No** |
+
+ClickHouse refuses `Map` and `Array` inside `Nullable`, so neither of the last two
+can be null.
 
 ### Type Wrapping
 
@@ -333,7 +338,7 @@ The `default` field produces different DDL clauses depending on attributes:
 Each primitive has a default nullability. Override with `nullable` or `not_null`:
 
 - **Nullable by default:** `string`, `text`, `integer`, `float`, `datetime`, `date`, `ip`, `uuid`, `json`, `geo_point`
-- **NOT null by default:** `timestamp`, `boolean`, `enum`
+- **NOT null by default:** `timestamp`, `boolean`, `enum`, `map`, `vector`
 
 **Why?** `Nullable(T)` stores two columns (data + null bitmap), doubling storage and
 halving query speed. ORDER BY columns and booleans default to NOT NULL because null
@@ -343,42 +348,56 @@ in these positions destroys index effectiveness.
 
 ## Use Cases
 
-Use cases describe **how you query the column** — not how it's stored. The engine
-translates use cases into ClickHouse indexes.
+A use case names **the question you ask the column** -- never the ClickHouse index
+that answers it. You declare the question, the engine picks the primitive, and it
+can pick a different one on a later ClickHouse without your schema changing.
 
-| Use Case | When to Use | Example Columns |
+| Use Case | The question | Example Columns |
 |----------|------------|-----------------|
-| `dimension` | Filter by exact value: `WHERE status = 'error'` | status, severity, org_id |
-| `fulltext` | Search words: `WHERE hasToken(message, 'error')` | message, log_body |
-| `text_search` | Substring search: `WHERE message LIKE '%refused%'` | syslog_message |
-| `range` | Numeric/time ranges: `WHERE latency > 100` | latency_ms, timestamp |
-| `bloom` | Find specific IDs in high-cardinality columns | trace_id, request_id |
-| *(empty)* | No special query optimisation needed | raw payload, metadata |
+| `dimension` | I filter and group by this: `WHERE status = 'error'` | status, severity, org_id |
+| `exact_match` | I look up specific values | trace_id, request_id |
+| `range` | I query ranges, between, time windows: `WHERE latency > 100` | latency_ms, timestamp |
+| `word_search` | I search for whole words: `WHERE hasToken(message, 'error')` | message, log_body |
+| `substring_search` | I search for fragments inside words: `WHERE message LIKE '%refused%'` | syslog_message |
+| `key_search` | I search the keys and values of a map column | attributes, labels |
+| `similarity_search(<dims>)` | I find records similar to this one | embedding |
+| *(empty)* | No index | raw payload, metadata |
+
+`similarity_search` is the one use case that takes an argument: ClickHouse needs
+the vector's dimension count up front and cannot read it off the column.
 
 ### Use Case → Primitive Constraints
 
 | Use Case | Valid Primitives |
 |----------|-----------------|
 | `dimension` | `string`, `integer`, `boolean`, `enum`, `ip`, `uuid` |
-| `fulltext` | `string`, `text` |
-| `text_search` | `string`, `text` |
+| `exact_match` | `string`, `uuid` |
 | `range` | `integer`, `float`, `datetime`, `timestamp`, `date`, `ip` |
-| `bloom` | `string`, `uuid` |
+| `word_search` | `string`, `text` |
+| `substring_search` | `string`, `text` |
+| `key_search` | `map` |
+| `similarity_search` | `vector` |
 
-Invalid combinations are rejected at validation time (e.g. `fulltext` on an `integer`).
+Invalid combinations are rejected at validation time (e.g. `word_search` on an `integer`).
 
 ### Generated ClickHouse Indexes
+
+What the engine emits today, on ClickHouse 26.3. These are the engine's answers,
+not part of the vocabulary -- read them to size the cost, not to name a column.
 
 | Use Case | Index Type | Granularity | Notes |
 |----------|-----------|-------------|-------|
 | `dimension` | `set(0)` | 4 | Exact distinct values per granule |
-| `fulltext` | `text(tokenizer=splitByNonAlpha)` | 1 | GA text index (v26.2+). Deterministic, row-level filtering. |
-| `text_search` | `text(tokenizer=ngrams(3))` | 1 | Character n-gram text index for substring matching. |
+| `exact_match` | `set(0)` with the `lowcardinality` attribute, else `bloom_filter` | 4 | The bloom filter is probabilistic -- false positives, no false negatives |
 | `range` | `minmax` | 4 | Stores min/max per granule |
-| `bloom` | `bloom_filter` | 4 | Probabilistic — has false positives, no false negatives |
+| `word_search` | `text(tokenizer=splitByNonAlpha)` | 1 | GA text index (v26.2+). Deterministic, row-level filtering. |
+| `substring_search` | `text(tokenizer=ngrams(3))` | 1 | Character n-gram text index for substring matching. |
+| `key_search` | two indexes, `text(tokenizer=array)` over `mapKeys(col)` and `mapValues(col)` | 1 | A text index refuses a `Map` column itself, so the keys and the values are indexed apart |
+| `similarity_search(<dims>)` | `vector_similarity('hnsw', 'cosineDistance', <dims>)` | 1 | `hnsw` is the only method 26.3 implements |
 
-For ClickHouse < v25.10, the engine falls back to legacy bloom-filter indexes
-(`tokenbf_v1`, `ngrambf_v1`) automatically via `use_legacy_indexes=True`.
+For ClickHouse < v25.10, `word_search` and `substring_search` fall back to the
+legacy `tokenbf_v1` and `ngrambf_v1` indexes automatically via
+`use_legacy_indexes=True`.
 
 ---
 
@@ -427,7 +446,7 @@ The profile determines which header columns are included.
 | `_uuid` | `uuid` | | | | `@generated: generateUUIDv7()` |
 | `_org_id` | `string` | `lowcardinality` | `dimension` | 2 | `@source: org_id` |
 | `_source` | `string` | `lowcardinality` | `dimension` | | `@source: first(_source) \| topic_name` |
-| `_raw` | `text` | | `text_search` | | `@captured: raw_payload` |
+| `_raw` | `text` | | `substring_search` | | `@captured: raw_payload` |
 | `_json` | `json` | | | | `@captured: raw_payload as JSON` |
 | `_tags` | `json` | | | | `@source: first(tags/_tags/meta/metadata.tags)` |
 
@@ -741,7 +760,7 @@ versions:
 
       - name: message
         type: text
-        use_case: fulltext
+        use_case: word_search
         expr: "@source: message"
         comment: "Event message body"
 

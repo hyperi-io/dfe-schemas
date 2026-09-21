@@ -13,7 +13,7 @@ versions:
     columns:
       - name: finding_id
         type: string
-        use_case: bloom
+        use_case: exact_match
         expr: "@source: first(Id/id)"
         comment: "Unique finding identifier"
         _field_type: base
@@ -41,7 +41,7 @@ versions:
 
       - name: description
         type: text
-        use_case: fulltext
+        use_case: word_search
         expr: "@source: Description"
         comment: "Detailed finding description"
         _field_type: base

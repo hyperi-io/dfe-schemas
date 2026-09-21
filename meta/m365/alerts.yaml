@@ -13,7 +13,7 @@ versions:
     columns:
       - name: alert_id
         type: string
-        use_case: bloom
+        use_case: exact_match
         expr: "@source: id"
         comment: "Unique alert identifier"
         _field_type: base
@@ -58,7 +58,7 @@ versions:
       - name: description
         type: text
         attribute: [nullable]
-        use_case: fulltext
+        use_case: word_search
         expr: "@source: description"
         comment: "Alert description"
         _field_type: base

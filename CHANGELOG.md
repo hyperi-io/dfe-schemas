@@ -3,6 +3,14 @@
 Rendered by CI and committed back at the end of a release -- do not edit by
 hand. Release notes also appear on the GitHub Releases page, one per tag.
 
+## [0.2.8](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.7...v0.2.8) (2026-09-21)
+
+### Bug Fixes
+
+* **docs:** add the README Context section and an architecture doc ([#38](https://github.com/hyperi-io/dfe-schemas/issues/38)) ([f7e4d14](https://github.com/hyperi-io/dfe-schemas/commit/f7e4d1419d1bcb0dd0c7c2f73497eab8d21ab754)), closes [#32](https://github.com/hyperi-io/dfe-schemas/issues/32)
+* **make:** default PY to uv run python ([6c79570](https://github.com/hyperi-io/dfe-schemas/commit/6c795704f342a82d246039e18add68d52a5b98f6)), closes [#25](https://github.com/hyperi-io/dfe-schemas/issues/25)
+* **schema:** name an index use case for the question, not the ClickHouse index ([#39](https://github.com/hyperi-io/dfe-schemas/issues/39)) ([c7ced12](https://github.com/hyperi-io/dfe-schemas/commit/c7ced120c8d4787031f2c3c72555850cf5e5c78e))
+
 ## [0.2.7](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.6...v0.2.7) (2026-09-17)
 
 ### Bug Fixes

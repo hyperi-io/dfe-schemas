@@ -32,6 +32,7 @@ from pathlib import Path
 import pytest
 
 import dfe_schemas
+from tests.conftest import schema_yaml
 
 ROOT = Path(dfe_schemas.schemas_root())
 
@@ -67,7 +68,7 @@ _TOKENIZER = re.compile(r"tokenizer\s*=\s*'?(?P<name>\w+)'?")
 def _declarations() -> list[tuple[Path, int, str]]:
     """Every tokenizer name declared anywhere in the schema tree, with its line."""
     found: list[tuple[Path, int, str]] = []
-    for path in sorted(ROOT.rglob("*.yaml")):
+    for path in schema_yaml(ROOT):
         for number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
             for match in _TOKENIZER.finditer(line):
                 found.append((path, number, match.group("name")))

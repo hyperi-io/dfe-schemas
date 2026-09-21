@@ -57,6 +57,7 @@ __all__ = [
     "split_use_case",
 ]
 
+
 # A use case names the question a column is asked; the template is the engine's
 # answer, and changes without the vocabulary changing. A shape no template
 # expresses is written out in the definition's own `indexes` list instead.
@@ -506,7 +507,9 @@ class Renderer:
                     f"dimension count, as similarity_search(<dims>)"
                 )
             return [
-                _SIMILARITY_SEARCH_TEMPLATE.format(name=_index_name(column.name), col=quoted, dims=dims)
+                _SIMILARITY_SEARCH_TEMPLATE.format(
+                    name=_index_name(column.name), col=quoted, dims=dims
+                )
             ]
 
         if use_case == "exact_match":

@@ -18,14 +18,14 @@ versions:
     columns:
       - name: id
         type: uuid
-        use_case: bloom
+        use_case: exact_match
         expr: "@source: record.id"
         comment: "Row key of the export"
         _field_type: base
 
       - name: agent_id
         type: uuid
-        use_case: bloom
+        use_case: exact_match
         expr: "@source: record.agent_id"
         _field_type: base
 
@@ -57,7 +57,7 @@ versions:
 
       - name: created_by_user_id
         type: uuid
-        use_case: bloom
+        use_case: exact_match
         expr: "@source: record.created_by_user_id"
         _field_type: base
 
@@ -169,7 +169,7 @@ versions:
 
       - name: parent_id
         type: uuid
-        use_case: bloom
+        use_case: exact_match
         expr: "@source: record.parent_id"
         _field_type: base
 
@@ -194,7 +194,7 @@ versions:
 
       - name: recur_last_task_id
         type: uuid
-        use_case: bloom
+        use_case: exact_match
         expr: "@source: record.recur_last_task_id"
         _field_type: base
 
@@ -207,7 +207,7 @@ versions:
 
       - name: site_id
         type: uuid
-        use_case: bloom
+        use_case: exact_match
         expr: "@source: record.site_id"
         _field_type: base
 

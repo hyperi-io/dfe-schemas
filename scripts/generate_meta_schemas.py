@@ -43,7 +43,7 @@ Typing rules, from the observed JSON kinds of a key across all rows:
   milliseconds, so typing them ``datetime`` would land every value in 1970.
 
 The row key (``--row-key STORE=KEY``, default ``id``) leads the column list and
-takes ``use_case: bloom``; other UUID columns take ``bloom`` when at least half
+takes ``use_case: exact_match``; other UUID columns take ``exact_match`` when at least half
 the rows are distinct and ``dimension`` otherwise. Every expression reads
 ``@source: <record-path>.<key>`` so a schema composes onto the fetcher's
 snapshot envelope, where the provider's record sits under ``record``; pass an
@@ -342,7 +342,7 @@ def derive_column(
     elif kinds == {"str"}:
         primitive, observation = _string_shape(stats, text_min_length)
         if primitive == "uuid":
-            use_case = "bloom" if len(stats.distinct) * 2 >= rows else "dimension"
+            use_case = "exact_match" if len(stats.distinct) * 2 >= rows else "dimension"
         elif primitive in {"ip", "datetime"}:
             use_case = "range"
         elif primitive == "string":
@@ -367,7 +367,7 @@ def derive_column(
             raise GenerateError(
                 f"row key {key!r} resolved to {primitive!r}; a row key must be a string or UUID"
             )
-        use_case = "bloom"
+        use_case = "exact_match"
         attribute = [a for a in attribute if a != "lowcardinality"]
         parts.append("Row key of the export")
     if observation:

@@ -704,7 +704,7 @@ dfe-schemas/
 |   |-- results.yaml
 |   '-- detection_checkpoint.yaml
 |-- meta/                   # Source meta schemas, grouped by provider
-|   |-- aws/  azure/  gcp/  m365/  runzero/
+|   |-- aws/  azure/  beats/  elastic/  gcp/  m365/  otel/  runzero/
 |-- additional/             # Extra-field overlays (aws/, snapshot/)
 |-- argocd/ddl/             # Generated reference SQL (make render)
 '-- README.md
@@ -726,6 +726,28 @@ in the version-tree layout. The typing rules, the row-key handling and the
 docstring; the provider's arguments live in an `@` file beside it
 (`scripts/meta-runzero.args`), so a regeneration is one command and
 `--check` proves the checked-in files still match the dump.
+
+### Generating the Elastic ECS Meta Schema
+
+`meta/elastic/ecs.yaml` is the ECS vocabulary shared by every Beat and the Elastic Agent, generated rather than written: at 1018 columns nobody maintains it by hand. The generator is the `dfe-schemagen` crate in `dfe-transform-elastic-dev`, which takes column types from the ECS spec and the set of referenced names from an `elastic/integrations` clone. A field's column falls out of its whole spec entry, not its `type` alone: `normalize: [array]` makes an array column, `object_type` a searchable map, and `index: false` drops the index Elasticsearch itself never uses.
+
+Both inputs are pinned by commit. `--ecs-version` has no default, so the version on the output is always one somebody chose:
+
+| Input | Pin |
+|-------|-----|
+| `elastic/ecs` | v9.5.0, released 2026-08-04, commit `401807e0547301525acd28c4fb667203fec66d59` |
+| `elastic/integrations` | commit `2c934eb5223bdfcf0ea0db9e3230154933352bda` |
+
+```bash
+env DFE_ECS_SPEC=<ecs checkout>/generated/ecs/ecs_flat.yml \
+    DFE_ELASTIC_SOURCES=<clone root> \
+  cargo run -p dfe-schemagen --release -- \
+    --out <tree> --date <YYYY-MM-DD> --ecs-version 9.5.0
+```
+
+`--date` is passed rather than read from the clock, so the same inputs render the same bytes on any day.
+
+Every column declares `cardinality: unknown`. An Elasticsearch index template carries no cardinality and the generator cannot measure one, so it says so instead of guessing: `exact_match` on an undeclared column renders a bounded `bloom_filter` rather than a dictionary the column may never earn.
 
 ### Store-Snapshot Stores
 

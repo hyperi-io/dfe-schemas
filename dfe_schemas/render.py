@@ -508,7 +508,14 @@ class Renderer:
 
         template = _INDEX_TEMPLATES.get(use_case)
         if template is None:
-            return []
+            # Returning [] here rendered a valid table with no index and no
+            # error, so a retired or misspelled use case looked like a column
+            # that simply wanted none.
+            known = sorted({*_INDEX_TEMPLATES, "exact_match", "key_search", "similarity_search"})
+            raise SchemaError(
+                f"column {column.name!r}: unknown index use case {use_case!r}. "
+                f"Valid: {', '.join(known)}"
+            )
         return [template.format(name=f"idx_{column.name}", col=quoted)]
 
     def _partition(self, columns: list[Column], config: _TableConfig) -> str | None:

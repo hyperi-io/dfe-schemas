@@ -24,6 +24,7 @@ import dfe_schemas
 from dfe_schemas.loader import Column, SchemaError, TypeRegistry
 from dfe_schemas.manifest import load_manifest
 from dfe_schemas.render import Renderer, split_use_case
+from tests.conftest import schema_yaml
 
 ROOT = dfe_schemas.schemas_root()
 
@@ -98,7 +99,7 @@ def test_a_malformed_use_case_is_refused():
 def test_no_schema_declares_a_retired_use_case():
     """The old vocabulary named the ClickHouse index, not the question."""
     retired = {"fulltext", "text_search", "bloom"}
-    for path in sorted(ROOT.rglob("*.yaml")):
+    for path in schema_yaml(ROOT):
         for number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
             stripped = line.strip()
             if not stripped.startswith("use_case:"):

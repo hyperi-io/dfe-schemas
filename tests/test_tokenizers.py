@@ -35,21 +35,20 @@ import dfe_schemas
 
 ROOT = Path(dfe_schemas.schemas_root())
 
-# Accepted across the ClickHouse versions the tree supports; `SELECT name FROM
-# system.tokenizers` is the authority for one server.
+# Version-bound: `SELECT name FROM system.tokenizers` on ClickHouse 26.3.32.14,
+# the version the tree targets. Re-read it off the server on a version bump,
+# because a list wider than the server's permits what the server refuses.
 VALID = frozenset(
     {
-        "splitByNonAlpha",
-        "splitByString",
-        "splitByRegexp",
+        "array",
+        "ngrambf_v1",
         "ngrams",
         "sparseGrams",
-        "array",
-        "asciiCJK",
-        "chinese",
-        "icu",
-        "japanese",
-        "keyValuePairs",
+        "sparse_grams",
+        "splitByNonAlpha",
+        "splitByString",
+        "tokenbf_v1",
+        "unicode_word",
     }
 )
 

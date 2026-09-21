@@ -29,17 +29,17 @@ from tests.conftest import schema_yaml
 ROOT = dfe_schemas.schemas_root()
 
 EXPECTED = {
-    "dimension": ["INDEX idx_c `c` TYPE set(0) GRANULARITY 4"],
-    "exact_match": ["INDEX idx_c `c` TYPE bloom_filter GRANULARITY 4"],
-    "range": ["INDEX idx_c `c` TYPE minmax GRANULARITY 4"],
-    "word_search": ["INDEX idx_c `c` TYPE text(tokenizer=splitByNonAlpha) GRANULARITY 1"],
-    "substring_search": ["INDEX idx_c `c` TYPE text(tokenizer=ngrams(3)) GRANULARITY 1"],
+    "dimension": ["INDEX `idx_c` `c` TYPE set(0) GRANULARITY 4"],
+    "exact_match": ["INDEX `idx_c` `c` TYPE bloom_filter GRANULARITY 4"],
+    "range": ["INDEX `idx_c` `c` TYPE minmax GRANULARITY 4"],
+    "word_search": ["INDEX `idx_c` `c` TYPE text(tokenizer=splitByNonAlpha) GRANULARITY 1"],
+    "substring_search": ["INDEX `idx_c` `c` TYPE text(tokenizer=ngrams(3)) GRANULARITY 1"],
     "key_search": [
-        "INDEX idx_c_key mapKeys(`c`) TYPE text(tokenizer=array) GRANULARITY 1",
-        "INDEX idx_c_value mapValues(`c`) TYPE text(tokenizer=array) GRANULARITY 1",
+        "INDEX `idx_c_key` mapKeys(`c`) TYPE text(tokenizer=array) GRANULARITY 1",
+        "INDEX `idx_c_value` mapValues(`c`) TYPE text(tokenizer=array) GRANULARITY 1",
     ],
     "similarity_search(768)": [
-        "INDEX idx_c `c` TYPE vector_similarity('hnsw', 'cosineDistance', 768) GRANULARITY 1"
+        "INDEX `idx_c` `c` TYPE vector_similarity('hnsw', 'cosineDistance', 768) GRANULARITY 1"
     ],
 }
 
@@ -66,7 +66,7 @@ def test_every_registry_use_case_renders_something(renderer):
 def test_exact_match_on_a_low_cardinality_column_holds_every_value(renderer):
     """set(0) is exact where the column is bounded; the bloom filter is not."""
     column = Column(name="c", use_case="exact_match", attribute=("lowcardinality",))
-    assert renderer._index_defs(column) == ["INDEX idx_c `c` TYPE set(0) GRANULARITY 4"]
+    assert renderer._index_defs(column) == ["INDEX `idx_c` `c` TYPE set(0) GRANULARITY 4"]
 
 
 def test_similarity_search_without_a_dimension_count_is_refused(renderer):
@@ -77,6 +77,19 @@ def test_similarity_search_without_a_dimension_count_is_refused(renderer):
 
 def test_a_column_with_no_use_case_gets_no_index(renderer):
     assert renderer._index_defs(Column(name="c")) == []
+
+
+@pytest.mark.parametrize("name", ["app-type", "a/b", "1st", "select"])
+def test_an_index_name_survives_a_column_name_sql_would_choke_on(renderer, name):
+    """The templates backticked the column and left the index name bare.
+
+    `fortinet_firewall_app-type` parsed as `idx_fortinet_firewall_app` and then
+    choked on the rest, so 22 of the fleet's tables would not create.
+    """
+    column = Column(name=name, use_case="dimension")
+    assert renderer._index_defs(column) == [
+        f"INDEX `idx_{name}` `{name}` TYPE set(0) GRANULARITY 4"
+    ]
 
 
 @pytest.mark.parametrize(

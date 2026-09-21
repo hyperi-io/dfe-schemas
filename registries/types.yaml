@@ -105,8 +105,21 @@ use_cases:
     valid_primitives: [vector]
     parameters: [dims]
 
+# How many distinct values a column holds, measured from real rows rather than
+# guessed from the source type. ONE declaration decides two things that used to
+# be set apart and never kept in agreement: `low` wraps the column in
+# LowCardinality, and `low` is what lets exact_match hold every value in a
+# set(0) instead of falling back to a bloom filter. `unknown` is the default and
+# the honest answer where nothing has been measured -- no LowCardinality, and
+# exact_match takes the bloom filter, which is the safe way to be wrong.
+cardinality:
+  values: [low, high, unknown]
+  default: unknown
+
 # Attribute -> valid primitive constraints (1:M)
 attributes:
+  # The retired spelling of `cardinality: low`; a column declaring it still
+  # reads as low. Declare cardinality on a new column.
   lowcardinality:
     valid_primitives: [string, text, integer, float, date, ip]
   nullable:

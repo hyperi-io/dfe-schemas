@@ -65,7 +65,7 @@ def test_every_registry_use_case_renders_something(renderer):
 
 def test_exact_match_on_a_low_cardinality_column_holds_every_value(renderer):
     """set(0) is exact where the column is bounded; the bloom filter is not."""
-    column = Column(name="c", use_case="exact_match", attribute=("lowcardinality",))
+    column = Column(name="c", use_case="exact_match", cardinality="low")
     assert renderer._index_defs(column) == ["INDEX `idx_c` `c` TYPE set(0) GRANULARITY 4"]
 
 

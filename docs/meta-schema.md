@@ -128,8 +128,9 @@ Each column is a `SchemaColumn`. Only `name` and `type` are required.
 columns:
   - name: _org_id                    # Required: column name
     type: string                     # Required: primitive type
-    attribute: [lowcardinality]      # Optional: storage modifiers
+    cardinality: low                 # Optional: low | high | unknown
     use_case: dimension              # Optional: query pattern → index
+    attribute: [not_null]            # Optional: storage modifiers
     default: null                    # Optional: DEFAULT expression
     order: 2                         # Optional: ORDER BY position
     expr: "@source: org_id"          # Optional: DFE loader directive
@@ -143,7 +144,8 @@ columns:
 |-------|------|---------|-------------|
 | `name` | `str` | *(required)* | Column name. System fields use `_` prefix to avoid collision with source data. |
 | `type` | `str` | *(required)* | Primitive type — one of 15 values (see [Type System](#type-system)). |
-| `attribute` | `list[str]` | `[]` | Storage attributes: `lowcardinality`, `nullable`, `not_null`, `materialized`, `alias`. Accepts a single string or list. |
+| `cardinality` | `str` | `unknown` | How many distinct values the column holds: `low`, `high` or `unknown` (see [Cardinality](#cardinality)). |
+| `attribute` | `list[str]` | `[]` | Storage attributes: `nullable`, `not_null`, `materialized`, `alias`, and the retired `lowcardinality`. Accepts a single string or list. |
 | `use_case` | `str \| null` | `null` | The question the column is asked, which determines index generation: `dimension`, `exact_match`, `range`, `word_search`, `substring_search`, `key_search`, `similarity_search(<dims>)`. |
 | `default` | `str \| null` | `null` | Raw ClickHouse DEFAULT expression (e.g. `"now64(3)"`, `"generateUUIDv7()"`). Used as MATERIALIZED or ALIAS expr when those attributes are set. |
 | `order` | `int \| null` | `null` | Position in ORDER BY / PRIMARY KEY (0-based). Only columns with `order` set are included in the key. |
@@ -254,15 +256,16 @@ can be null.
 
 ### Type Wrapping
 
-When the engine resolves a primitive to a ClickHouse type, it applies Nullable and
-LowCardinality wrapping based on the primitive's defaults and any explicit attributes:
+Nullable comes from the primitive's default and the `nullable` / `not_null`
+attributes. LowCardinality comes from `cardinality` and nothing else:
 
 ```
-string                            → Nullable(String)
-string + [lowcardinality]         → LowCardinality(Nullable(String))
-string + [lowcardinality, not_null] → LowCardinality(String)
-timestamp                         → DateTime64(3,'UTC')          (not nullable by default)
-boolean                           → Bool                         (not nullable by default)
+string                                   → Nullable(String)
+string + cardinality: low                → LowCardinality(Nullable(String))
+string + cardinality: low + [not_null]   → LowCardinality(String)
+string + cardinality: high               → Nullable(String)
+timestamp                                → DateTime64(3,'UTC')   (not nullable by default)
+boolean                                  → Bool                  (not nullable by default)
 ```
 
 Wrapping order: **Nullable wraps inner**, **LowCardinality wraps outer**.
@@ -297,13 +300,44 @@ The engine validates `ch_override` against a catalogue of supported ClickHouse t
 
 ---
 
+## Cardinality
+
+How many distinct values the column holds. One declaration, because it decides
+two things that used to be set apart with nothing keeping them in agreement:
+`attribute: [lowcardinality]` was the storage decision, hand-set, and
+`exact_match` choosing `set(0)` over `bloom_filter` was the index decision,
+derived separately.
+
+| Value | Storage | `exact_match` index |
+|-------|---------|---------------------|
+| `low` | `LowCardinality(...)` | `set(0)` — holds every distinct value exactly |
+| `high` | plain | `bloom_filter` — bounded, probabilistic |
+| `unknown` *(default)* | plain | `bloom_filter` |
+
+`unknown` is the honest default. Nobody re-reviews a field that already looks
+decided, so a column with nothing measured says so, and gets the safe way to be
+wrong: no dictionary, and an index whose cost does not grow with the column.
+
+Measure it rather than guess it. An Elasticsearch index template does not carry
+cardinality, so the converter and the Rust `dfe-schemagen` port both leave it
+`unknown` — correctly. `dfe-engine`'s data-shape service reads it from the rows
+that have already landed (`dfe_engine.services.schema.data_shape_service`) and
+returns a reading carrying the distinct count, the rows it covers and the date
+it was taken.
+
+`attribute: [lowcardinality]` is the retired spelling and still reads as
+`cardinality: low`. Declaring the two against each other is an error, not
+something the loader resolves quietly.
+
+---
+
 ## Attributes
 
 Attributes modify how the type is stored. Specified as a list in YAML.
 
 | Attribute | What It Does | Valid Primitives |
 |-----------|-------------|-----------------|
-| `lowcardinality` | Dictionary encoding — huge performance gain for <10K distinct values | `string`, `text`, `integer`, `float`, `date`, `ip` |
+| `lowcardinality` | Retired — the old spelling of `cardinality: low` | `string`, `text`, `integer`, `float`, `date`, `ip` |
 | `nullable` | Force NULL allowed (overrides primitive default) | all |
 | `not_null` | Force NOT NULL (overrides primitive default) | all |
 | `materialized` | Column computed on INSERT, not stored in source data | all |
@@ -388,7 +422,7 @@ not part of the vocabulary -- read them to size the cost, not to name a column.
 | Use Case | Index Type | Granularity | Notes |
 |----------|-----------|-------------|-------|
 | `dimension` | `set(0)` | 4 | Exact distinct values per granule |
-| `exact_match` | `set(0)` with the `lowcardinality` attribute, else `bloom_filter` | 4 | The bloom filter is probabilistic -- false positives, no false negatives |
+| `exact_match` | `set(0)` on `cardinality: low`, else `bloom_filter` | 4 | The bloom filter is probabilistic -- false positives, no false negatives |
 | `range` | `minmax` | 4 | Stores min/max per granule |
 | `word_search` | `text(tokenizer=splitByNonAlpha)` | 1 | GA text index (v26.2+). Deterministic, row-level filtering. |
 | `substring_search` | `text(tokenizer=ngrams(3))` | 1 | Character n-gram text index for substring matching. |
@@ -438,14 +472,14 @@ The profile determines which header columns are included.
 
 ### timeseries (default) — 9 columns
 
-| Column | Type | Attributes | Use Case | ORDER BY | Expr |
-|--------|------|------------|----------|----------|------|
+| Column | Type | Cardinality | Use Case | ORDER BY | Expr |
+|--------|------|-------------|----------|----------|------|
 | `_timestamp_load` | `timestamp` | | | 0 | `@generated: now64(3)` |
 | `_timestamp` | `datetime` | | `range` | 1 | `@source: timestamp \| now()` |
 | `_timestamp_received` | `datetime` | | | | `@source: first(timestamp_received/received_at)` |
 | `_uuid` | `uuid` | | | | `@generated: generateUUIDv7()` |
-| `_org_id` | `string` | `lowcardinality` | `dimension` | 2 | `@source: org_id` |
-| `_source` | `string` | `lowcardinality` | `dimension` | | `@source: first(_source) \| topic_name` |
+| `_org_id` | `string` | `low` | `dimension` | 2 | `@source: org_id` |
+| `_source` | `string` | `low` | `dimension` | | `@source: first(_source) \| topic_name` |
 | `_raw` | `text` | | `substring_search` | | `@captured: raw_payload` |
 | `_json` | `json` | | | | `@captured: raw_payload as JSON` |
 | `_tags` | `json` | | | | `@source: first(tags/_tags/meta/metadata.tags)` |
@@ -776,7 +810,7 @@ versions:
     columns:
       - name: event_type
         type: string
-        attribute: [lowcardinality]
+        cardinality: low
         use_case: dimension
         comment: "Type of event"
 
@@ -788,7 +822,7 @@ versions:
 
       - name: severity
         type: string
-        attribute: [lowcardinality]
+        cardinality: low
         use_case: dimension
         expr: "@source: severity"
 
@@ -840,7 +874,7 @@ versions:
         # ... all columns from v1.0.0 PLUS:
       - name: geo_country
         type: string
-        attribute: [lowcardinality]
+        cardinality: low
         use_case: dimension
         expr: "@computed: geoip(client_ip).country_code"
         comment: "GeoIP country code"

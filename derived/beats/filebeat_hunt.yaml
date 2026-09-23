@@ -1,0 +1,170 @@
+# Derived schema: Elastic Filebeat -- hunt and investigate
+#
+# The module-agnostic ECS spine. Every filebeat module populates it, because the
+# Elastic ingest pipelines normalise into ECS before shipping. A module whose own
+# namespace is hunted gets an overlay file that repeats this list and adds its
+# columns -- a derived schema narrows its base and cannot inherit another
+# derived schema.
+#
+# The base is the full ECS vocabulary, not meta/beats/filebeat: that file carries
+# 12 columns and cannot express this selection.
+#
+# Measured against Elastic's 1,354 prebuilt non-Windows rules: event.action
+# 69.4%, data_stream.dataset 46.5%, host.os.type 40.4%, event.type 36.4%,
+# process.name 36.0%, event.outcome 29.5%. The module-specific namespaces
+# (aws.cloudtrail.*, kubernetes.audit.*, azure.signinlogs.*) are each a 1-4%
+# tail, which is why the spine is the default and per-module is an overlay.
+
+base: meta/elastic/ecs
+base_version: "1.0.0"
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-09-23"
+    summary: "Filebeat ECS spine: 49 indexed columns, 4 carried for display"
+    select:
+      # -- which source, which module ---------------------------------------
+      # Elastic maps this constant_keyword -- its own per-index constant, and
+      # already the DFE routing key.
+      - name: data_stream_dataset
+        index: dimension
+      - name: event_module
+        index: dimension
+      - name: event_dataset
+        index: dimension
+      - name: agent_type
+        index: dimension
+
+      # -- what happened -----------------------------------------------------
+      - name: event_action
+        index: dimension
+      - name: event_category
+        index: exact_match
+      - name: event_type
+        index: exact_match
+      - name: event_outcome
+        index: dimension
+      - name: event_code
+        index: dimension
+      - name: event_provider
+        index: dimension
+      - name: event_severity
+        index: range
+
+      # -- where -------------------------------------------------------------
+      - name: host_name
+        index: dimension
+      - name: host_os_type
+        index: dimension
+      # host_name already answers the filtering question, and ip cannot take a
+      # bloom filter.
+      - name: host_ip
+        index: none
+      - name: log_level
+        index: dimension
+      - name: log_file_path
+        index: word_search
+      # Elastic maps message as match_only_text -- its own analysed-text type,
+      # i.e. a word-search field rather than a keyword. The shipped
+      # tables/otel/logs.yaml sets the same precedent on Body.
+      - name: message
+        index: word_search
+
+      # -- network -----------------------------------------------------------
+      - name: source_ip
+        index: dimension
+      - name: source_port
+        index: range
+      - name: destination_ip
+        index: dimension
+      - name: destination_port
+        index: range
+      - name: destination_domain
+        index: word_search
+      - name: network_transport
+        index: dimension
+      - name: network_protocol
+        index: dimension
+      - name: network_direction
+        index: dimension
+
+      # -- who ---------------------------------------------------------------
+      - name: user_name
+        index: exact_match
+      - name: user_domain
+        index: dimension
+      - name: user_id
+        index: exact_match
+
+      # -- process (linux and macos modules) ---------------------------------
+      - name: process_name
+        index: exact_match
+      - name: process_executable
+        index: word_search
+      # The ngram index to drop first if the cost is refused: this field is
+      # 7.4% of Elastic's non-Windows rules against 39.1% of Sigma's Windows
+      # ones, and process_args below serves much of the same question for
+      # almost nothing.
+      - name: process_command_line
+        index: substring_search
+      - name: process_args
+        index: exact_match
+      - name: process_parent_name
+        index: exact_match
+      - name: process_pid
+        index: range
+      - name: process_working_directory
+        index: word_search
+
+      # -- files -------------------------------------------------------------
+      - name: file_path
+        index: word_search
+      - name: file_name
+        index: exact_match
+      - name: file_extension
+        index: dimension
+
+      # -- web and proxy modules ---------------------------------------------
+      # url_path and url_domain answer most fragment questions for free, and
+      # _raw's ngram index covers the rest.
+      - name: url_full
+        index: none
+      - name: url_path
+        index: word_search
+      - name: url_domain
+        index: exact_match
+      - name: http_request_method
+        index: dimension
+      - name: http_response_status_code
+        index: range
+      # The cheapest of the three ngram indices and the best value: UA strings
+      # are short and repeat heavily, and they are matched by fragment.
+      - name: user_agent_original
+        index: substring_search
+      - name: dns_question_name
+        index: word_search
+
+      # -- service and container ---------------------------------------------
+      - name: service_name
+        index: exact_match
+      - name: container_id
+        index: exact_match
+      - name: error_message
+        index: none
+
+      # -- cross-field sweeps and labels -------------------------------------
+      # related_ip takes no index: exact_match refuses the ip primitive, and
+      # set(0) over Array(IPv6) stores whole arrays so it cannot answer has().
+      - name: related_ip
+        index: none
+      - name: related_user
+        index: exact_match
+      - name: related_hash
+        index: exact_match
+      - name: tags
+        index: exact_match
+      # The only genuine Map on the table and the only place key_search
+      # belongs; tokenizer=array gives exact key and exact value lookup.
+      - name: labels
+        index: key_search

@@ -27,6 +27,10 @@ from pathlib import Path
 # Directories that contain column-bearing schema YAML.
 SCHEMA_DIRS = ("common-header", "meta", "hunts", "additional")
 
+# Not in SCHEMA_DIRS: a derived schema declares `select`, not `columns`, so it
+# validates by resolving against its base rather than through load_columns.
+DERIVED_DIR = "derived"
+
 TABLES_DIR = "tables"
 
 SOURCES_DIR = "sources"
@@ -172,6 +176,39 @@ def main() -> int:
             except Exception as exc:
                 errors.append(f"{rel}: {exc}")
 
+    derived_files = sorted((repo_root / DERIVED_DIR).rglob("*.yaml"))
+    checked_derived = 0
+    if not hasattr(SchemaLoader, "apply_derived_schema"):
+        print(
+            f"NOT VALIDATED: {len(derived_files)} files under {DERIVED_DIR}/ -- "
+            "the installed dfe-engine cannot resolve a derived schema",
+            file=sys.stderr,
+        )
+    else:
+        import yaml
+
+        for path in derived_files:
+            rel = path.relative_to(repo_root)
+            try:
+                doc = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+                base = doc.get("base")
+                base_version = doc.get("base_version")
+                if not base or not base_version:
+                    errors.append(f"{rel}: a derived schema declares both base and base_version")
+                    continue
+                base_path = repo_root / f"{base}.yaml"
+                if not base_path.exists():
+                    errors.append(f"{rel}: base {base!r} resolves to no file in this repo")
+                    continue
+                base_columns = SchemaLoader.load_columns(base_path, version=base_version)
+                resolved = SchemaLoader.apply_derived_schema(base_columns, path)
+                errors.extend(
+                    f"{rel}: {err}" for err in SchemaLoader.validate_columns(resolved, registry)
+                )
+                checked_derived += 1
+            except Exception as exc:
+                errors.append(f"{rel}: {exc}")
+
     if errors:
         print("Schema validation FAILED:")
         for err in errors:
@@ -179,8 +216,8 @@ def main() -> int:
         return 1
 
     print(
-        f"Validated {len(files)} schema files, {checked_tables} table definitions "
-        f"and {checked_sources} source definitions: OK"
+        f"Validated {len(files)} schema files, {checked_tables} table definitions, "
+        f"{checked_sources} source definitions and {checked_derived} derived schemas: OK"
     )
     return 0
 

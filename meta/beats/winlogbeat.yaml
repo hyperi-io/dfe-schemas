@@ -1,0 +1,903 @@
+# Meta schema: Elastic Winlogbeat
+#
+# The Windows Event Log vocabulary as Winlogbeat ships it: Elastic's
+# `winlog.*` namespace, the `powershell.*` module namespace, and the ECS
+# spine the Winlogbeat modules normalise into. Field names, types and
+# descriptions read from Elastic's own field declarations at elastic/beats
+# tag v9.5.4 (released 2026-09-15) -- `winlogbeat/_meta/fields.common.yml`
+# for `winlog.*`, plus the security and powershell module field references.
+#
+# `winlog.*` sits OUTSIDE core ECS, so meta/elastic/ecs.yaml cannot be the
+# base for a Windows hunt: its 1,018 columns carry no winlog field at all.
+# The ECS-spine columns below are copied from that file unchanged -- same
+# name, type, ch_override, codec, cardinality, use_case, expr and comment --
+# so the two vocabularies cannot disagree about a field they share.
+#
+# Two collection realities this file holds at once. Winlogbeat's collection
+# stage emits `winlog.*` and the raw `winlog.event_data.*` map and nothing
+# else; the module ingest pipelines are what populate `process.*`, `file.*`,
+# `registry.*` and the rest of the ECS spine. A deployment reading channels
+# without a module pipeline has only the winlog columns, which is why they
+# are first-class here rather than left to the common header's `_json`.
+#
+# Column names are the dotted source path with dots replaced by underscores
+# and folded to lower case. `expr` carries the path in the case the shipper
+# actually sends, because dfe-loader reads that directive back out of the
+# ClickHouse column comment to find the field.
+#
+# `winlog.event_data` is an open map keyed per provider and per event, so it
+# cannot be enumerated. The subfields below are the ones Windows hunts key on
+# and that Elastic pre-declares; every other event_data key lands in the
+# common header's `_json` column and stays queryable there.
+
+current: "1.0.0"
+resource_type: core
+
+versions:
+  "1.0.0":
+    date: "2026-09-23"
+    type: model
+    summary: "Winlogbeat 9.5 winlog.* and powershell.* namespaces, plus the ECS spine the modules populate"
+    columns:
+      # -- shipper and stream ------------------------------------------------
+      - name: agent_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: agent.type'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: agent_version
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: agent.version'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: data_stream_dataset
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: data_stream.dataset'
+        comment: 'Elasticsearch mapping type: constant_keyword'
+        _field_type: base
+
+      - name: event_module
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: event.module'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: event_dataset
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: event.dataset'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: log_level
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: log.level'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: message
+        type: text
+        cardinality: unknown
+        use_case: word_search
+        expr: '@source: message'
+        comment: 'Elasticsearch mapping type: match_only_text'
+        _field_type: base
+
+      - name: tags
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tags'
+        comment: 'Elasticsearch mapping type: keyword (normalize: array)'
+        _field_type: base
+
+      - name: labels
+        type: map
+        cardinality: unknown
+        use_case: key_search
+        expr: '@source: labels'
+        comment: 'Elasticsearch mapping type: object (object_type: arbitrary keys)'
+        _field_type: base
+
+      # -- event -------------------------------------------------------------
+      - name: event_code
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: event.code'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: event_action
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: event.action'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: event_category
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: event.category'
+        comment: 'Elasticsearch mapping type: keyword (normalize: array)'
+        _field_type: base
+
+      - name: event_type
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: event.type'
+        comment: 'Elasticsearch mapping type: keyword (normalize: array)'
+        _field_type: base
+
+      - name: event_outcome
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: event.outcome'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: event_kind
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: event.kind'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: event_provider
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: event.provider'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: event_created
+        type: datetime
+        cardinality: unknown
+        use_case: range
+        expr: '@source: event.created'
+        comment: 'Elasticsearch mapping type: date'
+        _field_type: base
+
+      - name: rule_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: rule.name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- host --------------------------------------------------------------
+      - name: host_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: host.name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: host_hostname
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: host.hostname'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: host_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: host.id'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: host_ip
+        type: ip
+        ch_override: Array(IPv6)
+        codec: LZ4
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: host.ip'
+        comment: 'Elasticsearch mapping type: ip (normalize: array)'
+        _field_type: base
+
+      - name: host_os_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: host.os.type'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: host_os_version
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: host.os.version'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- winlog: the Windows Event Log envelope ----------------------------
+      # Outside ECS. Every column in this block is declared in Winlogbeat's
+      # own fields.common.yml at v9.5.4.
+      - name: winlog_channel
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: winlog.channel'
+        comment: 'Event log channel the record was read from. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: winlog_computer_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: winlog.computer_name'
+        comment: 'Computer that generated the record. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: winlog_event_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: winlog.event_id'
+        comment: 'Event identifier, unique per provider. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: winlog_provider_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: winlog.provider_name'
+        comment: 'Provider that logged the record. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: winlog_provider_guid
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: winlog.provider_guid'
+        comment: 'GUID of the provider that logged the record. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: winlog_record_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: winlog.record_id'
+        comment: 'Sequential record number within the channel. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: winlog_opcode
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: winlog.opcode'
+        comment: 'Opcode declared by the event definition. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: winlog_task
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: winlog.task'
+        comment: 'Task declared by the event definition. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: winlog_keywords
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: winlog.keywords'
+        comment: 'Event classification labels; Winlogbeat sends a list. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: winlog_activity_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: winlog.activity_id'
+        comment: 'GUID grouping the events of one activity. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: winlog_related_activity_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: winlog.related_activity_id'
+        comment: 'GUID of the activity control was transferred to. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: winlog_version
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: winlog.version'
+        comment: 'Version number of the event definition. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: winlog_time_created
+        type: datetime
+        cardinality: unknown
+        use_case: range
+        expr: '@source: winlog.time_created'
+        comment: 'Time the provider created the event. Elasticsearch mapping type: date'
+        _field_type: base
+
+      - name: winlog_process_pid
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: winlog.process.pid'
+        comment: 'PID of the process that logged the record, not the subject process. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: winlog_process_thread_id
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: winlog.process.thread.id'
+        comment: 'Thread that logged the record. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: winlog_user_identifier
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: winlog.user.identifier'
+        comment: 'Windows SID of the account the event is about. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: winlog_user_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: winlog.user.name'
+        comment: 'Account name resolved from the SID, omitted when the SID does not resolve. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: winlog_user_domain
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: winlog.user.domain'
+        comment: 'Domain of the account resolved from the SID. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: winlog_user_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: winlog.user.type'
+        comment: 'Account type resolved from the SID. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- winlog: security module enrichments -------------------------------
+      # Present only where the security module ingest pipeline runs.
+      - name: winlog_logon_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: winlog.logon.id'
+        comment: 'Logon session id, the key that joins one session together. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: winlog_logon_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: winlog.logon.type'
+        comment: 'Logon type name, resolved from the LogonType ordinal. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: winlog_logon_failure_reason
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: winlog.logon.failure.reason'
+        comment: 'Why the logon failed. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: winlog_logon_failure_status
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: winlog.logon.failure.status'
+        comment: 'Text resolved from the hexadecimal Status field. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: winlog_logon_failure_sub_status
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: winlog.logon.failure.sub_status'
+        comment: 'Text resolved from the hexadecimal SubStatus field. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- winlog.event_data: the named subfields hunts key on ---------------
+      # The rest of this open map stays in the common header's _json column.
+      - name: winlog_event_data_calltrace
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: winlog.event_data.CallTrace'
+        comment: 'Sysmon 10 call stack of the process that requested access. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: winlog_event_data_grantedaccess
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: winlog.event_data.GrantedAccess'
+        comment: 'Sysmon 10 access mask granted over the target process, as hex. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: winlog_event_data_targetimage
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: winlog.event_data.TargetImage'
+        comment: 'Sysmon 10 image of the process that was accessed. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: winlog_event_data_integritylevel
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: winlog.event_data.IntegrityLevel'
+        comment: 'Mandatory integrity level the process ran at. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: winlog_event_data_logontype
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: winlog.event_data.LogonType'
+        comment: 'Raw logon-type ordinal; winlog_logon_type is its resolved name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: winlog_event_data_attributeldapdisplayname
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: winlog.event_data.AttributeLDAPDisplayName'
+        comment: 'Directory attribute a 4662 or 5136 event touched. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- powershell module -------------------------------------------------
+      - name: powershell_file_script_block_text
+        type: text
+        cardinality: unknown
+        use_case: word_search
+        expr: '@source: powershell.file.script_block_text'
+        comment: 'Text of the executed script block. Elasticsearch mapping type: text'
+        _field_type: base
+
+      - name: powershell_file_script_block_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: powershell.file.script_block_id'
+        comment: 'Id that reassembles a script block split across several 4104 events. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: powershell_sequence
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: powershell.sequence'
+        comment: 'Position of this message within the script block. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: powershell_total
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: powershell.total'
+        comment: 'Number of messages the script block was split into. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: powershell_engine_version
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: powershell.engine.version'
+        comment: 'PowerShell engine version that ran the block. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- process -----------------------------------------------------------
+      - name: process_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: process_executable
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.executable'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: process_command_line
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.command_line'
+        comment: 'Elasticsearch mapping type: wildcard'
+        _field_type: base
+
+      - name: process_args
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.args'
+        comment: 'Elasticsearch mapping type: keyword (normalize: array)'
+        _field_type: base
+
+      - name: process_pid
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: process.pid'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: process_entity_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.entity_id'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: process_working_directory
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.working_directory'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: process_pe_original_file_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.pe.original_file_name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: process_hash_sha256
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.hash.sha256'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: process_code_signature_subject_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.code_signature.subject_name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: process_code_signature_trusted
+        type: boolean
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: process.code_signature.trusted'
+        comment: 'Elasticsearch mapping type: boolean'
+        _field_type: base
+
+      - name: process_parent_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.parent.name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: process_parent_executable
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.parent.executable'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: process_parent_command_line
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.parent.command_line'
+        comment: 'Elasticsearch mapping type: wildcard'
+        _field_type: base
+
+      - name: process_parent_args
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.parent.args'
+        comment: 'Elasticsearch mapping type: keyword (normalize: array)'
+        _field_type: base
+
+      - name: process_parent_pid
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: process.parent.pid'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: process_parent_entity_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.parent.entity_id'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- user --------------------------------------------------------------
+      - name: user_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: user.name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: user_domain
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: user.domain'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: user_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: user.id'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- file and loaded modules -------------------------------------------
+      - name: file_path
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: file.path'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: file_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: file.name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: file_directory
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: file.directory'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: file_extension
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: file.extension'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: file_hash_sha256
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: file.hash.sha256'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: dll_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: dll.name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: dll_path
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: dll.path'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- registry ----------------------------------------------------------
+      - name: registry_path
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: registry.path'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: registry_key
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: registry.key'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: registry_value
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: registry.value'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: registry_data_strings
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: registry.data.strings'
+        comment: 'Elasticsearch mapping type: wildcard (normalize: array)'
+        _field_type: base
+
+      - name: registry_hive
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: registry.hive'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- network and dns ---------------------------------------------------
+      - name: source_ip
+        type: ip
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: source.ip'
+        comment: 'Elasticsearch mapping type: ip'
+        _field_type: base
+
+      - name: source_port
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: source.port'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: destination_ip
+        type: ip
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: destination.ip'
+        comment: 'Elasticsearch mapping type: ip'
+        _field_type: base
+
+      - name: destination_port
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: destination.port'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: network_direction
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: network.direction'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: network_protocol
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: network.protocol'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: network_transport
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: network.transport'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: dns_question_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: dns.question.name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: service_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: service.name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- cross-field sweeps ------------------------------------------------
+      - name: related_user
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: related.user'
+        comment: 'Elasticsearch mapping type: keyword (normalize: array)'
+        _field_type: base
+
+      - name: related_hash
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: related.hash'
+        comment: 'Elasticsearch mapping type: keyword (normalize: array)'
+        _field_type: base
+
+      - name: related_ip
+        type: ip
+        ch_override: Array(IPv6)
+        codec: LZ4
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: related.ip'
+        comment: 'Elasticsearch mapping type: ip (normalize: array)'
+        _field_type: base

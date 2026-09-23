@@ -1,0 +1,229 @@
+# Derived schema: Elastic Winlogbeat -- hunt and investigate
+#
+# The Windows spine: the ECS columns the Winlogbeat module ingest pipelines
+# populate, plus the `winlog.*` and `powershell.*` fields that have no ECS
+# equivalent and that Windows detections key on directly.
+#
+# The base is meta/beats/winlogbeat, not meta/elastic/ecs: `winlog.*` sits
+# outside core ECS, so the ECS vocabulary defines none of the 11 winlog and
+# powershell columns below and cannot satisfy this selection.
+#
+# Index choices measured against two rule corpora: SigmaHQ's 2,410 Windows
+# rules under rules/windows (commit 16eb587) and Elastic's 493 prebuilt
+# Windows detection rules under rules/windows (commit c3e4e4e). Each count
+# is the number of rules whose detection references that field. The heaviest
+# are host.os.type 96.1% and event.type 63.9% of the Elastic rules, and
+# Image 50.6% and CommandLine 39.1% of the Sigma rules.
+#
+# Sigma expresses the channel through `logsource`, not as a detection field,
+# so the Sigma counts understate winlog_channel. Columns carrying no rule
+# count at all -- agent_type, log_level, message, the related_* sweeps, tags,
+# labels, powershell_file_script_block_id -- are reasoned from what the hunt
+# needs, not measured.
+
+base: meta/beats/winlogbeat
+base_version: "1.0.0"
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-09-23"
+    summary: "Windows hunt spine: 59 indexed columns, 4 carried for display"
+    select:
+      # -- which source, which channel ---------------------------------------
+      # Elastic maps this constant_keyword per index, and it is already the
+      # DFE routing key.
+      - name: data_stream_dataset
+        index: dimension
+      - name: agent_type
+        index: dimension
+      # A handful of channels per host, and the first cut of almost every
+      # Windows hunt.
+      - name: winlog_channel
+        index: dimension
+      # 86 Sigma rules, 79 of them an exact match.
+      - name: winlog_provider_name
+        index: dimension
+
+      # -- what happened ------------------------------------------------------
+      # 325 Sigma rules, every one an exact match against a bounded id set.
+      - name: winlog_event_id
+        index: dimension
+      # The ECS mirror of winlog_event_id, and the field Elastic's own rules
+      # use: 68 of 493.
+      - name: event_code
+        index: dimension
+      - name: event_action
+        index: dimension
+      # Array(String): set(0) over an array stores whole arrays and cannot
+      # answer has(), so these two take the bloom filter, never dimension.
+      - name: event_category
+        index: exact_match
+      - name: event_type
+        index: exact_match
+      - name: event_outcome
+        index: dimension
+
+      # -- where --------------------------------------------------------------
+      - name: host_name
+        index: dimension
+      # Winlogbeat's own computer name, which survives a deployment with no
+      # module pipeline to fill host.name.
+      - name: winlog_computer_name
+        index: dimension
+      # An agent-minted GUID, so equality against a high-cardinality value.
+      - name: host_id
+        index: exact_match
+      # 474 of Elastic's 493 Windows rules gate on it.
+      - name: host_os_type
+        index: dimension
+      # Carried, not indexed: Array(IPv6) refuses exact_match, and dimension
+      # over an array cannot answer has().
+      - name: host_ip
+        index: none
+      - name: log_level
+        index: dimension
+      # Windows renders the whole event into message, which is where a hunt
+      # falls back when a provider's event_data is not extracted.
+      - name: message
+        index: word_search
+
+      # -- who ----------------------------------------------------------------
+      - name: user_name
+        index: exact_match
+      - name: user_domain
+        index: dimension
+      # The SID, and the identity field Elastic's rules prefer: 84 of 493.
+      - name: user_id
+        index: exact_match
+      # The key that joins every event of one logon session; a correlation
+      # key rather than a filter, which is why neither corpus counts it high.
+      - name: winlog_logon_id
+        index: exact_match
+      # Eleven defined values, and 14 of Elastic's 493 rules gate on it.
+      - name: winlog_logon_type
+        index: dimension
+
+      # -- process ------------------------------------------------------------
+      - name: process_name
+        index: exact_match
+      # 1,112 of the 1,219 Sigma rules using Image match a path tail, which
+      # the path tokens answer without an ngram index.
+      - name: process_executable
+        index: word_search
+      # The first of three ngram indices, and the one that earns it: 943
+      # Sigma rules, 700 of them `contains` and 351 `contains|all`.
+      - name: process_command_line
+        index: substring_search
+      - name: process_args
+        index: exact_match
+      # 588 Sigma rules and 92 Elastic ones: the rename-resistant answer to
+      # "which binary", where process_name is not.
+      - name: process_pe_original_file_name
+        index: exact_match
+      - name: process_pid
+        index: range
+      - name: process_entity_id
+        index: exact_match
+      - name: process_hash_sha256
+        index: exact_match
+      - name: process_code_signature_subject_name
+        index: exact_match
+      - name: process_code_signature_trusted
+        index: dimension
+      - name: process_parent_name
+        index: exact_match
+      - name: process_parent_executable
+        index: word_search
+      # Carried: 59 Sigma rules against 943 for the child, and a second
+      # command-line ngram index is not worth its write cost.
+      - name: process_parent_command_line
+        index: none
+      # Carried: 8 Sigma rules and 3 Elastic ones.
+      - name: process_working_directory
+        index: none
+      # Four or five distinct values, and 26 Sigma rules matching it exactly.
+      - name: winlog_event_data_integritylevel
+        index: dimension
+
+      # -- sysmon process access (event 10) -----------------------------------
+      # The second ngram index: a call stack is matched by the module name
+      # inside it, 11 of the 16 Sigma rules using `contains`.
+      - name: winlog_event_data_calltrace
+        index: substring_search
+      # A short hex mask, 14 of 16 Sigma rules matching it exactly.
+      - name: winlog_event_data_grantedaccess
+        index: exact_match
+      - name: winlog_event_data_targetimage
+        index: word_search
+
+      # -- files and loaded modules -------------------------------------------
+      # 131 of the 186 Sigma rules using TargetFilename match a path tail.
+      - name: file_path
+        index: word_search
+      - name: file_name
+        index: exact_match
+      - name: file_extension
+        index: dimension
+      # 87 of the 103 Sigma rules using ImageLoaded match a path tail.
+      - name: dll_path
+        index: word_search
+      - name: dll_name
+        index: exact_match
+
+      # -- registry -----------------------------------------------------------
+      # 247 Sigma rules, 143 matching a key tail and 143 a fragment; the
+      # backslash-separated key names tokenise, so word_search answers both.
+      - name: registry_path
+        index: word_search
+      - name: registry_value
+        index: exact_match
+      # Array(String), so the bloom filter rather than dimension.
+      - name: registry_data_strings
+        index: exact_match
+
+      # -- powershell ---------------------------------------------------------
+      # The third and last ngram index: 163 Sigma rules and 40 Elastic ones,
+      # and 186 of the Sigma matches are `contains`.
+      - name: powershell_file_script_block_text
+        index: substring_search
+      # Reassembles a script block split across several 4104 events.
+      - name: powershell_file_script_block_id
+        index: exact_match
+
+      # -- directory service --------------------------------------------------
+      # 8 Sigma rules and 10 Elastic ones, every one an exact match.
+      - name: winlog_event_data_attributeldapdisplayname
+        index: exact_match
+
+      # -- network and dns ----------------------------------------------------
+      - name: source_ip
+        index: dimension
+      - name: destination_ip
+        index: dimension
+      - name: destination_port
+        index: range
+      - name: network_direction
+        index: dimension
+      - name: network_transport
+        index: dimension
+      - name: dns_question_name
+        index: word_search
+
+      # -- service ------------------------------------------------------------
+      - name: service_name
+        index: exact_match
+
+      # -- cross-field sweeps and labels --------------------------------------
+      - name: related_user
+        index: exact_match
+      - name: related_hash
+        index: exact_match
+      # Carried: Array(IPv6) takes neither exact_match nor a usable dimension.
+      - name: related_ip
+        index: none
+      - name: tags
+        index: exact_match
+      # The only Map on the table and the only place key_search belongs.
+      - name: labels
+        index: key_search

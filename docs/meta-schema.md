@@ -210,13 +210,14 @@ correlated columns and hints for the rest.
 ### How `expr` and `comment` Become DDL
 
 In the generated DDL, `expr` and `comment` are combined into a single ClickHouse COMMENT
-clause. The loader parses `@` directives from the COMMENT at runtime:
+clause. The loader parses the `@` directives it acts on from the COMMENT at runtime
+(see "DFE Expressions" above for which ones):
 
 ```sql
 -- Both expr and comment:
 `_timestamp` DateTime64(3,'UTC') COMMENT '@source: timestamp | now() — Event timestamp'
 
--- Expr only:
+-- Expr only (descriptive -- the DEFAULT clause is what the loader actually reads):
 `_uuid` UUID DEFAULT generateUUIDv7() COMMENT '@generated: generateUUIDv7()'
 
 -- Comment only:
@@ -437,18 +438,29 @@ legacy `tokenbf_v1` and `ngrambf_v1` indexes automatically via
 
 ## DFE Expressions
 
-The `expr` field carries directives that tell the loader how to populate each column.
-These are emitted as ClickHouse column comments and parsed by the Rust loader from
-`system.columns` at runtime.
+The `expr` field carries directives, emitted as ClickHouse column comments. The
+Rust loader reads them back from `system.columns` at runtime, but of the five
+distinct directives below it only acts on three -- `@source`, `@renamed`,
+`@computed`. `@generated` and `@config` are dropped as unknown directives
+(`DIRECTIVE_NAMES` in dfe-loader's `src/column_meta/mod.rs`).
 
-| Directive | Purpose | Example |
-|-----------|---------|---------|
-| `@source: field` | Copy from source data | `@source: timestamp \| now()` |
-| `@source: first(a/b/c)` | First non-null from list | `@source: first(user_id/uid/id)` |
-| `@generated: expr` | ClickHouse generates via DEFAULT — loader omits | `@generated: now64(3)` |
-| `@renamed: field` | Zero-copy field rename | `@renamed: logoriginal` |
-| `@computed: expr` | Derived/enriched value | `@computed: geoip(ip).country_code` |
-| `@config: path` | Mapping is configurable | `@config: routing.org_id_field` |
+| Directive | Purpose | Example | Loader-parsed |
+|-----------|---------|---------|----------------|
+| `@source: field` | Copy from source data | `@source: timestamp \| now()` | Yes |
+| `@source: first(a/b/c)` | First non-null from list | `@source: first(user_id/uid/id)` | Yes |
+| `@generated: expr` | Descriptive: ClickHouse generates via DEFAULT | `@generated: now64(3)` | No -- see below |
+| `@renamed: field` | Zero-copy field rename | `@renamed: logoriginal` | Yes |
+| `@computed: expr` | Derived/enriched value | `@computed: geoip(ip).country_code` | Yes |
+| `@config: path` | Descriptive: mapping is configurable | `@config: routing.org_id_field` | No -- see below |
+
+`@generated` describes a DEFAULT/MATERIALIZED/ALIAS clause that already lives
+in the column's own `default:`/`attribute:` fields; the loader omits the field
+because it reads that clause's kind straight from `system.columns`
+(`default_kind`), not because it parsed the `@generated:` text. `@config`
+documents that some other field's value is driven by loader config (for
+example `routing.org_id_field`) rather than hardcoded -- the loader never
+reads the comment's path to resolve it. See dfe-loader
+`docs/clickhouse/DDL-DIRECTIVES.md` for the full mechanism.
 
 `_raw` and `_json` carry no directive. What they hold depends on the loader's
 capture mode, not on an `expr`.

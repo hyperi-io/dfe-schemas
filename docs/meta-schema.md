@@ -447,10 +447,11 @@ These are emitted as ClickHouse column comments and parsed by the Rust loader fr
 | `@source: first(a/b/c)` | First non-null from list | `@source: first(user_id/uid/id)` |
 | `@generated: expr` | ClickHouse generates via DEFAULT — loader omits | `@generated: now64(3)` |
 | `@renamed: field` | Zero-copy field rename | `@renamed: logoriginal` |
-| `@captured: payload` | Raw payload sidecar | `@captured: raw_payload` |
-| `@captured: what as TYPE` | Captured and cast | `@captured: raw_payload as JSON` |
 | `@computed: expr` | Derived/enriched value | `@computed: geoip(ip).country_code` |
 | `@config: path` | Mapping is configurable | `@config: routing.org_id_field` |
+
+`_raw` and `_json` carry no directive. What they hold depends on the loader's
+capture mode, not on an `expr`.
 
 Column comments have **highest precedence** in the loader — above built-in presets
 and external remap files. The schema definition IS the authoritative field mapping.
@@ -480,8 +481,8 @@ The profile determines which header columns are included.
 | `_uuid` | `uuid` | | | | `@generated: generateUUIDv7()` |
 | `_org_id` | `string` | `low` | `dimension` | 2 | `@source: org_id` |
 | `_source` | `string` | `low` | `dimension` | | `@source: first(_source) \| topic_name` |
-| `_raw` | `text` | | `substring_search` | | `@captured: raw_payload` |
-| `_json` | `json` | | | | `@captured: raw_payload as JSON` |
+| `_raw` | `text` | | `substring_search` | | capture mode |
+| `_json` | `json` | | | | capture mode |
 | `_tags` | `json` | | | | `@source: first(tags/_tags/meta/metadata.tags)` |
 
 ### minimal — 5 columns
@@ -589,9 +590,9 @@ CREATE TABLE IF NOT EXISTS {db}.windows_audit
     `_org_id` LowCardinality(Nullable(String)) CODEC(ZSTD(1))
         COMMENT '@source: org_id — Tenant/organisation identifier',
     `_raw` Nullable(String) CODEC(ZSTD(3))
-        COMMENT '@captured: raw_payload — Original event payload as text',
+        COMMENT 'Raw payload text, when the loader capture mode writes one',
     `_json` JSON CODEC(ZSTD(3))
-        COMMENT '@captured: raw_payload as JSON — Original event payload as JSON',
+        COMMENT 'The payload as structured JSON, when the loader capture mode writes one',
     `user_name` Nullable(String) CODEC(ZSTD(1))
         COMMENT '@source: first(user_id/uid/id) — User identifier',
     `source_ip` Nullable(IPv6) CODEC(LZ4)

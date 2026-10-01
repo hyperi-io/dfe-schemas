@@ -19,8 +19,7 @@ build:
 
 test:
   python:
-    # The package sits at the repo root, not under src/. hyperi-ci appends a
-    # fixed `--cov=src`, so the real package has to be named here.
+    # Coverage measures the shipped package alone: hyperi-ci would also add scripts/, which is maintainer tooling the wheel does not carry.
     args:
       - "-v"
       - "--tb=short"

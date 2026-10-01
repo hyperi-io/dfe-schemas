@@ -60,8 +60,6 @@ The runZero stores, from a directory holding a dump of the ``.jsonl`` exports::
     scripts/generate_meta_schemas.py --dump /path/to/dump @scripts/meta-runzero.args
 """
 
-from __future__ import annotations
-
 import argparse
 import datetime as dt
 import ipaddress
@@ -165,6 +163,7 @@ class StoreSchema:
 
     @property
     def nullable_count(self) -> int:
+        """How many generated columns carry the ``nullable`` attribute."""
         return sum(1 for col in self.columns if "nullable" in col.attribute)
 
 
@@ -520,6 +519,7 @@ def parse_pairs(values: list[str] | None, option: str) -> dict[str, str]:
 
 
 def main() -> int:
+    """Write one schema per store; exit 2 on bad arguments, 1 on a failed or stale store."""
     parser = argparse.ArgumentParser(
         description=__doc__,
         formatter_class=argparse.RawDescriptionHelpFormatter,

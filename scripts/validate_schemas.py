@@ -18,11 +18,12 @@ ClickHouse types, so the check is that each one builds a TableSpec.
 ``sources/`` likewise: each file must build a Source.
 """
 
-from __future__ import annotations
-
 import os
 import sys
 from pathlib import Path
+from typing import Any
+
+from ruamel.yaml import YAML
 
 # Directories that contain column-bearing schema YAML.
 SCHEMA_DIRS = ("common-header", "meta", "hunts", "additional")
@@ -44,11 +45,14 @@ ENGINE_ARGUMENT_RULES = ("none", "optional", "required")
 SOURCE_NAME_PLACEHOLDER = "validate"
 
 
+def _read_yaml(path: Path) -> Any:
+    """Parse one file with the YAML 1.2 safe loader dfe-engine reads these files with."""
+    return YAML(typ="safe").load(path.read_text(encoding="utf-8"))
+
+
 def _engine_registry_errors(*, path: Path) -> list[str]:
     """Every malformed entry in the engine registry, as one message each."""
-    import yaml
-
-    engines = (yaml.safe_load(path.read_text(encoding="utf-8")) or {}).get("engines") or []
+    engines = (_read_yaml(path) or {}).get("engines") or []
     errors = []
     names = set()
     for entry in engines:
@@ -75,9 +79,13 @@ def main() -> int:
     repo_root = Path(__file__).resolve().parent.parent
     registries = repo_root / REGISTRIES_DIR
 
+    # dfe-engine is deliberately not a dependency: this script runs under its interpreter.
     try:
-        from dfe_engine.schema.schema_loader import SchemaLoader, SchemaLoadError
-        from dfe_engine.source.type_registry import TypeRegistry
+        from dfe_engine.schema.schema_loader import (  # ty: ignore[unresolved-import]
+            SchemaLoader,
+            SchemaLoadError,
+        )
+        from dfe_engine.source.type_registry import TypeRegistry  # ty: ignore[unresolved-import]
     except ImportError as exc:  # pragma: no cover - environment guard
         print(
             "dfe-engine is not importable. Install it first. Error: " + str(exc),
@@ -109,7 +117,7 @@ def main() -> int:
     table_files = sorted((repo_root / TABLES_DIR).rglob("*.yaml"))
     checked_tables = 0
     try:
-        from dfe_engine.schema.table_loader import (
+        from dfe_engine.schema.table_loader import (  # ty: ignore[unresolved-import]
             load_table_config,
             load_table_spec,
             load_view_ddl,
@@ -141,7 +149,7 @@ def main() -> int:
     source_files = sorted((repo_root / SOURCES_DIR).rglob("*.yaml"))
     checked_sources = 0
     try:
-        from dfe_engine.source.models import Source
+        from dfe_engine.source.models import Source  # ty: ignore[unresolved-import]
     except ImportError:
         print(
             f"NOT VALIDATED: {len(source_files)} files under {SOURCES_DIR}/ -- "
@@ -149,8 +157,9 @@ def main() -> int:
             file=sys.stderr,
         )
     else:
-        import yaml
-        from dfe_engine.source.engine_registry import EngineRegistry
+        from dfe_engine.source.engine_registry import (  # ty: ignore[unresolved-import]
+            EngineRegistry,
+        )
 
         # The engine saves a source only when its engine follows the variant's argument rule; an older dfe-engine has no such check and cannot read this registry format.
         check_arguments = None
@@ -168,7 +177,7 @@ def main() -> int:
         for path in source_files:
             rel = path.relative_to(repo_root)
             try:
-                doc = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+                doc = _read_yaml(path) or {}
                 source = Source.model_validate({**doc, "source": SOURCE_NAME_PLACEHOLDER})
                 if check_arguments is not None and source.schema_config.engine:
                     check_arguments(source.schema_config.engine)
@@ -185,12 +194,10 @@ def main() -> int:
             file=sys.stderr,
         )
     else:
-        import yaml
-
         for path in derived_files:
             rel = path.relative_to(repo_root)
             try:
-                doc = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+                doc = _read_yaml(path) or {}
                 base = doc.get("base")
                 base_version = doc.get("base_version")
                 if not base or not base_version:

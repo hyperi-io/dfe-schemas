@@ -60,7 +60,7 @@ the one remaining cross-repo step.
 
 ## Structure
 
-```
+```text
 dfe-schemas/
 |-- manifest.yaml      # THE apply manifest: every object, in dependency order
 |-- common-header/     # header profiles: timeseries (9 col, default),

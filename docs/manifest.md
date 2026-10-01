@@ -50,7 +50,7 @@ definition. One table definition renders three ways:
 |---|---|---|
 | `single` | `MergeTree()` | none |
 | `replicated` | `ReplicatedMergeTree` | none -- a Replicated database propagates DDL itself |
-| `replicated_on_cluster` | `ReplicatedMergeTree` | ` ON CLUSTER <name>` |
+| `replicated_on_cluster` | `ReplicatedMergeTree` | `" ON CLUSTER <name>"` |
 
 The replica path and name are never emitted: they come from the server's
 `default_replica_path` and `default_replica_name` macros, which are the

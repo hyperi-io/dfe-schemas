@@ -1,5 +1,5 @@
 #  Project:   dfe-schemas
-#  File:      tests/unit/test_ddl_engine.py
+#  File:      tests/test_clickhouse_engine.py
 #  Purpose:   Cover engine selection -- the cascade, and what may emit ON CLUSTER
 #  Language:  Python
 #
@@ -13,8 +13,6 @@ loud. The dangerous direction is the other one: a plain MergeTree on a cluster
 is accepted and then splits data across replicas, so these tests pin which
 inputs may produce a replicated form and which may fan DDL out with ON CLUSTER.
 """
-
-from __future__ import annotations
 
 import pytest
 
@@ -35,9 +33,11 @@ class _FakeClient:
         self._macros = macros
         self._clusters = clusters
         self.queries: list[str] = []
+        self.parameters: list[dict[str, str] | None] = []
 
-    def query(self, sql: str):
+    def query(self, sql: str, parameters: dict[str, str] | None = None):
         self.queries.append(sql)
+        self.parameters.append(parameters)
         if "cloud_mode" in sql:
             return _Result([[self._cloud]] if self._cloud is not None else [])
         if "system.databases" in sql:
@@ -53,7 +53,7 @@ class _FakeClient:
 
 
 class _ExplodingClient:
-    def query(self, sql: str):
+    def query(self, sql: str, parameters: dict[str, str] | None = None):
         raise RuntimeError("server unreachable")
 
 
@@ -187,6 +187,19 @@ def test_sensing_is_cached_per_database():
     resolver.resolve(EngineSpec("ReplacingMergeTree"), "db")
 
     assert len(client.queries) == after_first
+
+
+def test_the_database_name_is_bound_rather_than_spliced_into_the_sql():
+    """A name carrying a quote must reach the server as a value, never as SQL."""
+    hostile = "x' OR name != '"
+    client = _FakeClient(db_engine="Replicated")
+    resolved = EngineResolver(client=client).resolve(EngineSpec("MergeTree"), hostile)
+
+    index = next(i for i, sql in enumerate(client.queries) if "system.databases" in sql)
+    assert "{database:String}" in client.queries[index]
+    assert hostile not in client.queries[index]
+    assert client.parameters[index] == {"database": hostile}
+    assert resolved.clause == "ReplicatedMergeTree"
 
 
 def test_a_different_database_is_sensed_again():

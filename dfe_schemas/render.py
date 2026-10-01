@@ -23,8 +23,6 @@ single node or to a cluster. That is what lets the applier's ledger answer
 "has this object changed" rather than "was it applied somewhere else".
 """
 
-from __future__ import annotations
-
 import hashlib
 import re
 from dataclasses import dataclass, replace
@@ -253,6 +251,21 @@ class Renderer:
         broker_count: int = 1,
         kafka_tiered_storage: bool = False,
     ) -> None:
+        """Bind the manifest to one deployment's settings.
+
+        Args:
+            manifest: the checked manifest whose objects this renders.
+            topology: the deployment shape, which picks each table's engine form
+                and whether DDL fans out with ``ON CLUSTER``.
+            data_database: the name a parameter-bound database key resolves to.
+            default_ttl_days: retention for a time-series table that declares
+                none. None leaves such a table without a TTL.
+            cluster: the cluster ``ON CLUSTER`` names, read only under
+                ``replicated_on_cluster``.
+            broker_count: the Kafka broker count topic replication is clamped to.
+            kafka_tiered_storage: whether the deployment's brokers tier, so
+                topics in a tiered section render the tiering keys.
+        """
         self._manifest = manifest
         self._topology = topology
         self._data_database = data_database

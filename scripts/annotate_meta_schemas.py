@@ -12,8 +12,6 @@ By default walks ``meta/`` and ``common-header/``. Sets ``resource_type: core`` 
 existing values. Stdlib only.
 """
 
-from __future__ import annotations
-
 import argparse
 import re
 import sys
@@ -157,6 +155,7 @@ def resolve_schema_dirs(repo_root: Path, args: argparse.Namespace) -> list[Path]
 
 
 def collect_schema_paths(roots: list[Path]) -> list[Path]:
+    """Every ``*.yaml`` under each root, sorted; a missing root raises FileNotFoundError."""
     paths: list[Path] = []
     for root in roots:
         if not root.is_dir():
@@ -166,6 +165,7 @@ def collect_schema_paths(roots: list[Path]) -> list[Path]:
 
 
 def main() -> int:
+    """Annotate the schema trees; exit 1 on a file that fails, 2 on a missing directory."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--schema-dir",

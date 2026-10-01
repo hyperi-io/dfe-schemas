@@ -16,7 +16,7 @@ the declared source those renderings mirror, and what a future config
 renderer consumes directly.
 """
 
-from __future__ import annotations
+from typing import Any
 
 # Applied to the DEFAULT settings profile -- the base every identity
 # inherits -- because async_insert is user/query scope with no table-level
@@ -25,7 +25,7 @@ from __future__ import annotations
 # wait=1 keeps insert errors visible to the client; the flush cadence stays
 # on ClickHouse's adaptive defaults (24.2+). INSERT..SELECT is always
 # synchronous server-side and unaffected.
-DEFAULT_PROFILE_SETTINGS: dict[str, int] = {
+DEFAULT_PROFILE_SETTINGS: dict[str, int] = {  # noqa: V107 - public API
     "async_insert": 1,
     "wait_for_async_insert": 1,
 }
@@ -34,7 +34,7 @@ DEFAULT_PROFILE_SETTINGS: dict[str, int] = {
 # the SQL_ custom-settings prefix backs tenant row policies
 # (getSetting('SQL_current_tenant_id')), and deny-by-default system-db
 # access is re-granted per identity by dfe-engine governance.
-SERVER_CONFIG = {
+SERVER_CONFIG: dict[str, Any] = {  # noqa: V107 - public API
     "custom_settings_prefixes": "SQL_",
     "access_control_improvements": {
         "select_from_system_db_requires_grant": True,

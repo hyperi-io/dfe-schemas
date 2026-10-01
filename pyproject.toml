@@ -85,7 +85,7 @@ source = ["dfe_schemas"]
 
 [tool.ruff]
 line-length = 100
-target-version = "py311"
+target-version = "py314"
 # Schema content, not code -- and the wheel build copies these trees verbatim.
 extend-exclude = [
     "additional",
@@ -103,11 +103,8 @@ extend-exclude = [
 
 [tool.ruff.lint]
 select = ["E4", "E7", "E9", "F", "B", "S", "I", "UP", "N", "PT", "RUF", "PIE"]
-ignore = [
-    # This package renders ClickHouse DDL and probes system tables; every query
-    # is built from schema definitions and database names, never user input.
-    "S608",
-]
+# vulture's own codes, so its `# noqa: V1xx` marks are not reported as invalid.
+external = ["V"]
 
 [tool.ruff.lint.per-file-ignores]
 "tests/**/*.py" = ["S101"]

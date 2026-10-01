@@ -16,32 +16,31 @@ flowchart TB
 
 Two sources of truth exist:
 
-1. **Meta schema YAML** — what the schema should be
-2. **ClickHouse table** — what the schema actually is
+1. **Meta schema YAML** -- what the schema should be
+2. **ClickHouse table** -- what the schema actually is
 
 The engine bridges the gap. Rust services (loader, receiver, archiver) slave from the
-deployed ClickHouse schema only — they read `system.columns` at runtime, never YAML.
+deployed ClickHouse schema only -- they read `system.columns` at runtime, never YAML.
 
-### Where Meta Schemas Live
+## Where Meta Schemas Live
 
-Meta schemas are YAML files in the `schemas/` submodule (the
-[dfe-schemas](https://github.com/hyperi-io/dfe-schemas) repo). Common header profiles,
+Meta schemas are YAML files at the root of this repo
+([dfe-schemas](https://github.com/hyperi-io/dfe-schemas)), shipped to consumers as the
+pinned `dfe-schemas` PyPI wheel. Common header profiles,
 hunt result schemas, and source-specific schemas all use the same format.
 
-```
-schemas/                          <- git submodule (dfe-schemas repo)
+```text
+dfe-schemas/                      <- repo root, shipped as a PyPI wheel
 |-- common-header/
 |   |-- timeseries.yaml           <- 9-column default profile
 |   |-- minimal.yaml              <- 5-column high-volume profile
 |   '-- passthrough.yaml          <- 4-column transparent bridge
 |-- meta/                         <- source meta schemas (aws/ azure/ gcp/ m365/ runzero/)
 |-- additional/                   <- extra-field overlays (aws/, snapshot/)
+|-- derived/                      <- derived schemas: a select list over a base
 |-- hunts/
 |   |-- results.yaml              <- hunt detection output columns
 |   '-- detection_checkpoint.yaml <- runner checkpoint table
-|-- argocd/
-|   |-- ddl/                      <- generated reference SQL (make render)
-|   '-- application.yaml + job.yaml + kustomization.yaml
 |-- scripts/                      <- validate / render / annotate
 '-- README.md
 ```
@@ -54,7 +53,7 @@ Meta schemas support two layouts: **version tree** (preferred) and **flat** (bac
 
 ### Version Tree (Preferred)
 
-Each version carries a complete column snapshot. No filtering or reconstruction needed —
+Each version carries a complete column snapshot. No filtering or reconstruction needed --
 read `versions."1.0.0".columns` and you have the full schema for that version.
 
 ```yaml
@@ -86,7 +85,7 @@ versions:
 
 ### Flat (Backward-Compatible)
 
-Files without `current`/`versions` metadata work unchanged. No versioning — just a
+Files without `current`/`versions` metadata work unchanged. No versioning -- just a
 plain column list.
 
 ```yaml
@@ -104,7 +103,7 @@ columns:
 | Field | Required | Description |
 |-------|----------|-------------|
 | `current` | Yes | Default version when consumer doesn't specify a pin |
-| `versions` | Yes | Dict of version string → version entry |
+| `versions` | Yes | Dict of version string -> version entry |
 | `date` | Yes (per version) | When the version was created (YYYY-MM-DD) |
 | `type` | Yes (per version) | Change category: `model`, `addition`, `revision` |
 | `summary` | Yes (per version) | Human-readable change description |
@@ -129,7 +128,7 @@ columns:
   - name: _org_id                    # Required: column name
     type: string                     # Required: primitive type
     cardinality: low                 # Optional: low | high | unknown
-    use_case: dimension              # Optional: query pattern → index
+    use_case: dimension              # Optional: query pattern -> index
     attribute: [not_null]            # Optional: storage modifiers
     default: null                    # Optional: DEFAULT expression
     order: 2                         # Optional: ORDER BY position
@@ -143,7 +142,7 @@ columns:
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
 | `name` | `str` | *(required)* | Column name. System fields use `_` prefix to avoid collision with source data. |
-| `type` | `str` | *(required)* | Primitive type — one of 15 values (see [Type System](#type-system)). |
+| `type` | `str` | *(required)* | Primitive type -- one of 15 values (see [Type System](#type-system)). |
 | `cardinality` | `str` | `unknown` | How many distinct values the column holds: `low`, `high` or `unknown` (see [Cardinality](#cardinality)). |
 | `attribute` | `list[str]` | `[]` | Storage attributes: `nullable`, `not_null`, `materialized`, `alias`, and the retired `lowcardinality`. Accepts a single string or list. |
 | `use_case` | `str \| null` | `null` | The question the column is asked, which determines index generation: `dimension`, `exact_match`, `range`, `word_search`, `substring_search`, `key_search`, `similarity_search(<dims>)`. |
@@ -151,9 +150,9 @@ columns:
 | `order` | `int \| null` | `null` | Position in ORDER BY / PRIMARY KEY (0-based). Only columns with `order` set are included in the key. |
 | `expr` | `str \| null` | `null` | DFE directive that tells the loader how to populate this column (see [DFE Expressions](#dfe-expressions)). |
 | `comment` | `str \| null` | `null` | Human-readable description. |
-| `ch_override` | `str \| null` | `null` | Exact ClickHouse type string — bypasses primitive mapping entirely. No auto-Nullable, no auto-codec. |
+| `ch_override` | `str \| null` | `null` | Exact ClickHouse type string -- bypasses primitive mapping entirely. No auto-Nullable, no auto-codec. |
 | `_field_type` | `str \| null` | `null` | Column classification annotation (`base` = shipped by DFE). Maps to the engine model's `field_type`. |
-| `max_dynamic_paths` | `int \| null` | `null` | JSON-column dynamic-path budget. Present in shipped profile YAML; engine-side DDL wiring is pending (tracked in the 2nd-pass review report). |
+| `max_dynamic_paths` | `int \| null` | `null` | JSON-column dynamic-path budget. Rendered as `JSON(max_dynamic_paths=N)` on a bare `JSON` column, and ignored on any other type. |
 | `synthetic` | `map \| null` | `null` | Synthetic data generation hints (see [Synthetic Data Hints](#synthetic-data-hints)). Ignored by the schema loader and DDL generation. |
 
 ### Synthetic Data Hints
@@ -215,7 +214,7 @@ clause. The loader parses the `@` directives it acts on from the COMMENT at runt
 
 ```sql
 -- Both expr and comment:
-`_timestamp` DateTime64(3,'UTC') COMMENT '@source: timestamp | now() — Event timestamp'
+`_timestamp` DateTime64(3,'UTC') COMMENT '@source: timestamp | now() - Event timestamp'
 
 -- Expr only (descriptive -- the DEFAULT clause is what the loader actually reads):
 `_uuid` UUID DEFAULT generateUUIDv7() COMMENT '@generated: generateUUIDv7()'
@@ -231,7 +230,7 @@ clause. The loader parses the `@` directives it acts on from the COMMENT at runt
 ### 15 Primitives
 
 Primitives are human-readable type names that map to ClickHouse types with sensible
-defaults. You don't need to know ClickHouse storage internals — pick the primitive
+defaults. You don't need to know ClickHouse storage internals -- pick the primitive
 that describes your data.
 
 | Primitive | What It Is | ClickHouse Type | Codec | Nullable Default |
@@ -242,7 +241,7 @@ that describes your data.
 | `float` | Decimal number (scores, latency) | `Float64` | `ZSTD(1)` | Yes |
 | `boolean` | True/false | `Bool` | `LZ4` | **No** |
 | `datetime` | Date and time with timezone | `DateTime64(3,'UTC')` | `Delta, ZSTD(1)` | Yes |
-| `timestamp` | Date and time — never null (for ORDER BY) | `DateTime64(3,'UTC')` | `Delta, LZ4` | **No** |
+| `timestamp` | Date and time -- never null (for ORDER BY) | `DateTime64(3,'UTC')` | `Delta, LZ4` | **No** |
 | `date` | Date only | `Date` | `Delta, ZSTD(1)` | Yes |
 | `ip` | IP address (v4 or v6) | `IPv6` | `LZ4` | Yes |
 | `uuid` | Unique identifier | `UUID` | *(none)* | Yes |
@@ -260,13 +259,13 @@ can be null.
 Nullable comes from the primitive's default and the `nullable` / `not_null`
 attributes. LowCardinality comes from `cardinality` and nothing else:
 
-```
-string                                   → Nullable(String)
-string + cardinality: low                → LowCardinality(Nullable(String))
-string + cardinality: low + [not_null]   → LowCardinality(String)
-string + cardinality: high               → Nullable(String)
-timestamp                                → DateTime64(3,'UTC')   (not nullable by default)
-boolean                                  → Bool                  (not nullable by default)
+```text
+string                                  -> Nullable(String)
+string + cardinality: low               -> LowCardinality(Nullable(String))
+string + cardinality: low + [not_null]  -> LowCardinality(String)
+string + cardinality: high              -> Nullable(String)
+timestamp                               -> DateTime64(3,'UTC')   (not nullable by default)
+boolean                                 -> Bool                  (not nullable by default)
 ```
 
 Wrapping order: **Nullable wraps inner**, **LowCardinality wraps outer**.
@@ -291,6 +290,7 @@ When a primitive isn't sufficient, specify the exact ClickHouse type:
 ```
 
 When `ch_override` is set:
+
 - No automatic Nullable wrapping
 - No automatic codec selection
 - The type string is used verbatim in DDL
@@ -311,8 +311,8 @@ derived separately.
 
 | Value | Storage | `exact_match` index |
 |-------|---------|---------------------|
-| `low` | `LowCardinality(...)` | `set(0)` — holds every distinct value exactly |
-| `high` | plain | `bloom_filter` — bounded, probabilistic |
+| `low` | `LowCardinality(...)` | `set(0)` -- holds every distinct value exactly |
+| `high` | plain | `bloom_filter` -- bounded, probabilistic |
 | `unknown` *(default)* | plain | `bloom_filter` |
 
 `unknown` is the honest default. Nobody re-reviews a field that already looks
@@ -321,7 +321,7 @@ wrong: no dictionary, and an index whose cost does not grow with the column.
 
 Measure it rather than guess it. An Elasticsearch index template does not carry
 cardinality, so the converter and the Rust `dfe-schemagen` port both leave it
-`unknown` — correctly. `dfe-engine`'s data-shape service reads it from the rows
+`unknown` -- correctly. `dfe-engine`'s data-shape service reads it from the rows
 that have already landed (`dfe_engine.services.schema.data_shape_service`) and
 returns a reading carrying the distinct count, the rows it covers and the date
 it was taken.
@@ -338,7 +338,7 @@ Attributes modify how the type is stored. Specified as a list in YAML.
 
 | Attribute | What It Does | Valid Primitives |
 |-----------|-------------|-----------------|
-| `lowcardinality` | Retired — the old spelling of `cardinality: low` | `string`, `text`, `integer`, `float`, `date`, `ip` |
+| `lowcardinality` | Retired -- the old spelling of `cardinality: low` | `string`, `text`, `integer`, `float`, `date`, `ip` |
 | `nullable` | Force NULL allowed (overrides primitive default) | all |
 | `not_null` | Force NOT NULL (overrides primitive default) | all |
 | `materialized` | Column computed on INSERT, not stored in source data | all |
@@ -401,7 +401,7 @@ can pick a different one on a later ClickHouse without your schema changing.
 `similarity_search` is the one use case that takes an argument: ClickHouse needs
 the vector's dimension count up front and cannot read it off the column.
 
-### Use Case → Primitive Constraints
+### Use Case -> Primitive Constraints
 
 | Use Case | Valid Primitives |
 |----------|-----------------|
@@ -465,7 +465,7 @@ reads the comment's path to resolve it. See dfe-loader
 `_raw` and `_json` carry no directive. What they hold depends on the loader's
 capture mode, not on an `expr`.
 
-Column comments have **highest precedence** in the loader — above built-in presets
+Column comments have **highest precedence** in the loader -- above built-in presets
 and external remap files. The schema definition IS the authoritative field mapping.
 
 ---
@@ -479,11 +479,11 @@ The profile determines which header columns are included.
 
 | Profile | Columns | Use Case |
 |---------|---------|----------|
-| **timeseries** (default) | 9 | Logs, alerts, audit trails — full event ingestion |
-| **minimal** | 5 | Metrics, flow records — high-volume structured data |
-| **passthrough** | 4 | Transparent bridge — no timestamp injection |
+| **timeseries** (default) | 9 | Logs, alerts, audit trails -- full event ingestion |
+| **minimal** | 5 | Metrics, flow records -- high-volume structured data |
+| **passthrough** | 4 | Transparent bridge -- no timestamp injection |
 
-### timeseries (default) — 9 columns
+### timeseries (default) -- 9 columns
 
 | Column | Type | Cardinality | Use Case | ORDER BY | Expr |
 |--------|------|-------------|----------|----------|------|
@@ -497,11 +497,11 @@ The profile determines which header columns are included.
 | `_json` | `json` | | | | capture mode |
 | `_tags` | `json` | | | | `@source: first(tags/_tags/meta/metadata.tags)` |
 
-### minimal — 5 columns
+### minimal -- 5 columns
 
 `_timestamp_load`, `_timestamp`, `_uuid`, `_org_id`, `_json`
 
-### passthrough — 4 columns
+### passthrough -- 4 columns
 
 `_timestamp_load`, `_uuid`, `_org_id`, `_json`
 
@@ -523,37 +523,18 @@ If a source column duplicates a profile column name, the profile wins (with warn
 
 A fully composed schema is built from up to four layers:
 
-```
-┌─────────────────────────────────────────────────────────┐
-│ 1. Common Header Profile (timeseries/minimal/passthrough)│
-│    → SchemaLoader.load_profile("timeseries", version=v) │
-│    → [_timestamp_load, _timestamp, _org_id, ...]        │
-└─────────────────────────────────────────────────────────┘
-                         +
-┌─────────────────────────────────────────────────────────┐
-│ 2. Meta Schema (base source columns)                    │
-│    → SchemaLoader.load_columns("meta/syslog.yaml", v=v) │
-│    → [user_name, source_ip, message, ...]               │
-└─────────────────────────────────────────────────────────┘
-                         +
-┌─────────────────────────────────────────────────────────┐
-│ 3. Derived Schema (overrides — optional)                │
-│    → SchemaLoader.apply_derived_schema(columns, path)   │
-│    → Replaces matching columns by name                  │
-└─────────────────────────────────────────────────────────┘
-                         +
-┌─────────────────────────────────────────────────────────┐
-│ 4. Additional Fields (append — optional)                │
-│    → SchemaLoader.apply_additional_fields(columns, path)│
-│    → Appends new columns, overrides existing with warn  │
-└─────────────────────────────────────────────────────────┘
-                         ↓
-┌─────────────────────────────────────────────────────────┐
-│ SchemaLoader.compose(profile_columns, source_columns)   │
-│ → Profile columns first (wins on duplicates)            │
-│ → Source columns appended (deduped)                     │
-│ → Final ordered column list                             │
-└─────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    S1["1. Common Header Profile (timeseries/minimal/passthrough)<br/>SchemaLoader.load_profile('timeseries', profile_version=v)<br/>-> [_timestamp_load, _timestamp, _org_id, ...]"]
+    S2["2. Meta Schema (base source columns)<br/>SchemaLoader.load_columns('meta/syslog.yaml', version=v)<br/>-> [user_name, source_ip, message, ...]"]
+    S3["3. Derived Schema (optional)<br/>SchemaLoader.apply_derived_schema(columns, path, version=v)<br/>-> narrows the source columns to its select list"]
+    S4["4. Additional Fields (optional)<br/>SchemaLoader.apply_additional_fields(columns, path)<br/>-> Appends new columns, overrides existing with warn"]
+    COMPOSE["SchemaLoader.compose(profile_columns, source_columns)<br/>-> Profile columns first, win on duplicates<br/>-> Source columns appended, deduped<br/>-> Final ordered column list"]
+
+    S1 -->|profile_columns| COMPOSE
+    S2 --> S3
+    S3 --> S4
+    S4 -->|source_columns| COMPOSE
 ```
 
 ### How It's Wired in a Source YAML
@@ -566,7 +547,7 @@ header:
 schema:
   meta_schema: meta/windows_audit.yaml        # Layer 2: base columns
   meta_schema_version: "2.1.0"                # Pin meta schema version
-  derived_schema: derived/windows_custom.yaml  # Layer 3: overrides
+  derived_schema: derived/windows_custom.yaml  # Layer 3: narrows to a select list
   additional_fields: add/windows_extra.yaml    # Layer 4: extra columns
   ttl_days: 90
   engine: MergeTree
@@ -580,7 +561,7 @@ Schema file paths are resolved relative to `schemas_base_dir` (the schemas direc
 |-------|----------------|
 | **Profile** | Always comes first. Profile columns cannot be overridden by source columns. |
 | **Meta schema** | Base source-specific columns. |
-| **Derived schema** | Columns with matching `name` replace the base column entirely. New names are appended. |
+| **Derived schema** | Narrows the source columns to its `select` list, in that order. A selected column may override `index` and nothing else; a name the base lacks is an error. |
 | **Additional fields** | New columns are appended. Existing names override with warning. |
 
 ---
@@ -596,19 +577,19 @@ CREATE TABLE IF NOT EXISTS {db}.windows_audit
 (
     -- Column definitions (profile header first, then source columns)
     `_timestamp_load` DateTime64(3,'UTC') DEFAULT now64(3) CODEC(Delta, LZ4)
-        COMMENT '@generated: now64(3) — Insertion timestamp (ms precision)',
+        COMMENT '@generated: now64(3) - Insertion timestamp (ms precision)',
     `_timestamp` Nullable(DateTime64(3,'UTC')) CODEC(Delta, ZSTD(1))
-        COMMENT '@source: timestamp | now() — Event timestamp from source data',
+        COMMENT '@source: timestamp | now() - Event timestamp from source data',
     `_org_id` LowCardinality(Nullable(String)) CODEC(ZSTD(1))
-        COMMENT '@source: org_id — Tenant/organisation identifier',
+        COMMENT '@source: org_id - Tenant/organisation identifier',
     `_raw` Nullable(String) CODEC(ZSTD(3))
         COMMENT 'Raw payload text, when the loader capture mode writes one',
     `_json` JSON CODEC(ZSTD(3))
         COMMENT 'The payload as structured JSON, when the loader capture mode writes one',
     `user_name` Nullable(String) CODEC(ZSTD(1))
-        COMMENT '@source: first(user_id/uid/id) — User identifier',
+        COMMENT '@source: first(user_id/uid/id) - User identifier',
     `source_ip` Nullable(IPv6) CODEC(LZ4)
-        COMMENT '@source: src_ip — Source IP address',
+        COMMENT '@source: src_ip - Source IP address',
 
     -- Indexes (generated from use_case)
     INDEX idx__timestamp `_timestamp` TYPE minmax GRANULARITY 4,
@@ -673,7 +654,7 @@ SELECT
 FROM {db}.windows_audit;
 ```
 
-Zero storage overhead — views are computed at query time.
+Zero storage overhead -- views are computed at query time.
 
 ---
 
@@ -730,8 +711,8 @@ No pin (`meta_schema_version: null`) uses the file's `current` marker.
 | Source created | `CREATE TABLE IF NOT EXISTS` from profile + source schema |
 | Schema field added | `ALTER TABLE ADD COLUMN IF NOT EXISTS` |
 | Schema field modified | `ALTER TABLE MODIFY COLUMN` (type/codec/comment) |
-| Source disabled | No DDL change — table stays, no new data |
-| Source deleted | Table preserved — manual `DROP TABLE` if needed |
+| Source disabled | No DDL change -- table stays, no new data |
+| Source deleted | Table preserved -- manual `DROP TABLE` if needed |
 
 The deployed ClickHouse table is always authoritative at runtime.
 
@@ -741,7 +722,7 @@ The deployed ClickHouse table is always authoritative at runtime.
 
 ### Directory Structure
 
-```
+```text
 dfe-schemas/
 |-- common-header/          # Common header profiles (shipped, read-only)
 |   |-- timeseries.yaml
@@ -753,13 +734,9 @@ dfe-schemas/
 |-- meta/                   # Source meta schemas, grouped by provider
 |   |-- aws/  azure/  beats/  elastic/  gcp/  m365/  otel/  runzero/
 |-- additional/             # Extra-field overlays (aws/, snapshot/)
-|-- argocd/ddl/             # Generated reference SQL (make render)
+|-- derived/                # Derived schemas: a select list over a base
 '-- README.md
 ```
-
-Derived-schema overlays (`derived/`) are supported by the loader but the
-directory does not exist yet - create it beside `additional/` when first
-needed.
 
 ### Generating a Meta Schema from Live Rows
 
@@ -811,54 +788,54 @@ the header's `_timestamp` groups a whole dump with no extra wiring.
 
 1. Create a YAML file in the appropriate directory:
 
-```yaml
-# meta/my_new_source.yaml
-current: "1.0.0"
+   ```yaml
+   # meta/my_new_source.yaml
+   current: "1.0.0"
 
-versions:
-  "1.0.0":
-    date: "2026-03-03"
-    type: model
-    summary: "Initial schema for my_new_source"
-    columns:
-      - name: event_type
-        type: string
-        cardinality: low
-        use_case: dimension
-        comment: "Type of event"
+   versions:
+     "1.0.0":
+       date: "2026-03-03"
+       type: model
+       summary: "Initial schema for my_new_source"
+       columns:
+         - name: event_type
+           type: string
+           cardinality: low
+           use_case: dimension
+           comment: "Type of event"
 
-      - name: message
-        type: text
-        use_case: word_search
-        expr: "@source: message"
-        comment: "Event message body"
+         - name: message
+           type: text
+           use_case: word_search
+           expr: "@source: message"
+           comment: "Event message body"
 
-      - name: severity
-        type: string
-        cardinality: low
-        use_case: dimension
-        expr: "@source: severity"
+         - name: severity
+           type: string
+           cardinality: low
+           use_case: dimension
+           expr: "@source: severity"
 
-      - name: client_ip
-        type: ip
-        use_case: range
-        expr: "@source: first(client_ip/src_ip/ip)"
-        comment: "Client IP address"
-```
+         - name: client_ip
+           type: ip
+           use_case: range
+           expr: "@source: first(client_ip/src_ip/ip)"
+           comment: "Client IP address"
+   ```
 
 2. Reference it from a Source definition:
 
-```yaml
-source: my_new_source
-header:
-  type: timeseries
-  version: "1.0.0"
-schema:
-  meta_schema: meta/my_new_source.yaml
-  meta_schema_version: "1.0.0"
-  ttl_days: 90
-  engine: MergeTree
-```
+   ```yaml
+   source: my_new_source
+   header:
+     type: timeseries
+     version: "1.0.0"
+   schema:
+     meta_schema: meta/my_new_source.yaml
+     meta_schema_version: "1.0.0"
+     ttl_days: 90
+     engine: MergeTree
+   ```
 
 ### Adding a New Version to an Existing Schema
 
@@ -893,36 +870,35 @@ versions:
         comment: "GeoIP country code"
 ```
 
-Each version is a complete snapshot — copy all existing columns, then add/modify/remove.
+Each version is a complete snapshot -- copy all existing columns, then add/modify/remove.
 
-### Updating the Submodule Pin
+### Updating the Version Pin
 
-After merging changes to the dfe-schemas repo:
+After merging changes to the dfe-schemas repo and cutting a release, raise the
+floor in the consumer's `pyproject.toml` and relock:
 
 ```bash
 # In dfe-engine (or any consumer):
-cd /projects/dfe-engine
-git submodule update --remote schemas
-git add schemas
-git commit -m "chore: update dfe-schemas submodule"
+# bump the dfe-schemas floor in pyproject.toml, e.g. "dfe-schemas>=0.2.9"
+uv lock
+git add pyproject.toml uv.lock
+git commit -m "fix: bump dfe-schemas pin"
 ```
 
-### Keeping Bundled Profiles in Sync
+### Bundled Profiles
 
-After updating common-header profiles, copy to the bundled fallback location
-so `pip install dfe-engine` works without a submodule checkout:
-
-```bash
-cp schemas/common-header/*.yaml src/dfe_engine/schema/profiles/
-```
+The wheel carries `common-header/` (and
+the rest of the schema trees) as package data under `dfe_schemas/data/`, so
+bumping the version pin above is the whole update.
 
 ### Resolution Chain
 
-Both dfe-engine (Python) and dfe-loader (Rust) use the same resolution order:
+dfe-engine resolves the common-header profiles in this order, first match wins. dfe-loader reads no schema files at runtime: it takes the same directives from the ClickHouse column comments the engine wrote.
 
-1. `DFE_SCHEMAS_DIR` env var → `{dir}/common-header/`
-2. `schemas/common-header/` submodule (relative to project root)
-3. Bundled `schema/profiles/` inside the package (fallback)
+1. An explicit `profiles_dir` argument to `SchemaLoader.load_profile`, which skips the rest of the chain
+2. `DFE_SCHEMAS_DIR` env var -> `{dir}/common-header/`
+3. `common-header/` under the installed `dfe-schemas` package (via `importlib.resources`)
+4. `common-header/` under the image's schema seed directory (`DFE_SCHEMAS_SEED_DIR`, default `/app/schemas-seed`)
 
 ---
 

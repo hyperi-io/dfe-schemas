@@ -22,8 +22,6 @@ something half-right:
   succeeds on every re-run, which is the worst shape a bootstrap can have
 """
 
-from __future__ import annotations
-
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -64,7 +62,7 @@ class DatabaseDecl:
     """
 
     key: str
-    parameter: str | None = None
+    parameter: str | None = None  # noqa: V107 - public API
     name: str | None = None
 
 
@@ -90,8 +88,8 @@ class ManifestObject:
 class Manifest:
     """The whole manifest, checked."""
 
-    manifest_version: int
-    parameters: dict[str, Any]
+    manifest_version: int  # noqa: V107 - public API
+    parameters: dict[str, Any]  # noqa: V107 - public API
     databases: tuple[DatabaseDecl, ...]
     objects: tuple[ManifestObject, ...]
     root: Path
@@ -112,7 +110,7 @@ class Manifest:
             return data_database
         raise ManifestError(f"no database declared with key {key!r}")
 
-    def by_kind(self, kind: str) -> tuple[ManifestObject, ...]:
+    def by_kind(self, kind: str) -> tuple[ManifestObject, ...]:  # noqa: V105 - public API
         """Every object of one kind, in manifest order."""
         return tuple(obj for obj in self.objects if obj.kind == kind)
 

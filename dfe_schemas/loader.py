@@ -24,8 +24,6 @@ files with: YAML 1.1 resolves ``on``, ``off``, ``yes`` and ``no`` as booleans
 and 1.2 does not, so two parsers over one tree is two answers.
 """
 
-from __future__ import annotations
-
 import re
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -73,9 +71,7 @@ class SchemaError(Exception):
 
 
 def _yaml() -> YAML:
-    parser = YAML(typ="safe")
-    parser.default_flow_style = False
-    return parser
+    return YAML(typ="safe")
 
 
 def read_yaml(path: Path) -> Any:
@@ -345,8 +341,8 @@ class TypeRegistry:
     """
 
     primitives: dict[str, dict[str, Any]]
-    use_cases: dict[str, dict[str, Any]] = field(default_factory=dict)
-    attributes: dict[str, dict[str, Any]] = field(default_factory=dict)
+    use_cases: dict[str, dict[str, Any]] = field(default_factory=dict)  # noqa: V107 - public API
+    attributes: dict[str, dict[str, Any]] = field(default_factory=dict)  # noqa: V107 - public API
 
     @classmethod
     def load(cls, *, root: Path | None = None) -> TypeRegistry:

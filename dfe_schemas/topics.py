@@ -24,8 +24,6 @@ the broker-wide switch on and the topic key absent the broker moves nothing and
 reports nothing, and the first symptom is a full volume.
 """
 
-from __future__ import annotations
-
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -74,18 +72,18 @@ class TopicPolicy:
 
     land_suffix: str
     load_suffix: str
-    default_landing_label: str
+    default_landing_label: str  # noqa: V107 - public API
     defaults: dict[str, Any]
     tiered: dict[str, Any]
     bootstrap: dict[str, list[dict[str, Any]]]
-    derivation: dict[str, Any]
-    permissions: dict[str, bool]
+    derivation: dict[str, Any]  # noqa: V107 - public API
+    permissions: dict[str, bool]  # noqa: V107 - public API
 
-    def landing_topic(self, source: str) -> str:
+    def landing_topic(self, source: str) -> str:  # noqa: V105 - public API
         """The topic a source's records arrive on, before any transform."""
         return f"{source}{self.land_suffix}"
 
-    def transformed_topic(self, source: str) -> str:
+    def transformed_topic(self, source: str) -> str:  # noqa: V105 - public API
         """The topic a source's transform writes, and the loader then reads."""
         return f"{source}{self.load_suffix}"
 
@@ -112,7 +110,7 @@ class TopicPolicy:
         known = ", ".join(str(entry.get("name")) for entry in entries)
         raise SchemaError(f"no topic {key!r} in bootstrap.{section}; declared: {known}")
 
-    def bootstrap_specs(
+    def bootstrap_specs(  # noqa: V105 - public API
         self, *, broker_count: int = 1, kafka_tiered_storage: bool = False
     ) -> list[TopicSpec]:
         """Every bootstrap topic, landing first then the dead-letter set."""

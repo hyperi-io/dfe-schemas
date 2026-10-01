@@ -42,17 +42,17 @@ The variant and its parameters always survive:
 ``ReplacingMergeTree(ver)`` becomes ``ReplicatedReplacingMergeTree(ver)``.
 """
 
-from __future__ import annotations
-
 import logging
 from dataclasses import dataclass
 from enum import StrEnum
+from typing import Any, Protocol
 
 logger = logging.getLogger("dfe_schemas.clickhouse")
 
 __all__ = [
     "EngineResolver",
     "EngineSpec",
+    "QueryClient",
     "ResolvedEngine",
     "Topology",
     "parse_engine",
@@ -162,6 +162,13 @@ def render_engine(
     )
 
 
+class QueryClient(Protocol):
+    """The one call sensing makes; a clickhouse-connect ``Client`` satisfies it."""
+
+    def query(self, query: str, /, parameters: dict[str, str] | None = None) -> Any:
+        """Run one SELECT, binding ``parameters`` server-side, and return its result."""
+
+
 class EngineResolver:
     """Resolves a table's engine down the cascade, caching what it senses.
 
@@ -176,15 +183,16 @@ class EngineResolver:
 
     def __init__(
         self,
-        client=None,
+        client: QueryClient | None = None,
         *,
         override: str | None = None,
         topology_setting: str | None = None,
     ) -> None:
-        """
+        """Take whichever cascade inputs the caller has.
+
         Args:
-            client: a live clickhouse-connect client exposing ``query``, or None.
-                Supplying one enables the sensing layer.
+            client: a live clickhouse-connect client exposing ``query`` with
+                ``parameters``, or None. Supplying one enables the sensing layer.
             override: an explicit topology pin, ``single`` or ``replicated``.
                 Highest priority, and never emits ``ON CLUSTER``.
             topology_setting: the deployment's configured topology, used when
@@ -243,7 +251,8 @@ class EngineResolver:
             # A Replicated/Shared database propagates DDL and replicates data on
             # its own, so the argumentless form is right and ON CLUSTER is not.
             db_engine = self._scalar(
-                f"SELECT engine FROM system.databases WHERE name = '{database}'"
+                "SELECT engine FROM system.databases WHERE name = {database:String}",
+                {"database": database},
             )
             if db_engine in ("Replicated", "Shared"):
                 return self._cache(database, Topology.REPLICATED)
@@ -262,8 +271,10 @@ class EngineResolver:
             return None
 
     def _cluster_name(self, database: str) -> str | None:
-        """The cluster to fan DDL over: the macro-declared one, else the first
-        multi-host cluster the server reports."""
+        """Name the cluster to fan DDL over.
+
+        The macro-declared one, else the first multi-host cluster the server reports.
+        """
         try:
             macro_cluster = self._scalar(
                 "SELECT substitution FROM system.macros WHERE macro = 'cluster'"
@@ -282,11 +293,14 @@ class EngineResolver:
         self._sensed[database] = topology
         return topology
 
-    def _rows(self, sql: str) -> list:
-        return self._client.query(sql).result_rows
+    def _rows(self, sql: str, parameters: dict[str, str] | None = None) -> list:
+        if self._client is None:
+            raise RuntimeError("engine sensing needs a client")
+        # Values travel as server-side bound parameters, never spliced into the SQL.
+        return self._client.query(sql, parameters=parameters).result_rows
 
-    def _scalar(self, sql: str) -> str | None:
-        rows = self._rows(sql)
+    def _scalar(self, sql: str, parameters: dict[str, str] | None = None) -> str | None:
+        rows = self._rows(sql, parameters)
         if not rows:
             return None
         value = rows[0][0]

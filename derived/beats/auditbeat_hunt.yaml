@@ -1,0 +1,210 @@
+# Derived schema: Elastic Auditbeat -- hunt and investigate
+#
+# The Linux host spine: process execution, identity changes, file integrity
+# and the auditd records under them, across the auditd, file_integrity and
+# system modules.
+#
+# The base is meta/beats/auditbeat, not meta/elastic/ecs: auditd.*, the
+# audit and saved identities and file_integrity's hashes sit outside core
+# ECS, so the ECS vocabulary cannot satisfy this selection.
+#
+# Index choices measured against two rule corpora: Elastic's 190 prebuilt
+# detection rules whose index list names auditbeat-* (detection-rules commit
+# 2e6bdc0) and SigmaHQ's 53 auditd rules under rules/linux/auditd (commit
+# 272daf8). Each count is the number of rules whose query or detection
+# references that field. The heaviest are event.type 74.7%, process.name
+# 74.2%, event.action 68.9%, host.os.type 66.3% and process.args 54.2% of the
+# Elastic rules, and the audit record type, 51 of the 53 Sigma rules.
+#
+# Sigma's auditd rules use the raw record keys, so the counts below map them:
+# type is auditd.message_type, SYSCALL is auditd.data.syscall, a0-a3 are
+# auditd.data.a0-a3, exe is process.executable, name is the path the record
+# names. A column whose comment below quotes no count -- agent_type, the
+# session, the hashes, the auditd summary, the audit identity, package_name,
+# message and labels -- is reasoned from what the hunt needs, not measured.
+
+base: meta/beats/auditbeat
+base_version: "1.0.0"
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    summary: "Linux host hunt spine: 55 indexed columns, 4 carried for display"
+    select:
+      # -- which source, which module ----------------------------------------
+      # Elastic maps this constant_keyword per index, and it is already the
+      # DFE routing key. 8 of the 190 rules gate on it.
+      - name: data_stream_dataset
+        index: dimension
+      - name: event_module
+        index: dimension
+      - name: event_dataset
+        index: dimension
+      - name: agent_type
+        index: dimension
+
+      # -- what happened ------------------------------------------------------
+      # Array(String): set(0) over an array stores whole arrays and cannot
+      # answer has(), so these two take the bloom filter, never dimension.
+      # event.type is in 142 of the 190 rules, event.category in 52.
+      - name: event_type
+        index: exact_match
+      - name: event_category
+        index: exact_match
+      # 131 of the 190 rules.
+      - name: event_action
+        index: dimension
+      - name: event_outcome
+        index: dimension
+      - name: event_kind
+        index: dimension
+      # The audit record type: 51 of the 53 Sigma rules, every one equality.
+      - name: auditd_message_type
+        index: dimension
+      - name: auditd_result
+        index: dimension
+      # 10 Elastic rules and 6 Sigma ones, against a bounded set of names.
+      - name: auditd_data_syscall
+        index: dimension
+      # The key that joins every record of one login session.
+      - name: auditd_session
+        index: exact_match
+
+      # -- where ---------------------------------------------------------------
+      - name: host_name
+        index: dimension
+      # 28 of the 190 rules; an agent-minted id, so equality against a
+      # high-cardinality value.
+      - name: host_id
+        index: exact_match
+      # 126 of the 190 rules gate on it.
+      - name: host_os_type
+        index: dimension
+      # Carried, not indexed: Array(IPv6) refuses exact_match, and dimension
+      # over an array cannot answer has().
+      - name: host_ip
+        index: none
+
+      # -- process -------------------------------------------------------------
+      # 141 of the 190 rules.
+      - name: process_name
+        index: exact_match
+      # 103 of the 190 rules, the second most used process field. Array, so
+      # the bloom filter.
+      - name: process_args
+        index: exact_match
+      # 33 Elastic rules and 6 Sigma ones, 4 of those an endswith: a path
+      # tail, which the path tokens answer without an ngram index.
+      - name: process_executable
+        index: word_search
+      # 14 of the 190 rules, matched as a path.
+      - name: process_working_directory
+        index: word_search
+      # 3 of the 190 rules. From auditd's PROCTITLE record, the command line
+      # as the kernel holds it, so a hunt reads it by word.
+      - name: process_title
+        index: word_search
+      - name: process_pid
+        index: range
+      - name: process_parent_pid
+        index: range
+      - name: process_entity_id
+        index: exact_match
+      - name: process_hash_sha256
+        index: exact_match
+
+      # -- syscall arguments ---------------------------------------------------
+      # Sigma's auditd rules lean on these: a0 in 27 of 53, a1 in 25, a2 in
+      # 14 and a3 in 7, mostly equality against a hex flag or a path.
+      - name: auditd_data_a0
+        index: exact_match
+      - name: auditd_data_a1
+        index: exact_match
+      - name: auditd_data_a2
+        index: exact_match
+      - name: auditd_data_a3
+        index: exact_match
+
+      # -- the auditd summary --------------------------------------------------
+      # Auditbeat's own reading of a record: who did what to which object.
+      - name: auditd_summary_actor_primary
+        index: exact_match
+      - name: auditd_summary_actor_secondary
+        index: exact_match
+      - name: auditd_summary_object_type
+        index: dimension
+      # Usually a path or a name, so read by word.
+      - name: auditd_summary_object_primary
+        index: word_search
+      - name: auditd_summary_how
+        index: word_search
+
+      # -- who -----------------------------------------------------------------
+      # 12 of the 190 rules.
+      - name: user_id
+        index: exact_match
+      - name: user_name
+        index: exact_match
+      - name: user_effective_id
+        index: exact_match
+      # The login identity, which survives su and sudo where user.id does not.
+      - name: user_audit_id
+        index: exact_match
+      - name: user_audit_name
+        index: exact_match
+      - name: related_user
+        index: exact_match
+      # 2 Elastic rules; the terminal a session ran on.
+      - name: auditd_data_terminal
+        index: exact_match
+
+      # -- files ---------------------------------------------------------------
+      # 16 Elastic rules, and Sigma's record name in 12 more, 9 of them
+      # equality on a full path; the path tokens answer both.
+      - name: file_path
+        index: word_search
+      - name: file_name
+        index: exact_match
+      - name: file_extension
+        index: dimension
+      - name: file_hash_sha256
+        index: exact_match
+      # file_integrity writes its hashes here, outside the file.* namespace.
+      - name: hash_sha256
+        index: exact_match
+      # Carried for display: what the file's mode and owner were.
+      - name: file_mode
+        index: none
+      - name: file_owner
+        index: none
+
+      # -- network -------------------------------------------------------------
+      # destination.ip in 12 of the 190 rules, source.ip in 11.
+      - name: source_ip
+        index: dimension
+      - name: destination_ip
+        index: dimension
+      - name: destination_port
+        index: range
+      - name: network_direction
+        index: dimension
+      - name: network_transport
+        index: dimension
+
+      # -- packages ------------------------------------------------------------
+      - name: package_name
+        index: exact_match
+      # Carried for display beside the name.
+      - name: package_version
+        index: none
+
+      # -- message, tags and labels --------------------------------------------
+      - name: message
+        index: word_search
+      # The auditd rule key lands in tags, and Sigma matches it in 2 rules.
+      - name: tags
+        index: exact_match
+      # The only Map on the table and the only place key_search belongs.
+      - name: labels
+        index: key_search

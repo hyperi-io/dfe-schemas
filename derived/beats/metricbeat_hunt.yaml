@@ -1,0 +1,139 @@
+# Derived schema: Elastic Metricbeat -- hunt and investigate
+#
+# The host-health spine: which process was running where, as whom, and what
+# the host's CPU, memory, disk, network and socket counts looked like around
+# it. Metrics are where an investigation goes to confirm a resource story --
+# a miner's CPU, a listener nobody expected, a reboot -- rather than where a
+# detection fires.
+#
+# The base is meta/beats/metricbeat, not meta/elastic/ecs: the system.*
+# metrics sit outside core ECS, so the ECS vocabulary cannot satisfy this
+# selection.
+#
+# No rule corpus measures this one. Elastic's prebuilt detection rules at
+# detection-rules commit 2e6bdc0 name metricbeat-* in no index list, and
+# SigmaHQ has no metrics logsource. Every choice below is reasoned from what
+# the hunt needs, and that is also why this table carries no ngram index: none
+# is earned without a corpus that matches by fragment.
+
+base: meta/beats/metricbeat
+base_version: "1.0.0"
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    summary: "Host-health hunt spine: 40 indexed columns, 2 carried for display"
+    select:
+      # -- which source, which metricset ---------------------------------------
+      # Elastic maps this constant_keyword per index, and it is already the
+      # DFE routing key.
+      - name: data_stream_dataset
+        index: dimension
+      - name: event_dataset
+        index: dimension
+      - name: event_module
+        index: dimension
+      # One value per metricset, and the first cut of every metrics query.
+      - name: metricset_name
+        index: dimension
+      - name: agent_type
+        index: dimension
+
+      # -- where ---------------------------------------------------------------
+      - name: host_name
+        index: dimension
+      # An agent-minted id, so equality against a high-cardinality value.
+      - name: host_id
+        index: exact_match
+      - name: host_os_type
+        index: dimension
+      # Carried, not indexed: Array(IPv6) refuses exact_match, and dimension
+      # over an array cannot answer has().
+      - name: host_ip
+        index: none
+      - name: container_id
+        index: exact_match
+      - name: cloud_instance_id
+        index: exact_match
+
+      # -- process -------------------------------------------------------------
+      # The process metricset reports the top five by CPU and by memory, so
+      # these answer "what was eating the host".
+      - name: process_name
+        index: exact_match
+      - name: process_executable
+        index: word_search
+      - name: process_command_line
+        index: word_search
+      - name: process_args
+        index: exact_match
+      - name: process_pid
+        index: range
+      - name: process_parent_pid
+        index: range
+      - name: process_state
+        index: dimension
+      - name: process_cpu_pct
+        index: range
+      - name: process_memory_pct
+        index: range
+      - name: user_name
+        index: exact_match
+      # Carried for display: the same command line, as Metricbeat's own field.
+      - name: system_process_cmdline
+        index: none
+
+      # -- cpu, load and memory ------------------------------------------------
+      - name: host_cpu_usage
+        index: range
+      - name: system_cpu_total_norm_pct
+        index: range
+      - name: system_load_norm_1
+        index: range
+      - name: system_memory_actual_used_pct
+        index: range
+      - name: system_memory_swap_used_pct
+        index: range
+
+      # -- processes and sockets -----------------------------------------------
+      # A jump in zombies, or in listening and established sockets, is the
+      # host-level signal of a fork bomb, a backdoor or a scan.
+      - name: system_process_summary_total
+        index: range
+      - name: system_process_summary_zombie
+        index: range
+      - name: system_socket_summary_tcp_all_listening
+        index: range
+      - name: system_socket_summary_tcp_all_established
+        index: range
+
+      # -- disk and network ----------------------------------------------------
+      - name: system_filesystem_mount_point
+        index: exact_match
+      - name: system_filesystem_used_pct
+        index: range
+      - name: system_network_name
+        index: dimension
+      - name: system_network_in_bytes
+        index: range
+      - name: system_network_out_bytes
+        index: range
+      - name: host_network_egress_bytes
+        index: range
+
+      # -- uptime --------------------------------------------------------------
+      # Drops to near zero on a reboot.
+      - name: system_uptime_duration_ms
+        index: range
+
+      # -- errors, tags and labels ---------------------------------------------
+      - name: error_message
+        index: word_search
+      - name: service_type
+        index: dimension
+      - name: tags
+        index: exact_match
+      # The only Map in this selection and the only place key_search belongs.
+      - name: labels
+        index: key_search

@@ -1,0 +1,140 @@
+# Derived schema: Elastic Heartbeat -- hunt and investigate
+#
+# The availability spine: which monitor saw which target go down, from where,
+# for how long, and the TLS certificate it was served. An investigation
+# reads it to time an outage or to find the endpoint whose certificate
+# changed or is about to expire.
+#
+# The base is meta/beats/heartbeat, not meta/elastic/ecs: monitor.*, summary.*
+# and state.* sit outside core ECS, so the ECS vocabulary cannot satisfy this
+# selection.
+#
+# No rule corpus measures this one. Elastic's prebuilt detection rules at
+# detection-rules commit 2e6bdc0 name heartbeat-* in no index list, and
+# SigmaHQ has no uptime logsource. Every choice below is reasoned from what
+# the hunt needs, and that is also why this table carries no ngram index: none
+# is earned without a corpus that matches by fragment.
+
+base: meta/beats/heartbeat
+base_version: "1.0.0"
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    summary: "Availability hunt spine: 40 indexed columns, 2 carried for display"
+    select:
+      # -- which source --------------------------------------------------------
+      # Elastic maps this constant_keyword per index, and it is already the
+      # DFE routing key.
+      - name: data_stream_dataset
+        index: dimension
+      - name: event_dataset
+        index: dimension
+      # heartbeat/summary marks the event that carries a check's verdict.
+      # Array(String) under ECS, so the bloom filter: set(0) over an array
+      # stores whole arrays and cannot answer has().
+      - name: event_type
+        index: exact_match
+      - name: agent_type
+        index: dimension
+
+      # -- which monitor -------------------------------------------------------
+      # One value per configured monitor, a set the exact-value index holds.
+      - name: monitor_id
+        index: dimension
+      - name: monitor_name
+        index: dimension
+      - name: monitor_type
+        index: dimension
+      - name: monitor_status
+        index: dimension
+      # Joins the events of one check, across every IP a name resolved to.
+      - name: monitor_check_group
+        index: exact_match
+      - name: monitor_ip
+        index: dimension
+      - name: monitor_duration_us
+        index: range
+      # Carried for display: when the check ran and when the next was due.
+      - name: monitor_timespan_gte
+        index: none
+      - name: monitor_timespan_lt
+        index: none
+
+      # -- the verdict ---------------------------------------------------------
+      - name: summary_status
+        index: dimension
+      - name: summary_down
+        index: range
+      - name: summary_final_attempt
+        index: dimension
+      # A state lasts from one status change to the next: its id groups an
+      # outage, and its start and duration time it.
+      - name: state_id
+        index: exact_match
+      - name: state_status
+        index: dimension
+      - name: state_started_at
+        index: range
+      - name: state_duration_ms
+        index: range
+
+      # -- the target ----------------------------------------------------------
+      - name: url_full
+        index: exact_match
+      - name: url_domain
+        index: exact_match
+      - name: url_scheme
+        index: dimension
+      - name: url_port
+        index: dimension
+
+      # -- how it answered -----------------------------------------------------
+      - name: http_response_status_code
+        index: range
+      - name: http_rtt_total_us
+        index: range
+      - name: tcp_rtt_connect_us
+        index: range
+      - name: icmp_rtt_us
+        index: range
+      - name: resolve_rtt_us
+        index: range
+
+      # -- the certificate -----------------------------------------------------
+      # Expiry is the question, so min/max.
+      - name: tls_server_x509_not_after
+        index: range
+      - name: tls_server_x509_subject_common_name
+        index: exact_match
+      - name: tls_server_x509_issuer_common_name
+        index: exact_match
+      # A changed hash on an unchanged name is a replaced certificate.
+      - name: tls_server_hash_sha256
+        index: exact_match
+      - name: tls_version
+        index: dimension
+
+      # -- errors and where the check ran ---------------------------------------
+      - name: error_type
+        index: dimension
+      - name: error_message
+        index: word_search
+      - name: observer_hostname
+        index: dimension
+      - name: observer_geo_name
+        index: dimension
+
+      # -- browser monitors ----------------------------------------------------
+      - name: synthetics_type
+        index: dimension
+      - name: synthetics_step_status
+        index: dimension
+
+      # -- tags and labels -----------------------------------------------------
+      - name: tags
+        index: exact_match
+      # The only Map in this selection and the only place key_search belongs.
+      - name: labels
+        index: key_search

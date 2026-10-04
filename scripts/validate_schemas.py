@@ -20,6 +20,7 @@ ClickHouse types, so the check is that each one builds a TableSpec.
 
 import os
 import sys
+from collections.abc import Callable
 from pathlib import Path
 from typing import Any
 
@@ -72,6 +73,32 @@ def _engine_registry_errors(*, path: Path) -> list[str]:
     if "MergeTree" not in names:
         errors.append("MergeTree must be listed: it is the default engine")
     return errors
+
+
+def _base_columns(
+    cache: dict[tuple[Path, str], Any],
+    *,
+    base_path: Path,
+    base_version: str,
+    load_columns: Callable[..., Any],
+) -> Any:
+    """Load one derived schema's base columns, once per run.
+
+    Every Elastic derived schema names the same ECS base, the largest file in the
+    repo, so parsing it once per derived file is nearly all of a run. A base that
+    fails to load is cached as its exception, and every derived file naming it
+    reports that same error.
+    """
+    key = (base_path, str(base_version))
+    if key not in cache:
+        try:
+            cache[key] = load_columns(base_path, version=base_version)
+        except Exception as exc:
+            cache[key] = exc
+    loaded = cache[key]
+    if isinstance(loaded, Exception):
+        raise loaded
+    return loaded
 
 
 def main() -> int:
@@ -194,6 +221,7 @@ def main() -> int:
             file=sys.stderr,
         )
     else:
+        base_cache: dict[tuple[Path, str], Any] = {}
         for path in derived_files:
             rel = path.relative_to(repo_root)
             try:
@@ -207,7 +235,12 @@ def main() -> int:
                 if not base_path.exists():
                     errors.append(f"{rel}: base {base!r} resolves to no file in this repo")
                     continue
-                base_columns = SchemaLoader.load_columns(base_path, version=base_version)
+                base_columns = _base_columns(
+                    base_cache,
+                    base_path=base_path,
+                    base_version=base_version,
+                    load_columns=SchemaLoader.load_columns,
+                )
                 resolved = SchemaLoader.apply_derived_schema(base_columns, path)
                 errors.extend(
                     f"{rel}: {err}" for err in SchemaLoader.validate_columns(resolved, registry)

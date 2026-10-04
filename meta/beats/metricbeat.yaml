@@ -1,0 +1,2786 @@
+# Meta schema: Elastic Metricbeat
+#
+# Metricbeat's system module as the shipped modules.d/system.yml enables it --
+# the cpu, load, memory, network, process, process_summary, socket_summary,
+# filesystem, fsstat and uptime metricsets -- plus the metricset envelope
+# every module writes. Field names, types and descriptions read from
+# Elastic's own field declarations at elastic/beats tag v9.5.4 (released
+# 2026-09-15): metricbeat/_meta/fields.common.yml and the system module's
+# _meta/fields.yml files. Shapes checked against the metricsets' data.json
+# sample events in the same tree.
+#
+# Only the system module is here. Metricbeat ships 66 modules, each with its
+# own namespace, and a deployment runs the few it needs; a module's namespace
+# belongs in an additional/ overlay on this file rather than in every
+# Metricbeat table. The metricsets the shipped config leaves commented out
+# (core, diskio, entropy, socket, service, users, raid, ntp, network_summary)
+# land in the common header's `_json` column and stay queryable there.
+#
+# Also left to `_json`: Elastic's alias fields, which repeat an ECS path the
+# spine already carries (system.process.pid is process.pid), and the wildcard
+# groups under system.process.cgroup.memory.stats and
+# system.process.cgroup.io.stats, whose named members are columns below.
+#
+# The ECS-spine columns are copied from meta/elastic/ecs.yaml unchanged --
+# same name, type, ch_override, codec, cardinality, use_case, expr and
+# comment -- so the two vocabularies cannot disagree about a field they share.
+# That file carries only the ECS fields the Elastic integrations reference,
+# so process.pgid is built from libbeat's own declaration at the same tag by
+# the same type rules, as are host.containerized and the kubernetes.* fields,
+# which the add_host_metadata and add_kubernetes_metadata processors declare.
+#
+# Column names are the dotted source path with dots and hyphens replaced by
+# underscores and folded to lower case. `expr` carries the path in the case
+# the shipper actually sends, because dfe-loader reads that directive back out
+# of the ClickHouse column comment to find the field.
+
+current: "1.0.0"
+resource_type: core
+
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: "Metricbeat 9.5 system module (the default metricsets), the metricset envelope, and the ECS spine"
+    columns:
+      # -- shipper and stream ------------------------------------------------
+      - name: agent_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: agent.type'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: agent_version
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: agent.version'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: agent_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: agent.name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: agent_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: agent.id'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: agent_ephemeral_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: agent.ephemeral_id'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: data_stream_dataset
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: data_stream.dataset'
+        comment: 'Elasticsearch mapping type: constant_keyword'
+        _field_type: base
+
+      - name: data_stream_namespace
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: data_stream.namespace'
+        comment: 'Elasticsearch mapping type: constant_keyword'
+        _field_type: base
+
+      - name: data_stream_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: data_stream.type'
+        comment: 'Elasticsearch mapping type: constant_keyword'
+        _field_type: base
+
+      - name: ecs_version
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: ecs.version'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: event_module
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: event.module'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: event_dataset
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: event.dataset'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: event_kind
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: event.kind'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: event_duration
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: event.duration'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: service_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: service.type'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: service_address
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: service.address'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- metricset envelope ------------------------------------------------
+      # Declared by Metricbeat for every module.
+      - name: metricset_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: metricset.name'
+        comment: 'The name of the metricset that generated the event. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: metricset_period
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: metricset.period'
+        comment: 'Current data collection period for this event in milliseconds. Elasticsearch mapping type: integer'
+        _field_type: base
+
+      - name: service_hostname
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: service.hostname'
+        comment: 'Host name of the machine where the service is running. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: type'
+        comment: 'The document type. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: systemd_fragment_path
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: systemd.fragment_path'
+        comment: 'The location of the systemd unit path. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: systemd_unit
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: systemd.unit'
+        comment: 'The unit name of the systemd service. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- host --------------------------------------------------------------
+      - name: host_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: host.name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: host_hostname
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: host.hostname'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: host_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: host.id'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: host_ip
+        type: ip
+        ch_override: Array(IPv6)
+        codec: LZ4
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: host.ip'
+        comment: 'Elasticsearch mapping type: ip (normalize: array)'
+        _field_type: base
+
+      - name: host_mac
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: host.mac'
+        comment: 'Elasticsearch mapping type: keyword (normalize: array)'
+        _field_type: base
+
+      - name: host_architecture
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: host.architecture'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: host_containerized
+        type: boolean
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: host.containerized'
+        comment: 'If the host is a container. Elasticsearch mapping type: boolean'
+        _field_type: base
+
+      - name: host_os_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: host.os.type'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: host_os_family
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: host.os.family'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: host_os_platform
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: host.os.platform'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: host_os_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: host.os.name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: host_os_version
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: host.os.version'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: host_os_kernel
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: host.os.kernel'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: host_cpu_usage
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: host.cpu.usage'
+        comment: 'Elasticsearch mapping type: scaled_float'
+        _field_type: base
+
+      - name: host_network_ingress_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: host.network.ingress.bytes'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: host_network_ingress_packets
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: host.network.ingress.packets'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: host_network_egress_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: host.network.egress.bytes'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: host_network_egress_packets
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: host.network.egress.packets'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      # -- cloud, container and kubernetes -----------------------------------
+      # add_cloud_metadata, add_docker_metadata and add_kubernetes_metadata, all on in the
+      # shipped config. The last fills only when Metricbeat runs inside a cluster.
+      - name: cloud_provider
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cloud.provider'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cloud_region
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cloud.region'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cloud_availability_zone
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cloud.availability_zone'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cloud_account_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cloud.account.id'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cloud_instance_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cloud.instance.id'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cloud_instance_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cloud.instance.name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cloud_machine_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cloud.machine.type'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: container_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: container.id'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: container_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: container.name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: container_image_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: container.image.name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: container_labels
+        type: map
+        cardinality: unknown
+        use_case: key_search
+        expr: '@source: container.labels'
+        comment: 'Elasticsearch mapping type: object (object_type: arbitrary keys)'
+        _field_type: base
+
+      - name: kubernetes_namespace
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: kubernetes.namespace'
+        comment: 'Kubernetes namespace. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: kubernetes_node_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: kubernetes.node.name'
+        comment: 'Kubernetes node name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: kubernetes_node_hostname
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: kubernetes.node.hostname'
+        comment: 'Kubernetes hostname as reported by the node''s kernel. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: kubernetes_pod_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: kubernetes.pod.name'
+        comment: 'Kubernetes pod name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: kubernetes_pod_uid
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: kubernetes.pod.uid'
+        comment: 'Kubernetes Pod UID. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: kubernetes_pod_ip
+        type: ip
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: kubernetes.pod.ip'
+        comment: 'Kubernetes Pod IP. Elasticsearch mapping type: ip'
+        _field_type: base
+
+      - name: kubernetes_container_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: kubernetes.container.name'
+        comment: 'Kubernetes container name (different than the name from the runtime). Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: kubernetes_deployment_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: kubernetes.deployment.name'
+        comment: 'Kubernetes deployment name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: kubernetes_replicaset_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: kubernetes.replicaset.name'
+        comment: 'Kubernetes replicaset name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: kubernetes_statefulset_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: kubernetes.statefulset.name'
+        comment: 'Kubernetes statefulset name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: kubernetes_labels
+        type: map
+        cardinality: unknown
+        use_case: key_search
+        expr: '@source: kubernetes.labels'
+        comment: 'Kubernetes labels map. Elasticsearch mapping type: object (arbitrary keys)'
+        _field_type: base
+
+      # -- process: the ECS half the process metricset fills -----------------
+      - name: process_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: process_pid
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: process.pid'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: process_parent_pid
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: process.parent.pid'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: process_pgid
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: process.pgid'
+        comment: 'Identifier of the group of processes the process belongs to. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: process_executable
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.executable'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: process_command_line
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.command_line'
+        comment: 'Elasticsearch mapping type: wildcard'
+        _field_type: base
+
+      - name: process_args
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.args'
+        comment: 'Elasticsearch mapping type: keyword (normalize: array)'
+        _field_type: base
+
+      - name: process_working_directory
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.working_directory'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: process_exit_code
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: process.exit_code'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: user_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: user.name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: user_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: user.id'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- process: Metricbeat's own process fields --------------------------
+      - name: process_state
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.state'
+        comment: 'The process state. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: process_cpu_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: process.cpu.pct'
+        comment: 'The percentage of CPU time spent by the process since the last event. Elasticsearch mapping type: scaled_float'
+        _field_type: base
+
+      - name: process_cpu_start_time
+        type: datetime
+        cardinality: unknown
+        use_case: range
+        expr: '@source: process.cpu.start_time'
+        comment: 'The time when the process was started. Elasticsearch mapping type: date'
+        _field_type: base
+
+      - name: process_memory_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: process.memory.pct'
+        comment: 'The percentage of memory the process occupied in main memory (RAM). Elasticsearch mapping type: scaled_float'
+        _field_type: base
+
+      # -- system.cpu --------------------------------------------------------
+      - name: system_cpu_cores
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.cpu.cores'
+        comment: 'The number of CPU cores present on the host. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_cpu_user_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.cpu.user.pct'
+        comment: 'The percentage of CPU time spent in user space. Elasticsearch mapping type: scaled_float'
+        _field_type: base
+
+      - name: system_cpu_system_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.cpu.system.pct'
+        comment: 'The percentage of CPU time spent in kernel space. Elasticsearch mapping type: scaled_float'
+        _field_type: base
+
+      - name: system_cpu_nice_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.cpu.nice.pct'
+        comment: 'The percentage of CPU time spent on low-priority processes. Elasticsearch mapping type: scaled_float'
+        _field_type: base
+
+      - name: system_cpu_idle_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.cpu.idle.pct'
+        comment: 'The percentage of CPU time spent idle. Elasticsearch mapping type: scaled_float'
+        _field_type: base
+
+      - name: system_cpu_iowait_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.cpu.iowait.pct'
+        comment: 'The percentage of CPU time spent in wait (on disk). Elasticsearch mapping type: scaled_float'
+        _field_type: base
+
+      - name: system_cpu_irq_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.cpu.irq.pct'
+        comment: 'The percentage of CPU time spent servicing and handling hardware interrupts. Elasticsearch mapping type: scaled_float'
+        _field_type: base
+
+      - name: system_cpu_softirq_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.cpu.softirq.pct'
+        comment: 'The percentage of CPU time spent servicing and handling software interrupts. Elasticsearch mapping type: scaled_float'
+        _field_type: base
+
+      - name: system_cpu_steal_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.cpu.steal.pct'
+        comment: 'The percentage of CPU time spent in involuntary wait by the virtual CPU while the hypervisor was servicing another processor. Elasticsearch mapping type: scaled_float'
+        _field_type: base
+
+      - name: system_cpu_total_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.cpu.total.pct'
+        comment: 'The percentage of CPU time spent in states other than Idle and IOWait. Elasticsearch mapping type: scaled_float'
+        _field_type: base
+
+      - name: system_cpu_user_norm_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.cpu.user.norm.pct'
+        comment: 'The percentage of CPU time spent in user space. Elasticsearch mapping type: scaled_float'
+        _field_type: base
+
+      - name: system_cpu_system_norm_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.cpu.system.norm.pct'
+        comment: 'The percentage of CPU time spent in kernel space. Elasticsearch mapping type: scaled_float'
+        _field_type: base
+
+      - name: system_cpu_nice_norm_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.cpu.nice.norm.pct'
+        comment: 'The percentage of CPU time spent on low-priority processes. Elasticsearch mapping type: scaled_float'
+        _field_type: base
+
+      - name: system_cpu_idle_norm_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.cpu.idle.norm.pct'
+        comment: 'The percentage of CPU time spent idle. Elasticsearch mapping type: scaled_float'
+        _field_type: base
+
+      - name: system_cpu_iowait_norm_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.cpu.iowait.norm.pct'
+        comment: 'The percentage of CPU time spent in wait (on disk). Elasticsearch mapping type: scaled_float'
+        _field_type: base
+
+      - name: system_cpu_irq_norm_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.cpu.irq.norm.pct'
+        comment: 'The percentage of CPU time spent servicing and handling hardware interrupts. Elasticsearch mapping type: scaled_float'
+        _field_type: base
+
+      - name: system_cpu_softirq_norm_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.cpu.softirq.norm.pct'
+        comment: 'The percentage of CPU time spent servicing and handling software interrupts. Elasticsearch mapping type: scaled_float'
+        _field_type: base
+
+      - name: system_cpu_steal_norm_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.cpu.steal.norm.pct'
+        comment: 'The percentage of CPU time spent in involuntary wait by the virtual CPU while the hypervisor was servicing another processor. Elasticsearch mapping type: scaled_float'
+        _field_type: base
+
+      - name: system_cpu_total_norm_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.cpu.total.norm.pct'
+        comment: 'The percentage of CPU time in states other than Idle and IOWait, normalised by the number of cores. Elasticsearch mapping type: scaled_float'
+        _field_type: base
+
+      - name: system_cpu_user_ticks
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.cpu.user.ticks'
+        comment: 'The amount of CPU time spent in user space. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_cpu_system_ticks
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.cpu.system.ticks'
+        comment: 'The amount of CPU time spent in kernel space. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_cpu_nice_ticks
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.cpu.nice.ticks'
+        comment: 'The amount of CPU time spent on low-priority processes. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_cpu_idle_ticks
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.cpu.idle.ticks'
+        comment: 'The amount of CPU time spent idle. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_cpu_iowait_ticks
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.cpu.iowait.ticks'
+        comment: 'The amount of CPU time spent in wait (on disk). Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_cpu_irq_ticks
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.cpu.irq.ticks'
+        comment: 'The amount of CPU time spent servicing and handling hardware interrupts. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_cpu_softirq_ticks
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.cpu.softirq.ticks'
+        comment: 'The amount of CPU time spent servicing and handling software interrupts. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_cpu_steal_ticks
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.cpu.steal.ticks'
+        comment: 'The amount of CPU time spent in involuntary wait by the virtual CPU while the hypervisor was servicing another processor. Elasticsearch mapping type: long'
+        _field_type: base
+
+      # -- system.load -------------------------------------------------------
+      - name: system_load_1
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.load.1'
+        comment: 'Load average for the last minute. Elasticsearch mapping type: scaled_float'
+        _field_type: base
+
+      - name: system_load_5
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.load.5'
+        comment: 'Load average for the last 5 minutes. Elasticsearch mapping type: scaled_float'
+        _field_type: base
+
+      - name: system_load_15
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.load.15'
+        comment: 'Load average for the last 15 minutes. Elasticsearch mapping type: scaled_float'
+        _field_type: base
+
+      - name: system_load_norm_1
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.load.norm.1'
+        comment: 'Load for the last minute divided by the number of cores. Elasticsearch mapping type: scaled_float'
+        _field_type: base
+
+      - name: system_load_norm_5
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.load.norm.5'
+        comment: 'Load for the last 5 minutes divided by the number of cores. Elasticsearch mapping type: scaled_float'
+        _field_type: base
+
+      - name: system_load_norm_15
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.load.norm.15'
+        comment: 'Load for the last 15 minutes divided by the number of cores. Elasticsearch mapping type: scaled_float'
+        _field_type: base
+
+      - name: system_load_cores
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.load.cores'
+        comment: 'The number of CPU cores present on the host. Elasticsearch mapping type: long'
+        _field_type: base
+
+      # -- system.memory -----------------------------------------------------
+      - name: system_memory_total
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.memory.total'
+        comment: 'Total memory. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_memory_used_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.memory.used.bytes'
+        comment: 'Used memory. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_memory_free
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.memory.free'
+        comment: 'The total amount of free memory in bytes. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_memory_cached
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.memory.cached'
+        comment: 'Total Cached memory on system. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_memory_used_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.memory.used.pct'
+        comment: 'The percentage of used memory. Elasticsearch mapping type: scaled_float'
+        _field_type: base
+
+      - name: system_memory_actual_used_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.memory.actual.used.bytes'
+        comment: 'Actual used memory in bytes. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_memory_actual_free
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.memory.actual.free'
+        comment: 'Actual free memory in bytes. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_memory_actual_used_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.memory.actual.used.pct'
+        comment: 'The percentage of actual used memory. Elasticsearch mapping type: scaled_float'
+        _field_type: base
+
+      - name: system_memory_swap_total
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.memory.swap.total'
+        comment: 'Total swap memory. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_memory_swap_used_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.memory.swap.used.bytes'
+        comment: 'Used swap memory. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_memory_swap_free
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.memory.swap.free'
+        comment: 'Available swap memory. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_memory_swap_used_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.memory.swap.used.pct'
+        comment: 'The percentage of used swap memory. Elasticsearch mapping type: scaled_float'
+        _field_type: base
+
+      - name: system_memory_zswap_compressed
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.memory.zswap.compressed'
+        comment: 'Current compressed size of data stored in zswap. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_memory_zswap_uncompressed
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.memory.zswap.uncompressed'
+        comment: 'Original uncompressed size of data stored in zswap. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_memory_zswap_debug_decompress_fail
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.memory.zswap.debug.decompress_fail'
+        comment: 'Number of load or writeback attempts that failed due to decompression failure. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_memory_zswap_debug_pool_limit_hit
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.memory.zswap.debug.pool_limit_hit'
+        comment: 'Number of times the zswap pool limit was hit, as configured by the zswap.max_pool_percent kernel parameter. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_memory_zswap_debug_pool_total_size
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.memory.zswap.debug.pool_total_size'
+        comment: 'Total size of the zswap pool in bytes. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_memory_zswap_debug_reject_alloc_fail
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.memory.zswap.debug.reject_alloc_fail'
+        comment: 'Number of store attempts that failed because the underlying allocator could not get memory. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_memory_zswap_debug_reject_compress_fail
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.memory.zswap.debug.reject_compress_fail'
+        comment: 'Number of store attempts that failed due to compression algorithm failure. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_memory_zswap_debug_reject_compress_poor
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.memory.zswap.debug.reject_compress_poor'
+        comment: 'Number of store attempts rejected because the compressed page was too big for the allocator to optimally store. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_memory_zswap_debug_reject_kmemcache_fail
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.memory.zswap.debug.reject_kmemcache_fail'
+        comment: 'Number of store attempts that failed because the entry metadata could not be allocated (rare). Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_memory_zswap_debug_reject_reclaim_fail
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.memory.zswap.debug.reject_reclaim_fail'
+        comment: 'Number of store attempts that failed due to a reclaim failure after pool limit was reached. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_memory_zswap_debug_stored_incompressible_pages
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.memory.zswap.debug.stored_incompressible_pages'
+        comment: 'Number of incompressible pages currently stored in zswap. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_memory_zswap_debug_stored_pages
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.memory.zswap.debug.stored_pages'
+        comment: 'Number of pages currently stored in zswap. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_memory_zswap_debug_written_back_pages
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.memory.zswap.debug.written_back_pages'
+        comment: 'Number of pages written back from zswap to swap when pool limit was reached. Elasticsearch mapping type: long'
+        _field_type: base
+
+      # -- system.network ----------------------------------------------------
+      - name: system_network_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.network.name'
+        comment: 'The network interface name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_network_out_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.network.out.bytes'
+        comment: 'The number of bytes sent. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_network_in_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.network.in.bytes'
+        comment: 'The number of bytes received. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_network_out_packets
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.network.out.packets'
+        comment: 'The number of packets sent. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_network_in_packets
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.network.in.packets'
+        comment: 'The number or packets received. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_network_in_errors
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.network.in.errors'
+        comment: 'The number of errors while receiving. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_network_out_errors
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.network.out.errors'
+        comment: 'The number of errors while sending. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_network_in_dropped
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.network.in.dropped'
+        comment: 'The number of incoming packets that were dropped. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_network_out_dropped
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.network.out.dropped'
+        comment: 'The number of outgoing packets that were dropped. Elasticsearch mapping type: long'
+        _field_type: base
+
+      # -- system.process ----------------------------------------------------
+      # One event per process; the top five by CPU and by memory in the shipped config.
+      - name: system_process_state
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.process.state'
+        comment: 'The process state. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_process_num_threads
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.num_threads'
+        comment: 'Number of threads in the process. Elasticsearch mapping type: integer'
+        _field_type: base
+
+      - name: system_process_cmdline
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.process.cmdline'
+        comment: 'The full command-line used to start the process, including the arguments separated by space. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_process_env
+        type: map
+        cardinality: unknown
+        use_case: key_search
+        expr: '@source: system.process.env'
+        comment: 'The environment variables used to start the process. Elasticsearch mapping type: object (arbitrary keys)'
+        _field_type: base
+
+      - name: system_process_cpu_user_ticks
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cpu.user.ticks'
+        comment: 'The amount of CPU time the process spent in user space. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cpu_total_value
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cpu.total.value'
+        comment: 'The value of CPU usage since starting the process. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cpu_total_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cpu.total.pct'
+        comment: 'The percentage of CPU time spent by the process since the last update. Elasticsearch mapping type: scaled_float'
+        _field_type: base
+
+      - name: system_process_cpu_total_norm_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cpu.total.norm.pct'
+        comment: 'The percentage of CPU time spent by the process since the last event. Elasticsearch mapping type: scaled_float'
+        _field_type: base
+
+      - name: system_process_cpu_system_ticks
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cpu.system.ticks'
+        comment: 'The amount of CPU time the process spent in kernel space. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cpu_total_ticks
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cpu.total.ticks'
+        comment: 'The total CPU time spent by the process. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cpu_start_time
+        type: datetime
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cpu.start_time'
+        comment: 'The time when the process was started. Elasticsearch mapping type: date'
+        _field_type: base
+
+      - name: system_process_memory_size
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.memory.size'
+        comment: 'The total virtual memory the process has. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_memory_rss_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.memory.rss.bytes'
+        comment: 'The Resident Set Size. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_memory_rss_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.memory.rss.pct'
+        comment: 'The percentage of memory the process occupied in main memory (RAM). Elasticsearch mapping type: scaled_float'
+        _field_type: base
+
+      - name: system_process_memory_share
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.memory.share'
+        comment: 'The shared memory the process uses. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_memory_swap
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.memory.swap'
+        comment: 'The swap memory used by the process (supported only on Linux kernel version 2.6.34+). Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_io_cancelled_write_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.io.cancelled_write_bytes'
+        comment: 'The number of bytes this process cancelled, or caused not to be written. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_io_read_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.io.read_bytes'
+        comment: 'The number of bytes fetched from the storage layer. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_io_write_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.io.write_bytes'
+        comment: 'The number of bytes written to the storage layer. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_io_read_char
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.io.read_char'
+        comment: 'The number of bytes read from read(2) and similar syscalls. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_io_write_char
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.io.write_char'
+        comment: 'The number of bytes sent to syscalls for writing. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_io_read_ops
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.io.read_ops'
+        comment: 'The count of read-related syscalls. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_io_write_ops
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.io.write_ops'
+        comment: 'The count of write-related syscalls. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_fd_open
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.fd.open'
+        comment: 'The number of file descriptors open by the process. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_fd_limit_soft
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.fd.limit.soft'
+        comment: 'The soft limit on the number of file descriptors opened by the process. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_fd_limit_hard
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.fd.limit.hard'
+        comment: 'The hard limit on the number of file descriptors opened by the process. Elasticsearch mapping type: long'
+        _field_type: base
+
+      # -- system.process.cgroup ---------------------------------------------
+      # Linux only, and present only where the process runs in a cgroup.
+      - name: system_process_cgroup_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.process.cgroup.id'
+        comment: 'The ID common to all cgroups associated with this task. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_process_cgroup_path
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.process.cgroup.path'
+        comment: 'The path to the cgroup relative to the cgroup subsystem''s mountpoint. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_process_cgroup_cgroups_version
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.cgroups_version'
+        comment: 'The version of cgroups reported for the process. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_cpu_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.process.cgroup.cpu.id'
+        comment: 'ID of the cgroup. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_process_cgroup_cpu_path
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.process.cgroup.cpu.path'
+        comment: 'Path to the cgroup relative to the cgroup subsystem''s mountpoint. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_process_cgroup_cpu_stats_usage_ns
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.cpu.stats.usage.ns'
+        comment: 'Cgroups v2 usage in nanoseconds. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_cpu_stats_usage_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.cpu.stats.usage.pct'
+        comment: 'Cgroups v2 usage. Elasticsearch mapping type: float'
+        _field_type: base
+
+      - name: system_process_cgroup_cpu_stats_usage_norm_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.cpu.stats.usage.norm.pct'
+        comment: 'Cgroups v2 normalized usage. Elasticsearch mapping type: float'
+        _field_type: base
+
+      - name: system_process_cgroup_cpu_stats_user_ns
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.cpu.stats.user.ns'
+        comment: 'Cgroups v2 cpu user time in nanoseconds. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_cpu_stats_user_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.cpu.stats.user.pct'
+        comment: 'Cgroups v2 cpu user time. Elasticsearch mapping type: float'
+        _field_type: base
+
+      - name: system_process_cgroup_cpu_stats_user_norm_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.cpu.stats.user.norm.pct'
+        comment: 'Cgroups v2 normalized cpu user time. Elasticsearch mapping type: float'
+        _field_type: base
+
+      - name: system_process_cgroup_cpu_stats_system_ns
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.cpu.stats.system.ns'
+        comment: 'Cgroups v2 system time in nanoseconds. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_cpu_stats_system_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.cpu.stats.system.pct'
+        comment: 'Cgroups v2 system time. Elasticsearch mapping type: float'
+        _field_type: base
+
+      - name: system_process_cgroup_cpu_stats_system_norm_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.cpu.stats.system.norm.pct'
+        comment: 'Cgroups v2 normalized system time. Elasticsearch mapping type: float'
+        _field_type: base
+
+      - name: system_process_cgroup_cpu_cfs_period_us
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.cpu.cfs.period.us'
+        comment: 'Period of time in microseconds for how regularly a cgroup''s access to CPU resources should be reallocated. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_cpu_cfs_quota_us
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.cpu.cfs.quota.us'
+        comment: 'Total amount of time in microseconds for which all tasks in a cgroup can run during one period (as defined by cfs.period.us). Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_cpu_cfs_shares
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.cpu.cfs.shares'
+        comment: 'An integer value that specifies a relative share of CPU time available to the tasks in a cgroup. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_cpu_cfs_weight
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.cpu.cfs.weight'
+        comment: 'CPU weight for the cgroup (cgroupv2). Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_cpu_rt_period_us
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.cpu.rt.period.us'
+        comment: 'Period of time in microseconds for how regularly a cgroup''s access to CPU resources is reallocated. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_cpu_rt_runtime_us
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.cpu.rt.runtime.us'
+        comment: 'Period of time in microseconds for the longest continuous period in which the tasks in a cgroup have access to CPU resources. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_cpu_stats_periods
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.cpu.stats.periods'
+        comment: 'Number of period intervals (as specified in cpu.cfs.period.us) that have elapsed. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_cpu_stats_throttled_periods
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.cpu.stats.throttled.periods'
+        comment: 'Number of times tasks in a cgroup have been throttled (that is, not allowed to run because they have exhausted all of the available time as specified by their quota). Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_cpu_stats_throttled_us
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.cpu.stats.throttled.us'
+        comment: 'The total time duration (in microseconds) for which tasks in a cgroup have been throttled, as reported by cgroupsv2. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_cpu_stats_throttled_ns
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.cpu.stats.throttled.ns'
+        comment: 'The total time duration (in nanoseconds) for which tasks in a cgroup have been throttled. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_cpu_pressure_some_10_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.cpu.pressure.some.10.pct'
+        comment: 'Pressure over 10 seconds. Elasticsearch mapping type: float'
+        _field_type: base
+
+      - name: system_process_cgroup_cpu_pressure_some_60_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.cpu.pressure.some.60.pct'
+        comment: 'Pressure over 60 seconds. Elasticsearch mapping type: float'
+        _field_type: base
+
+      - name: system_process_cgroup_cpu_pressure_some_300_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.cpu.pressure.some.300.pct'
+        comment: 'Pressure over 300 seconds. Elasticsearch mapping type: float'
+        _field_type: base
+
+      - name: system_process_cgroup_cpu_pressure_some_total
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.cpu.pressure.some.total'
+        comment: 'Total Some pressure time. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_cpu_pressure_full_10_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.cpu.pressure.full.10.pct'
+        comment: 'Pressure over 10 seconds. Elasticsearch mapping type: float'
+        _field_type: base
+
+      - name: system_process_cgroup_cpu_pressure_full_60_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.cpu.pressure.full.60.pct'
+        comment: 'Pressure over 60 seconds. Elasticsearch mapping type: float'
+        _field_type: base
+
+      - name: system_process_cgroup_cpu_pressure_full_300_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.cpu.pressure.full.300.pct'
+        comment: 'Pressure over 300 seconds. Elasticsearch mapping type: float'
+        _field_type: base
+
+      - name: system_process_cgroup_cpu_pressure_full_total
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.cpu.pressure.full.total'
+        comment: 'Total Full pressure time. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_cpuacct_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.process.cgroup.cpuacct.id'
+        comment: 'ID of the cgroup. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_process_cgroup_cpuacct_path
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.process.cgroup.cpuacct.path'
+        comment: 'Path to the cgroup relative to the cgroup subsystem''s mountpoint. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_process_cgroup_cpuacct_total_ns
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.cpuacct.total.ns'
+        comment: 'Total CPU time in nanoseconds consumed by all tasks in the cgroup. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_cpuacct_total_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.cpuacct.total.pct'
+        comment: 'CPU time of the cgroup as a percentage of overall CPU time. Elasticsearch mapping type: scaled_float'
+        _field_type: base
+
+      - name: system_process_cgroup_cpuacct_total_norm_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.cpuacct.total.norm.pct'
+        comment: 'CPU time of the cgroup as a percentage of overall CPU time, normalized by CPU count. Elasticsearch mapping type: scaled_float'
+        _field_type: base
+
+      - name: system_process_cgroup_cpuacct_stats_user_ns
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.cpuacct.stats.user.ns'
+        comment: 'CPU time consumed by tasks in user mode. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_cpuacct_stats_user_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.cpuacct.stats.user.pct'
+        comment: 'Time the cgroup spent in user space, as a percentage of total CPU time. Elasticsearch mapping type: scaled_float'
+        _field_type: base
+
+      - name: system_process_cgroup_cpuacct_stats_user_norm_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.cpuacct.stats.user.norm.pct'
+        comment: 'Time the cgroup spent in user space, as a percentage of total CPU time, normalized by CPU count. Elasticsearch mapping type: scaled_float'
+        _field_type: base
+
+      - name: system_process_cgroup_cpuacct_stats_system_ns
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.cpuacct.stats.system.ns'
+        comment: 'CPU time consumed by tasks in user (kernel) mode. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_cpuacct_stats_system_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.cpuacct.stats.system.pct'
+        comment: 'Time the cgroup spent in kernel space, as a percentage of total CPU time. Elasticsearch mapping type: scaled_float'
+        _field_type: base
+
+      - name: system_process_cgroup_cpuacct_stats_system_norm_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.cpuacct.stats.system.norm.pct'
+        comment: 'Time the cgroup spent in kernel space, as a percentage of total CPU time, normalized by CPU count. Elasticsearch mapping type: scaled_float'
+        _field_type: base
+
+      - name: system_process_cgroup_cpuacct_percpu
+        type: map
+        cardinality: unknown
+        use_case: key_search
+        expr: '@source: system.process.cgroup.cpuacct.percpu'
+        comment: 'CPU time (in nanoseconds) consumed on each CPU by all tasks in this cgroup. Elasticsearch mapping type: object (arbitrary keys)'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.process.cgroup.memory.id'
+        comment: 'ID of the cgroup. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_path
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.process.cgroup.memory.path'
+        comment: 'Path to the cgroup relative to the cgroup subsystem''s mountpoint. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_mem_usage_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.mem.usage.bytes'
+        comment: 'Total memory usage by processes in the cgroup (in bytes). Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_mem_usage_max_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.mem.usage.max.bytes'
+        comment: 'The maximum memory used by processes in the cgroup (in bytes). Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_mem_limit_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.mem.limit.bytes'
+        comment: 'The maximum amount of user memory in bytes (including file cache) that tasks in the cgroup are allowed to use. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_mem_failures
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.mem.failures'
+        comment: 'The number of times that the memory limit (mem.limit.bytes) was reached. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_mem_low_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.mem.low.bytes'
+        comment: 'Memory low threshold. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_mem_high_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.mem.high.bytes'
+        comment: 'Memory high threshold. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_mem_max_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.mem.max.bytes'
+        comment: 'Memory max threshold. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_mem_events_low
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.mem.events.low'
+        comment: 'Low threshold. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_mem_events_high
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.mem.events.high'
+        comment: 'High threshold. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_mem_events_max
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.mem.events.max'
+        comment: 'Max threshold. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_mem_events_oom
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.mem.events.oom'
+        comment: 'Oom threshold. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_mem_events_oom_kill
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.mem.events.oom_kill'
+        comment: 'Oom killer threshold. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_mem_events_fail
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.mem.events.fail'
+        comment: 'Failed threshold. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_memsw_usage_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.memsw.usage.bytes'
+        comment: 'The sum of current memory usage plus swap space used by processes in the cgroup (in bytes). Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_memsw_usage_max_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.memsw.usage.max.bytes'
+        comment: 'The maximum amount of memory and swap space used by processes in the cgroup (in bytes). Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_memsw_limit_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.memsw.limit.bytes'
+        comment: 'The maximum amount for the sum of memory and swap usage that tasks in the cgroup are allowed to use. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_memsw_low_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.memsw.low.bytes'
+        comment: 'Memory low threshold. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_memsw_high_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.memsw.high.bytes'
+        comment: 'Memory high threshold. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_memsw_max_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.memsw.max.bytes'
+        comment: 'Memory max threshold. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_memsw_failures
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.memsw.failures'
+        comment: 'The number of times that the memory plus swap space limit (memsw.limit.bytes) was reached. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_memsw_events_low
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.memsw.events.low'
+        comment: 'Low threshold. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_memsw_events_high
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.memsw.events.high'
+        comment: 'High threshold. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_memsw_events_max
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.memsw.events.max'
+        comment: 'Max threshold. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_memsw_events_oom
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.memsw.events.oom'
+        comment: 'Oom threshold. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_memsw_events_oom_kill
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.memsw.events.oom_kill'
+        comment: 'Oom killer threshold. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_memsw_events_fail
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.memsw.events.fail'
+        comment: 'Failed threshold. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_kmem_usage_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.kmem.usage.bytes'
+        comment: 'Total kernel memory usage by processes in the cgroup (in bytes). Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_kmem_usage_max_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.kmem.usage.max.bytes'
+        comment: 'The maximum kernel memory used by processes in the cgroup (in bytes). Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_kmem_limit_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.kmem.limit.bytes'
+        comment: 'The maximum amount of kernel memory that tasks in the cgroup are allowed to use. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_kmem_failures
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.kmem.failures'
+        comment: 'The number of times that the memory limit (kmem.limit.bytes) was reached. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_kmem_tcp_usage_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.kmem_tcp.usage.bytes'
+        comment: 'Total memory usage for TCP buffers in bytes. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_kmem_tcp_usage_max_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.kmem_tcp.usage.max.bytes'
+        comment: 'The maximum memory used for TCP buffers by processes in the cgroup (in bytes). Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_kmem_tcp_limit_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.kmem_tcp.limit.bytes'
+        comment: 'The maximum amount of memory for TCP buffers that tasks in the cgroup are allowed to use. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_kmem_tcp_failures
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.kmem_tcp.failures'
+        comment: 'The number of times that the memory limit (kmem_tcp.limit.bytes) was reached. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_stats_active_anon_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.stats.active_anon.bytes'
+        comment: 'Anonymous and swap cache on active least-recently-used (LRU) list, including tmpfs (shmem), in bytes. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_stats_active_file_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.stats.active_file.bytes'
+        comment: 'File-backed memory on active LRU list, in bytes. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_stats_cache_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.stats.cache.bytes'
+        comment: 'Page cache, including tmpfs (shmem), in bytes. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_stats_hierarchical_memory_limit_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.stats.hierarchical_memory_limit.bytes'
+        comment: 'Memory limit for the hierarchy that contains the memory cgroup, in bytes. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_stats_hierarchical_memsw_limit_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.stats.hierarchical_memsw_limit.bytes'
+        comment: 'Memory plus swap limit for the hierarchy that contains the memory cgroup, in bytes. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_stats_inactive_anon_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.stats.inactive_anon.bytes'
+        comment: 'Anonymous and swap cache on inactive LRU list, including tmpfs (shmem), in bytes. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_stats_inactive_file_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.stats.inactive_file.bytes'
+        comment: 'File-backed memory on inactive LRU list, in bytes. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_stats_mapped_file_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.stats.mapped_file.bytes'
+        comment: 'Size of memory-mapped files, including tmpfs (shmem), in bytes. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_stats_page_faults
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.stats.page_faults'
+        comment: 'Number of times that a process in the cgroup triggered a page fault. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_stats_major_page_faults
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.stats.major_page_faults'
+        comment: 'Number of times that a process in the cgroup triggered a major fault. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_stats_pages_in
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.stats.pages_in'
+        comment: 'Number of pages paged into memory. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_stats_pages_out
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.stats.pages_out'
+        comment: 'Number of pages paged out of memory. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_stats_rss_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.stats.rss.bytes'
+        comment: 'Anonymous and swap cache (includes transparent hugepages), not including tmpfs (shmem), in bytes. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_stats_rss_huge_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.stats.rss_huge.bytes'
+        comment: 'Number of bytes of anonymous transparent hugepages. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_stats_swap_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.stats.swap.bytes'
+        comment: 'Swap usage, in bytes. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_stats_unevictable_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.stats.unevictable.bytes'
+        comment: 'Memory that cannot be reclaimed, in bytes. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_pressure_some_10_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.pressure.some.10.pct'
+        comment: 'Pressure over 10 seconds. Elasticsearch mapping type: float'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_pressure_some_60_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.pressure.some.60.pct'
+        comment: 'Pressure over 60 seconds. Elasticsearch mapping type: float'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_pressure_some_300_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.pressure.some.300.pct'
+        comment: 'Pressure over 300 seconds. Elasticsearch mapping type: float'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_pressure_some_total
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.pressure.some.total'
+        comment: 'Total Some pressure time. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_pressure_full_10_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.pressure.full.10.pct'
+        comment: 'Pressure over 10 seconds. Elasticsearch mapping type: float'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_pressure_full_60_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.pressure.full.60.pct'
+        comment: 'Pressure over 60 seconds. Elasticsearch mapping type: float'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_pressure_full_300_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.pressure.full.300.pct'
+        comment: 'Pressure over 300 seconds. Elasticsearch mapping type: float'
+        _field_type: base
+
+      - name: system_process_cgroup_memory_pressure_full_total
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.memory.pressure.full.total'
+        comment: 'Total Full pressure time. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_blkio_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.process.cgroup.blkio.id'
+        comment: 'ID of the cgroup. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_process_cgroup_blkio_path
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.process.cgroup.blkio.path'
+        comment: 'Path to the cgroup relative to the cgroup subsystems mountpoint. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_process_cgroup_blkio_total_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.blkio.total.bytes'
+        comment: 'Total number of bytes transferred to and from all block devices by processes in the cgroup. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_blkio_total_ios
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.blkio.total.ios'
+        comment: 'Total number of I/O operations performed on all devices by processes in the cgroup as seen by the throttling policy. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_io_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.process.cgroup.io.id'
+        comment: 'ID of the cgroup. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_process_cgroup_io_path
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.process.cgroup.io.path'
+        comment: 'Path to the cgroup relative to the cgroup subsystems mountpoint. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_process_cgroup_io_pressure_full_10_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.io.pressure.full.10.pct'
+        comment: 'Pressure over 10 seconds. Elasticsearch mapping type: float'
+        _field_type: base
+
+      - name: system_process_cgroup_io_pressure_full_60_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.io.pressure.full.60.pct'
+        comment: 'Pressure over 60 seconds. Elasticsearch mapping type: float'
+        _field_type: base
+
+      - name: system_process_cgroup_io_pressure_full_300_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.io.pressure.full.300.pct'
+        comment: 'Pressure over 300 seconds. Elasticsearch mapping type: float'
+        _field_type: base
+
+      - name: system_process_cgroup_io_pressure_full_total
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.io.pressure.full.total'
+        comment: 'Total Some pressure time. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_cgroup_io_pressure_some_10_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.io.pressure.some.10.pct'
+        comment: 'Pressure over 10 seconds. Elasticsearch mapping type: float'
+        _field_type: base
+
+      - name: system_process_cgroup_io_pressure_some_60_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.io.pressure.some.60.pct'
+        comment: 'Pressure over 60 seconds. Elasticsearch mapping type: float'
+        _field_type: base
+
+      - name: system_process_cgroup_io_pressure_some_300_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.io.pressure.some.300.pct'
+        comment: 'Pressure over 300 seconds. Elasticsearch mapping type: float'
+        _field_type: base
+
+      - name: system_process_cgroup_io_pressure_some_total
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.cgroup.io.pressure.some.total'
+        comment: 'Total Some pressure time. Elasticsearch mapping type: long'
+        _field_type: base
+
+      # -- system.process.summary --------------------------------------------
+      - name: system_process_summary_total
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.summary.total'
+        comment: 'Total number of processes on this host. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_summary_running
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.summary.running'
+        comment: 'Number of running processes on this host. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_summary_idle
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.summary.idle'
+        comment: 'Number of idle processes on this host. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_summary_sleeping
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.summary.sleeping'
+        comment: 'Number of sleeping processes on this host. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_summary_stopped
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.summary.stopped'
+        comment: 'Number of stopped processes on this host. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_summary_zombie
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.summary.zombie'
+        comment: 'Number of zombie processes on this host. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_summary_dead
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.summary.dead'
+        comment: 'Number of dead processes on this host. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_summary_wakekill
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.summary.wakekill'
+        comment: 'Number of wakekill-state processes on this host. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_summary_wake
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.summary.wake'
+        comment: 'Number of wake-state processes on this host. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_summary_parked
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.summary.parked'
+        comment: 'Number of parked-state processes on this host. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_summary_unknown
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.summary.unknown'
+        comment: 'Number of processes for which the state couldn''t be retrieved or is unknown. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_summary_threads_running
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.summary.threads.running'
+        comment: 'Count of currently running threads. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_process_summary_threads_blocked
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.process.summary.threads.blocked'
+        comment: 'Count of threads blocked by I/O. Elasticsearch mapping type: long'
+        _field_type: base
+
+      # -- system.socket.summary ---------------------------------------------
+      - name: system_socket_summary_all_count
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.socket.summary.all.count'
+        comment: 'All open connections. Elasticsearch mapping type: integer'
+        _field_type: base
+
+      - name: system_socket_summary_all_listening
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.socket.summary.all.listening'
+        comment: 'All listening ports. Elasticsearch mapping type: integer'
+        _field_type: base
+
+      - name: system_socket_summary_tcp_memory
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.socket.summary.tcp.memory'
+        comment: 'Memory used by TCP sockets in bytes, based on number of allocated pages and system page size. Elasticsearch mapping type: integer'
+        _field_type: base
+
+      - name: system_socket_summary_tcp_all_orphan
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.socket.summary.tcp.all.orphan'
+        comment: 'A count of all orphaned tcp sockets. Elasticsearch mapping type: integer'
+        _field_type: base
+
+      - name: system_socket_summary_tcp_all_count
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.socket.summary.tcp.all.count'
+        comment: 'All open TCP connections. Elasticsearch mapping type: integer'
+        _field_type: base
+
+      - name: system_socket_summary_tcp_all_listening
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.socket.summary.tcp.all.listening'
+        comment: 'All TCP listening ports. Elasticsearch mapping type: integer'
+        _field_type: base
+
+      - name: system_socket_summary_tcp_all_established
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.socket.summary.tcp.all.established'
+        comment: 'Number of established TCP connections. Elasticsearch mapping type: integer'
+        _field_type: base
+
+      - name: system_socket_summary_tcp_all_close_wait
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.socket.summary.tcp.all.close_wait'
+        comment: 'Number of TCP connections in _close_wait_ state. Elasticsearch mapping type: integer'
+        _field_type: base
+
+      - name: system_socket_summary_tcp_all_time_wait
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.socket.summary.tcp.all.time_wait'
+        comment: 'Number of TCP connections in _time_wait_ state. Elasticsearch mapping type: integer'
+        _field_type: base
+
+      - name: system_socket_summary_tcp_all_syn_sent
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.socket.summary.tcp.all.syn_sent'
+        comment: 'Number of TCP connections in _syn_sent_ state. Elasticsearch mapping type: integer'
+        _field_type: base
+
+      - name: system_socket_summary_tcp_all_syn_recv
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.socket.summary.tcp.all.syn_recv'
+        comment: 'Number of TCP connections in _syn_recv_ state. Elasticsearch mapping type: integer'
+        _field_type: base
+
+      - name: system_socket_summary_tcp_all_fin_wait1
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.socket.summary.tcp.all.fin_wait1'
+        comment: 'Number of TCP connections in _fin_wait1_ state. Elasticsearch mapping type: integer'
+        _field_type: base
+
+      - name: system_socket_summary_tcp_all_fin_wait2
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.socket.summary.tcp.all.fin_wait2'
+        comment: 'Number of TCP connections in _fin_wait2_ state. Elasticsearch mapping type: integer'
+        _field_type: base
+
+      - name: system_socket_summary_tcp_all_last_ack
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.socket.summary.tcp.all.last_ack'
+        comment: 'Number of TCP connections in _last_ack_ state. Elasticsearch mapping type: integer'
+        _field_type: base
+
+      - name: system_socket_summary_tcp_all_closing
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.socket.summary.tcp.all.closing'
+        comment: 'Number of TCP connections in _closing_ state. Elasticsearch mapping type: integer'
+        _field_type: base
+
+      - name: system_socket_summary_udp_memory
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.socket.summary.udp.memory'
+        comment: 'Memory used by UDP sockets in bytes, based on number of allocated pages and system page size. Elasticsearch mapping type: integer'
+        _field_type: base
+
+      - name: system_socket_summary_udp_all_count
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.socket.summary.udp.all.count'
+        comment: 'All open UDP connections. Elasticsearch mapping type: integer'
+        _field_type: base
+
+      # -- system.filesystem and system.fsstat -------------------------------
+      - name: system_filesystem_available
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.filesystem.available'
+        comment: 'The disk space available to an unprivileged user in bytes. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_filesystem_device_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.filesystem.device_name'
+        comment: 'The disk name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_filesystem_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.filesystem.type'
+        comment: 'The disk type. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_filesystem_mount_point
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.filesystem.mount_point'
+        comment: 'The mounting point. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_filesystem_files
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.filesystem.files'
+        comment: 'Total number of inodes on the system, which will be a combination of files, folders, symlinks, and devices. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_filesystem_options
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.filesystem.options'
+        comment: 'The options present on the filesystem mount. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_filesystem_free
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.filesystem.free'
+        comment: 'The disk space available in bytes. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_filesystem_free_files
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.filesystem.free_files'
+        comment: 'The number of free inodes in the file system. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_filesystem_total
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.filesystem.total'
+        comment: 'The total disk space in bytes. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_filesystem_used_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.filesystem.used.bytes'
+        comment: 'The used disk space in bytes. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_filesystem_used_pct
+        type: float
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.filesystem.used.pct'
+        comment: 'The percentage of used disk space. Elasticsearch mapping type: scaled_float'
+        _field_type: base
+
+      - name: system_fsstat_count
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.fsstat.count'
+        comment: 'Number of file systems found. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_fsstat_total_files
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.fsstat.total_files'
+        comment: 'Total number of inodes on the system, which will be a combination of files, folders, symlinks, and devices. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_fsstat_total_size_free
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.fsstat.total_size.free'
+        comment: 'Total free space. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_fsstat_total_size_used
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.fsstat.total_size.used'
+        comment: 'Total used space. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_fsstat_total_size_total
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.fsstat.total_size.total'
+        comment: 'Total space (used plus free). Elasticsearch mapping type: long'
+        _field_type: base
+
+      # -- system.uptime -----------------------------------------------------
+      - name: system_uptime_duration_ms
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.uptime.duration.ms'
+        comment: 'The OS uptime in milliseconds. Elasticsearch mapping type: long'
+        _field_type: base
+
+      # -- labels, tags and errors -------------------------------------------
+      - name: message
+        type: text
+        cardinality: unknown
+        use_case: word_search
+        expr: '@source: message'
+        comment: 'Elasticsearch mapping type: match_only_text'
+        _field_type: base
+
+      - name: error_message
+        type: text
+        cardinality: unknown
+        use_case: word_search
+        expr: '@source: error.message'
+        comment: 'Elasticsearch mapping type: match_only_text'
+        _field_type: base
+
+      - name: tags
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tags'
+        comment: 'Elasticsearch mapping type: keyword (normalize: array)'
+        _field_type: base
+
+      - name: labels
+        type: map
+        cardinality: unknown
+        use_case: key_search
+        expr: '@source: labels'
+        comment: 'Elasticsearch mapping type: object (object_type: arbitrary keys)'
+        _field_type: base

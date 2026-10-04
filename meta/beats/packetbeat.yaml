@@ -1,0 +1,4467 @@
+# Meta schema: Elastic Packetbeat
+#
+# Packetbeat's flow records and the transactions of the 15 protocols the
+# shipped packetbeat.yml enables: amqp, cassandra, dhcpv4, dns, http, icmp,
+# memcache, mongodb, mysql, nfs, pgsql, redis, sip, thrift and tls. Field
+# names, types and descriptions read from Elastic's own field declarations
+# at elastic/beats tag v9.5.4 (released 2026-09-15):
+# packetbeat/_meta/fields.common.yml and packetbeat/protos/*/_meta/fields.yml.
+# Arrays were read off the golden events in packetbeat/tests/system/golden,
+# which is where sip.allow and the tls.detailed client_hello lists turned out
+# to be lists. The field declarations do not say.
+#
+# The same goldens show Packetbeat sending the certificate issuer and subject
+# names (tls.server.x509.issuer.* and .subject.*) as single strings where
+# ECS declares lists. Those columns keep the ECS list type, so the same field
+# has one type in every Beats table; landing a single value in them takes a
+# loader that wraps it into a one-element list.
+#
+# Most of a Packetbeat event is ECS: source, destination, client, server,
+# network, dns, http, url and tls. Those columns form the spine; the protocol
+# namespaces Packetbeat adds on top sit beside the ECS block they extend.
+#
+# Left out, and still in the common header's `_json` column: the alias
+# fields, which repeat an ECS path the spine carries (bytes_in is
+# source.bytes); arrays of objects, which have no flat column -- dns.answers,
+# dns.authorities, dns.additionals, memcache.response.stats and both
+# tls.detailed certificate chains; and the geo fields. Packetbeat does no
+# GeoIP lookup of its own, so source.geo and destination.geo arrive only from
+# an enrichment step, and belong to that step's overlay.
+#
+# The ECS-spine columns are copied from meta/elastic/ecs.yaml unchanged --
+# same name, type, ch_override, codec, cardinality, use_case, expr and
+# comment -- so the two vocabularies cannot disagree about a field they share.
+# That file carries only the ECS fields the Elastic integrations reference,
+# so tls.next_protocol, tls.client.hash.sha1, tls.server.hash.md5,
+# tls.server.x509.signature_algorithm, and host.containerized from
+# add_host_metadata, are built from libbeat's own declarations at the same
+# tag by the same type rules.
+#
+# Column names are the dotted source path with dots and hyphens replaced by
+# underscores and folded to lower case. `expr` carries the path in the case
+# the shipper actually sends, because dfe-loader reads that directive back out
+# of the ClickHouse column comment to find the field.
+
+current: "1.0.0"
+resource_type: core
+
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: "Packetbeat 9.5 flows and the 15 protocols the shipped config enables, plus the ECS network spine"
+    columns:
+      # -- shipper and stream ------------------------------------------------
+      - name: agent_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: agent.type'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: agent_version
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: agent.version'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: agent_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: agent.name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: agent_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: agent.id'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: agent_ephemeral_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: agent.ephemeral_id'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: data_stream_dataset
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: data_stream.dataset'
+        comment: 'Elasticsearch mapping type: constant_keyword'
+        _field_type: base
+
+      - name: data_stream_namespace
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: data_stream.namespace'
+        comment: 'Elasticsearch mapping type: constant_keyword'
+        _field_type: base
+
+      - name: data_stream_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: data_stream.type'
+        comment: 'Elasticsearch mapping type: constant_keyword'
+        _field_type: base
+
+      - name: ecs_version
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: ecs.version'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: event_module
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: event.module'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: event_dataset
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: event.dataset'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: event_kind
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: event.kind'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- event -------------------------------------------------------------
+      - name: event_category
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: event.category'
+        comment: 'Elasticsearch mapping type: keyword (normalize: array)'
+        _field_type: base
+
+      - name: event_type
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: event.type'
+        comment: 'Elasticsearch mapping type: keyword (normalize: array)'
+        _field_type: base
+
+      - name: event_action
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: event.action'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: event_outcome
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: event.outcome'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: event_reason
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: event.reason'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: event_start
+        type: datetime
+        cardinality: unknown
+        use_case: range
+        expr: '@source: event.start'
+        comment: 'Elasticsearch mapping type: date'
+        _field_type: base
+
+      - name: event_end
+        type: datetime
+        cardinality: unknown
+        use_case: range
+        expr: '@source: event.end'
+        comment: 'Elasticsearch mapping type: date'
+        _field_type: base
+
+      - name: event_duration
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: event.duration'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: event_original
+        type: string
+        cardinality: unknown
+        expr: '@source: event.original'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- transaction envelope ----------------------------------------------
+      # Declared by Packetbeat for every transaction protocol.
+      - name: type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: type'
+        comment: 'The type of the transaction (for example, HTTP, MySQL, Redis, or RUM) or "flow" in case of flows. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: status
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: status'
+        comment: 'The high level status of the transaction. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: method
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: method'
+        comment: 'The command/verb/method of the transaction. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: resource
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: resource'
+        comment: 'The logical resource that this transaction refers to. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: path
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: path'
+        comment: 'The path the transaction refers to. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: query
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: query'
+        comment: 'The query in a human readable format. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: params
+        type: text
+        cardinality: unknown
+        use_case: word_search
+        expr: '@source: params'
+        comment: 'The request parameters. Elasticsearch mapping type: text'
+        _field_type: base
+
+      - name: request
+        type: text
+        cardinality: unknown
+        use_case: word_search
+        expr: '@source: request'
+        comment: 'For text protocols, this is the request as seen on the wire (application layer only). Elasticsearch mapping type: text'
+        _field_type: base
+
+      - name: response
+        type: text
+        cardinality: unknown
+        use_case: word_search
+        expr: '@source: response'
+        comment: 'For text protocols, this is the response as seen on the wire (application layer only). Elasticsearch mapping type: text'
+        _field_type: base
+
+      - name: server_process_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: server.process.name'
+        comment: 'The name of the process that served the transaction. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: server_process_args
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: server.process.args'
+        comment: 'The command-line of the process that served the transaction. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: server_process_executable
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: server.process.executable'
+        comment: 'Absolute path to the server process executable. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: server_process_working_directory
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: server.process.working_directory'
+        comment: 'The working directory of the server process. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: server_process_start
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: server.process.start'
+        comment: 'The time the server process started. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: client_process_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: client.process.name'
+        comment: 'The name of the process that initiated the transaction. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: client_process_args
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: client.process.args'
+        comment: 'The command-line of the process that initiated the transaction. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: client_process_executable
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: client.process.executable'
+        comment: 'Absolute path to the client process executable. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: client_process_working_directory
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: client.process.working_directory'
+        comment: 'The working directory of the client process. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: client_process_start
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: client.process.start'
+        comment: 'The time the client process started. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- flow --------------------------------------------------------------
+      # Flow records, reported every 10s in the shipped config and once more when a flow ends.
+      - name: flow_final
+        type: boolean
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: flow.final'
+        comment: 'Indicates if event is last event in flow. Elasticsearch mapping type: boolean'
+        _field_type: base
+
+      - name: flow_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: flow.id'
+        comment: 'Internal flow ID based on connection meta data and address. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: flow_vlan
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: flow.vlan'
+        comment: 'VLAN identifier from the 802.1q frame. A multi-tagged frame sends a list, outer tag first. Elasticsearch mapping type: long'
+        _field_type: base
+
+      # -- endpoints ---------------------------------------------------------
+      - name: source_ip
+        type: ip
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: source.ip'
+        comment: 'Elasticsearch mapping type: ip'
+        _field_type: base
+
+      - name: source_port
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: source.port'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: source_mac
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: source.mac'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: source_domain
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: source.domain'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: source_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: source.bytes'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: source_packets
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: source.packets'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: destination_ip
+        type: ip
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: destination.ip'
+        comment: 'Elasticsearch mapping type: ip'
+        _field_type: base
+
+      - name: destination_port
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: destination.port'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: destination_mac
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: destination.mac'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: destination_domain
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: destination.domain'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: destination_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: destination.bytes'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: destination_packets
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: destination.packets'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: client_ip
+        type: ip
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: client.ip'
+        comment: 'Elasticsearch mapping type: ip'
+        _field_type: base
+
+      - name: client_port
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: client.port'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: client_mac
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: client.mac'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: client_domain
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: client.domain'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: client_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: client.bytes'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: client_packets
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: client.packets'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: server_ip
+        type: ip
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: server.ip'
+        comment: 'Elasticsearch mapping type: ip'
+        _field_type: base
+
+      - name: server_port
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: server.port'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: server_mac
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: server.mac'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: server_domain
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: server.domain'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: server_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: server.bytes'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: server_packets
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: server.packets'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      # -- network -----------------------------------------------------------
+      - name: network_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: network.type'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: network_transport
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: network.transport'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: network_protocol
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: network.protocol'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: network_application
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: network.application'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: network_direction
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: network.direction'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: network_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: network.bytes'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: network_packets
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: network.packets'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: network_community_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: network.community_id'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: network_iana_number
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: network.iana_number'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: network_forwarded_ip
+        type: ip
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: network.forwarded_ip'
+        comment: 'Elasticsearch mapping type: ip'
+        _field_type: base
+
+      # -- process -----------------------------------------------------------
+      # Filled when process monitoring is on: the local process on either end.
+      - name: process_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: process_pid
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: process.pid'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: process_parent_pid
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: process.parent.pid'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: process_args
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.args'
+        comment: 'Elasticsearch mapping type: keyword (normalize: array)'
+        _field_type: base
+
+      - name: process_executable
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.executable'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: process_working_directory
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.working_directory'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: process_start
+        type: datetime
+        cardinality: unknown
+        use_case: range
+        expr: '@source: process.start'
+        comment: 'Elasticsearch mapping type: date'
+        _field_type: base
+
+      # -- host --------------------------------------------------------------
+      - name: host_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: host.name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: host_hostname
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: host.hostname'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: host_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: host.id'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: host_ip
+        type: ip
+        ch_override: Array(IPv6)
+        codec: LZ4
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: host.ip'
+        comment: 'Elasticsearch mapping type: ip (normalize: array)'
+        _field_type: base
+
+      - name: host_mac
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: host.mac'
+        comment: 'Elasticsearch mapping type: keyword (normalize: array)'
+        _field_type: base
+
+      - name: host_architecture
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: host.architecture'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: host_containerized
+        type: boolean
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: host.containerized'
+        comment: 'If the host is a container. Elasticsearch mapping type: boolean'
+        _field_type: base
+
+      - name: host_os_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: host.os.type'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: host_os_family
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: host.os.family'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: host_os_platform
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: host.os.platform'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: host_os_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: host.os.name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: host_os_version
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: host.os.version'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: host_os_kernel
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: host.os.kernel'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- cloud and container -----------------------------------------------
+      # add_cloud_metadata and add_docker_metadata, both on in the shipped config.
+      - name: cloud_provider
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cloud.provider'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cloud_region
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cloud.region'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cloud_availability_zone
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cloud.availability_zone'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cloud_account_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cloud.account.id'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cloud_instance_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cloud.instance.id'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cloud_instance_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cloud.instance.name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cloud_machine_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cloud.machine.type'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: container_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: container.id'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: container_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: container.name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: container_image_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: container.image.name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: container_labels
+        type: map
+        cardinality: unknown
+        use_case: key_search
+        expr: '@source: container.labels'
+        comment: 'Elasticsearch mapping type: object (object_type: arbitrary keys)'
+        _field_type: base
+
+      # -- dns: ECS ----------------------------------------------------------
+      - name: dns_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: dns.id'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: dns_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: dns.type'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: dns_op_code
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: dns.op_code'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: dns_header_flags
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: dns.header_flags'
+        comment: 'Elasticsearch mapping type: keyword (normalize: array)'
+        _field_type: base
+
+      - name: dns_response_code
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: dns.response_code'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: dns_question_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: dns.question.name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: dns_question_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: dns.question.type'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: dns_question_class
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: dns.question.class'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: dns_question_registered_domain
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: dns.question.registered_domain'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: dns_question_subdomain
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: dns.question.subdomain'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: dns_question_top_level_domain
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: dns.question.top_level_domain'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: dns_resolved_ip
+        type: ip
+        ch_override: Array(IPv6)
+        codec: LZ4
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: dns.resolved_ip'
+        comment: 'Elasticsearch mapping type: ip (normalize: array)'
+        _field_type: base
+
+      # -- dns: Packetbeat's own fields --------------------------------------
+      - name: dns_flags_authoritative
+        type: boolean
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: dns.flags.authoritative'
+        comment: 'A DNS flag specifying that the responding server is an authority for the domain name used in the question. Elasticsearch mapping type: boolean'
+        _field_type: base
+
+      - name: dns_flags_recursion_available
+        type: boolean
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: dns.flags.recursion_available'
+        comment: 'A DNS flag specifying whether recursive query support is available in the name server. Elasticsearch mapping type: boolean'
+        _field_type: base
+
+      - name: dns_flags_recursion_desired
+        type: boolean
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: dns.flags.recursion_desired'
+        comment: 'A DNS flag specifying that the client directs the server to pursue a query recursively. Elasticsearch mapping type: boolean'
+        _field_type: base
+
+      - name: dns_flags_authentic_data
+        type: boolean
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: dns.flags.authentic_data'
+        comment: 'A DNS flag specifying that the recursive server considers the response authentic. Elasticsearch mapping type: boolean'
+        _field_type: base
+
+      - name: dns_flags_checking_disabled
+        type: boolean
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: dns.flags.checking_disabled'
+        comment: 'A DNS flag specifying that the client disables the server signature validation of the query. Elasticsearch mapping type: boolean'
+        _field_type: base
+
+      - name: dns_flags_truncated_response
+        type: boolean
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: dns.flags.truncated_response'
+        comment: 'A DNS flag specifying that only the first 512 bytes of the reply were returned. Elasticsearch mapping type: boolean'
+        _field_type: base
+
+      - name: dns_question_etld_plus_one
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: dns.question.etld_plus_one'
+        comment: 'The effective top-level domain (eTLD) plus one more label. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: dns_answers_count
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: dns.answers_count'
+        comment: 'The number of resource records contained in the dns.answers field. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: dns_authorities_count
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: dns.authorities_count'
+        comment: 'The number of resource records contained in the dns.authorities field. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: dns_additionals_count
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: dns.additionals_count'
+        comment: 'The number of resource records contained in the dns.additionals field. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: dns_opt_version
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: dns.opt.version'
+        comment: 'The EDNS version. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: dns_opt_do
+        type: boolean
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: dns.opt.do'
+        comment: 'If set, the transaction uses DNSSEC. Elasticsearch mapping type: boolean'
+        _field_type: base
+
+      - name: dns_opt_ext_rcode
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: dns.opt.ext_rcode'
+        comment: 'Extended response code field. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: dns_opt_udp_size
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: dns.opt.udp_size'
+        comment: 'Requestor''s UDP payload size (in bytes). Elasticsearch mapping type: long'
+        _field_type: base
+
+      # -- http and url: ECS -------------------------------------------------
+      - name: http_version
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: http.version'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: http_request_method
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: http.request.method'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: http_request_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: http.request.bytes'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: http_request_body_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: http.request.body.bytes'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: http_request_referrer
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: http.request.referrer'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: http_request_mime_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: http.request.mime_type'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: http_response_status_code
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: http.response.status_code'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: http_response_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: http.response.bytes'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: http_response_body_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: http.response.body.bytes'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: http_response_mime_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: http.response.mime_type'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: url_full
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: url.full'
+        comment: 'Elasticsearch mapping type: wildcard'
+        _field_type: base
+
+      - name: url_scheme
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: url.scheme'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: url_domain
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: url.domain'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: url_port
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: url.port'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: url_path
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: url.path'
+        comment: 'Elasticsearch mapping type: wildcard'
+        _field_type: base
+
+      - name: url_query
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: url.query'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: user_agent_original
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: user_agent.original'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: user_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: user.name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- http: Packetbeat's own fields -------------------------------------
+      # The captured headers, which headers being configurable.
+      - name: http_request_headers
+        type: map
+        cardinality: unknown
+        use_case: key_search
+        expr: '@source: http.request.headers'
+        comment: 'A map containing the captured header fields from the request. Elasticsearch mapping type: object (arbitrary keys)'
+        _field_type: base
+
+      - name: http_response_status_phrase
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: http.response.status_phrase'
+        comment: 'The HTTP status phrase. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: http_response_headers
+        type: map
+        cardinality: unknown
+        use_case: key_search
+        expr: '@source: http.response.headers'
+        comment: 'A map containing the captured header fields from the response. Elasticsearch mapping type: object (arbitrary keys)'
+        _field_type: base
+
+      # -- tls: ECS ----------------------------------------------------------
+      - name: tls_version
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.version'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_version_protocol
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.version_protocol'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_cipher
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.cipher'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_established
+        type: boolean
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: tls.established'
+        comment: 'Elasticsearch mapping type: boolean'
+        _field_type: base
+
+      - name: tls_resumed
+        type: boolean
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: tls.resumed'
+        comment: 'Elasticsearch mapping type: boolean'
+        _field_type: base
+
+      - name: tls_next_protocol
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.next_protocol'
+        comment: 'String indicating the protocol being tunneled. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_client_ja3
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.client.ja3'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_client_server_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.client.server_name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_client_supported_ciphers
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.client.supported_ciphers'
+        comment: 'Elasticsearch mapping type: keyword (normalize: array)'
+        _field_type: base
+
+      - name: tls_client_hash_sha1
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.client.hash.sha1'
+        comment: 'Certificate fingerprint using the SHA1 digest of DER-encoded version of certificate offered by the client. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_client_hash_sha256
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.client.hash.sha256'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_client_issuer
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.client.issuer'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_client_subject
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.client.subject'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_client_not_before
+        type: datetime
+        cardinality: unknown
+        use_case: range
+        expr: '@source: tls.client.not_before'
+        comment: 'Elasticsearch mapping type: date'
+        _field_type: base
+
+      - name: tls_client_not_after
+        type: datetime
+        cardinality: unknown
+        use_case: range
+        expr: '@source: tls.client.not_after'
+        comment: 'Elasticsearch mapping type: date'
+        _field_type: base
+
+      - name: tls_server_ja3s
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.server.ja3s'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_server_hash_md5
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.server.hash.md5'
+        comment: 'Certificate fingerprint using the MD5 digest of DER-encoded version of certificate offered by the server. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_server_hash_sha1
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.server.hash.sha1'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_server_hash_sha256
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.server.hash.sha256'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_server_issuer
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.server.issuer'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_server_subject
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.server.subject'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_server_not_before
+        type: datetime
+        cardinality: unknown
+        use_case: range
+        expr: '@source: tls.server.not_before'
+        comment: 'Elasticsearch mapping type: date'
+        _field_type: base
+
+      - name: tls_server_not_after
+        type: datetime
+        cardinality: unknown
+        use_case: range
+        expr: '@source: tls.server.not_after'
+        comment: 'Elasticsearch mapping type: date'
+        _field_type: base
+
+      - name: tls_server_certificate_chain
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.server.certificate_chain'
+        comment: 'Elasticsearch mapping type: keyword (normalize: array)'
+        _field_type: base
+
+      - name: tls_server_x509_alternative_names
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.server.x509.alternative_names'
+        comment: 'Elasticsearch mapping type: keyword (normalize: array)'
+        _field_type: base
+
+      - name: tls_server_x509_issuer_common_name
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.server.x509.issuer.common_name'
+        comment: 'Elasticsearch mapping type: keyword (normalize: array)'
+        _field_type: base
+
+      - name: tls_server_x509_issuer_distinguished_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.server.x509.issuer.distinguished_name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_server_x509_issuer_organization
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.server.x509.issuer.organization'
+        comment: 'Elasticsearch mapping type: keyword (normalize: array)'
+        _field_type: base
+
+      - name: tls_server_x509_issuer_country
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.server.x509.issuer.country'
+        comment: 'Elasticsearch mapping type: keyword (normalize: array)'
+        _field_type: base
+
+      - name: tls_server_x509_subject_common_name
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.server.x509.subject.common_name'
+        comment: 'Elasticsearch mapping type: keyword (normalize: array)'
+        _field_type: base
+
+      - name: tls_server_x509_subject_distinguished_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.server.x509.subject.distinguished_name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_server_x509_subject_organization
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.server.x509.subject.organization'
+        comment: 'Elasticsearch mapping type: keyword (normalize: array)'
+        _field_type: base
+
+      - name: tls_server_x509_subject_country
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.server.x509.subject.country'
+        comment: 'Elasticsearch mapping type: keyword (normalize: array)'
+        _field_type: base
+
+      - name: tls_server_x509_serial_number
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.server.x509.serial_number'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_server_x509_signature_algorithm
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.server.x509.signature_algorithm'
+        comment: 'Identifier for certificate signature algorithm. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_server_x509_public_key_algorithm
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.server.x509.public_key_algorithm'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_server_x509_public_key_size
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: tls.server.x509.public_key_size'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: tls_server_x509_not_before
+        type: datetime
+        cardinality: unknown
+        use_case: range
+        expr: '@source: tls.server.x509.not_before'
+        comment: 'Elasticsearch mapping type: date'
+        _field_type: base
+
+      - name: tls_server_x509_not_after
+        type: datetime
+        cardinality: unknown
+        use_case: range
+        expr: '@source: tls.server.x509.not_after'
+        comment: 'Elasticsearch mapping type: date'
+        _field_type: base
+
+      - name: tls_server_x509_version_number
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.server.x509.version_number'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- tls: Packetbeat's own fields --------------------------------------
+      # The tls.detailed block is on by default (send_detailed).
+      - name: tls_client_x509_version
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.client.x509.version'
+        comment: 'Version of x509 format. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_client_x509_issuer_province
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.client.x509.issuer.province'
+        comment: 'Province or region within country. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_client_x509_subject_province
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.client.x509.subject.province'
+        comment: 'Province or region within country. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_server_x509_version
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.server.x509.version'
+        comment: 'Version of x509 format. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_server_x509_issuer_province
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.server.x509.issuer.province'
+        comment: 'Province or region within country. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_server_x509_subject_province
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.server.x509.subject.province'
+        comment: 'Province or region within country. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_detailed_version
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.detailed.version'
+        comment: 'The version of the TLS protocol used. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_detailed_resumption_method
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.detailed.resumption_method'
+        comment: 'If the session has been resumed, the underlying method used. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_detailed_client_certificate_requested
+        type: boolean
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: tls.detailed.client_certificate_requested'
+        comment: 'Whether the server has requested the client to authenticate itself using a client certificate. Elasticsearch mapping type: boolean'
+        _field_type: base
+
+      - name: tls_detailed_ocsp_response
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.detailed.ocsp_response'
+        comment: 'The result of an OCSP request. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_detailed_client_hello_version
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.detailed.client_hello.version'
+        comment: 'The version of the TLS protocol by which the client wishes to communicate during this session. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_detailed_client_hello_random
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.detailed.client_hello.random'
+        comment: 'Random data used by the TLS protocol to generate the encryption key. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_detailed_client_hello_session_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.detailed.client_hello.session_id'
+        comment: 'Unique number to identify the session for the corresponding connection with the client. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_detailed_client_hello_supported_compression_methods
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.detailed.client_hello.supported_compression_methods'
+        comment: 'The list of compression methods the client supports. The Beat sends a list. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_detailed_client_hello_extensions_server_name_indication
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.detailed.client_hello.extensions.server_name_indication'
+        comment: 'List of hostnames. The Beat sends a list. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_detailed_client_hello_extensions_application_layer_protocol_negotiation
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.detailed.client_hello.extensions.application_layer_protocol_negotiation'
+        comment: 'List of application-layer protocols the client is willing to use. The Beat sends a list. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_detailed_client_hello_extensions_session_ticket
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.detailed.client_hello.extensions.session_ticket'
+        comment: 'Length of the session ticket, if provided, or an empty string to advertise support for tickets. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_detailed_client_hello_extensions_supported_versions
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.detailed.client_hello.extensions.supported_versions'
+        comment: 'List of TLS versions that the client is willing to use. The Beat sends a list. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_detailed_client_hello_extensions_supported_groups
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.detailed.client_hello.extensions.supported_groups'
+        comment: 'List of Elliptic Curve Cryptography (ECC) curve groups supported by the client. The Beat sends a list. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_detailed_client_hello_extensions_signature_algorithms
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.detailed.client_hello.extensions.signature_algorithms'
+        comment: 'List of signature algorithms that may be use in digital signatures. The Beat sends a list. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_detailed_client_hello_extensions_ec_points_formats
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.detailed.client_hello.extensions.ec_points_formats'
+        comment: 'List of Elliptic Curve (EC) point formats. The Beat sends a list. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_detailed_client_hello_extensions_status_request_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.detailed.client_hello.extensions.status_request.type'
+        comment: 'The type of the status request. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_detailed_client_hello_extensions_status_request_responder_id_list_length
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: tls.detailed.client_hello.extensions.status_request.responder_id_list_length'
+        comment: 'The length of the list of trusted responders. Elasticsearch mapping type: short'
+        _field_type: base
+
+      - name: tls_detailed_client_hello_extensions_status_request_request_extensions
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: tls.detailed.client_hello.extensions.status_request.request_extensions'
+        comment: 'The number of certificate extensions for the request. Elasticsearch mapping type: short'
+        _field_type: base
+
+      - name: tls_detailed_client_hello_extensions_unparsed
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.detailed.client_hello.extensions._unparsed_'
+        comment: 'List of extensions that were left unparsed by Packetbeat. The Beat sends a list. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_detailed_server_hello_version
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.detailed.server_hello.version'
+        comment: 'The version of the TLS protocol that is used for this session. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_detailed_server_hello_random
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.detailed.server_hello.random'
+        comment: 'Random data used by the TLS protocol to generate the encryption key. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_detailed_server_hello_selected_compression_method
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.detailed.server_hello.selected_compression_method'
+        comment: 'The compression method selected by the server from the list provided in the client hello. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_detailed_server_hello_session_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.detailed.server_hello.session_id'
+        comment: 'Unique number to identify the session for the corresponding connection with the client. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_detailed_server_hello_extensions_application_layer_protocol_negotiation
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.detailed.server_hello.extensions.application_layer_protocol_negotiation'
+        comment: 'Negotiated application layer protocol. The Beat sends a list. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_detailed_server_hello_extensions_session_ticket
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.detailed.server_hello.extensions.session_ticket'
+        comment: 'Used to announce that a session ticket will be provided by the server. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_detailed_server_hello_extensions_supported_versions
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.detailed.server_hello.extensions.supported_versions'
+        comment: 'Negotiated TLS version to be used. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_detailed_server_hello_extensions_ec_points_formats
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.detailed.server_hello.extensions.ec_points_formats'
+        comment: 'List of Elliptic Curve (EC) point formats. The Beat sends a list. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_detailed_server_hello_extensions_status_request_response
+        type: boolean
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: tls.detailed.server_hello.extensions.status_request.response'
+        comment: 'Whether a certificate status request response was made. Elasticsearch mapping type: boolean'
+        _field_type: base
+
+      - name: tls_detailed_server_hello_extensions_unparsed
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.detailed.server_hello.extensions._unparsed_'
+        comment: 'List of extensions that were left unparsed by Packetbeat. The Beat sends a list. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: tls_detailed_alert_types
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tls.detailed.alert_types'
+        comment: 'An array containing the TLS alert type for every alert received. The Beat sends a list. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- icmp --------------------------------------------------------------
+      - name: icmp_version
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: icmp.version'
+        comment: 'The version of the ICMP protocol. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: icmp_request_message
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: icmp.request.message'
+        comment: 'A human readable form of the request. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: icmp_request_type
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: icmp.request.type'
+        comment: 'The request type. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: icmp_request_code
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: icmp.request.code'
+        comment: 'The request code. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: icmp_response_message
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: icmp.response.message'
+        comment: 'A human readable form of the response. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: icmp_response_type
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: icmp.response.type'
+        comment: 'The response type. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: icmp_response_code
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: icmp.response.code'
+        comment: 'The response code. Elasticsearch mapping type: long'
+        _field_type: base
+
+      # -- dhcpv4 ------------------------------------------------------------
+      - name: dhcpv4_transaction_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: dhcpv4.transaction_id'
+        comment: 'Transaction ID, a random number chosen by the client, used by the client and server to associate messages and responses between a client and a server. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: dhcpv4_seconds
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: dhcpv4.seconds'
+        comment: 'Number of seconds elapsed since client began address acquisition or renewal process. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: dhcpv4_flags
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: dhcpv4.flags'
+        comment: 'Flags are set by the client to indicate how the DHCP server should its reply -- either unicast or broadcast. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: dhcpv4_client_ip
+        type: ip
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: dhcpv4.client_ip'
+        comment: 'The current IP address of the client. Elasticsearch mapping type: ip'
+        _field_type: base
+
+      - name: dhcpv4_assigned_ip
+        type: ip
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: dhcpv4.assigned_ip'
+        comment: 'The IP address that the DHCP server is assigning to the client. Elasticsearch mapping type: ip'
+        _field_type: base
+
+      - name: dhcpv4_server_ip
+        type: ip
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: dhcpv4.server_ip'
+        comment: 'The IP address of the DHCP server that the client should use for the next step in the bootstrap process. Elasticsearch mapping type: ip'
+        _field_type: base
+
+      - name: dhcpv4_relay_ip
+        type: ip
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: dhcpv4.relay_ip'
+        comment: 'The relay IP address used by the client to contact the server (i.e. a DHCP relay server). Elasticsearch mapping type: ip'
+        _field_type: base
+
+      - name: dhcpv4_client_mac
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: dhcpv4.client_mac'
+        comment: 'The client''s MAC address (layer two). Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: dhcpv4_server_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: dhcpv4.server_name'
+        comment: 'The name of the server sending the message. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: dhcpv4_op_code
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: dhcpv4.op_code'
+        comment: 'The message op code (bootrequest or bootreply). Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: dhcpv4_hops
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: dhcpv4.hops'
+        comment: 'The number of hops the DHCP message went through. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: dhcpv4_hardware_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: dhcpv4.hardware_type'
+        comment: 'The type of hardware used for the local network (Ethernet, LocalTalk, etc). Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: dhcpv4_option_message_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: dhcpv4.option.message_type'
+        comment: 'The specific type of DHCP message being sent (e.g. discover, offer, request, decline, ack, nak, release, inform). Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: dhcpv4_option_parameter_request_list
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: dhcpv4.option.parameter_request_list'
+        comment: 'This option is used by a DHCP client to request values for specified configuration parameters. The Beat sends a list. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: dhcpv4_option_requested_ip_address
+        type: ip
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: dhcpv4.option.requested_ip_address'
+        comment: 'This option is used in a client request (DHCPDISCOVER) to allow the client to request that a particular IP address be assigned. Elasticsearch mapping type: ip'
+        _field_type: base
+
+      - name: dhcpv4_option_server_identifier
+        type: ip
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: dhcpv4.option.server_identifier'
+        comment: 'IP address of the individual DHCP server which handled this message. Elasticsearch mapping type: ip'
+        _field_type: base
+
+      - name: dhcpv4_option_broadcast_address
+        type: ip
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: dhcpv4.option.broadcast_address'
+        comment: 'This option specifies the broadcast address in use on the client''s subnet. Elasticsearch mapping type: ip'
+        _field_type: base
+
+      - name: dhcpv4_option_max_dhcp_message_size
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: dhcpv4.option.max_dhcp_message_size'
+        comment: 'This option specifies the maximum length DHCP message that the client is willing to accept. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: dhcpv4_option_class_identifier
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: dhcpv4.option.class_identifier'
+        comment: 'This option is used by DHCP clients to optionally identify the vendor type and configuration of a DHCP client. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: dhcpv4_option_domain_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: dhcpv4.option.domain_name'
+        comment: 'This option specifies the domain name that client should use when resolving hostnames via the Domain Name System. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: dhcpv4_option_dns_servers
+        type: ip
+        ch_override: Array(IPv6)
+        codec: LZ4
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: dhcpv4.option.dns_servers'
+        comment: 'The domain name server option specifies a list of Domain Name System servers available to the client. The Beat sends a list. Elasticsearch mapping type: ip'
+        _field_type: base
+
+      - name: dhcpv4_option_vendor_identifying_options
+        type: map
+        cardinality: unknown
+        use_case: key_search
+        expr: '@source: dhcpv4.option.vendor_identifying_options'
+        comment: 'A DHCP client may use this option to unambiguously identify the vendor that manufactured the hardware on which the client is running, the software in use, or an industry... Elasticsearch mapping type: object (arbitrary keys)'
+        _field_type: base
+
+      - name: dhcpv4_option_subnet_mask
+        type: ip
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: dhcpv4.option.subnet_mask'
+        comment: 'The subnet mask that the client should use on the current network. Elasticsearch mapping type: ip'
+        _field_type: base
+
+      - name: dhcpv4_option_utc_time_offset_sec
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: dhcpv4.option.utc_time_offset_sec'
+        comment: 'The time offset field specifies the offset of the client''s subnet in seconds from Coordinated Universal Time (UTC). Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: dhcpv4_option_router
+        type: ip
+        ch_override: Array(IPv6)
+        codec: LZ4
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: dhcpv4.option.router'
+        comment: 'The router option specifies a list of IP addresses for routers on the client''s subnet. The Beat sends a list. Elasticsearch mapping type: ip'
+        _field_type: base
+
+      - name: dhcpv4_option_time_servers
+        type: ip
+        ch_override: Array(IPv6)
+        codec: LZ4
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: dhcpv4.option.time_servers'
+        comment: 'The time server option specifies a list of RFC 868 time servers available to the client. The Beat sends a list. Elasticsearch mapping type: ip'
+        _field_type: base
+
+      - name: dhcpv4_option_ntp_servers
+        type: ip
+        ch_override: Array(IPv6)
+        codec: LZ4
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: dhcpv4.option.ntp_servers'
+        comment: 'This option specifies a list of IP addresses indicating NTP servers available to the client. The Beat sends a list. Elasticsearch mapping type: ip'
+        _field_type: base
+
+      - name: dhcpv4_option_hostname
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: dhcpv4.option.hostname'
+        comment: 'This option specifies the name of the client. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: dhcpv4_option_ip_address_lease_time_sec
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: dhcpv4.option.ip_address_lease_time_sec'
+        comment: 'This option is used in a client request (DHCPDISCOVER or DHCPREQUEST) to allow the client to request a lease time for the IP address. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: dhcpv4_option_message
+        type: text
+        cardinality: unknown
+        use_case: word_search
+        expr: '@source: dhcpv4.option.message'
+        comment: 'This option is used by a DHCP server to provide an error message to a DHCP client in a DHCPNAK message in the event of a failure. Elasticsearch mapping type: text'
+        _field_type: base
+
+      - name: dhcpv4_option_renewal_time_sec
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: dhcpv4.option.renewal_time_sec'
+        comment: 'This option specifies the time interval from address assignment until the client transitions to the RENEWING state. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: dhcpv4_option_rebinding_time_sec
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: dhcpv4.option.rebinding_time_sec'
+        comment: 'This option specifies the time interval from address assignment until the client transitions to the REBINDING state. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: dhcpv4_option_boot_file_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: dhcpv4.option.boot_file_name'
+        comment: 'This option is used to identify a bootfile when the ''file'' field in the DHCP header has been used for DHCP options. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- sip ---------------------------------------------------------------
+      - name: sip_code
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.code'
+        comment: 'Response status code. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_method
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.method'
+        comment: 'Request method. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_status
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.status'
+        comment: 'Response status phrase. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.type'
+        comment: 'Either request or response. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_version
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.version'
+        comment: 'SIP protocol version. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_uri_original
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.uri.original'
+        comment: 'The original URI. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_uri_scheme
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.uri.scheme'
+        comment: 'The URI scheme. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_uri_username
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.uri.username'
+        comment: 'The URI user name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_uri_host
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.uri.host'
+        comment: 'The URI host. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_uri_port
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.uri.port'
+        comment: 'The URI port. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_accept
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.accept'
+        comment: 'Accept header value. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_allow
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.allow'
+        comment: 'Allowed methods. The Beat sends a list. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_call_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.call_id'
+        comment: 'Call ID. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_content_length
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: sip.content_length'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: sip_content_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.content_type'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_max_forwards
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: sip.max_forwards'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: sip_supported
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.supported'
+        comment: 'Supported methods. The Beat sends a list. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_user_agent_original
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.user_agent.original'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_private_uri_original
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.private.uri.original'
+        comment: 'Private original URI. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_private_uri_scheme
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.private.uri.scheme'
+        comment: 'Private URI scheme. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_private_uri_username
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.private.uri.username'
+        comment: 'Private URI user name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_private_uri_host
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.private.uri.host'
+        comment: 'Private URI host. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_private_uri_port
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.private.uri.port'
+        comment: 'Private URI port. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_cseq_code
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.cseq.code'
+        comment: 'Sequence code. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_cseq_method
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.cseq.method'
+        comment: 'Sequence method. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_via_original
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.via.original'
+        comment: 'The original Via value. The Beat sends a list. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_to_display_info
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.to.display_info'
+        comment: 'To display info. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_to_uri_original
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.to.uri.original'
+        comment: 'To original URI. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_to_uri_scheme
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.to.uri.scheme'
+        comment: 'To URI scheme. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_to_uri_username
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.to.uri.username'
+        comment: 'To URI user name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_to_uri_host
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.to.uri.host'
+        comment: 'To URI host. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_to_uri_port
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.to.uri.port'
+        comment: 'To URI port. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_to_tag
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.to.tag'
+        comment: 'To tag. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_from_display_info
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.from.display_info'
+        comment: 'From display info. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_from_uri_original
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.from.uri.original'
+        comment: 'From original URI. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_from_uri_scheme
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.from.uri.scheme'
+        comment: 'From URI scheme. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_from_uri_username
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.from.uri.username'
+        comment: 'From URI user name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_from_uri_host
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.from.uri.host'
+        comment: 'From URI host. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_from_uri_port
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.from.uri.port'
+        comment: 'From URI port. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_from_tag
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.from.tag'
+        comment: 'From tag. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_contact_display_info
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.contact.display_info'
+        comment: 'Contact display info. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_contact_uri_original
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.contact.uri.original'
+        comment: 'Contact original URI. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_contact_uri_scheme
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.contact.uri.scheme'
+        comment: 'Contat URI scheme. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_contact_uri_username
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.contact.uri.username'
+        comment: 'Contact URI user name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_contact_uri_host
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.contact.uri.host'
+        comment: 'Contact URI host. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_contact_uri_port
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.contact.uri.port'
+        comment: 'Contact URI port. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_contact_transport
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.contact.transport'
+        comment: 'Contact transport. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_contact_line
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.contact.line'
+        comment: 'Contact line. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_contact_expires
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.contact.expires'
+        comment: 'Contact expires. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_contact_q
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.contact.q'
+        comment: 'Contact Q. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_auth_scheme
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.auth.scheme'
+        comment: 'Auth scheme. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_auth_realm
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.auth.realm'
+        comment: 'Auth realm. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_auth_uri_original
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.auth.uri.original'
+        comment: 'Auth original URI. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_auth_uri_scheme
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.auth.uri.scheme'
+        comment: 'Auth URI scheme. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_auth_uri_host
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.auth.uri.host'
+        comment: 'Auth URI host. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_auth_uri_port
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.auth.uri.port'
+        comment: 'Auth URI port. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_sdp_version
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.sdp.version'
+        comment: 'SDP version. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_sdp_owner_username
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.sdp.owner.username'
+        comment: 'SDP owner user name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_sdp_owner_session_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.sdp.owner.session_id'
+        comment: 'SDP owner session ID. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_sdp_owner_version
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.sdp.owner.version'
+        comment: 'SDP owner version. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_sdp_owner_ip
+        type: ip
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: sip.sdp.owner.ip'
+        comment: 'SDP owner IP. Elasticsearch mapping type: ip'
+        _field_type: base
+
+      - name: sip_sdp_session_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.sdp.session.name'
+        comment: 'SDP session name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_sdp_connection_info
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.sdp.connection.info'
+        comment: 'SDP connection info. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_sdp_connection_address
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.sdp.connection.address'
+        comment: 'SDP connection address. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: sip_sdp_body_original
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: sip.sdp.body.original'
+        comment: 'SDP original body. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- mysql, pgsql, mongodb, redis and cassandra ------------------------
+      - name: mysql_affected_rows
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: mysql.affected_rows'
+        comment: 'If the MySQL command is successful, this field contains the affected number of rows of the last statement. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: mysql_insert_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: mysql.insert_id'
+        comment: 'If the INSERT query is successful, this field contains the id of the newly inserted row. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: mysql_num_fields
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: mysql.num_fields'
+        comment: 'If the SELECT query is successful, this field is set to the number of fields returned. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: mysql_num_rows
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: mysql.num_rows'
+        comment: 'If the SELECT query is successful, this field is set to the number of rows returned. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: mysql_query
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: mysql.query'
+        comment: 'The row mysql query as read from the transaction''s request. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: mysql_error_code
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: mysql.error_code'
+        comment: 'The error code returned by MySQL. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: mysql_error_message
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: mysql.error_message'
+        comment: 'The error info message returned by MySQL. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: pgsql_error_code
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: pgsql.error_code'
+        comment: 'The PostgreSQL error code. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: pgsql_error_message
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: pgsql.error_message'
+        comment: 'The PostgreSQL error message. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: pgsql_error_severity
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: pgsql.error_severity'
+        comment: 'The PostgreSQL error severity. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: pgsql_num_fields
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: pgsql.num_fields'
+        comment: 'If the SELECT query if successful, this field is set to the number of fields returned. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: pgsql_num_rows
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: pgsql.num_rows'
+        comment: 'If the SELECT query if successful, this field is set to the number of rows returned. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: mongodb_error
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: mongodb.error'
+        comment: 'If the MongoDB request has resulted in an error, this field contains the error message returned by the server. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: mongodb_fullcollectionname
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: mongodb.fullCollectionName'
+        comment: 'The full collection name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: mongodb_numbertoskip
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: mongodb.numberToSkip'
+        comment: 'Sets the number of documents to omit - starting from the first document in the resulting dataset - when returning the result of the query. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: mongodb_numbertoreturn
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: mongodb.numberToReturn'
+        comment: 'The requested maximum number of documents to be returned. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: mongodb_numberreturned
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: mongodb.numberReturned'
+        comment: 'The number of documents in the reply. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: mongodb_startingfrom
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: mongodb.startingFrom'
+        comment: 'Where in the cursor this reply is starting. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: mongodb_query
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: mongodb.query'
+        comment: 'A JSON document that represents the query. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: mongodb_returnfieldsselector
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: mongodb.returnFieldsSelector'
+        comment: 'A JSON document that limits the fields in the returned documents. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: mongodb_selector
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: mongodb.selector'
+        comment: 'A BSON document that specifies the query for selecting the document to update or delete. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: mongodb_update
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: mongodb.update'
+        comment: 'A BSON document that specifies the update to be performed. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: mongodb_cursorid
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: mongodb.cursorId'
+        comment: 'The cursor identifier returned in the OP_REPLY. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: redis_return_value
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: redis.return_value'
+        comment: 'The return value of the Redis command in a human readable format. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: redis_error
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: redis.error'
+        comment: 'If the Redis command has resulted in an error, this field contains the error message returned by the Redis server. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_no_request
+        type: boolean
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: cassandra.no_request'
+        comment: 'Indicates that there is no request because this is a PUSH message. Elasticsearch mapping type: boolean'
+        _field_type: base
+
+      - name: cassandra_request_headers_version
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: cassandra.request.headers.version'
+        comment: 'The version of the protocol. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: cassandra_request_headers_flags
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.request.headers.flags'
+        comment: 'Flags applying to this frame. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_request_headers_stream
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.request.headers.stream'
+        comment: 'A frame has a stream id. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_request_headers_op
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.request.headers.op'
+        comment: 'An operation type that distinguishes the actual message. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_request_headers_length
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: cassandra.request.headers.length'
+        comment: 'A integer representing the length of the body of the frame (a frame is limited to 256MB in length). Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: cassandra_request_query
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.request.query'
+        comment: 'The CQL query which client send to cassandra. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_headers_version
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: cassandra.response.headers.version'
+        comment: 'The version of the protocol. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: cassandra_response_headers_flags
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.headers.flags'
+        comment: 'Flags applying to this frame. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_headers_stream
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.headers.stream'
+        comment: 'A frame has a stream id. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_headers_op
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.headers.op'
+        comment: 'An operation type that distinguishes the actual message. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_headers_length
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: cassandra.response.headers.length'
+        comment: 'A integer representing the length of the body of the frame (a frame is limited to 256MB in length). Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: cassandra_response_result_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.result.type'
+        comment: 'Cassandra result type. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_result_rows_num_rows
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: cassandra.response.result.rows.num_rows'
+        comment: 'Representing the number of rows present in this result. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: cassandra_response_result_rows_meta_keyspace
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.result.rows.meta.keyspace'
+        comment: 'Only present after set Global_tables_spec, the keyspace name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_result_rows_meta_table
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.result.rows.meta.table'
+        comment: 'Only present after set Global_tables_spec, the table name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_result_rows_meta_flags
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.result.rows.meta.flags'
+        comment: 'Provides information on the formatting of the remaining information. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_result_rows_meta_col_count
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: cassandra.response.result.rows.meta.col_count'
+        comment: 'Representing the number of columns selected by the query that produced this result. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: cassandra_response_result_rows_meta_pkey_columns
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: cassandra.response.result.rows.meta.pkey_columns'
+        comment: 'Representing the PK columns index and counts. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: cassandra_response_result_rows_meta_paging_state
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.result.rows.meta.paging_state'
+        comment: 'The paging_state is a bytes value that should be used in QUERY/EXECUTE to continue paging and retrieve the remainder of the result for this query. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_result_keyspace
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.result.keyspace'
+        comment: 'Indicating the name of the keyspace that has been set. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_result_schema_change_change
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.result.schema_change.change'
+        comment: 'Representing the type of changed involved. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_result_schema_change_keyspace
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.result.schema_change.keyspace'
+        comment: 'This describes which keyspace has changed. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_result_schema_change_table
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.result.schema_change.table'
+        comment: 'This describes which table has changed. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_result_schema_change_object
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.result.schema_change.object'
+        comment: 'This describes the name of said affected object (either the table, user type, function, or aggregate name). Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_result_schema_change_target
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.result.schema_change.target'
+        comment: 'Target could be "FUNCTION" or "AGGREGATE", multiple arguments. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_result_schema_change_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.result.schema_change.name'
+        comment: 'The function/aggregate name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_result_schema_change_args
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.result.schema_change.args'
+        comment: 'One string for each argument type (as CQL type). The Beat sends a list. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_result_prepared_prepared_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.result.prepared.prepared_id'
+        comment: 'Representing the prepared query ID. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_result_prepared_req_meta_keyspace
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.result.prepared.req_meta.keyspace'
+        comment: 'Only present after set Global_tables_spec, the keyspace name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_result_prepared_req_meta_table
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.result.prepared.req_meta.table'
+        comment: 'Only present after set Global_tables_spec, the table name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_result_prepared_req_meta_flags
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.result.prepared.req_meta.flags'
+        comment: 'Provides information on the formatting of the remaining information. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_result_prepared_req_meta_col_count
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: cassandra.response.result.prepared.req_meta.col_count'
+        comment: 'Representing the number of columns selected by the query that produced this result. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: cassandra_response_result_prepared_req_meta_pkey_columns
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: cassandra.response.result.prepared.req_meta.pkey_columns'
+        comment: 'Representing the PK columns index and counts. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: cassandra_response_result_prepared_req_meta_paging_state
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.result.prepared.req_meta.paging_state'
+        comment: 'The paging_state is a bytes value that should be used in QUERY/EXECUTE to continue paging and retrieve the remainder of the result for this query. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_result_prepared_resp_meta_keyspace
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.result.prepared.resp_meta.keyspace'
+        comment: 'Only present after set Global_tables_spec, the keyspace name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_result_prepared_resp_meta_table
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.result.prepared.resp_meta.table'
+        comment: 'Only present after set Global_tables_spec, the table name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_result_prepared_resp_meta_flags
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.result.prepared.resp_meta.flags'
+        comment: 'Provides information on the formatting of the remaining information. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_result_prepared_resp_meta_col_count
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: cassandra.response.result.prepared.resp_meta.col_count'
+        comment: 'Representing the number of columns selected by the query that produced this result. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: cassandra_response_result_prepared_resp_meta_pkey_columns
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: cassandra.response.result.prepared.resp_meta.pkey_columns'
+        comment: 'Representing the PK columns index and counts. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: cassandra_response_result_prepared_resp_meta_paging_state
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.result.prepared.resp_meta.paging_state'
+        comment: 'The paging_state is a bytes value that should be used in QUERY/EXECUTE to continue paging and retrieve the remainder of the result for this query. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_supported
+        type: map
+        cardinality: unknown
+        use_case: key_search
+        expr: '@source: cassandra.response.supported'
+        comment: 'Indicates which startup options are supported by the server. Elasticsearch mapping type: object (arbitrary keys)'
+        _field_type: base
+
+      - name: cassandra_response_authentication_class
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.authentication.class'
+        comment: 'Indicates the full class name of the IAuthenticator in use. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_warnings
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.warnings'
+        comment: 'The text of the warnings, only occur when Warning flag was set. The Beat sends a list. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_event_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.event.type'
+        comment: 'Representing the event type. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_event_change
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.event.change'
+        comment: 'The message corresponding respectively to the type of change followed by the address of the new/removed node. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_event_host
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.event.host'
+        comment: 'Representing the node ip. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_event_port
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: cassandra.response.event.port'
+        comment: 'Representing the node port. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: cassandra_response_event_schema_change_change
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.event.schema_change.change'
+        comment: 'Representing the type of changed involved. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_event_schema_change_keyspace
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.event.schema_change.keyspace'
+        comment: 'This describes which keyspace has changed. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_event_schema_change_table
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.event.schema_change.table'
+        comment: 'This describes which table has changed. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_event_schema_change_object
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.event.schema_change.object'
+        comment: 'This describes the name of said affected object (either the table, user type, function, or aggregate name). Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_event_schema_change_target
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.event.schema_change.target'
+        comment: 'Target could be "FUNCTION" or "AGGREGATE", multiple arguments. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_event_schema_change_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.event.schema_change.name'
+        comment: 'The function/aggregate name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_event_schema_change_args
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.event.schema_change.args'
+        comment: 'One string for each argument type (as CQL type). The Beat sends a list. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_error_code
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: cassandra.response.error.code'
+        comment: 'The error code of the Cassandra response. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: cassandra_response_error_msg
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.error.msg'
+        comment: 'The error message of the Cassandra response. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_error_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.error.type'
+        comment: 'The error type of the Cassandra response. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_error_details_read_consistency
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.error.details.read_consistency'
+        comment: 'Representing the consistency level of the query that triggered the exception. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_error_details_required
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: cassandra.response.error.details.required'
+        comment: 'Representing the number of nodes that should be alive to respect consistency level. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: cassandra_response_error_details_alive
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: cassandra.response.error.details.alive'
+        comment: 'Representing the number of replicas that were known to be alive when the request had been processed (since an unavailable exception has been triggered). Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: cassandra_response_error_details_received
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: cassandra.response.error.details.received'
+        comment: 'Representing the number of nodes having acknowledged the request. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: cassandra_response_error_details_blockfor
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: cassandra.response.error.details.blockfor'
+        comment: 'Representing the number of replicas whose acknowledgement is required to achieve consistency level. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: cassandra_response_error_details_write_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.error.details.write_type'
+        comment: 'Describe the type of the write that timed out. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_error_details_data_present
+        type: boolean
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: cassandra.response.error.details.data_present'
+        comment: 'It means the replica that was asked for data had responded. Elasticsearch mapping type: boolean'
+        _field_type: base
+
+      - name: cassandra_response_error_details_keyspace
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.error.details.keyspace'
+        comment: 'The keyspace of the failed function. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_error_details_table
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.error.details.table'
+        comment: 'The keyspace of the failed function. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_error_details_stmt_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.error.details.stmt_id'
+        comment: 'Representing the unknown ID. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_error_details_num_failures
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.error.details.num_failures'
+        comment: 'Representing the number of nodes that experience a failure while executing the request. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_error_details_function
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.error.details.function'
+        comment: 'The name of the failed function. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cassandra_response_error_details_arg_types
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cassandra.response.error.details.arg_types'
+        comment: 'One string for each argument type (as CQL type) of the failed function. The Beat sends a list. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- memcache ----------------------------------------------------------
+      - name: memcache_protocol_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: memcache.protocol_type'
+        comment: 'The memcache protocol implementation. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: memcache_request_line
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: memcache.request.line'
+        comment: 'The raw command line for unknown commands ONLY. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: memcache_request_command
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: memcache.request.command'
+        comment: 'The memcache command being requested in the memcache text protocol. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: memcache_response_command
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: memcache.response.command'
+        comment: 'Either the text based protocol response message type or the name of the originating request if binary protocol is used. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: memcache_request_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: memcache.request.type'
+        comment: 'The memcache command classification. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: memcache_response_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: memcache.response.type'
+        comment: 'The memcache command classification. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: memcache_response_error_msg
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: memcache.response.error_msg'
+        comment: 'The optional error message in the memcache response (text based protocol only). Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: memcache_request_opcode
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: memcache.request.opcode'
+        comment: 'The binary protocol message opcode name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: memcache_response_opcode
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: memcache.response.opcode'
+        comment: 'The binary protocol message opcode name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: memcache_request_opcode_value
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: memcache.request.opcode_value'
+        comment: 'The binary protocol message opcode value. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: memcache_response_opcode_value
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: memcache.response.opcode_value'
+        comment: 'The binary protocol message opcode value. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: memcache_request_opaque
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: memcache.request.opaque'
+        comment: 'The binary protocol opaque header value used for correlating request with response messages. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: memcache_response_opaque
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: memcache.response.opaque'
+        comment: 'The binary protocol opaque header value used for correlating request with response messages. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: memcache_request_vbucket
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: memcache.request.vbucket'
+        comment: 'The vbucket index sent in the binary message. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: memcache_response_status
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: memcache.response.status'
+        comment: 'The textual representation of the response error code (binary protocol only). Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: memcache_response_status_code
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: memcache.response.status_code'
+        comment: 'The status code value returned in the response (binary protocol only). Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: memcache_request_keys
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: memcache.request.keys'
+        comment: 'The list of keys sent in the store or load commands. The Beat sends a list. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: memcache_response_keys
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: memcache.response.keys'
+        comment: 'The list of keys returned for the load command (if present). The Beat sends a list. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: memcache_request_count_values
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: memcache.request.count_values'
+        comment: 'The number of values found in the memcache request message. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: memcache_response_count_values
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: memcache.response.count_values'
+        comment: 'The number of values found in the memcache response message. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: memcache_request_values
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: memcache.request.values'
+        comment: 'The list of base64 encoded values sent with the request (if present). The Beat sends a list. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: memcache_response_values
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: memcache.response.values'
+        comment: 'The list of base64 encoded values sent with the response (if present). The Beat sends a list. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: memcache_request_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: memcache.request.bytes'
+        comment: 'The byte count of the values being transferred. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: memcache_response_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: memcache.response.bytes'
+        comment: 'The byte count of the values being transferred. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: memcache_request_delta
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: memcache.request.delta'
+        comment: 'The counter increment/decrement delta value. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: memcache_request_initial
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: memcache.request.initial'
+        comment: 'The counter increment/decrement initial value parameter (binary protocol only). Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: memcache_request_verbosity
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: memcache.request.verbosity'
+        comment: 'The value of the memcache "verbosity" command. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: memcache_request_raw_args
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: memcache.request.raw_args'
+        comment: 'The text protocol raw arguments for the "stats ..." and "lru crawl ..." commands. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: memcache_request_source_class
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: memcache.request.source_class'
+        comment: 'The source class id in ''slab reassign'' command. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: memcache_request_dest_class
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: memcache.request.dest_class'
+        comment: 'The destination class id in ''slab reassign'' command. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: memcache_request_automove
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: memcache.request.automove'
+        comment: 'The automove mode in the ''slab automove'' command expressed as a string. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: memcache_request_flags
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: memcache.request.flags'
+        comment: 'The memcache command flags sent in the request (if present). Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: memcache_response_flags
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: memcache.response.flags'
+        comment: 'The memcache message flags sent in the response (if present). Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: memcache_request_exptime
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: memcache.request.exptime'
+        comment: 'The data expiry time in seconds sent with the memcache command (if present). Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: memcache_request_sleep_us
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: memcache.request.sleep_us'
+        comment: 'The sleep setting in microseconds for the ''lru_crawler sleep'' command. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: memcache_response_value
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: memcache.response.value'
+        comment: 'The counter value returned by a counter operation. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: memcache_request_noreply
+        type: boolean
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: memcache.request.noreply'
+        comment: 'Set to true if noreply was set in the request. Elasticsearch mapping type: boolean'
+        _field_type: base
+
+      - name: memcache_request_quiet
+        type: boolean
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: memcache.request.quiet'
+        comment: 'Set to true if the binary protocol message is to be treated as a quiet message. Elasticsearch mapping type: boolean'
+        _field_type: base
+
+      - name: memcache_request_cas_unique
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: memcache.request.cas_unique'
+        comment: 'The CAS (compare-and-swap) identifier if present. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: memcache_response_cas_unique
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: memcache.response.cas_unique'
+        comment: 'The CAS (compare-and-swap) identifier to be used with CAS-based updates (if present). Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: memcache_response_version
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: memcache.response.version'
+        comment: 'The returned memcache version string. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- amqp and thrift ---------------------------------------------------
+      - name: amqp_reply_code
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: amqp.reply-code'
+        comment: 'AMQP reply code to an error, similar to http reply-code. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: amqp_reply_text
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: amqp.reply-text'
+        comment: 'Text explaining the error. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: amqp_class_id
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: amqp.class-id'
+        comment: 'Failing method class. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: amqp_method_id
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: amqp.method-id'
+        comment: 'Failing method ID. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: amqp_exchange
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: amqp.exchange'
+        comment: 'Name of the exchange. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: amqp_exchange_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: amqp.exchange-type'
+        comment: 'Exchange type. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: amqp_passive
+        type: boolean
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: amqp.passive'
+        comment: 'If set, do not create exchange/queue. Elasticsearch mapping type: boolean'
+        _field_type: base
+
+      - name: amqp_durable
+        type: boolean
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: amqp.durable'
+        comment: 'If set, request a durable exchange/queue. Elasticsearch mapping type: boolean'
+        _field_type: base
+
+      - name: amqp_exclusive
+        type: boolean
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: amqp.exclusive'
+        comment: 'If set, request an exclusive queue. Elasticsearch mapping type: boolean'
+        _field_type: base
+
+      - name: amqp_auto_delete
+        type: boolean
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: amqp.auto-delete'
+        comment: 'If set, auto-delete queue when unused. Elasticsearch mapping type: boolean'
+        _field_type: base
+
+      - name: amqp_no_wait
+        type: boolean
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: amqp.no-wait'
+        comment: 'If set, the server will not respond to the method. Elasticsearch mapping type: boolean'
+        _field_type: base
+
+      - name: amqp_consumer_tag
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: amqp.consumer-tag'
+        comment: 'Identifier for the consumer, valid within the current channel. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: amqp_delivery_tag
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: amqp.delivery-tag'
+        comment: 'The server-assigned and channel-specific delivery tag. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: amqp_message_count
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: amqp.message-count'
+        comment: 'The number of messages in the queue, which will be zero for newly-declared queues. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: amqp_consumer_count
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: amqp.consumer-count'
+        comment: 'The number of consumers of a queue. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: amqp_routing_key
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: amqp.routing-key'
+        comment: 'Message routing key. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: amqp_no_ack
+        type: boolean
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: amqp.no-ack'
+        comment: 'If set, the server does not expect acknowledgements for messages. Elasticsearch mapping type: boolean'
+        _field_type: base
+
+      - name: amqp_no_local
+        type: boolean
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: amqp.no-local'
+        comment: 'If set, the server will not send messages to the connection that published them. Elasticsearch mapping type: boolean'
+        _field_type: base
+
+      - name: amqp_if_unused
+        type: boolean
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: amqp.if-unused'
+        comment: 'Delete only if unused. Elasticsearch mapping type: boolean'
+        _field_type: base
+
+      - name: amqp_if_empty
+        type: boolean
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: amqp.if-empty'
+        comment: 'Delete only if empty. Elasticsearch mapping type: boolean'
+        _field_type: base
+
+      - name: amqp_queue
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: amqp.queue'
+        comment: 'The queue name identifies the queue within the vhost. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: amqp_redelivered
+        type: boolean
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: amqp.redelivered'
+        comment: 'Indicates that the message has been previously delivered to this or another client. Elasticsearch mapping type: boolean'
+        _field_type: base
+
+      - name: amqp_multiple
+        type: boolean
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: amqp.multiple'
+        comment: 'Acknowledge multiple messages. Elasticsearch mapping type: boolean'
+        _field_type: base
+
+      - name: amqp_arguments
+        type: map
+        cardinality: unknown
+        use_case: key_search
+        expr: '@source: amqp.arguments'
+        comment: 'Optional additional arguments passed to some methods. Elasticsearch mapping type: object (arbitrary keys)'
+        _field_type: base
+
+      - name: amqp_mandatory
+        type: boolean
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: amqp.mandatory'
+        comment: 'Indicates mandatory routing. Elasticsearch mapping type: boolean'
+        _field_type: base
+
+      - name: amqp_immediate
+        type: boolean
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: amqp.immediate'
+        comment: 'Request immediate delivery. Elasticsearch mapping type: boolean'
+        _field_type: base
+
+      - name: amqp_content_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: amqp.content-type'
+        comment: 'MIME content type. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: amqp_content_encoding
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: amqp.content-encoding'
+        comment: 'MIME content encoding. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: amqp_headers
+        type: map
+        cardinality: unknown
+        use_case: key_search
+        expr: '@source: amqp.headers'
+        comment: 'Message header field table. Elasticsearch mapping type: object (arbitrary keys)'
+        _field_type: base
+
+      - name: amqp_delivery_mode
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: amqp.delivery-mode'
+        comment: 'Non-persistent (1) or persistent (2). Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: amqp_priority
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: amqp.priority'
+        comment: 'Message priority, 0 to 9. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: amqp_correlation_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: amqp.correlation-id'
+        comment: 'Application correlation identifier. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: amqp_reply_to
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: amqp.reply-to'
+        comment: 'Address to reply to. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: amqp_expiration
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: amqp.expiration'
+        comment: 'Message expiration specification. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: amqp_message_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: amqp.message-id'
+        comment: 'Application message identifier. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: amqp_timestamp
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: amqp.timestamp'
+        comment: 'Message timestamp. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: amqp_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: amqp.type'
+        comment: 'Message type name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: amqp_user_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: amqp.user-id'
+        comment: 'Creating user id. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: amqp_app_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: amqp.app-id'
+        comment: 'Creating application id. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: thrift_params
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: thrift.params'
+        comment: 'The RPC method call parameters in a human readable format. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: thrift_service
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: thrift.service'
+        comment: 'The name of the Thrift-RPC service as defined in the IDL files. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: thrift_return_value
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: thrift.return_value'
+        comment: 'The value returned by the Thrift-RPC call. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: thrift_exceptions
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: thrift.exceptions'
+        comment: 'If the call resulted in exceptions, this field contains the exceptions in a human readable format. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- nfs and rpc -------------------------------------------------------
+      - name: nfs_version
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: nfs.version'
+        comment: 'NFS protocol version number. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: nfs_minor_version
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: nfs.minor_version'
+        comment: 'NFS protocol minor version number. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: nfs_tag
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: nfs.tag'
+        comment: 'NFS v4 COMPOUND operation tag. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: nfs_opcode
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: nfs.opcode'
+        comment: 'NFS operation name, or main operation name, in case of COMPOUND calls. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: nfs_status
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: nfs.status'
+        comment: 'NFS operation reply status. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: rpc_xid
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: rpc.xid'
+        comment: 'RPC message transaction identifier. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: rpc_status
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: rpc.status'
+        comment: 'RPC message reply status. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: rpc_auth_flavor
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: rpc.auth_flavor'
+        comment: 'RPC authentication flavor. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: rpc_cred_uid
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: rpc.cred.uid'
+        comment: 'RPC caller''s user id, in case of auth-unix. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: rpc_cred_gid
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: rpc.cred.gid'
+        comment: 'RPC caller''s group id, in case of auth-unix. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: rpc_cred_gids
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: rpc.cred.gids'
+        comment: 'RPC caller''s secondary group ids, in case of auth-unix. The Beat sends a list. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: rpc_cred_stamp
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: rpc.cred.stamp'
+        comment: 'Arbitrary ID which the caller machine may generate. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: rpc_cred_machinename
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: rpc.cred.machinename'
+        comment: 'The name of the caller''s machine. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- cross-field sweeps ------------------------------------------------
+      - name: related_ip
+        type: ip
+        ch_override: Array(IPv6)
+        codec: LZ4
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: related.ip'
+        comment: 'Elasticsearch mapping type: ip (normalize: array)'
+        _field_type: base
+
+      - name: related_hosts
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: related.hosts'
+        comment: 'Elasticsearch mapping type: keyword (normalize: array)'
+        _field_type: base
+
+      - name: related_user
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: related.user'
+        comment: 'Elasticsearch mapping type: keyword (normalize: array)'
+        _field_type: base
+
+      # -- labels, tags and errors -------------------------------------------
+      - name: message
+        type: text
+        cardinality: unknown
+        use_case: word_search
+        expr: '@source: message'
+        comment: 'Elasticsearch mapping type: match_only_text'
+        _field_type: base
+
+      - name: error_message
+        type: text
+        cardinality: unknown
+        use_case: word_search
+        expr: '@source: error.message'
+        comment: 'Elasticsearch mapping type: match_only_text'
+        _field_type: base
+
+      - name: tags
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tags'
+        comment: 'Elasticsearch mapping type: keyword (normalize: array)'
+        _field_type: base
+
+      - name: labels
+        type: map
+        cardinality: unknown
+        use_case: key_search
+        expr: '@source: labels'
+        comment: 'Elasticsearch mapping type: object (object_type: arbitrary keys)'
+        _field_type: base

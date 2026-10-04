@@ -1,0 +1,3705 @@
+# Meta schema: Elastic Auditbeat
+#
+# The three modules the shipped auditbeat.yml enables: auditd,
+# file_integrity, and the system module's host, login, package, process,
+# socket and user datasets. Field names, types and descriptions read from
+# Elastic's own field declarations at elastic/beats tag v9.5.4 (released
+# 2026-09-15): auditbeat/_meta/fields.common.yml, the auditd and
+# file_integrity module fields.yml, and x-pack/auditbeat/module/system.
+# Checked against the auditd testdata goldens and the modules' data.json
+# events, which is where system.audit.host.ip and .mac turned out to be
+# lists.
+#
+# auditd.data holds every key Elastic declares for an audit record, one
+# column each; a record fills only the keys its type carries.
+#
+# Left out, and still in the common header's `_json` column: the alias
+# fields, which repeat an ECS path the spine carries (user.auid is
+# user.audit.id); arrays of objects, which have no flat column -- auditd.paths,
+# system.audit.user.group, and the import lists and section tables of
+# file.elf, file.macho and file.pe; and the top-level geoip group, which
+# Elastic declares only as a convenience for a Logstash or ingest-pipeline
+# lookup and Auditbeat itself never sends.
+#
+# The ECS-spine columns are copied from meta/elastic/ecs.yaml unchanged --
+# same name, type, ch_override, codec, cardinality, use_case, expr and
+# comment -- so the two vocabularies cannot disagree about a field they share.
+# That file carries only the ECS fields the Elastic integrations reference,
+# so process.hash.sha512, and host.containerized from add_host_metadata, are
+# built from libbeat's own declarations at the same tag by the same type
+# rules.
+#
+# Column names are the dotted source path with dots and hyphens replaced by
+# underscores and folded to lower case. `expr` carries the path in the case
+# the shipper actually sends, because dfe-loader reads that directive back out
+# of the ClickHouse column comment to find the field.
+
+current: "1.0.0"
+resource_type: core
+
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: "Auditbeat 9.5 auditd, file_integrity and system modules, plus the ECS spine they fill"
+    columns:
+      # -- shipper and stream ------------------------------------------------
+      - name: agent_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: agent.type'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: agent_version
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: agent.version'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: agent_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: agent.name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: agent_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: agent.id'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: agent_ephemeral_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: agent.ephemeral_id'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: data_stream_dataset
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: data_stream.dataset'
+        comment: 'Elasticsearch mapping type: constant_keyword'
+        _field_type: base
+
+      - name: data_stream_namespace
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: data_stream.namespace'
+        comment: 'Elasticsearch mapping type: constant_keyword'
+        _field_type: base
+
+      - name: data_stream_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: data_stream.type'
+        comment: 'Elasticsearch mapping type: constant_keyword'
+        _field_type: base
+
+      - name: ecs_version
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: ecs.version'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: event_module
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: event.module'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: event_dataset
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: event.dataset'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: event_kind
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: event.kind'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: service_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: service.type'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- event -------------------------------------------------------------
+      - name: event_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: event.id'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: event_category
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: event.category'
+        comment: 'Elasticsearch mapping type: keyword (normalize: array)'
+        _field_type: base
+
+      - name: event_type
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: event.type'
+        comment: 'Elasticsearch mapping type: keyword (normalize: array)'
+        _field_type: base
+
+      - name: event_action
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: event.action'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: event_outcome
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: event.outcome'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: event_start
+        type: datetime
+        cardinality: unknown
+        use_case: range
+        expr: '@source: event.start'
+        comment: 'Elasticsearch mapping type: date'
+        _field_type: base
+
+      - name: event_end
+        type: datetime
+        cardinality: unknown
+        use_case: range
+        expr: '@source: event.end'
+        comment: 'Elasticsearch mapping type: date'
+        _field_type: base
+
+      - name: event_duration
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: event.duration'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: event_original
+        type: string
+        cardinality: unknown
+        expr: '@source: event.original'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: event_origin
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: event.origin'
+        comment: 'Origin of the event. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- host --------------------------------------------------------------
+      - name: host_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: host.name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: host_hostname
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: host.hostname'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: host_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: host.id'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: host_ip
+        type: ip
+        ch_override: Array(IPv6)
+        codec: LZ4
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: host.ip'
+        comment: 'Elasticsearch mapping type: ip (normalize: array)'
+        _field_type: base
+
+      - name: host_mac
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: host.mac'
+        comment: 'Elasticsearch mapping type: keyword (normalize: array)'
+        _field_type: base
+
+      - name: host_architecture
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: host.architecture'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: host_containerized
+        type: boolean
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: host.containerized'
+        comment: 'If the host is a container. Elasticsearch mapping type: boolean'
+        _field_type: base
+
+      - name: host_os_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: host.os.type'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: host_os_family
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: host.os.family'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: host_os_platform
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: host.os.platform'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: host_os_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: host.os.name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: host_os_version
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: host.os.version'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: host_os_kernel
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: host.os.kernel'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- cloud and container -----------------------------------------------
+      # add_cloud_metadata and add_docker_metadata, both on in the shipped config.
+      - name: cloud_provider
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cloud.provider'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cloud_region
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cloud.region'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cloud_availability_zone
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cloud.availability_zone'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cloud_account_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cloud.account.id'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cloud_instance_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cloud.instance.id'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cloud_instance_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cloud.instance.name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: cloud_machine_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: cloud.machine.type'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: container_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: container.id'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: container_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: container.name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: container_image_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: container.image.name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: container_labels
+        type: map
+        cardinality: unknown
+        use_case: key_search
+        expr: '@source: container.labels'
+        comment: 'Elasticsearch mapping type: object (object_type: arbitrary keys)'
+        _field_type: base
+
+      # -- process: ECS ------------------------------------------------------
+      - name: process_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: process_pid
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: process.pid'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: process_parent_pid
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: process.parent.pid'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: process_executable
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.executable'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: process_args
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.args'
+        comment: 'Elasticsearch mapping type: keyword (normalize: array)'
+        _field_type: base
+
+      - name: process_working_directory
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.working_directory'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: process_title
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.title'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: process_entity_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.entity_id'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: process_start
+        type: datetime
+        cardinality: unknown
+        use_case: range
+        expr: '@source: process.start'
+        comment: 'Elasticsearch mapping type: date'
+        _field_type: base
+
+      - name: process_hash_md5
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.hash.md5'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: process_hash_sha1
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.hash.sha1'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: process_hash_sha256
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.hash.sha256'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: process_hash_sha512
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.hash.sha512'
+        comment: 'SHA512 hash. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- process: Auditbeat's own fields -----------------------------------
+      - name: process_thread_capabilities_effective
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.thread.capabilities.effective'
+        comment: 'This is the set of capabilities used by the kernel to perform permission checks for the thread. The Beat sends a list. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: process_thread_capabilities_permitted
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.thread.capabilities.permitted'
+        comment: 'This is a limiting superset for the effective capabilities that the thread may assume. The Beat sends a list. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: process_hash_blake2b_256
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.hash.blake2b_256'
+        comment: 'BLAKE2b-256 hash of the executable. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: process_hash_blake2b_384
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.hash.blake2b_384'
+        comment: 'BLAKE2b-384 hash of the executable. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: process_hash_blake2b_512
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.hash.blake2b_512'
+        comment: 'BLAKE2b-512 hash of the executable. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: process_hash_sha224
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.hash.sha224'
+        comment: 'SHA224 hash of the executable. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: process_hash_sha384
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.hash.sha384'
+        comment: 'SHA384 hash of the executable. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: process_hash_sha3_224
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.hash.sha3_224'
+        comment: 'SHA3_224 hash of the executable. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: process_hash_sha3_256
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.hash.sha3_256'
+        comment: 'SHA3_256 hash of the executable. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: process_hash_sha3_384
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.hash.sha3_384'
+        comment: 'SHA3_384 hash of the executable. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: process_hash_sha3_512
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.hash.sha3_512'
+        comment: 'SHA3_512 hash of the executable. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: process_hash_sha512_224
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.hash.sha512_224'
+        comment: 'SHA512/224 hash of the executable. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: process_hash_sha512_256
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.hash.sha512_256'
+        comment: 'SHA512/256 hash of the executable. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: process_hash_xxh64
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: process.hash.xxh64'
+        comment: 'XX64 hash of the executable. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- user and group: ECS -----------------------------------------------
+      - name: user_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: user.id'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: user_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: user.name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: user_group_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: user.group.id'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: user_group_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: user.group.name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: user_effective_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: user.effective.id'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: user_effective_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: user.effective.name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: user_effective_group_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: user.effective.group.id'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: user_effective_group_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: user.effective.group.name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: user_target_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: user.target.id'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: user_target_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: user.target.name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: group_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: group.id'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: group_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: group.name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- user: Auditbeat's own fields --------------------------------------
+      # The audit, filesystem and saved identities auditd reports.
+      - name: user_audit_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: user.audit.id'
+        comment: 'Audit user ID. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: user_audit_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: user.audit.name'
+        comment: 'Audit user name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: user_filesystem_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: user.filesystem.id'
+        comment: 'Filesystem user ID. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: user_filesystem_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: user.filesystem.name'
+        comment: 'Filesystem user name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: user_filesystem_group_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: user.filesystem.group.id'
+        comment: 'Filesystem group ID. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: user_filesystem_group_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: user.filesystem.group.name'
+        comment: 'Filesystem group name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: user_saved_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: user.saved.id'
+        comment: 'Saved user ID. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: user_saved_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: user.saved.name'
+        comment: 'Saved user name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: user_saved_group_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: user.saved.group.id'
+        comment: 'Saved group ID. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: user_saved_group_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: user.saved.group.name'
+        comment: 'Saved group name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: user_selinux_user
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: user.selinux.user'
+        comment: 'Account submitted for authentication. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: user_selinux_role
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: user.selinux.role'
+        comment: 'User''s SELinux role. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: user_selinux_domain
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: user.selinux.domain'
+        comment: 'The actor''s SELinux domain or type. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: user_selinux_level
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: user.selinux.level'
+        comment: 'The actor''s SELinux level. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: user_selinux_category
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: user.selinux.category'
+        comment: 'The actor''s SELinux category or compartments. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: user_entity_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: user.entity_id'
+        comment: 'ID uniquely identifying the user on a host. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: user_terminal
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: user.terminal'
+        comment: 'Terminal of the user. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- file: ECS ---------------------------------------------------------
+      - name: file_path
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: file.path'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: file_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: file.name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: file_directory
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: file.directory'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: file_extension
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: file.extension'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: file_target_path
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: file.target_path'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: file_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: file.type'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: file_inode
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: file.inode'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: file_device
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: file.device'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: file_uid
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: file.uid'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: file_gid
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: file.gid'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: file_owner
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: file.owner'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: file_group
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: file.group'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: file_mode
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: file.mode'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: file_size
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: file.size'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: file_mtime
+        type: datetime
+        cardinality: unknown
+        use_case: range
+        expr: '@source: file.mtime'
+        comment: 'Elasticsearch mapping type: date'
+        _field_type: base
+
+      - name: file_ctime
+        type: datetime
+        cardinality: unknown
+        use_case: range
+        expr: '@source: file.ctime'
+        comment: 'Elasticsearch mapping type: date'
+        _field_type: base
+
+      - name: file_hash_md5
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: file.hash.md5'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: file_hash_sha1
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: file.hash.sha1'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: file_hash_sha256
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: file.hash.sha256'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: file_hash_sha512
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: file.hash.sha512'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- file: Auditbeat's own fields --------------------------------------
+      # file_integrity's ELF, Mach-O and PE parsing, and the extra hashes.
+      - name: file_setuid
+        type: boolean
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: file.setuid'
+        comment: 'Set if the file has the setuid bit set. Elasticsearch mapping type: boolean'
+        _field_type: base
+
+      - name: file_setgid
+        type: boolean
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: file.setgid'
+        comment: 'Set if the file has the setgid bit set. Elasticsearch mapping type: boolean'
+        _field_type: base
+
+      - name: file_origin
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: file.origin'
+        comment: 'An array of strings describing a possible external origin for this file. The Beat sends a list. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: file_selinux_user
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: file.selinux.user'
+        comment: 'The owner of the object. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: file_selinux_role
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: file.selinux.role'
+        comment: 'The object''s SELinux role. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: file_selinux_domain
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: file.selinux.domain'
+        comment: 'The object''s SELinux domain or type. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: file_selinux_level
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: file.selinux.level'
+        comment: 'The object''s SELinux level. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: file_extended_attributes
+        type: map
+        cardinality: unknown
+        use_case: key_search
+        expr: '@source: file.extended_attributes'
+        comment: 'Extended file attributes. Elasticsearch mapping type: flattened (arbitrary keys)'
+        _field_type: base
+
+      - name: file_elf_go_imports_names_entropy
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: file.elf.go_imports_names_entropy'
+        comment: 'Shannon entropy calculation from the list of Go imports. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: file_elf_go_imports_names_var_entropy
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: file.elf.go_imports_names_var_entropy'
+        comment: 'Variance for Shannon entropy calculation from the list of Go imports. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: file_elf_go_import_hash
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: file.elf.go_import_hash'
+        comment: 'A hash of the Go language imports in an ELF file excluding standard library imports. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: file_elf_go_stripped
+        type: boolean
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: file.elf.go_stripped'
+        comment: 'Set to true if the file is a Go executable that has had its symbols stripped or obfuscated and false if an unobfuscated Go executable. Elasticsearch mapping type: boolean'
+        _field_type: base
+
+      - name: file_elf_imports_names_entropy
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: file.elf.imports_names_entropy'
+        comment: 'Shannon entropy calculation from the list of imported element names and types. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: file_elf_imports_names_var_entropy
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: file.elf.imports_names_var_entropy'
+        comment: 'Variance for Shannon entropy calculation from the list of imported element names and types. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: file_elf_import_hash
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: file.elf.import_hash'
+        comment: 'A hash of the imports in an ELF file. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: file_macho_go_imports_names_entropy
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: file.macho.go_imports_names_entropy'
+        comment: 'Shannon entropy calculation from the list of Go imports. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: file_macho_go_imports_names_var_entropy
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: file.macho.go_imports_names_var_entropy'
+        comment: 'Variance for Shannon entropy calculation from the list of Go imports. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: file_macho_go_import_hash
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: file.macho.go_import_hash'
+        comment: 'A hash of the Go language imports in a Mach-O file excluding standard library imports. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: file_macho_go_stripped
+        type: boolean
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: file.macho.go_stripped'
+        comment: 'Set to true if the file is a Go executable that has had its symbols stripped or obfuscated and false if an unobfuscated Go executable. Elasticsearch mapping type: boolean'
+        _field_type: base
+
+      - name: file_macho_imports_names_entropy
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: file.macho.imports_names_entropy'
+        comment: 'Shannon entropy calculation from the list of imported element names and types. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: file_macho_imports_names_var_entropy
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: file.macho.imports_names_var_entropy'
+        comment: 'Variance for Shannon entropy calculation from the list of imported element names and types. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: file_macho_import_hash
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: file.macho.import_hash'
+        comment: 'A hash of the imports in a Mach-O file. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: file_macho_symhash
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: file.macho.symhash'
+        comment: 'A hash of the imports in a Mach-O file. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: file_pe_go_imports_names_entropy
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: file.pe.go_imports_names_entropy'
+        comment: 'Shannon entropy calculation from the list of Go imports. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: file_pe_go_imports_names_var_entropy
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: file.pe.go_imports_names_var_entropy'
+        comment: 'Variance for Shannon entropy calculation from the list of Go imports. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: file_pe_go_import_hash
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: file.pe.go_import_hash'
+        comment: 'A hash of the Go language imports in a PE file excluding standard library imports. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: file_pe_go_stripped
+        type: boolean
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: file.pe.go_stripped'
+        comment: 'Set to true if the file is a Go executable that has had its symbols stripped or obfuscated and false if an unobfuscated Go executable. Elasticsearch mapping type: boolean'
+        _field_type: base
+
+      - name: file_pe_imports_names_entropy
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: file.pe.imports_names_entropy'
+        comment: 'Shannon entropy calculation from the list of imported element names and types. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: file_pe_imports_names_var_entropy
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: file.pe.imports_names_var_entropy'
+        comment: 'Variance for Shannon entropy calculation from the list of imported element names and types. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: file_pe_import_hash
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: file.pe.import_hash'
+        comment: 'A hash of the imports in a PE file. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: hash_blake2b_256
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: hash.blake2b_256'
+        comment: 'BLAKE2b-256 hash of the file. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: hash_blake2b_384
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: hash.blake2b_384'
+        comment: 'BLAKE2b-384 hash of the file. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: hash_blake2b_512
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: hash.blake2b_512'
+        comment: 'BLAKE2b-512 hash of the file. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: hash_md5
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: hash.md5'
+        comment: 'MD5 hash of the file. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: hash_sha1
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: hash.sha1'
+        comment: 'SHA1 hash of the file. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: hash_sha224
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: hash.sha224'
+        comment: 'SHA224 hash of the file. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: hash_sha256
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: hash.sha256'
+        comment: 'SHA256 hash of the file. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: hash_sha384
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: hash.sha384'
+        comment: 'SHA384 hash of the file. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: hash_sha3_224
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: hash.sha3_224'
+        comment: 'SHA3_224 hash of the file. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: hash_sha3_256
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: hash.sha3_256'
+        comment: 'SHA3_256 hash of the file. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: hash_sha3_384
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: hash.sha3_384'
+        comment: 'SHA3_384 hash of the file. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: hash_sha3_512
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: hash.sha3_512'
+        comment: 'SHA3_512 hash of the file. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: hash_sha512
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: hash.sha512'
+        comment: 'SHA512 hash of the file. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: hash_sha512_224
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: hash.sha512_224'
+        comment: 'SHA512/224 hash of the file. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: hash_sha512_256
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: hash.sha512_256'
+        comment: 'SHA512/256 hash of the file. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: hash_xxh64
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: hash.xxh64'
+        comment: 'XX64 hash of the file. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- network -----------------------------------------------------------
+      - name: source_ip
+        type: ip
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: source.ip'
+        comment: 'Elasticsearch mapping type: ip'
+        _field_type: base
+
+      - name: source_port
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: source.port'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: source_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: source.bytes'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: source_packets
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: source.packets'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: destination_ip
+        type: ip
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: destination.ip'
+        comment: 'Elasticsearch mapping type: ip'
+        _field_type: base
+
+      - name: destination_port
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: destination.port'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: destination_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: destination.bytes'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: destination_packets
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: destination.packets'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: client_ip
+        type: ip
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: client.ip'
+        comment: 'Elasticsearch mapping type: ip'
+        _field_type: base
+
+      - name: client_port
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: client.port'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: server_ip
+        type: ip
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: server.ip'
+        comment: 'Elasticsearch mapping type: ip'
+        _field_type: base
+
+      - name: server_port
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: server.port'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: network_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: network.type'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: network_transport
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: network.transport'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: network_direction
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: network.direction'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: network_bytes
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: network.bytes'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: network_packets
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: network.packets'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: network_community_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: network.community_id'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: network_iana_number
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: network.iana_number'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: source_path
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: source.path'
+        comment: 'This is the path associated with a unix socket. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: destination_path
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: destination.path'
+        comment: 'This is the path associated with a unix socket. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- auditd ------------------------------------------------------------
+      - name: auditd_message_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.message_type'
+        comment: 'The audit message type (e.g. syscall or apparmor_denied). Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_sequence
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: auditd.sequence'
+        comment: 'The sequence number of the event as assigned by the kernel. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: auditd_session
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.session'
+        comment: 'The session ID assigned to a login. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_result
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.result'
+        comment: 'The result of the audited operation (success/fail). Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_summary_actor_primary
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.summary.actor.primary'
+        comment: 'The primary identity of the actor. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_summary_actor_secondary
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.summary.actor.secondary'
+        comment: 'The secondary identity of the actor. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_summary_object_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.summary.object.type'
+        comment: 'A description of the what the "thing" is (e.g. file, socket, user-session). Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_summary_object_primary
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.summary.object.primary'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_summary_object_secondary
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.summary.object.secondary'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_summary_how
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.summary.how'
+        comment: 'This describes how the action was performed. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- auditd.data -------------------------------------------------------
+      # Keyed per audit record type.
+      - name: auditd_data_action
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.action'
+        comment: 'Netfilter packet disposition. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_minor
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.minor'
+        comment: 'Device minor number. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_acct
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.acct'
+        comment: 'A user''s account name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_addr
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.addr'
+        comment: 'The remote address that the user is connecting from. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_cipher
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.cipher'
+        comment: 'Name of crypto cipher selected. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.id'
+        comment: 'During account changes. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_entries
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.entries'
+        comment: 'Number of entries in the netfilter table. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_kind
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.kind'
+        comment: 'Server or client in crypto operation. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_ksize
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.ksize'
+        comment: 'Key size for crypto operation. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_spid
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.spid'
+        comment: 'Sent process ID. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_arch
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.arch'
+        comment: 'The elf architecture flags. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_argc
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.argc'
+        comment: 'The number of arguments to an execve syscall. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_major
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.major'
+        comment: 'Device major number. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_unit
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.unit'
+        comment: 'Systemd unit. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_table
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.table'
+        comment: 'Netfilter table name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_terminal
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.terminal'
+        comment: 'Terminal name the user is running programs on. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_grantors
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.grantors'
+        comment: 'Pam modules approving the action. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_direction
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.direction'
+        comment: 'Direction of crypto operation. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_op
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.op'
+        comment: 'The operation being performed that is audited. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_tty
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.tty'
+        comment: 'Tty udevice the user is running programs on. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_syscall
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.syscall'
+        comment: 'Syscall number in effect when the event occurred. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_data
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.data'
+        comment: 'TTY text. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_family
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.family'
+        comment: 'Netfilter protocol. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_mac
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.mac'
+        comment: 'Crypto MAC algorithm selected. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_pfs
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.pfs'
+        comment: 'Perfect forward secrecy method. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_items
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.items'
+        comment: 'The number of path records in the event. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_a0
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.a0'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_a1
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.a1'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_a2
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.a2'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_a3
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.a3'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_hostname
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.hostname'
+        comment: 'The hostname that the user is connecting from. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_lport
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.lport'
+        comment: 'Local network port. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_rport
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.rport'
+        comment: 'Remote port number. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_exit
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.exit'
+        comment: 'Syscall exit code. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_fp
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.fp'
+        comment: 'Crypto key finger print. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_laddr
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.laddr'
+        comment: 'Local network address. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_sport
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.sport'
+        comment: 'Local port number. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_capability
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.capability'
+        comment: 'Posix capabilities. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_nargs
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.nargs'
+        comment: 'The number of arguments to a socket call. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_new_enabled
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.new-enabled'
+        comment: 'New TTY audit enabled setting. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_audit_backlog_limit
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.audit_backlog_limit'
+        comment: 'Audit system''s backlog queue size. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_dir
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.dir'
+        comment: 'Directory name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_cap_pe
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.cap_pe'
+        comment: 'Process effective capability map. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_model
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.model'
+        comment: 'Security model being used for virt. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_new_pp
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.new_pp'
+        comment: 'New process permitted capability map. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_old_enabled
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.old-enabled'
+        comment: 'Present TTY audit enabled setting. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_oauid
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.oauid'
+        comment: 'Object''s login user ID. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_old
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.old'
+        comment: 'Old value. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_banners
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.banners'
+        comment: 'Banners used on printed page. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_feature
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.feature'
+        comment: 'Kernel feature being changed. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_vm_ctx
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.vm-ctx'
+        comment: 'The vm''s context string. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_opid
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.opid'
+        comment: 'Object''s process ID. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_seperms
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.seperms'
+        comment: 'SELinux permissions being used. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_seresult
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.seresult'
+        comment: 'SELinux AVC decision granted/denied. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_new_rng
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.new-rng'
+        comment: 'Device name of rng being added from a vm. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_old_net
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.old-net'
+        comment: 'Present MAC address assigned to vm. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_sigev_signo
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.sigev_signo'
+        comment: 'Signal number. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_ino
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.ino'
+        comment: 'Inode number. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_old_enforcing
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.old_enforcing'
+        comment: 'Old MAC enforcement status. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_old_vcpu
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.old-vcpu'
+        comment: 'Present number of CPU cores. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_range
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.range'
+        comment: 'User''s SE Linux range. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_res
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.res'
+        comment: 'Result of the audited operation(success/fail). Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_added
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.added'
+        comment: 'Number of new files detected. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_fam
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.fam'
+        comment: 'Socket address family. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_nlnk_pid
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.nlnk-pid'
+        comment: 'Pid of netlink packet sender. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_subj
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.subj'
+        comment: 'Lspp subject''s context string. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_cgroup
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.cgroup'
+        comment: 'Path to cgroup in sysfs. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_kernel
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.kernel'
+        comment: 'Kernel''s version number. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_ocomm
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.ocomm'
+        comment: 'Object''s command line name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_new_net
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.new-net'
+        comment: 'MAC address being assigned to vm. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_permissive
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.permissive'
+        comment: 'SELinux is in permissive mode. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_class
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.class'
+        comment: 'Resource class assigned to vm. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_compat
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.compat'
+        comment: 'Is_compat_task result. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_fi
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.fi'
+        comment: 'File assigned inherited capability map. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_changed
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.changed'
+        comment: 'Number of changed files. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_msg
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.msg'
+        comment: 'The payload of the audit record. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_dport
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.dport'
+        comment: 'Remote port number. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_new_seuser
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.new-seuser'
+        comment: 'New SELinux user. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_invalid_context
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.invalid_context'
+        comment: 'SELinux context. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_dmac
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.dmac'
+        comment: 'Remote MAC address. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_ipx_net
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.ipx-net'
+        comment: 'IPX network number. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_iuid
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.iuid'
+        comment: 'Ipc object''s user ID. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_macproto
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.macproto'
+        comment: 'Ethernet packet type ID field. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_obj
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.obj'
+        comment: 'Lspp object context string. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_ipid
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.ipid'
+        comment: 'IP datagram fragment identifier. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_new_fs
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.new-fs'
+        comment: 'File system being added to vm. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_vm_pid
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.vm-pid'
+        comment: 'Vm''s process ID. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_cap_pi
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.cap_pi'
+        comment: 'Process inherited capability map. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_old_auid
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.old-auid'
+        comment: 'Previous auid value. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_oses
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.oses'
+        comment: 'Object''s session ID. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_fd
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.fd'
+        comment: 'File descriptor number. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_igid
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.igid'
+        comment: 'Ipc object''s group ID. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_new_disk
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.new-disk'
+        comment: 'Disk being added to vm. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_parent
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.parent'
+        comment: 'The inode number of the parent file. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_len
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.len'
+        comment: 'Length. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_oflag
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.oflag'
+        comment: 'Open syscall flags. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_uuid
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.uuid'
+        comment: 'A UUID. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_code
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.code'
+        comment: 'Seccomp action code. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_nlnk_grp
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.nlnk-grp'
+        comment: 'Netlink group number. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_cap_fp
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.cap_fp'
+        comment: 'File permitted capability map. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_new_mem
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.new-mem'
+        comment: 'New amount of memory in KB. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_seperm
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.seperm'
+        comment: 'SELinux permission being decided on. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_enforcing
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.enforcing'
+        comment: 'New MAC enforcement status. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_new_chardev
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.new-chardev'
+        comment: 'New character device being assigned to vm. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_old_rng
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.old-rng'
+        comment: 'Device name of rng being removed from a vm. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_outif
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.outif'
+        comment: 'Out interface number. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_cmd
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.cmd'
+        comment: 'Command being executed. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_hook
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.hook'
+        comment: 'Netfilter hook that packet came from. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_new_level
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.new-level'
+        comment: 'New run level. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_sauid
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.sauid'
+        comment: 'Sent login user ID. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_sig
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.sig'
+        comment: 'Signal number. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_audit_backlog_wait_time
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.audit_backlog_wait_time'
+        comment: 'Audit system''s backlog wait time. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_printer
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.printer'
+        comment: 'Printer name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_old_mem
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.old-mem'
+        comment: 'Present amount of memory in KB. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_perm
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.perm'
+        comment: 'The file permission being used. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_old_pi
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.old_pi'
+        comment: 'Old process inherited capability map. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_state
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.state'
+        comment: 'Audit daemon configuration resulting state. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_format
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.format'
+        comment: 'Audit log''s format. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_new_gid
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.new_gid'
+        comment: 'New group ID being assigned. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_tcontext
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.tcontext'
+        comment: 'The target''s or object''s context string. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_maj
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.maj'
+        comment: 'Device major number. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_watch
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.watch'
+        comment: 'File name in a watch record. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_device
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.device'
+        comment: 'Device name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_grp
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.grp'
+        comment: 'Group name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_bool
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.bool'
+        comment: 'Name of SELinux boolean. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_icmp_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.icmp_type'
+        comment: 'Type of icmp message. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_new_lock
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.new_lock'
+        comment: 'New value of feature lock. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_old_prom
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.old_prom'
+        comment: 'Network promiscuity flag. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_acl
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.acl'
+        comment: 'Access mode of resource assigned to vm. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_ip
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.ip'
+        comment: 'Network address of a printer. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_new_pi
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.new_pi'
+        comment: 'New process inherited capability map. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_default_context
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.default-context'
+        comment: 'Default MAC context. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_inode_gid
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.inode_gid'
+        comment: 'Group ID of the inode''s owner. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_new_log_passwd
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.new-log_passwd'
+        comment: 'New value for TTY password logging. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_new_pe
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.new_pe'
+        comment: 'New process effective capability map. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_selected_context
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.selected-context'
+        comment: 'New MAC context assigned to session. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_cap_fver
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.cap_fver'
+        comment: 'File system capabilities version number. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_file
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.file'
+        comment: 'File name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_net
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.net'
+        comment: 'Network MAC address. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_virt
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.virt'
+        comment: 'Kind of virtualization being referenced. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_cap_pp
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.cap_pp'
+        comment: 'Process permitted capability map. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_old_range
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.old-range'
+        comment: 'Present SELinux range. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_resrc
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.resrc'
+        comment: 'Resource being assigned. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_new_range
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.new-range'
+        comment: 'New SELinux range. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_obj_gid
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.obj_gid'
+        comment: 'Group ID of object. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_proto
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.proto'
+        comment: 'Network protocol. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_old_disk
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.old-disk'
+        comment: 'Disk being removed from vm. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_audit_failure
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.audit_failure'
+        comment: 'Audit system''s failure mode. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_inif
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.inif'
+        comment: 'In interface number. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_vm
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.vm'
+        comment: 'Virtual machine name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_flags
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.flags'
+        comment: 'Mmap syscall flags. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_nlnk_fam
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.nlnk-fam'
+        comment: 'Netlink protocol number. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_old_fs
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.old-fs'
+        comment: 'File system being removed from vm. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_old_ses
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.old-ses'
+        comment: 'Previous ses value. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_seqno
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.seqno'
+        comment: 'Sequence number. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_fver
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.fver'
+        comment: 'File system capabilities version number. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_qbytes
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.qbytes'
+        comment: 'Ipc objects quantity of bytes. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_seuser
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.seuser'
+        comment: 'User''s SE Linux user acct. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_cap_fe
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.cap_fe'
+        comment: 'File assigned effective capability map. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_new_vcpu
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.new-vcpu'
+        comment: 'New number of CPU cores. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_old_level
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.old-level'
+        comment: 'Old run level. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_old_pp
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.old_pp'
+        comment: 'Old process permitted capability map. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_daddr
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.daddr'
+        comment: 'Remote IP address. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_old_role
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.old-role'
+        comment: 'Present SELinux role. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_ioctlcmd
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.ioctlcmd'
+        comment: 'The request argument to the ioctl syscall. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_smac
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.smac'
+        comment: 'Local MAC address. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_apparmor
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.apparmor'
+        comment: 'Apparmor event information. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_fe
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.fe'
+        comment: 'File assigned effective capability map. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_perm_mask
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.perm_mask'
+        comment: 'File permission mask that triggered a watch event. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_ses
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.ses'
+        comment: 'Login session ID. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_cap_fi
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.cap_fi'
+        comment: 'File inherited capability map. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_obj_uid
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.obj_uid'
+        comment: 'User ID of object. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_reason
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.reason'
+        comment: 'Text string denoting a reason for the action. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_list
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.list'
+        comment: 'The audit system''s filter list number. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_old_lock
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.old_lock'
+        comment: 'Present value of feature lock. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_bus
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.bus'
+        comment: 'Name of subsystem bus a vm resource belongs to. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_old_pe
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.old_pe'
+        comment: 'Old process effective capability map. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_new_role
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.new-role'
+        comment: 'New SELinux role. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_prom
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.prom'
+        comment: 'Network promiscuity flag. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_uri
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.uri'
+        comment: 'URI pointing to a printer. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_audit_enabled
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.audit_enabled'
+        comment: 'Audit systems''s enable/disable status. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_old_log_passwd
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.old-log_passwd'
+        comment: 'Present value for TTY password logging. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_old_seuser
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.old-seuser'
+        comment: 'Present SELinux user. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_per
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.per'
+        comment: 'Linux personality. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_scontext
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.scontext'
+        comment: 'The subject''s context string. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_tclass
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.tclass'
+        comment: 'Target''s object classification. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_ver
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.ver'
+        comment: 'Audit daemon''s version number. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_new
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.new'
+        comment: 'Value being set in feature. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_val
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.val'
+        comment: 'Generic value associated with the operation. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_img_ctx
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.img-ctx'
+        comment: 'The vm''s disk image context string. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_old_chardev
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.old-chardev'
+        comment: 'Present character device assigned to vm. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_old_val
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.old_val'
+        comment: 'Current value of SELinux boolean. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_success
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.success'
+        comment: 'Whether the syscall was successful or not. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_inode_uid
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.inode_uid'
+        comment: 'User ID of the inode''s owner. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_removed
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.removed'
+        comment: 'Number of deleted files. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_socket_port
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.socket.port'
+        comment: 'The port number. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_socket_saddr
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.socket.saddr'
+        comment: 'The raw socket address structure. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_socket_addr
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.socket.addr'
+        comment: 'The remote address. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_socket_family
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.socket.family'
+        comment: 'The socket family (unix, ipv4, ipv6, netlink). Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: auditd_data_socket_path
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: auditd.data.socket.path'
+        comment: 'This is the path associated with a unix socket. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- package: ECS ------------------------------------------------------
+      # The system module's package dataset.
+      - name: package_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: package.name'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: package_version
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: package.version'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: package_description
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: package.description'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: package_installed
+        type: datetime
+        cardinality: unknown
+        use_case: range
+        expr: '@source: package.installed'
+        comment: 'Elasticsearch mapping type: date'
+        _field_type: base
+
+      - name: package_reference
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: package.reference'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: package_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: package.type'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: package_size
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: package.size'
+        comment: 'Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: package_architecture
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: package.architecture'
+        comment: 'Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- system.audit.host -------------------------------------------------
+      - name: system_audit_host_uptime
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.audit.host.uptime'
+        comment: 'Uptime in nanoseconds. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_audit_host_boottime
+        type: datetime
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.audit.host.boottime'
+        comment: 'Boot time. Elasticsearch mapping type: date'
+        _field_type: base
+
+      - name: system_audit_host_containerized
+        type: boolean
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: system.audit.host.containerized'
+        comment: 'Set if host is a container. Elasticsearch mapping type: boolean'
+        _field_type: base
+
+      - name: system_audit_host_timezone_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.audit.host.timezone.name'
+        comment: 'Name of the timezone of the host, e.g. BST. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_audit_host_timezone_offset_sec
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.audit.host.timezone.offset.sec'
+        comment: 'Timezone offset in seconds. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_audit_host_hostname
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.audit.host.hostname'
+        comment: 'Hostname. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_audit_host_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.audit.host.id'
+        comment: 'Host ID. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_audit_host_architecture
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.audit.host.architecture'
+        comment: 'Host architecture (e.g. x86_64). Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_audit_host_mac
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.audit.host.mac'
+        comment: 'MAC addresses. The Beat sends a list. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_audit_host_ip
+        type: ip
+        ch_override: Array(IPv6)
+        codec: LZ4
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: system.audit.host.ip'
+        comment: 'IP addresses. The Beat sends a list. Elasticsearch mapping type: ip'
+        _field_type: base
+
+      - name: system_audit_host_os_codename
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.audit.host.os.codename'
+        comment: 'OS codename, if any (e.g. stretch). Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_audit_host_os_platform
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.audit.host.os.platform'
+        comment: 'OS platform (e.g. centos, ubuntu, windows). Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_audit_host_os_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.audit.host.os.name'
+        comment: 'OS name (e.g. Mac OS X). Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_audit_host_os_family
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.audit.host.os.family'
+        comment: 'OS family (e.g. redhat, debian, freebsd, windows). Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_audit_host_os_version
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.audit.host.os.version'
+        comment: 'OS version. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_audit_host_os_kernel
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.audit.host.os.kernel'
+        comment: 'The operating system''s kernel version. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_audit_host_os_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.audit.host.os.type'
+        comment: 'OS type (see ECS os.type). Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- system.audit.package ----------------------------------------------
+      - name: system_audit_package_entity_id
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.audit.package.entity_id'
+        comment: 'ID uniquely identifying the package. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_audit_package_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.audit.package.name'
+        comment: 'Package name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_audit_package_version
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.audit.package.version'
+        comment: 'Package version. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_audit_package_release
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.audit.package.release'
+        comment: 'Package release. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_audit_package_arch
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.audit.package.arch'
+        comment: 'Package architecture. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_audit_package_license
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.audit.package.license'
+        comment: 'Package license. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_audit_package_installtime
+        type: datetime
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.audit.package.installtime'
+        comment: 'Package install time. Elasticsearch mapping type: date'
+        _field_type: base
+
+      - name: system_audit_package_size
+        type: integer
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.audit.package.size'
+        comment: 'Package size. Elasticsearch mapping type: long'
+        _field_type: base
+
+      - name: system_audit_package_summary
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.audit.package.summary'
+        comment: 'Package summary. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_audit_package_url
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.audit.package.url'
+        comment: 'Package URL. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      # -- system.audit.user -------------------------------------------------
+      - name: system_audit_user_name
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.audit.user.name'
+        comment: 'User name. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_audit_user_uid
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.audit.user.uid'
+        comment: 'User ID. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_audit_user_gid
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.audit.user.gid'
+        comment: 'Group ID. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_audit_user_dir
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.audit.user.dir'
+        comment: 'User''s home directory. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_audit_user_shell
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.audit.user.shell'
+        comment: 'Program to run at login. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_audit_user_user_information
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.audit.user.user_information'
+        comment: 'General user information. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_audit_user_password_type
+        type: string
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: system.audit.user.password.type'
+        comment: 'A user''s password type. Elasticsearch mapping type: keyword'
+        _field_type: base
+
+      - name: system_audit_user_password_last_changed
+        type: datetime
+        cardinality: unknown
+        use_case: range
+        expr: '@source: system.audit.user.password.last_changed'
+        comment: 'The day the user''s password was last changed. Elasticsearch mapping type: date'
+        _field_type: base
+
+      # -- cross-field sweeps ------------------------------------------------
+      - name: related_user
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: related.user'
+        comment: 'Elasticsearch mapping type: keyword (normalize: array)'
+        _field_type: base
+
+      - name: related_ip
+        type: ip
+        ch_override: Array(IPv6)
+        codec: LZ4
+        cardinality: unknown
+        use_case: dimension
+        expr: '@source: related.ip'
+        comment: 'Elasticsearch mapping type: ip (normalize: array)'
+        _field_type: base
+
+      - name: related_hosts
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: related.hosts'
+        comment: 'Elasticsearch mapping type: keyword (normalize: array)'
+        _field_type: base
+
+      - name: related_hash
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: related.hash'
+        comment: 'Elasticsearch mapping type: keyword (normalize: array)'
+        _field_type: base
+
+      # -- labels, tags and errors -------------------------------------------
+      - name: message
+        type: text
+        cardinality: unknown
+        use_case: word_search
+        expr: '@source: message'
+        comment: 'Elasticsearch mapping type: match_only_text'
+        _field_type: base
+
+      - name: error_message
+        type: text
+        cardinality: unknown
+        use_case: word_search
+        expr: '@source: error.message'
+        comment: 'Elasticsearch mapping type: match_only_text'
+        _field_type: base
+
+      - name: tags
+        type: string
+        ch_override: Array(String)
+        codec: ZSTD(1)
+        cardinality: unknown
+        use_case: exact_match
+        expr: '@source: tags'
+        comment: 'Elasticsearch mapping type: keyword (normalize: array)'
+        _field_type: base
+
+      - name: labels
+        type: map
+        cardinality: unknown
+        use_case: key_search
+        expr: '@source: labels'
+        comment: 'Elasticsearch mapping type: object (object_type: arbitrary keys)'
+        _field_type: base

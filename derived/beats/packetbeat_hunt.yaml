@@ -1,0 +1,215 @@
+# Derived schema: Elastic Packetbeat -- hunt and investigate
+#
+# The network spine: who talked to whom, over what, for how long, and the
+# DNS, HTTP and TLS detail that names the far end.
+#
+# The base is meta/beats/packetbeat, not meta/elastic/ecs: the flow record,
+# the transaction envelope and the DHCP fields sit outside core ECS, so the
+# ECS vocabulary cannot satisfy this selection.
+#
+# Index choices measured against two rule corpora: Elastic's 43 prebuilt
+# detection rules whose index list names packetbeat-* or
+# logs-network_traffic.*, the Elastic Agent integration that runs Packetbeat
+# (detection-rules commit 2e6bdc0), and SigmaHQ's 53 rules under
+# rules/network (commit 272daf8). Each count is the number of rules whose
+# query or detection references that field. The heaviest are destination.ip
+# 67.4%, source.ip and destination.port 65.1%, event.category 62.8% and
+# network.transport 44.2% of the Elastic rules; Sigma's DNS query field is in
+# 11 of its rules.
+#
+# A column whose comment below quotes no count -- among them the flow id,
+# the DHCP lease, the TLS fingerprints and certificate names, related_*,
+# tags and labels -- is reasoned from what the hunt needs, not measured.
+
+base: meta/beats/packetbeat
+base_version: "1.0.0"
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    summary: "Network hunt spine: 58 indexed columns, 5 carried for display"
+    select:
+      # -- which source, which protocol --------------------------------------
+      # Elastic maps this constant_keyword per index, and it is already the
+      # DFE routing key. 16 of the 43 rules gate on it.
+      - name: data_stream_dataset
+        index: dimension
+      # 11 of the 43 rules: flow, dns, http, tls and the rest.
+      - name: event_dataset
+        index: dimension
+      # Packetbeat's own transaction type: flow, dns, http, tls and the rest.
+      - name: type
+        index: dimension
+      - name: agent_type
+        index: dimension
+
+      # -- what happened -------------------------------------------------------
+      # Array(String): set(0) over an array stores whole arrays and cannot
+      # answer has(), so these two take the bloom filter, never dimension.
+      # event.category is in 27 of the 43 rules, event.type in 5.
+      - name: event_category
+        index: exact_match
+      - name: event_type
+        index: exact_match
+      # 10 of the 43 rules.
+      - name: event_action
+        index: dimension
+      - name: event_outcome
+        index: dimension
+      - name: event_kind
+        index: dimension
+      # The transaction status Packetbeat computes per protocol.
+      - name: status
+        index: dimension
+      - name: event_start
+        index: range
+      - name: event_duration
+        index: range
+
+      # -- endpoints -----------------------------------------------------------
+      # destination.ip in 29 of the 43 rules, source.ip in 28.
+      - name: source_ip
+        index: dimension
+      - name: destination_ip
+        index: dimension
+      # 28 of the 43 rules, nearly all an equality or an IN list against
+      # service ports, so the exact-value set rather than min/max.
+      - name: destination_port
+        index: dimension
+      # An ephemeral port on most flows, so only ever a range question.
+      - name: source_port
+        index: range
+      # The name Packetbeat learned for the far end, from SNI or Host.
+      - name: destination_domain
+        index: word_search
+      # Carried: on a transaction these repeat source and destination.
+      - name: client_ip
+        index: none
+      - name: server_ip
+        index: none
+
+      # -- network and flow ----------------------------------------------------
+      # 19 of the 43 rules.
+      - name: network_transport
+        index: dimension
+      # 5 of the 43 rules.
+      - name: network_protocol
+        index: dimension
+      - name: network_application
+        index: dimension
+      - name: network_direction
+        index: dimension
+      # The pivot key to every other sensor that computes it.
+      - name: network_community_id
+        index: exact_match
+      - name: flow_id
+        index: exact_match
+      - name: flow_final
+        index: dimension
+      - name: network_bytes
+        index: range
+      - name: network_packets
+        index: range
+      - name: source_bytes
+        index: range
+      - name: destination_bytes
+        index: range
+
+      # -- dns -----------------------------------------------------------------
+      # Sigma's DNS query field, 11 rules: 4 endswith a domain and 5
+      # contains a label, both of which the domain's tokens answer.
+      - name: dns_question_name
+        index: word_search
+      # 2 of the 43 Elastic rules.
+      - name: dns_question_registered_domain
+        index: exact_match
+      - name: dns_question_type
+        index: dimension
+      - name: dns_response_code
+        index: dimension
+      # Carried, not indexed: Array(IPv6) refuses exact_match, and dimension
+      # over an array cannot answer has().
+      - name: dns_resolved_ip
+        index: none
+
+      # -- http and url --------------------------------------------------------
+      # 4 of the 43 rules.
+      - name: http_request_method
+        index: dimension
+      # 3 of the 43 rules.
+      - name: http_response_status_code
+        index: range
+      # 4 of the 43 rules, matched as a path.
+      - name: url_path
+        index: word_search
+      - name: url_domain
+        index: exact_match
+      # url_path and url_domain answer most fragment questions for free.
+      - name: url_full
+        index: none
+      # The one ngram index on this table: UA strings are short, repeat
+      # heavily and are matched by fragment.
+      - name: user_agent_original
+        index: substring_search
+
+      # -- tls -----------------------------------------------------------------
+      # The SNI, read by domain label.
+      - name: tls_client_server_name
+        index: word_search
+      # Client and server fingerprints: equality against a known-bad list.
+      - name: tls_client_ja3
+        index: exact_match
+      - name: tls_server_ja3s
+        index: exact_match
+      # The certificate hashes, 1 rule each.
+      - name: tls_server_hash_sha256
+        index: exact_match
+      - name: tls_server_hash_sha1
+        index: exact_match
+      # Both Array(String) under ECS, so the bloom filter answers has().
+      - name: tls_server_x509_subject_common_name
+        index: exact_match
+      - name: tls_server_x509_issuer_common_name
+        index: exact_match
+      - name: tls_server_x509_not_after
+        index: range
+      - name: tls_version
+        index: dimension
+      - name: tls_established
+        index: dimension
+
+      # -- dhcp ----------------------------------------------------------------
+      # Which device held which address, the join an investigation needs.
+      - name: dhcpv4_client_mac
+        index: exact_match
+      - name: dhcpv4_assigned_ip
+        index: dimension
+      - name: dhcpv4_option_hostname
+        index: exact_match
+
+      # -- process and host ----------------------------------------------------
+      # 4 of the 43 rules; filled only where process monitoring is on.
+      - name: process_name
+        index: exact_match
+      # 3 of the 43 rules, matched as a path.
+      - name: process_executable
+        index: word_search
+      - name: host_name
+        index: dimension
+      - name: host_os_type
+        index: dimension
+
+      # -- cross-field sweeps and labels --------------------------------------
+      # Carried: Array(IPv6) takes neither exact_match nor a usable dimension.
+      - name: related_ip
+        index: none
+      - name: related_hosts
+        index: exact_match
+      - name: related_user
+        index: exact_match
+      - name: tags
+        index: exact_match
+      # The only Map in this selection and the only place key_search belongs.
+      - name: labels
+        index: key_search

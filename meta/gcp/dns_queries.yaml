@@ -1,0 +1,37 @@
+# Meta schema: GCP Cloud DNS queries
+#
+# Cloud Logging entries under `log_id("dns.googleapis.com/dns_queries")`, one
+# row per element of `entries:list` `entries`, as dfe-fetcher's `gcp` profile
+# lands it (unit `dns_queries`). The columns are the fields dfe-fetcher's own
+# fixture for the unit asserts (crates/fetcher/tests/integration/source_gcp.rs);
+# widen this schema only with a field that fixture lands.
+
+current: "1.0.0"
+resource_type: core
+
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: "Initial Cloud DNS queries schema"
+    columns:
+      - name: log_name
+        type: string
+        use_case: dimension
+        expr: "@source: logName"
+        comment: "Full log name of the entry"
+        _field_type: base
+
+      - name: severity
+        type: string
+        use_case: dimension
+        expr: "@source: severity"
+        comment: "Log entry severity"
+        _field_type: base
+
+      - name: insert_id
+        type: string
+        use_case: exact_match
+        expr: "@source: insertId"
+        comment: "Unique log entry identifier"
+        _field_type: base

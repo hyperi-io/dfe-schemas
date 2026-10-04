@@ -1,8 +1,8 @@
 # Meta schema: Azure Defender for Cloud
 #
-# Defender for Cloud security alerts — threat detection across Azure resources.
+# Defender for Cloud security alerts -- threat detection across Azure resources.
 
-current: "1.0.0"
+current: "1.0.1"
 resource_type: core
 
 versions:
@@ -43,6 +43,77 @@ versions:
       - name: status
         type: string
         attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: properties.status"
+        comment: "Alert status (Active, Dismissed, Resolved)"
+        _field_type: base
+
+      - name: description
+        type: text
+        use_case: word_search
+        expr: "@source: properties.description"
+        comment: "Detailed alert description"
+        _field_type: base
+
+      - name: created_utc
+        type: datetime
+        use_case: range
+        expr: "@source: first(properties.timeGeneratedUtc/properties.startTimeUtc)"
+        comment: "When the alert was generated"
+        _field_type: base
+
+      - name: detected_utc
+        type: datetime
+        attribute: [nullable]
+        use_case: range
+        expr: "@source: properties.detectedTimeUtc"
+        comment: "When the threat was detected"
+        _field_type: base
+
+      - name: resource_id
+        type: string
+        attribute: [nullable]
+        expr: "@source: id"
+        comment: "Full Azure resource identifier of the alert"
+        _field_type: base
+
+  "1.0.1":
+    date: "2026-10-04"
+    type: revision
+    summary: "Declare cardinality with the cardinality field, no column change"
+    columns:
+      - name: alert_id
+        type: string
+        use_case: exact_match
+        expr: "@source: first(name/id)"
+        comment: "Unique alert identifier"
+        _field_type: base
+
+      - name: alert_type
+        type: string
+        cardinality: low
+        use_case: dimension
+        expr: "@source: properties.alertType"
+        comment: "Alert type category"
+        _field_type: base
+
+      - name: display_name
+        type: string
+        expr: "@source: properties.alertDisplayName"
+        comment: "Human-readable alert title"
+        _field_type: base
+
+      - name: severity
+        type: string
+        cardinality: low
+        use_case: dimension
+        expr: "@source: properties.severity"
+        comment: "Alert severity (High, Medium, Low)"
+        _field_type: base
+
+      - name: status
+        type: string
+        cardinality: low
         use_case: dimension
         expr: "@source: properties.status"
         comment: "Alert status (Active, Dismissed, Resolved)"

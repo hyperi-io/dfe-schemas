@@ -1,8 +1,8 @@
 # Meta schema: GCP Cloud Audit Logs
 #
-# Cloud Audit Logs — admin activity and data access events from GCP services.
+# Cloud Audit Logs -- admin activity and data access events from GCP services.
 
-current: "1.0.0"
+current: "1.0.1"
 resource_type: core
 
 versions:
@@ -67,6 +67,80 @@ versions:
       - name: service_name
         type: string
         attribute: [lowcardinality, nullable]
+        use_case: dimension
+        expr: "@source: protoPayload.serviceName"
+        comment: "GCP service name (e.g. storage.googleapis.com)"
+        _field_type: base
+
+      - name: insert_id
+        type: string
+        use_case: exact_match
+        expr: "@source: insertId"
+        comment: "Unique log entry identifier"
+        _field_type: base
+
+  "1.0.1":
+    date: "2026-10-04"
+    type: revision
+    summary: "Declare cardinality with the cardinality field, no column change"
+    columns:
+      - name: log_name
+        type: string
+        cardinality: low
+        use_case: dimension
+        expr: "@source: logName"
+        comment: "Log name (e.g. cloudaudit.googleapis.com/activity)"
+        _field_type: base
+
+      - name: severity
+        type: string
+        cardinality: low
+        use_case: dimension
+        expr: "@source: severity"
+        comment: "Log severity (INFO, NOTICE, WARNING, ERROR, CRITICAL)"
+        _field_type: base
+
+      - name: method_name
+        type: string
+        cardinality: low
+        use_case: dimension
+        expr: "@source: protoPayload.methodName"
+        comment: "API method called (e.g. storage.buckets.create)"
+        _field_type: base
+
+      - name: principal_email
+        type: string
+        use_case: dimension
+        expr: "@source: protoPayload.authenticationInfo.principalEmail"
+        comment: "Service account or user email that performed the action"
+        _field_type: base
+
+      - name: resource_name
+        type: string
+        expr: "@source: protoPayload.resourceName"
+        comment: "Full resource name (projects/*, buckets/*, etc.)"
+        _field_type: base
+
+      - name: resource_type
+        type: string
+        cardinality: low
+        use_case: dimension
+        expr: "@source: resource.type"
+        comment: "Resource type (gce_instance, gcs_bucket, etc.)"
+        _field_type: base
+
+      - name: caller_ip
+        type: ip
+        attribute: [nullable]
+        use_case: range
+        expr: "@source: protoPayload.requestMetadata.callerIp"
+        comment: "IP address of the caller"
+        _field_type: base
+
+      - name: service_name
+        type: string
+        cardinality: low
+        attribute: [nullable]
         use_case: dimension
         expr: "@source: protoPayload.serviceName"
         comment: "GCP service name (e.g. storage.googleapis.com)"

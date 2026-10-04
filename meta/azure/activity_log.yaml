@@ -1,8 +1,8 @@
 # Meta schema: Azure Activity Log
 #
-# Azure Monitor activity log — management plane operations on Azure resources.
+# Azure Monitor activity log -- management plane operations on Azure resources.
 
-current: "1.0.0"
+current: "1.0.1"
 resource_type: core
 
 versions:
@@ -82,6 +82,96 @@ versions:
       - name: resource_type
         type: string
         attribute: [lowcardinality, nullable]
+        use_case: dimension
+        expr: "@source: resourceType.value"
+        comment: "Azure resource type"
+        _field_type: base
+
+      - name: resource_id
+        type: string
+        attribute: [nullable]
+        expr: "@source: resourceId"
+        comment: "Full Azure resource identifier"
+        _field_type: base
+
+  "1.0.1":
+    date: "2026-10-04"
+    type: revision
+    summary: "Declare cardinality with the cardinality field, no column change"
+    columns:
+      - name: event_id
+        type: string
+        use_case: exact_match
+        expr: "@source: first(eventDataId/id)"
+        comment: "Unique activity log event identifier"
+        _field_type: base
+
+      - name: event_timestamp
+        type: datetime
+        use_case: range
+        expr: "@source: eventTimestamp"
+        comment: "When the operation occurred"
+        _field_type: base
+
+      - name: operation_name
+        type: string
+        cardinality: low
+        use_case: dimension
+        expr: "@source: operationName.value"
+        comment: "Operation name (e.g. Microsoft.Storage/storageAccounts/write)"
+        _field_type: base
+
+      - name: category
+        type: string
+        cardinality: low
+        use_case: dimension
+        expr: "@source: first(category.value/eventCategory.value)"
+        comment: "Event category (Administrative, Security, ServiceHealth)"
+        _field_type: base
+
+      - name: level
+        type: string
+        cardinality: low
+        use_case: dimension
+        expr: "@source: level"
+        comment: "Event level (Informational, Warning, Error, Critical)"
+        _field_type: base
+
+      - name: status
+        type: string
+        cardinality: low
+        use_case: dimension
+        expr: "@source: status.value"
+        comment: "Operation status (Succeeded, Failed, Started)"
+        _field_type: base
+
+      - name: caller
+        type: string
+        use_case: dimension
+        expr: "@source: caller"
+        comment: "User or service principal that initiated the operation"
+        _field_type: base
+
+      - name: correlation_id
+        type: string
+        use_case: exact_match
+        expr: "@source: correlationId"
+        comment: "Correlation identifier for tracing related events"
+        _field_type: base
+
+      - name: resource_group
+        type: string
+        cardinality: low
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: resourceGroupName"
+        comment: "Azure resource group name"
+        _field_type: base
+
+      - name: resource_type
+        type: string
+        cardinality: low
+        attribute: [nullable]
         use_case: dimension
         expr: "@source: resourceType.value"
         comment: "Azure resource type"

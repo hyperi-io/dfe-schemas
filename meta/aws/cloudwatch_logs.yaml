@@ -1,8 +1,8 @@
 # Meta schema: AWS CloudWatch Logs
 #
-# CloudWatch Logs FilterLogEvents — log entries from CloudWatch log groups.
+# CloudWatch Logs FilterLogEvents -- log entries from CloudWatch log groups.
 
-current: "1.0.0"
+current: "1.0.1"
 resource_type: core
 
 versions:
@@ -21,6 +21,55 @@ versions:
       - name: log_group_name
         type: string
         attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: logGroupName"
+        comment: "CloudWatch log group name"
+        _field_type: base
+
+      - name: log_stream_name
+        type: string
+        use_case: dimension
+        expr: "@source: logStreamName"
+        comment: "CloudWatch log stream name"
+        _field_type: base
+
+      - name: timestamp
+        type: datetime
+        use_case: range
+        expr: "@source: timestamp"
+        comment: "Event timestamp (epoch milliseconds)"
+        _field_type: base
+
+      - name: ingestion_time
+        type: datetime
+        attribute: [nullable]
+        use_case: range
+        expr: "@source: ingestionTime"
+        comment: "When CloudWatch ingested the event"
+        _field_type: base
+
+      - name: message
+        type: text
+        use_case: word_search
+        expr: "@source: message"
+        comment: "Log event message content"
+        _field_type: base
+
+  "1.0.1":
+    date: "2026-10-04"
+    type: revision
+    summary: "Declare cardinality with the cardinality field, no column change"
+    columns:
+      - name: event_id
+        type: string
+        use_case: exact_match
+        expr: "@source: eventId"
+        comment: "Unique log event identifier"
+        _field_type: base
+
+      - name: log_group_name
+        type: string
+        cardinality: low
         use_case: dimension
         expr: "@source: logGroupName"
         comment: "CloudWatch log group name"

@@ -1,8 +1,8 @@
 # Meta schema: AWS Config
 #
-# AWS Config resource snapshots — configuration state of AWS resources.
+# AWS Config resource snapshots -- configuration state of AWS resources.
 
-current: "1.0.0"
+current: "1.0.1"
 resource_type: core
 
 versions:
@@ -61,5 +61,65 @@ versions:
         attribute: [lowcardinality, nullable]
         use_case: dimension
         expr: "@source: ConfigurationItemStatus"
+        comment: "Configuration item status"
+        _field_type: base
+
+  "1.0.1":
+    date: "2026-10-04"
+    type: revision
+    summary: "Read the camelCase keys SelectResourceConfig returns, and declare cardinality with the cardinality field"
+    columns:
+      - name: resource_type
+        type: string
+        cardinality: low
+        use_case: dimension
+        expr: "@source: resourceType"
+        comment: "AWS resource type (e.g. AWS::EC2::Instance)"
+        _field_type: base
+
+      - name: resource_id
+        type: string
+        use_case: exact_match
+        expr: "@source: resourceId"
+        comment: "Unique resource identifier"
+        _field_type: base
+
+      - name: resource_name
+        type: string
+        use_case: dimension
+        expr: "@source: resourceName"
+        comment: "Human-readable resource name"
+        _field_type: base
+
+      - name: aws_region
+        type: string
+        cardinality: low
+        use_case: dimension
+        expr: "@source: awsRegion"
+        comment: "AWS region"
+        _field_type: base
+
+      - name: availability_zone
+        type: string
+        cardinality: low
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: availabilityZone"
+        comment: "Availability zone"
+        _field_type: base
+
+      - name: capture_time
+        type: datetime
+        use_case: range
+        expr: "@source: configurationItemCaptureTime"
+        comment: "When the configuration snapshot was taken"
+        _field_type: base
+
+      - name: configuration_state
+        type: string
+        cardinality: low
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: configurationItemStatus"
         comment: "Configuration item status"
         _field_type: base

@@ -1,8 +1,8 @@
 # Meta schema: AWS GuardDuty
 #
-# GuardDuty findings — threat detection for AWS accounts and workloads.
+# GuardDuty findings -- threat detection for AWS accounts and workloads.
 
-current: "1.0.0"
+current: "1.0.1"
 resource_type: core
 
 versions:
@@ -79,6 +79,85 @@ versions:
       - name: account_id
         type: string
         attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: AccountId"
+        comment: "AWS account ID"
+        _field_type: base
+
+  "1.0.1":
+    date: "2026-10-04"
+    type: revision
+    summary: "Declare cardinality with the cardinality field, no column change"
+    columns:
+      - name: finding_id
+        type: string
+        use_case: exact_match
+        expr: "@source: first(Id/id)"
+        comment: "Unique finding identifier"
+        _field_type: base
+
+      - name: finding_type
+        type: string
+        cardinality: low
+        use_case: dimension
+        expr: "@source: first(Type/type)"
+        comment: "Finding type (e.g. Recon:EC2/PortProbeUnprotectedPort)"
+        _field_type: base
+
+      - name: severity
+        type: float
+        use_case: range
+        expr: "@source: first(Severity/severity)"
+        comment: "Severity score (0-10)"
+        _field_type: base
+
+      - name: title
+        type: string
+        expr: "@source: Title"
+        comment: "Human-readable finding title"
+        _field_type: base
+
+      - name: description
+        type: text
+        use_case: word_search
+        expr: "@source: Description"
+        comment: "Detailed finding description"
+        _field_type: base
+
+      - name: region
+        type: string
+        cardinality: low
+        use_case: dimension
+        expr: "@source: Region"
+        comment: "AWS region where the finding was detected"
+        _field_type: base
+
+      - name: resource_type
+        type: string
+        cardinality: low
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: Resource.ResourceType"
+        comment: "Type of the affected resource"
+        _field_type: base
+
+      - name: created_at
+        type: datetime
+        use_case: range
+        expr: "@source: first(CreatedAt/createdAt)"
+        comment: "When the finding was first created"
+        _field_type: base
+
+      - name: updated_at
+        type: datetime
+        use_case: range
+        expr: "@source: first(UpdatedAt/updatedAt)"
+        comment: "When the finding was last updated"
+        _field_type: base
+
+      - name: account_id
+        type: string
+        cardinality: low
         use_case: dimension
         expr: "@source: AccountId"
         comment: "AWS account ID"

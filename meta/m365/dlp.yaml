@@ -2,7 +2,7 @@
 #
 # Graph Security alerts filtered by DataLossPrevention category.
 
-current: "1.0.0"
+current: "1.0.1"
 resource_type: core
 
 versions:
@@ -66,6 +66,72 @@ versions:
       - name: provider
         type: string
         attribute: [lowcardinality, nullable]
+        use_case: dimension
+        expr: "@source: vendorInformation.provider"
+        comment: "Security provider that generated the alert"
+        _field_type: base
+
+  "1.0.1":
+    date: "2026-10-04"
+    type: revision
+    summary: "Declare cardinality with the cardinality field, no column change"
+    columns:
+      - name: alert_id
+        type: string
+        use_case: exact_match
+        expr: "@source: id"
+        comment: "Unique alert identifier"
+        _field_type: base
+
+      - name: title
+        type: string
+        expr: "@source: title"
+        comment: "Alert title"
+        _field_type: base
+
+      - name: category
+        type: string
+        cardinality: low
+        use_case: dimension
+        expr: "@source: category"
+        comment: "Alert category (DataLossPrevention)"
+        _field_type: base
+
+      - name: severity
+        type: string
+        cardinality: low
+        use_case: dimension
+        expr: "@source: severity"
+        comment: "Alert severity (high, medium, low)"
+        _field_type: base
+
+      - name: status
+        type: string
+        cardinality: low
+        use_case: dimension
+        expr: "@source: status"
+        comment: "Alert status (newAlert, inProgress, resolved)"
+        _field_type: base
+
+      - name: created_datetime
+        type: datetime
+        use_case: range
+        expr: "@source: createdDateTime"
+        comment: "When the alert was created"
+        _field_type: base
+
+      - name: description
+        type: text
+        attribute: [nullable]
+        use_case: word_search
+        expr: "@source: description"
+        comment: "Alert description"
+        _field_type: base
+
+      - name: provider
+        type: string
+        cardinality: low
+        attribute: [nullable]
         use_case: dimension
         expr: "@source: vendorInformation.provider"
         comment: "Security provider that generated the alert"

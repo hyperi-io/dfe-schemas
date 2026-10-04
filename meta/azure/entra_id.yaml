@@ -1,10 +1,10 @@
 # Meta schema: Azure Entra ID
 #
-# Entra ID audit logs — combined sign-in logs and directory audit events.
+# Entra ID audit logs -- combined sign-in logs and directory audit events.
 # Records from both types are stored in the same table with a record_type
 # discriminator. Fields specific to one type are nullable.
 
-current: "1.0.0"
+current: "1.0.1"
 resource_type: core
 
 versions:
@@ -101,6 +101,110 @@ versions:
       - name: location_country
         type: string
         attribute: [lowcardinality, nullable]
+        use_case: dimension
+        expr: "@source: location.countryOrRegion"
+        comment: "Country or region of the sign-in (signIns only)"
+        _field_type: base
+
+  "1.0.1":
+    date: "2026-10-04"
+    type: revision
+    summary: "Declare cardinality with the cardinality field and write the comments in ASCII, no column change"
+    columns:
+      - name: record_type
+        type: string
+        cardinality: low
+        attribute: [not_null]
+        use_case: dimension
+        expr: "@computed: if(has(activityDisplayName), 'directory_audit', 'signin')"
+        comment: "Record type discriminator (signin or directory_audit)"
+        _field_type: base
+
+      - name: event_id
+        type: string
+        use_case: exact_match
+        expr: "@source: id"
+        comment: "Unique event identifier"
+        _field_type: base
+
+      - name: event_time
+        type: datetime
+        use_case: range
+        expr: "@source: first(createdDateTime/activityDateTime)"
+        comment: "Event timestamp (createdDateTime for signIns, activityDateTime for audits)"
+        _field_type: base
+
+      - name: user_principal_name
+        type: string
+        use_case: dimension
+        expr: "@source: first(userPrincipalName/initiatedBy.user.userPrincipalName)"
+        comment: "User principal name (UPN / email)"
+        _field_type: base
+
+      - name: user_id
+        type: string
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: first(userId/initiatedBy.user.id)"
+        comment: "Entra ID user object identifier"
+        _field_type: base
+
+      - name: app_display_name
+        type: string
+        cardinality: low
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: appDisplayName"
+        comment: "Application display name (signIns only)"
+        _field_type: base
+
+      - name: ip_address
+        type: ip
+        attribute: [nullable]
+        use_case: range
+        expr: "@source: ipAddress"
+        comment: "Client IP address (signIns only)"
+        _field_type: base
+
+      - name: status_error_code
+        type: integer
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: status.errorCode"
+        comment: "Sign-in error code (0 = success, signIns only)"
+        _field_type: base
+
+      - name: operation_type
+        type: string
+        cardinality: low
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: operationType"
+        comment: "Operation type (Add, Delete, Update -- directoryAudits only)"
+        _field_type: base
+
+      - name: activity_display_name
+        type: string
+        cardinality: low
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: activityDisplayName"
+        comment: "Activity display name (directoryAudits only)"
+        _field_type: base
+
+      - name: result
+        type: string
+        cardinality: low
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: result"
+        comment: "Operation result (success, failure -- directoryAudits only)"
+        _field_type: base
+
+      - name: location_country
+        type: string
+        cardinality: low
+        attribute: [nullable]
         use_case: dimension
         expr: "@source: location.countryOrRegion"
         comment: "Country or region of the sign-in (signIns only)"

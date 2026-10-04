@@ -1,0 +1,114 @@
+base: meta/elastic/ecs
+base_version: "1.0.0"
+current: "1.0.0"
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    summary: m365_defender.alert selection from meta/elastic/ecs
+    select:
+    - name: cloud_account_id
+      index: exact_match
+    - name: data_stream_dataset
+      index: exact_match
+    - name: data_stream_namespace
+      index: exact_match
+    - name: data_stream_type
+      index: exact_match
+    - name: device_id
+      index: exact_match
+    - name: ecs_version
+      index: exact_match
+    - name: email_local_id
+      index: exact_match
+    - name: email_message_id
+      index: exact_match
+    - name: event_action
+      index: exact_match
+    - name: event_category
+      index: exact_match
+    - name: event_created
+      index: range
+    - name: event_dataset
+      index: exact_match
+    - name: event_duration
+      index: range
+    - name: event_end
+      index: range
+    - name: event_id
+      index: exact_match
+    - name: event_kind
+      index: exact_match
+    - name: event_module
+      index: exact_match
+    - name: event_original
+      index: none
+    - name: event_provider
+      index: exact_match
+    - name: event_severity
+      index: range
+    - name: event_start
+      index: range
+    - name: event_type
+      index: exact_match
+    - name: event_url
+      index: exact_match
+    - name: host_hostname
+      index: exact_match
+    - name: host_id
+      index: exact_match
+    - name: host_ip
+      index: dimension
+    - name: host_os_name
+      index: exact_match
+    - name: host_os_version
+      index: exact_match
+    - name: message
+      index: word_search
+    - name: process_command_line
+      index: exact_match
+    - name: process_entity_id
+      index: exact_match
+    - name: process_executable
+      index: exact_match
+    - name: process_hash_sha1
+      index: exact_match
+    - name: process_hash_sha256
+      index: exact_match
+    - name: process_name
+      index: exact_match
+    - name: process_parent_entity_id
+      index: exact_match
+    - name: process_parent_executable
+      index: exact_match
+    - name: process_parent_pid
+      index: range
+    - name: process_parent_start
+      index: range
+    - name: process_pid
+      index: range
+    - name: process_start
+      index: range
+    - name: process_user_name
+      index: exact_match
+    - name: related_hash
+      index: exact_match
+    - name: related_hosts
+      index: exact_match
+    - name: related_ip
+      index: dimension
+    - name: related_user
+      index: exact_match
+    - name: source_ip
+      index: dimension
+    - name: tags
+      index: exact_match
+    - name: threat_tactic_name
+      index: exact_match
+    - name: threat_technique_subtechnique_id
+      index: exact_match
+    - name: url_original
+      index: exact_match
+    - name: user_domain
+      index: exact_match
+    - name: user_name
+      index: exact_match

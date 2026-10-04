@@ -1,0 +1,106 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of abnormal_security.vendor_case at integrations 2c934eb5223b
+    columns:
+    - name: abnormal_security_vendor_case_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: abnormal_security.vendor_case.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: abnormal_security_vendor_case_first_observed_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: abnormal_security.vendor_case.first_observed_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: abnormal_security_vendor_case_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: abnormal_security.vendor_case.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: abnormal_security_vendor_case_insights_description
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: abnormal_security.vendor_case.insights.description'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: abnormal_security_vendor_case_insights_highlight
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: abnormal_security.vendor_case.insights.highlight'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: abnormal_security_vendor_case_last_modified_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: abnormal_security.vendor_case.last_modified_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: abnormal_security_vendor_case_timeline_event_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: abnormal_security.vendor_case.timeline.event_timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: abnormal_security_vendor_case_timeline_marked_as
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: abnormal_security.vendor_case.timeline.marked_as'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: abnormal_security_vendor_case_timeline_recipient_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: abnormal_security.vendor_case.timeline.recipient_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: abnormal_security_vendor_case_timeline_sender_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: abnormal_security.vendor_case.timeline.sender_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: abnormal_security_vendor_case_timeline_subject
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: abnormal_security.vendor_case.timeline.subject'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: abnormal_security_vendor_case_timeline_threat_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: abnormal_security.vendor_case.timeline.threat_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

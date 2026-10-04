@@ -1,0 +1,183 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of zscaler_zpa.browser_access at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: log_source_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.source.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zpa_browser_access_client_private_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: zscaler_zpa.browser_access.client_private_ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: zscaler_zpa_browser_access_connection_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zpa.browser_access.connection.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zpa_browser_access_connection_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zpa.browser_access.connection.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zpa_browser_access_cors_token
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zpa.browser_access.cors_token'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zpa_browser_access_exporter
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zpa.browser_access.exporter'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zpa_browser_access_origin
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zpa.browser_access.origin'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zpa_browser_access_timestamp_request_receive_finish
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.browser_access.timestamp.request.receive.finish'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: zscaler_zpa_browser_access_timestamp_request_receive_header_finish
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.browser_access.timestamp.request.receive.header_finish'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: zscaler_zpa_browser_access_timestamp_request_receive_start
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.browser_access.timestamp.request.receive.start'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: zscaler_zpa_browser_access_timestamp_request_transmit_finish
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.browser_access.timestamp.request.transmit.finish'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: zscaler_zpa_browser_access_timestamp_request_transmit_start
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.browser_access.timestamp.request.transmit.start'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: zscaler_zpa_browser_access_timestamp_response_receive_finish
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.browser_access.timestamp.response.receive.finish'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: zscaler_zpa_browser_access_timestamp_response_receive_start
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.browser_access.timestamp.response.receive.start'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: zscaler_zpa_browser_access_timestamp_response_transmit_finish
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.browser_access.timestamp.response.transmit.finish'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: zscaler_zpa_browser_access_timestamp_response_transmit_start
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.browser_access.timestamp.response.transmit.start'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: zscaler_zpa_browser_access_total_time_connection_setup
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.browser_access.total_time.connection.setup'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zpa_browser_access_total_time_request_receive
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.browser_access.total_time.request.receive'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zpa_browser_access_total_time_request_transmit
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.browser_access.total_time.request.transmit'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zpa_browser_access_total_time_response_receive
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.browser_access.total_time.response.receive'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zpa_browser_access_total_time_response_transmit
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.browser_access.total_time.response.transmit'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zpa_browser_access_total_time_server_response
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.browser_access.total_time.server.response'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zpa_browser_access_xff
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zpa.browser_access.xff'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

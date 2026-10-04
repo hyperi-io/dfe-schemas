@@ -1,0 +1,113 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of kolide.osquery_status at integrations 2c934eb5223b
+    columns:
+    - name: aws_s3_bucket_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_bucket_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_object_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.object.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcs_storage_bucket_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcs.storage.bucket.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcs_storage_object_content_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcs.storage.object.content_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcs_storage_object_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcs.storage.object.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_osquery_status_device_registered_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: kolide.osquery_status.device_registered_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: kolide_osquery_status_device_serial
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.osquery_status.device_serial'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_osquery_status_enrolled_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: kolide.osquery_status.enrolled_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: kolide_osquery_status_hardware_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.osquery_status.hardware_uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_osquery_status_host_identifier
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.osquery_status.host_identifier'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_osquery_status_request_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.osquery_status.request_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_osquery_status_severity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.osquery_status.severity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

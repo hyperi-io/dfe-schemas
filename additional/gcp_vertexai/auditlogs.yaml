@@ -1,0 +1,256 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of gcp_vertexai.auditlogs at integrations 2c934eb5223b
+    columns:
+    - name: gcp_vertexai_audit_authentication_info_authority_selector
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.vertexai.audit.authentication_info.authority_selector'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_vertexai_audit_authentication_info_principal_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.vertexai.audit.authentication_info.principal_email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_vertexai_audit_authentication_info_principal_subject
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.vertexai.audit.authentication_info.principal_subject'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_vertexai_audit_authentication_info_service_account_delegation_info
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: gcp.vertexai.audit.authentication_info.service_account_delegation_info'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: gcp_vertexai_audit_authentication_info_service_account_key_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.vertexai.audit.authentication_info.service_account_key_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_vertexai_audit_authentication_info_third_party_principal
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: gcp.vertexai.audit.authentication_info.third_party_principal'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: gcp_vertexai_audit_authorization_info
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: gcp.vertexai.audit.authorization_info'
+      comment: 'Elasticsearch mapping type: nested'
+      _field_type: base
+    - name: gcp_vertexai_audit_authorization_info_granted
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: gcp.vertexai.audit.authorization_info.granted'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: gcp_vertexai_audit_authorization_info_permission
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.vertexai.audit.authorization_info.permission'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_vertexai_audit_authorization_info_permission_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.vertexai.audit.authorization_info.permission_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_vertexai_audit_authorization_info_resource
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.vertexai.audit.authorization_info.resource'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_vertexai_audit_authorization_info_resource_attributes_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.vertexai.audit.authorization_info.resource_attributes.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_vertexai_audit_authorization_info_resource_attributes_service
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.vertexai.audit.authorization_info.resource_attributes.service'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_vertexai_audit_authorization_info_resource_attributes_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.vertexai.audit.authorization_info.resource_attributes.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_vertexai_audit_metadata
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: gcp.vertexai.audit.metadata'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: gcp_vertexai_audit_num_response_items
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gcp.vertexai.audit.num_response_items'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gcp_vertexai_audit_policy_violation_info_payload
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: gcp.vertexai.audit.policy_violation_info.payload'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: gcp_vertexai_audit_policy_violation_info_resource_tags
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: gcp.vertexai.audit.policy_violation_info.resource_tags'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: gcp_vertexai_audit_policy_violation_info_resource_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.vertexai.audit.policy_violation_info.resource_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_vertexai_audit_policy_violation_info_violations
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: gcp.vertexai.audit.policy_violation_info.violations'
+      comment: 'Elasticsearch mapping type: nested'
+      _field_type: base
+    - name: gcp_vertexai_audit_policy_violation_info_violations_checked_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.vertexai.audit.policy_violation_info.violations.checked_value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_vertexai_audit_policy_violation_info_violations_constraint
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.vertexai.audit.policy_violation_info.violations.constraint'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_vertexai_audit_policy_violation_info_violations_error_message
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.vertexai.audit.policy_violation_info.violations.error_message'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_vertexai_audit_policy_violation_info_violations_policy_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.vertexai.audit.policy_violation_info.violations.policy_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_vertexai_audit_request
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: gcp.vertexai.audit.request'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: gcp_vertexai_audit_resource_location_current_locations
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.vertexai.audit.resource_location.current_locations'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_vertexai_audit_resource_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.vertexai.audit.resource_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_vertexai_audit_resource_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.vertexai.audit.resource_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_vertexai_audit_response
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: gcp.vertexai.audit.response'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: gcp_vertexai_audit_service_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.vertexai.audit.service_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_vertexai_audit_status_code
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gcp.vertexai.audit.status.code'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: gcp_vertexai_audit_status_details
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: gcp.vertexai.audit.status.details'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: gcp_vertexai_audit_status_message
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.vertexai.audit.status.message'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_vertexai_audit_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.vertexai.audit.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

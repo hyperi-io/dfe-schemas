@@ -1,0 +1,233 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of sublime_security.audit at integrations 2c934eb5223b
+    columns:
+    - name: aws_s3_bucket_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_bucket_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_object_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.object.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sublime_security_audit_created_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sublime_security.audit.created_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sublime_security_audit_created_by_active
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.audit.created_by.active'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sublime_security_audit_created_by_created_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sublime_security.audit.created_by.created_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sublime_security_audit_created_by_deleted_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sublime_security.audit.created_by.deleted_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sublime_security_audit_created_by_email_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.audit.created_by.email_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_audit_created_by_first_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.audit.created_by.first_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_audit_created_by_google_oauth_user_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.audit.created_by.google_oauth_user_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_audit_created_by_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.audit.created_by.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_audit_created_by_is_enrolled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.audit.created_by.is_enrolled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sublime_security_audit_created_by_last_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.audit.created_by.last_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_audit_created_by_microsoft_oauth_user_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.audit.created_by.microsoft_oauth_user_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_audit_created_by_phone_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.audit.created_by.phone_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_audit_created_by_role
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.audit.created_by.role'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_audit_created_by_updated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sublime_security.audit.created_by.updated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sublime_security_audit_data_message_group_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.audit.data.message_group.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_audit_data_message_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.audit.data.message.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_audit_data_request_api_key_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.audit.data.request.api_key_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_audit_data_request_authentication_method
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.audit.data.request.authentication_method'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_audit_data_request_body
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.audit.data.request.body'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_audit_data_request_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.audit.data.request.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_audit_data_request_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.audit.data.request.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: sublime_security_audit_data_request_method
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.audit.data.request.method'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_audit_data_request_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.audit.data.request.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_audit_data_request_query
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: sublime_security.audit.data.request.query'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: sublime_security_audit_data_request_user_agent
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.audit.data.request.user_agent'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_audit_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.audit.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_audit_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.audit.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

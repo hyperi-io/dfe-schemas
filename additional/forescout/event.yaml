@@ -1,0 +1,71 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of forescout.event at integrations 2c934eb5223b
+    columns:
+    - name: forescout_event_command
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: forescout.event.command'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: forescout_event_message
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: forescout.event.message'
+      comment: 'Elasticsearch mapping type: match_only_text'
+      _field_type: base
+    - name: forescout_event_pwd
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: forescout.event.pwd'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: forescout_event_service
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: forescout.event.service'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: forescout_event_tty
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: forescout.event.tty'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: forescout_event_user
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: forescout.event.user'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: log_source_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.source.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

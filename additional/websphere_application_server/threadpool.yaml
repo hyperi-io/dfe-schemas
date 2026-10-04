@@ -1,0 +1,78 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of websphere_application_server.threadpool at integrations 2c934eb5223b
+    columns:
+    - name: websphere_application_server_threadpool_active_time_seconds
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: websphere_application_server.threadpool.active_time_seconds'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: websphere_application_server_threadpool_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: websphere_application_server.threadpool.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: websphere_application_server_threadpool_threads_active
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: websphere_application_server.threadpool.threads.active'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: websphere_application_server_threadpool_threads_cleared
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: websphere_application_server.threadpool.threads.cleared'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: websphere_application_server_threadpool_threads_stopped_concurrent
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: websphere_application_server.threadpool.threads.stopped.concurrent'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: websphere_application_server_threadpool_threads_stopped_declared
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: websphere_application_server.threadpool.threads.stopped.declared'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: websphere_application_server_threadpool_threads_total
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: websphere_application_server.threadpool.threads.total'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: websphere_application_server_threadpool_total_active
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: websphere_application_server.threadpool.total.active'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: websphere_application_server_threadpool_total_created
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: websphere_application_server.threadpool.total.created'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: websphere_application_server_threadpool_total_destroyed
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: websphere_application_server.threadpool.total.destroyed'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

@@ -1,0 +1,442 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of infoblox_nios.log at integrations 2c934eb5223b
+    columns:
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_nios_log_audit_apparently_via
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_nios.log.audit.apparently_via'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_nios_log_audit_auth
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_nios.log.audit.auth'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_nios_log_audit_error
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: infoblox_nios.log.audit.error'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: infoblox_nios_log_audit_group
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_nios.log.audit.group'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_nios_log_audit_info
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: infoblox_nios.log.audit.info'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: infoblox_nios_log_audit_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: infoblox_nios.log.audit.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: infoblox_nios_log_audit_message
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: infoblox_nios.log.audit.message'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: infoblox_nios_log_audit_object_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_nios.log.audit.object.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_nios_log_audit_object_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_nios.log.audit.object.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_nios_log_audit_to
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_nios.log.audit.to'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_nios_log_audit_trigger_event
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_nios.log.audit.trigger_event'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_nios_log_dhcp_client_hostname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_nios.log.dhcp.client_hostname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_nios_log_dhcp_decline_message
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_nios.log.dhcp.decline.message'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_nios_log_dhcp_discover_message
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_nios.log.dhcp.discover.message'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_nios_log_dhcp_duid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_nios.log.dhcp.duid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_nios_log_dhcp_forward_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_nios.log.dhcp.forward_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_nios_log_dhcp_iaid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_nios.log.dhcp.iaid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_nios_log_dhcp_inform_message
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_nios.log.dhcp.inform.message'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_nios_log_dhcp_interface_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: infoblox_nios.log.dhcp.interface.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: infoblox_nios_log_dhcp_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: infoblox_nios.log.dhcp.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: infoblox_nios_log_dhcp_lease_duration
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: infoblox_nios.log.dhcp.lease.duration'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: infoblox_nios_log_dhcp_lease_message
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_nios.log.dhcp.lease.message'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_nios_log_dhcp_lease_query_message
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_nios.log.dhcp.lease_query.message'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_nios_log_dhcp_link_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_nios.log.dhcp.link_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_nios_log_dhcp_message
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: infoblox_nios.log.dhcp.message'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: infoblox_nios_log_dhcp_network
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_nios.log.dhcp.network'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_nios_log_dhcp_offered_duration
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: infoblox_nios.log.dhcp.offered.duration'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: infoblox_nios_log_dhcp_peer_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_nios.log.dhcp.peer_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_nios_log_dhcp_relay_interface_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: infoblox_nios.log.dhcp.relay.interface.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: infoblox_nios_log_dhcp_relay_interface_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_nios.log.dhcp.relay.interface.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_nios_log_dhcp_release_info
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_nios.log.dhcp.release.info'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_nios_log_dhcp_request_message
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_nios.log.dhcp.request.message'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_nios_log_dhcp_router_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: infoblox_nios.log.dhcp.router.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: infoblox_nios_log_dhcp_trans_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_nios.log.dhcp.trans_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_nios_log_dhcp_uid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_nios.log.dhcp.uid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_nios_log_dhcp_validation_second
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: infoblox_nios.log.dhcp.validation_second'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: infoblox_nios_log_dns_after_query
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: infoblox_nios.log.dns.after_query'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: infoblox_nios_log_dns_answers_policy
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: infoblox_nios.log.dns.answers_policy'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: infoblox_nios_log_dns_before_query
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: infoblox_nios.log.dns.before_query'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: infoblox_nios_log_dns_category
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: infoblox_nios.log.dns.category'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: infoblox_nios_log_dns_failed_message
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: infoblox_nios.log.dns.failed_message'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: infoblox_nios_log_dns_header_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_nios.log.dns.header_flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_nios_log_dns_message
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: infoblox_nios.log.dns.message'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: infoblox_nios_log_dns_rpz_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_nios.log.dns.rpz.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_nios_log_dns_rpz_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_nios.log.dns.rpz.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_nios_log_dns_rpz_domain_rewrite
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_nios.log.dns.rpz.domain_rewrite'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_nios_log_dns_rpz_query_class
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_nios.log.dns.rpz.query_class'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_nios_log_dns_rpz_query_class_rewrite
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_nios.log.dns.rpz.query_class_rewrite'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_nios_log_dns_rpz_rule_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_nios.log.dns.rpz.rule_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_nios_log_dns_rpz_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_nios.log.dns.rpz.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_nios_log_dns_version
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: infoblox_nios.log.dns.version'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: infoblox_nios_log_dns_view_name
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: infoblox_nios.log.dns.view_name'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: infoblox_nios_log_service_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_nios.log.service_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_nios_log_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_nios.log.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_nios_log_view
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_nios.log.view'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: log_source_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.source.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

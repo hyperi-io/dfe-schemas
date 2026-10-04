@@ -1,0 +1,632 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of sentinel_one.agent at integrations 2c934eb5223b
+    columns:
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_account_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.account.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_account_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.account.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_active_directory_computer_member_of
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.active_directory.computer.member_of'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_active_directory_computer_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.active_directory.computer.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_active_directory_last_user_distinguished_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.active_directory.last_user.distinguished_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_active_directory_last_user_member_of
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.active_directory.last_user.member_of'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_active_directory_mail
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.active_directory.mail'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_active_directory_user_principal_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.active_directory.user.principal_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_active_threats_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one.agent.active_threats_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_agent_agent_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.agent.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_allow_remote_shell
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one.agent.allow_remote_shell'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_agent_apps_vulnerability_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.apps_vulnerability_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_cloud_provider
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: sentinel_one.agent.cloud_provider'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: sentinel_one_agent_console_migration_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.console_migration_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_core_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one.agent.core.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_agent_cpu_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one.agent.cpu.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_agent_cpu_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.cpu.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_created_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one.agent.created_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sentinel_one_agent_detection_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.detection_state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_encrypted_application
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one.agent.encrypted_application'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_agent_external_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.external.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_firewall_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one.agent.firewall_enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_agent_first_full_mode_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one.agent.first_full_mode_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sentinel_one_agent_group_ip
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.group.ip'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_group_updated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one.agent.group.updated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sentinel_one_agent_in_remote_shell_session
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one.agent.in_remote_shell_session'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_agent_infected
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one.agent.infected'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_agent_installer_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.installer_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_is_active
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one.agent.is_active'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_agent_is_decommissioned
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one.agent.is_decommissioned'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_agent_is_pending_uninstall
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one.agent.is_pending_uninstall'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_agent_is_uninstalled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one.agent.is_uninstalled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_agent_is_up_to_date
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one.agent.is_up_to_date'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_agent_last_active_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one.agent.last_active_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sentinel_one_agent_last_ip_to_mgmt
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one.agent.last_ip_to_mgmt'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: sentinel_one_agent_last_logged_in_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.last_logged_in_user_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_license_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.license.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_location_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one.agent.location.enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_agent_location_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.location.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_locations_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.locations.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_locations_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.locations.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_locations_scope
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.locations.scope'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_machine_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.machine.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_missing_permissions
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.missing_permissions'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_mitigation_mode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.mitigation_mode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_mitigation_mode_suspicious
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.mitigation_mode_suspicious'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_model_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.model_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_network_interfaces_gateway_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one.agent.network_interfaces.gateway.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: sentinel_one_agent_network_interfaces_gateway_mac
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.network_interfaces.gateway.mac'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_network_interfaces_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.network_interfaces.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_network_interfaces_inet
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one.agent.network_interfaces.inet'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: sentinel_one_agent_network_interfaces_inet6
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one.agent.network_interfaces.inet6'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: sentinel_one_agent_network_interfaces_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.network_interfaces.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_network_quarantine_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one.agent.network_quarantine_enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_agent_network_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.network_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_operational_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.operational_state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_operational_state_expiration
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.operational_state_expiration'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_os_arch
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.os.arch'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_os_start_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one.agent.os.start_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sentinel_one_agent_policy_updated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one.agent.policy.updated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sentinel_one_agent_ranger_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.ranger.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_ranger_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.ranger.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_registered_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one.agent.registered_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sentinel_one_agent_remote_profiling_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.remote_profiling_state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_remote_profiling_state_expiration
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.remote_profiling_state_expiration'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_scan_aborted_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one.agent.scan.aborted_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sentinel_one_agent_scan_finished_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one.agent.scan.finished_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sentinel_one_agent_scan_started_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one.agent.scan.started_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sentinel_one_agent_scan_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.scan.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_storage_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.storage.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_storage_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.storage.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_tags_assigned_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one.agent.tags.assigned_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sentinel_one_agent_tags_assigned_by
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.tags.assigned_by'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_tags_assigned_by_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.tags.assigned_by_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_tags_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.tags.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_tags_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.tags.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_tags_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.tags.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_threat_reboot_required
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one.agent.threat_reboot_required'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_agent_total_memory
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one.agent.total_memory'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_agent_user_action_needed
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.user_action_needed'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_agent_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.agent.uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_site_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.site.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_site_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.site.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

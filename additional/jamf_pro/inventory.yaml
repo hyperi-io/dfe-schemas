@@ -1,0 +1,1256 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of jamf_pro.inventory at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_applications_bundle_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.applications.bundle_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_applications_external_version_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.applications.external_version_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_applications_mac_app_store
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: jamf_pro.inventory.applications.mac_app_store'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: jamf_pro_inventory_applications_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.applications.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_applications_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.applications.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_applications_size_megabytes
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: jamf_pro.inventory.applications.size_megabytes'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: jamf_pro_inventory_applications_update_available
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: jamf_pro.inventory.applications.update_available'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: jamf_pro_inventory_applications_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.applications.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_attachments
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: jamf_pro.inventory.attachments'
+      comment: 'Elasticsearch mapping type: nested'
+      _field_type: base
+    - name: jamf_pro_inventory_certificates
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: jamf_pro.inventory.certificates'
+      comment: 'Elasticsearch mapping type: nested'
+      _field_type: base
+    - name: jamf_pro_inventory_configuration_profiles_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.configuration_profiles.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_configuration_profiles_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.configuration_profiles.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_configuration_profiles_last_installed
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: jamf_pro.inventory.configuration_profiles.last_installed'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: jamf_pro_inventory_configuration_profiles_profile_identifier
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.configuration_profiles.profile_identifier'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_configuration_profiles_removable
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: jamf_pro.inventory.configuration_profiles.removable'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: jamf_pro_inventory_configuration_profiles_username
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.configuration_profiles.username'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_content_caching
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: jamf_pro.inventory.content_caching'
+      comment: 'Elasticsearch mapping type: group'
+      _field_type: base
+    - name: jamf_pro_inventory_disk_encryption_boot_partition_encryption_details_partition_file_vault2percent
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: jamf_pro.inventory.disk_encryption.boot_partition_encryption_details.partition_file_vault2percent'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: jamf_pro_inventory_disk_encryption_boot_partition_encryption_details_partition_file_vault2state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.disk_encryption.boot_partition_encryption_details.partition_file_vault2state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_disk_encryption_boot_partition_encryption_details_partition_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.disk_encryption.boot_partition_encryption_details.partition_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_disk_encryption_disk_encryption_configuration_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.disk_encryption.disk_encryption_configuration_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_disk_encryption_file_vault2eligibility_message
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: jamf_pro.inventory.disk_encryption.file_vault2eligibility_message'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: jamf_pro_inventory_disk_encryption_file_vault2enabled_user_names
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.disk_encryption.file_vault2enabled_user_names'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_disk_encryption_individual_recovery_key_validity_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.disk_encryption.individual_recovery_key_validity_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_disk_encryption_institutional_recovery_key_present
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: jamf_pro.inventory.disk_encryption.institutional_recovery_key_present'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: jamf_pro_inventory_error_message
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: jamf_pro.inventory.error.message'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: jamf_pro_inventory_extension_attributes
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: jamf_pro.inventory.extension_attributes'
+      comment: 'Elasticsearch mapping type: nested'
+      _field_type: base
+    - name: jamf_pro_inventory_fonts
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: jamf_pro.inventory.fonts'
+      comment: 'Elasticsearch mapping type: nested'
+      _field_type: base
+    - name: jamf_pro_inventory_general_asset_tag
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.general.asset_tag'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_general_barcode1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.general.barcode1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_general_barcode2
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.general.barcode2'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_general_declarative_device_management_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: jamf_pro.inventory.general.declarative_device_management_enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: jamf_pro_inventory_general_distribution_point
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.general.distribution_point'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_general_enrolled_via_automated_device_enrollment
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: jamf_pro.inventory.general.enrolled_via_automated_device_enrollment'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: jamf_pro_inventory_general_enrollment_method_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.general.enrollment_method.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_general_enrollment_method_object_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.general.enrollment_method.object_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_general_enrollment_method_object_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.general.enrollment_method.object_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_general_extension_attributes
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: jamf_pro.inventory.general.extension_attributes'
+      comment: 'Elasticsearch mapping type: group'
+      _field_type: base
+    - name: jamf_pro_inventory_general_initial_entry_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: jamf_pro.inventory.general.initial_entry_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: jamf_pro_inventory_general_itunes_store_account_active
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: jamf_pro.inventory.general.itunes_store_account_active'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: jamf_pro_inventory_general_jamf_binary_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.general.jamf_binary_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_general_last_cloud_backup_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: jamf_pro.inventory.general.last_cloud_backup_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: jamf_pro_inventory_general_last_contact_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: jamf_pro.inventory.general.last_contact_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: jamf_pro_inventory_general_last_enrolled_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: jamf_pro.inventory.general.last_enrolled_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: jamf_pro_inventory_general_last_ip_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: jamf_pro.inventory.general.last_ip_address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: jamf_pro_inventory_general_last_ip_address_geo_city_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.general.last_ip_address_geo.city_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_general_last_ip_address_geo_continent_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.general.last_ip_address_geo.continent_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_general_last_ip_address_geo_country_iso_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.general.last_ip_address_geo.country_iso_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_general_last_ip_address_geo_country_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.general.last_ip_address_geo.country_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_general_last_ip_address_geo_location
+      type: geo_point
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: jamf_pro.inventory.general.last_ip_address_geo.location'
+      comment: 'Elasticsearch mapping type: geo_point'
+      _field_type: base
+    - name: jamf_pro_inventory_general_last_ip_address_geo_region_iso_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.general.last_ip_address_geo.region_iso_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_general_last_ip_address_geo_region_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.general.last_ip_address_geo.region_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_general_last_reported_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: jamf_pro.inventory.general.last_reported_ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: jamf_pro_inventory_general_management_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.general.management_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_general_mdm_capable_capable
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: jamf_pro.inventory.general.mdm_capable.capable'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: jamf_pro_inventory_general_mdm_capable_capable_users
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.general.mdm_capable.capable_users'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_general_mdm_profile_expiration
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: jamf_pro.inventory.general.mdm_profile_expiration'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: jamf_pro_inventory_general_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.general.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_general_platform
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.general.platform'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_general_remote_management_managed
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: jamf_pro.inventory.general.remote_management.managed'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: jamf_pro_inventory_general_remote_management_management_username
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.general.remote_management.management_username'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_general_report_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: jamf_pro.inventory.general.report_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: jamf_pro_inventory_general_site_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.general.site.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_general_site_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.general.site.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_general_supervised
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: jamf_pro.inventory.general.supervised'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: jamf_pro_inventory_general_user_approved_mdm
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: jamf_pro.inventory.general.user_approved_mdm'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: jamf_pro_inventory_group_memberships_group_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.group_memberships.group_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_group_memberships_group_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.group_memberships.group_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_group_memberships_smart_group
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: jamf_pro.inventory.group_memberships.smart_group'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: jamf_pro_inventory_hardware_alt_mac_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.hardware.alt_mac_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_hardware_alt_network_adapter_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.hardware.alt_network_adapter_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_hardware_apple_silicon
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: jamf_pro.inventory.hardware.apple_silicon'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: jamf_pro_inventory_hardware_battery_capacity_percent
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: jamf_pro.inventory.hardware.battery_capacity_percent'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: jamf_pro_inventory_hardware_ble_capable
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: jamf_pro.inventory.hardware.ble_capable'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: jamf_pro_inventory_hardware_boot_rom
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.hardware.boot_rom'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_hardware_bus_speed_mhz
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: jamf_pro.inventory.hardware.bus_speed_mhz'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: jamf_pro_inventory_hardware_cache_size_kilobytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: jamf_pro.inventory.hardware.cache_size_kilobytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: jamf_pro_inventory_hardware_core_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: jamf_pro.inventory.hardware.core_count'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: jamf_pro_inventory_hardware_extension_attributes
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: jamf_pro.inventory.hardware.extension_attributes'
+      comment: 'Elasticsearch mapping type: group'
+      _field_type: base
+    - name: jamf_pro_inventory_hardware_mac_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.hardware.mac_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_hardware_make
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.hardware.make'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_hardware_model
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.hardware.model'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_hardware_model_identifier
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.hardware.model_identifier'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_hardware_network_adapter_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.hardware.network_adapter_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_hardware_nic_speed
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.hardware.nic_speed'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_hardware_open_ram_slots
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: jamf_pro.inventory.hardware.open_ram_slots'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: jamf_pro_inventory_hardware_optical_drive
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.hardware.optical_drive'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_hardware_processor_architecture
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.hardware.processor_architecture'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_hardware_processor_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: jamf_pro.inventory.hardware.processor_count'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: jamf_pro_inventory_hardware_processor_speed_mhz
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: jamf_pro.inventory.hardware.processor_speed_mhz'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: jamf_pro_inventory_hardware_processor_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.hardware.processor_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_hardware_serial_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.hardware.serial_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_hardware_smc_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.hardware.smc_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_hardware_supports_ios_app_installs
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: jamf_pro.inventory.hardware.supports_ios_app_installs'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: jamf_pro_inventory_hardware_total_ram_megabytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: jamf_pro.inventory.hardware.total_ram_megabytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: jamf_pro_inventory_ibeacons
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: jamf_pro.inventory.ibeacons'
+      comment: 'Elasticsearch mapping type: nested'
+      _field_type: base
+    - name: jamf_pro_inventory_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_licensed_software
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: jamf_pro.inventory.licensed_software'
+      comment: 'Elasticsearch mapping type: nested'
+      _field_type: base
+    - name: jamf_pro_inventory_local_user_accounts_admin
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: jamf_pro.inventory.local_user_accounts.admin'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: jamf_pro_inventory_local_user_accounts_azure_active_directory_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.local_user_accounts.azure_active_directory_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_local_user_accounts_computer_azure_active_directory_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.local_user_accounts.computer_azure_active_directory_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_local_user_accounts_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.local_user_accounts.email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_local_user_accounts_file_vault2enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: jamf_pro.inventory.local_user_accounts.file_vault2enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: jamf_pro_inventory_local_user_accounts_full_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.local_user_accounts.full_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_local_user_accounts_fullname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.local_user_accounts.fullname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_local_user_accounts_home_directory
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.local_user_accounts.home_directory'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_local_user_accounts_home_directory_size_mb
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: jamf_pro.inventory.local_user_accounts.home_directory_size_mb'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: jamf_pro_inventory_local_user_accounts_password_history_depth
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: jamf_pro.inventory.local_user_accounts.password_history_depth'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: jamf_pro_inventory_local_user_accounts_password_max_age
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: jamf_pro.inventory.local_user_accounts.password_max_age'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: jamf_pro_inventory_local_user_accounts_password_min_complex_characters
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: jamf_pro.inventory.local_user_accounts.password_min_complex_characters'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: jamf_pro_inventory_local_user_accounts_password_min_length
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: jamf_pro.inventory.local_user_accounts.password_min_length'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: jamf_pro_inventory_local_user_accounts_password_require_alphanumeric
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: jamf_pro.inventory.local_user_accounts.password_require_alphanumeric'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: jamf_pro_inventory_local_user_accounts_uid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.local_user_accounts.uid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_local_user_accounts_user_account_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.local_user_accounts.user_account_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_local_user_accounts_user_azure_active_directory_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.local_user_accounts.user_azure_active_directory_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_local_user_accounts_user_guid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.local_user_accounts.user_guid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_local_user_accounts_username
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.local_user_accounts.username'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_operating_system_active_directory_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.operating_system.active_directory_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_operating_system_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.operating_system.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_operating_system_extension_attributes
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: jamf_pro.inventory.operating_system.extension_attributes'
+      comment: 'Elasticsearch mapping type: group'
+      _field_type: base
+    - name: jamf_pro_inventory_operating_system_file_vault2status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.operating_system.file_vault2status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_operating_system_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.operating_system.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_operating_system_rapid_security_response
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.operating_system.rapid_security_response'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_operating_system_software_update_device_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.operating_system.software_update_device_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_operating_system_supplemental_build_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.operating_system.supplemental_build_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_operating_system_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.operating_system.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_package_receipts_cached
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.package_receipts.cached'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_package_receipts_installed_by_installer_swu
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.package_receipts.installed_by_installer_swu'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_package_receipts_installed_by_jamf_pro
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.package_receipts.installed_by_jamf_pro'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_plugins
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: jamf_pro.inventory.plugins'
+      comment: 'Elasticsearch mapping type: nested'
+      _field_type: base
+    - name: jamf_pro_inventory_printers
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: jamf_pro.inventory.printers'
+      comment: 'Elasticsearch mapping type: nested'
+      _field_type: base
+    - name: jamf_pro_inventory_purchasing_apple_care_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.purchasing.apple_care_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_purchasing_extension_attributes
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: jamf_pro.inventory.purchasing.extension_attributes'
+      comment: 'Elasticsearch mapping type: nested'
+      _field_type: base
+    - name: jamf_pro_inventory_purchasing_lease_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: jamf_pro.inventory.purchasing.lease_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: jamf_pro_inventory_purchasing_leased
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: jamf_pro.inventory.purchasing.leased'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: jamf_pro_inventory_purchasing_life_expectancy
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: jamf_pro.inventory.purchasing.life_expectancy'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: jamf_pro_inventory_purchasing_po_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: jamf_pro.inventory.purchasing.po_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: jamf_pro_inventory_purchasing_po_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.purchasing.po_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_purchasing_purchase_price
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: jamf_pro.inventory.purchasing.purchase_price'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: jamf_pro_inventory_purchasing_purchased
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: jamf_pro.inventory.purchasing.purchased'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: jamf_pro_inventory_purchasing_purchasing_account
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.purchasing.purchasing_account'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_purchasing_purchasing_contact
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.purchasing.purchasing_contact'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_purchasing_vendor
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.purchasing.vendor'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_purchasing_warranty_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: jamf_pro.inventory.purchasing.warranty_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: jamf_pro_inventory_security_activation_lock_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: jamf_pro.inventory.security.activation_lock_enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: jamf_pro_inventory_security_auto_login_disabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: jamf_pro.inventory.security.auto_login_disabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: jamf_pro_inventory_security_bootstrap_token_allowed
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: jamf_pro.inventory.security.bootstrap_token_allowed'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: jamf_pro_inventory_security_bootstrap_token_escrowed_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.security.bootstrap_token_escrowed_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_security_external_boot_level
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.security.external_boot_level'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_security_firewall_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: jamf_pro.inventory.security.firewall_enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: jamf_pro_inventory_security_gatekeeper_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.security.gatekeeper_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_security_recovery_lock_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: jamf_pro.inventory.security.recovery_lock_enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: jamf_pro_inventory_security_remote_desktop_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: jamf_pro.inventory.security.remote_desktop_enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: jamf_pro_inventory_security_secure_boot_level
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.security.secure_boot_level'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_security_sip_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.security.sip_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_security_xprotect_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.security.xprotect_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_services
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: jamf_pro.inventory.services'
+      comment: 'Elasticsearch mapping type: nested'
+      _field_type: base
+    - name: jamf_pro_inventory_software_updates_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.software_updates.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_software_updates_package_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.software_updates.package_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_software_updates_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.software_updates.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_storage_boot_drive_available_space_megabytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: jamf_pro.inventory.storage.boot_drive_available_space_megabytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: jamf_pro_inventory_storage_disks_device
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.storage.disks.device'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_storage_disks_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.storage.disks.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_storage_disks_model
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.storage.disks.model'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_udid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.udid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_user_and_location_building_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.user_and_location.building_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_user_and_location_department_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.user_and_location.department_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_user_and_location_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.user_and_location.email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_user_and_location_extension_attributes
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: jamf_pro.inventory.user_and_location.extension_attributes'
+      comment: 'Elasticsearch mapping type: nested'
+      _field_type: base
+    - name: jamf_pro_inventory_user_and_location_phone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.user_and_location.phone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_user_and_location_position
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.user_and_location.position'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_user_and_location_realname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.user_and_location.realname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_user_and_location_room
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.user_and_location.room'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: jamf_pro_inventory_user_and_location_username
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: jamf_pro.inventory.user_and_location.username'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: labels_is_transform_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: labels.is_transform_source'
+      comment: 'Elasticsearch mapping type: constant_keyword'
+      _field_type: base

@@ -1,0 +1,748 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of okta.system at integrations 2c934eb5223b
+    columns:
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: okta_actor_alternate_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.actor.alternate_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_actor_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.actor.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_actor_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.actor.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_actor_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.actor.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_authentication_context_authentication_provider
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.authentication_context.authentication_provider'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_authentication_context_authentication_step
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: okta.authentication_context.authentication_step'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: okta_authentication_context_credential_provider
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.authentication_context.credential_provider'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_authentication_context_credential_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.authentication_context.credential_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_authentication_context_external_session_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.authentication_context.external_session_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_authentication_context_interface
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.authentication_context.interface'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_authentication_context_issuer_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.authentication_context.issuer.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_authentication_context_issuer_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.authentication_context.issuer.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_authentication_context_root_session_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.authentication_context.root_session_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_client_device
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.client.device'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_client_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.client.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_client_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: okta.client.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: okta_client_user_agent_browser
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.client.user_agent.browser'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_client_user_agent_os
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.client.user_agent.os'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_client_user_agent_raw_user_agent
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.client.user_agent.raw_user_agent'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_client_zone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.client.zone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: okta.debug_context.debug_data'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: okta_debug_context_debug_data_authnRequestId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.authnRequestId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_behaviors
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.behaviors'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_behaviors_New_City
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.behaviors.New_City'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_behaviors_New_Country
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.behaviors.New_Country'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_behaviors_New_Device
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.behaviors.New_Device'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_behaviors_New_Geo_Location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.behaviors.New_Geo_Location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_behaviors_New_IP
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.behaviors.New_IP'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_behaviors_New_State
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.behaviors.New_State'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_behaviors_Velocity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.behaviors.Velocity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_behaviors_Velocity_Behavior
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.behaviors.Velocity_Behavior'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_client_secret
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.client_secret'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_device_fingerprint
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.device_fingerprint'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_dt_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.dt_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_factor
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.factor'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_flattened
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: okta.debug_context.debug_data.flattened'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: okta_debug_context_debug_data_grant_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.grant_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_granted_scopes
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.granted_scopes'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_logOnlySecurityData
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.logOnlySecurityData'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_logOnlySecurityData_behaviors
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.logOnlySecurityData.behaviors'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_logOnlySecurityData_behaviors_New_City
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.logOnlySecurityData.behaviors.New_City'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_logOnlySecurityData_behaviors_New_Country
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.logOnlySecurityData.behaviors.New_Country'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_logOnlySecurityData_behaviors_New_Device
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.logOnlySecurityData.behaviors.New_Device'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_logOnlySecurityData_behaviors_New_Geo_Location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.logOnlySecurityData.behaviors.New_Geo_Location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_logOnlySecurityData_behaviors_New_IP
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.logOnlySecurityData.behaviors.New_IP'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_logOnlySecurityData_behaviors_New_State
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.logOnlySecurityData.behaviors.New_State'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_logOnlySecurityData_behaviors_Velocity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.logOnlySecurityData.behaviors.Velocity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_logOnlySecurityData_risk
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.logOnlySecurityData.risk'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_logOnlySecurityData_risk_level
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.logOnlySecurityData.risk.level'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_logOnlySecurityData_risk_reasons
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.logOnlySecurityData.risk.reasons'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_originalPrincipal
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.originalPrincipal'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_originalPrincipal_alternateId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.originalPrincipal.alternateId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_originalPrincipal_displayName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.originalPrincipal.displayName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_originalPrincipal_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.originalPrincipal.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_originalPrincipal_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.originalPrincipal.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_promptingPolicyTypes
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.promptingPolicyTypes'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_request_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.request_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_request_uri
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.request_uri'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_requested_scopes
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.requested_scopes'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_risk
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.risk'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_risk_behaviors
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.risk_behaviors'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_risk_level
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.risk.level'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_risk_object
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.risk_object'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_risk_reasons
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.risk.reasons'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_threat_suspected
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.threat_suspected'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_debug_context_debug_data_tunnels
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: okta.debug_context.debug_data.tunnels'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: okta_debug_context_debug_data_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.debug_context.debug_data.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_device_device_integrator
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: okta.device.device_integrator'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: okta_device_disk_encryption_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.device.disk_encryption_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_device_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.device.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_device_managed
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: okta.device.managed'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: okta_device_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.device.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_device_os_platform
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.device.os_platform'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_device_os_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.device.os_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_device_registered
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: okta.device.registered'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: okta_device_screen_lock_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.device.screen_lock_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_device_secure_hardware_present
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: okta.device.secure_hardware_present'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: okta_display_message
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.display_message'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_event_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.event_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_outcome_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.outcome.reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_outcome_result
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.outcome.result'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_request_ip_chain
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: okta.request.ip_chain'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: okta_security_context_as_number
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: okta.security_context.as.number'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: okta_security_context_as_organization_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.security_context.as.organization.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_security_context_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.security_context.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_security_context_is_proxy
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: okta.security_context.is_proxy'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: okta_security_context_isp
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.security_context.isp'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_severity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.severity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_target_alternate_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.target.alternate_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_target_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.target.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_target_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.target.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_target_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.target.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_transaction_detail_request_api_token_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.transaction.detail.request_api_token_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_transaction_detail_root_api_token_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.transaction.detail.root_api_token_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_transaction_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.transaction.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_transaction_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.transaction.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: okta_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: okta.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

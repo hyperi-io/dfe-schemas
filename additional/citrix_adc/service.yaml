@@ -1,0 +1,169 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of citrix_adc.service at integrations 2c934eb5223b
+    columns:
+    - name: citrix_adc_service_client_connection_count
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: citrix_adc.service.client_connection.count'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: citrix_adc_service_primary_ip_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: citrix_adc.service.primary.ip_address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: citrix_adc_service_primary_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: citrix_adc.service.primary.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: citrix_adc_service_request_bytes_rate
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: citrix_adc.service.request.bytes.rate'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: citrix_adc_service_request_bytes_value
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: citrix_adc.service.request.bytes.value'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: citrix_adc_service_request_count
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: citrix_adc.service.request.count'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: citrix_adc_service_request_rate
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: citrix_adc.service.request.rate'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: citrix_adc_service_response_bytes_rate
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: citrix_adc.service.response.bytes.rate'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: citrix_adc_service_response_bytes_value
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: citrix_adc.service.response.bytes.value'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: citrix_adc_service_response_count
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: citrix_adc.service.response.count'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: citrix_adc_service_response_rate
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: citrix_adc.service.response.rate'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: citrix_adc_service_reuse_pool
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: citrix_adc.service.reuse_pool'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: citrix_adc_service_server_connection_count
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: citrix_adc.service.server.connection.count'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: citrix_adc_service_server_connection_established_count
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: citrix_adc.service.server.connection.established.count'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: citrix_adc_service_server_time_to_first_byte_avg
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: citrix_adc.service.server.time_to_first_byte.avg'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: citrix_adc_service_surge_queue_count
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: citrix_adc.service.surge_queue.count'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: citrix_adc_service_throughput_rate
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: citrix_adc.service.throughput.rate'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: citrix_adc_service_throughput_value
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: citrix_adc.service.throughput.value'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: citrix_adc_service_transaction_active_count
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: citrix_adc.service.transaction.active.count'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: citrix_adc_service_transaction_frustrating_count
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: citrix_adc.service.transaction.frustrating.count'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: citrix_adc_service_transaction_time_to_last_byte_count
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: citrix_adc.service.transaction.time_to_last_byte.count'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: citrix_adc_service_transaction_tolerable_count
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: citrix_adc.service.transaction.tolerable.count'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

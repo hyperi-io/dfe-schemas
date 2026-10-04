@@ -1,0 +1,330 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of trellix_epo_cloud.device at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: trellix_epo_cloud_device_attributes_agent_guid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_epo_cloud.device.attributes.agent.guid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_epo_cloud_device_attributes_agent_platform
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_epo_cloud.device.attributes.agent.platform'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_epo_cloud_device_attributes_agent_state
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: trellix_epo_cloud.device.attributes.agent.state'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: trellix_epo_cloud_device_attributes_agent_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_epo_cloud.device.attributes.agent.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_epo_cloud_device_attributes_computer_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_epo_cloud.device.attributes.computer_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_epo_cloud_device_attributes_cpu_speed
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trellix_epo_cloud.device.attributes.cpu.speed'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: trellix_epo_cloud_device_attributes_cpu_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_epo_cloud.device.attributes.cpu.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_epo_cloud_device_attributes_domain_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_epo_cloud.device.attributes.domain_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_epo_cloud_device_attributes_excluded_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_epo_cloud.device.attributes.excluded_tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_epo_cloud_device_attributes_ip_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: trellix_epo_cloud.device.attributes.ip_address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: trellix_epo_cloud_device_attributes_ip_host_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_epo_cloud.device.attributes.ip_host_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_epo_cloud_device_attributes_is_portable
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_epo_cloud.device.attributes.is_portable'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_epo_cloud_device_attributes_last_update
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trellix_epo_cloud.device.attributes.last_update'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: trellix_epo_cloud_device_attributes_mac_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_epo_cloud.device.attributes.mac_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_epo_cloud_device_attributes_managed
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_epo_cloud.device.attributes.managed'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_epo_cloud_device_attributes_managed_state
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: trellix_epo_cloud.device.attributes.managed_state'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: trellix_epo_cloud_device_attributes_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_epo_cloud.device.attributes.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_epo_cloud_device_attributes_node_created_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trellix_epo_cloud.device.attributes.node.created_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: trellix_epo_cloud_device_attributes_node_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_epo_cloud.device.attributes.node.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_epo_cloud_device_attributes_num_of_cpu
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trellix_epo_cloud.device.attributes.num_of_cpu'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: trellix_epo_cloud_device_attributes_os_build_number
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trellix_epo_cloud.device.attributes.os.build_number'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: trellix_epo_cloud_device_attributes_os_platform
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_epo_cloud.device.attributes.os.platform'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_epo_cloud_device_attributes_os_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_epo_cloud.device.attributes.os.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_epo_cloud_device_attributes_os_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_epo_cloud.device.attributes.os.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_epo_cloud_device_attributes_parent_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_epo_cloud.device.attributes.parent.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_epo_cloud_device_attributes_subnet_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_epo_cloud.device.attributes.subnet_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_epo_cloud_device_attributes_system_boot_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trellix_epo_cloud.device.attributes.system.boot_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: trellix_epo_cloud_device_attributes_system_manufacturer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_epo_cloud.device.attributes.system.manufacturer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_epo_cloud_device_attributes_system_model
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_epo_cloud.device.attributes.system.model'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_epo_cloud_device_attributes_system_reboot_pending
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: trellix_epo_cloud.device.attributes.system.reboot_pending'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: trellix_epo_cloud_device_attributes_system_serial_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_epo_cloud.device.attributes.system.serial_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_epo_cloud_device_attributes_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_epo_cloud.device.attributes.tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_epo_cloud_device_attributes_tenant_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_epo_cloud.device.attributes.tenant.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_epo_cloud_device_attributes_total_physical_memory
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trellix_epo_cloud.device.attributes.total_physical_memory'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: trellix_epo_cloud_device_attributes_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_epo_cloud.device.attributes.user_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_epo_cloud_device_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_epo_cloud.device.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_epo_cloud_device_links_self
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_epo_cloud.device.links.self'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_epo_cloud_device_relationships_devices_data_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_epo_cloud.device.relationships.devices.data.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_epo_cloud_device_relationships_devices_data_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_epo_cloud.device.relationships.devices.data.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_epo_cloud_device_relationships_devices_links_related
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_epo_cloud.device.relationships.devices.links.related'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_epo_cloud_device_relationships_devices_links_self
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_epo_cloud.device.relationships.devices.links.self'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_epo_cloud_device_relationships_installed_products_links_related
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_epo_cloud.device.relationships.installed_products.links.related'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_epo_cloud_device_relationships_installed_products_links_self
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_epo_cloud.device.relationships.installed_products.links.self'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_epo_cloud_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_epo_cloud.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

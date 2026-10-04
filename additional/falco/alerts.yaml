@@ -1,0 +1,1546 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of falco.alerts at integrations 2c934eb5223b
+    columns:
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: falco_container_mounts
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: falco.container.mounts'
+      comment: 'Elasticsearch mapping type: nested'
+      _field_type: base
+    - name: falco_container_mounts_dest
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: falco.container.mounts.dest'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: falco_container_mounts_mode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: falco.container.mounts.mode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: falco_container_mounts_propagation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: falco.container.mounts.propagation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: falco_container_mounts_rdrw
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: falco.container.mounts.rdrw'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: falco_container_mounts_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: falco.container.mounts.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: falco_hostname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: falco.hostname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: falco_output
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_client_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: falco.output_fields.client.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: falco_output_fields_container_cni_json
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: falco.output_fields.container.cni_json'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: falco_output_fields_container_duration
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.container.duration'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: falco_output_fields_container_full_id
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.container.full_id'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_container_healthcheck
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.container.healthcheck'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_container_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: falco.output_fields.container.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: falco_output_fields_container_image_digest
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.container.image.digest'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_container_image_full_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: falco.output_fields.container.image.full_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: falco_output_fields_container_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: falco.output_fields.container.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: falco_output_fields_container_image_name
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.container.image.name'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_container_image_repository
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: falco.output_fields.container.image.repository'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: falco_output_fields_container_image_tag
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.container.image.tag'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_container_ip
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.container.ip'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_container_liveness_probe
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.container.liveness_probe'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_container_mounts
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.container.mounts'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_container_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: falco.output_fields.container.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: falco_output_fields_container_privileged
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: falco.output_fields.container.privileged'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: falco_output_fields_container_readiness_probe
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.container.readiness_probe'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_container_start_ts
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.container.start_ts'
+      comment: 'Elasticsearch mapping type: date_nanos'
+      _field_type: base
+    - name: falco_output_fields_container_type
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.container.type'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_destination_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: falco.output_fields.destination.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: falco_output_fields_event_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.event.time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: falco_output_fields_evt_abspath
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.evt.abspath'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_evt_abspath_dst
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.evt.abspath_dst'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_evt_abspath_src
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.evt.abspath_src'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_evt_arg_flags
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.evt.arg.flags'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_evt_args
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.evt.args'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_evt_asynctype
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: falco.output_fields.evt.asynctype'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: falco_output_fields_evt_buffer
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: falco.output_fields.evt.buffer'
+      comment: 'Elasticsearch mapping type: binary'
+      _field_type: base
+    - name: falco_output_fields_evt_buflen
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.evt.buflen'
+      comment: 'Elasticsearch mapping type: unsigned_long'
+      _field_type: base
+    - name: falco_output_fields_evt_category
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.evt.category'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_evt_count_error
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.evt.count.error'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: falco_output_fields_evt_count_error_file
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.evt.count.error_file'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: falco_output_fields_evt_count_error_memory
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.evt.count.error_memory'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: falco_output_fields_evt_count_error_net
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.evt.count.error_net'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: falco_output_fields_evt_count_error_other
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.evt.count.error_other'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: falco_output_fields_evt_count_exit
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.evt.count.exit'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: falco_output_fields_evt_cpu
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.evt.cpu'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: falco_output_fields_evt_deltatime
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.evt.deltatime'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: falco_output_fields_evt_dir
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: falco.output_fields.evt.dir'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: falco_output_fields_evt_failed
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: falco.output_fields.evt.failed'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: falco_output_fields_evt_hostname
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.evt.hostname'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_evt_info
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.evt.info'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_evt_io_dir
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: falco.output_fields.evt.io_dir'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: falco_output_fields_evt_is_async
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: falco.output_fields.evt.is_async'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: falco_output_fields_evt_is_io
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: falco.output_fields.evt.is_io'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: falco_output_fields_evt_is_io_read
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: falco.output_fields.evt.is_io_read'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: falco_output_fields_evt_is_io_write
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: falco.output_fields.evt.is_io_write'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: falco_output_fields_evt_is_open_create
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: falco.output_fields.evt.is_open_create'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: falco_output_fields_evt_is_open_exec
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: falco.output_fields.evt.is_open_exec'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: falco_output_fields_evt_is_open_read
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: falco.output_fields.evt.is_open_read'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: falco_output_fields_evt_is_open_write
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: falco.output_fields.evt.is_open_write'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: falco_output_fields_evt_is_syslog
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: falco.output_fields.evt.is_syslog'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: falco_output_fields_evt_is_wait
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: falco.output_fields.evt.is_wait'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: falco_output_fields_evt_latency
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.evt.latency'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: falco_output_fields_evt_num
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.evt.num'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: falco_output_fields_evt_plugininfo
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.evt.plugininfo'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_evt_pluginname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: falco.output_fields.evt.pluginname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: falco_output_fields_evt_rawres
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.evt.rawres'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: falco_output_fields_evt_res
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.evt.res'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_evt_source
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.evt.source'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_evt_time_iso8601
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.evt.time.iso8601'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: falco_output_fields_evt_type
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.evt.type'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_evt_wait_latency
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.evt.wait_latency'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: falco_output_fields_fd_I4proto
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: falco.output_fields.fd.I4proto'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: falco_output_fields_fd_cip_name
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.fd.cip.name'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_fd_connected
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: falco.output_fields.fd.connected'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: falco_output_fields_fd_containerdirectory
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: falco.output_fields.fd.containerdirectory'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: falco_output_fields_fd_containername
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: falco.output_fields.fd.containername'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: falco_output_fields_fd_cport
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.fd.cport'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: falco_output_fields_fd_cproto
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: falco.output_fields.fd.cproto'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: falco_output_fields_fd_dev
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.fd.dev'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: falco_output_fields_fd_dev_major
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.fd.dev_major'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: falco_output_fields_fd_dev_minor
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.fd.dev_minor'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: falco_output_fields_fd_directory
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.fd.directory'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_fd_filename
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.fd.filename'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_fd_ino
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.fd.ino'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_fd_is_server
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: falco.output_fields.fd.is_server'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: falco_output_fields_fd_lip_name
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.fd.lip.name'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_fd_lport
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.fd.lport'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: falco_output_fields_fd_lproto
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: falco.output_fields.fd.lproto'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: falco_output_fields_fd_name
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.fd.name'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_fd_name_changed
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: falco.output_fields.fd.name_changed'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: falco_output_fields_fd_num
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.fd.num'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: falco_output_fields_fd_rip_name
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.fd.rip.name'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_fd_rport
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.fd.rport'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: falco_output_fields_fd_rproto
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: falco.output_fields.fd.rproto'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: falco_output_fields_fd_sip_name
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.fd.sip.name'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_fd_sockfamily
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: falco.output_fields.fd.sockfamily'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: falco_output_fields_fd_sport
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.fd.sport'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: falco_output_fields_fd_sproto
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: falco.output_fields.fd.sproto'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: falco_output_fields_fd_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: falco.output_fields.fd.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: falco_output_fields_fd_typechar
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: falco.output_fields.fd.typechar'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: falco_output_fields_fd_uid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: falco.output_fields.fd.uid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: falco_output_fields_fdlist_cips
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: falco.output_fields.fdlist.cips'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: falco_output_fields_fdlist_cports
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: falco.output_fields.fdlist.cports'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: falco_output_fields_fdlist_names
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: falco.output_fields.fdlist.names'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: falco_output_fields_fdlist_sips
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: falco.output_fields.fdlist.sips'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: falco_output_fields_fdlist_sports
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: falco.output_fields.fdlist.sports'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: falco_output_fields_fs_path_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: falco.output_fields.fs.path.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: falco_output_fields_fs_path_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: falco.output_fields.fs.path.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: falco_output_fields_fs_path_target
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: falco.output_fields.fs.path.target'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: falco_output_fields_group_gid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.group.gid'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: falco_output_fields_group_name
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.group.name'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_k8s_ns_name
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.k8s.ns.name'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_k8s_pod_cni_json
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: falco.output_fields.k8s.pod.cni_json'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: falco_output_fields_k8s_pod_full_sandbox_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: falco.output_fields.k8s.pod.full_sandbox_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: falco_output_fields_k8s_pod_ip
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.k8s.pod.ip'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_k8s_pod_labels
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.k8s.pod.labels'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_k8s_pod_name
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.k8s.pod.name'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_k8s_pod_sandbox_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: falco.output_fields.k8s.pod.sandbox_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: falco_output_fields_k8s_pod_uid
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.k8s.pod.uid'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_output
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.output'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_priority
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: falco.output_fields.priority'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: falco_output_fields_proc_args
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.proc.args'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_proc_cmdlenargs
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.proc.cmdlenargs'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: falco_output_fields_proc_cmdline
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.proc.cmdline'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_proc_cmdnargs
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.proc.cmdnargs'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: falco_output_fields_proc_cwd
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.proc.cwd'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_proc_duration
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.proc.duration'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_proc_env
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.proc.env'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_proc_exe
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.proc.exe'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_proc_exe_ino
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.proc.exe_ino'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: falco_output_fields_proc_exe_ino_ctime
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.proc.exe_ino_ctime'
+      comment: 'Elasticsearch mapping type: date_nanos'
+      _field_type: base
+    - name: falco_output_fields_proc_exe_ino_ctime_duration_pidns_start
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.proc.exe_ino_ctime_duration_pidns_start'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: falco_output_fields_proc_exe_ino_ctime_duration_proc_start
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.proc.exe_ino_ctime_duration_proc_start'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: falco_output_fields_proc_exe_ino_mtime
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.proc.exe_ino_mtime'
+      comment: 'Elasticsearch mapping type: date_nanos'
+      _field_type: base
+    - name: falco_output_fields_proc_exeline
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.proc.exeline'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_proc_exepath
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.proc.exepath'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_proc_fdopencount
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.proc.fdopencount'
+      comment: 'Elasticsearch mapping type: unsigned_long'
+      _field_type: base
+    - name: falco_output_fields_proc_fdopenlimit
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.proc.fdopenlimit'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: falco_output_fields_proc_fdusage
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.proc.fdusage'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: falco_output_fields_proc_is_container_healthcheck
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: falco.output_fields.proc.is_container_healthcheck'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: falco_output_fields_proc_is_container_liveness_probe
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: falco.output_fields.proc.is_container_liveness_probe'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: falco_output_fields_proc_is_container_readiness_probe
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: falco.output_fields.proc.is_container_readiness_probe'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: falco_output_fields_proc_is_exe_from_memfd
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: falco.output_fields.proc.is_exe_from_memfd'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: falco_output_fields_proc_is_exe_upper_layer
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: falco.output_fields.proc.is_exe_upper_layer'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: falco_output_fields_proc_is_exe_writable
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: falco.output_fields.proc.is_exe_writable'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: falco_output_fields_proc_is_sid_leader
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: falco.output_fields.proc.is_sid_leader'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: falco_output_fields_proc_is_vpgid_leader
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: falco.output_fields.proc.is_vpgid_leader'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: falco_output_fields_proc_loginshellid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.proc.loginshellid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: falco_output_fields_proc_name
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.proc.name'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_proc_nchilds
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.proc.nchilds'
+      comment: 'Elasticsearch mapping type: unsigned_long'
+      _field_type: base
+    - name: falco_output_fields_proc_nthreads
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.proc.nthreads'
+      comment: 'Elasticsearch mapping type: unsigned_long'
+      _field_type: base
+    - name: falco_output_fields_proc_pcmdline
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.proc.pcmdline'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_proc_pexe
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.proc.pexe'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_proc_pexepath
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.proc.pexepath'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_proc_pid_ts
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.proc.pid.ts'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_proc_pidns_init_start_ts
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.proc.pidns_init_start_ts'
+      comment: 'Elasticsearch mapping type: date_nanos'
+      _field_type: base
+    - name: falco_output_fields_proc_pname
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.proc.pname'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_proc_ppid_duration
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.proc.ppid.duration'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: falco_output_fields_proc_ppid_ts
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.proc.ppid.ts'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_proc_pvpid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.proc.pvpid'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: falco_output_fields_proc_sid_exe
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.proc.sid.exe'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_proc_sid_exepath
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.proc.sid.exepath'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_proc_sname
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.proc.sname'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_proc_thread_cap_inheritable
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: falco.output_fields.proc.thread.cap_inheritable'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: falco_output_fields_proc_tty
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.proc.tty'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: falco_output_fields_proc_vmrss
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.proc.vmrss'
+      comment: 'Elasticsearch mapping type: unsigned_long'
+      _field_type: base
+    - name: falco_output_fields_proc_vmsize
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.proc.vmsize'
+      comment: 'Elasticsearch mapping type: unsigned_long'
+      _field_type: base
+    - name: falco_output_fields_proc_vmswap
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.proc.vmswap'
+      comment: 'Elasticsearch mapping type: unsigned_long'
+      _field_type: base
+    - name: falco_output_fields_proc_vpgid_exe
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.proc.vpgid.exe'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_proc_vpgid_exepath
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.proc.vpgid.exepath'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_proc_vpgid_name
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.proc.vpgid.name'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_proc_vpid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.proc.vpid'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: falco_output_fields_process_group_leader_vpid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.process.group_leader.vpid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: falco_output_fields_process_parent_pid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.process.parent.pid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: falco_output_fields_process_pid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.process.pid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: falco_output_fields_process_session_leader_pid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.process.session_leader.pid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: falco_output_fields_proct_ppid_duration
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.proct.ppid.duration'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_rule
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.rule'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_server_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: falco.output_fields.server.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: falco_output_fields_source_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: falco.output_fields.source.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: falco_output_fields_syslog_facility
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.syslog_facility'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_syslog_facility_str
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.syslog.facility.str'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_syslog_severity
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.syslog_severity'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_syslog_severity_str
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.syslog.severity.str'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_thread_cap_effective
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.thread.cap_effective'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_thread_cap_permitted
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.thread.cap_permitted'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_thread_cgroups
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: falco.output_fields.thread.cgroups'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: falco_output_fields_thread_cpu
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.thread.cpu'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: falco_output_fields_thread_cpu_system
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.thread.cpu_system'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: falco_output_fields_thread_cpu_user
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.thread.cpu_user'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: falco_output_fields_thread_exectime
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.thread.exectime'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: falco_output_fields_thread_ismain
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: falco.output_fields.thread.ismain'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: falco_output_fields_thread_pfmajor
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.thread.pfmajor'
+      comment: 'Elasticsearch mapping type: unsigned_long'
+      _field_type: base
+    - name: falco_output_fields_thread_pfminor
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.thread.pfminor'
+      comment: 'Elasticsearch mapping type: unsigned_long'
+      _field_type: base
+    - name: falco_output_fields_thread_tid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.thread.tid'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: falco_output_fields_thread_totalexectime
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.thread.totalexectime'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: falco_output_fields_thread_vmrss
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.thread.vmrss'
+      comment: 'Elasticsearch mapping type: unsigned_long'
+      _field_type: base
+    - name: falco_output_fields_thread_vmsize
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.thread.vmsize'
+      comment: 'Elasticsearch mapping type: unsigned_long'
+      _field_type: base
+    - name: falco_output_fields_thread_vtid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.thread.vtid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: falco_output_fields_user_homedir
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.user.homedir'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_user_loginname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: falco.output_fields.user.loginname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: falco_output_fields_user_loginuid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.user.loginuid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: falco_output_fields_user_name
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: falco.output_fields.user.name'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: falco_output_fields_user_shell
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: falco.output_fields.user.shell'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: falco_output_fields_user_uid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.output_fields.user.uid'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: falco_priority
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: falco.priority'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: falco_rule
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: falco.rule'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: falco_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: falco.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: falco_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: falco.tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: falco_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: falco.time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: falco_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: falco.uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: log_source_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.source.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

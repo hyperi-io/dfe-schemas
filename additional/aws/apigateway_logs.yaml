@@ -1,0 +1,191 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of aws.apigateway_logs at integrations 2c934eb5223b
+    columns:
+    - name: aws_apigateway_api_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.apigateway.api_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_apigateway_caller
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.apigateway.caller'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_apigateway_connection_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.apigateway.connection_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_apigateway_domain_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.apigateway.domain_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_apigateway_event_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.apigateway.event_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_apigateway_http_method
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.apigateway.http_method'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_apigateway_ip_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.apigateway.ip_address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: aws_apigateway_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.apigateway.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_apigateway_request_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.apigateway.request_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_apigateway_request_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.apigateway.request_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_apigateway_resource_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.apigateway.resource_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_apigateway_response_length
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.apigateway.response_length'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_apigateway_route_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.apigateway.route_key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_apigateway_stage
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.apigateway.stage'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_apigateway_status
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.apigateway.status'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_apigateway_user
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.apigateway.user'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_bucket_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_bucket_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_metadata
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: aws.s3.metadata'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: aws_s3_object_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.object.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

@@ -1,0 +1,50 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of tines.time_saved at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_tenant_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.tenant_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_time_saved_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tines.time_saved.date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tines_time_saved_story_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tines.time_saved.story_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tines_time_saved_team_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tines.time_saved.team_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tines_time_saved_value
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tines.time_saved.value'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

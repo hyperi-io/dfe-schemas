@@ -1,0 +1,71 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of bitwarden.group at integrations 2c934eb5223b
+    columns:
+    - name: bitwarden_group_access_all
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: bitwarden.group.access_all'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: bitwarden_group_collection_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: bitwarden.group.collection.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: bitwarden_group_collection_read_only
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: bitwarden.group.collection.read_only'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: bitwarden_group_external_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: bitwarden.group.external.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: bitwarden_group_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: bitwarden.group.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: bitwarden_group_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: bitwarden.group.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: bitwarden_object
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: bitwarden.object'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

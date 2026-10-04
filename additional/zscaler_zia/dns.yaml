@@ -1,0 +1,477 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of zscaler_zia.dns at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: log_source_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.source.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_client_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: zscaler_zia.dns.client.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: zscaler_zia_dns_cloud_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.cloud.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_company
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.company'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_datacenter_city
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.datacenter.city'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_datacenter_country
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.datacenter.country'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_datacenter_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.datacenter.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_day
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.day'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_day_of_month
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.dns.day_of_month'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_dns_department
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.department'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_dept
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.dept'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_device_appversion
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.device.appversion'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_device_hostname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.device.hostname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_device_model
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.device.model'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_device_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.device.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_device_os_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.device.os.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_device_os_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.device.os.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_device_owner
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.device.owner'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_device_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.device.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_dns_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.dns.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_dns_gateway_rule
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.dns.gateway.rule'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_dns_gateway_server_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.dns.gateway.server_protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_dns_gateway_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.dns.gateway.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_dns_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.dns.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_dom_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.dom.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_duration_milliseconds
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.dns.duration.milliseconds'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_dns_ecs_prefix
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.ecs.prefix'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_ecs_slot
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.ecs.slot'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_ednsreq
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.ednsreq'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_eedone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.eedone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_epochtime
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.dns.epochtime'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: zscaler_zia_dns_error
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.error'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_hour
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.dns.hour'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_dns_http_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.http_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_istcp
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.istcp'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_loc
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.loc'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_login
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.login'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_minutes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.dns.minutes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_dns_month
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.month'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_month_of_year
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.dns.month_of_year'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_dns_obfuscated_client_source_ip
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.obfuscated.client_source_ip'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_obfuscated_device_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.obfuscated.device.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_obfuscated_device_owner
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.obfuscated.device.owner'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_obfuscated_dom_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.obfuscated.dom.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_obfuscated_host_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.obfuscated.host_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_record_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.record.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_request_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.request.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_request_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.request.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_request_rule_label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.request.rule.label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_request_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.request.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_response_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.response.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_response_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.response.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_response_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: zscaler_zia.dns.response.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: zscaler_zia_dns_response_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.response.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_response_rule_label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.response.rule.label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_response_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.response.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_second
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.dns.second'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_dns_server_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: zscaler_zia.dns.server.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: zscaler_zia_dns_server_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.dns.server.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_dns_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.dns.time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: zscaler_zia_dns_timezone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.timezone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_user
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.dns.user'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_dns_year
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.dns.year'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

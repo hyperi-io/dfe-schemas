@@ -1,0 +1,128 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of ti_socradar_feeds.feed at integrations 2c934eb5223b
+    columns:
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: labels_is_ioc_transform_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: labels.is_ioc_transform_source'
+      comment: 'Elasticsearch mapping type: constant_keyword'
+      _field_type: base
+    - name: ti_socradar_feeds_feed_collection_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_socradar_feeds.feed.collection_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_socradar_feeds_feed_collection_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_socradar_feeds.feed.collection_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_socradar_feeds_feed_extra_info
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: ti_socradar_feeds.feed.extra_info'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: ti_socradar_feeds_feed_first_seen_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ti_socradar_feeds.feed.first_seen_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: ti_socradar_feeds_feed_ioc_expiration_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ti_socradar_feeds.feed.ioc_expiration_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: ti_socradar_feeds_feed_ioc_expiration_duration
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_socradar_feeds.feed.ioc_expiration_duration'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_socradar_feeds_feed_ioc_expiration_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_socradar_feeds.feed.ioc_expiration_reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_socradar_feeds_feed_latest_seen_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ti_socradar_feeds.feed.latest_seen_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: ti_socradar_feeds_feed_maintainer_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_socradar_feeds.feed.maintainer_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_socradar_feeds_feed_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_socradar_feeds.feed.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_socradar_feeds_feed_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_socradar_feeds.feed.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

@@ -1,0 +1,163 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of wiz.audit at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: wiz_audit_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.audit.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_audit_action_parameters_client_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.audit.action_parameters.client_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_audit_action_parameters_groups
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: wiz.audit.action_parameters.groups'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: wiz_audit_action_parameters_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.audit.action_parameters.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_audit_action_parameters_products
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.audit.action_parameters.products'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_audit_action_parameters_role
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.audit.action_parameters.role'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_audit_action_parameters_scopes
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.audit.action_parameters.scopes'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_audit_action_parameters_user_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.audit.action_parameters.user.email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_audit_action_parameters_user_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.audit.action_parameters.user.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_audit_action_parameters_userpool_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.audit.action_parameters.userpool_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_audit_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.audit.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_audit_request_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.audit.request_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_audit_service_account_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.audit.service_account.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_audit_service_account_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.audit.service_account.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_audit_source_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: wiz.audit.source_ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: wiz_audit_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.audit.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_audit_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: wiz.audit.timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: wiz_audit_user_agent
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.audit.user_agent'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_audit_user_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.audit.user.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_audit_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.audit.user.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

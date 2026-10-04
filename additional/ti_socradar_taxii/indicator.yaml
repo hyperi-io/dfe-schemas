@@ -1,0 +1,228 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of ti_socradar_taxii.indicator at integrations 2c934eb5223b
+    columns:
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: labels_is_ioc_transform_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: labels.is_ioc_transform_source'
+      comment: 'Elasticsearch mapping type: constant_keyword'
+      _field_type: base
+    - name: ti_socradar_taxii_stix_confidence
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ti_socradar_taxii.stix.confidence'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: ti_socradar_taxii_stix_created
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ti_socradar_taxii.stix.created'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: ti_socradar_taxii_stix_created_by_ref
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_socradar_taxii.stix.created_by_ref'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_socradar_taxii_stix_date_added
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ti_socradar_taxii.stix.date_added'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: ti_socradar_taxii_stix_extensions
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: ti_socradar_taxii.stix.extensions'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: ti_socradar_taxii_stix_external_references
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: ti_socradar_taxii.stix.external_references'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: ti_socradar_taxii_stix_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_socradar_taxii.stix.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_socradar_taxii_stix_indicator_types
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_socradar_taxii.stix.indicator_types'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_socradar_taxii_stix_ioc_expiration_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ti_socradar_taxii.stix.ioc_expiration_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: ti_socradar_taxii_stix_ioc_expiration_duration
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_socradar_taxii.stix.ioc_expiration_duration'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_socradar_taxii_stix_ioc_expiration_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_socradar_taxii.stix.ioc_expiration_reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_socradar_taxii_stix_kill_chain_phases
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: ti_socradar_taxii.stix.kill_chain_phases'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: ti_socradar_taxii_stix_lang
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_socradar_taxii.stix.lang'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_socradar_taxii_stix_modified
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ti_socradar_taxii.stix.modified'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: ti_socradar_taxii_stix_object_marking_refs
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_socradar_taxii.stix.object_marking_refs'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_socradar_taxii_stix_pattern
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_socradar_taxii.stix.pattern'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_socradar_taxii_stix_pattern_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_socradar_taxii.stix.pattern_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_socradar_taxii_stix_pattern_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_socradar_taxii.stix.pattern_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_socradar_taxii_stix_revoked
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: ti_socradar_taxii.stix.revoked'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: ti_socradar_taxii_stix_spec_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_socradar_taxii.stix.spec_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_socradar_taxii_stix_threat_feed_source_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_socradar_taxii.stix.threat_feed_source_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_socradar_taxii_stix_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_socradar_taxii.stix.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_socradar_taxii_stix_valid_from
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ti_socradar_taxii.stix.valid_from'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: ti_socradar_taxii_stix_valid_until
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ti_socradar_taxii.stix.valid_until'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: ti_socradar_taxii_stix_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_socradar_taxii.stix.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

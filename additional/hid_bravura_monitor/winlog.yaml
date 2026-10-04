@@ -1,0 +1,766 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of hid_bravura_monitor.winlog at integrations 2c934eb5223b
+    columns:
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_activity_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.activity_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_api
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.api'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_channel
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.channel'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_computerObject_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.computerObject.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_computerObject_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.computerObject.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_computerObject_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.computerObject.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_computer_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.computer_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: winlog.event_data'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: winlog_event_data_Account
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.Account'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_Action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.Action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_ActionId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.ActionId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_Arguments
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.Arguments'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_AuthChain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.AuthChain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_AuthUser
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.AuthUser'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_BatchSig
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.BatchSig'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_Binding
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.Binding'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_CanceledBy
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.CanceledBy'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_ChangedBy
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.ChangedBy'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_Checkout
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.Checkout'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_ClientIPs
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: winlog.event_data.ClientIPs'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: winlog_event_data_DelayThreshold
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: winlog.event_data.DelayThreshold'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: winlog_event_data_Description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.Description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_EffectiveUser
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.EffectiveUser'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_ErrorCode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.ErrorCode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_Event
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.Event'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_EventID
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.EventID'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_FailedTargets
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.FailedTargets'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_GroupSet
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.GroupSet'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_Hostname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.Hostname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_Identity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.Identity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_Initiator
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.Initiator'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_Instance
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.Instance'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_Issuer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.Issuer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_Language
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.Language'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_LoginURL
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.LoginURL'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_LogonDomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.LogonDomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_LogonSystem
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.LogonSystem'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_LogonUser
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.LogonUser'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_MAQ
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.MAQ'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_Message
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.Message'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_MessageType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.MessageType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_Method
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.Method'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_Module
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.Module'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_Node
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.Node'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_OSLogin
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.OSLogin'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_OTPLogin
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.OTPLogin'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_Operation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.Operation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_Orchestration
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.Orchestration'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_Owner
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.Owner'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_Platform
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.Platform'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_Policy
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.Policy'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_Port
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.Port'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_Procedure
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.Procedure'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_Profile
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.Profile'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_QSetID
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.QSetID'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_QSetType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.QSetType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_QueueDelay
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: winlog.event_data.QueueDelay'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: winlog_event_data_QueueSize
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: winlog.event_data.QueueSize'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: winlog_event_data_QueueType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.QueueType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_Reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.Reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_Recipient
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.Recipient'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_Replica
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.Replica'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_RequestID
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.RequestID'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_Requester
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.Requester'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_Result
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.Result'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_RevokedBy
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.RevokedBy'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_Runtime
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: winlog.event_data.Runtime'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: winlog_event_data_SPFolder
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.SPFolder'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_SessionID
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.SessionID'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_Skin
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.Skin'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_Source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.Source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_StoredProc
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.StoredProc'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_System
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.System'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_Target
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.Target'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_TargetName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.TargetName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_TermintedBy
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.TermintedBy'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_Type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.Type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_URI
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.URI'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_WaterMark
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.WaterMark'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_data_Workstation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_data.Workstation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_event_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.event_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_keywords
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.keywords'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_level
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.level'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_opcode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.opcode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_outcome
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.outcome'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_process_pid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: winlog.process.pid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: winlog_process_thread_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: winlog.process.thread.id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: winlog_provider_guid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.provider_guid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_provider_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.provider_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_record_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.record_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_related_activity_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.related_activity_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_symbolic_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.symbolic_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_task
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.task'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_time_created
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: winlog.time_created'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: winlog_trustAttribute
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.trustAttribute'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_trustDirection
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.trustDirection'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_trustType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.trustType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_user_data
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: winlog.user_data'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: winlog_user_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.user.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_user_identifier
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.user.identifier'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.user.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_user_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: winlog.user.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: winlog_version
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: winlog.version'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

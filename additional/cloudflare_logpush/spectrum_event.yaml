@@ -1,0 +1,316 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of cloudflare_logpush.spectrum_event at integrations 2c934eb5223b
+    columns:
+    - name: aws_s3_bucket_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_bucket_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_object_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.object.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_storage_blob_content_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.storage.blob.content_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_storage_blob_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.storage.blob.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_storage_container_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.storage.container.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_logpush_spectrum_event_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare_logpush.spectrum_event.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_logpush_spectrum_event_application
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare_logpush.spectrum_event.application'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_logpush_spectrum_event_client_asn
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cloudflare_logpush.spectrum_event.client.asn'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cloudflare_logpush_spectrum_event_client_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cloudflare_logpush.spectrum_event.client.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cloudflare_logpush_spectrum_event_client_country
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare_logpush.spectrum_event.client.country'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_logpush_spectrum_event_client_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cloudflare_logpush.spectrum_event.client.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: cloudflare_logpush_spectrum_event_client_matched_ip_firewall
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare_logpush.spectrum_event.client.matched_ip_firewall'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_logpush_spectrum_event_client_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cloudflare_logpush.spectrum_event.client.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cloudflare_logpush_spectrum_event_client_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare_logpush.spectrum_event.client.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_logpush_spectrum_event_client_tcp_rtt
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cloudflare_logpush.spectrum_event.client.tcp_rtt'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cloudflare_logpush_spectrum_event_client_tls_cipher
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare_logpush.spectrum_event.client.tls.cipher'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_logpush_spectrum_event_client_tls_client_hello_server_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare_logpush.spectrum_event.client.tls.client_hello_server_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_logpush_spectrum_event_client_tls_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare_logpush.spectrum_event.client.tls.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_logpush_spectrum_event_client_tls_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare_logpush.spectrum_event.client.tls.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_logpush_spectrum_event_colo_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare_logpush.spectrum_event.colo.code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_logpush_spectrum_event_connect_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cloudflare_logpush.spectrum_event.connect.time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: cloudflare_logpush_spectrum_event_disconnect_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cloudflare_logpush.spectrum_event.disconnect.time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: cloudflare_logpush_spectrum_event_ip_firewall
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cloudflare_logpush.spectrum_event.ip_firewall'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: cloudflare_logpush_spectrum_event_origin_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cloudflare_logpush.spectrum_event.origin.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cloudflare_logpush_spectrum_event_origin_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cloudflare_logpush.spectrum_event.origin.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: cloudflare_logpush_spectrum_event_origin_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cloudflare_logpush.spectrum_event.origin.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cloudflare_logpush_spectrum_event_origin_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare_logpush.spectrum_event.origin.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_logpush_spectrum_event_origin_tcp_rtt
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cloudflare_logpush.spectrum_event.origin.tcp_rtt'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cloudflare_logpush_spectrum_event_origin_tls_cipher
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare_logpush.spectrum_event.origin.tls.cipher'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_logpush_spectrum_event_origin_tls_fingerprint
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare_logpush.spectrum_event.origin.tls.fingerprint'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_logpush_spectrum_event_origin_tls_mode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare_logpush.spectrum_event.origin.tls.mode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_logpush_spectrum_event_origin_tls_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare_logpush.spectrum_event.origin.tls.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_logpush_spectrum_event_origin_tls_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare_logpush.spectrum_event.origin.tls.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_logpush_spectrum_event_proxy_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare_logpush.spectrum_event.proxy.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_logpush_spectrum_event_status
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cloudflare_logpush.spectrum_event.status'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cloudflare_logpush_spectrum_event_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cloudflare_logpush.spectrum_event.timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: gcs_storage_bucket_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcs.storage.bucket.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcs_storage_object_content_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcs.storage.object.content_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcs_storage_object_json_data
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcs.storage.object.json_data'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcs_storage_object_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcs.storage.object.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: log_source_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.source.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

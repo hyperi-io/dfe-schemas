@@ -1,0 +1,1219 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of zscaler_zia.web at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: log_source_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.source.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_alpn_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.alpn_protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_app_class
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.app.class'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_app_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.app.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_app_risk_score
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.app.risk_score'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_app_rule_label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.app.rule_label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_bandwidth_class_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.bandwidth_class_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_bandwidth_rule_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.bandwidth_rule_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_bandwidth_throttle
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.bandwidth_throttle'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_bypassed_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.web.bypassed.time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: zscaler_zia_web_bypassed_traffic
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.bypassed.traffic'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_client_cipher
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.client.cipher'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_client_cipher_reuse
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.client.cipher_reuse'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_client_internet_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: zscaler_zia.web.client.internet.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: zscaler_zia_web_client_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: zscaler_zia.web.client.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: zscaler_zia_web_client_public_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: zscaler_zia.web.client.public_ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: zscaler_zia_web_client_source_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.web.client.source_port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_web_client_ssl_fail_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.web.client.ssl.fail_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_web_client_ssl_fail_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.client.ssl.fail_reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_client_tls_keyex_alg
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.client.tls_keyex_alg'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_client_tls_keyex_hybrid_offers
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.web.client.tls_keyex_hybrid_offers'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_web_client_tls_keyex_non_pqc_offers
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.web.client.tls_keyex_non_pqc_offers'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_web_client_tls_keyex_pqc_offers
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.web.client.tls_keyex_pqc_offers'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_web_client_tls_keyex_unknown_offers
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.web.client.tls_keyex_unknown_offers'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_web_client_tls_sig_alg
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.client.tls_sig_alg'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_client_tls_sig_hybrid_offers
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.web.client.tls_sig_hybrid_offers'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_web_client_tls_sig_non_pqc_offers
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.web.client.tls_sig_non_pqc_offers'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_web_client_tls_sig_pqc_offers
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.web.client.tls_sig_pqc_offers'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_web_client_tls_sig_unknown_offers
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.web.client.tls_sig_unknown_offers'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_web_client_tls_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.client.tls_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_cloud_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.cloud_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_company
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.company'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_content_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.content_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_datacenter_city
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.datacenter.city'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_datacenter_country
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.datacenter.country'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_datacenter_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.datacenter.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_day
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.day'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_day_of_month
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.web.day_of_month'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_web_department
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.department'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_device_appversion
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.device.appversion'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_device_hostname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.device.hostname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_device_model
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.device.model'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_device_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.device.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_device_os_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.device.os.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_device_os_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.device.os.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_device_owner
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.device.owner'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_device_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.device.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_df_host_head
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.df.host.head'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_df_host_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.df.host.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_dlp_dictionaries_hit_count
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.dlp.dictionaries.hit_count'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_dlp_dictionaries_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.dlp.dictionaries.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_dlp_engine
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.dlp.engine'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_dlp_identifier
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.dlp.identifier'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_dlp_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.dlp.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_dlp_rule_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.dlp.rule.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_dstip_country
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.dstip_country'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_eedone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.eedone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_epochtime
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.web.epochtime'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: zscaler_zia_web_external_device_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.external.device.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_file_class
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.file.class'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_file_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.file.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_file_subtype
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.file.subtype'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_file_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.file.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_flow_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.flow_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_forward_gateway_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: zscaler_zia.web.forward_gateway.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: zscaler_zia_web_forward_gateway_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.forward_gateway.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_forward_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.forward_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_ft_rulename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.ft_rulename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_host
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.host'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_hour
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.web.hour'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_web_is_dst_cntry_risky
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.is_dst_cntry_risky'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_is_src_cntry_risky
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.is_src_cntry_risky'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_is_ssl_certificate_expired
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.is_ssl_certificate_expired'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_is_ssl_certificate_selfsigned
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.is_ssl_certificate_selfsigned'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_is_ssl_certificate_untrusted
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.is_ssl_certificate_untrusted'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_key_protection_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.key_protection_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_login
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.login'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_malware_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.malware.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_malware_class
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.malware.class'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_md5_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.md5_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_minute
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.web.minute'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_web_mobile_application_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.mobile.application.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_mobile_application_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.mobile.application.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_mobile_dev_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.mobile.dev.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_module
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.module'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_month
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.month'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_month_of_year
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.web.month_of_year'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_web_nss_service_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: zscaler_zia.web.nss.service.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: zscaler_zia_web_obfuscated_app_rule_label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.obfuscated.app_rule_label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_obfuscated_bendwidth_class_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.obfuscated.bendwidth.class_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_obfuscated_client_ip
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.obfuscated.client.ip'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_obfuscated_client_public_ip
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.obfuscated.client.public.ip'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_obfuscated_device_host_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.obfuscated.device.host_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_obfuscated_device_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.obfuscated.device.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_obfuscated_device_owner
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.obfuscated.device.owner'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_obfuscated_dlp_dictionaries
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.obfuscated.dlp.dictionaries'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_obfuscated_dlp_engine
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.obfuscated.dlp.engine'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_obfuscated_dlp_rule_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.obfuscated.dlp.rule.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_obfuscated_forward_gateway_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.obfuscated.forward_gateway_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_obfuscated_login
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.obfuscated.login'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_obfuscated_rule_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.obfuscated.rule.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_obfuscated_url_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.obfuscated.url.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_obfuscated_url_filter_rule_label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.obfuscated.url.filter_rule_label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_obfuscated_zpa_app_segment
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.obfuscated.zpa_app_segment'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_policy_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.policy.reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_product_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.product_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_prompt_req
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.prompt_req'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_prototype
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.prototype'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_record_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.record.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_redirect_policy_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.redirect_policy_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_referer_host
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.referer.host'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_referer_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.referer.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_request_header_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.web.request.header_size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_web_request_method
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.request.method'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_request_payload
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.web.request.payload'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_web_request_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.web.request.size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_web_request_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.request.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_response_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.response.code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_response_header_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.web.response.header_size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_web_response_payload
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.web.response.payload'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_web_response_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.web.response.size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_web_response_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.response.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_risk_score
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.web.risk.score'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: zscaler_zia_web_rule_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.rule.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_rule_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.rule.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_second
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.web.second'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_web_server_certificate_validation_chain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.server.certificate_validation_chain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_server_certificate_validation_period
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.server.certificate.validation.period'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_server_certificate_validation_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.server.certificate_validation_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_server_cipher
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.server.cipher'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_server_cipher_reuse
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.server.cipher_reuse'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_server_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: zscaler_zia.web.server.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: zscaler_zia_web_server_ocsp_result
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.server.ocsp_result'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_server_tls_keyex_alg
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.server.tls_keyex_alg'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_server_tls_sig_alg
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.server.tls_sig_alg'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_server_tls_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.server.tls_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_server_wildcard_certificate
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.server.wildcard_certificate'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_srcip_country
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.srcip_country'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_ssl_decrypted
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.ssl_decrypted'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_ssl_rulename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.ssl_rulename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_threat_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.threat.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_threat_severity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.threat.severity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_throttle_request_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.web.throttle.request_size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_web_throttle_response_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.web.throttle.response_size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_web_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.web.time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: zscaler_zia_web_timezone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.timezone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_total_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.web.total.size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_web_traffic_redirect_method
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.traffic_redirect_method'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_unscannable_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.unscannable.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_upload_doc_type_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.upload.doc.type_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_upload_file_class
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.upload.file.class'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_upload_file_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.upload.file.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_upload_file_subtype
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.upload.file.subtype'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_upload_file_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.upload.file.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_url_category_method
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.url.category_method'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_url_category_sub
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.url.category.sub'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_url_category_super
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.url.category.super'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_url_class
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.url.class'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_url_filter_rule_label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.url.filter_rule_label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_url_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.url.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_user_agent_class
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.user_agent.class'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_user_agent_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.user_agent.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_user_agent_token
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.user_agent.token'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_user_location_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.user_location_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_year
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.web.year'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_web_z_tunnel_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.z_tunnel_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_web_zpa_app_segment
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.web.zpa_app_segment'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

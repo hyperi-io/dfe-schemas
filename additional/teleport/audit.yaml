@@ -1,0 +1,1753 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of teleport.audit at integrations 2c934eb5223b
+    columns:
+    - name: http_request_headers
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: http.request.headers'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_device_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.device_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_fingerprint
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.fingerprint'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_idxhi
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.idxhi'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_idxlo
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.idxlo'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_inode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.inode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_vol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.vol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: process_cgroup_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: process.cgroup.id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: process_flags
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: process.flags'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: teleport_audit_access_list_members_joined_on
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: teleport.audit.access_list.members.joined_on'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: teleport_audit_access_list_members_member_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.access_list.members.member_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_access_list_members_removed_on
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: teleport.audit.access_list.members.removed_on'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: teleport_audit_access_list_membership_requirements_changed_roles
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.access_list.membership_requirements_changed.roles'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_access_list_membership_requirements_changed_traits
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: teleport.audit.access_list.membership_requirements_changed.traits'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: teleport_audit_access_list_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.access_list.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_access_list_removed_members
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.access_list.removed_members'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_access_list_review_day_of_month_changed
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.access_list.review_day_of_month_changed'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_access_list_review_frequency_changed
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.access_list.review_frequency_changed'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_access_list_review_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.access_list.review_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_access_list_review_message
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.access_list.review_message'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_access_path_change_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.access_path_change.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_access_path_change_resource_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.access_path_change.resource.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_access_path_change_resource_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.access_path_change.resource.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_access_request_annotations
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: teleport.audit.access_request.annotations'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: teleport_audit_access_request_assume_start_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: teleport.audit.access_request.assume_start_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: teleport_audit_access_request_delegator
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.access_request.delegator'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_access_request_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.access_request.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_access_request_max_duration
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: teleport.audit.access_request.max_duration'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: teleport_audit_access_request_promoted_access_list_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.access_request.promoted_access_list_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_access_request_proposed_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.access_request.proposed_state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_access_request_resource_ids
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: teleport.audit.access_request.resource_ids'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: teleport_audit_access_request_resource_search_labels
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: teleport.audit.access_request.resource_search.labels'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: teleport_audit_access_request_resource_search_predicate_expression
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.access_request.resource_search.predicate_expression'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_access_request_resource_search_resource_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.access_request.resource_search.resource_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_access_request_resource_search_search_as_roles
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.access_request.resource_search.search_as_roles'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_access_request_resource_search_search_keywords
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.access_request.resource_search.search_keywords'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_access_request_reviewer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.access_request.reviewer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_access_request_roles
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.access_request.roles'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_access_request_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.access_request.state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_addr
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.addr'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_app_aws_assumed_role
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.app.aws.assumed_role'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_app_labels
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: teleport.audit.app.labels'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: teleport_audit_app_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.app.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_app_public_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.app.public_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_app_session_chunk_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.app.session.chunk_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_app_uri
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.app.uri'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_audit_query_data_scanned_in_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: teleport.audit.audit_query.data_scanned_in_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: teleport_audit_audit_query_days
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: teleport.audit.audit_query.days'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: teleport_audit_audit_query_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.audit_query.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_audit_query_query
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.audit_query.query'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_audit_query_total_execution_time_in_millis
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: teleport.audit.audit_query.total_execution_time_in_millis'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: teleport_audit_certificate_identity_access_requests
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.certificate.identity.access_requests'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_certificate_identity_allowed_resource_ids
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: teleport.audit.certificate.identity.allowed_resource_ids'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: teleport_audit_certificate_identity_aws_role_arns
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.certificate.identity.aws_role_arns'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_certificate_identity_azure_identities
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.certificate.identity.azure_identities'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_certificate_identity_bot_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.certificate.identity.bot_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_certificate_identity_database_names
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.certificate.identity.database_names'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_certificate_identity_database_users
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.certificate.identity.database_users'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_certificate_identity_device_extensions_asset_tag
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.certificate.identity.device_extensions.asset_tag'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_certificate_identity_device_extensions_credential_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.certificate.identity.device_extensions.credential_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_certificate_identity_device_extensions_device_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.certificate.identity.device_extensions.device_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_certificate_identity_disallow_reissue
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: teleport.audit.certificate.identity.disallow_reissue'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: teleport_audit_certificate_identity_expires
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: teleport.audit.certificate.identity.expires'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: teleport_audit_certificate_identity_gcp_service_accounts
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.certificate.identity.gcp_service_accounts'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_certificate_identity_impersonator
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.certificate.identity.impersonator'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_certificate_identity_kubernetes_cluster
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.certificate.identity.kubernetes_cluster'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_certificate_identity_kubernetes_groups
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.certificate.identity.kubernetes_groups'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_certificate_identity_kubernetes_users
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.certificate.identity.kubernetes_users'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_certificate_identity_logins
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.certificate.identity.logins'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_certificate_identity_prev_identity_expires
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: teleport.audit.certificate.identity.prev_identity_expires'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: teleport_audit_certificate_identity_private_key_policy
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.certificate.identity.private_key_policy'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_certificate_identity_roles
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.certificate.identity.roles'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_certificate_identity_route_to_app_aws_role_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.certificate.identity.route_to_app.aws_role_arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_certificate_identity_route_to_app_azure_identity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.certificate.identity.route_to_app.azure_identity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_certificate_identity_route_to_app_cluster_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.certificate.identity.route_to_app.cluster_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_certificate_identity_route_to_app_gcp_service_account
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.certificate.identity.route_to_app.gcp_service_account'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_certificate_identity_route_to_app_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.certificate.identity.route_to_app.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_certificate_identity_route_to_app_public_addr
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.certificate.identity.route_to_app.public_addr'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_certificate_identity_route_to_app_session_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.certificate.identity.route_to_app.session_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_certificate_identity_route_to_cluster
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.certificate.identity.route_to_cluster'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_certificate_identity_route_to_database_database
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.certificate.identity.route_to_database.database'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_certificate_identity_route_to_database_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.certificate.identity.route_to_database.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_certificate_identity_route_to_database_roles
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.certificate.identity.route_to_database.roles'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_certificate_identity_route_to_database_service_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.certificate.identity.route_to_database.service_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_certificate_identity_route_to_database_username
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.certificate.identity.route_to_database.username'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_certificate_identity_teleport_cluster
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.certificate.identity.teleport_cluster'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_certificate_identity_traits
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: teleport.audit.certificate.identity.traits'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: teleport_audit_certificate_identity_usage
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.certificate.identity.usage'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_certificate_identity_user
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.certificate.identity.user'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_certificate_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.certificate.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_database_affected_object_counts
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: teleport.audit.database.affected_object_counts'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: teleport_audit_database_aws_redshift_cluster_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.database.aws.redshift_cluster_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_database_aws_ssm_run_command_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.database.aws.ssm_run.command_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_database_aws_ssm_run_invocation_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.database.aws.ssm_run.invocation_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_database_aws_ssm_run_stderr
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: teleport.audit.database.aws.ssm_run.stderr'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: teleport_audit_database_aws_ssm_run_stdout
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: teleport.audit.database.aws.ssm_run.stdout'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: teleport_audit_database_cassandra_batch_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.database.cassandra.batch_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_database_cassandra_children
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: teleport.audit.database.cassandra.children'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: teleport_audit_database_cassandra_consistency
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.database.cassandra.consistency'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_database_cassandra_event_types
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.database.cassandra.event_types'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_database_cassandra_keyspace
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.database.cassandra.keyspace'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_database_cassandra_query_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.database.cassandra.query_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_database_dynamodb_target
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.database.dynamodb.target'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_database_elasticsearch_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.database.elasticsearch.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_database_elasticsearch_target
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.database.elasticsearch.target'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_database_labels
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: teleport.audit.database.labels'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: teleport_audit_database_mysql_data_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: teleport.audit.database.mysql.data_size'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: teleport_audit_database_mysql_parameter_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: teleport.audit.database.mysql.parameter_id'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: teleport_audit_database_mysql_process_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: teleport.audit.database.mysql.process_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: teleport_audit_database_mysql_rows_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: teleport.audit.database.mysql.rows_count'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: teleport_audit_database_mysql_schema_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.database.mysql.schema_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_database_mysql_statement_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: teleport.audit.database.mysql.statement_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: teleport_audit_database_mysql_subcommand
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.database.mysql.subcommand'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_database_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.database.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_database_opensearch_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.database.opensearch.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_database_opensearch_target
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.database.opensearch.target'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_database_origin
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.database.origin'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_database_payload
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: teleport.audit.database.payload'
+      comment: 'Elasticsearch mapping type: binary'
+      _field_type: base
+    - name: teleport_audit_database_permission_summary
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: teleport.audit.database.permission_summary'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: teleport_audit_database_postgres_function_args
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.database.postgres.function_args'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_database_postgres_function_oid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.database.postgres.function_oid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_database_postgres_portal_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.database.postgres.portal_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_database_postgres_statement_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.database.postgres.statement_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_database_proc_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.database.proc_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_database_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.database.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_database_query
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.database.query'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_database_query_parameters
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.database.query_parameters'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_database_request_body
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: teleport.audit.database.request_body'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: teleport_audit_database_roles
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.database.roles'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_database_spanner_rpc_args
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: teleport.audit.database.spanner.rpc.args'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: teleport_audit_database_spanner_rpc_procedure
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.database.spanner.rpc.procedure'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_database_user
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.database.user'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_database_user_change_is_deleted
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: teleport.audit.database.user_change.is_deleted'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: teleport_audit_database_user_change_username
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.database.user_change.username'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_desktop_allow_user_creation
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: teleport.audit.desktop.allow_user_creation'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: teleport_audit_desktop_delay_ms
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: teleport.audit.desktop.delay_ms'
+      comment: 'Elasticsearch mapping type: unsigned_long'
+      _field_type: base
+    - name: teleport_audit_desktop_directory_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: teleport.audit.desktop.directory_id'
+      comment: 'Elasticsearch mapping type: unsigned_long'
+      _field_type: base
+    - name: teleport_audit_desktop_is_recorded
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: teleport.audit.desktop.is_recorded'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: teleport_audit_desktop_labels
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: teleport.audit.desktop.labels'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: teleport_audit_desktop_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.desktop.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_desktop_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: teleport.audit.desktop.offset'
+      comment: 'Elasticsearch mapping type: unsigned_long'
+      _field_type: base
+    - name: teleport_audit_desktop_windows_desktop_service
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.desktop.windows_desktop_service'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_device_asset_tag
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.device.asset_tag'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_device_credential_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.device.credential_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_device_device_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.device.device_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_device_origin
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.device.origin'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_device_os_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.device.os_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_device_web_authentication
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: teleport.audit.device.web_authentication'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: teleport_audit_device_web_session_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.device.web_session_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_external_audit_storage_athena_results_uri
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.external_audit_storage.athena_results_uri'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_external_audit_storage_athena_workgroup
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.external_audit_storage.athena_workgroup'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_external_audit_storage_audit_events_long_term_uri
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.external_audit_storage.audit_events_long_term_uri'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_external_audit_storage_glue_database
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.external_audit_storage.glue_database'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_external_audit_storage_glue_table
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.external_audit_storage.glue_table'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_external_audit_storage_integration_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.external_audit_storage.integration_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_external_audit_storage_policy_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.external_audit_storage.policy_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_external_audit_storage_session_recordings_uri
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.external_audit_storage.session_recordings_uri'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_file_transfer_request_approvers
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.file_transfer_request.approvers'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_file_transfer_request_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.file_transfer_request.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_file_transfer_request_is_download
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: teleport.audit.file_transfer_request.is_download'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: teleport_audit_file_transfer_request_requester
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.file_transfer_request.requester'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_join_attributes
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: teleport.audit.join.attributes'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: teleport_audit_join_bot_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.join.bot_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_join_method
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.join.method'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_join_role
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.join.role'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_join_token_expires
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: teleport.audit.join.token_expires'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: teleport_audit_join_token_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.join.token_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_join_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.join.user_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_kubernetes_groups
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: teleport.audit.kubernetes.groups'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: teleport_audit_kubernetes_labels
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: teleport.audit.kubernetes.labels'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: teleport_audit_kubernetes_pod_container_image
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: teleport.audit.kubernetes.pod.container_image'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: teleport_audit_kubernetes_pod_container_name
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: teleport.audit.kubernetes.pod.container_name'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: teleport_audit_kubernetes_pod_node_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.kubernetes.pod.node_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_kubernetes_users
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: teleport.audit.kubernetes.users'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: teleport_audit_lock_target
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: teleport.audit.lock.target'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: teleport_audit_login_applied_rules
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.login.applied_rules'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_login_challenge_allow_reuse
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: teleport.audit.login.challenge_allow_reuse'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: teleport_audit_login_challenge_scope
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.login.challenge_scope'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_login_identity_attributes
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: teleport.audit.login.identity_attributes'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: teleport_audit_login_method
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.login.method'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_mfa_device_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.mfa_device.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_mfa_device_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.mfa_device.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_mfa_device_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.mfa_device.uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_network_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.network.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_network_operation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.network.operation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_okta_app_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.okta.app_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_okta_assignment_ending_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.okta.assignment.ending_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_okta_assignment_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.okta.assignment.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_okta_assignment_starting_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.okta.assignment.starting_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_okta_assignment_user
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.okta.assignment.user'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_okta_org_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.okta.org_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_okta_resources_added
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: teleport.audit.okta.resources.added'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: teleport_audit_okta_resources_deleted
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: teleport.audit.okta.resources.deleted'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: teleport_audit_okta_resources_updated
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: teleport.audit.okta.resources.updated'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: teleport_audit_okta_users_created
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: teleport.audit.okta.users.created'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: teleport_audit_okta_users_deleted
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: teleport.audit.okta.users.deleted'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: teleport_audit_okta_users_modified
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: teleport.audit.okta.users.modified'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: teleport_audit_okta_users_total
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: teleport.audit.okta.users.total'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: teleport_audit_resource_expires
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: teleport.audit.resource.expires'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: teleport_audit_resource_ttl
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.resource.ttl'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_saml_idp_service_provider_attribute_mapping
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: teleport.audit.saml_idp_service_provider.attribute_mapping'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: teleport_audit_saml_idp_service_provider_entity_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.saml_idp_service_provider.entity_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_saml_idp_service_provider_shortcut
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.saml_idp_service_provider.shortcut'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_scp_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.scp.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_sec_report_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.sec_report.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_sec_report_total_data_scanned_in_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: teleport.audit.sec_report.total_data_scanned_in_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: teleport_audit_sec_report_total_execution_time_in_millis
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: teleport.audit.sec_report.total_execution_time_in_millis'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: teleport_audit_sec_report_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.sec_report.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_server_forwarded_by
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.server.forwarded_by'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_server_labels
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: teleport.audit.server.labels'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: teleport_audit_server_sub_kind
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.server.sub_kind'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_server_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.server.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_session_enhanced_recording
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: teleport.audit.session.enhanced_recording'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: teleport_audit_session_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.session.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_session_interactive
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: teleport.audit.session.interactive'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: teleport_audit_session_participants
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.session.participants'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_session_private_key_policy
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.session.private_key_policy'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_session_session_recording
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.session.session_recording'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_session_terminal_size
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.session.terminal_size'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_sftp_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.sftp.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_sftp_attributes
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: teleport.audit.sftp.attributes'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: teleport_audit_sftp_target_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.sftp.target_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_svid_dns_sans
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.svid.dns_sans'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_svid_hint
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.svid.hint'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_svid_ip_sans
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.svid.ip_sans'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_svid_serial_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.svid.serial_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_svid_spiffe_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.svid.spiffe_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_svid_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.svid.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_unknown_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.unknown.code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_unknown_data
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: teleport.audit.unknown.data'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: teleport_audit_unknown_event_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.unknown.event_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_unknown_metadata
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: teleport.audit.unknown.metadata'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: teleport_audit_upgradewindow_start
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.upgradewindow.start'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_user_access_requests
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.user.access_requests'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_user_aws_role_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.user.aws_role_arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_user_azure_identity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.user.azure_identity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_user_connector
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.user.connector'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_user_gcp_service_account
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.user.gcp_service_account'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_user_impersonator
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.user.impersonator'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_user_kind
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.user.kind'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_user_required_private_key_policy
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: teleport.audit.user.required_private_key_policy'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: teleport_audit_user_trusted_device
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: teleport.audit.user.trusted_device'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base

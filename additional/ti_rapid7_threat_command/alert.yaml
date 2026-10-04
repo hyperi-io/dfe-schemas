@@ -1,0 +1,232 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of ti_rapid7_threat_command.alert at integrations 2c934eb5223b
+    columns:
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: rapid7_tc_alert_assets_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.tc.alert.assets.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_tc_alert_assets_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.tc.alert.assets.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_tc_alert_assignees
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.tc.alert.assignees'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_tc_alert_details_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.tc.alert.details.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_tc_alert_details_images
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.tc.alert.details.images'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_tc_alert_details_severity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.tc.alert.details.severity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_tc_alert_details_source_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rapid7.tc.alert.details.source.date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: rapid7_tc_alert_details_source_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.tc.alert.details.source.email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_tc_alert_details_source_leak_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.tc.alert.details.source.leak_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_tc_alert_details_source_network_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.tc.alert.details.source.network_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_tc_alert_details_source_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.tc.alert.details.source.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_tc_alert_details_source_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.tc.alert.details.source.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_tc_alert_details_subtype
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.tc.alert.details.subtype'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_tc_alert_details_tags_created_by
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.tc.alert.details.tags.created_by'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_tc_alert_details_tags_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.tc.alert.details.tags.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_tc_alert_details_tags_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.tc.alert.details.tags.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_tc_alert_details_title
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.tc.alert.details.title'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_tc_alert_details_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.tc.alert.details.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_tc_alert_found_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rapid7.tc.alert.found_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: rapid7_tc_alert_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.tc.alert.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_tc_alert_is_closed
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: rapid7.tc.alert.is_closed'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: rapid7_tc_alert_is_flagged
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: rapid7.tc.alert.is_flagged'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: rapid7_tc_alert_related_iocs
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.tc.alert.related_iocs'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_tc_alert_related_threat_ids
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.tc.alert.related_threat_ids'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_tc_alert_takedown_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.tc.alert.takedown_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_tc_alert_update_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rapid7.tc.alert.update_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base

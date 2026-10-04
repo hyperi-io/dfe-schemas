@@ -1,0 +1,304 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of panw_cortex_xdr.incidents at integrations 2c934eb5223b
+    columns:
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_cortex_xdr_aggregated_score
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw_cortex.xdr.aggregated_score'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_cortex_xdr_alert_categories
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw_cortex.xdr.alert_categories'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_cortex_xdr_alert_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw_cortex.xdr.alert_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_cortex_xdr_alerts_grouping_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw_cortex.xdr.alerts_grouping_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_cortex_xdr_assigned_user_mail
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw_cortex.xdr.assigned_user_mail'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_cortex_xdr_assigned_user_pretty_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw_cortex.xdr.assigned_user_pretty_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_cortex_xdr_creation_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw_cortex.xdr.creation_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: panw_cortex_xdr_critical_severity_alert_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw_cortex.xdr.critical_severity_alert_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_cortex_xdr_detection_time
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: panw_cortex.xdr.detection_time'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: panw_cortex_xdr_high_severity_alert_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw_cortex.xdr.high_severity_alert_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_cortex_xdr_host_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw_cortex.xdr.host_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_cortex_xdr_hosts
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw_cortex.xdr.hosts'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_cortex_xdr_incident_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw_cortex.xdr.incident_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_cortex_xdr_incident_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw_cortex.xdr.incident_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_cortex_xdr_incident_sources
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw_cortex.xdr.incident_sources'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_cortex_xdr_low_severity_alert_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw_cortex.xdr.low_severity_alert_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_cortex_xdr_manual_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw_cortex.xdr.manual_description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_cortex_xdr_manual_score
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: panw_cortex.xdr.manual_score'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: panw_cortex_xdr_manual_severity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw_cortex.xdr.manual_severity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_cortex_xdr_med_severity_alert_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw_cortex.xdr.med_severity_alert_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_cortex_xdr_mitre_tactics_ids_and_names
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw_cortex.xdr.mitre_tactics_ids_and_names'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_cortex_xdr_mitre_techniques_ids_and_names
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw_cortex.xdr.mitre_techniques_ids_and_names'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_cortex_xdr_modification_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw_cortex.xdr.modification_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: panw_cortex_xdr_notes
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw_cortex.xdr.notes'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_cortex_xdr_original_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw_cortex.xdr.original_tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_cortex_xdr_predicted_score
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw_cortex.xdr.predicted_score'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_cortex_xdr_resolve_comment
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw_cortex.xdr.resolve_comment'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_cortex_xdr_resolved_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw_cortex.xdr.resolved_timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: panw_cortex_xdr_rule_based_score
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw_cortex.xdr.rule_based_score'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_cortex_xdr_starred
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: panw_cortex.xdr.starred'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: panw_cortex_xdr_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw_cortex.xdr.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_cortex_xdr_user_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw_cortex.xdr.user_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_cortex_xdr_users
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw_cortex.xdr.users'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_cortex_xdr_wildfire_hits
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw_cortex.xdr.wildfire_hits'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_cortex_xdr_xdr_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw_cortex.xdr.xdr_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

@@ -1,0 +1,64 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of qualys_vmdr.user_activity at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_vmdr_user_activity_Action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_vmdr.user_activity.Action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_vmdr_user_activity_Date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_vmdr.user_activity.Date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_vmdr_user_activity_Details
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_vmdr.user_activity.Details'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_vmdr_user_activity_Module
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_vmdr.user_activity.Module'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_vmdr_user_activity_User_IP
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_vmdr.user_activity.User_IP'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_vmdr_user_activity_User_Name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_vmdr.user_activity.User_Name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_vmdr_user_activity_User_Role
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_vmdr.user_activity.User_Role'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

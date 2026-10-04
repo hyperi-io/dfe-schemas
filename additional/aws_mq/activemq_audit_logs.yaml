@@ -1,0 +1,99 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of aws_mq.activemq_audit_logs at integrations 2c934eb5223b
+    columns:
+    - name: activemq_audit_thread
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: activemq.audit.thread'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_cloudwatch_ingestion_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.cloudwatch.ingestion_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_cloudwatch_log_group
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.cloudwatch.log_group'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_cloudwatch_log_stream
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.cloudwatch.log_stream'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_cloudwatch_message
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: aws.cloudwatch.message'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: awscloudwatch_ingestion_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: awscloudwatch.ingestion_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: awscloudwatch_log_group
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: awscloudwatch.log_group'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: awscloudwatch_log_stream
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: awscloudwatch.log_stream'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

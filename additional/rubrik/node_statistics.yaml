@@ -1,0 +1,99 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of rubrik.node_statistics at integrations 2c934eb5223b
+    columns:
+    - name: rubrik_cluster_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rubrik.cluster.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rubrik_cluster_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rubrik.cluster.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rubrik_cluster_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rubrik.cluster.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rubrik_node_statistics_cpu_stat_pct
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rubrik.node_statistics.cpu_stat.pct'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: rubrik_node_statistics_iops_reads
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rubrik.node_statistics.iops.reads'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: rubrik_node_statistics_iops_writes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rubrik.node_statistics.iops.writes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: rubrik_node_statistics_network_received_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rubrik.node_statistics.network.received.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: rubrik_node_statistics_network_transmitted_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rubrik.node_statistics.network.transmitted.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: rubrik_node_statistics_node_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rubrik.node_statistics.node_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rubrik_node_statistics_throughput_read_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rubrik.node_statistics.throughput.read.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: rubrik_node_statistics_throughput_write_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rubrik.node_statistics.throughput.write.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: rubrik_node_statistics_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rubrik.node_statistics.time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: rubrik_node_statistics_used_memory_pct
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rubrik.node_statistics.used_memory.pct'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base

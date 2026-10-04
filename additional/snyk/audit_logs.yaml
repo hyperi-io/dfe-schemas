@@ -1,0 +1,94 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of snyk.audit_logs at integrations 2c934eb5223b
+    columns:
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: snyk_audit_logs_content
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: snyk.audit_logs.content'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: snyk_audit_logs_org_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.audit_logs.org_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_audit_logs_project_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.audit_logs.project_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_audit_logs_user_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.audit_logs.user_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_projects
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: snyk.projects'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: snyk_related_projects
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.related.projects'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

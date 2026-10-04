@@ -1,0 +1,126 @@
+base: meta/elastic/ecs
+base_version: "1.0.0"
+current: "1.0.0"
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    summary: bitdefender.push_notifications selection from meta/elastic/ecs
+    select:
+    - name: data_stream_dataset
+      index: exact_match
+    - name: data_stream_namespace
+      index: exact_match
+    - name: data_stream_type
+      index: exact_match
+    - name: destination_ip
+      index: dimension
+    - name: destination_nat_ip
+      index: dimension
+    - name: destination_port
+      index: range
+    - name: device_id
+      index: exact_match
+    - name: device_model_name
+      index: exact_match
+    - name: ecs_version
+      index: exact_match
+    - name: email_sender_address
+      index: exact_match
+    - name: email_subject
+      index: exact_match
+    - name: email_to_address
+      index: exact_match
+    - name: event_action
+      index: exact_match
+    - name: event_category
+      index: exact_match
+    - name: event_id
+      index: exact_match
+    - name: event_kind
+      index: exact_match
+    - name: event_module
+      index: exact_match
+    - name: event_original
+      index: none
+    - name: event_provider
+      index: exact_match
+    - name: event_severity
+      index: range
+    - name: event_type
+      index: exact_match
+    - name: file_hash_md5
+      index: exact_match
+    - name: file_hash_sha256
+      index: exact_match
+    - name: file_name
+      index: exact_match
+    - name: file_path
+      index: exact_match
+    - name: file_size
+      index: range
+    - name: host_hostname
+      index: exact_match
+    - name: host_id
+      index: exact_match
+    - name: host_ip
+      index: dimension
+    - name: host_name
+      index: exact_match
+    - name: message
+      index: word_search
+    - name: organization_id
+      index: exact_match
+    - name: organization_name
+      index: exact_match
+    - name: process_command_line
+      index: exact_match
+    - name: process_executable
+      index: exact_match
+    - name: process_parent_executable
+      index: exact_match
+    - name: process_parent_pid
+      index: range
+    - name: process_pid
+      index: range
+    - name: related_hash
+      index: exact_match
+    - name: related_hosts
+      index: exact_match
+    - name: related_ip
+      index: dimension
+    - name: related_user
+      index: exact_match
+    - name: source_ip
+      index: dimension
+    - name: tags
+      index: exact_match
+    - name: threat_software_name
+      index: exact_match
+    - name: threat_technique_id
+      index: exact_match
+    - name: threat_technique_name
+      index: exact_match
+    - name: url_domain
+      index: exact_match
+    - name: url_extension
+      index: exact_match
+    - name: url_original
+      index: exact_match
+    - name: url_path
+      index: exact_match
+    - name: url_port
+      index: range
+    - name: url_registered_domain
+      index: exact_match
+    - name: url_scheme
+      index: exact_match
+    - name: url_top_level_domain
+      index: exact_match
+    - name: user_domain
+      index: exact_match
+    - name: user_email
+      index: exact_match
+    - name: user_id
+      index: exact_match
+    - name: user_name
+      index: exact_match

@@ -1,0 +1,351 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of zscaler_zpa.user_activity at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: log_source_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.source.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_app_group
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zpa.user_activity.app_group'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_app_learn_time
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.user_activity.app_learn_time'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_application
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zpa.user_activity.application'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_ca_processing_time
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.user_activity.ca_processing_time'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_client_private_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: zscaler_zpa.user_activity.client_private_ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_client_to_client
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zpa.user_activity.client_to_client'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_connection_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zpa.user_activity.connection.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_connection_setup_time
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.user_activity.connection.setup_time'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_connection_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zpa.user_activity.connection.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_connector_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: zscaler_zpa.user_activity.connector.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_connector_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zpa.user_activity.connector.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_connector_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.user_activity.connector.port'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_connector_zen_setup_time
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.user_activity.connector_zen_setup_time'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_double_encryption
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.user_activity.double_encryption'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_idp
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zpa.user_activity.idp'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_internal_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zpa.user_activity.internal_reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_policy_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zpa.user_activity.policy.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_policy_processing_time
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.user_activity.policy.processing_time'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_server
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zpa.user_activity.server'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_server_setup_time
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.user_activity.server_setup_time'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_service_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.user_activity.service_port'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_session_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zpa.user_activity.session_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_timestamp_app_learn_start
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zpa.user_activity.timestamp.app_learn_start'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_timestamp_ca_rx
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.user_activity.timestamp.ca.rx'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_timestamp_ca_tx
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.user_activity.timestamp.ca.tx'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_timestamp_connection_end
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.user_activity.timestamp.connection.end'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_timestamp_connection_start
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.user_activity.timestamp.connection.start'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_timestamp_connector_zen_setup_complete
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.user_activity.timestamp.connector_zen.setup_complete'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_timestamp_zen_client_rx_first
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.user_activity.timestamp.zen.client.rx.first'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_timestamp_zen_client_rx_last
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.user_activity.timestamp.zen.client.rx.last'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_timestamp_zen_client_tx_first
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.user_activity.timestamp.zen.client.tx.first'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_timestamp_zen_client_tx_last
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.user_activity.timestamp.zen.client.tx.last'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_timestamp_zen_connector_rx_first
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.user_activity.timestamp.zen.connector.rx.first'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_timestamp_zen_connector_rx_last
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.user_activity.timestamp.zen.connector.rx.last'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_timestamp_zen_connector_tx_first
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.user_activity.timestamp.zen.connector.tx.first'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_timestamp_zen_connector_tx_last
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.user_activity.timestamp.zen.connector.tx.last'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_zen_client_bytes_rx
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.user_activity.zen.client.bytes_rx'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_zen_client_bytes_tx
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.user_activity.zen.client.bytes_tx'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_zen_client_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zpa.user_activity.zen.client.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_zen_client_total_bytes_rx
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.user_activity.zen.client.total.bytes_rx'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_zen_client_total_bytes_tx
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.user_activity.zen.client.total.bytes_tx'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_zen_connector_bytes_rx
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.user_activity.zen.connector.bytes_rx'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_zen_connector_bytes_tx
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.user_activity.zen.connector.bytes_tx'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_zen_connector_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zpa.user_activity.zen.connector.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_zen_connector_total_bytes_rx
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.user_activity.zen.connector.total.bytes_rx'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zpa_user_activity_zen_connector_total_bytes_tx
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zpa.user_activity.zen.connector.total.bytes_tx'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

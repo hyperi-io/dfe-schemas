@@ -1,0 +1,2077 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of aws.guardduty at integrations 2c934eb5223b
+    columns:
+    - name: aws_guardduty_account_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.account_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_confidence
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.guardduty.confidence'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_guardduty_created_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.guardduty.created_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_guardduty_description
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: aws.guardduty.description'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: aws_guardduty_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_partition
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.partition'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_region
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.region'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_access_key_details_accesskey_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.access_key_details.accesskey_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_access_key_details_principal_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.access_key_details.principal_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_access_key_details_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.access_key_details.user.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_access_key_details_user_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.access_key_details.user.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_container_details_container_runtime
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.container_details.container_runtime'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_container_details_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.container_details.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_container_details_image_prefix
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.container_details.image.prefix'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_container_details_image_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.container_details.image.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_container_details_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.container_details.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_container_details_security_context_privileged
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.guardduty.resource.container_details.security_context.privileged'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: aws_guardduty_resource_container_details_volume_mounts_mount_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.container_details.volume_mounts.mount_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_container_details_volume_mounts_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.container_details.volume_mounts.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_ebs_volume_details_scanned_volume_details_device_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.ebs_volume_details.scanned_volume_details.device_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_ebs_volume_details_scanned_volume_details_encryption_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.ebs_volume_details.scanned_volume_details.encryption_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_ebs_volume_details_scanned_volume_details_kmskey_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.ebs_volume_details.scanned_volume_details.kmskey_arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_ebs_volume_details_scanned_volume_details_snapshot_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.ebs_volume_details.scanned_volume_details.snapshot_arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_ebs_volume_details_scanned_volume_details_volume_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.ebs_volume_details.scanned_volume_details.volume.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_ebs_volume_details_scanned_volume_details_volume_size_in_gb
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.guardduty.resource.ebs_volume_details.scanned_volume_details.volume.size_in_gb'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_guardduty_resource_ebs_volume_details_scanned_volume_details_volume_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.ebs_volume_details.scanned_volume_details.volume.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_ebs_volume_details_skipped_volume_details_device_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.ebs_volume_details.skipped_volume_details.device_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_ebs_volume_details_skipped_volume_details_encryption_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.ebs_volume_details.skipped_volume_details.encryption_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_ebs_volume_details_skipped_volume_details_kmskey_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.ebs_volume_details.skipped_volume_details.kmskey_arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_ebs_volume_details_skipped_volume_details_snapshot_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.ebs_volume_details.skipped_volume_details.snapshot_arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_ebs_volume_details_skipped_volume_details_volume_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.ebs_volume_details.skipped_volume_details.volume.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_ebs_volume_details_skipped_volume_details_volume_size_in_gb
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.guardduty.resource.ebs_volume_details.skipped_volume_details.volume.size_in_gb'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_guardduty_resource_ebs_volume_details_skipped_volume_details_volume_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.ebs_volume_details.skipped_volume_details.volume.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_ecs_cluster_details_active_services_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.guardduty.resource.ecs_cluster_details.active_services_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_guardduty_resource_ecs_cluster_details_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.ecs_cluster_details.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_ecs_cluster_details_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.ecs_cluster_details.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_ecs_cluster_details_registered_container_instances_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.guardduty.resource.ecs_cluster_details.registered_container_instances_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_guardduty_resource_ecs_cluster_details_running_tasks_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.guardduty.resource.ecs_cluster_details.running_tasks_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_guardduty_resource_ecs_cluster_details_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.ecs_cluster_details.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_ecs_cluster_details_tags_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.ecs_cluster_details.tags.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_ecs_cluster_details_tags_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.ecs_cluster_details.tags.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_ecs_cluster_details_task_details_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.ecs_cluster_details.task_details.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_ecs_cluster_details_task_details_containers_container_runtime
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.ecs_cluster_details.task_details.containers.container_runtime'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_ecs_cluster_details_task_details_containers_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.ecs_cluster_details.task_details.containers.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_ecs_cluster_details_task_details_containers_image_prefix
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.ecs_cluster_details.task_details.containers.image.prefix'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_ecs_cluster_details_task_details_containers_image_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.ecs_cluster_details.task_details.containers.image.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_ecs_cluster_details_task_details_containers_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.ecs_cluster_details.task_details.containers.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_ecs_cluster_details_task_details_containers_security_context_privileged
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.guardduty.resource.ecs_cluster_details.task_details.containers.security_context.privileged'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: aws_guardduty_resource_ecs_cluster_details_task_details_containers_volume_mounts_mount_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.ecs_cluster_details.task_details.containers.volume_mounts.mount_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_ecs_cluster_details_task_details_containers_volume_mounts_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.ecs_cluster_details.task_details.containers.volume_mounts.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_ecs_cluster_details_task_details_created_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.guardduty.resource.ecs_cluster_details.task_details.created_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_guardduty_resource_ecs_cluster_details_task_details_definitionarn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.ecs_cluster_details.task_details.definitionarn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_ecs_cluster_details_task_details_group
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.ecs_cluster_details.task_details.group'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_ecs_cluster_details_task_details_started_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.guardduty.resource.ecs_cluster_details.task_details.started_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_guardduty_resource_ecs_cluster_details_task_details_started_by
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.ecs_cluster_details.task_details.started_by'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_ecs_cluster_details_task_details_tags_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.ecs_cluster_details.task_details.tags.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_ecs_cluster_details_task_details_tags_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.ecs_cluster_details.task_details.tags.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_ecs_cluster_details_task_details_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.ecs_cluster_details.task_details.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_ecs_cluster_details_task_details_volumes_host_path_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.ecs_cluster_details.task_details.volumes.host_path.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_ecs_cluster_details_task_details_volumes_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.ecs_cluster_details.task_details.volumes.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_eks_cluster_details_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.eks_cluster_details.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_eks_cluster_details_created_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.guardduty.resource.eks_cluster_details.created_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_guardduty_resource_eks_cluster_details_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.eks_cluster_details.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_eks_cluster_details_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.eks_cluster_details.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_eks_cluster_details_tags_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.eks_cluster_details.tags.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_eks_cluster_details_tags_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.eks_cluster_details.tags.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_eks_cluster_details_vpcid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.eks_cluster_details.vpcid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_instance_details_availability_zone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.instance_details.availability_zone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_instance_details_iaminstance_profile_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.instance_details.iaminstance_profile.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_instance_details_iaminstance_profile_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.instance_details.iaminstance_profile.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_instance_details_image_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.instance_details.image.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_instance_details_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.instance_details.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_instance_details_instance_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.instance_details.instance.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_instance_details_instance_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.instance_details.instance.state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_instance_details_instance_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.instance_details.instance.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_instance_details_launch_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.guardduty.resource.instance_details.launch_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_guardduty_resource_instance_details_network_interfaces_ipv6_addresses
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.guardduty.resource.instance_details.network_interfaces.ipv6_addresses'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: aws_guardduty_resource_instance_details_network_interfaces_network_interface_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.instance_details.network_interfaces.network_interface_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_instance_details_network_interfaces_private_dns_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.instance_details.network_interfaces.private.dns_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_instance_details_network_interfaces_private_ip_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.guardduty.resource.instance_details.network_interfaces.private.ip_address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: aws_guardduty_resource_instance_details_network_interfaces_private_ip_addresses_private_dns_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.instance_details.network_interfaces.private.ip_addresses.private.dns_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_instance_details_network_interfaces_private_ip_addresses_private_ip_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.guardduty.resource.instance_details.network_interfaces.private.ip_addresses.private.ip_address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: aws_guardduty_resource_instance_details_network_interfaces_public_dns_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.instance_details.network_interfaces.public.dns_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_instance_details_network_interfaces_public_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.guardduty.resource.instance_details.network_interfaces.public.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: aws_guardduty_resource_instance_details_network_interfaces_security_groups_group_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.instance_details.network_interfaces.security_groups.group.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_instance_details_network_interfaces_security_groups_group_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.instance_details.network_interfaces.security_groups.group.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_instance_details_network_interfaces_subnet_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.instance_details.network_interfaces.subnet_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_instance_details_network_interfaces_vpc_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.instance_details.network_interfaces.vpc_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_instance_details_outpost_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.instance_details.outpost_arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_instance_details_platform
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.instance_details.platform'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_instance_details_product_codes_product_code_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.instance_details.product_codes.product_code.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_instance_details_product_codes_product_code_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.instance_details.product_codes.product_code.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_instance_details_tags_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.instance_details.tags.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_instance_details_tags_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.instance_details.tags.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_kubernetes_details_kubernetes_user_details_groups
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.kubernetes_details.kubernetes_user_details.groups'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_kubernetes_details_kubernetes_user_details_uid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.kubernetes_details.kubernetes_user_details.uid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_kubernetes_details_kubernetes_user_details_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.kubernetes_details.kubernetes_user_details.user_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_kubernetes_details_kubernetes_workload_details_containers_container_runtime
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.kubernetes_details.kubernetes_workload_details.containers.container_runtime'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_kubernetes_details_kubernetes_workload_details_containers_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.kubernetes_details.kubernetes_workload_details.containers.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_kubernetes_details_kubernetes_workload_details_containers_image_prefix
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.kubernetes_details.kubernetes_workload_details.containers.image.prefix'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_kubernetes_details_kubernetes_workload_details_containers_image_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.kubernetes_details.kubernetes_workload_details.containers.image.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_kubernetes_details_kubernetes_workload_details_containers_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.kubernetes_details.kubernetes_workload_details.containers.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_kubernetes_details_kubernetes_workload_details_containers_security_context_privileged
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.guardduty.resource.kubernetes_details.kubernetes_workload_details.containers.security_context.privileged'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: aws_guardduty_resource_kubernetes_details_kubernetes_workload_details_containers_volume_mounts_mount_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.kubernetes_details.kubernetes_workload_details.containers.volume_mounts.mount_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_kubernetes_details_kubernetes_workload_details_containers_volume_mounts_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.kubernetes_details.kubernetes_workload_details.containers.volume_mounts.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_kubernetes_details_kubernetes_workload_details_host_network
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.guardduty.resource.kubernetes_details.kubernetes_workload_details.host_network'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: aws_guardduty_resource_kubernetes_details_kubernetes_workload_details_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.kubernetes_details.kubernetes_workload_details.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_kubernetes_details_kubernetes_workload_details_name_space
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.kubernetes_details.kubernetes_workload_details.name_space'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_kubernetes_details_kubernetes_workload_details_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.kubernetes_details.kubernetes_workload_details.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_kubernetes_details_kubernetes_workload_details_uid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.kubernetes_details.kubernetes_workload_details.uid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_kubernetes_details_kubernetes_workload_details_volumes_host_path_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.kubernetes_details.kubernetes_workload_details.volumes.host_path.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_kubernetes_details_kubernetes_workload_details_volumes_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.kubernetes_details.kubernetes_workload_details.volumes.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_rdsdb_instance_details_cluster_identifier
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.rdsdb_instance_details.cluster_identifier'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_rdsdb_instance_details_engine
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.rdsdb_instance_details.engine'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_rdsdb_instance_details_engine_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.rdsdb_instance_details.engine_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_rdsdb_instance_details_instance_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.rdsdb_instance_details.instance_arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_rdsdb_instance_details_instance_identifier
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.rdsdb_instance_details.instance_identifier'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_rdsdb_user_details_application
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.rdsdb_user_details.application'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_rdsdb_user_details_auth_method
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.rdsdb_user_details.auth_method'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_rdsdb_user_details_database
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.rdsdb_user_details.database'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_rdsdb_user_details_ssl
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.rdsdb_user_details.ssl'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_rdsdb_user_details_user
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.rdsdb_user_details.user'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_s3_bucket_details_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.s3_bucket_details.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_s3_bucket_details_created_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.guardduty.resource.s3_bucket_details.created_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_guardduty_resource_s3_bucket_details_default_server_side_encryption_encryption_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.s3_bucket_details.default_server_side_encryption.encryption_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_s3_bucket_details_default_server_side_encryption_kms_masterkey_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.s3_bucket_details.default_server_side_encryption.kms_masterkey_arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_s3_bucket_details_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.s3_bucket_details.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_s3_bucket_details_owner_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.s3_bucket_details.owner.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_s3_bucket_details_public_access
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: aws.guardduty.resource.s3_bucket_details.public_access'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: aws_guardduty_resource_s3_bucket_details_tags_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.s3_bucket_details.tags.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_s3_bucket_details_tags_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.s3_bucket_details.tags.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_s3_bucket_details_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.s3_bucket_details.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_resource_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.resource.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_schema_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.schema_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_aws_api_call_action_affected_resources
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: aws.guardduty.service.action.aws_api_call_action.affected_resources'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: aws_guardduty_service_action_aws_api_call_action_api
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.aws_api_call_action.api'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_aws_api_call_action_caller_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.aws_api_call_action.caller_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_aws_api_call_action_domain_details_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.aws_api_call_action.domain_details.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_aws_api_call_action_error_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.aws_api_call_action.error_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_aws_api_call_action_remote_account_details_account_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.aws_api_call_action.remote_account_details.account_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_aws_api_call_action_remote_account_details_affiliated
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.guardduty.service.action.aws_api_call_action.remote_account_details.affiliated'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: aws_guardduty_service_action_aws_api_call_action_remote_ip_details_city_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.aws_api_call_action.remote_ip_details.city.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_aws_api_call_action_remote_ip_details_country_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.aws_api_call_action.remote_ip_details.country.code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_aws_api_call_action_remote_ip_details_country_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.aws_api_call_action.remote_ip_details.country.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_aws_api_call_action_remote_ip_details_geo_location
+      type: geo_point
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: aws.guardduty.service.action.aws_api_call_action.remote_ip_details.geo_location'
+      comment: 'Elasticsearch mapping type: geo_point'
+      _field_type: base
+    - name: aws_guardduty_service_action_aws_api_call_action_remote_ip_details_ip_address_v4
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.guardduty.service.action.aws_api_call_action.remote_ip_details.ip_address_v4'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: aws_guardduty_service_action_aws_api_call_action_remote_ip_details_organization_asn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.aws_api_call_action.remote_ip_details.organization.asn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_aws_api_call_action_remote_ip_details_organization_asnorg
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.aws_api_call_action.remote_ip_details.organization.asnorg'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_aws_api_call_action_remote_ip_details_organization_isp
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.aws_api_call_action.remote_ip_details.organization.isp'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_aws_api_call_action_remote_ip_details_organization_org
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.aws_api_call_action.remote_ip_details.organization.org'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_aws_api_call_action_service_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.aws_api_call_action.service_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_aws_api_call_action_user_agent
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.aws_api_call_action.user_agent'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_dns_request_action_blocked
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.guardduty.service.action.dns_request_action.blocked'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: aws_guardduty_service_action_dns_request_action_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.dns_request_action.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_dns_request_action_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.dns_request_action.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_kubernetes_api_call_action_parameters
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.kubernetes_api_call_action.parameters'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_kubernetes_api_call_action_remote_ip_details_city_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.kubernetes_api_call_action.remote_ip_details.city.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_kubernetes_api_call_action_remote_ip_details_country_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.kubernetes_api_call_action.remote_ip_details.country.code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_kubernetes_api_call_action_remote_ip_details_country_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.kubernetes_api_call_action.remote_ip_details.country.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_kubernetes_api_call_action_remote_ip_details_geo_location
+      type: geo_point
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: aws.guardduty.service.action.kubernetes_api_call_action.remote_ip_details.geo_location'
+      comment: 'Elasticsearch mapping type: geo_point'
+      _field_type: base
+    - name: aws_guardduty_service_action_kubernetes_api_call_action_remote_ip_details_ip_address_v4
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.guardduty.service.action.kubernetes_api_call_action.remote_ip_details.ip_address_v4'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: aws_guardduty_service_action_kubernetes_api_call_action_remote_ip_details_organization_asn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.kubernetes_api_call_action.remote_ip_details.organization.asn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_kubernetes_api_call_action_remote_ip_details_organization_asnorg
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.kubernetes_api_call_action.remote_ip_details.organization.asnorg'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_kubernetes_api_call_action_remote_ip_details_organization_isp
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.kubernetes_api_call_action.remote_ip_details.organization.isp'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_kubernetes_api_call_action_remote_ip_details_organization_org
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.kubernetes_api_call_action.remote_ip_details.organization.org'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_kubernetes_api_call_action_request_uri
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.kubernetes_api_call_action.request_uri'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_kubernetes_api_call_action_source_ips
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.guardduty.service.action.kubernetes_api_call_action.source_ips'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: aws_guardduty_service_action_kubernetes_api_call_action_status_code
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.guardduty.service.action.kubernetes_api_call_action.status_code'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_guardduty_service_action_kubernetes_api_call_action_user_agent
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.kubernetes_api_call_action.user_agent'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_kubernetes_api_call_action_verb
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.kubernetes_api_call_action.verb'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_network_connection_action_blocked
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.guardduty.service.action.network_connection_action.blocked'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: aws_guardduty_service_action_network_connection_action_connection_direction
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.network_connection_action.connection_direction'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_network_connection_action_local_ip_details_ip_address_v4
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.network_connection_action.local_ip_details.ip_address_v4'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_network_connection_action_local_port_details_port_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.network_connection_action.local_port_details.port.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_network_connection_action_local_port_details_port_value
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.guardduty.service.action.network_connection_action.local_port_details.port.value'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_guardduty_service_action_network_connection_action_remote_ip_details_city_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.network_connection_action.remote_ip_details.city.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_network_connection_action_remote_ip_details_country_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.network_connection_action.remote_ip_details.country.code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_network_connection_action_remote_ip_details_country_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.network_connection_action.remote_ip_details.country.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_network_connection_action_remote_ip_details_geo_location
+      type: geo_point
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: aws.guardduty.service.action.network_connection_action.remote_ip_details.geo_location'
+      comment: 'Elasticsearch mapping type: geo_point'
+      _field_type: base
+    - name: aws_guardduty_service_action_network_connection_action_remote_ip_details_ip_address_v4
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.guardduty.service.action.network_connection_action.remote_ip_details.ip_address_v4'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: aws_guardduty_service_action_network_connection_action_remote_ip_details_organization_asn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.network_connection_action.remote_ip_details.organization.asn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_network_connection_action_remote_ip_details_organization_asnorg
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.network_connection_action.remote_ip_details.organization.asnorg'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_network_connection_action_remote_ip_details_organization_isp
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.network_connection_action.remote_ip_details.organization.isp'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_network_connection_action_remote_ip_details_organization_org
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.network_connection_action.remote_ip_details.organization.org'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_network_connection_action_remote_port_details_port_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.network_connection_action.remote_port_details.port.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_network_connection_action_remote_port_details_port_value
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.guardduty.service.action.network_connection_action.remote_port_details.port.value'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_guardduty_service_action_network_connection_action_transport
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.network_connection_action.transport'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_port_probe_action_blocked
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.guardduty.service.action.port_probe_action.blocked'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: aws_guardduty_service_action_port_probe_action_port_probe_details_local_ip_details_ip_address_v4
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.port_probe_action.port_probe_details.local_ip_details.ip_address_v4'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_port_probe_action_port_probe_details_local_port_details_port_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.port_probe_action.port_probe_details.local_port_details.port.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_port_probe_action_port_probe_details_local_port_details_port_value
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.guardduty.service.action.port_probe_action.port_probe_details.local_port_details.port.value'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_guardduty_service_action_port_probe_action_port_probe_details_remote_ip_details_city_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.port_probe_action.port_probe_details.remote_ip_details.city.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_port_probe_action_port_probe_details_remote_ip_details_country_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.port_probe_action.port_probe_details.remote_ip_details.country.code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_port_probe_action_port_probe_details_remote_ip_details_country_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.port_probe_action.port_probe_details.remote_ip_details.country.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_port_probe_action_port_probe_details_remote_ip_details_geo_location
+      type: geo_point
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: aws.guardduty.service.action.port_probe_action.port_probe_details.remote_ip_details.geo_location'
+      comment: 'Elasticsearch mapping type: geo_point'
+      _field_type: base
+    - name: aws_guardduty_service_action_port_probe_action_port_probe_details_remote_ip_details_ip_address_v4
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.guardduty.service.action.port_probe_action.port_probe_details.remote_ip_details.ip_address_v4'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: aws_guardduty_service_action_port_probe_action_port_probe_details_remote_ip_details_organization_asn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.port_probe_action.port_probe_details.remote_ip_details.organization.asn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_port_probe_action_port_probe_details_remote_ip_details_organization_asnorg
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.port_probe_action.port_probe_details.remote_ip_details.organization.asnorg'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_port_probe_action_port_probe_details_remote_ip_details_organization_isp
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.port_probe_action.port_probe_details.remote_ip_details.organization.isp'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_port_probe_action_port_probe_details_remote_ip_details_organization_org
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.port_probe_action.port_probe_details.remote_ip_details.organization.org'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_rds_login_attempt_action_remote_ip_details_city_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.rds_login_attempt_action.remote_ip_details.city.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_rds_login_attempt_action_remote_ip_details_country_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.rds_login_attempt_action.remote_ip_details.country.code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_rds_login_attempt_action_remote_ip_details_country_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.rds_login_attempt_action.remote_ip_details.country.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_rds_login_attempt_action_remote_ip_details_geo_location
+      type: geo_point
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: aws.guardduty.service.action.rds_login_attempt_action.remote_ip_details.geo_location'
+      comment: 'Elasticsearch mapping type: geo_point'
+      _field_type: base
+    - name: aws_guardduty_service_action_rds_login_attempt_action_remote_ip_details_ip_address_v4
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.guardduty.service.action.rds_login_attempt_action.remote_ip_details.ip_address_v4'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: aws_guardduty_service_action_rds_login_attempt_action_remote_ip_details_organization_asn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.rds_login_attempt_action.remote_ip_details.organization.asn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_rds_login_attempt_action_remote_ip_details_organization_asnorg
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.rds_login_attempt_action.remote_ip_details.organization.asnorg'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_rds_login_attempt_action_remote_ip_details_organization_isp
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.rds_login_attempt_action.remote_ip_details.organization.isp'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_rds_login_attempt_action_remote_ip_details_organization_org
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.rds_login_attempt_action.remote_ip_details.organization.org'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_action_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.action.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_additional_info
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: aws.guardduty.service.additional_info'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: aws_guardduty_service_archived
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.guardduty.service.archived'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: aws_guardduty_service_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.guardduty.service.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_guardduty_service_detector_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.detector_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_ebs_volume_scan_details_scan_completed_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.guardduty.service.ebs_volume_scan_details.scan.completed_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_guardduty_service_ebs_volume_scan_details_scan_detections_highest_severity_threat_details_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.guardduty.service.ebs_volume_scan_details.scan.detections.highest_severity_threat_details.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_guardduty_service_ebs_volume_scan_details_scan_detections_highest_severity_threat_details_severity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.ebs_volume_scan_details.scan.detections.highest_severity_threat_details.severity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_ebs_volume_scan_details_scan_detections_highest_severity_threat_details_threat_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.ebs_volume_scan_details.scan.detections.highest_severity_threat_details.threat_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_ebs_volume_scan_details_scan_detections_scanned_item_count_files
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.guardduty.service.ebs_volume_scan_details.scan.detections.scanned_item_count.files'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_guardduty_service_ebs_volume_scan_details_scan_detections_scanned_item_count_total_gb
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.guardduty.service.ebs_volume_scan_details.scan.detections.scanned_item_count.total_gb'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_guardduty_service_ebs_volume_scan_details_scan_detections_scanned_item_count_volumes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.guardduty.service.ebs_volume_scan_details.scan.detections.scanned_item_count.volumes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_guardduty_service_ebs_volume_scan_details_scan_detections_threat_detected_by_name_item_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.guardduty.service.ebs_volume_scan_details.scan.detections.threat_detected_by_name.item_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_guardduty_service_ebs_volume_scan_details_scan_detections_threat_detected_by_name_shortened
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.guardduty.service.ebs_volume_scan_details.scan.detections.threat_detected_by_name.shortened'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: aws_guardduty_service_ebs_volume_scan_details_scan_detections_threat_detected_by_name_threat_names_file_paths_file_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.ebs_volume_scan_details.scan.detections.threat_detected_by_name.threat_names.file_paths.file.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_ebs_volume_scan_details_scan_detections_threat_detected_by_name_threat_names_file_paths_file_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.ebs_volume_scan_details.scan.detections.threat_detected_by_name.threat_names.file_paths.file.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_ebs_volume_scan_details_scan_detections_threat_detected_by_name_threat_names_file_paths_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.ebs_volume_scan_details.scan.detections.threat_detected_by_name.threat_names.file_paths.hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_ebs_volume_scan_details_scan_detections_threat_detected_by_name_threat_names_file_paths_volume_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.ebs_volume_scan_details.scan.detections.threat_detected_by_name.threat_names.file_paths.volume_arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_ebs_volume_scan_details_scan_detections_threat_detected_by_name_threat_names_item_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.guardduty.service.ebs_volume_scan_details.scan.detections.threat_detected_by_name.threat_names.item_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_guardduty_service_ebs_volume_scan_details_scan_detections_threat_detected_by_name_threat_names_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.ebs_volume_scan_details.scan.detections.threat_detected_by_name.threat_names.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_ebs_volume_scan_details_scan_detections_threat_detected_by_name_threat_names_severity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.ebs_volume_scan_details.scan.detections.threat_detected_by_name.threat_names.severity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_ebs_volume_scan_details_scan_detections_threat_detected_by_name_unique_threat_name_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.guardduty.service.ebs_volume_scan_details.scan.detections.threat_detected_by_name.unique_threat_name_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_guardduty_service_ebs_volume_scan_details_scan_detections_threats_detected_item_count_files
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.guardduty.service.ebs_volume_scan_details.scan.detections.threats_detected_item_count.files'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_guardduty_service_ebs_volume_scan_details_scan_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.ebs_volume_scan_details.scan.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_ebs_volume_scan_details_scan_started_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.guardduty.service.ebs_volume_scan_details.scan.started_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_guardduty_service_ebs_volume_scan_details_sources
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.ebs_volume_scan_details.sources'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_ebs_volume_scan_details_trigger_finding_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.ebs_volume_scan_details.trigger_finding_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_event_first_seen
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.guardduty.service.event.first_seen'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_guardduty_service_event_last_seen
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.guardduty.service.event.last_seen'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_guardduty_service_evidence_threat_intelligence_details_threat_list_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.evidence.threat_intelligence_details.threat.list_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_evidence_threat_intelligence_details_threat_names
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.evidence.threat_intelligence_details.threat.names'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_feature_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.feature_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_resource_role
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.resource_role'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_runtime_details_context_address_family
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.runtime_details.context.address_family'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_runtime_details_context_command_line_example
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.runtime_details.context.command_line_example'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_runtime_details_context_file_system_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.runtime_details.context.file_system_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_runtime_details_context_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.runtime_details.context.flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_runtime_details_context_iana_protocol_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.runtime_details.context.iana_protocol_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_runtime_details_context_ld_preload
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.runtime_details.context.ld_preload'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_runtime_details_context_library_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.runtime_details.context.library_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_runtime_details_context_memory_regions
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.runtime_details.context.memory_regions'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_runtime_details_context_modified_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.guardduty.service.runtime_details.context.modified_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_guardduty_service_runtime_details_context_modifying_process
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: aws.guardduty.service.runtime_details.context.modifying_process'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: aws_guardduty_service_runtime_details_context_module_file_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.runtime_details.context.module_file_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_runtime_details_context_module_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.runtime_details.context.module_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_runtime_details_context_module_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.runtime_details.context.module_sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_runtime_details_context_mount_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.runtime_details.context.mount_source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_runtime_details_context_mount_target
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.runtime_details.context.mount_target'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_runtime_details_context_release_agent_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.runtime_details.context.release_agent_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_runtime_details_context_runc_binary_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.runtime_details.context.runc_binary_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_runtime_details_context_script_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.runtime_details.context.script_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_runtime_details_context_service_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.runtime_details.context.service_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_runtime_details_context_shell_history_file_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.runtime_details.context.shell_history_file_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_runtime_details_context_socket_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.runtime_details.context.socket_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_runtime_details_context_target_process
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: aws.guardduty.service.runtime_details.context.target_process'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: aws_guardduty_service_runtime_details_context_threat_file_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.runtime_details.context.threat_file_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_runtime_details_context_tool_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.runtime_details.context.tool_category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_runtime_details_context_tool_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.runtime_details.context.tool_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_runtime_details_process_euid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.guardduty.service.runtime_details.process.euid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_guardduty_service_runtime_details_process_executable_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.runtime_details.process.executable_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_runtime_details_process_executable_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.runtime_details.process.executable_sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_runtime_details_process_lineage
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: aws.guardduty.service.runtime_details.process.lineage'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: aws_guardduty_service_runtime_details_process_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.runtime_details.process.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_runtime_details_process_namespace_pid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.guardduty.service.runtime_details.process.namespace_pid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_guardduty_service_runtime_details_process_parent_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.runtime_details.process.parent_uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_runtime_details_process_pid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.guardduty.service.runtime_details.process.pid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_guardduty_service_runtime_details_process_pwd
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.runtime_details.process.pwd'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_runtime_details_process_start_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.guardduty.service.runtime_details.process.start_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_guardduty_service_runtime_details_process_user
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.runtime_details.process.user'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_runtime_details_process_user_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.guardduty.service.runtime_details.process.user_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_guardduty_service_runtime_details_process_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.runtime_details.process.uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_service_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.service_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_service_user_feedback
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.service.user_feedback'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_severity_code
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.guardduty.severity.code'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_guardduty_severity_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.severity.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_title
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.title'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.guardduty.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_guardduty_updated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.guardduty.updated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

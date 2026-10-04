@@ -1,0 +1,354 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of azure.identity_protection at integrations 2c934eb5223b
+    columns:
+    - name: azure_correlation_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.correlation_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_identityprotection_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.identityprotection.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_identityprotection_operation_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.identityprotection.operation_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_identityprotection_operation_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.identityprotection.operation_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_identityprotection_properties_activity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.identityprotection.properties.activity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_identityprotection_properties_activity_datetime
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: azure.identityprotection.properties.activity_datetime'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: azure_identityprotection_properties_additional_info
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: azure.identityprotection.properties.additional_info'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: azure_identityprotection_properties_correlation_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.identityprotection.properties.correlation_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_identityprotection_properties_cross_tenant_access_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.identityprotection.properties.cross_tenant_access_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_identityprotection_properties_detected_datetime
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: azure.identityprotection.properties.detected_datetime'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: azure_identityprotection_properties_detection_timing_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.identityprotection.properties.detection_timing_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_identityprotection_properties_home_tenant_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.identityprotection.properties.home_tenant_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_identityprotection_properties_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.identityprotection.properties.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_identityprotection_properties_ip_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: azure.identityprotection.properties.ip_address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: azure_identityprotection_properties_is_deleted
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: azure.identityprotection.properties.is_deleted'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: azure_identityprotection_properties_is_guest
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: azure.identityprotection.properties.is_guest'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: azure_identityprotection_properties_is_processing
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: azure.identityprotection.properties.is_processing'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: azure_identityprotection_properties_last_updated_datetime
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: azure.identityprotection.properties.last_updated_datetime'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: azure_identityprotection_properties_location
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: azure.identityprotection.properties.location'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: azure_identityprotection_properties_request_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.identityprotection.properties.request_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_identityprotection_properties_resource_tenant_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.identityprotection.properties.resource_tenant_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_identityprotection_properties_risk_detail
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.identityprotection.properties.risk_detail'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_identityprotection_properties_risk_event_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.identityprotection.properties.risk_event_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_identityprotection_properties_risk_last_updated_datetime
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: azure.identityprotection.properties.risk_last_updated_datetime'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: azure_identityprotection_properties_risk_level
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.identityprotection.properties.risk_level'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_identityprotection_properties_risk_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.identityprotection.properties.risk_state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_identityprotection_properties_risk_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.identityprotection.properties.risk_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_identityprotection_properties_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.identityprotection.properties.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_identityprotection_properties_token_issuer_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.identityprotection.properties.token_issuer_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_identityprotection_properties_user_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.identityprotection.properties.user_display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_identityprotection_properties_user_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.identityprotection.properties.user_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_identityprotection_properties_user_principal_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.identityprotection.properties.user_principal_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_identityprotection_properties_user_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.identityprotection.properties.user_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_identityprotection_result_signature
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.identityprotection.result_signature'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_resource_group
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.resource.group'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_resource_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.resource.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_resource_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.resource.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_resource_namespace
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.resource.namespace'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_resource_provider
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.resource.provider'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_subscription_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.subscription_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_tenant_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.tenant_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: geo_continent_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: geo.continent_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: geo_country_iso_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: geo.country_iso_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: geo_location
+      type: geo_point
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: geo.location'
+      comment: 'Elasticsearch mapping type: geo_point'
+      _field_type: base
+    - name: geo_region_iso_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: geo.region_iso_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

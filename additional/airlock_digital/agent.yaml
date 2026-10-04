@@ -1,0 +1,528 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of airlock_digital.agent at integrations 2c934eb5223b
+    columns:
+    - name: airlock_digital_agent_agentid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.agentid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_clientversion
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.clientversion'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_freespace
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: airlock_digital.agent.freespace'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: airlock_digital_agent_groupid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.groupid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_hostname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.hostname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: airlock_digital.agent.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: airlock_digital_agent_lastcheckin
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: airlock_digital.agent.lastcheckin'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: airlock_digital_agent_localip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: airlock_digital.agent.localip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: airlock_digital_agent_os
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.os'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_agentstopcode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.agentstopcode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_applications_applicationid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.applications.applicationid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_applications_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.applications.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_applications_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.applications.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_auditmode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.auditmode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_autoupdate
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.autoupdate'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_baselines_baselineid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.baselines.baselineid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_baselines_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.baselines.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_batch
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.batch'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_blocklists
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: airlock_digital.agent.poilcy_details.blocklists'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_check_ea
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.check_ea'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_command
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.command'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_commlist_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: airlock_digital.agent.poilcy_details.commlist.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_commlist_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.commlist.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_commlistid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.commlistid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_compiledhtml
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.compiledhtml'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_dylib
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.dylib'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_enable_notifications
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.enable_notifications'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_extensions_enabled
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.extensions_enabled'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_generalisation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.generalisation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_gprocesses
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.gprocesses'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_hashdb_ver
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.hashdb_ver'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_htmlapplication
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.htmlapplication'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_javaapplication
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.javaapplication'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_javascript
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.javascript'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_modreload
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.modreload'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_notification_message
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: airlock_digital.agent.poilcy_details.notification_message'
+      comment: 'Elasticsearch mapping type: match_only_text'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_parent
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.parent'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_paths_comment
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.paths.comment'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_paths_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.paths.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_policyver
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.policyver'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_poll_time
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.poll_time'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_powershell
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.powershell'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_pprocesses_comment
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.pprocesses.comment'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_pprocesses_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.pprocesses.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_proxyauth
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.proxyauth'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_proxyenabled
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.proxyenabled'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_proxypass
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.proxypass'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_proxyport
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: airlock_digital.agent.poilcy_details.proxyport'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_proxyserver
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.proxyserver'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_proxyuser
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.proxyuser'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_pslockdown
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.pslockdown'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_publishers_comment
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.publishers.comment'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_publishers_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.publishers.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_python
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.python'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_reflection
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.reflection'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_script_custom
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.script_custom'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_script_enabled
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.script_enabled'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_selfservice
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.selfservice'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_selfupgrade
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.selfupgrade'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_shellscript
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.shellscript'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_targetvers
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: airlock_digital.agent.poilcy_details.targetvers'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_trusted_config
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: airlock_digital.agent.poilcy_details.trusted_config'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_trusted_upload
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.trusted_upload'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_vbscript
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.vbscript'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_windowsinstaller
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.windowsinstaller'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_poilcy_details_windowsscriptcomponent
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.poilcy_details.windowsscriptcomponent'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_policyversion
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.policyversion'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_status_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.status_value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_agent_username
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.agent.username'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

@@ -1,0 +1,104 @@
+base: meta/elastic/ecs
+base_version: "1.0.0"
+current: "1.0.0"
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    summary: tychon.ciphers selection from meta/elastic/ecs
+    select:
+    - name: data_stream_dataset
+      index: exact_match
+    - name: data_stream_namespace
+      index: exact_match
+    - name: data_stream_type
+      index: exact_match
+    - name: ecs_version
+      index: exact_match
+    - name: event_category
+      index: exact_match
+    - name: event_kind
+      index: exact_match
+    - name: event_module
+      index: exact_match
+    - name: event_original
+      index: none
+    - name: event_type
+      index: exact_match
+    - name: file_accessed
+      index: range
+    - name: file_attributes
+      index: exact_match
+    - name: file_code_signature_subject_name
+      index: exact_match
+    - name: file_created
+      index: range
+    - name: file_extension
+      index: exact_match
+    - name: file_hash_md5
+      index: exact_match
+    - name: file_hash_sha1
+      index: exact_match
+    - name: file_hash_sha256
+      index: exact_match
+    - name: file_mtime
+      index: range
+    - name: file_name
+      index: exact_match
+    - name: file_path
+      index: exact_match
+    - name: file_size
+      index: range
+    - name: file_x509_issuer_distinguished_name
+      index: exact_match
+    - name: host_hostname
+      index: exact_match
+    - name: host_id
+      index: exact_match
+    - name: host_ip
+      index: dimension
+    - name: host_mac
+      index: exact_match
+    - name: host_os_family
+      index: exact_match
+    - name: host_os_name
+      index: exact_match
+    - name: host_os_type
+      index: exact_match
+    - name: host_os_version
+      index: exact_match
+    - name: host_type
+      index: exact_match
+    - name: host_uptime
+      index: range
+    - name: process_command_line
+      index: exact_match
+    - name: process_executable
+      index: exact_match
+    - name: process_name
+      index: exact_match
+    - name: process_parent_pid
+      index: range
+    - name: process_pid
+      index: range
+    - name: process_user_name
+      index: exact_match
+    - name: related_hash
+      index: exact_match
+    - name: related_hosts
+      index: exact_match
+    - name: related_ip
+      index: dimension
+    - name: server_address
+      index: exact_match
+    - name: server_domain
+      index: exact_match
+    - name: server_ip
+      index: dimension
+    - name: server_port
+      index: range
+    - name: service_name
+      index: exact_match
+    - name: service_state
+      index: exact_match
+    - name: url_full
+      index: exact_match

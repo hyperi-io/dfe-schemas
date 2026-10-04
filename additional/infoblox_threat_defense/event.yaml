@@ -1,0 +1,759 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of infoblox_threat_defense.event at integrations 2c934eb5223b
+    columns:
+    - name: infoblox_threat_defense_event_application_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.application_protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_created
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: infoblox_threat_defense.event.created'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: infoblox_threat_defense_event_destination_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: infoblox_threat_defense.event.destination.address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: infoblox_threat_defense_event_destination_dns_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.destination.dns_domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_device_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.device.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_device_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: infoblox_threat_defense.event.device.address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: infoblox_threat_defense_event_device_event_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.device.event_category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_device_event_class_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.device.event_class_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_device_host_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: infoblox_threat_defense.event.device.host_ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: infoblox_threat_defense_event_device_host_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.device.host_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_device_product
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.device.product'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_device_vendor
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.device.vendor'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_device_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.device.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_an_count
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.an_count'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_ar_count
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.ar_count'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_b1_connection_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.b1.connection_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_b1_dhcp_fingerprint
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.b1.dhcp_fingerprint'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_b1_dns_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.b1.dns_tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_b1_feed_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.b1.feed.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_b1_feed_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.b1.feed.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_b1_network
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.b1.network'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_b1_oph_ip_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: infoblox_threat_defense.event.infoblox.b1.oph.ip_address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_b1_oph_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.b1.oph.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_b1_policy_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.b1.policy.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_b1_policy_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.b1.policy.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_b1_region
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.b1.region'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_b1_src_os_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.b1.src_os_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_b1_threat_indicator
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.b1.threat.indicator'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_c_site_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.c_site_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_client_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.client_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_dhcp_options
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.dhcp_options'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_dns_q_class
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.dns_q.class'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_dns_q_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.dns_q.flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_dns_q_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.dns_q.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_dns_r_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.dns_r_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_dns_view
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.dns_view'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_domain_cat
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.domain.cat'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_duid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.duid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_event_occurred_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: infoblox_threat_defense.event.infoblox.event.occurred_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_event_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.event.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_fingerprint
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.fingerprint'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_fingerprint_pr
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: infoblox_threat_defense.event.infoblox.fingerprint_pr'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_host_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.host_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_host_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.host_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_http_req_body
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: infoblox_threat_defense.event.infoblox.http.req_body'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_http_resp_body
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: infoblox_threat_defense.event.infoblox.http.resp_body'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_insight_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.insight.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_insight_feed_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.insight.feed_source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_insight_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.insight.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_insight_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.insight.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_insight_threat_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.insight.threat_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_insight_user_comment
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.insight.user_comment'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_ip_space_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.ip_space.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_ip_space_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.ip_space.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_lease_op
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.lease.op'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_lease_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.lease.uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_lifetime
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: infoblox_threat_defense.event.infoblox.lifetime'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_log_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.log_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_notification_sub_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.notification.sub_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_notification_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.notification.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_ns_count
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.ns_count'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_on_prem_host_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.on_prem_host_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_policy_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.policy.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_pool_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.pool_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_range_end
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: infoblox_threat_defense.event.infoblox.range.end'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_range_start
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: infoblox_threat_defense.event.infoblox.range.start'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_resource_desc
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.resource.desc'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_resource_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.resource.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_resource_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.resource.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_rpz_rule
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.rpz.rule'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_rpz_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.rpz.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_service_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.service_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_stats_events_blocked_count
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.stats.events_blocked_count'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_stats_events_not_blocked_count
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.stats.events_not_blocked_count'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_subject_groups
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.subject.groups'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_subject_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.subject.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_subnet
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.subnet'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_threat_class
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.threat.class'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_threat_confidence
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: infoblox_threat_defense.event.infoblox.threat.confidence'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_threat_family
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.threat.family'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_threat_level
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: infoblox_threat_defense.event.infoblox.threat.level'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: infoblox_threat_defense_event_infoblox_threat_property
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.infoblox.threat.property'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_message
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.message'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_outcome
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.outcome'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_severity
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: infoblox_threat_defense.event.severity'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: infoblox_threat_defense_event_source_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: infoblox_threat_defense.event.source.address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: infoblox_threat_defense_event_source_hostname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.source.hostname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_source_mac_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.source.mac_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_source_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: infoblox_threat_defense.event.source.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: infoblox_threat_defense_event_source_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.source.user_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_stats_base_event_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: infoblox_threat_defense.event.stats.base_event_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: infoblox_threat_defense_event_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_syslog_appname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.syslog.appname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_syslog_facility_code
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: infoblox_threat_defense.event.syslog.facility.code'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: infoblox_threat_defense_event_syslog_facility_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.syslog.facility.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_syslog_hostname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.syslog.hostname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_syslog_msgid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.syslog.msgid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_syslog_priority
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: infoblox_threat_defense.event.syslog.priority'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: infoblox_threat_defense_event_syslog_severity_code
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: infoblox_threat_defense.event.syslog.severity.code'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: infoblox_threat_defense_event_syslog_severity_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.syslog.severity.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_syslog_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.syslog.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_transport_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.transport_protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_threat_defense_event_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_threat_defense.event.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: log_source_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.source.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

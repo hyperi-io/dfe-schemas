@@ -1,0 +1,502 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of imperva_cloud_waf.event at integrations 2c934eb5223b
+    columns:
+    - name: aws_s3_bucket_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_bucket_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_object_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.object.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: destination_process_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: destination.process.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_device_event_class_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.device.event_class_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_device_product
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.device.product'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_device_vendor
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.device.vendor'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_device_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.device.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.extensions.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_additional_req_headers
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: imperva_cloud_waf.event.extensions.additional.req_headers'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_additional_res_headers
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: imperva_cloud_waf.event.extensions.additional.res_headers'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_application_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.extensions.application_protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_bytes_in
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: imperva_cloud_waf.event.extensions.bytes_in'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_ccode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.extensions.ccode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_cicode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.extensions.cicode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_cpt
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: imperva_cloud_waf.event.extensions.cpt'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_cs10
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: imperva_cloud_waf.event.extensions.cs10'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_cs10Label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.extensions.cs10Label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_cs11
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: imperva_cloud_waf.event.extensions.cs11'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_cs11Label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.extensions.cs11Label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_cs7
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: imperva_cloud_waf.event.extensions.cs7'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_cs7Label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.extensions.cs7Label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_cs8
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: imperva_cloud_waf.event.extensions.cs8'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_cs8Label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.extensions.cs8Label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_cs9
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.extensions.cs9'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_cs9Label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.extensions.cs9Label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_customer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.extensions.customer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_destination_process_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.extensions.destination_process_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_device_custom_number1
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: imperva_cloud_waf.event.extensions.device.custom_number1'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_device_custom_string1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.extensions.device.custom_string1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_device_custom_string1_label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.extensions.device.custom_string1_label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_device_custom_string2
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: imperva_cloud_waf.event.extensions.device.custom_string2'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_device_custom_string2_label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.extensions.device.custom_string2_label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_device_custom_string3
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: imperva_cloud_waf.event.extensions.device.custom_string3'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_device_custom_string3_label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.extensions.device.custom_string3_label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_device_custom_string4
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.extensions.device.custom_string4'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_device_custom_string4_label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.extensions.device.custom_string4_label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_device_custom_string5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.extensions.device.custom_string5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_device_custom_string5_label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.extensions.device.custom_string5_label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_device_custom_string6
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.extensions.device.custom_string6'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_device_custom_string6_label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.extensions.device.custom_string6_label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_device_externalId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.extensions.device.externalId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_device_facility
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.extensions.device.facility'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_end_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: imperva_cloud_waf.event.extensions.end_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_file_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.extensions.file_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_file_permission
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.extensions.file.permission'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_file_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.extensions.file.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_postbody
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.extensions.postbody'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_qstr
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.extensions.qstr'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_ref
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.extensions.ref'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_request_client_application
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.extensions.request.client_application'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_request_method
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.extensions.request.method'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_request_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.extensions.request.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_sip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: imperva_cloud_waf.event.extensions.sip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_site_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.extensions.site.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_site_tag
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.extensions.site.tag'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_source_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: imperva_cloud_waf.event.extensions.source.address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_source_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: imperva_cloud_waf.event.extensions.source.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_source_service_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.extensions.source.service_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_source_user_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.extensions.source.user_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_start_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: imperva_cloud_waf.event.extensions.start_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_tag
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.extensions.tag'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_ver
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.extensions.ver'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_extensions_xff
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: imperva_cloud_waf.event.extensions.xff'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: imperva_cloud_waf_event_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: imperva_cloud_waf_event_severity
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: imperva_cloud_waf.event.severity'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: imperva_cloud_waf_event_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: imperva_cloud_waf.event.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: source_service_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: source.service.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

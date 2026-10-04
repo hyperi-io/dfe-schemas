@@ -1,0 +1,71 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of pps.log at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: log_source_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.source.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: pps_entry_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: pps.entry.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: pps_entry_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: pps.entry.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: pps_entry_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: pps.entry.reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: pps_entry_target_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: pps.entry.target.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: pps_entry_target_username
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: pps.entry.target.username'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: pps_entry_username
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: pps.entry.username'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

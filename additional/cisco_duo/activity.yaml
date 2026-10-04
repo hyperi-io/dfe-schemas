@@ -1,0 +1,320 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of cisco_duo.activity at integrations 2c934eb5223b
+    columns:
+    - name: cisco_duo_activity_access_device_as_number
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cisco_duo.activity.access_device.as.number'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cisco_duo_activity_access_device_as_organization_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.activity.access_device.as.organization.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_activity_access_device_browser
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.activity.access_device.browser'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_activity_access_device_browser_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.activity.access_device.browser_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_activity_access_device_epkey
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.activity.access_device.epkey'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_activity_access_device_geo_city_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.activity.access_device.geo.city_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_activity_access_device_geo_continent_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.activity.access_device.geo.continent_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_activity_access_device_geo_country_iso_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.activity.access_device.geo.country_iso_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_activity_access_device_geo_country_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.activity.access_device.geo.country_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_activity_access_device_geo_location
+      type: geo_point
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: cisco_duo.activity.access_device.geo.location'
+      comment: 'Elasticsearch mapping type: geo_point'
+      _field_type: base
+    - name: cisco_duo_activity_access_device_geo_region_iso_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.activity.access_device.geo.region_iso_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_activity_access_device_geo_region_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.activity.access_device.geo.region_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_activity_access_device_ip_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cisco_duo.activity.access_device.ip.address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: cisco_duo_activity_access_device_location_city
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.activity.access_device.location.city'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_activity_access_device_location_country
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.activity.access_device.location.country'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_activity_access_device_location_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.activity.access_device.location.state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_activity_access_device_os
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.activity.access_device.os'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_activity_access_device_os_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.activity.access_device.os_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_activity_action_details
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.activity.action.details'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_activity_action_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.activity.action.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_activity_actor_details
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: cisco_duo.activity.actor.details'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: cisco_duo_activity_actor_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.activity.actor.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_activity_actor_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.activity.actor.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_activity_actor_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.activity.actor.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_activity_akey
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.activity.akey'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_activity_application_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.activity.application.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_activity_application_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.activity.application.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_activity_application_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.activity.application.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_activity_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.activity.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_activity_old_target_details
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: cisco_duo.activity.old_target.details'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: cisco_duo_activity_old_target_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.activity.old_target.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_activity_old_target_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.activity.old_target.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_activity_old_target_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.activity.old_target.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_activity_outcome
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.activity.outcome'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_activity_target_details
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: cisco_duo.activity.target.details'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: cisco_duo_activity_target_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.activity.target.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_activity_target_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.activity.target.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_activity_target_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.activity.target.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

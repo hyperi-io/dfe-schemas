@@ -1,0 +1,107 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of elasticsearch.deprecation at integrations 2c934eb5223b
+    columns:
+    - name: elasticsearch_cluster_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: elasticsearch.cluster.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: elasticsearch_cluster_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: elasticsearch.cluster.uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: elasticsearch_component
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: elasticsearch.component'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: elasticsearch_deprecation
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: elasticsearch.deprecation'
+      comment: 'Elasticsearch mapping type: group'
+      _field_type: base
+    - name: elasticsearch_elastic_product_origin
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: elasticsearch.elastic_product_origin'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: elasticsearch_event_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: elasticsearch.event.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: elasticsearch_http_request_x_opaque_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: elasticsearch.http.request.x_opaque_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: elasticsearch_index_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: elasticsearch.index.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: elasticsearch_index_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: elasticsearch.index.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: elasticsearch_node_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: elasticsearch.node.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: elasticsearch_node_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: elasticsearch.node.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: elasticsearch_shard_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: elasticsearch.shard.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

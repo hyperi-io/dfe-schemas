@@ -1,0 +1,449 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of miniflux.feed_entry at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: miniflux_author
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: miniflux.author'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: miniflux_changed_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: miniflux.changed_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: miniflux_comments_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: miniflux.comments_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: miniflux_content
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: miniflux.content'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: miniflux_created_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: miniflux.created_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: miniflux_enclosures
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: miniflux.enclosures'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: miniflux_feed_allow_self_signed_certificates
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: miniflux.feed.allow_self_signed_certificates'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: miniflux_feed_apprise_service_urls
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: miniflux.feed.apprise_service_urls'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: miniflux_feed_blocklist_rules
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: miniflux.feed.blocklist_rules'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: miniflux_feed_category_hide_globally
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: miniflux.feed.category.hide_globally'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: miniflux_feed_category_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: miniflux.feed.category.id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: miniflux_feed_category_title
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: miniflux.feed.category.title'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: miniflux_feed_category_user_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: miniflux.feed.category.user_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: miniflux_feed_checked_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: miniflux.feed.checked_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: miniflux_feed_cookie
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: miniflux.feed.cookie'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: miniflux_feed_crawler
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: miniflux.feed.crawler'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: miniflux_feed_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: miniflux.feed.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: miniflux_feed_disable_http2
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: miniflux.feed.disable_http2'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: miniflux_feed_disabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: miniflux.feed.disabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: miniflux_feed_entry_split
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: miniflux.feed_entry_split'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: miniflux_feed_etag_header
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: miniflux.feed.etag_header'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: miniflux_feed_feed_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: miniflux.feed.feed_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: miniflux_feed_fetch_via_proxy
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: miniflux.feed.fetch_via_proxy'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: miniflux_feed_hide_globally
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: miniflux.feed.hide_globally'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: miniflux_feed_icon_external_icon_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: miniflux.feed.icon.external_icon_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: miniflux_feed_icon_feed_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: miniflux.feed.icon.feed_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: miniflux_feed_icon_icon_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: miniflux.feed.icon.icon_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: miniflux_feed_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: miniflux.feed.id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: miniflux_feed_ignore_http_cache
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: miniflux.feed.ignore_http_cache'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: miniflux_feed_keeplist_rules
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: miniflux.feed.keeplist_rules'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: miniflux_feed_last_modified_header
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: miniflux.feed.last_modified_header'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: miniflux_feed_next_check_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: miniflux.feed.next_check_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: miniflux_feed_no_media_player
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: miniflux.feed.no_media_player'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: miniflux_feed_ntfy_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: miniflux.feed.ntfy_enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: miniflux_feed_ntfy_priority
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: miniflux.feed.ntfy_priority'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: miniflux_feed_ntfy_topic
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: miniflux.feed.ntfy_topic'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: miniflux_feed_parsing_error_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: miniflux.feed.parsing_error_count'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: miniflux_feed_parsing_error_message
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: miniflux.feed.parsing_error_message'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: miniflux_feed_password
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: miniflux.feed.password'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: miniflux_feed_proxy_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: miniflux.feed.proxy_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: miniflux_feed_pushover_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: miniflux.feed.pushover_enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: miniflux_feed_pushover_priority
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: miniflux.feed.pushover_priority'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: miniflux_feed_rewrite_rules
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: miniflux.feed.rewrite_rules'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: miniflux_feed_scraper_rules
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: miniflux.feed.scraper_rules'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: miniflux_feed_site_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: miniflux.feed.site_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: miniflux_feed_title
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: miniflux.feed.title'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: miniflux_feed_urlrewrite_rules
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: miniflux.feed.urlrewrite_rules'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: miniflux_feed_user_agent
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: miniflux.feed.user_agent'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: miniflux_feed_user_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: miniflux.feed.user_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: miniflux_feed_username
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: miniflux.feed.username'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: miniflux_feed_webhook_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: miniflux.feed.webhook_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: miniflux_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: miniflux.hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: miniflux_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: miniflux.id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: miniflux_published_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: miniflux.published_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: miniflux_reading_time
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: miniflux.reading_time'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: miniflux_share_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: miniflux.share_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: miniflux_starred
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: miniflux.starred'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: miniflux_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: miniflux.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: miniflux_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: miniflux.tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: miniflux_title
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: miniflux.title'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: miniflux_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: miniflux.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: miniflux_user_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: miniflux.user_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

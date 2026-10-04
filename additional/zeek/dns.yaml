@@ -1,0 +1,204 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of zeek.dns at integrations 2c934eb5223b
+    columns:
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zeek_dns_AA
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: zeek.dns.AA'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: zeek_dns_RA
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: zeek.dns.RA'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: zeek_dns_RD
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: zeek.dns.RD'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: zeek_dns_TC
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: zeek.dns.TC'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: zeek_dns_TTLs
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zeek.dns.TTLs'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: zeek_dns_answers
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zeek.dns.answers'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zeek_dns_qclass
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zeek.dns.qclass'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zeek_dns_qclass_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zeek.dns.qclass_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zeek_dns_qtype
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zeek.dns.qtype'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zeek_dns_qtype_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zeek.dns.qtype_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zeek_dns_query
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zeek.dns.query'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zeek_dns_rcode
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zeek.dns.rcode'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zeek_dns_rcode_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zeek.dns.rcode_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zeek_dns_rejected
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: zeek.dns.rejected'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: zeek_dns_rtt
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zeek.dns.rtt'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: zeek_dns_saw_query
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: zeek.dns.saw_query'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: zeek_dns_saw_reply
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: zeek.dns.saw_reply'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: zeek_dns_total_answers
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zeek.dns.total_answers'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: zeek_dns_total_replies
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zeek.dns.total_replies'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: zeek_dns_trans_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zeek.dns.trans_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zeek_session_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zeek.session_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

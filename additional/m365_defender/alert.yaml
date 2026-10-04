@@ -1,0 +1,1171 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of m365_defender.alert at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: m365_defender_alert_actor_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.actor_display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_assigned_to
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.assigned_to'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_classification
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.classification'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_comments
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: m365_defender.alert.comments'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: m365_defender_alert_created_datetime
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.alert.created_datetime'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: m365_defender_alert_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_detection_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.detection_source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_detector_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.detector_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_determination
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.determination'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_antispam_direction
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.antispam_direction'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_app_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.app_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_attachments_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.alert.evidence.attachments_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: m365_defender_alert_evidence_azure_ad_device_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.azure_ad_device_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_cluster_by
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.cluster_by'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_cluster_by_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.cluster_by_value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_created_datetime
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.alert.evidence.created_datetime'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: m365_defender_alert_evidence_defender_av_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.defender_av_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_delivery_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.delivery_action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_delivery_location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.delivery_location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_detailed_roles
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.detailed_roles'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_detection_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.detection_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_device_dns_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.device_dns_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_email_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.alert.evidence.email_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: m365_defender_alert_evidence_file_details_issuer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.file_details.issuer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_file_details_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.file_details.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_file_details_odata_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.file_details.odata_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_file_details_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.file_details.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_file_details_publisher
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.file_details.publisher'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_file_details_sha1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.file_details.sha1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_file_details_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.file_details.sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_file_details_signer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.file_details.signer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_file_details_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.alert.evidence.file_details.size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: m365_defender_alert_evidence_first_seen_datetime
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.alert.evidence.first_seen_datetime'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: m365_defender_alert_evidence_health_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.health_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_image_file_issuer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.image_file.issuer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_image_file_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.image_file.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_image_file_odata_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.image_file.odata_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_image_file_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.image_file.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_image_file_publisher
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.image_file.publisher'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_image_file_sha1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.image_file.sha1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_image_file_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.image_file.sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_image_file_signer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.image_file.signer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_image_file_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.alert.evidence.image_file.size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: m365_defender_alert_evidence_instance_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.instance_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_instance_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.instance_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_internet_message_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.internet_message_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_ip_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: m365_defender.alert.evidence.ip_address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: m365_defender_alert_evidence_ip_interfaces
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: m365_defender.alert.evidence.ip_interfaces'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: m365_defender_alert_evidence_language
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.language'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_logged_on_users_account_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.logged_on_users.account_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_logged_on_users_domain_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.logged_on_users.domain_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_logged_on_users_odata_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.logged_on_users.odata_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_mde_device_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.mde_device_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_network_message_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.network_message_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_network_message_ids
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.network_message_ids'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_object_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.object_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_odata_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.odata_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_onboarding_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.onboarding_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.os_build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_os_platform
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.os_platform'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_p1_sender_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.p1_sender.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_p1_sender_domain_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.p1_sender.domain_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_p1_sender_email_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.p1_sender.email_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_p1_sender_odata_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.p1_sender.odata_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_p2_sender_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.p2_sender.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_p2_sender_domain_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.p2_sender.domain_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_p2_sender_email_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.p2_sender.email_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_p2_sender_odata_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.p2_sender.odata_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_parent_process_creation_datetime
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.alert.evidence.parent_process.creation_datetime'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: m365_defender_alert_evidence_parent_process_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.alert.evidence.parent_process.id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: m365_defender_alert_evidence_parent_process_image_file_issuer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.parent_process.image_file.issuer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_parent_process_image_file_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.parent_process.image_file.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_parent_process_image_file_odata_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.parent_process.image_file.odata_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_parent_process_image_file_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.parent_process.image_file.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_parent_process_image_file_publisher
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.parent_process.image_file.publisher'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_parent_process_image_file_sha1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.parent_process.image_file.sha1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_parent_process_image_file_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.parent_process.image_file.sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_parent_process_image_file_signer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.parent_process.image_file.signer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_parent_process_image_file_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.alert.evidence.parent_process.image_file.size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: m365_defender_alert_evidence_primary_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.primary_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_process_command_line
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.process.command_line'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_process_creation_datetime
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.alert.evidence.process.creation_datetime'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: m365_defender_alert_evidence_process_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.alert.evidence.process.id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: m365_defender_alert_evidence_publisher
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.publisher'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_query
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.query'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_rbac_group_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.rbac_group.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_rbac_group_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.rbac_group.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_received_datetime
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.alert.evidence.received_datetime'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: m365_defender_alert_evidence_recipient_email_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.recipient_email_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_registry_hive
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.registry_hive'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_registry_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.registry_key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_registry_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.registry_value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_registry_value_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.registry_value_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_registry_value_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.registry_value_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_remediation_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.remediation_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_remediation_status_details
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.remediation_status_details'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_risk_score
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.risk_score'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_roles
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.roles'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_saas_app_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.saas_app_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_security_group_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.security_group_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_sender_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: m365_defender.alert.evidence.sender_ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: m365_defender_alert_evidence_subject
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.subject'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_threat_detection_methods
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.threat_detection_methods'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_threats
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.threats'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_url_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.alert.evidence.url_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: m365_defender_alert_evidence_urls
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.urls'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_urn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.urn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_user_account_account_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.user_account.account_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_user_account_azure_ad_user_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.user_account.azure_ad_user_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_user_account_domain_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.user_account.domain_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_user_account_odata_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.user_account.odata_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_user_account_user_principal_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.user_account.user_principal_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_user_account_user_sid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.user_account.user_sid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_verdict
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.verdict'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_vm_metadata_cloud_provider
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.vm_metadata.cloud_provider'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_vm_metadata_odata_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.vm_metadata.odata_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_vm_metadata_resource_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.vm_metadata.resource_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_vm_metadata_subscription_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.vm_metadata.subscription_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_evidence_vm_metadata_vm_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.evidence.vm_metadata.vm_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_first_activity_datetime
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.alert.first_activity_datetime'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: m365_defender_alert_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_incident_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.incident_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_incident_web_url_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.incident_web_url.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_incident_web_url_extension
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.incident_web_url.extension'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_incident_web_url_fragment
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.incident_web_url.fragment'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_incident_web_url_full
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.incident_web_url.full'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_incident_web_url_original
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.incident_web_url.original'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_incident_web_url_password
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.incident_web_url.password'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_incident_web_url_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.incident_web_url.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_incident_web_url_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.alert.incident_web_url.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: m365_defender_alert_incident_web_url_query
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.incident_web_url.query'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_incident_web_url_scheme
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.incident_web_url.scheme'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_incident_web_url_username
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.incident_web_url.username'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_last_activity_datetime
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.alert.last_activity_datetime'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: m365_defender_alert_last_update_datetime
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.alert.last_update_datetime'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: m365_defender_alert_mitre_techniques
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.mitre_techniques'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_odata_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.odata_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_provider_alert_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.provider_alert_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_recommended_actions
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.recommended_actions'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_resolved_datetime
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.alert.resolved_datetime'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: m365_defender_alert_service_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.service_source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_severity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.severity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_tenant_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.tenant_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_threat_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.threat_display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_threat_family_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.threat_family_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_title
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.title'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_web_url_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.web_url.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_web_url_extension
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.web_url.extension'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_web_url_fragment
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.web_url.fragment'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_web_url_full
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.web_url.full'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_web_url_original
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.web_url.original'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_web_url_password
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.web_url.password'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_web_url_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.web_url.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_web_url_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.alert.web_url.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: m365_defender_alert_web_url_query
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.web_url.query'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_web_url_scheme
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.web_url.scheme'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_alert_web_url_username
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.alert.web_url.username'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

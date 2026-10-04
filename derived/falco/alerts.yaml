@@ -1,0 +1,186 @@
+base: meta/elastic/ecs
+base_version: "1.0.0"
+current: "1.0.0"
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    summary: falco.alerts selection from meta/elastic/ecs
+    select:
+    - name: client_address
+      index: exact_match
+    - name: client_domain
+      index: exact_match
+    - name: client_ip
+      index: dimension
+    - name: client_port
+      index: range
+    - name: container_id
+      index: exact_match
+    - name: container_image_hash_all
+      index: exact_match
+    - name: container_image_name
+      index: exact_match
+    - name: container_name
+      index: exact_match
+    - name: container_runtime
+      index: exact_match
+    - name: container_security_context_privileged
+      index: dimension
+    - name: data_stream_dataset
+      index: exact_match
+    - name: data_stream_namespace
+      index: exact_match
+    - name: data_stream_type
+      index: exact_match
+    - name: destination_address
+      index: exact_match
+    - name: destination_domain
+      index: exact_match
+    - name: destination_ip
+      index: dimension
+    - name: destination_port
+      index: range
+    - name: event_category
+      index: exact_match
+    - name: event_dataset
+      index: exact_match
+    - name: event_ingested
+      index: range
+    - name: event_kind
+      index: exact_match
+    - name: event_module
+      index: exact_match
+    - name: event_original
+      index: none
+    - name: event_outcome
+      index: exact_match
+    - name: event_provider
+      index: exact_match
+    - name: event_sequence
+      index: range
+    - name: event_severity
+      index: range
+    - name: event_type
+      index: exact_match
+    - name: file_directory
+      index: exact_match
+    - name: file_inode
+      index: exact_match
+    - name: file_name
+      index: exact_match
+    - name: file_path
+      index: exact_match
+    - name: file_type
+      index: exact_match
+    - name: host_ip
+      index: dimension
+    - name: host_name
+      index: exact_match
+    - name: log_file_path
+      index: exact_match
+    - name: message
+      index: word_search
+    - name: observer_hostname
+      index: exact_match
+    - name: observer_product
+      index: exact_match
+    - name: observer_type
+      index: exact_match
+    - name: observer_vendor
+      index: exact_match
+    - name: orchestrator_namespace
+      index: exact_match
+    - name: orchestrator_resource_id
+      index: exact_match
+    - name: orchestrator_resource_label
+      index: exact_match
+    - name: orchestrator_resource_name
+      index: exact_match
+    - name: orchestrator_resource_type
+      index: exact_match
+    - name: process_args
+      index: exact_match
+    - name: process_args_count
+      index: range
+    - name: process_command_line
+      index: exact_match
+    - name: process_env_vars
+      index: exact_match
+    - name: process_executable
+      index: exact_match
+    - name: process_group_id
+      index: exact_match
+    - name: process_group_leader_executable
+      index: exact_match
+    - name: process_group_leader_name
+      index: exact_match
+    - name: process_group_leader_same_as_process
+      index: dimension
+    - name: process_group_leader_vpid
+      index: range
+    - name: process_group_name
+      index: exact_match
+    - name: process_name
+      index: exact_match
+    - name: process_parent_command_line
+      index: exact_match
+    - name: process_parent_executable
+      index: exact_match
+    - name: process_parent_name
+      index: exact_match
+    - name: process_parent_pid
+      index: range
+    - name: process_parent_start
+      index: range
+    - name: process_parent_uptime
+      index: range
+    - name: process_parent_vpid
+      index: range
+    - name: process_pid
+      index: range
+    - name: process_session_leader_executable
+      index: exact_match
+    - name: process_session_leader_name
+      index: exact_match
+    - name: process_session_leader_pid
+      index: range
+    - name: process_session_leader_same_as_process
+      index: dimension
+    - name: process_start
+      index: range
+    - name: process_uptime
+      index: range
+    - name: process_user_id
+      index: exact_match
+    - name: process_user_name
+      index: exact_match
+    - name: process_vpid
+      index: range
+    - name: process_working_directory
+      index: exact_match
+    - name: related_hosts
+      index: exact_match
+    - name: rule_name
+      index: exact_match
+    - name: server_address
+      index: exact_match
+    - name: server_domain
+      index: exact_match
+    - name: server_ip
+      index: dimension
+    - name: server_port
+      index: range
+    - name: source_address
+      index: exact_match
+    - name: source_domain
+      index: exact_match
+    - name: source_ip
+      index: dimension
+    - name: source_port
+      index: range
+    - name: tags
+      index: exact_match
+    - name: threat_technique_id
+      index: exact_match
+    - name: threat_technique_subtechnique_id
+      index: exact_match

@@ -1,0 +1,2234 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of panw.panos at integrations 2c934eb5223b
+    columns:
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hostname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hostname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: http_request_referer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: http.request.referer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: labels_captive_portal
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: labels.captive_portal'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: labels_client_server_policy_based_forwarding
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: labels.client_server_policy_based_forwarding'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: labels_connect_to_destination_host
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: labels.connect_to_destination_host'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: labels_container_page
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: labels.container_page'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: labels_decrypted_traffic
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: labels.decrypted_traffic'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: labels_enterprise_credential_submission
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: labels.enterprise_credential_submission'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: labels_file_submitted_to_WildFire
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: labels.file_submitted_to_WildFire'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: labels_http_proxy
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: labels.http_proxy'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: labels_ipv6_session
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: labels.ipv6_session'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: labels_nat_translated
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: labels.nat_translated'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: labels_non_standard_port_usage
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: labels.non_standard_port_usage'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: labels_payload_outer_tunnel
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: labels.payload_outer_tunnel'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: labels_pcap_included
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: labels.pcap_included'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: labels_server_client_policy_based_forwarding
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: labels.server_client_policy_based_forwarding'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: labels_source_flow_allow_list
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: labels.source_flow_allow_list'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: labels_ssl_decrypted
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: labels.ssl_decrypted'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: labels_symmetric_return
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: labels.symmetric_return'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: labels_temporary_match
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: labels.temporary_match'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: labels_url_filter_denied
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: labels.url_filter_denied'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: labels_x_forwarded_for
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: labels.x_forwarded_for'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: log_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: log_source_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.source.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_access_point_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.access_point.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_action_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.action_flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_action_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.action_source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_admin
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.admin'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_after_change_detail
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: panw.panos.after_change_detail'
+      comment: 'Elasticsearch mapping type: match_only_text'
+      _field_type: base
+    - name: panw_panos_application_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.application.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_application_characteristics
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.application.characteristics'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_application_container
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.application.container'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_application_is_saas
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.application.is_saas'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_application_is_sanctioned
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.application.is_sanctioned'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_application_risk_level
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.application.risk_level'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_panos_application_sub_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.application.sub_category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_application_technology
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.application.technology'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_application_tunneled
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.application.tunneled'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_area_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.area_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_attempted_gateways
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.attempted_gateways'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_auth_method
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.auth_method'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_authentication_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.authentication.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_authentication_policy
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.authentication.policy'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_authentication_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.authentication.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_before_change_detail
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.before_change_detail'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_bytes_received
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.bytes_received'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_panos_bytes_sent
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.bytes_sent'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_panos_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_cause_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.cause_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_cell_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.cell.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_certificate_fingerprint
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.certificate.fingerprint'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_certificate_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.certificate.flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_certificate_not_after
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.certificate.not_after'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: panw_panos_certificate_not_before
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.certificate.not_before'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: panw_panos_certificate_raw_size
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.certificate.raw_size'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_certificate_serial_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.certificate.serial_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_certificate_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.certificate.size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_panos_certificate_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.certificate.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_chain_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.chain_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_client_os
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.client.os'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_client_os_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.client.os_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_client_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.client_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_client_ver
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.client_ver'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_cloud_report_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.cloud_report.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_cmd
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.cmd'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_cmd_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.cmd_source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_comment
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.comment'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_config_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.config_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_connect_method
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.connect_method'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_container_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.container.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_content_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.content_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_datasource
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.datasource'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_datasource_subtype
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.datasource_subtype'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_datasource_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.datasource_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_datasourcename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.datasourcename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_datasourcetype
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.datasourcetype'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_description
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: panw.panos.description'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: panw_panos_destination_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: panw.panos.destination.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: panw_panos_destination_location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.destination.location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_destination_nat_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: panw.panos.destination.nat.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: panw_panos_destination_nat_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.destination.nat.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_panos_destination_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.destination.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_panos_destination_user
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.destination.user'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_destination_vm_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.destination_vm_uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_destination_zone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.destination.zone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_device_group_hierarchy1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.device_group_hierarchy1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_device_group_hierarchy2
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.device_group_hierarchy2'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_device_group_hierarchy3
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.device_group_hierarchy3'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_device_group_hierarchy4
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.device_group_hierarchy4'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_device_group_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.device_group_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_device_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.device_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_diameter_app_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.diameter_app_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_diameter_avp_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.diameter_avp_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_diameter_cmd_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.diameter_cmd_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_domain_edl
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.domain_edl'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_dst_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.dst.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_dst_dynamic_address_group
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.dst.dynamic_address_group'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_dst_external_dynamic_list
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.dst.external_dynamic_list'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_dst_host
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.dst.host'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_dst_mac
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.dst.mac'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_dst_model
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.dst.model'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_dst_os_family
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.dst.os.family'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_dst_os_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.dst.os.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_dst_profile
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.dst.profile'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_dst_vendor
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.dst.vendor'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_dynamic_user_group_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.dynamic_user.group.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_elapsed_time
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.elapsed_time'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_panos_elliptic_curve
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.elliptic_curve'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_end_ip_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: panw.panos.end_ip_address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: panw_panos_endreason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.endreason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_error_code
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.error_code'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: panw_panos_error_message
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.error_message'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_event_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.event_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_event_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.event.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_event_outcome
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.event.outcome'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_event_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.event.reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_event_result
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.event.result'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_event_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.event.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_event_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.event_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_evidence
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.evidence'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_factorcompletiontime
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.factorcompletiontime'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: panw_panos_factorno
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.factorno'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: panw_panos_factortype
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.factortype'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_file_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.file.hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_file_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.file.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_flow_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.flow_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_forwarded_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: panw.panos.forwarded_ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: panw_panos_gateway
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.gateway'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_generated_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.generated_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: panw_panos_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_high_resolution_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.high_resolution_timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: panw_panos_host_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.host.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_host_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: panw.panos.host.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: panw_panos_hs_stage_c2f
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.hs_stage_c2f'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_hs_stage_f2s
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.hs_stage_f2s'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_http2_connection
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.http2_connection'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_http_content_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.http_content_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_http_headers
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.http_headers'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_http_method
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.http_method'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_imei
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.imei'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_imsi
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.imsi'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_inbound_interface
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.inbound_interface'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_interface
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.interface'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_is_offloaded
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.is_offloaded'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_issuer_common_name_length
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.issuer_common_name.length'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_panos_issuer_common_name_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.issuer_common_name.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_justification
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.justification'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_link_change_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.link.change_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_panos_link_switches
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.link.switches'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_log_profile
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.log_profile'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_logged_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.logged_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: panw_panos_login_duration
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.login_duration'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_panos_machine_mac_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.machine.mac_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_machine_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.machine.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_machine_os
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.machine.os'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_matchname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.matchname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_matchtype
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.matchtype'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_max_encapsulation
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.max_encapsulation'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_panos_mcc
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.mcc'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_message_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.message_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_misc
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.misc'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_mnc
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.mnc'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_module
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.module'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_msisdn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.msisdn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_network_application
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.network.application'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_network_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.network.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_panos_network_direction
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.network.direction'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_network_nat_community_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.network.nat.community_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_network_packets
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.network.packets'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_panos_network_pcap_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.network.pcap_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_normalize_user
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.normalize_user'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_nsdsai_sd
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.nsdsai_sd'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_nsdsai_sst
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.nsdsai_sst'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_nssai_sd
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.nssai_sd'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_nssai_sst
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.nssai_sst'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_object_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.object.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_object_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.object.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_observer_serial_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.observer.serial_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_op_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.op_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_outbound_interface
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.outbound_interface'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_packets_received
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.packets_received'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_panos_packets_sent
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.packets_sent'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_panos_parent_session_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.parent_session.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_parent_session_start_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.parent_session.start_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: panw_panos_partial_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.partial_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_payload_protocol_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.payload_protocol_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_pcap_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.pcap_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_pdu_session_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.pdu_session.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_pod_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.pod.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_pod_namespace
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.pod.namespace'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_policy_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.policy.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_policy_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.policy.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_portal
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.portal'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_priority
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.priority'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_private_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: panw.panos.private.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: panw_panos_private_ipv6
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: panw.panos.private.ipv6'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: panw_panos_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_proxy_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.proxy_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_public_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: panw.panos.public.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: panw_panos_public_ipv6
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: panw.panos.public.ipv6'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: panw_panos_radio_access_technology_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.radio_access_technology_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_received_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.received_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: panw_panos_recipient
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.recipient'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_referrer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.referrer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_region
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.region'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_related_vsys
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.related_vsys'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_remote_user_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.remote_user.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_remote_user_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: panw.panos.remote_user.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: panw_panos_repeat_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.repeat_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_panos_response_time
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.response_time'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_panos_result
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.result'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_root_certificate_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.root_certificate_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_root_common_name_length
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.root_common_name.length'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_panos_root_common_name_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.root_common_name.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_rule_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.rule_uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_ruleset
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.ruleset'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_sccp_calling_gt
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.sccp.calling_gt'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_sccp_calling_ssn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.sccp.calling_ssn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_sctp_assoc_end_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.sctp.assoc_end_reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_sctp_assoc_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.sctp.assoc_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_sctp_cause_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.sctp.cause_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_sctp_chunk_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.sctp.chunk_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_sctp_chunks
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.sctp.chunks'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_panos_sctp_chunks_received
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.sctp.chunks_received'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_panos_sctp_chunks_sent
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.sctp.chunks_sent'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_panos_sctp_filter
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.sctp.filter'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_sctp_stream_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.sctp.stream_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_sctp_verification_tag_1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.sctp.verification.tag_1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_sctp_verification_tag_2
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.sctp.verification.tag_2'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_sdwan_cluster_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.sdwan.cluster.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_sdwan_cluster_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.sdwan.cluster.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_sdwan_device_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.sdwan.device_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_sdwan_site
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.sdwan.site'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_selection_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.selection_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_sender
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.sender'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_sequence_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.sequence_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_serial_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.serial_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_server_name_indication_length
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.server_name_indication.length'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_panos_server_name_indication_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.server_name_indication.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_server_profile
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.server_profile'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_session_owner
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.session.owner'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_sessions_closed
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.sessions.closed'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_panos_sessions_created
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.sessions.created'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_panos_severity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.severity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_source_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: panw.panos.source.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: panw_panos_source_ipv6
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: panw.panos.source.ipv6'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: panw_panos_source_location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.source.location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_source_nat_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: panw.panos.source.nat.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: panw_panos_source_nat_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.source.nat.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_panos_source_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.source.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_panos_source_region
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.source.region'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_source_user
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.source.user'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_source_vm_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.source_vm_uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_source_zone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.source.zone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_src_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.src.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_src_dynamic_address_group
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.src.dynamic_address_group'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_src_external_dynamic_list
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.src.external_dynamic_list'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_src_host
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.src.host'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_src_mac
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.src.mac'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_src_model
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.src.model'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_src_os_family
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.src.os.family'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_src_os_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.src.os.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_src_profile
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.src.profile'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_src_vendor
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.src.vendor'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_stage
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.stage'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_start_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.start_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: panw_panos_strict_check
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.strict_check'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_panos_sub_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.sub_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_subject
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.subject'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_subject_common_name_length
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.subject_common_name.length'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_panos_subject_common_name_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.subject_common_name.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_tag_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.tag.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_threat_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.threat_category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_threat_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.threat.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_threat_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.threat.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_timeout
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.timeout'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: panw_panos_tls_auth
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.tls.auth'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_tls_encryption
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.tls.encryption'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_tls_error_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.tls.error_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_tls_key_exchange_algorithm
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.tls.key_exchange_algorithm'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_tls_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.tls.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_tunnel_endpoint_identifier1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.tunnel_endpoint.identifier1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_tunnel_endpoint_identifier2
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.tunnel_endpoint.identifier2'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_tunnel_fragment
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.tunnel_fragment'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_panos_tunnel_inspection_rule
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.tunnel_inspection_rule'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_tunnel_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.tunnel_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_ugflags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.ugflags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_unknown_protocol
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: panw.panos.unknown_protocol'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: panw_panos_url_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.url.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_url_category_list
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.url_category_list'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_url_idx
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.url_idx'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_user
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.user'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_user_agent
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.user_agent'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_user_by_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.user_by_source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_vendor
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.vendor'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_virtual_sys
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.virtual_sys'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_vsys_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.vsys_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_vsys_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.vsys_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_wildfire_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.wildfire.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_wildfire_report_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.wildfire.report_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_x_forwarded_for
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: panw.panos.x_forwarded_for'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: panw_panos_xff_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: panw.panos.xff.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: session_start_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: session.start_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: syslog_facility
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: syslog.facility'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: syslog_facility_label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: syslog.facility_label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: syslog_priority
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: syslog.priority'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: syslog_severity_label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: syslog.severity_label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

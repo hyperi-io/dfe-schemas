@@ -1,0 +1,576 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of authentik.event at integrations 2c934eb5223b
+    columns:
+    - name: authentik_event_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_app
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.app'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_brand_app
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.brand.app'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_brand_model_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.brand.model_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_brand_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.brand.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_brand_pk
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.brand.pk'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_client_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: authentik.event.client_ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: authentik_event_context_auth_method
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.auth_method'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_authorized_application_app
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.authorized_application.app'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_authorized_application_model_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.authorized_application.model_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_authorized_application_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.authorized_application.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_authorized_application_pk
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.authorized_application.pk'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_binding_app
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.binding.app'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_binding_model_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.binding.model_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_binding_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.binding.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_binding_pk
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.binding.pk'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_created
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: authentik.event.context.created'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: authentik_event_context_diff
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: authentik.event.context.diff'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: authentik_event_context_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_expression
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.expression'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_flow
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.flow'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_http_request_args_client_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.http_request.args.client_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_http_request_args_format_result
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.http_request.args.format_result'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_http_request_args_include_groups
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.http_request.args.include_groups'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_http_request_args_next
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.http_request.args.next'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_http_request_args_page_size
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.http_request.args.page_size'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_http_request_args_query
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.http_request.args.query'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_http_request_args_redirect_uri
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.http_request.args.redirect_uri'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_http_request_args_response_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.http_request.args.response_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_http_request_args_scope
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.http_request.args.scope'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_http_request_args_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.http_request.args.state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_http_request_method
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.http_request.method'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_http_request_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.http_request.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_http_request_user_agent
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.http_request.user_agent'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_message
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.message'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_model_app
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.model.app'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_model_model_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.model.model_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_model_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.model.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_model_pk
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.model.pk'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_new_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.new_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_password
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.password'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_policy_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.policy_uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_request_context_event_app
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.request.context.event.app'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_request_context_event_model_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.request.context.event.model_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_request_context_event_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.request.context.event.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_request_context_event_pk
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.request.context.event.pk'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_request_obj_app
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.request.obj.app'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_request_obj_model_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.request.obj.model_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_request_obj_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.request.obj.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_request_obj_pk
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.request.obj.pk'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_request_user_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.request.user.email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_request_user_pk
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.request.user.pk'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_request_user_username
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.request.user.username'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_result_passing
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: authentik.event.context.result.passing'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: authentik_event_context_scopes
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.scopes'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_secret_app
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.secret.app'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_secret_model_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.secret.model_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_secret_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.secret.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_secret_pk
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.secret.pk'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_stage_app
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.stage.app'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_stage_model_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.stage.model_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_stage_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.stage.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_stage_pk
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.stage.pk'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_token_app
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.token.app'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_token_model_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.token.model_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_token_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.token.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_token_pk
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.token.pk'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_context_username
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.context.username'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_created
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: authentik.event.created'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: authentik_event_expires
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: authentik.event.expires'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: authentik_event_pk
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.pk'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_user_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.user.email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_user_is_anonymous
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: authentik.event.user.is_anonymous'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: authentik_event_user_on_behalf_of_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.user.on_behalf_of.email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_user_on_behalf_of_pk
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.user.on_behalf_of.pk'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_user_on_behalf_of_username
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.user.on_behalf_of.username'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_user_pk
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.user.pk'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: authentik_event_user_username
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: authentik.event.user.username'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

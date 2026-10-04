@@ -1,0 +1,297 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of azure.activitylogs at integrations 2c934eb5223b
+    columns:
+    - name: azure_activitylogs_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.activitylogs.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_activitylogs_event_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.activitylogs.event_category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_activitylogs_identity_authorization_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.activitylogs.identity.authorization.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_activitylogs_identity_authorization_evidence_principal_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.activitylogs.identity.authorization.evidence.principal_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_activitylogs_identity_authorization_evidence_principal_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.activitylogs.identity.authorization.evidence.principal_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_activitylogs_identity_authorization_evidence_role
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.activitylogs.identity.authorization.evidence.role'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_activitylogs_identity_authorization_evidence_role_assignment_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.activitylogs.identity.authorization.evidence.role_assignment_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_activitylogs_identity_authorization_evidence_role_assignment_scope
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.activitylogs.identity.authorization.evidence.role_assignment_scope'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_activitylogs_identity_authorization_evidence_role_definition_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.activitylogs.identity.authorization.evidence.role_definition_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_activitylogs_identity_authorization_scope
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.activitylogs.identity.authorization.scope'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_activitylogs_identity_claims_initiated_by_user_fullname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.activitylogs.identity.claims_initiated_by_user.fullname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_activitylogs_identity_claims_initiated_by_user_givenname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.activitylogs.identity.claims_initiated_by_user.givenname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_activitylogs_identity_claims_initiated_by_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.activitylogs.identity.claims_initiated_by_user.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_activitylogs_identity_claims_initiated_by_user_schema
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.activitylogs.identity.claims_initiated_by_user.schema'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_activitylogs_identity_claims_initiated_by_user_surname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.activitylogs.identity.claims_initiated_by_user.surname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_activitylogs_identity_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.activitylogs.identity_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_activitylogs_level
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: azure.activitylogs.level'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: azure_activitylogs_operation_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.activitylogs.operation_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_activitylogs_operation_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.activitylogs.operation_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_activitylogs_properties
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: azure.activitylogs.properties'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: azure_activitylogs_result_signature
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.activitylogs.result_signature'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_activitylogs_result_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.activitylogs.result_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_activitylogs_tenant_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.activitylogs.tenant_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_correlation_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.correlation_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_resource_authorization_rule
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.resource.authorization_rule'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_resource_group
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.resource.group'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_resource_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.resource.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_resource_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.resource.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_resource_namespace
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.resource.namespace'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_resource_provider
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.resource.provider'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_subscription_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.subscription_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_tenant_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.tenant_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: geo_continent_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: geo.continent_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: geo_country_iso_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: geo.country_iso_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: geo_location
+      type: geo_point
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: geo.location'
+      comment: 'Elasticsearch mapping type: geo_point'
+      _field_type: base
+    - name: geo_region_iso_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: geo.region_iso_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: related_entity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: related.entity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

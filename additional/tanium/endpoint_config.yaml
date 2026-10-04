@@ -1,0 +1,177 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of tanium.endpoint_config at integrations 2c934eb5223b
+    columns:
+    - name: aws_s3_bucket_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_bucket_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_object_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.object.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: log_source_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.source.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_endpoint_config_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.endpoint_config.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_endpoint_config_item_data_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.endpoint_config.item.data_category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_endpoint_config_item_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.endpoint_config.item.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_endpoint_config_item_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.endpoint_config.item.id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tanium_endpoint_config_manifest_item_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.endpoint_config.manifest.item_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tanium_endpoint_config_manifest_items
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: tanium.endpoint_config.manifest.items'
+      comment: 'Elasticsearch mapping type: nested'
+      _field_type: base
+    - name: tanium_endpoint_config_manifest_items_data_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.endpoint_config.manifest.items.data_category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_endpoint_config_manifest_items_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.endpoint_config.manifest.items.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_endpoint_config_manifest_items_ids
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.endpoint_config.manifest.items.ids'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tanium_endpoint_config_manifest_non_windows_saved_action_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.endpoint_config.manifest.non_windows_saved_action_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tanium_endpoint_config_manifest_revision
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.endpoint_config.manifest.revision'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tanium_endpoint_config_manifest_service_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.endpoint_config.manifest.service_uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_endpoint_config_manifest_windows_saved_action_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.endpoint_config.manifest.windows_saved_action_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tanium_endpoint_config_module_solution_context_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.endpoint_config.module.solution_context_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_endpoint_config_module_solution_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.endpoint_config.module.solution_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_endpoint_config_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.endpoint_config.timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tanium_endpoint_config_user_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.endpoint_config.user.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_endpoint_config_user_persona_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.endpoint_config.user.persona_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

@@ -1,0 +1,50 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of contrast_security.issue at integrations 2c934eb5223b
+    columns:
+    - name: contrast_security_cvss_vector
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: contrast_security.cvss_vector'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: contrast_security_emit_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: contrast_security.emit_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: contrast_security_environments
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: contrast_security.environments'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: contrast_security_event_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: contrast_security.event_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: contrast_security_last_observed
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: contrast_security.last_observed'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: contrast_security_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: contrast_security.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

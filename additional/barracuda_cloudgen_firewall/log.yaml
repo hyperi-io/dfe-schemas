@@ -1,0 +1,71 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of barracuda_cloudgen_firewall.log at integrations 2c934eb5223b
+    columns:
+    - name: barracuda_cloudgen_firewall_log_app_rule
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: barracuda_cloudgen_firewall.log.app_rule'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: barracuda_cloudgen_firewall_log_apps
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: barracuda_cloudgen_firewall.log.apps'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: barracuda_cloudgen_firewall_log_fw_info
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: barracuda_cloudgen_firewall.log.fw_info'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: barracuda_cloudgen_firewall_log_protos
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: barracuda_cloudgen_firewall.log.protos'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: barracuda_cloudgen_firewall_log_traffic_type
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: barracuda_cloudgen_firewall.log.traffic_type'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: barracuda_cloudgen_firewall_log_user_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: barracuda_cloudgen_firewall.log.user_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: labels_origin_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: labels.origin_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: labels_origin_client_subject
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: labels.origin_client_subject'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

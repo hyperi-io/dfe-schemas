@@ -1,0 +1,78 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of system_audit.package at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: system_audit_package_arch
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: system_audit.package.arch'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: system_audit_package_entity_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: system_audit.package.entity_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: system_audit_package_installtime
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: system_audit.package.installtime'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: system_audit_package_license
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: system_audit.package.license'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: system_audit_package_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: system_audit.package.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: system_audit_package_release
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: system_audit.package.release'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: system_audit_package_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: system_audit.package.size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: system_audit_package_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: system_audit.package.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: system_audit_package_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: system_audit.package.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

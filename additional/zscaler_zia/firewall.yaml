@@ -1,0 +1,603 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of zscaler_zia.firewall at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: log_source_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.source.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_aggregate
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.aggregate'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_bypassed_session
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.bypassed.session'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_bypassed_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.firewall.bypassed.time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: zscaler_zia_firewall_bytes_in
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.firewall.bytes_in'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_firewall_client_destination_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: zscaler_zia.firewall.client.destination.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: zscaler_zia_firewall_client_destination_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.firewall.client.destination.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_firewall_client_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.client.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_client_source_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: zscaler_zia.firewall.client.source.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: zscaler_zia_firewall_client_source_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.firewall.client.source.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_firewall_datacenter_city
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.datacenter.city'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_datacenter_country
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.datacenter.country'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_datacenter_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.datacenter.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_day
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.day'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_day_of_month
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.firewall.day_of_month'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_firewall_department
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.department'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_dept
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.dept'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_destination_country
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.destination.country'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_device_appversion
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.device.appversion'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_device_hostname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.device.hostname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_device_model
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.device.model'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_device_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.device.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_device_os_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.device.os.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_device_os_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.device.os.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_device_owner
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.device.owner'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_duration_average_duration
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.firewall.duration.average_duration'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_firewall_duration_milliseconds
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.firewall.duration.milliseconds'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_firewall_duration_seconds
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.firewall.duration.seconds'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_firewall_eedone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.eedone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_epochtime
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.firewall.epochtime'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: zscaler_zia_firewall_external_device_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.external_device_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_flow_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.flow_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_forward_gateway_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.forward_gateway_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_hour
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.firewall.hour'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_firewall_ip_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.ip_category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_ip_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.ip_protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_ips_custom_signature
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.ips.custom_signature'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_ips_rule_label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.ips.rule_label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_location_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.location_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_login
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.login'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_minutes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.firewall.minutes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_firewall_month
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.month'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_month_of_year
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.firewall.month_of_year'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_firewall_nat
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.nat'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_nat_rule_label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.nat_rule_label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_network_application
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.network.application'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_network_service
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.network.service'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_obfuscated_client_source_ip
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.obfuscated.client_source_ip'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_obfuscated_device_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.obfuscated.device.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_obfuscated_device_owner
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.obfuscated.device.owner'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_obfuscated_forward_gateway_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.obfuscated.forward_gateway_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_obfuscated_host_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.obfuscated.host_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_obfuscated_ip_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.obfuscated.ip.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_obfuscated_ips_rule_label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.obfuscated.ips_rule_label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_obfuscated_nat_label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.obfuscated.nat_label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_obfuscated_redirect_policy_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.obfuscated.redirect_policy_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_obfuscated_rule_label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.obfuscated.rule_label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_obfuscated_zpa_app_segment
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.obfuscated.zpa_app_segment'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_out_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.firewall.out_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_firewall_record_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.record.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_redirect_policy_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.redirect_policy_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_rule
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.rule'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_rule_label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.rule_label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_second
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.firewall.second'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_firewall_server_destination_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: zscaler_zia.firewall.server.destination.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: zscaler_zia_firewall_server_destination_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.firewall.server.destination.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_firewall_server_source_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: zscaler_zia.firewall.server.source.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: zscaler_zia_firewall_server_source_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.firewall.server.source.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_firewall_session_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.firewall.session.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_firewall_source_ip_country
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.source_ip_country'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_stateful
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.stateful'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_threat_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.threat.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_threat_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.threat.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.firewall.time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: zscaler_zia_firewall_timezone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.timezone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_tunnel_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: zscaler_zia.firewall.tunnel.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: zscaler_zia_firewall_tunnel_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.tunnel.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_user
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.user'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_year
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.firewall.year'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_firewall_z_tunnel_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.z_tunnel_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_firewall_zpa_app_segment
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.firewall.zpa_app_segment'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

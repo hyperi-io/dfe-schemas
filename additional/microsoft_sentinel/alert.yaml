@@ -1,0 +1,290 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of microsoft_sentinel.alert at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: microsoft_sentinel_alert_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.alert.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_alert_kind
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.alert.kind'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_alert_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.alert.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_alert_properties_additional_data
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: microsoft_sentinel.alert.properties.additional_data'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: microsoft_sentinel_alert_properties_alert_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.alert.properties.alert.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_alert_properties_alert_link
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.alert.properties.alert.link'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_alert_properties_alert_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.alert.properties.alert.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_alert_properties_compromised_entity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.alert.properties.compromised_entity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_alert_properties_confidence_level
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.alert.properties.confidence_level'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_alert_properties_confidence_reasons_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.alert.properties.confidence_reasons.reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_alert_properties_confidence_reasons_reason_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.alert.properties.confidence_reasons.reason_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_alert_properties_confidence_score
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_sentinel.alert.properties.confidence_score'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: microsoft_sentinel_alert_properties_confidence_score_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.alert.properties.confidence_score_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_alert_properties_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.alert.properties.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_alert_properties_end_time_utc
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_sentinel.alert.properties.end_time_utc'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: microsoft_sentinel_alert_properties_friendly_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.alert.properties.friendly_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_alert_properties_intent
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.alert.properties.intent'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_alert_properties_processing_end_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_sentinel.alert.properties.processing_end_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: microsoft_sentinel_alert_properties_product_component_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.alert.properties.product.component_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_alert_properties_product_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.alert.properties.product.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_alert_properties_product_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.alert.properties.product.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_alert_properties_provider_alert_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.alert.properties.provider_alert_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_alert_properties_remediation_steps
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.alert.properties.remediation_steps'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_alert_properties_resource_identifiers
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: microsoft_sentinel.alert.properties.resource_identifiers'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: microsoft_sentinel_alert_properties_severity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.alert.properties.severity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_alert_properties_start_time_utc
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_sentinel.alert.properties.start_time_utc'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: microsoft_sentinel_alert_properties_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.alert.properties.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_alert_properties_system_alert_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.alert.properties.system_alert_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_alert_properties_tactics
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.alert.properties.tactics'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_alert_properties_time_generated
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_sentinel.alert.properties.time_generated'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: microsoft_sentinel_alert_properties_vendor_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.alert.properties.vendor_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_alert_system_data_created_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_sentinel.alert.system_data.created_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: microsoft_sentinel_alert_system_data_created_by
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.alert.system_data.created_by'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_alert_system_data_created_by_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.alert.system_data.created_by_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_alert_system_data_last_modified_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_sentinel.alert.system_data.last_modified_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: microsoft_sentinel_alert_system_data_last_modified_by
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.alert.system_data.last_modified_by'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_alert_system_data_last_modified_by_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.alert.system_data.last_modified_by_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_alert_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.alert.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

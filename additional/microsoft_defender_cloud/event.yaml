@@ -1,0 +1,1515 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of microsoft_defender_cloud.event at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_agent_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.agent_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_alert_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.alert_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_assessment_event_data_enrichment_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.assessment_event_data_enrichment.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_assessment_event_data_enrichment_api_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.assessment_event_data_enrichment.api_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_assessment_event_data_enrichment_is_snapshot
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: microsoft_defender_cloud.event.assessment_event_data_enrichment.is_snapshot'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_azure_resource_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.azure_resource_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_compromised_entity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.compromised_entity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_confidence_level
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.confidence.level'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_confidence_reasons
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.confidence.reasons'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_confidence_score
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.confidence.score'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_correlation_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.correlation_key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_end_time_utc
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_defender_cloud.event.end_time_utc'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_aad_tenant_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.aad_tenant_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_aad_user_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.aad_user_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_account_ref
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.account.ref'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: microsoft_defender_cloud.event.entities.address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_algorithm
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.algorithm'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_amazon_resource_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.amazon_resource_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_asset
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: microsoft_defender_cloud.event.entities.asset'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_azure_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.azure_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_blob_container_ref
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.blob_container.ref'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_cloud_resource_ref
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.cloud_resource.ref'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_cluster_ref
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.cluster.ref'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_command_line
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.command_line'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_container_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.container_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_creation_time_utc
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_defender_cloud.event.entities.creation_time_utc'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_directory
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.directory'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_dns_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.dns_domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_domain_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.domain_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_elevation_token
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.elevation_token'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_end_time_utc
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_defender_cloud.event.entities.end_time_utc'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_etag
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.etag'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_file_hashes_algorithm
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.file_hashes.algorithm'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_file_hashes_asset
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: microsoft_defender_cloud.event.entities.file_hashes.asset'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_file_hashes_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.file_hashes.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_file_hashes_ref
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.file_hashes.ref'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_file_hashes_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.file_hashes.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_file_hashes_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.file_hashes.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_files_ref
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.files.ref'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_host_ip_address_ref
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.host_ip_address.ref'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_host_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.host_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_host_ref
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.host.ref'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_image_file_ref
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.image_file.ref'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.image_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_image_ref
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.image.ref'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_ip_addresses_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: microsoft_defender_cloud.event.entities.ip_addresses.address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_ip_addresses_asset
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: microsoft_defender_cloud.event.entities.ip_addresses.asset'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_ip_addresses_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.ip_addresses.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_ip_addresses_location_asn
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_defender_cloud.event.entities.ip_addresses.location.asn'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_ip_addresses_location_city
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.ip_addresses.location.city'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_ip_addresses_location_country_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.ip_addresses.location.country_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_ip_addresses_location_country_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.ip_addresses.location.country_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_ip_addresses_location_latitude
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_defender_cloud.event.entities.ip_addresses.location.latitude'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_ip_addresses_location_longitude
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_defender_cloud.event.entities.ip_addresses.location.longitude'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_ip_addresses_location_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.ip_addresses.location.state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_ip_addresses_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.ip_addresses.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_is_domain_joined
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: microsoft_defender_cloud.event.entities.is_domain_joined'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_is_valid
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: microsoft_defender_cloud.event.entities.is_valid'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_location_asn
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_defender_cloud.event.entities.location.asn'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_location_carrier
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.location.carrier'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_location_city
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.location.city'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_location_cloud_provider
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.location.cloud_provider'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_location_country_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.location.country_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_location_country_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.location.country_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_location_latitude
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_defender_cloud.event.entities.location.latitude'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_location_longitude
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_defender_cloud.event.entities.location.longitude'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_location_organization
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.location.organization'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_location_organization_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.location.organization_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_location_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.location.state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_location_system_service
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.location.system_service'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_location_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.location_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_location_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.location_value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_logon_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.logon_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_namespace_ref
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.namespace.ref'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_net_bios_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.net_bios_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_nt_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.nt_domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_object_guid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.object_guid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_oms_agent_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.oms_agent_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_os_family
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.os_family'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_os_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.os_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_parent_process_ref
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.parent_process.ref'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_pod_ref
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.pod.ref'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_process_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.process_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_project_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.project_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_ref
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.ref'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_related_azure_resource_ids
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.related_azure_resource_ids'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_resource_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.resource_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_resource_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.resource_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_resource_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.resource_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_session_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.session_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_sid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.sid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_source_address_ref
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.source_address.ref'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_start_time_utc
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_defender_cloud.event.entities.start_time_utc'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_storage_resource_ref
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.storage_resource.ref'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_threat_intelligence_confidence
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_defender_cloud.event.entities.threat_intelligence.confidence'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_threat_intelligence_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.threat_intelligence.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_threat_intelligence_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.threat_intelligence.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_threat_intelligence_provider_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.threat_intelligence.provider_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_threat_intelligence_report_link
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.threat_intelligence.report_link'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_threat_intelligence_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.threat_intelligence.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_upn_suffix
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.upn_suffix'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_entities_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.entities.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_event_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.event_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_extended_links_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.extended_links.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_extended_links_href
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.extended_links.href'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_extended_links_label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.extended_links.label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_extended_links_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.extended_links.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_extended_properties
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: microsoft_defender_cloud.event.extended_properties'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_intent
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.intent'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_is_incident
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: microsoft_defender_cloud.event.is_incident'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_kind
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.kind'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_processing_end_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_defender_cloud.event.processing_end_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_product_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.product.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_additional_data
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: microsoft_defender_cloud.event.properties.additional_data'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_assessment_definitions
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.properties.assessment.definitions'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_assessment_details_link
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.properties.assessment.details_link'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_assessment_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.properties.assessment.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.properties.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_definition_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.properties.definition.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_definition_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.properties.definition.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_definition_max_score
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_defender_cloud.event.properties.definition.max_score'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_definition_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.properties.definition.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_definition_source_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.properties.definition.source_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_definition_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.properties.definition.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.properties.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.properties.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_environment
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.properties.environment'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_failed_resources
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_defender_cloud.event.properties.failed_resources'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_healthy_resource_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_defender_cloud.event.properties.healthy_resource_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.properties.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_impact
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.properties.impact'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_links_azure_portal
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.properties.links.azure_portal'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_metadata_assessment_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.properties.metadata.assessment_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_metadata_categories
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.properties.metadata.categories'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_metadata_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.properties.metadata.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_metadata_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.properties.metadata.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_metadata_implementation_effort
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.properties.metadata.implementation_effort'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_metadata_policy_definition_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.properties.metadata.policy_definition_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_metadata_preview
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: microsoft_defender_cloud.event.properties.metadata.preview'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_metadata_remediation_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.properties.metadata.remediation_description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_metadata_severity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.properties.metadata.severity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_metadata_threats
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.properties.metadata.threats'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_metadata_user_impact
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.properties.metadata.user_impact'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_not_applicable_resource_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_defender_cloud.event.properties.not_applicable_resource_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_passed_resources
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_defender_cloud.event.properties.passed_resources'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_remediation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.properties.remediation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_resource_details_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.properties.resource_details.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_resource_details_machine_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.properties.resource_details.machine_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_resource_details_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.properties.resource_details.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_resource_details_source_computer_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.properties.resource_details.source_computer_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_resource_details_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.properties.resource_details.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_resource_details_vm_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.properties.resource_details.vm_uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_resource_details_workspace_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.properties.resource_details.workspace_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_score_current
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_defender_cloud.event.properties.score.current'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_score_max
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_defender_cloud.event.properties.score.max'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_score_percentage
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_defender_cloud.event.properties.score.percentage'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_skipped_resources
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_defender_cloud.event.properties.skipped_resources'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.properties.state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_status_cause
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.properties.status.cause'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_status_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.properties.status.code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_status_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.properties.status.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_status_first_evaluation_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_defender_cloud.event.properties.status.first_evaluation_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_status_severity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.properties.status.severity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_status_status_change_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_defender_cloud.event.properties.status.status_change_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_status_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.properties.status.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_time_generated
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_defender_cloud.event.properties.time_generated'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.properties.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_unhealthy_resource_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_defender_cloud.event.properties.unhealthy_resource_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_properties_weight
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_defender_cloud.event.properties.weight'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_provider_alert_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.provider_alert_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_remediation_steps
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.remediation_steps'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_resource_identifiers_aad_tenant_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.resource_identifiers.aad_tenant_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_resource_identifiers_agent_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.resource_identifiers.agent_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_resource_identifiers_azure_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.resource_identifiers.azure_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_resource_identifiers_azure_tenant_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.resource_identifiers.azure_tenant_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_resource_identifiers_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.resource_identifiers.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_resource_identifiers_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.resource_identifiers.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_resource_identifiers_workspace_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.resource_identifiers.workspace_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_resource_identifiers_workspace_resource_group
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.resource_identifiers.workspace_resource_group'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_resource_identifiers_workspace_subscription_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.resource_identifiers.workspace_subscription_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_security_event_data_enrichment_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.security_event_data_enrichment.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_security_event_data_enrichment_api_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.security_event_data_enrichment.api_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_security_event_data_enrichment_interval
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.security_event_data_enrichment.interval'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_security_event_data_enrichment_is_snapshot
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: microsoft_defender_cloud.event.security_event_data_enrichment.is_snapshot'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_security_event_data_enrichment_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.security_event_data_enrichment.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_severity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.severity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_start_time_utc
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_defender_cloud.event.start_time_utc'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_sub_assessment_event_data_enrichment_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.sub_assessment_event.data_enrichment.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_sub_assessment_event_data_enrichment_api_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.sub_assessment_event.data_enrichment.api_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_sub_assessment_event_data_enrichment_is_snapshot
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: microsoft_defender_cloud.event.sub_assessment_event.data_enrichment.is_snapshot'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_sub_assessment_event_data_enrichment_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.sub_assessment_event.data_enrichment.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_system_alert_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.system.alert_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_tenant_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.tenant_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_time_generated
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_defender_cloud.event.time_generated'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_uri
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.uri'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_vendor_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.vendor_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_workspace_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.workspace.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_workspace_resource_group
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.workspace.resource_group'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_defender_cloud_event_workspace_subscription_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_defender_cloud.event.workspace.subscription_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

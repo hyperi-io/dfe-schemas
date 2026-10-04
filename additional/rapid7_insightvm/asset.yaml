@@ -1,0 +1,575 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of rapid7_insightvm.asset at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: rapid7_insightvm_asset_assessed_for_policies
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: rapid7.insightvm.asset.assessed_for_policies'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: rapid7_insightvm_asset_assessed_for_vulnerabilities
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: rapid7.insightvm.asset.assessed_for_vulnerabilities'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: rapid7_insightvm_asset_credential_assessments_nested_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rapid7.insightvm.asset.credential_assessments_nested.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: rapid7_insightvm_asset_credential_assessments_nested_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.credential_assessments_nested.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_credential_assessments_nested_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.credential_assessments_nested.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_credential_assessments_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rapid7.insightvm.asset.credential_assessments.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: rapid7_insightvm_asset_credential_assessments_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.credential_assessments.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_credential_assessments_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.credential_assessments.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_critical_vulnerabilities
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rapid7.insightvm.asset.critical_vulnerabilities'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: rapid7_insightvm_asset_exploits
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rapid7.insightvm.asset.exploits'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: rapid7_insightvm_asset_host_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.host_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: rapid7.insightvm.asset.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: rapid7_insightvm_asset_last_assessed_for_vulnerabilities
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rapid7.insightvm.asset.last_assessed_for_vulnerabilities'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: rapid7_insightvm_asset_last_scan_end
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rapid7.insightvm.asset.last_scan_end'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: rapid7_insightvm_asset_last_scan_start
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rapid7.insightvm.asset.last_scan_start'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: rapid7_insightvm_asset_mac
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.mac'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_malware_kits
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rapid7.insightvm.asset.malware_kits'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: rapid7_insightvm_asset_moderate_vulnerabilities
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rapid7.insightvm.asset.moderate_vulnerabilities'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: rapid7_insightvm_asset_new_check_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.new.check_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_new_first_found
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rapid7.insightvm.asset.new.first_found'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: rapid7_insightvm_asset_new_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.new.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_new_last_found
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rapid7.insightvm.asset.new.last_found'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: rapid7_insightvm_asset_new_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rapid7.insightvm.asset.new.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: rapid7_insightvm_asset_new_proof
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.new.proof'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_new_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.new.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_new_solution_fix
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.new.solution.fix'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_new_solution_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.new.solution.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_new_solution_summary
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.new.solution.summary'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_new_solution_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.new.solution.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_new_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.new.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_new_vulnerability_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.new.vulnerability_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_os_architecture
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.os.architecture'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_os_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.os.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_os_family
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.os.family'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_os_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.os.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_os_system_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.os.system_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_os_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.os.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_os_vendor
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.os.vendor'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_os_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.os.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_remediated_check_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.remediated.check_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_remediated_first_found
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rapid7.insightvm.asset.remediated.first_found'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: rapid7_insightvm_asset_remediated_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.remediated.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_remediated_last_found
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rapid7.insightvm.asset.remediated.last_found'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: rapid7_insightvm_asset_remediated_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rapid7.insightvm.asset.remediated.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: rapid7_insightvm_asset_remediated_proof
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.remediated.proof'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_remediated_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.remediated.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_remediated_solution_fix
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.remediated.solution.fix'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_remediated_solution_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.remediated.solution.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_remediated_solution_summary
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.remediated.solution.summary'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_remediated_solution_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.remediated.solution.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_remediated_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.remediated.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_remediated_vulnerability_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.remediated.vulnerability_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_risk_score
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rapid7.insightvm.asset.risk_score'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: rapid7_insightvm_asset_same_check_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.same.check_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_same_first_found
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rapid7.insightvm.asset.same.first_found'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: rapid7_insightvm_asset_same_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.same.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_same_last_found
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rapid7.insightvm.asset.same.last_found'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: rapid7_insightvm_asset_same_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rapid7.insightvm.asset.same.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: rapid7_insightvm_asset_same_proof
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.same.proof'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_same_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.same.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_same_reintroduced
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rapid7.insightvm.asset.same.reintroduced'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: rapid7_insightvm_asset_same_solution_fix
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.same.solution.fix'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_same_solution_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.same.solution.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_same_solution_summary
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.same.solution.summary'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_same_solution_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.same.solution.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_same_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.same.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_same_vulnerability_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.same.vulnerability_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_severe_vulnerabilities
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rapid7.insightvm.asset.severe_vulnerabilities'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: rapid7_insightvm_asset_tags_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.tags.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_tags_nested_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.tags_nested.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_tags_nested_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.tags_nested.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_tags_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.tags.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_total_vulnerabilities
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rapid7.insightvm.asset.total_vulnerabilities'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: rapid7_insightvm_asset_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_unique_identifiers_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.unique_identifiers.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_unique_identifiers_nested_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.unique_identifiers_nested.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_unique_identifiers_nested_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.unique_identifiers_nested.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rapid7_insightvm_asset_unique_identifiers_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rapid7.insightvm.asset.unique_identifiers.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

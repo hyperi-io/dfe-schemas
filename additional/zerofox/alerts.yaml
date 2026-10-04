@@ -1,0 +1,352 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of zerofox.alerts at integrations 2c934eb5223b
+    columns:
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: dataset_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: dataset.name'
+      comment: 'Elasticsearch mapping type: constant_keyword'
+      _field_type: base
+    - name: dataset_namespace
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: dataset.namespace'
+      comment: 'Elasticsearch mapping type: constant_keyword'
+      _field_type: base
+    - name: dataset_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: dataset.type'
+      comment: 'Elasticsearch mapping type: constant_keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zerofox_content_actions
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zerofox.content_actions'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zerofox_darkweb_term
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zerofox.darkweb_term'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zerofox_entity_account
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zerofox.entity_account'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zerofox_entity_entity_group_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zerofox.entity.entity_group.id'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: zerofox_entity_entity_group_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zerofox.entity.entity_group.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zerofox_entity_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zerofox.entity.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zerofox_entity_image
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zerofox.entity.image'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zerofox_entity_labels_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zerofox.entity.labels.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zerofox_entity_labels_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zerofox.entity.labels.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zerofox_entity_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zerofox.entity.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zerofox_entity_term_deleted
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: zerofox.entity_term.deleted'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: zerofox_entity_term_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zerofox.entity_term.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zerofox_entity_term_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zerofox.entity_term.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zerofox_escalated
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: zerofox.escalated'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: zerofox_last_modified
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zerofox.last_modified'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: zerofox_metadata
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: zerofox.metadata'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: zerofox_notes
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: zerofox.notes'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: zerofox_perpetrator_account_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zerofox.perpetrator.account_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zerofox_perpetrator_content
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zerofox.perpetrator.content'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zerofox_perpetrator_destination_account_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zerofox.perpetrator.destination_account_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zerofox_perpetrator_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zerofox.perpetrator.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zerofox_perpetrator_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zerofox.perpetrator.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zerofox_perpetrator_image
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zerofox.perpetrator.image'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zerofox_perpetrator_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zerofox.perpetrator.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zerofox_perpetrator_network
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zerofox.perpetrator.network'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zerofox_perpetrator_parent_post_account_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zerofox.perpetrator.parent_post_account_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zerofox_perpetrator_parent_post_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zerofox.perpetrator.parent_post_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zerofox_perpetrator_parent_post_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zerofox.perpetrator.parent_post_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zerofox_perpetrator_post_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zerofox.perpetrator.post_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zerofox_perpetrator_post_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zerofox.perpetrator.post_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zerofox_perpetrator_timestamp
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zerofox.perpetrator.timestamp'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zerofox_perpetrator_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zerofox.perpetrator.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zerofox_perpetrator_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zerofox.perpetrator.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zerofox_perpetrator_username
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zerofox.perpetrator.username'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zerofox_protected_account
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zerofox.protected_account'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zerofox_protected_locations
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zerofox.protected_locations'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zerofox_protected_social_object
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zerofox.protected_social_object'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zerofox_reviewed
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: zerofox.reviewed'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: zerofox_reviews
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zerofox.reviews'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zerofox_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zerofox.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zerofox_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zerofox.tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

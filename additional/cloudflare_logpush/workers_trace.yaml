@@ -1,0 +1,194 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of cloudflare_logpush.workers_trace at integrations 2c934eb5223b
+    columns:
+    - name: aws_s3_bucket_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_bucket_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_object_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.object.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_storage_blob_content_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.storage.blob.content_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_storage_blob_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.storage.blob.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_storage_container_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.storage.container.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_logpush_workers_trace_cpu_time_ms
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cloudflare_logpush.workers_trace.cpu_time_ms'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cloudflare_logpush_workers_trace_dispatch_namespace
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare_logpush.workers_trace.dispatch_namespace'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_logpush_workers_trace_entrypoint
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare_logpush.workers_trace.entrypoint'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_logpush_workers_trace_event
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: cloudflare_logpush.workers_trace.event'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: cloudflare_logpush_workers_trace_exceptions
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: cloudflare_logpush.workers_trace.exceptions'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: cloudflare_logpush_workers_trace_logs
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: cloudflare_logpush.workers_trace.logs'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: cloudflare_logpush_workers_trace_outcome
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare_logpush.workers_trace.outcome'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_logpush_workers_trace_script_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare_logpush.workers_trace.script.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_logpush_workers_trace_script_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare_logpush.workers_trace.script.tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_logpush_workers_trace_script_version
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: cloudflare_logpush.workers_trace.script.version'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: cloudflare_logpush_workers_trace_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cloudflare_logpush.workers_trace.timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: cloudflare_logpush_workers_trace_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare_logpush.workers_trace.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_logpush_workers_trace_wall_time_ms
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cloudflare_logpush.workers_trace.wall_time_ms'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gcs_storage_bucket_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcs.storage.bucket.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcs_storage_object_content_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcs.storage.object.content_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcs_storage_object_json_data
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcs.storage.object.json_data'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcs_storage_object_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcs.storage.object.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: log_source_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.source.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

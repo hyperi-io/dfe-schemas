@@ -1,0 +1,92 @@
+base: meta/elastic/ecs
+base_version: "1.0.0"
+current: "1.0.0"
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    summary: qualys_gav.asset selection from meta/elastic/ecs
+    select:
+    - name: cloud_provider
+      index: exact_match
+    - name: data_stream_dataset
+      index: exact_match
+    - name: data_stream_namespace
+      index: exact_match
+    - name: data_stream_type
+      index: exact_match
+    - name: device_manufacturer
+      index: exact_match
+    - name: device_model_name
+      index: exact_match
+    - name: ecs_version
+      index: exact_match
+    - name: event_category
+      index: exact_match
+    - name: event_created
+      index: range
+    - name: event_dataset
+      index: exact_match
+    - name: event_kind
+      index: exact_match
+    - name: event_module
+      index: exact_match
+    - name: event_original
+      index: none
+    - name: event_risk_score
+      index: range
+    - name: event_timezone
+      index: exact_match
+    - name: event_type
+      index: exact_match
+    - name: host_architecture
+      index: exact_match
+    - name: host_geo_city_name
+      index: exact_match
+    - name: host_geo_continent_name
+      index: exact_match
+    - name: host_geo_country_name
+      index: exact_match
+    - name: host_geo_postal_code
+      index: exact_match
+    - name: host_hostname
+      index: exact_match
+    - name: host_id
+      index: exact_match
+    - name: host_ip
+      index: dimension
+    - name: host_name
+      index: exact_match
+    - name: host_os_full
+      index: exact_match
+    - name: host_os_name
+      index: exact_match
+    - name: host_os_platform
+      index: exact_match
+    - name: host_os_type
+      index: exact_match
+    - name: host_os_version
+      index: exact_match
+    - name: observer_product
+      index: exact_match
+    - name: observer_vendor
+      index: exact_match
+    - name: package_installed
+      index: range
+    - name: package_name
+      index: exact_match
+    - name: package_path
+      index: exact_match
+    - name: package_type
+      index: exact_match
+    - name: package_version
+      index: exact_match
+    - name: related_hosts
+      index: exact_match
+    - name: related_ip
+      index: dimension
+    - name: related_user
+      index: exact_match
+    - name: tags
+      index: exact_match
+    - name: user_name
+      index: exact_match

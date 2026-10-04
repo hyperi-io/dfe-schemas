@@ -1,0 +1,316 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of kolide.audit at integrations 2c934eb5223b
+    columns:
+    - name: aws_s3_bucket_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_bucket_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_object_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.object.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcs_storage_bucket_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcs.storage.bucket.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcs_storage_object_content_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcs.storage.object.content_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcs_storage_object_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcs.storage.object.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_audit_actor_automated
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: kolide.audit.actor_automated'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: kolide_audit_actor_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.audit.actor_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_audit_change_field
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.audit.change.field'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_audit_change_from
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.audit.change.from'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_audit_change_groups_from
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.audit.change.groups_from'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_audit_change_groups_to
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.audit.change.groups_to'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_audit_change_to
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.audit.change.to'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_audit_expires_at
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.audit.expires_at'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_audit_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.audit.reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_audit_target_api_key_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.audit.target.api_key_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_audit_target_app_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.audit.target.app_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_audit_target_campaign_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.audit.target.campaign_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_audit_target_check_names
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.audit.target.check_names'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_audit_target_config_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.audit.target.config_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_audit_target_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: kolide.audit.target.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: kolide_audit_target_destination_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.audit.target.destination_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_audit_target_destination_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.audit.target.destination_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_audit_target_device_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.audit.target.device_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_audit_target_device_serial
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.audit.target.device_serial'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_audit_target_feature
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.audit.target.feature'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_audit_target_fim_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.audit.target.fim_category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_audit_target_group_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.audit.target.group_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_audit_target_idp_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.audit.target.idp_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_audit_target_issue_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.audit.target.issue_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_audit_target_logger_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.audit.target.logger_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_audit_target_okta_event
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.audit.target.okta_event'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_audit_target_org_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.audit.target.org_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_audit_target_org_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.audit.target.org_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_audit_target_osquery_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.audit.target.osquery_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_audit_target_pack_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.audit.target.pack_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_audit_target_platform
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.audit.target.platform'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_audit_target_prev_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.audit.target.prev_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_audit_target_provider_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.audit.target.provider_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_audit_target_query_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.audit.target.query_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_audit_target_tables
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.audit.target.tables'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_audit_target_webhook_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.audit.target.webhook_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

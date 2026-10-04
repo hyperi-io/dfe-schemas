@@ -1,0 +1,1011 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of sentinel_one.threat at integrations 2c934eb5223b
+    columns:
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_account_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.account.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_site_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.site.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_site_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.site.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_agent_account_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.agent.account.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_agent_active_threats
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one.threat.agent.active_threats'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_threat_agent_decommissioned_at
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one.threat.agent.decommissioned_at'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_threat_agent_group_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.agent.group.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_agent_group_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.agent.group.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_agent_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.agent.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_agent_infected
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one.threat.agent.infected'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_threat_agent_is_active
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one.threat.agent.is_active'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_threat_agent_is_decommissioned
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one.threat.agent.is_decommissioned'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_threat_agent_machine_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.agent.machine_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_agent_mitigation_mode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.agent.mitigation_mode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_agent_network_interface_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.agent.network_interface.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_agent_network_interface_inet
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.agent.network_interface.inet'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_agent_network_interface_inet6
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.agent.network_interface.inet6'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_agent_network_interface_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.agent.network_interface.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_agent_network_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.agent.network_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_agent_operational_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.agent.operational_state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_agent_os_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.agent.os.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_agent_reboot_required
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one.threat.agent.reboot_required'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_threat_agent_scan_aborted_at
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.agent.scan.aborted_at'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_agent_scan_finished_at
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.agent.scan.finished_at'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_agent_scan_started_at
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.agent.scan.started_at'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_agent_scan_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.agent.scan.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_agent_site_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.agent.site.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_agent_site_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.agent.site.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_agent_storage_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.agent.storage.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_agent_storage_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.agent.storage.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_agent_user_action_needed
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.agent.user_action_needed'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_agent_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.agent.uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_analysis_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.analysis.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_analysis_verdict
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.analysis.verdict'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_automatically_resolved
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one.threat.automatically_resolved'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_threat_browser_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.browser_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_certificate_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.certificate.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_classification_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat_classification.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_classification_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat_classification.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_cloudfiles_hash_verdict
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.cloudfiles_hash_verdict'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_collection_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.collection.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_confidence_level
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.confidence_level'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_container_labels
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.container.labels'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_created_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one.threat.created_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sentinel_one_threat_detection_account_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.detection.account.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_detection_account_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.detection.account.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_detection_agent_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.detection.agent.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_detection_agent_group_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.detection.agent.group.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_detection_agent_group_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.detection.agent.group.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_detection_agent_ipv4
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one.threat.detection.agent.ipv4'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: sentinel_one_threat_detection_agent_ipv6
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one.threat.detection.agent.ipv6'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: sentinel_one_threat_detection_agent_last_logged_in_upn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.detection.agent.last_logged_in.upn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_detection_agent_mitigation_mode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.detection.agent.mitigation_mode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_detection_agent_os_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.detection.agent.os.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_detection_agent_os_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.detection.agent.os.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_detection_agent_registered_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one.threat.detection.agent.registered_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sentinel_one_threat_detection_agent_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.detection.agent.uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_detection_agent_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.detection.agent.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_detection_cloud_providers
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: sentinel_one.threat.detection.cloud_providers'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: sentinel_one_threat_detection_engines_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.detection.engines.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_detection_engines_title
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.detection.engines.title'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_detection_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.detection.state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_detection_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.detection.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_engines
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.engines'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_external_ticket_exist
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one.threat.external_ticket.exist'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_threat_external_ticket_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.external_ticket.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_failed_actions
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one.threat.failed_actions'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_threat_file_extension_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.file.extension.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_file_identified_at
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.file.identified_at'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_file_verification_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.file.verification_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_incident_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.incident.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_incident_status_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.incident.status_description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_indicators_category_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one.threat.indicators.category.id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_threat_indicators_category_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.indicators.category.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_indicators_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.indicators.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_initiated_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.initiated.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_initiated_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.initiated.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_initiating_user_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.initiating_user.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_initiating_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.initiating_user.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_is_fileless
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one.threat.is_fileless'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_threat_is_valid_certificate
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one.threat.is_valid_certificate'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_threat_kubernetes_cluster
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.kubernetes.cluster'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_kubernetes_controller_kind
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.kubernetes.controller.kind'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_kubernetes_controller_labels
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.kubernetes.controller.labels'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_kubernetes_controller_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.kubernetes.controller.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_kubernetes_namespace_labels
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.kubernetes.namespace.labels'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_kubernetes_namespace_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.kubernetes.namespace.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_kubernetes_node
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.kubernetes.node'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_kubernetes_pod_labels
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.kubernetes.pod.labels'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_kubernetes_pod_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.kubernetes.pod.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_malicious_process_arguments
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.malicious_process_arguments'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_mitigated_preemptively
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one.threat.mitigated_preemptively'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_threat_mitigation_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.mitigation.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_mitigation_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.mitigation.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_mitigation_status_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.mitigation_status.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_mitigation_status_action_counters_failed
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one.threat.mitigation_status.action_counters.failed'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_threat_mitigation_status_action_counters_not_found
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one.threat.mitigation_status.action_counters.not_found'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_threat_mitigation_status_action_counters_pending_reboot
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one.threat.mitigation_status.action_counters.pending_reboot'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_threat_mitigation_status_action_counters_success
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one.threat.mitigation_status.action_counters.success'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_threat_mitigation_status_action_counters_total
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one.threat.mitigation_status.action_counters.total'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_threat_mitigation_status_agent_supports_report
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one.threat.mitigation_status.agent_supports_report'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_threat_mitigation_status_group_not_found
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one.threat.mitigation_status.group_not_found'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_threat_mitigation_status_last_update
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.mitigation_status.last_update'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_mitigation_status_latest_report
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.mitigation_status.latest_report'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_mitigation_status_mitigation_ended_at
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.mitigation_status.mitigation_ended_at'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_mitigation_status_mitigation_started_at
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.mitigation_status.mitigation_started_at'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_mitigation_status_report_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.mitigation_status.report_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_mitigation_status_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.mitigation_status.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_originator_process
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.originator_process'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_pending_actions
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one.threat.pending_actions'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_threat_process_user
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.process_user'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_publisher_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.publisher.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_reached_events_limit
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one.threat.reached_events_limit'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_threat_reboot_required
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one.threat.reboot_required'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_threat_rule_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.rule_description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_rule_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.rule_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_rule_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.rule_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_storyline
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.storyline'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_threat_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.threat_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_timeline_account_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.timeline.account.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_timeline_activity_type
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one.threat.timeline.activity_type'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_threat_timeline_agent_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.timeline.agent.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_timeline_agent_updated_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.timeline.agent_updated_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_timeline_created_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one.threat.timeline.created_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sentinel_one_threat_timeline_data
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: sentinel_one.threat.timeline.data'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: sentinel_one_threat_timeline_group_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.timeline.group.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_timeline_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.timeline.hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_timeline_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.timeline.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_timeline_os_family
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.timeline.os_family'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_timeline_primary_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.timeline.primary_description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_timeline_secondary_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.timeline.secondary_description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_timeline_site_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.timeline.site.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_timeline_updated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one.threat.timeline.updated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sentinel_one_threat_timeline_user_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.timeline.user.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_threat_whitening_option
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one.threat.whitening_option'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

@@ -1,0 +1,43 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of ti_domaintools.domaindiscovery_feed at integrations 2c934eb5223b
+    columns:
+    - name: domaintools_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: domaintools.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: domaintools_feed
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: domaintools.feed'
+      comment: 'Elasticsearch mapping type: constant_keyword'
+      _field_type: base
+    - name: domaintools_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: domaintools.timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: labels_is_ioc_transform_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: labels.is_ioc_transform_source'
+      comment: 'Elasticsearch mapping type: constant_keyword'
+      _field_type: base

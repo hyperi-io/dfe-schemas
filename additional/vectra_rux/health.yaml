@@ -1,0 +1,659 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of vectra_rux.health at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: vectra_rux_health_connectivity_sensors_affected_metadata_hours
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.connectivity.sensors.affected_metadata_hours'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_connectivity_sensors_error
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.connectivity.sensors.error'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_connectivity_sensors_ip_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: vectra_rux.health.connectivity.sensors.ip_address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: vectra_rux_health_connectivity_sensors_luid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.connectivity.sensors.luid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_connectivity_sensors_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.connectivity.sensors.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_connectivity_sensors_output
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: vectra_rux.health.connectivity.sensors.output'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: vectra_rux_health_connectivity_sensors_serial_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.connectivity.sensors.serial_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_connectivity_sensors_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.connectivity.sensors.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_cpu_idle_percent
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vectra_rux.health.cpu.idle_percent'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: vectra_rux_health_cpu_nice_percent
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vectra_rux.health.cpu.nice_percent'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: vectra_rux_health_cpu_system_percent
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vectra_rux.health.cpu.system_percent'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: vectra_rux_health_cpu_updated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vectra_rux.health.cpu.updated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: vectra_rux_health_cpu_user_percent
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vectra_rux.health.cpu.user_percent'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: vectra_rux_health_detection_check_results
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: vectra_rux.health.detection.check_results'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: vectra_rux_health_detection_detection_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.detection.detection_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_detection_message
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.detection.message'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_detection_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.detection.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_detection_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.detection.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_detection_updated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vectra_rux.health.detection.updated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: vectra_rux_health_disk_degraded_raid_volume_error
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.disk.degraded_raid_volume.error'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_disk_degraded_raid_volume_output
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.disk.degraded_raid_volume.output'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_disk_degraded_raid_volume_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.disk.degraded_raid_volume.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_disk_disk_raid_error
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.disk.disk_raid.error'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_disk_disk_raid_output
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.disk.disk_raid.output'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_disk_disk_raid_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.disk.disk_raid.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_disk_disk_utilization_free_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vectra_rux.health.disk.disk_utilization.free_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: vectra_rux_health_disk_disk_utilization_total_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vectra_rux.health.disk.disk_utilization.total_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: vectra_rux_health_disk_disk_utilization_usage_percent
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vectra_rux.health.disk.disk_utilization.usage_percent'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: vectra_rux_health_disk_disk_utilization_used_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vectra_rux.health.disk.disk_utilization.used_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: vectra_rux_health_disk_raid_disks_missing_error
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.disk.raid_disks_missing.error'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_disk_raid_disks_missing_output
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.disk.raid_disks_missing.output'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_disk_raid_disks_missing_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.disk.raid_disks_missing.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_disk_updated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vectra_rux.health.disk.updated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: vectra_rux_health_event_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vectra_rux.health.event_timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: vectra_rux_health_hostid_artifact_counts
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: vectra_rux.health.hostid.artifact_counts'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: vectra_rux_health_hostid_ip_always_percent
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vectra_rux.health.hostid.ip_always_percent'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: vectra_rux_health_hostid_ip_never_percent
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vectra_rux.health.hostid.ip_never_percent'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: vectra_rux_health_hostid_ip_sometimes_percent
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vectra_rux.health.hostid.ip_sometimes_percent'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: vectra_rux_health_hostid_updated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vectra_rux.health.hostid.updated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: vectra_rux_health_memory_free_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vectra_rux.health.memory.free_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: vectra_rux_health_memory_total_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vectra_rux.health.memory.total_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: vectra_rux_health_memory_updated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vectra_rux.health.memory.updated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: vectra_rux_health_memory_usage_percent
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vectra_rux.health.memory.usage_percent'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: vectra_rux_health_memory_used_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vectra_rux.health.memory.used_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: vectra_rux_health_network_interfaces
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: vectra_rux.health.network.interfaces'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: vectra_rux_health_network_traffic
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: vectra_rux.health.network.traffic'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: vectra_rux_health_network_updated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vectra_rux.health.network.updated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: vectra_rux_health_network_vlans_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vectra_rux.health.network.vlans.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: vectra_rux_health_network_vlans_vlan_ids
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.network.vlans.vlan_ids'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_power_error
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.power.error'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_power_power_supplies
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: vectra_rux.health.power.power_supplies'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: vectra_rux_health_power_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.power.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_power_updated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vectra_rux.health.power.updated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: vectra_rux_health_sensors_headend_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: vectra_rux.health.sensors.headend_ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: vectra_rux_health_sensors_headend_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.sensors.headend_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_sensors_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.sensors.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_sensors_ip_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: vectra_rux.health.sensors.ip_address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: vectra_rux_health_sensors_last_seen
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vectra_rux.health.sensors.last_seen'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: vectra_rux_health_sensors_location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.sensors.location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_sensors_luid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.sensors.luid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_sensors_mode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.sensors.mode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_sensors_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.sensors.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_sensors_original_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.sensors.original_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_sensors_product_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.sensors.product_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_sensors_public_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.sensors.public_key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_sensors_serial_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.sensors.serial_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_sensors_ssh_tunnel_port
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.sensors.ssh_tunnel_port'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_sensors_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.sensors.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_sensors_update_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vectra_rux.health.sensors.update_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: vectra_rux_health_sensors_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.sensors.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_system_serial_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.system.serial_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_system_updated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vectra_rux.health.system.updated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: vectra_rux_health_system_uptime
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.system.uptime'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_system_version_cloud_bridge
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: vectra_rux.health.system.version.cloud_bridge'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: vectra_rux_health_system_version_gmt
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vectra_rux.health.system.version.gmt'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: vectra_rux_health_system_version_last_update
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vectra_rux.health.system.version.last_update'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: vectra_rux_health_system_version_last_update_utc
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vectra_rux.health.system.version.last_update_utc'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: vectra_rux_health_system_version_mode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.system.version.mode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_system_version_model
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.system.version.model'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_system_version_vectra_instance_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.system.version.vectra_instance_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_system_version_vectra_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.system.version.vectra_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_system_version_vm_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.system.version.vm_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_trafficdrop_sensors_error
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.trafficdrop.sensors.error'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_trafficdrop_sensors_ip_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: vectra_rux.health.trafficdrop.sensors.ip_address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: vectra_rux_health_trafficdrop_sensors_luid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.trafficdrop.sensors.luid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_trafficdrop_sensors_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.trafficdrop.sensors.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_trafficdrop_sensors_output
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: vectra_rux.health.trafficdrop.sensors.output'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: vectra_rux_health_trafficdrop_sensors_serial_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.trafficdrop.sensors.serial_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_trafficdrop_sensors_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vectra_rux.health.trafficdrop.sensors.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vectra_rux_health_trafficdrop_updated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vectra_rux.health.trafficdrop.updated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base

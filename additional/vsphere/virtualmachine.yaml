@@ -1,0 +1,310 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of vsphere.virtualmachine at integrations 2c934eb5223b
+    columns:
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vsphere_virtualmachine_alert_names
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vsphere.virtualmachine.alert.names'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vsphere_virtualmachine_cpu_free_mhz
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vsphere.virtualmachine.cpu.free.mhz'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: vsphere_virtualmachine_cpu_total_mhz
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vsphere.virtualmachine.cpu.total.mhz'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: vsphere_virtualmachine_cpu_usage_percent
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vsphere.virtualmachine.cpu.usage.percent'
+      comment: 'Elasticsearch mapping type: scaled_float'
+      _field_type: base
+    - name: vsphere_virtualmachine_cpu_used_mhz
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vsphere.virtualmachine.cpu.used.mhz'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: vsphere_virtualmachine_custom_fields
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: vsphere.virtualmachine.custom_fields'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: vsphere_virtualmachine_datastore_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vsphere.virtualmachine.datastore.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: vsphere_virtualmachine_datastore_names
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vsphere.virtualmachine.datastore.names'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vsphere_virtualmachine_disk_average_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vsphere.virtualmachine.disk.average.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: vsphere_virtualmachine_disk_numberRead_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vsphere.virtualmachine.disk.numberRead.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: vsphere_virtualmachine_disk_numberWrite_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vsphere.virtualmachine.disk.numberWrite.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: vsphere_virtualmachine_disk_read_average_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vsphere.virtualmachine.disk.read.average.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: vsphere_virtualmachine_disk_write_average_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vsphere.virtualmachine.disk.write.average.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: vsphere_virtualmachine_host_hostname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vsphere.virtualmachine.host.hostname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vsphere_virtualmachine_host_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vsphere.virtualmachine.host.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vsphere_virtualmachine_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vsphere.virtualmachine.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vsphere_virtualmachine_memory_free_guest_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vsphere.virtualmachine.memory.free.guest.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: vsphere_virtualmachine_memory_total_guest_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vsphere.virtualmachine.memory.total.guest.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: vsphere_virtualmachine_memory_usage_percent
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vsphere.virtualmachine.memory.usage.percent'
+      comment: 'Elasticsearch mapping type: scaled_float'
+      _field_type: base
+    - name: vsphere_virtualmachine_memory_used_guest_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vsphere.virtualmachine.memory.used.guest.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: vsphere_virtualmachine_memory_used_host_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vsphere.virtualmachine.memory.used.host.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: vsphere_virtualmachine_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vsphere.virtualmachine.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vsphere_virtualmachine_network_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vsphere.virtualmachine.network.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: vsphere_virtualmachine_network_names
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vsphere.virtualmachine.network.names'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vsphere_virtualmachine_os
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vsphere.virtualmachine.os'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vsphere_virtualmachine_snapshot_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vsphere.virtualmachine.snapshot.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: vsphere_virtualmachine_snapshot_info_createtime
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vsphere.virtualmachine.snapshot.info.createtime'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: vsphere_virtualmachine_snapshot_info_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vsphere.virtualmachine.snapshot.info.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vsphere_virtualmachine_snapshot_info_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vsphere.virtualmachine.snapshot.info.id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: vsphere_virtualmachine_snapshot_info_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vsphere.virtualmachine.snapshot.info.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vsphere_virtualmachine_snapshot_info_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vsphere.virtualmachine.snapshot.info.state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vsphere_virtualmachine_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vsphere.virtualmachine.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vsphere_virtualmachine_triggered_alarms_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vsphere.virtualmachine.triggered_alarms.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vsphere_virtualmachine_triggered_alarms_entity_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vsphere.virtualmachine.triggered_alarms.entity_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vsphere_virtualmachine_triggered_alarms_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vsphere.virtualmachine.triggered_alarms.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vsphere_virtualmachine_triggered_alarms_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vsphere.virtualmachine.triggered_alarms.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vsphere_virtualmachine_triggered_alarms_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vsphere.virtualmachine.triggered_alarms.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vsphere_virtualmachine_triggered_alarms_triggered_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vsphere.virtualmachine.triggered_alarms.triggered_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: vsphere_virtualmachine_uptime
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vsphere.virtualmachine.uptime'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: vsphere_virtualmachine_warning_names
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vsphere.virtualmachine.warning.names'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

@@ -1,0 +1,74 @@
+base: meta/elastic/ecs
+base_version: "1.0.0"
+current: "1.0.0"
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    summary: entityanalytics_okta.entity selection from meta/elastic/ecs
+    select:
+    - name: data_stream_dataset
+      index: exact_match
+    - name: data_stream_namespace
+      index: exact_match
+    - name: data_stream_type
+      index: exact_match
+    - name: device_id
+      index: exact_match
+    - name: device_serial_number
+      index: exact_match
+    - name: ecs_version
+      index: exact_match
+    - name: event_category
+      index: exact_match
+    - name: event_dataset
+      index: exact_match
+    - name: event_kind
+      index: exact_match
+    - name: event_module
+      index: exact_match
+    - name: event_original
+      index: none
+    - name: event_type
+      index: exact_match
+    - name: host_entity_attributes_managed
+      index: dimension
+    - name: host_id
+      index: exact_match
+    - name: host_name
+      index: exact_match
+    - name: host_os_version
+      index: exact_match
+    - name: related_user
+      index: exact_match
+    - name: tags
+      index: exact_match
+    - name: user_email
+      index: exact_match
+    - name: user_entity_attributes_mfa_enabled
+      index: dimension
+    - name: user_entity_attributes_permissions
+      index: exact_match
+    - name: user_entity_lifecycle_last_activity
+      index: range
+    - name: user_entity_relationships_owns_host_id
+      index: exact_match
+    - name: user_entity_relationships_owns_host_name
+      index: exact_match
+    - name: user_entity_relationships_supervises_user_email
+      index: exact_match
+    - name: user_entity_relationships_supervises_user_id
+      index: exact_match
+    - name: user_entity_relationships_supervises_user_name
+      index: exact_match
+    - name: user_full_name
+      index: exact_match
+    - name: user_group_id
+      index: exact_match
+    - name: user_group_name
+      index: exact_match
+    - name: user_id
+      index: exact_match
+    - name: user_name
+      index: exact_match
+    - name: user_roles
+      index: exact_match

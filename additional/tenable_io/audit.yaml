@@ -1,0 +1,114 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of tenable_io.audit at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_audit_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.audit.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_audit_actor_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.audit.actor.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_audit_actor_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.audit.actor.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_audit_crud
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.audit.crud'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_audit_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.audit.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_audit_fields
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: tenable_io.audit.fields'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: tenable_io_audit_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.audit.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_audit_is_anonymous
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.audit.is_anonymous'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_io_audit_is_failure
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.audit.is_failure'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_io_audit_received
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.audit.received'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_io_audit_target_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.audit.target.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_audit_target_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.audit.target.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_audit_target_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.audit.target.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

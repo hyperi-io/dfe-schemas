@@ -1,0 +1,81 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of mongodb_atlas.mongod_database at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mongodb_atlas_mongod_database_attributes
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: mongodb_atlas.mongod_database.attributes'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: mongodb_atlas_mongod_database_component
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mongodb_atlas.mongod_database.component'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mongodb_atlas_mongod_database_hostname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mongodb_atlas.mongod_database.hostname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mongodb_atlas_mongod_database_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: mongodb_atlas.mongod_database.id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: mongodb_atlas_mongod_database_message
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: mongodb_atlas.mongod_database.message'
+      comment: 'Elasticsearch mapping type: match_only_text'
+      _field_type: base
+    - name: mongodb_atlas_mongod_database_size
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: mongodb_atlas.mongod_database.size'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: mongodb_atlas_mongod_database_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mongodb_atlas.mongod_database.tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mongodb_atlas_mongod_database_thread_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mongodb_atlas.mongod_database.thread.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mongodb_atlas_mongod_database_truncated
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: mongodb_atlas.mongod_database.truncated'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base

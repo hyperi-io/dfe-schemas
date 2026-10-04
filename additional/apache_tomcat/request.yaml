@@ -1,0 +1,57 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of apache_tomcat.request at integrations 2c934eb5223b
+    columns:
+    - name: apache_tomcat_request_count
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: apache_tomcat.request.count'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: apache_tomcat_request_error_count
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: apache_tomcat.request.error.count'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: apache_tomcat_request_nio_connector
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: apache_tomcat.request.nio_connector'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: apache_tomcat_request_received_bytes
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: apache_tomcat.request.received.bytes'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: apache_tomcat_request_sent_bytes
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: apache_tomcat.request.sent.bytes'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: apache_tomcat_request_time_max
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: apache_tomcat.request.time.max'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: apache_tomcat_request_time_total
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: apache_tomcat.request.time.total'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base

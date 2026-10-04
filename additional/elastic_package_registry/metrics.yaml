@@ -1,0 +1,202 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of elastic_package_registry.metrics at integrations 2c934eb5223b
+    columns:
+    - name: package_registry_http_request_duration_seconds_histogram
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: package_registry.http.request_duration_seconds.histogram'
+      comment: 'Elasticsearch mapping type: histogram'
+      _field_type: base
+    - name: package_registry_http_request_size_bytes_histogram
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: package_registry.http.request_size_bytes.histogram'
+      comment: 'Elasticsearch mapping type: histogram'
+      _field_type: base
+    - name: package_registry_http_requests_total_counter
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: package_registry.http_requests_total.counter'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: package_registry_http_requests_total_rate
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: package_registry.http_requests_total.rate'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: package_registry_http_response_size_bytes_histogram
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: package_registry.http.response_size_bytes.histogram'
+      comment: 'Elasticsearch mapping type: histogram'
+      _field_type: base
+    - name: package_registry_in_flight_requests
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: package_registry.in_flight_requests'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: package_registry_indexer_get_duration_seconds_histogram
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: package_registry.indexer.get_duration_seconds.histogram'
+      comment: 'Elasticsearch mapping type: histogram'
+      _field_type: base
+    - name: package_registry_labels_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: package_registry.labels.code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: package_registry_labels_component
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: package_registry.labels.component'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: package_registry_labels_indexer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: package_registry.labels.indexer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: package_registry_labels_instance
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: package_registry.labels.instance'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: package_registry_labels_job
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: package_registry.labels.job'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: package_registry_labels_location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: package_registry.labels.location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: package_registry_labels_method
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: package_registry.labels.method'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: package_registry_labels_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: package_registry.labels.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: package_registry_labels_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: package_registry.labels.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: package_registry_number_indexed_packages
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: package_registry.number_indexed_packages'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: package_registry_start_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: package_registry.start_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: package_registry_start_time_seconds
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: package_registry.start_time_seconds'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: package_registry_storage_indexer_update_index_duration_seconds_histogram
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: package_registry.storage_indexer.update_index_duration_seconds.histogram'
+      comment: 'Elasticsearch mapping type: histogram'
+      _field_type: base
+    - name: package_registry_storage_indexer_update_index_error_total_counter
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: package_registry.storage_indexer.update_index_error_total.counter'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: package_registry_storage_indexer_update_index_error_total_rate
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: package_registry.storage_indexer.update_index_error_total.rate'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: package_registry_storage_indexer_update_index_success_total_counter
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: package_registry.storage_indexer.update_index_success_total.counter'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: package_registry_storage_indexer_update_index_success_total_rate
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: package_registry.storage_indexer.update_index_success_total.rate'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: package_registry_storage_requests_total_counter
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: package_registry.storage_requests_total.counter'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: package_registry_storage_requests_total_rate
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: package_registry.storage_requests_total.rate'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: package_registry_uptime
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: package_registry.uptime'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

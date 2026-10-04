@@ -1,0 +1,575 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of tenable_io.plugin at integrations 2c934eb5223b
+    columns:
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_always_run
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.plugin.attributes.always_run'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_bid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.plugin.attributes.bid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_compliance
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.plugin.attributes.compliance'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_cpe
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.attributes.cpe'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_cve
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.attributes.cve'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_cvss3_base_score
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.plugin.attributes.cvss3.base_score'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_cvss3_temporal_score
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.plugin.attributes.cvss3.temporal.score'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_cvss3_temporal_vector_exploit_code_maturity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.attributes.cvss3.temporal.vector.exploit_code_maturity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_cvss3_temporal_vector_raw
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.attributes.cvss3.temporal.vector.raw'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_cvss3_temporal_vector_remediation_level
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.attributes.cvss3.temporal.vector.remediation_level'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_cvss3_temporal_vector_report_confidence
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.attributes.cvss3.temporal.vector.report_confidence'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_cvss3_vector_attack_complexity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.attributes.cvss3.vector.attack.complexity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_cvss3_vector_attack_vector
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.attributes.cvss3.vector.attack.vector'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_cvss3_vector_availability_impact
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.attributes.cvss3.vector.availability_impact'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_cvss3_vector_confidentiality_impact
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.attributes.cvss3.vector.confidentiality_impact'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_cvss3_vector_integrity_impact
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.attributes.cvss3.vector.integrity_impact'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_cvss3_vector_privileges_required
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.attributes.cvss3.vector.privileges_required'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_cvss3_vector_raw
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.attributes.cvss3.vector.raw'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_cvss3_vector_scope
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.attributes.cvss3.vector.scope'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_cvss3_vector_user_interaction
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.attributes.cvss3.vector.user_interaction'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_cvss_base_score
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.plugin.attributes.cvss.base_score'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_cvss_temporal_score
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.plugin.attributes.cvss.temporal.score'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_cvss_temporal_vector_exploitability
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.attributes.cvss.temporal.vector.exploitability'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_cvss_temporal_vector_raw
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.attributes.cvss.temporal.vector.raw'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_cvss_temporal_vector_remediation_level
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.attributes.cvss.temporal.vector.remediation_level'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_cvss_temporal_vector_report_confidence
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.attributes.cvss.temporal.vector.report_confidence'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_cvss_vector_access_complexity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.attributes.cvss.vector.access.complexity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_cvss_vector_access_vector
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.attributes.cvss.vector.access.vector'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_cvss_vector_authentication
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.attributes.cvss.vector.authentication'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_cvss_vector_availability_impact
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.attributes.cvss.vector.availability_impact'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_cvss_vector_confidentiality_impact
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.attributes.cvss.vector.confidentiality_impact'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_cvss_vector_integrity_impact
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.attributes.cvss.vector.integrity_impact'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_cvss_vector_raw
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.attributes.cvss.vector.raw'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_default_account
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.plugin.attributes.default_account'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.attributes.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_exploit_available
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.plugin.attributes.exploit_available'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_exploit_framework_canvas
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.plugin.attributes.exploit_framework.canvas'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_exploit_framework_core
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.plugin.attributes.exploit_framework.core'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_exploit_framework_d2_elliot
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.plugin.attributes.exploit_framework.d2_elliot'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_exploit_framework_hub
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.plugin.attributes.exploit_framework.hub'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_exploit_framework_metasploit
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.plugin.attributes.exploit_framework.metasploit'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_exploited_by_malware
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.plugin.attributes.exploited_by.malware'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_exploited_by_nessus
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.plugin.attributes.exploited_by.nessus'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_has_patch
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.plugin.attributes.has_patch'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_in_the_news
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.plugin.attributes.in_the_news'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_intel_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.attributes.intel_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_malware
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.plugin.attributes.malware'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_patch_publication_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.plugin.attributes.patch_publication_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_plugin_modification_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.plugin.attributes.plugin.modification_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_plugin_publication_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.plugin.attributes.plugin.publication_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_plugin_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.attributes.plugin.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_plugin_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.attributes.plugin.version'
+      comment: 'Elasticsearch mapping type: version'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_risk_factor
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.attributes.risk_factor'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_see_also
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.attributes.see_also'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_solution
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.attributes.solution'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_synopsis
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.attributes.synopsis'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_unsupported_by_vendor
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.plugin.attributes.unsupported_by_vendor'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_vpr_drivers_age_of_vuln_lower_bound
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.plugin.attributes.vpr.drivers.age_of_vuln.lower_bound'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_vpr_drivers_age_of_vuln_upper_bound
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.plugin.attributes.vpr.drivers.age_of_vuln.upper_bound'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_vpr_drivers_cvss3_impact_score
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.plugin.attributes.vpr.drivers.cvss3_impact_score'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_vpr_drivers_cvss_impact_score_predicted
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.plugin.attributes.vpr.drivers.cvss_impact_score_predicted'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_vpr_drivers_exploit_code_maturity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.attributes.vpr.drivers.exploit_code_maturity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_vpr_drivers_product_coverage
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.attributes.vpr.drivers.product_coverage'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_vpr_drivers_threat_intensity_last28
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.attributes.vpr.drivers.threat_intensity_last28'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_vpr_drivers_threat_recency_lower_bound
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.plugin.attributes.vpr.drivers.threat_recency.lower_bound'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_vpr_drivers_threat_recency_upper_bound
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.plugin.attributes.vpr.drivers.threat_recency.upper_bound'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_vpr_drivers_threat_sources_last28
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.attributes.vpr.drivers.threat_sources_last28'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_vpr_score
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.plugin.attributes.vpr.score'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_vpr_updated
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.plugin.attributes.vpr.updated'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_vuln_publication_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.plugin.attributes.vuln_publication_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_xref
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.attributes.xref'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_xrefs_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.attributes.xrefs.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_plugin_attributes_xrefs_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.attributes.xrefs.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_plugin_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_plugin_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.plugin.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

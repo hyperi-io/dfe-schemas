@@ -1,0 +1,218 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of cloudflare_logpush.sinkhole_http at integrations 2c934eb5223b
+    columns:
+    - name: aws_s3_bucket_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_bucket_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_object_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.object.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_storage_blob_content_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.storage.blob.content_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_storage_blob_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.storage.blob.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_storage_container_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.storage.container.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_logpush_sinkhole_http_account_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare_logpush.sinkhole_http.account_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_logpush_sinkhole_http_destination_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cloudflare_logpush.sinkhole_http.destination.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: cloudflare_logpush_sinkhole_http_host_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare_logpush.sinkhole_http.host.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_logpush_sinkhole_http_r2path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare_logpush.sinkhole_http.r2path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_logpush_sinkhole_http_request_body_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cloudflare_logpush.sinkhole_http.request.body.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cloudflare_logpush_sinkhole_http_request_body_content
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare_logpush.sinkhole_http.request.body.content'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_logpush_sinkhole_http_request_headers
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare_logpush.sinkhole_http.request.headers'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_logpush_sinkhole_http_request_method
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare_logpush.sinkhole_http.request.method'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_logpush_sinkhole_http_request_password
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare_logpush.sinkhole_http.request.password'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_logpush_sinkhole_http_request_referrer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare_logpush.sinkhole_http.request.referrer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_logpush_sinkhole_http_request_uri
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare_logpush.sinkhole_http.request.uri'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_logpush_sinkhole_http_request_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare_logpush.sinkhole_http.request.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_logpush_sinkhole_http_sinkhole_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare_logpush.sinkhole_http.sinkhole_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_logpush_sinkhole_http_source_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cloudflare_logpush.sinkhole_http.source.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: cloudflare_logpush_sinkhole_http_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cloudflare_logpush.sinkhole_http.timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: cloudflare_logpush_sinkhole_http_user_agent
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare_logpush.sinkhole_http.user_agent'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_logpush_sinkhole_http_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare_logpush.sinkhole_http.user.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcs_storage_bucket_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcs.storage.bucket.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcs_storage_object_content_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcs.storage.object.content_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcs_storage_object_json_data
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcs.storage.object.json_data'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcs_storage_object_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcs.storage.object.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: log_source_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.source.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

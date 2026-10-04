@@ -1,0 +1,1241 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of gitlab.api at integrations 2c934eb5223b
+    columns:
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gitlab_api_api_error
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: gitlab.api.api_error'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: gitlab_api_content_length
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.content_length'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_correlation_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gitlab.api.correlation_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gitlab_api_cpu_s
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.cpu_s'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_db
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: gitlab_api_db_cached_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_cached_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_db_ci_cached_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_ci_cached_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_db_ci_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_ci_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_db_ci_duration_s
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_ci_duration_s'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: gitlab_api_db_ci_replica_cached_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_ci_replica_cached_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_db_ci_replica_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_ci_replica_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_db_ci_replica_duration_s
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_ci_replica_duration_s'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: gitlab_api_db_ci_replica_txn_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_ci_replica_txn_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_db_ci_replica_txn_duration_s
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_ci_replica_txn_duration_s'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: gitlab_api_db_ci_replica_txn_max_duration_s
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_ci_replica_txn_max_duration_s'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: gitlab_api_db_ci_replica_wal_cached_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_ci_replica_wal_cached_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_db_ci_replica_wal_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_ci_replica_wal_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_db_ci_replica_write_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_ci_replica_write_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_db_ci_txn_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_ci_txn_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_db_ci_txn_duration_s
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_ci_txn_duration_s'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: gitlab_api_db_ci_txn_max_duration_s
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_ci_txn_max_duration_s'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: gitlab_api_db_ci_wal_cached_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_ci_wal_cached_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_db_ci_wal_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_ci_wal_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_db_ci_write_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_ci_write_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_db_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_db_duration_s
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_duration_s'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: gitlab_api_db_main_cached_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_main_cached_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_db_main_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_main_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_db_main_duration_s
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_main_duration_s'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: gitlab_api_db_main_replica_cached_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_main_replica_cached_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_db_main_replica_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_main_replica_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_db_main_replica_duration_s
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_main_replica_duration_s'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: gitlab_api_db_main_replica_txn_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_main_replica_txn_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_db_main_replica_txn_duration_s
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_main_replica_txn_duration_s'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: gitlab_api_db_main_replica_txn_max_duration_s
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_main_replica_txn_max_duration_s'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: gitlab_api_db_main_replica_wal_cached_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_main_replica_wal_cached_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_db_main_replica_wal_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_main_replica_wal_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_db_main_replica_write_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_main_replica_write_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_db_main_txn_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_main_txn_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_db_main_txn_duration_s
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_main_txn_duration_s'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: gitlab_api_db_main_txn_max_duration_s
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_main_txn_max_duration_s'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: gitlab_api_db_main_wal_cached_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_main_wal_cached_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_db_main_wal_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_main_wal_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_db_main_write_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_main_write_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_db_primary_cached_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_primary_cached_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_db_primary_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_primary_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_db_primary_duration_s
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_primary_duration_s'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: gitlab_api_db_primary_txn_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_primary_txn_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_db_primary_txn_duration_s
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_primary_txn_duration_s'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: gitlab_api_db_primary_txn_max_duration_s
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_primary_txn_max_duration_s'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: gitlab_api_db_primary_wal_cached_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_primary_wal_cached_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_db_primary_wal_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_primary_wal_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_db_primary_write_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_primary_write_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_db_replica_cached_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_replica_cached_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_db_replica_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_replica_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_db_replica_duration_s
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_replica_duration_s'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: gitlab_api_db_replica_txn_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_replica_txn_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_db_replica_txn_duration_s
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_replica_txn_duration_s'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: gitlab_api_db_replica_txn_max_duration_s
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_replica_txn_max_duration_s'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: gitlab_api_db_replica_wal_cached_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_replica_wal_cached_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_db_replica_wal_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_replica_wal_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_db_replica_write_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_replica_write_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_db_txn_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_txn_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_db_write_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.db_write_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_duration
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.duration'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: gitlab_api_duration_s
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.duration_s'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: gitlab_api_exclusive_lock_hold_duration_s
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.exclusive_lock_hold_duration_s'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: gitlab_api_exclusive_lock_requested_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.exclusive_lock_requested_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_exclusive_lock_wait_duration_s
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.exclusive_lock_wait_duration_s'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: gitlab_api_gitaly_calls
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.gitaly_calls'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_gitaly_duration
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.gitaly_duration'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: gitlab_api_gitaly_duration_s
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.gitaly_duration_s'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: gitlab_api_host
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gitlab.api.host'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gitlab_api_mem_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.mem_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_mem_mallocs
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.mem_mallocs'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_mem_objects
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.mem_objects'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_mem_total_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.mem_total_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_meta_caller_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gitlab.api.meta.caller_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gitlab_api_meta_client_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gitlab.api.meta.client_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gitlab_api_meta_feature_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gitlab.api.meta.feature_category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gitlab_api_meta_gl_user_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gitlab.api.meta.gl_user_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gitlab_api_meta_organization_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gitlab.api.meta.organization_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gitlab_api_meta_project
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gitlab.api.meta.project'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gitlab_api_meta_remote_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: gitlab.api.meta.remote_ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: gitlab_api_meta_root_namespace
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gitlab.api.meta.root_namespace'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gitlab_api_meta_user
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gitlab.api.meta.user'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gitlab_api_meta_user_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.meta.user_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_params_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gitlab.api.params.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gitlab_api_params_changes
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gitlab.api.params.changes'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gitlab_api_params_info_architecture
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gitlab.api.params.info.architecture'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gitlab_api_params_info_executor
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gitlab.api.params.info.executor'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gitlab_api_params_info_features_raw_variables
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gitlab.api.params.info.features.raw_variables'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gitlab_api_params_info_features_service_variables
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gitlab.api.params.info.features.service_variables'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gitlab_api_params_info_features_trace_checksum
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gitlab.api.params.info.features.trace_checksum'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gitlab_api_params_info_features_trace_reset
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gitlab.api.params.info.features.trace_reset'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gitlab_api_params_info_features_variables
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gitlab.api.params.info.features.variables'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gitlab_api_params_info_features_vault_secrets
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gitlab.api.params.info.features.vault_secrets'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gitlab_api_params_info_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gitlab.api.params.info.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gitlab_api_params_info_platform
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gitlab.api.params.info.platform'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gitlab_api_params_info_revision
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gitlab.api.params.info.revision'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gitlab_api_params_info_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gitlab.api.params.info.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gitlab_api_params_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gitlab.api.params.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gitlab_api_params_key_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gitlab.api.params.key_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gitlab_api_params_last_update
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gitlab.api.params.last_update'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gitlab_api_params_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gitlab.api.params.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gitlab_api_params_private_token
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gitlab.api.params.private_token'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gitlab_api_params_secret_token
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gitlab.api.params.secret_token'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gitlab_api_params_system_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gitlab.api.params.system_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gitlab_api_params_token
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gitlab.api.params.token'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gitlab_api_params_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gitlab.api.params.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gitlab_api_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gitlab.api.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gitlab_api_path_traversal_check_duration_s
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.path_traversal_check_duration_s'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: gitlab_api_pid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gitlab.api.pid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gitlab_api_queue_duration
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.queue_duration'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: gitlab_api_queue_duration_s
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.queue_duration_s'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: gitlab_api_redis_allowed_cross_slot_calls
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_allowed_cross_slot_calls'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_redis_cache_calls
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_cache_calls'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_redis_cache_duration_s
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_cache_duration_s'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: gitlab_api_redis_cache_read_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_cache_read_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_redis_cache_write_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_cache_write_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_redis_calls
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_calls'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_redis_db_load_balancing_calls
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_db_load_balancing_calls'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_redis_db_load_balancing_duration_s
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_db_load_balancing_duration_s'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: gitlab_api_redis_db_load_balancing_write_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_db_load_balancing_write_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_redis_duration_s
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_duration_s'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: gitlab_api_redis_feature_flag_calls
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_feature_flag_calls'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_redis_feature_flag_duration_s
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_feature_flag_duration_s'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: gitlab_api_redis_feature_flag_read_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_feature_flag_read_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_redis_feature_flag_write_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_feature_flag_write_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_redis_queues_calls
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_queues_calls'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_redis_queues_duration_s
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_queues_duration_s'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: gitlab_api_redis_queues_metadata_calls
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_queues_metadata_calls'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_redis_queues_metadata_duration_s
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_queues_metadata_duration_s'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: gitlab_api_redis_queues_metadata_read_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_queues_metadata_read_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_redis_queues_metadata_write_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_queues_metadata_write_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_redis_queues_read_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_queues_read_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_redis_queues_write_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_queues_write_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_redis_rate_limiting_calls
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_rate_limiting_calls'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_redis_rate_limiting_duration_s
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_rate_limiting_duration_s'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: gitlab_api_redis_rate_limiting_read_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_rate_limiting_read_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_redis_rate_limiting_write_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_rate_limiting_write_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_redis_read_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_read_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_redis_repository_cache_allowed_cross_slot_calls
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_repository_cache_allowed_cross_slot_calls'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_redis_repository_cache_calls
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_repository_cache_calls'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_redis_repository_cache_duration_s
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_repository_cache_duration_s'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: gitlab_api_redis_repository_cache_read_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_repository_cache_read_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_redis_repository_cache_write_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_repository_cache_write_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_redis_sessions_allowed_cross_slot_calls
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_sessions_allowed_cross_slot_calls'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_redis_sessions_calls
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_sessions_calls'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_redis_sessions_duration_s
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_sessions_duration_s'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: gitlab_api_redis_sessions_read_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_sessions_read_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_redis_sessions_write_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_sessions_write_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_redis_shared_state_calls
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_shared_state_calls'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_redis_shared_state_duration_s
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_shared_state_duration_s'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: gitlab_api_redis_shared_state_read_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_shared_state_read_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_redis_shared_state_write_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_shared_state_write_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_redis_write_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.redis_write_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_request_urgency
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gitlab.api.request_urgency'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gitlab_api_route
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gitlab.api.route'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gitlab_api_target_duration_s
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.target_duration_s'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: gitlab_api_time
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gitlab.api.time'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gitlab_api_token_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.token_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gitlab_api_token_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gitlab.api.token_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gitlab_api_view
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.view'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: gitlab_api_view_duration_s
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gitlab.api.view_duration_s'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: gitlab_api_worker_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gitlab.api.worker_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_device_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.device_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_fingerprint
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.fingerprint'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_inode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.inode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

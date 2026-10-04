@@ -1,0 +1,58 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of awsfirehose.metrics at integrations 2c934eb5223b
+    columns:
+    - name: aws_cloudwatch_namespace
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.cloudwatch.namespace'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_exporter_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.exporter.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_firehose_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.firehose.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_firehose_parameters
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: aws.firehose.parameters'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: aws_firehose_request_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.firehose.request_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_metrics_names_fingerprint
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.metrics_names_fingerprint'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: start_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: start_timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base

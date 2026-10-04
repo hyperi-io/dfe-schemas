@@ -1,0 +1,403 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of ti_maltiverse.indicator at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: labels_is_ioc_transform_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: labels.is_ioc_transform_source'
+      comment: 'Elasticsearch mapping type: constant_keyword'
+      _field_type: base
+    - name: maltiverse_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: maltiverse.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: maltiverse_as_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: maltiverse.as_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: maltiverse_asn_cidr
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: maltiverse.asn_cidr'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: maltiverse_asn_country_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: maltiverse.asn_country_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: maltiverse_asn_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: maltiverse.asn_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: maltiverse_asn_registry
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: maltiverse.asn_registry'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: maltiverse_blacklist_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: maltiverse.blacklist.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: maltiverse_blacklist_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: maltiverse.blacklist.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: maltiverse_blacklist_external_references
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: maltiverse.blacklist.external_references'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: maltiverse_blacklist_first_seen
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: maltiverse.blacklist.first_seen'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: maltiverse_blacklist_labels
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: maltiverse.blacklist.labels'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: maltiverse_blacklist_last_seen
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: maltiverse.blacklist.last_seen'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: maltiverse_blacklist_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: maltiverse.blacklist.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: maltiverse_cidr
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: maltiverse.cidr'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: maltiverse_city
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: maltiverse.city'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: maltiverse_classification
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: maltiverse.classification'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: maltiverse_country_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: maltiverse.country_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: maltiverse_creation_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: maltiverse.creation_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: maltiverse_domain_consonants
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: maltiverse.domain_consonants'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: maltiverse_domain_length
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: maltiverse.domain_length'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: maltiverse_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: maltiverse.email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: maltiverse_entropy
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: maltiverse.entropy'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: maltiverse_feed
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: maltiverse.feed'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: maltiverse_hostname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: maltiverse.hostname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: maltiverse_ip_addr
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: maltiverse.ip_addr'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: maltiverse_is_alive
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: maltiverse.is_alive'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: maltiverse_is_cdn
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: maltiverse.is_cdn'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: maltiverse_is_cnc
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: maltiverse.is_cnc'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: maltiverse_is_distributing_malware
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: maltiverse.is_distributing_malware'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: maltiverse_is_hosting
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: maltiverse.is_hosting'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: maltiverse_is_iot_threat
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: maltiverse.is_iot_threat'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: maltiverse_is_known_attacker
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: maltiverse.is_known_attacker'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: maltiverse_is_known_scanner
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: maltiverse.is_known_scanner'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: maltiverse_is_mining_pool
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: maltiverse.is_mining_pool'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: maltiverse_is_open_proxy
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: maltiverse.is_open_proxy'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: maltiverse_is_phishing
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: maltiverse.is_phishing'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: maltiverse_is_sinkhole
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: maltiverse.is_sinkhole'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: maltiverse_is_storing_phishing
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: maltiverse.is_storing_phishing'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: maltiverse_is_tor_node
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: maltiverse.is_tor_node'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: maltiverse_is_vpn_node
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: maltiverse.is_vpn_node'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: maltiverse_last_online_time
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: maltiverse.last_online_time'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: maltiverse_location
+      type: geo_point
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: maltiverse.location'
+      comment: 'Elasticsearch mapping type: geo_point'
+      _field_type: base
+    - name: maltiverse_modification_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: maltiverse.modification_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: maltiverse_number_of_blacklisted_domains_resolving
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: maltiverse.number_of_blacklisted_domains_resolving'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: maltiverse_number_of_domains_resolving
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: maltiverse.number_of_domains_resolving'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: maltiverse_number_of_offline_malicious_urls_allocated
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: maltiverse.number_of_offline_malicious_urls_allocated'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: maltiverse_number_of_online_malicious_urls_allocated
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: maltiverse.number_of_online_malicious_urls_allocated'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: maltiverse_number_of_whitelisted_domains_resolving
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: maltiverse.number_of_whitelisted_domains_resolving'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: maltiverse_postal_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: maltiverse.postal_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: maltiverse_registrant_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: maltiverse.registrant_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: maltiverse_resolved_ip
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: maltiverse.resolved_ip'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: maltiverse_tag
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: maltiverse.tag'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: maltiverse_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: maltiverse.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: maltiverse_urlchecksum
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: maltiverse.urlchecksum'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

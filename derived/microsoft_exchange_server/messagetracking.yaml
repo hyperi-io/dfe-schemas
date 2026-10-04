@@ -1,0 +1,88 @@
+base: meta/elastic/ecs
+base_version: "1.0.0"
+current: "1.0.0"
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    summary: microsoft_exchange_server.messagetracking selection from meta/elastic/ecs
+    select:
+    - name: agent_ephemeral_id
+      index: exact_match
+    - name: agent_id
+      index: exact_match
+    - name: agent_name
+      index: exact_match
+    - name: agent_type
+      index: exact_match
+    - name: agent_version
+      index: exact_match
+    - name: client_domain
+      index: exact_match
+    - name: client_ip
+      index: dimension
+    - name: data_stream_dataset
+      index: exact_match
+    - name: data_stream_namespace
+      index: exact_match
+    - name: data_stream_type
+      index: exact_match
+    - name: ecs_version
+      index: exact_match
+    - name: email_direction
+      index: exact_match
+    - name: email_from_address
+      index: exact_match
+    - name: email_local_id
+      index: exact_match
+    - name: email_message_id
+      index: exact_match
+    - name: email_sender_address
+      index: exact_match
+    - name: email_subject
+      index: exact_match
+    - name: email_to_address
+      index: exact_match
+    - name: error_message
+      index: word_search
+    - name: event_ingested
+      index: range
+    - name: event_original
+      index: none
+    - name: host_architecture
+      index: exact_match
+    - name: host_hostname
+      index: exact_match
+    - name: host_id
+      index: exact_match
+    - name: host_ip
+      index: dimension
+    - name: host_mac
+      index: exact_match
+    - name: host_name
+      index: exact_match
+    - name: host_os_family
+      index: exact_match
+    - name: host_os_kernel
+      index: exact_match
+    - name: host_os_name
+      index: exact_match
+    - name: host_os_platform
+      index: exact_match
+    - name: host_os_type
+      index: exact_match
+    - name: host_os_version
+      index: exact_match
+    - name: log_file_path
+      index: exact_match
+    - name: message
+      index: word_search
+    - name: network_bytes
+      index: range
+    - name: related_ip
+      index: dimension
+    - name: server_domain
+      index: exact_match
+    - name: server_ip
+      index: dimension
+    - name: tags
+      index: exact_match

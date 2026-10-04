@@ -1,0 +1,1288 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of ti_threatconnect.indicator at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: labels_is_ioc_transform_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: labels.is_ioc_transform_source'
+      comment: 'Elasticsearch mapping type: constant_keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: threat_connect_indicator_active_locked
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: threat_connect.indicator.active.locked'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: threat_connect_indicator_active_value
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: threat_connect.indicator.active.value'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: threat_connect_indicator_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_as_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.as_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_artifacts
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: threat_connect.indicator.associated_artifacts'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: threat_connect_indicator_associated_cases
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: threat_connect.indicator.associated_cases'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_assignments_data_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_groups.data.assignments.data.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_assignments_data_user_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_groups.data.assignments.data.user.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_attributes_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_groups.data.attributes.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_attributes_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_groups.data.attributes.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_body
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_groups.data.body'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_created_by_first_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_groups.data.created_by.first_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_created_by_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_groups.data.created_by.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_created_by_last_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_groups.data.created_by.last_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_created_by_owner
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_groups.data.created_by.owner'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_created_by_pseudonym
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_groups.data.created_by.pseudonym'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_created_by_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_groups.data.created_by.user_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_date_added
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.associated_groups.data.date_added'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_document_date_added
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.associated_groups.data.document.date_added'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_document_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_groups.data.document.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_down_vote_count
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_groups.data.down_vote_count'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_due_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.associated_groups.data.due_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_email_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.associated_groups.data.email_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_escalation_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.associated_groups.data.escalation_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_event_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.associated_groups.data.event_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_external_date_added
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.associated_groups.data.external.date.added'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_external_date_expires
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.associated_groups.data.external.date.expires'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_external_last_modified
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.associated_groups.data.external.last_modified'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_file_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_groups.data.file.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_file_size
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_groups.data.file.size'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_file_text
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_groups.data.file.text'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_file_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_groups.data.file.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_first_seen
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.associated_groups.data.first_seen'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_from
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_groups.data.from'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_generated_report
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: threat_connect.indicator.associated_groups.data.generated_report'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_header
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_groups.data.header'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_groups.data.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_last_modified
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.associated_groups.data.last_modified'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_last_seen
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.associated_groups.data.last_seen'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_legacy_link
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_groups.data.legacy_link'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_malware
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: threat_connect.indicator.associated_groups.data.malware'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_groups.data.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_owner_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_groups.data.owner.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_owner_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_groups.data.owner.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_password
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_groups.data.password'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_publish_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.associated_groups.data.publish_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_reminder_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.associated_groups.data.reminder_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_score_breakdown
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_groups.data.score_breakdown'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_score_includes_body
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: threat_connect.indicator.associated_groups.data.score_includes_body'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_groups.data.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_subject
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_groups.data.subject'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_to
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_groups.data.to'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_groups.data.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_up_vote
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: threat_connect.indicator.associated_groups.data.up_vote'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_up_vote_count
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_groups.data.up_vote_count'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_web_link
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_groups.data.web_link'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_groups_data_xid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_groups.data.xid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_indicators_data_active_locked
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: threat_connect.indicator.associated_indicators.data.active.locked'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: threat_connect_indicator_associated_indicators_data_active_value
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: threat_connect.indicator.associated_indicators.data.active.value'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: threat_connect_indicator_associated_indicators_data_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_indicators.data.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_indicators_data_as_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_indicators.data.as_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_indicators_data_block
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_indicators.data.block'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_indicators_data_confidence
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.associated_indicators.data.confidence'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: threat_connect_indicator_associated_indicators_data_date_added
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.associated_indicators.data.date_added'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threat_connect_indicator_associated_indicators_data_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_indicators.data.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_indicators_data_dns_active
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: threat_connect.indicator.associated_indicators.data.dns_active'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: threat_connect_indicator_associated_indicators_data_external_date_added
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.associated_indicators.data.external.date.added'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threat_connect_indicator_associated_indicators_data_external_date_expires
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.associated_indicators.data.external.date.expires'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threat_connect_indicator_associated_indicators_data_external_last_modified
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.associated_indicators.data.external.last_modified'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threat_connect_indicator_associated_indicators_data_first_seen
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.associated_indicators.data.first_seen'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threat_connect_indicator_associated_indicators_data_hashtag
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_indicators.data.hashtag'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_indicators_data_host_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_indicators.data.host_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_indicators_data_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_indicators.data.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_indicators_data_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: threat_connect.indicator.associated_indicators.data.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: threat_connect_indicator_associated_indicators_data_key_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_indicators.data.key_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_indicators_data_last_modified
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.associated_indicators.data.last_modified'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threat_connect_indicator_associated_indicators_data_last_seen
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.associated_indicators.data.last_seen'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threat_connect_indicator_associated_indicators_data_legacy_link
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_indicators.data.legacy_link'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_indicators_data_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_indicators.data.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_indicators_data_mutex
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_indicators.data.mutex'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_indicators_data_owner_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_indicators.data.owner.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_indicators_data_owner_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_indicators.data.owner.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_indicators_data_private_flag
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: threat_connect.indicator.associated_indicators.data.private_flag'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: threat_connect_indicator_associated_indicators_data_rating
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.associated_indicators.data.rating'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: threat_connect_indicator_associated_indicators_data_sha1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_indicators.data.sha1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_indicators_data_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_indicators.data.sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_indicators_data_size
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_indicators.data.size'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_indicators_data_subject
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_indicators.data.subject'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_indicators_data_summary
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_indicators.data.summary'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_indicators_data_text
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_indicators.data.text'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_indicators_data_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_indicators.data.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_indicators_data_user_agent_string
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_indicators.data.user_agent_string'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_indicators_data_value_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_indicators.data.value.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_indicators_data_value_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_indicators.data.value.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_indicators_data_web_link
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.associated_indicators.data.web_link'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_associated_indicators_data_whois_active
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: threat_connect.indicator.associated_indicators.data.whois_active'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: threat_connect_indicator_attributes_data_created_by_first_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.attributes.data.created_by.first_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_attributes_data_created_by_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.attributes.data.created_by.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_attributes_data_created_by_last_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.attributes.data.created_by.last_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_attributes_data_created_by_owner
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.attributes.data.created_by.owner'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_attributes_data_created_by_pseudonym
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.attributes.data.created_by.pseudonym'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_attributes_data_created_by_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.attributes.data.created_by.user_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_attributes_data_date_added
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.attributes.data.date_added'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threat_connect_indicator_attributes_data_default
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: threat_connect.indicator.attributes.data.default'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: threat_connect_indicator_attributes_data_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.attributes.data.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_attributes_data_last_modified
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.attributes.data.last_modified'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threat_connect_indicator_attributes_data_pinned
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: threat_connect.indicator.attributes.data.pinned'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: threat_connect_indicator_attributes_data_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.attributes.data.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_attributes_data_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.attributes.data.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_attributes_data_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.attributes.data.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_block
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.block'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_confidence
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.confidence'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: threat_connect_indicator_custom_associations
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: threat_connect.indicator.custom_associations'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: threat_connect_indicator_date_added
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.date_added'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threat_connect_indicator_deleted_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.deleted_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threat_connect_indicator_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_dns_active
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: threat_connect.indicator.dns_active'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: threat_connect_indicator_dns_resolution
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: threat_connect.indicator.dns_resolution'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: threat_connect_indicator_enrichment
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: threat_connect.indicator.enrichment'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: threat_connect_indicator_expiration_duration
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.expiration_duration'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_external_date_added
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.external.date.added'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threat_connect_indicator_external_date_expires
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.external.date.expires'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threat_connect_indicator_external_last_modified
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.external_last.modified'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threat_connect_indicator_false_positive_reported_by_user
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: threat_connect.indicator.false_positive_reported_by_user'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: threat_connect_indicator_false_positives
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.false_positives'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: threat_connect_indicator_file_actions
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: threat_connect.indicator.file_actions'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: threat_connect_indicator_file_occurrences
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: threat_connect.indicator.file_occurrences'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: threat_connect_indicator_first_seen
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.first_seen'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threat_connect_indicator_generic_custom_indicator_values
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: threat_connect.indicator.generic_custom_indicator_values'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: threat_connect_indicator_geo_location
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: threat_connect.indicator.geo_location'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: threat_connect_indicator_hashtag
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.hashtag'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_host_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.host_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_investigation_links
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: threat_connect.indicator.investigation_links'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: threat_connect_indicator_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: threat_connect.indicator.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: threat_connect_indicator_key_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.key_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_last_false_positive
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.last_false_positive'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threat_connect_indicator_last_modified
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.last_modified'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threat_connect_indicator_last_seen
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.last_seen'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threat_connect_indicator_legacy_link
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.legacy_link'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_mutex
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.mutex'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_observations
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: threat_connect.indicator.observations'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: threat_connect_indicator_owner_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.owner.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_owner_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.owner.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_private_flag
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: threat_connect.indicator.private_flag'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: threat_connect_indicator_rating
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.rating'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: threat_connect_indicator_security_labels_data_date_added
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.security_labels.data.date_added'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threat_connect_indicator_security_labels_data_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.security_labels.data.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_security_labels_data_owner
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.security_labels.data.owner'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_security_labels_data_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.security_labels.data.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_sha1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.sha1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_size
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.size'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_subject
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.subject'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_summary
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.summary'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_tags_data_last_used
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.tags.data.last_used'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threat_connect_indicator_tags_data_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.tags.data.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_tags_data_owner
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.tags.data.owner'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_tags_data_platforms_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.tags.data.platforms.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: threat_connect_indicator_tags_data_platforms_data
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.tags.data.platforms.data'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_tags_data_tactics
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.tags.data.tactics'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_tags_data_technique_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.tags.data.technique.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_text
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.text'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_threat_assess_confidence
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.threat_assess.confidence'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: threat_connect_indicator_threat_assess_rating
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.threat_assess.rating'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: threat_connect_indicator_threat_assess_score_false_positive
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.threat_assess.score.false_positive'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: threat_connect_indicator_threat_assess_score_observed
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.threat_assess.score.observed'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: threat_connect_indicator_threat_assess_score_value
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threat_connect.indicator.threat_assess.score.value'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: threat_connect_indicator_tracked_users
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: threat_connect.indicator.tracked_users'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: threat_connect_indicator_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_user_agent_string
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.user_agent_string'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_value_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.value.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_value_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.value.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_web_link
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat_connect.indicator.web_link'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_connect_indicator_who_is
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: threat_connect.indicator.who_is'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: threat_connect_indicator_whois_active
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: threat_connect.indicator.whois_active'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base

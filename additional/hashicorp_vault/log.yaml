@@ -1,0 +1,30 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of hashicorp_vault.log at integrations 2c934eb5223b
+    columns:
+    - name: hashicorp_vault_log
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: hashicorp_vault.log'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

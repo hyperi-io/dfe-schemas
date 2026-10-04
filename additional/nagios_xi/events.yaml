@@ -1,0 +1,43 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of nagios_xi.events at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nagios_xi_event_entry_time
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nagios_xi.event.entry_time'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nagios_xi_event_instance_id
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nagios_xi.event.instance_id'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: nagios_xi_event_logentry_id
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nagios_xi.event.logentry.id'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: nagios_xi_event_logentry_type
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nagios_xi.event.logentry.type'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base

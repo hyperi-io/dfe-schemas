@@ -1,0 +1,197 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of zeek.dhcp at integrations 2c934eb5223b
+    columns:
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zeek_dhcp_address_assigned
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: zeek.dhcp.address.assigned'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: zeek_dhcp_address_client
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: zeek.dhcp.address.client'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: zeek_dhcp_address_mac
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zeek.dhcp.address.mac'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zeek_dhcp_address_requested
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: zeek.dhcp.address.requested'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: zeek_dhcp_address_server
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: zeek.dhcp.address.server'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: zeek_dhcp_client_fqdn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zeek.dhcp.client_fqdn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zeek_dhcp_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zeek.dhcp.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zeek_dhcp_duration
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zeek.dhcp.duration'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: zeek_dhcp_hostname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zeek.dhcp.hostname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zeek_dhcp_id_circuit
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zeek.dhcp.id.circuit'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zeek_dhcp_id_remote_agent
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zeek.dhcp.id.remote_agent'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zeek_dhcp_id_subscriber
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zeek.dhcp.id.subscriber'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zeek_dhcp_lease_time
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zeek.dhcp.lease_time'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: zeek_dhcp_msg_client
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zeek.dhcp.msg.client'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zeek_dhcp_msg_origin
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: zeek.dhcp.msg.origin'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: zeek_dhcp_msg_server
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zeek.dhcp.msg.server'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zeek_dhcp_msg_types
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zeek.dhcp.msg.types'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zeek_dhcp_software_client
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zeek.dhcp.software.client'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zeek_dhcp_software_server
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zeek.dhcp.software.server'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zeek_session_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zeek.session_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

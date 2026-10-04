@@ -1,0 +1,1171 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of sysdig.event at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sysdig_event_actions_after_event_ns
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sysdig.event.actions.after_event_ns'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sysdig_event_actions_before_event_ns
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sysdig.event.actions.before_event_ns'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sysdig_event_actions_err_msg
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.actions.err_msg'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_actions_is_successful
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sysdig.event.actions.is_successful'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sysdig_event_actions_token
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.actions.token'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_actions_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.actions.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_cluster_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.cluster_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_command
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.command'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_detected_class_probability
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sysdig.event.content.detected_class_probability'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: sysdig_event_content_exe
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.exe'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_aws_account_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.aws.account_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_aws_event_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.aws.event_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_aws_region
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.aws.region'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_aws_source_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sysdig.event.content.fields.aws.source_ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: sysdig_event_content_fields_aws_user
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.aws.user'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_container_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.container.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_container_image_repository
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.container.image.repository'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_container_image_tag
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.container.image.tag'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_container_label_io_kubernetes_container_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.container.label.io.kubernetes.container.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_container_label_io_kubernetes_pod_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.container.label.io.kubernetes.pod.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_container_label_io_kubernetes_pod_namespace
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.container.label.io.kubernetes.pod.namespace'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_container_mounts
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.container.mounts'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_container_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.container.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_container_privileged
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sysdig.event.content.fields.container.privileged'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sysdig_event_content_fields_ct_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.ct.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_ct_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.ct.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_ct_region
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.ct.region'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_ct_request_functionname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.ct.request.functionname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_ct_request_host
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.ct.request.host'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_ct_shortsrc
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.ct.shortsrc'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_ct_srcdomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.ct.srcdomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_ct_srcip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sysdig.event.content.fields.ct.srcip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: sysdig_event_content_fields_ct_user_accountid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.ct.user.accountid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_ct_user_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.ct.user.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_ct_user_identitytype
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.ct.user.identitytype'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_ct_user_principalid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.ct.user.principalid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_ct_user_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.ct.user.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_ct_useragent
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.ct.useragent'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_evt_arg_request
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.evt.arg.request'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_evt_dir
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.evt.dir'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_evt_res
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.evt.res'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_evt_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.evt.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_fd_directory
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.fd.directory'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_fd_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.fd.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_fd_sip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sysdig.event.content.fields.fd.sip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: sysdig_event_content_fields_fd_sport
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sysdig.event.content.fields.fd.sport'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sysdig_event_content_fields_fd_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.fd.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_group_gid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.group.gid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_group_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.group.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_proc_acmdline_2
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.proc.acmdline_2'
+      comment: 'Elasticsearch mapping type: wildcard'
+      _field_type: base
+    - name: sysdig_event_content_fields_proc_acmdline_3
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.proc.acmdline_3'
+      comment: 'Elasticsearch mapping type: wildcard'
+      _field_type: base
+    - name: sysdig_event_content_fields_proc_acmdline_4
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.proc.acmdline_4'
+      comment: 'Elasticsearch mapping type: wildcard'
+      _field_type: base
+    - name: sysdig_event_content_fields_proc_aexepath_2
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.proc.aexepath_2'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_proc_aexepath_3
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.proc.aexepath_3'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_proc_aexepath_4
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.proc.aexepath_4'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_proc_aname_2
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.proc.aname_2'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_proc_aname_3
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.proc.aname_3'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_proc_aname_4
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.proc.aname_4'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_proc_args
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.proc.args'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_proc_cmdline
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.proc.cmdline'
+      comment: 'Elasticsearch mapping type: wildcard'
+      _field_type: base
+    - name: sysdig_event_content_fields_proc_cwd
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.proc.cwd'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_proc_exepath
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.proc.exepath'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_proc_hash_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.proc.hash.sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_proc_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.proc.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_proc_pcmdline
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.proc.pcmdline'
+      comment: 'Elasticsearch mapping type: wildcard'
+      _field_type: base
+    - name: sysdig_event_content_fields_proc_pexepath
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.proc.pexepath'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_proc_pid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sysdig.event.content.fields.proc.pid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sysdig_event_content_fields_proc_pid_ts
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sysdig.event.content.fields.proc.pid_ts'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sysdig_event_content_fields_proc_pname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.proc.pname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_proc_ppid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sysdig.event.content.fields.proc.ppid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sysdig_event_content_fields_proc_ppid_ts
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sysdig.event.content.fields.proc.ppid_ts'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sysdig_event_content_fields_proc_sid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.proc.sid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_proc_stderr_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.proc.stderr.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_proc_stdin_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.proc.stdin.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_proc_stdout_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.proc.stdout.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_user_loginname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.user.loginname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_user_loginuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.user.loginuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.user.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_fields_user_uid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.fields.user.uid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_integration_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.integration_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_integration_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.integration_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_namespace
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.namespace'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_origin
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.origin'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_output
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: sysdig.event.content.output'
+      comment: 'Elasticsearch mapping type: match_only_text'
+      _field_type: base
+    - name: sysdig_event_content_policy_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.policy_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_policy_notification_channel_ids
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.policy_notification_channel_ids'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_policy_origin
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.policy_origin'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_policy_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.policy_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_priority
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.priority'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_resource_kind
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.resource_kind'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_resource_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.resource_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_rule_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.rule_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_rule_sub_type
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sysdig.event.content.rule_sub_type'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sysdig_event_content_rule_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.rule_tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_rule_type
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sysdig.event.content.rule_type'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sysdig_event_content_run_book
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.run_book'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_scan_result
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: sysdig.event.content.scan_result'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: sysdig_event_content_sequence_event_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.sequence.event_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_sequence_event_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.sequence.event_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_sequence_event_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sysdig.event.content.sequence.event_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sysdig_event_content_sequence_ingestion_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.sequence.ingestion_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_sequence_region
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.sequence.region'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_sequence_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.sequence.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_sequence_source_ip_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sysdig.event.content.sequence.source_ip_address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: sysdig_event_content_sequence_sub_ingestion_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.sequence.sub_ingestion_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_stats_api
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.stats.api'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_stats_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sysdig.event.content.stats.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sysdig_event_content_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_zones_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.zones.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_content_zones_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.content.zones.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_description
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: sysdig.event.description'
+      comment: 'Elasticsearch mapping type: match_only_text'
+      _field_type: base
+    - name: sysdig_event_engine
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.engine'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_labels_aws_account_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.labels.aws.account_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_labels_aws_region
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.labels.aws.region'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_labels_aws_user
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.labels.aws.user'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_labels_azure_instance_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.labels.azure.instance_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_labels_azure_instance_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.labels.azure.instance_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_labels_azure_instance_size
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.labels.azure.instance_size'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_labels_azure_location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.labels.azure.location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_labels_azure_subscription_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.labels.azure.subscription_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_labels_cloud_provider_account_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.labels.cloud_provider.account.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_labels_cloud_provider_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.labels.cloud_provider.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_labels_cloud_provider_region
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.labels.cloud_provider.region'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_labels_cloud_provider_user
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.labels.cloud_provider.user'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_labels_container_image_digest
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.labels.container.image.digest'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_labels_container_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.labels.container.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_labels_container_image_repo
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.labels.container.image.repo'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_labels_container_image_tag
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.labels.container.image.tag'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_labels_container_label_io_kubernetes_container_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.labels.container.label.io.kubernetes.container.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_labels_container_label_io_kubernetes_pod_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.labels.container.label.io.kubernetes.pod.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_labels_container_label_io_kubernetes_pod_namespace
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.labels.container.label.io.kubernetes.pod.namespace'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_labels_container_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.labels.container.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_labels_gcp_availability_zone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.labels.gcp.availability_zone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_labels_gcp_instance_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.labels.gcp.instance_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_labels_gcp_instance_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.labels.gcp.instance_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_labels_gcp_location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.labels.gcp.location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_labels_gcp_machine_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.labels.gcp.machine_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_labels_gcp_project_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.labels.gcp.project_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_labels_gcp_project_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.labels.gcp.project_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_labels_host_host_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.labels.host.host_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_labels_host_mac
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.labels.host.mac'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_labels_kubernetes_cluster_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.labels.kubernetes.cluster.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_labels_kubernetes_cron_job_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.labels.kubernetes.cron_job.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_labels_kubernetes_daemon_set_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.labels.kubernetes.daemon_set.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_labels_kubernetes_job_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.labels.kubernetes.job.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_labels_kubernetes_namespace_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.labels.kubernetes.namespace.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_labels_kubernetes_node_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.labels.kubernetes.node.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_labels_kubernetes_pod_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.labels.kubernetes.pod.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_labels_kubernetes_service_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.labels.kubernetes.service.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_labels_kubernetes_workload_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.labels.kubernetes.workload.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_labels_kubernetes_workload_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.labels.kubernetes.workload.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_labels_source_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sysdig.event.labels.source.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: sysdig_event_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_originator
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.originator'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_raw_event_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.raw_event_category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_raw_event_originator
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.raw_event_originator'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_severity
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sysdig.event.severity'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sysdig_event_severity_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.severity_value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_source_details_sub_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.source_details.sub_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_source_details_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.event.source_details.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_event_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sysdig.event.timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base

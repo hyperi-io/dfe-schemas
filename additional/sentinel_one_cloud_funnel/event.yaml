@@ -1,0 +1,3138 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of sentinel_one_cloud_funnel.event at integrations 2c934eb5223b
+    columns:
+    - name: aws_s3_bucket_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_bucket_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_object_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.object.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: powershell_file_script_block_text
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: powershell.file.script_block_text'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: process_Ext_token_integrity_level_name
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: process.Ext.token.integrity_level_name'
+      comment: 'Elasticsearch mapping type: alias'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_account_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.account_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_agent_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.agent.uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_agent_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.agent.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_cmd_script_application_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.cmd_script.application_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_cmd_script_content
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.cmd_script.content'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_cmd_script_is_complete
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.cmd_script.is_complete'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_cmd_script_original_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.cmd_script.original_size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_cmd_script_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.cmd_script.sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_data_source_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.data_source.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_data_source_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.data_source.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_dns_request
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.dns.request'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_dns_response
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.dns.response'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_dns_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.dns.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_driver_certificate_thumbprint_algorithm
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.driver.certificate.thumbprint.algorithm'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_driver_certificate_thumbprint_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.driver.certificate.thumbprint.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_driver_is_loaded_before_monitor
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.driver.is_loaded_before_monitor'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_driver_load_verdict
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.driver.load_verdict'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_driver_pe_sha1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.driver.pe.sha1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_driver_pe_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.driver.pe.sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_driver_start_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.driver.start_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_dst_ip_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.dst.ip_address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_dst_port_number
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.dst.port_number'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_endpoint_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.endpoint.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_endpoint_os
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.endpoint.os'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_endpoint_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.endpoint.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_group_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.group.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_group_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.group.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_i_scheme
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.i.scheme'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_i_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.i.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_indicator_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.indicator.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_indicator_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.indicator.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_indicator_identifier
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.indicator.identifier'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_indicator_metadata
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.indicator.metadata'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_indicator_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.indicator.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_k8s_cluster_container_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.k8s_cluster.container.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_k8s_cluster_container_image_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.k8s_cluster.container.image.sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_k8s_cluster_container_image_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.k8s_cluster.container.image.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_k8s_cluster_container_labels
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.k8s_cluster.container.labels'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_k8s_cluster_container_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.k8s_cluster.container.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_k8s_cluster_controller_labels
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.k8s_cluster.controller.labels'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_k8s_cluster_controller_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.k8s_cluster.controller.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_k8s_cluster_controller_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.k8s_cluster.controller.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_k8s_cluster_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.k8s_cluster.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_k8s_cluster_namespace_labels
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.k8s_cluster.namespace.labels'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_k8s_cluster_namespace_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.k8s_cluster.namespace.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_k8s_cluster_node_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.k8s_cluster.node_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_k8s_cluster_pod_labels
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.k8s_cluster.pod.labels'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_k8s_cluster_pod_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.k8s_cluster.pod.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_login_account_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.login.account.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_login_account_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.login.account.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_login_account_sid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.login.account.sid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_login_base_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.login.base_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_login_failure_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.login.failure_reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_login_is_administrator_equivalent
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.login.is_administrator_equivalent'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_login_is_successful
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.login.is_successful'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_login_session_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.login.session_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_login_tgt_domain_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.login.tgt.domain_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_login_tgt_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.login.tgt.user.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_login_tgt_user_sid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.login.tgt.user.sid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_login_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.login.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_login_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.login.user_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_logout_tgt_domain_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.logout.tgt.domain_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_logout_tgt_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.logout.tgt.user.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_logout_tgt_user_sid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.logout.tgt.user.sid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_logout_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.logout.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_meta_event_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.meta_event_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_mgmt_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.mgmt.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_mgmt_os_revision
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.mgmt.os_revision'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_mgmt_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.mgmt.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_module_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.module.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_module_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.module.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_module_sha1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.module.sha1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_named_pipe_access_mode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.named_pipe.access_mode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_named_pipe_connection_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.named_pipe.connection_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_named_pipe_is_first_instance
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.named_pipe.is_first_instance'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_named_pipe_is_overlapped
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.named_pipe.is_overlapped'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_named_pipe_is_write_through
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.named_pipe.is_write_through'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_named_pipe_max_instances
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.named_pipe.max_instances'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_named_pipe_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.named_pipe.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_named_pipe_read_mode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.named_pipe.read_mode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_named_pipe_remote_clients
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.named_pipe.remote_clients'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_named_pipe_security_groups
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.named_pipe.security.groups'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_named_pipe_security_owner
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.named_pipe.security.owner'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_named_pipe_type_mode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.named_pipe.type_mode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_named_pipe_wait_mode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.named_pipe.wait_mode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_network_connection_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.network.connection_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_network_direction
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.network.direction'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_network_protocol_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.network.protocol_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_active_content_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.active_content.hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_active_content_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.active_content.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_active_content_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.active_content.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_active_content_signed_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.active_content.signed_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_active_content_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.active_content.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_child_proc_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.child_proc_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_cmd_line
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.cmd_line'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_cross_process_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.cross_process.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_cross_process_dup_remote_process_handle_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.cross_process.dup.remote_process_handle_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_cross_process_dup_thread_handle_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.cross_process.dup.thread_handle_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_cross_process_open_process_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.cross_process.open_process_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_cross_process_out_of_storyline_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.cross_process.out_of_storyline_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_cross_process_thread_create_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.cross_process.thread_create_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_dns_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.dns_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_image_binary_is_executable
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.image.binary_is_executable'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_image_extension
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.image.extension'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_image_location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.image.location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_image_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.image.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_image_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.image.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_image_sha1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.image.sha1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_image_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.image.sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_image_signature_is_valid
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.image.signature_is_valid'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_image_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.image.size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_image_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.image.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_image_uid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.image.uid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_indicator_boot_configuration_update_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.indicator.boot_configuration_update_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_indicator_evasion_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.indicator.evasion_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_indicator_exploitation_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.indicator.exploitation_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_indicator_general_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.indicator.general_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_indicator_info_stealer_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.indicator_info_stealer_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_indicator_injection_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.indicator.injection_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_indicator_persistence_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.indicator.persistence_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_indicator_post_exploitation_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.indicator.post_exploitation_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_indicator_ransomware_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.indicator.ransomware_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_indicator_reconnaissance_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.indicator.reconnaissance_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_integrity_level
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.integrity_level'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_is_native_64_bit
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.is_native_64_bit'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_is_redirect_cmd_processor
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.is_redirect_cmd_processor'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_is_storyline_root
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.is_storyline_root'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_module_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.module_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_net_conn_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.net_conn.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_net_conn_in_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.net_conn.in_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_net_conn_out_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.net_conn.out_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_parent_active_content_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.parent.active_content.hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_parent_active_content_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.parent.active_content.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_parent_active_content_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.parent.active_content.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_parent_active_content_signed_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.parent.active_content.signed_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_parent_active_content_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.parent.active_content.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_parent_cmd_line
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.parent.cmd_line'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_parent_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.parent.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_parent_image_binary_is_executable
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.parent.image.binary_is_executable'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_parent_image_extension
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.parent.image.extension'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_parent_image_location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.parent.image.location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_parent_image_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.parent.image.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_parent_image_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.parent.image.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_parent_image_sha1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.parent.image.sha1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_parent_image_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.parent.image.sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_parent_image_signature_is_valid
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.parent.image.signature_is_valid'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_parent_image_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.parent.image.size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_parent_image_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.parent.image.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_parent_image_uid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.parent.image.uid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_parent_integrity_level
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.parent.integrity_level'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_parent_is_native_64_bit
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.parent.is_native_64_bit'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_parent_is_redirect_cmd_processor
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.parent.is_redirect_cmd_processor'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_parent_is_storyline_root
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.parent.is_storyline_root'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_parent_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.parent.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_parent_pid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.parent.pid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_parent_publisher
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.parent.publisher'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_parent_reason_signature_invalid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.parent.reason_signature_invalid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_parent_session_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.parent.session_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_parent_signed_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.parent.signed_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_parent_start_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.parent.start_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_parent_storyline_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.parent.storyline_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_parent_subsystem
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.parent.subsystem'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_parent_uid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.parent.uid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_parent_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.parent.user.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_parent_user_sid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.parent.user.sid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_pid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.pid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_publisher
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.publisher'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_reason_signature_invalid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.reason_signature_invalid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_registry_change_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.registry_change_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_session_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.session_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_signed_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.signed_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_start_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.start_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_storyline_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.storyline_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_subsystem
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.subsystem'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_tgt_file_creation_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.tgt_file.creation_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_tgt_file_deletion_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.tgt_file.deletion_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_tgt_file_modification_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.tgt_file.modification_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_uid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.uid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.user.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_user_sid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.user.sid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_os_src_process_verified_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.os_src_process.verified_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_packet_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.packet_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_process_termination_exit_code
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.process_termination.exit_code'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_process_termination_signal
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.process_termination.signal'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_process_unique_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.process_unique_key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_registry_export_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.registry.export_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_registry_import_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.registry.import_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_registry_key_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.registry.key.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_registry_key_uid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.registry.key.uid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_registry_old_value_detail
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.registry.old_value.detail'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_registry_old_value_full_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.registry.old_value.full_size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_registry_old_value_is_complete
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.registry.old_value.is_complete'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_registry_old_value_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.registry.old_value.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_registry_owner_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.registry.owner.user.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_registry_owner_user_sid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.registry.owner.user.sid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_registry_security_info
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.registry.security_info'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_registry_val
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.registry.val'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_registry_value_full_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.registry.value.full_size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_registry_value_is_complete
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.registry.value.is_complete'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_registry_value_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.registry.value.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_repetition_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.repetition_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_rerouted
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.rerouted'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_sca_atlantis_ingest_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.sca.atlantis_ingest_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_sca_ingest_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.sca.ingest_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_site_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.site.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_site_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.site.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_endpoint_ip_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.src.endpoint_ip_address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_ip_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.src.ip_address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_port_number
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.src.port_number'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_active_content_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.active_content.hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_active_content_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.active_content.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_active_content_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.active_content.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_active_content_signed_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.active_content.signed_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_active_content_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.active_content.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_child_proc_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.child_proc_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_cmd_line
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.cmd_line'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_cross_process_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.cross_process.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_cross_process_dup_remote_process_handle_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.cross_process.dup.remote_process_handle_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_cross_process_dup_thread_handle_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.cross_process.dup.thread_handle_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_cross_process_open_process_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.cross_process.open_process_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_cross_process_out_of_storyline_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.cross_process.out_of_storyline_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_cross_process_thread_create_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.cross_process.thread_create_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_dns_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.dns_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_e_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.e_user.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_e_user_uid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.e_user.uid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_exe_modification_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.exe_modification_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_image_binary_is_executable
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.image.binary_is_executable'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_image_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.image.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_image_extension
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.image.extension'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_image_internal_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.image.internal_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_image_location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.image.location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_image_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.image.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_image_original_file_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.image.original_file_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_image_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.image.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_image_product_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.image.product.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_image_product_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.image.product.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_image_sha1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.image.sha1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_image_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.image.sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_image_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.image.size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_image_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.image.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_image_uid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.image.uid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_indicator_boot_configuration_update_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.indicator.boot_configuration_update_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_indicator_evasion_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.indicator.evasion_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_indicator_exploitation_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.indicator.exploitation_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_indicator_general_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.indicator.general_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_indicator_info_stealer_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.indicator.info_stealer_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_indicator_injection_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.indicator.injection_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_indicator_persistence_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.indicator.persistence_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_indicator_post_exploitation_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.indicator.post_exploitation_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_indicator_ransomware_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.indicator.ransomware_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_indicator_reconnaissance_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.indicator.reconnaissance_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_integrity_level
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.integrity_level'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_is_native_64_bit
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.is_native_64_bit'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_is_redirect_cmd_processor
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.is_redirect_cmd_processor'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_is_storyline_root
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.is_storyline_root'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_is_storyline_tm_root
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.is_storyline_tm_root'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_l_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.l_user.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_l_user_uid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.l_user.uid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_model_child_process_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.model_child_process_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_module_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.module_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_net_conn_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.net_conn.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_net_conn_in_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.net_conn.in_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_net_conn_out_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.net_conn.out_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_active_content_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.active_content.hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_active_content_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.active_content.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_active_content_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.active_content.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_active_content_signed_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.active_content.signed_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_active_content_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.active_content.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_cmd_line
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.cmd_line'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_e_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.e_user.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_e_user_uid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.e_user.uid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_image_binary_is_executable
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.image.binary_is_executable'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_image_extension
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.image.extension'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_image_location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.image.location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_image_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.image.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_image_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.image.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_image_sha1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.image.sha1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_image_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.image.sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_image_signature_is_valid
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.image.signature_is_valid'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_image_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.image.size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_image_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.image.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_image_uid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.image.uid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_integrity_level
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.integrity_level'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_is_native_64_bit
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.is_native_64_bit'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_is_redirect_cmd_processor
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.is_redirect_cmd_processor'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_is_storyline_root
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.is_storyline_root'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_is_storyline_tm_root
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.is_storyline_tm_root'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_l_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.l_user.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_l_user_uid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.l_user.uid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_pid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.pid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_publisher
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.publisher'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_r_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.r_user.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_r_user_uid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.r_user.uid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_reason_signature_invalid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.reason_signature_invalid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_session_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.session_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_signed_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.signed_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_start_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.start_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_storyline_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.storyline_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_storyline_tm_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.storyline_tm_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_subsystem
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.subsystem'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_uid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.uid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.user.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_parent_user_sid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.parent.user.sid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_pid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.pid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_publisher
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.publisher'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_r_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.r_user.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_r_user_uid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.r_user.uid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_reason_signature_invalid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.reason_signature_invalid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_registry_change_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.registry_change_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_rpid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.rpid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_session_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.session_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_signed_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.signed_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_start_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.start_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_storyline_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.storyline_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_storyline_tm_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.storyline_tm_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_subsystem
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.subsystem'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_tgt_file_creation_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.tgt_file.creation_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_tgt_file_deletion_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.tgt_file.deletion_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_tgt_file_modification_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.tgt_file.modification_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_tid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.tid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_uid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.uid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.user.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_user_sid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.user.sid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_src_process_verified_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.src.process.verified_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_task_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.task.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_task_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.task.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_task_trigger_type
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.task.trigger_type'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_file_convicted_by
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.file.convicted_by'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_file_creation_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.file.creation_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_file_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.file.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_file_extension
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.file.extension'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_file_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.file.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_file_internal_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.file.internal_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_file_is_directory
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.file.is_directory'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_file_is_executable
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.file.is_executable'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_file_is_kernel_module
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.file.is_kernel_module'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_file_is_signed
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.file.is_signed'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_file_location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.file.location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_file_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.file.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_file_modification_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.file.modification_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_file_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.file.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_file_old_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.file.old.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_file_old_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.file.old.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_file_old_sha1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.file.old.sha1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_file_old_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.file.old.sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_file_original_file_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.file.original_file_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_file_owner_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.file.owner.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_file_owner_user_sid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.file.owner.user_sid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_file_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.file.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_file_product_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.file.product.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_file_product_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.file.product.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_file_publisher
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.file.publisher'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_file_sha1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.file.sha1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_file_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.file.sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_file_signature_invalid_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.file.signature.invalid_reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_file_signature_is_valid
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.file.signature.is_valid'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_file_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.file.size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_file_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.file.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_access_rights
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.access_rights'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_active_content_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.active_content.hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_active_content_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.active_content.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_active_content_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.active_content.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_active_content_signed_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.active_content.signed_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_active_content_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.active_content.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_cmd_line
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.cmd_line'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_completeness_hints
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.completeness_hints'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_e_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.e_user.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_e_user_uid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.e_user.uid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_image_binary_is_executable
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.image.binary_is_executable'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_image_extension
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.image.extension'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_image_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.image.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_image_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.image.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_image_sha1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.image.sha1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_image_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.image.sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_image_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.image.size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_image_uid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.image.uid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_integrity_level
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.integrity_level'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_is_native_64_bit
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.is_native_64_bit'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_is_redirect_cmd_processor
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.is_redirect_cmd_processor'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_is_storyline_root
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.is_storyline_root'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_l_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.l_user.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_l_user_uid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.l_user.uid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_parent_image_location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.parent.image.location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_parent_image_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.parent.image.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_pid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.pid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_publisher
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.publisher'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_r_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.r_user.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_r_user_uid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.r_user.uid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_reason_signature_invalid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.reason_signature_invalid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_relation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.relation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_session_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.session_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_signed_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.signed_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_start_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.start_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_storyline_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.storyline_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_subsystem
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.subsystem'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_uid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.uid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.user.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_user_sid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.user.sid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_tgt_process_verified_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.tgt.process.verified_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_ti_indicator_added_by
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.ti_indicator.added_by'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_ti_indicator_categories
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.ti_indicator.categories'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_ti_indicator_comparison_method
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.ti_indicator.comparison_method'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_ti_indicator_creation_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.ti_indicator.creation_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_ti_indicator_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.ti_indicator.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_ti_indicator_external_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.ti_indicator.external_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_ti_indicator_intrusion_sets
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.ti_indicator.intrusion_sets'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_ti_indicator_metadata
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.ti_indicator.metadata'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_ti_indicator_mitre_tactics
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.ti_indicator.mitre_tactics'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_ti_indicator_modification_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.ti_indicator.modification_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_ti_indicator_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.ti_indicator.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_ti_indicator_original_event_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.ti_indicator.original_event.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_ti_indicator_original_event_index
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.ti_indicator.original_event.index'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_ti_indicator_original_event_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.ti_indicator.original_event.time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_ti_indicator_original_event_trace_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.ti_indicator.original_event.trace_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_ti_indicator_references
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.ti_indicator.references'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_ti_indicator_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.ti_indicator.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_ti_indicator_threat_actors
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.ti_indicator.threat_actors'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_ti_indicator_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.ti_indicator.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_ti_indicator_uid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.ti_indicator.uid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_ti_indicator_upload_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.ti_indicator.upload_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_ti_indicator_valid_until
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.ti_indicator.valid_until'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_ti_indicator_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.ti_indicator.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sentinel_one_cloud_funnel.event.timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_trace_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.trace_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_url_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.url.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_url_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.url.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sentinel_one_cloud_funnel_event_url_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sentinel_one_cloud_funnel.event.url.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

@@ -1,0 +1,112 @@
+base: meta/elastic/ecs
+base_version: "1.0.0"
+current: "1.0.0"
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    summary: sentinel_one.unified_alert selection from meta/elastic/ecs
+    select:
+    - name: container_id
+      index: exact_match
+    - name: container_image_name
+      index: exact_match
+    - name: container_name
+      index: exact_match
+    - name: data_stream_dataset
+      index: exact_match
+    - name: data_stream_namespace
+      index: exact_match
+    - name: data_stream_type
+      index: exact_match
+    - name: ecs_version
+      index: exact_match
+    - name: event_category
+      index: exact_match
+    - name: event_created
+      index: range
+    - name: event_dataset
+      index: exact_match
+    - name: event_end
+      index: range
+    - name: event_id
+      index: exact_match
+    - name: event_kind
+      index: exact_match
+    - name: event_module
+      index: exact_match
+    - name: event_original
+      index: none
+    - name: event_outcome
+      index: exact_match
+    - name: event_severity
+      index: range
+    - name: event_start
+      index: range
+    - name: event_type
+      index: exact_match
+    - name: file_hash_md5
+      index: exact_match
+    - name: file_hash_sha1
+      index: exact_match
+    - name: file_hash_sha256
+      index: exact_match
+    - name: file_name
+      index: exact_match
+    - name: file_path
+      index: exact_match
+    - name: group_id
+      index: exact_match
+    - name: group_name
+      index: exact_match
+    - name: host_ip
+      index: dimension
+    - name: host_name
+      index: exact_match
+    - name: host_os_name
+      index: exact_match
+    - name: host_os_type
+      index: exact_match
+    - name: host_os_version
+      index: exact_match
+    - name: host_type
+      index: exact_match
+    - name: message
+      index: word_search
+    - name: observer_serial_number
+      index: exact_match
+    - name: observer_version
+      index: exact_match
+    - name: orchestrator_cluster_name
+      index: exact_match
+    - name: orchestrator_namespace
+      index: exact_match
+    - name: orchestrator_resource_label
+      index: exact_match
+    - name: orchestrator_resource_name
+      index: exact_match
+    - name: orchestrator_resource_parent_type
+      index: exact_match
+    - name: process_command_line
+      index: exact_match
+    - name: process_parent_name
+      index: exact_match
+    - name: related_hash
+      index: exact_match
+    - name: related_hosts
+      index: exact_match
+    - name: related_ip
+      index: dimension
+    - name: related_user
+      index: exact_match
+    - name: source_domain
+      index: exact_match
+    - name: source_ip
+      index: dimension
+    - name: tags
+      index: exact_match
+    - name: user_domain
+      index: exact_match
+    - name: user_email
+      index: exact_match
+    - name: user_name
+      index: exact_match

@@ -1,0 +1,1009 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of carbon_black_cloud.alert_v7 at integrations 2c934eb5223b
+    columns:
+    - name: aws_s3_bucket_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_bucket_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_object_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.object.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_additional_events_present
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: carbon_black_cloud.alert.additional_events_present'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: carbon_black_cloud_alert_alert_notes_present
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: carbon_black_cloud.alert.alert_notes_present'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: carbon_black_cloud_alert_attack_tactic
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.attack_tactic'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_attack_technique
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.attack_technique'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_backend_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: carbon_black_cloud.alert.backend_timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: carbon_black_cloud_alert_backend_update_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: carbon_black_cloud.alert.backend_update_timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: carbon_black_cloud_alert_blocked_process_effective_reputation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.blocked_process.effective_reputation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_blocked_process_hash_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.blocked_process.hash.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_blocked_process_hash_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.blocked_process.hash.sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_blocked_process_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.blocked_process.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_childproc_cmdline
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.childproc.cmdline'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_childproc_effective_reputation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.childproc.effective_reputation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_childproc_guid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.childproc.guid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_childproc_hash_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.childproc.hash.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_childproc_hash_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.childproc.hash.sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_childproc_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.childproc.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_childproc_username
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.childproc.username'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_connection_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.connection_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_determination_change_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: carbon_black_cloud.alert.determination.change_timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: carbon_black_cloud_alert_determination_changed_by
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.determination.changed_by'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_determination_changed_by_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.determination.changed_by_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_determination_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.determination.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_device_external_ip
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.device.external_ip'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_device_internal_ip
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.device.internal_ip'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_device_location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.device.location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_device_os
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.device.os'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_device_policy
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.device.policy'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_device_policy_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: carbon_black_cloud.alert.device.policy_id'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: carbon_black_cloud_alert_device_target_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.device.target_value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_device_uem_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.device.uem_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_egress_group_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.egress_group_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_egress_group_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.egress_group_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_ioc_field
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.ioc.field'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_ioc_hit
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.ioc.hit'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_ioc_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.ioc.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_ip_reputation
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: carbon_black_cloud.alert.ip_reputation'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: carbon_black_cloud_alert_is_updated
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: carbon_black_cloud.alert.is_updated'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: carbon_black_cloud_alert_k8s_cluster
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.k8s_cluster'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_k8s_kind
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.k8s_kind'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_k8s_namespace
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.k8s_namespace'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_k8s_pod_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.k8s_pod_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_k8s_policy
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.k8s_policy'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_k8s_policy_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.k8s_policy_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_k8s_rule
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.k8s_rule'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_k8s_rule_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.k8s_rule_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_k8s_workload_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.k8s_workload_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_mdr_alert
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: carbon_black_cloud.alert.mdr.alert'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: carbon_black_cloud_alert_mdr_alert_notes_present
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: carbon_black_cloud.alert.mdr.alert_notes_present'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: carbon_black_cloud_alert_mdr_classification_change_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: carbon_black_cloud.alert.mdr.classification.change_timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: carbon_black_cloud_alert_mdr_determination_change_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: carbon_black_cloud.alert.mdr.determination.change_timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: carbon_black_cloud_alert_mdr_determination_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.mdr.determination.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_mdr_threat_notes_present
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: carbon_black_cloud.alert.mdr.threat_notes_present'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: carbon_black_cloud_alert_mdr_workflow_change_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: carbon_black_cloud.alert.mdr.workflow.change_timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: carbon_black_cloud_alert_mdr_workflow_is_assigned
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: carbon_black_cloud.alert.mdr.workflow.is_assigned'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: carbon_black_cloud_alert_mdr_workflow_status
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: carbon_black_cloud.alert.mdr.workflow.status'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: carbon_black_cloud_alert_ml_classification_anomalies
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.ml_classification_anomalies'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_ml_classification_final_verdict
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.ml_classification_final_verdict'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_ml_classification_global_prevalence
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.ml_classification_global_prevalence'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_ml_classification_org_prevalence
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.ml_classification_org_prevalence'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_netconn_local_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: carbon_black_cloud.alert.netconn.local_ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: carbon_black_cloud_alert_netconn_local_ipv4
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: carbon_black_cloud.alert.netconn.local_ipv4'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: carbon_black_cloud_alert_netconn_local_ipv6
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: carbon_black_cloud.alert.netconn.local_ipv6'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: carbon_black_cloud_alert_netconn_local_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: carbon_black_cloud.alert.netconn.local_port'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: carbon_black_cloud_alert_netconn_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.netconn.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_netconn_remote_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.netconn.remote_domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_netconn_remote_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: carbon_black_cloud.alert.netconn.remote_ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: carbon_black_cloud_alert_netconn_remote_ipv4
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: carbon_black_cloud.alert.netconn.remote_ipv4'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: carbon_black_cloud_alert_netconn_remote_ipv6
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: carbon_black_cloud.alert.netconn.remote_ipv6'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: carbon_black_cloud_alert_netconn_remote_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: carbon_black_cloud.alert.netconn.remote_port'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: carbon_black_cloud_alert_org_feature_entitlement
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.org_feature_entitlement'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_organization_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.organization_key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_parent_cmdline
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.parent.cmdline'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_parent_effective_reputation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.parent.effective_reputation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_parent_guid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.parent.guid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_parent_hash_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.parent.hash.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_parent_hash_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.parent.hash.sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_parent_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.parent.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_parent_pid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: carbon_black_cloud.alert.parent.pid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: carbon_black_cloud_alert_parent_reputation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.parent.reputation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_parent_username
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.parent.username'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_policy_applied
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.policy_applied'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_primary_event_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.primary_event_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_process_cmdline
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.process.cmdline'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_process_effective_reputation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.process.effective_reputation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_process_guid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.process.guid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_process_hash_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.process.hash.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_process_hash_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.process.hash.sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_process_issuer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.process.issuer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_process_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.process.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_process_pid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: carbon_black_cloud.alert.process.pid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: carbon_black_cloud_alert_process_publisher
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.process.publisher'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_process_reputation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.process.reputation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_process_username
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.process.username'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_product_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.product_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_product_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.product_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_reason_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.reason_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_remote_is_private
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: carbon_black_cloud.alert.remote_is_private'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: carbon_black_cloud_alert_report_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.report.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_report_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.report.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_report_link
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.report.link'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_report_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.report.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_report_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.report.tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_rule_category_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.rule_category_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_rule_config_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.rule_config_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_rule_config_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.rule_config_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_rule_config_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.rule_config_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_rule_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.rule_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_run_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.run_state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_sensor_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.sensor_action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_serial_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.serial_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_threat_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.threat_category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_threat_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.threat_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_threat_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.threat_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_threat_notes_present
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: carbon_black_cloud.alert.threat_notes_present'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: carbon_black_cloud_alert_tms_rule_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.tms_rule_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_ttps
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.ttps'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_user_update_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: carbon_black_cloud.alert.user_update_timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: carbon_black_cloud_alert_vendor_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.vendor_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_vendor_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.vendor_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_watchlists_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.watchlists.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_watchlists_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.watchlists.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_workflow_change_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: carbon_black_cloud.alert.workflow.change_timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: carbon_black_cloud_alert_workflow_changed_by
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.workflow.changed_by'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_workflow_changed_by_autoclose_rule_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.workflow.changed_by_autoclose_rule_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_workflow_changed_by_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.workflow.changed_by_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_workflow_closure_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.workflow.closure_reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_alert_workflow_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.alert.workflow.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

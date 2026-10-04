@@ -1,0 +1,107 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of nozomi_networks.health at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: nozomi_networks_health_appliance_host
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.health.appliance_host'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_health_appliance_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.health.appliance_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_health_appliance_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: nozomi_networks.health.appliance_ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: nozomi_networks_health_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.health.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_health_info
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: nozomi_networks.health.info'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: nozomi_networks_health_record_created_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nozomi_networks.health.record_created_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: nozomi_networks_health_replicated
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: nozomi_networks.health.replicated'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: nozomi_networks_health_sensor_appliance_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.health.sensor_appliance_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_health_sensor_host
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.health.sensor_host'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_health_sensor_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.health.sensor_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_health_synchronized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: nozomi_networks.health.synchronized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: nozomi_networks_health_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nozomi_networks.health.time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base

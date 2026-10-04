@@ -1,0 +1,123 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of mongodb_atlas.mongod_audit at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mongodb_atlas_mongod_audit_hostname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mongodb_atlas.mongod_audit.hostname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mongodb_atlas_mongod_audit_local_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: mongodb_atlas.mongod_audit.local.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: mongodb_atlas_mongod_audit_local_is_system_user
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: mongodb_atlas.mongod_audit.local.is_system_user'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: mongodb_atlas_mongod_audit_local_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: mongodb_atlas.mongod_audit.local.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: mongodb_atlas_mongod_audit_local_unix
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mongodb_atlas.mongod_audit.local.unix'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mongodb_atlas_mongod_audit_param
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: mongodb_atlas.mongod_audit.param'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: mongodb_atlas_mongod_audit_remote_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: mongodb_atlas.mongod_audit.remote.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: mongodb_atlas_mongod_audit_remote_is_system_user
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: mongodb_atlas.mongod_audit.remote.is_system_user'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: mongodb_atlas_mongod_audit_remote_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: mongodb_atlas.mongod_audit.remote.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: mongodb_atlas_mongod_audit_remote_unix
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mongodb_atlas.mongod_audit.remote.unix'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mongodb_atlas_mongod_audit_result
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mongodb_atlas.mongod_audit.result'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mongodb_atlas_mongod_audit_user_names
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: mongodb_atlas.mongod_audit.user.names'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: mongodb_atlas_mongod_audit_user_roles
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: mongodb_atlas.mongod_audit.user.roles'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: mongodb_atlas_mongod_audit_uuid_binary
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mongodb_atlas.mongod_audit.uuid.binary'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mongodb_atlas_mongod_audit_uuid_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mongodb_atlas.mongod_audit.uuid.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

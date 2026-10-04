@@ -1,0 +1,553 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of azure.signinlogs at integrations 2c934eb5223b
+    columns:
+    - name: azure_correlation_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.correlation_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_resource_authorization_rule
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.resource.authorization_rule'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_resource_group
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.resource.group'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_resource_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.resource.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_resource_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.resource.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_resource_namespace
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.resource.namespace'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_resource_provider
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.resource.provider'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_caller_ip_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: azure.signinlogs.caller_ip_address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: azure_signinlogs_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_identity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.identity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_operation_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.operation_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_operation_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.operation_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_properties_app_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.properties.app_display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_properties_app_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.properties.app_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_properties_applied_conditional_access_policies
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: azure.signinlogs.properties.applied_conditional_access_policies'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: azure_signinlogs_properties_authentication_details
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: azure.signinlogs.properties.authentication_details'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: azure_signinlogs_properties_authentication_processing_details
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: azure.signinlogs.properties.authentication_processing_details'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: azure_signinlogs_properties_authentication_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.properties.authentication_protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_properties_authentication_requirement
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.properties.authentication_requirement'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_properties_authentication_requirement_policies
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: azure.signinlogs.properties.authentication_requirement_policies'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: azure_signinlogs_properties_autonomous_system_number
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: azure.signinlogs.properties.autonomous_system_number'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: azure_signinlogs_properties_client_app_used
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.properties.client_app_used'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_properties_conditional_access_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.properties.conditional_access_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_properties_correlation_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.properties.correlation_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_properties_created_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: azure.signinlogs.properties.created_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: azure_signinlogs_properties_cross_tenant_access_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.properties.cross_tenant_access_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_properties_device_detail_browser
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.properties.device_detail.browser'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_properties_device_detail_device_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.properties.device_detail.device_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_properties_device_detail_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.properties.device_detail.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_properties_device_detail_is_compliant
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: azure.signinlogs.properties.device_detail.is_compliant'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: azure_signinlogs_properties_device_detail_is_managed
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: azure.signinlogs.properties.device_detail.is_managed'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: azure_signinlogs_properties_device_detail_operating_system
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.properties.device_detail.operating_system'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_properties_device_detail_trust_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.properties.device_detail.trust_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_properties_flagged_for_review
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: azure.signinlogs.properties.flagged_for_review'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: azure_signinlogs_properties_home_tenant_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.properties.home_tenant_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_properties_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.properties.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_properties_incoming_token_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.properties.incoming_token_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_properties_is_interactive
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: azure.signinlogs.properties.is_interactive'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: azure_signinlogs_properties_is_tenant_restricted
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: azure.signinlogs.properties.is_tenant_restricted'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: azure_signinlogs_properties_network_location_details
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: azure.signinlogs.properties.network_location_details'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: azure_signinlogs_properties_original_request_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.properties.original_request_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_properties_processing_time_ms
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: azure.signinlogs.properties.processing_time_ms'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: azure_signinlogs_properties_resource_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.properties.resource_display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_properties_resource_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.properties.resource_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_properties_resource_tenant_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.properties.resource_tenant_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_properties_risk_detail
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.properties.risk_detail'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_properties_risk_event_types
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.properties.risk_event_types'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_properties_risk_event_types_v2
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.properties.risk_event_types_v2'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_properties_risk_level_aggregated
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.properties.risk_level_aggregated'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_properties_risk_level_during_signin
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.properties.risk_level_during_signin'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_properties_risk_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.properties.risk_state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_properties_service_principal_credential_key_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.properties.service_principal_credential_key_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_properties_service_principal_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.properties.service_principal_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_properties_service_principal_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.properties.service_principal_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_properties_sso_extension_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.properties.sso_extension_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_properties_status_error_code
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: azure.signinlogs.properties.status.error_code'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: azure_signinlogs_properties_token_issuer_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.properties.token_issuer_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_properties_token_issuer_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.properties.token_issuer_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_properties_unique_token_identifier
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.properties.unique_token_identifier'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_properties_user_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.properties.user_display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_properties_user_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.properties.user_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_properties_user_principal_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.properties.user_principal_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_properties_user_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.properties.user_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_result_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.result_description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_result_signature
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.result_signature'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_result_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.result_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_signinlogs_tenant_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.signinlogs.tenant_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_subscription_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.subscription_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_tenant_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.tenant_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: geo_continent_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: geo.continent_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: geo_country_iso_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: geo.country_iso_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: geo_location
+      type: geo_point
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: geo.location'
+      comment: 'Elasticsearch mapping type: geo_point'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: related_entity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: related.entity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

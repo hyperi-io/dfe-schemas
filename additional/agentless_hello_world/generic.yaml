@@ -1,0 +1,36 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of agentless_hello_world.generic at integrations 2c934eb5223b
+    columns:
+    - name: cursor_last_collected
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cursor.last_collected'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: cursor_previous_collected
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cursor.previous_collected'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cursor_request_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cursor.request_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

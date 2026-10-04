@@ -1,0 +1,310 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of armis.device at integrations 2c934eb5223b
+    columns:
+    - name: armis_device_access_switch
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: armis.device.access_switch'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: armis_device_boundaries
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: armis.device.boundaries'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: armis_device_business_impact
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: armis.device.business_impact'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: armis_device_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: armis.device.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: armis_device_custom_properties
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: armis.device.custom_properties'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: armis_device_data_sources_first_seen
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: armis.device.data_sources.first_seen'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: armis_device_data_sources_instances_first_seen
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: armis.device.data_sources.instances.first_seen'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: armis_device_data_sources_instances_last_seen
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: armis.device.data_sources.instances.last_seen'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: armis_device_data_sources_instances_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: armis.device.data_sources.instances.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: armis_device_data_sources_last_seen
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: armis.device.data_sources.last_seen'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: armis_device_data_sources_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: armis.device.data_sources.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: armis_device_data_sources_types
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: armis.device.data_sources.types'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: armis_device_display_title
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: armis.device.display_title'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: armis_device_first_seen
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: armis.device.first_seen'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: armis_device_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: armis.device.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: armis_device_ip_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: armis.device.ip_address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: armis_device_ip_v6
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: armis.device.ip_v6'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: armis_device_last_seen
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: armis.device.last_seen'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: armis_device_mac_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: armis.device.mac_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: armis_device_manufacturer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: armis.device.manufacturer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: armis_device_model
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: armis.device.model'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: armis_device_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: armis.device.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: armis_device_names
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: armis.device.names'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: armis_device_operating_system
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: armis.device.operating_system'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: armis_device_operating_system_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: armis.device.operating_system_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: armis_device_protections_creation_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: armis.device.protections.creation_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: armis_device_protections_device_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: armis.device.protections.device_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: armis_device_protections_last_seen_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: armis.device.protections.last_seen_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: armis_device_protections_protection_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: armis.device.protections.protection_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: armis_device_purdue_level
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: armis.device.purdue_level'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: armis_device_risk_level
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: armis.device.risk_level'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: armis_device_sensor_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: armis.device.sensor.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: armis_device_sensor_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: armis.device.sensor.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: armis_device_site_location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: armis.device.site.location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: armis_device_site_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: armis.device.site.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: armis_device_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: armis.device.tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: armis_device_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: armis.device.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: armis_device_type_enum
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: armis.device.type_enum'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: armis_device_user_ids
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: armis.device.user_ids'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: armis_device_visibility
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: armis.device.visibility'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: labels_is_transform_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: labels.is_transform_source'
+      comment: 'Elasticsearch mapping type: constant_keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

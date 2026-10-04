@@ -1,0 +1,401 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of aws.vpcflow at integrations 2c934eb5223b
+    columns:
+    - name: aws_s3_bucket_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_bucket_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_metadata
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: aws.s3.metadata'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: aws_s3_object_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.object.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_vpcflow_account_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.vpcflow.account_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_vpcflow_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.vpcflow.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_vpcflow_ecs_cluster_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.vpcflow.ecs_cluster_arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_vpcflow_ecs_cluster_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.vpcflow.ecs_cluster_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_vpcflow_ecs_container_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.vpcflow.ecs_container_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_vpcflow_ecs_container_instance_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.vpcflow.ecs_container_instance_arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_vpcflow_ecs_container_instance_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.vpcflow.ecs_container_instance_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_vpcflow_ecs_second_container_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.vpcflow.ecs_second_container_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_vpcflow_ecs_service_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.vpcflow.ecs_service_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_vpcflow_ecs_task_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.vpcflow.ecs_task_arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_vpcflow_ecs_task_definition_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.vpcflow.ecs_task_definition_arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_vpcflow_ecs_task_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.vpcflow.ecs_task_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_vpcflow_instance_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.vpcflow.instance_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_vpcflow_interface_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.vpcflow.interface_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_vpcflow_log_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.vpcflow.log_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_vpcflow_packets_lost_blackhole
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.vpcflow.packets_lost_blackhole'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_vpcflow_packets_lost_mtu_exceeded
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.vpcflow.packets_lost_mtu_exceeded'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_vpcflow_packets_lost_no_route
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.vpcflow.packets_lost_no_route'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_vpcflow_packets_lost_ttl_expired
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.vpcflow.packets_lost_ttl_expired'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_vpcflow_pkt_dst_service
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.vpcflow.pkt_dst_service'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_vpcflow_pkt_dstaddr
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.vpcflow.pkt_dstaddr'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: aws_vpcflow_pkt_src_service
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.vpcflow.pkt_src_service'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_vpcflow_pkt_srcaddr
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.vpcflow.pkt_srcaddr'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: aws_vpcflow_resource_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.vpcflow.resource_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_vpcflow_sublocation_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.vpcflow.sublocation.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_vpcflow_sublocation_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.vpcflow.sublocation.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_vpcflow_subnet_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.vpcflow.subnet_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_vpcflow_tcp_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.vpcflow.tcp_flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_vpcflow_tcp_flags_array
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.vpcflow.tcp_flags_array'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_vpcflow_tgw_attachment_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.vpcflow.tgw_attachment_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_vpcflow_tgw_dst_az_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.vpcflow.tgw_dst_az_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_vpcflow_tgw_dst_eni
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.vpcflow.tgw_dst_eni'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_vpcflow_tgw_dst_subnet_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.vpcflow.tgw_dst_subnet_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_vpcflow_tgw_dst_vpc_account_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.vpcflow.tgw_dst_vpc_account_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_vpcflow_tgw_dst_vpc_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.vpcflow.tgw_dst_vpc_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_vpcflow_tgw_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.vpcflow.tgw_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_vpcflow_tgw_pair_attachment_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.vpcflow.tgw_pair_attachment_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_vpcflow_tgw_src_az_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.vpcflow.tgw_src_az_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_vpcflow_tgw_src_eni
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.vpcflow.tgw_src_eni'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_vpcflow_tgw_src_subnet_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.vpcflow.tgw_src_subnet_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_vpcflow_tgw_src_vpc_account_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.vpcflow.tgw_src_vpc_account_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_vpcflow_tgw_src_vpc_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.vpcflow.tgw_src_vpc_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_vpcflow_traffic_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.vpcflow.traffic_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_vpcflow_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.vpcflow.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_vpcflow_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.vpcflow.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_vpcflow_vpc_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.vpcflow.vpc_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

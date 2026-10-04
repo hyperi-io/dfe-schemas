@@ -1,0 +1,86 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of trend_micro_vision_one.audit at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: trend_micro_vision_one_audit_access_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.audit.access_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_audit_activity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.audit.activity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_audit_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.audit.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_audit_details
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: trend_micro_vision_one.audit.details'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: trend_micro_vision_one_audit_ingested_date_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trend_micro_vision_one.audit.ingested_date_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: trend_micro_vision_one_audit_logged_date_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trend_micro_vision_one.audit.logged_date_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: trend_micro_vision_one_audit_logged_role
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.audit.logged_role'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_audit_logged_user
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.audit.logged_user'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_audit_result
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.audit.result'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

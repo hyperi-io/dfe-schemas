@@ -1,0 +1,288 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of sysdig.cspm at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: result_evaluation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: result.evaluation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rule_benchmark_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rule.benchmark.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rule_benchmark_rule_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rule.benchmark.rule_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_cspm_accepted_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sysdig.cspm.accepted_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sysdig_cspm_control_accepted_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sysdig.cspm.control.accepted_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sysdig_cspm_control_authors
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.cspm.control.authors'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_cspm_control_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.cspm.control.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_cspm_control_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.cspm.control.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_cspm_control_is_manual
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sysdig.cspm.control.is_manual'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sysdig_cspm_control_last_update
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sysdig.cspm.control.last_update'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sysdig_cspm_control_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.cspm.control.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_cspm_control_objects_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sysdig.cspm.control.objects_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sysdig_cspm_control_pass
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sysdig.cspm.control.pass'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sysdig_cspm_control_passing_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sysdig.cspm.control.passing_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sysdig_cspm_control_platform
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.cspm.control.platform'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_cspm_control_remediation_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.cspm.control.remediation_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_cspm_control_resource_api_endpoint
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.cspm.control.resource_api_endpoint'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_cspm_control_resource_kind
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.cspm.control.resource_kind'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_cspm_control_severity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.cspm.control.severity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_cspm_control_supported_distributions_max_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.cspm.control.supported_distributions.max_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_cspm_control_supported_distributions_min_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.cspm.control.supported_distributions.min_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_cspm_control_supported_distributions_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.cspm.control.supported_distributions.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_cspm_control_target
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.cspm.control.target'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_cspm_control_type
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sysdig.cspm.control.type'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sysdig_cspm_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.cspm.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_cspm_failed_controls
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sysdig.cspm.failed_controls'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sysdig_cspm_high_severity_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sysdig.cspm.high_severity_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sysdig_cspm_low_severity_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sysdig.cspm.low_severity_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sysdig_cspm_medium_severity_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sysdig.cspm.medium_severity_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sysdig_cspm_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.cspm.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_cspm_pass
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sysdig.cspm.pass'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sysdig_cspm_passing_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sysdig.cspm.passing_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sysdig_cspm_policy_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.cspm.policy_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_cspm_policy_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.cspm.policy_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_cspm_requirement_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.cspm.requirement_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_cspm_severity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.cspm.severity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_cspm_zone_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.cspm.zone.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sysdig_cspm_zone_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sysdig.cspm.zone.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

@@ -1,0 +1,341 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of ti_cyware_intel_exchange.indicator at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: labels_is_transform_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: labels.is_transform_source'
+      comment: 'Elasticsearch mapping type: constant_keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_analyst_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_cyware_intel_exchange.indicator.analyst_description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_analyst_score
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ti_cyware_intel_exchange.indicator.analyst_score'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_analyst_tlp
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_cyware_intel_exchange.indicator.analyst_tlp'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_country
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_cyware_intel_exchange.indicator.country'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_created
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ti_cyware_intel_exchange.indicator.created'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_ctix_created
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ti_cyware_intel_exchange.indicator.ctix_created'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_ctix_modified
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ti_cyware_intel_exchange.indicator.ctix_modified'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_ctix_score
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ti_cyware_intel_exchange.indicator.ctix_score'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_ctix_tlp
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_cyware_intel_exchange.indicator.ctix_tlp'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_custom_attributes
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: ti_cyware_intel_exchange.indicator.custom_attributes'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_custom_scores
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: ti_cyware_intel_exchange.indicator.custom_scores'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_deleted_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ti_cyware_intel_exchange.indicator.deleted_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_external_references
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: ti_cyware_intel_exchange.indicator.external_references'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_cyware_intel_exchange.indicator.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_indicator_type_attribute_field
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_cyware_intel_exchange.indicator.indicator_type.attribute_field'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_indicator_type_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_cyware_intel_exchange.indicator.indicator_type.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_ioc_expiration_duration
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_cyware_intel_exchange.indicator.ioc_expiration_duration'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_ioc_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_cyware_intel_exchange.indicator.ioc_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: ti_cyware_intel_exchange.indicator.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_is_actioned
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: ti_cyware_intel_exchange.indicator.is_actioned'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_is_deprecated
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: ti_cyware_intel_exchange.indicator.is_deprecated'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_is_false_positive
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: ti_cyware_intel_exchange.indicator.is_false_positive'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_is_reviewed
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: ti_cyware_intel_exchange.indicator.is_reviewed'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_is_revoked
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: ti_cyware_intel_exchange.indicator.is_revoked'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_is_whitelist
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: ti_cyware_intel_exchange.indicator.is_whitelist'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_modified
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ti_cyware_intel_exchange.indicator.modified'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_cyware_intel_exchange.indicator.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_report_types
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_cyware_intel_exchange.indicator.report_types'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_sdo_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: ti_cyware_intel_exchange.indicator.sdo_ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_sdo_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_cyware_intel_exchange.indicator.sdo_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_sdo_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_cyware_intel_exchange.indicator.sdo_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_severity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_cyware_intel_exchange.indicator.severity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_source_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_cyware_intel_exchange.indicator.source_description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_source_tlp
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_cyware_intel_exchange.indicator.source_tlp'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_sources_first_seen
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ti_cyware_intel_exchange.indicator.sources.first_seen'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_sources_last_seen
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ti_cyware_intel_exchange.indicator.sources.last_seen'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_sources_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_cyware_intel_exchange.indicator.sources.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_sources_score
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ti_cyware_intel_exchange.indicator.sources.score'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_sources_tlp
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_cyware_intel_exchange.indicator.sources.tlp'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_tags_list
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_cyware_intel_exchange.indicator.tags_list'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_tags_object
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: ti_cyware_intel_exchange.indicator.tags_object'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_tlp_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_cyware_intel_exchange.indicator.tlp_value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_valid_from
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ti_cyware_intel_exchange.indicator.valid_from'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: ti_cyware_intel_exchange_indicator_valid_until
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ti_cyware_intel_exchange.indicator.valid_until'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base

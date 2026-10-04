@@ -1,0 +1,106 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of tanium.reporting at integrations 2c934eb5223b
+    columns:
+    - name: aws_s3_bucket_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_bucket_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_object_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.object.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: log_source_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.source.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_reporting_computer_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.reporting.computer_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_reporting_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.reporting.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tanium_reporting_is_virtual
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.reporting.is_virtual'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_reporting_manufacturer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.reporting.manufacturer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_reporting_model
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.reporting.model'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_reporting_os_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.reporting.os.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_reporting_os_platform
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.reporting.os.platform'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_reporting_virtual_platform
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.reporting.virtual_platform'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

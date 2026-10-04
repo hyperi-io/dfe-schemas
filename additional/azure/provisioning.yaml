@@ -1,0 +1,489 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of azure.provisioning at integrations 2c934eb5223b
+    columns:
+    - name: azure_correlation_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.correlation_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_identity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.identity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_level
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: azure.provisioning.level'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: azure_provisioning_operation_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.operation_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_operation_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.operation_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_properties_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.properties.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_properties_activity_datetime
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: azure.provisioning.properties.activity_datetime'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: azure_provisioning_properties_change_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.properties.change_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_properties_cycle_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.properties.cycle_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_properties_duration_ms
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: azure.provisioning.properties.duration_ms'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: azure_provisioning_properties_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.properties.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_properties_initiated_by_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.properties.initiated_by.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_properties_initiated_by_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.properties.initiated_by.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_properties_initiated_by_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.properties.initiated_by.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_properties_job_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.properties.job_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_properties_modified_properties
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: azure.provisioning.properties.modified_properties'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: azure_provisioning_properties_provisioning_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.properties.provisioning_action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_properties_provisioning_status_info_error_information_additional_details
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.properties.provisioning_status_info.error_information.additional_details'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_properties_provisioning_status_info_error_information_error_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.properties.provisioning_status_info.error_information.error_category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_properties_provisioning_status_info_error_information_error_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.properties.provisioning_status_info.error_information.error_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_properties_provisioning_status_info_error_information_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.properties.provisioning_status_info.error_information.reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_properties_provisioning_status_info_error_information_recommended_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.properties.provisioning_status_info.error_information.recommended_action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_properties_provisioning_status_info_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.properties.provisioning_status_info.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_properties_provisioning_steps_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.properties.provisioning_steps.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_properties_provisioning_steps_details
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: azure.provisioning.properties.provisioning_steps.details'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: azure_provisioning_properties_provisioning_steps_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.properties.provisioning_steps.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_properties_provisioning_steps_provisioning_step_type
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: azure.provisioning.properties.provisioning_steps.provisioning_step_type'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: azure_provisioning_properties_provisioning_steps_status
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: azure.provisioning.properties.provisioning_steps.status'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: azure_provisioning_properties_service_principal_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.properties.service_principal.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_properties_service_principal_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.properties.service_principal.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_properties_source_identity_details
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: azure.provisioning.properties.source_identity.details'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: azure_provisioning_properties_source_identity_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.properties.source_identity.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_properties_source_identity_identity_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.properties.source_identity.identity_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_properties_source_identity_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.properties.source_identity.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_properties_source_system_details_application_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.properties.source_system.details.application_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_properties_source_system_details_dervice_principal_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.properties.source_system.details.dervice_principal_display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_properties_source_system_details_service_principal_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.properties.source_system.details.service_principal_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_properties_source_system_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.properties.source_system.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_properties_source_system_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.properties.source_system.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_properties_target_identity_details
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: azure.provisioning.properties.target_identity.details'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: azure_provisioning_properties_target_identity_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.properties.target_identity.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_properties_target_identity_identity_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.properties.target_identity.identity_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_properties_target_identity_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.properties.target_identity.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_properties_target_system_details_application_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.properties.target_system.details.application_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_properties_target_system_details_dervice_principal_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.properties.target_system.details.dervice_principal_display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_properties_target_system_details_service_principal_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.properties.target_system.details.service_principal_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_properties_target_system_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.properties.target_system.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_properties_target_system_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.properties.target_system.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_properties_tenant_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.properties.tenant_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_result_signature
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.result_signature'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_result_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.result_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_provisioning_tenant_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.provisioning.tenant_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_resource_group
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.resource.group'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_resource_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.resource.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_resource_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.resource.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_resource_namespace
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.resource.namespace'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_resource_provider
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.resource.provider'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_subscription_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.subscription_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_tenant_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.tenant_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: geo_continent_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: geo.continent_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: geo_country_iso_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: geo.country_iso_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: geo_location
+      type: geo_point
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: geo.location'
+      comment: 'Elasticsearch mapping type: geo_point'
+      _field_type: base
+    - name: geo_region_iso_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: geo.region_iso_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

@@ -1,0 +1,177 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of gcp.dns at integrations 2c934eb5223b
+    columns:
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_dns_auth_answer
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: gcp.dns.auth_answer'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: gcp_dns_destination_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: gcp.dns.destination_ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: gcp_dns_egress_error
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.dns.egress_error'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_dns_flattened
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: gcp.dns.flattened'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: gcp_dns_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.dns.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_dns_query_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.dns.query_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_dns_query_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.dns.query_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_dns_rdata
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.dns.rdata'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_dns_response_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.dns.response_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_dns_server_latency
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gcp.dns.server_latency'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: gcp_dns_source_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: gcp.dns.source_ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: gcp_dns_source_network
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.dns.source_network'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_dns_source_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.dns.source_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_dns_target_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.dns.target_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_dns_vm_instance_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.dns.vm_instance_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_dns_vm_instance_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.dns.vm_instance_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_dns_vm_project_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.dns.vm_project_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_dns_vm_zone_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.dns.vm_zone_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

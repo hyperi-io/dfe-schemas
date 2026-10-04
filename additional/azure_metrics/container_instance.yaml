@@ -1,0 +1,180 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of azure_metrics.container_instance at integrations 2c934eb5223b
+    columns:
+    - name: azure_application_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.application_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_container_instance_cpu_usage_avg
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: azure.container_instance.cpu_usage.avg'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: azure_container_instance_memory_usage_avg
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: azure.container_instance.memory_usage.avg'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: azure_container_instance_network_bytes_received_per_second_avg
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: azure.container_instance.network_bytes_received_per_second.avg'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: azure_container_instance_network_bytes_transmitted_per_second_avg
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: azure.container_instance.network_bytes_transmitted_per_second.avg'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: azure_dimensions_container_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.dimensions.container_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_metrics_cpu_usage_avg
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: azure.metrics.cpu_usage.avg'
+      comment: 'Elasticsearch mapping type: alias'
+      _field_type: base
+    - name: azure_metrics_memory_usage_avg
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: azure.metrics.memory_usage.avg'
+      comment: 'Elasticsearch mapping type: alias'
+      _field_type: base
+    - name: azure_metrics_network_bytes_received_per_second_avg
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: azure.metrics.network_bytes_received_per_second.avg'
+      comment: 'Elasticsearch mapping type: alias'
+      _field_type: base
+    - name: azure_metrics_network_bytes_transmitted_per_second_avg
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: azure.metrics.network_bytes_transmitted_per_second.avg'
+      comment: 'Elasticsearch mapping type: alias'
+      _field_type: base
+    - name: azure_namespace
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.namespace'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_resource_group
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.resource.group'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_resource_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.resource.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_resource_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.resource.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_resource_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.resource.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_subscription_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.subscription_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_timegrain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.timegrain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: dataset_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: dataset.name'
+      comment: 'Elasticsearch mapping type: constant_keyword'
+      _field_type: base
+    - name: dataset_namespace
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: dataset.namespace'
+      comment: 'Elasticsearch mapping type: constant_keyword'
+      _field_type: base
+    - name: dataset_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: dataset.type'
+      comment: 'Elasticsearch mapping type: constant_keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

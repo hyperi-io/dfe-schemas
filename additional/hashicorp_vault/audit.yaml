@@ -1,0 +1,562 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of hashicorp_vault.audit at integrations 2c934eb5223b
+    columns:
+    - name: hashicorp_vault_audit_auth_accessor
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.auth.accessor'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_auth_client_token
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.auth.client_token'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_auth_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.auth.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_auth_entity_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.auth.entity_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_auth_external_namespace_policies
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: hashicorp_vault.audit.auth.external_namespace_policies'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: hashicorp_vault_audit_auth_identity_policies
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.auth.identity_policies'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_auth_metadata
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: hashicorp_vault.audit.auth.metadata'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: hashicorp_vault_audit_auth_no_default_policy
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: hashicorp_vault.audit.auth.no_default_policy'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: hashicorp_vault_audit_auth_policies
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.auth.policies'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_auth_policy_results_allowed
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: hashicorp_vault.audit.auth.policy_results.allowed'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: hashicorp_vault_audit_auth_policy_results_granting_policies_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.auth.policy_results.granting_policies.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_auth_policy_results_granting_policies_namespace_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.auth.policy_results.granting_policies.namespace_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_auth_policy_results_granting_policies_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.auth.policy_results.granting_policies.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_auth_remaining_uses
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: hashicorp_vault.audit.auth.remaining_uses'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: hashicorp_vault_audit_auth_token_issue_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: hashicorp_vault.audit.auth.token_issue_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: hashicorp_vault_audit_auth_token_policies
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.auth.token_policies'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_auth_token_ttl
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: hashicorp_vault.audit.auth.token_ttl'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: hashicorp_vault_audit_auth_token_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.auth.token_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_entity_created
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: hashicorp_vault.audit.entity_created'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: hashicorp_vault_audit_error
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.error'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_request_client_certificate_serial_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.request.client_certificate_serial_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_request_client_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.request.client_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_request_client_token
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.request.client_token'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_request_client_token_accessor
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.request.client_token_accessor'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_request_data
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: hashicorp_vault.audit.request.data'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: hashicorp_vault_audit_request_headers
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: hashicorp_vault.audit.request.headers'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: hashicorp_vault_audit_request_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.request.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_request_mount_accessor
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.request.mount_accessor'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_request_mount_class
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.request.mount_class'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_request_mount_point
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.request.mount_point'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_request_mount_running_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.request.mount_running_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_request_mount_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.request.mount_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_request_namespace_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.request.namespace.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_request_namespace_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.request.namespace.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_request_operation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.request.operation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_request_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.request.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_request_policy_override
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: hashicorp_vault.audit.request.policy_override'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: hashicorp_vault_audit_request_remote_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: hashicorp_vault.audit.request.remote_address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: hashicorp_vault_audit_request_remote_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: hashicorp_vault.audit.request.remote_port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: hashicorp_vault_audit_request_replication_cluster
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.request.replication_cluster'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_request_wrap_ttl
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: hashicorp_vault.audit.request.wrap_ttl'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: hashicorp_vault_audit_response_auth_accessor
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.response.auth.accessor'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_response_auth_client_token
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.response.auth.client_token'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_response_auth_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.response.auth.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_response_auth_entity_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.response.auth.entity_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_response_auth_external_namespace_policies
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: hashicorp_vault.audit.response.auth.external_namespace_policies'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: hashicorp_vault_audit_response_auth_identity_policies
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.response.auth.identity_policies'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_response_auth_metadata
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: hashicorp_vault.audit.response.auth.metadata'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: hashicorp_vault_audit_response_auth_no_default_policy
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: hashicorp_vault.audit.response.auth.no_default_policy'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: hashicorp_vault_audit_response_auth_num_uses
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: hashicorp_vault.audit.response.auth.num_uses'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: hashicorp_vault_audit_response_auth_policies
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.response.auth.policies'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_response_auth_token_issue_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: hashicorp_vault.audit.response.auth.token_issue_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: hashicorp_vault_audit_response_auth_token_policies
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.response.auth.token_policies'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_response_auth_token_ttl
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: hashicorp_vault.audit.response.auth.token_ttl'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: hashicorp_vault_audit_response_auth_token_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.response.auth.token_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_response_data
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: hashicorp_vault.audit.response.data'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: hashicorp_vault_audit_response_headers
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: hashicorp_vault.audit.response.headers'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: hashicorp_vault_audit_response_mount_accessor
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.response.mount_accessor'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_response_mount_class
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.response.mount_class'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_response_mount_point
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.response.mount_point'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_response_mount_running_plugin_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.response.mount_running_plugin_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_response_mount_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.response.mount_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_response_redirect
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.response.redirect'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_response_warnings
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.response.warnings'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_response_wrap_info_accessor
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.response.wrap_info.accessor'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_response_wrap_info_creation_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.response.wrap_info.creation_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_response_wrap_info_creation_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: hashicorp_vault.audit.response.wrap_info.creation_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: hashicorp_vault_audit_response_wrap_info_token
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.response.wrap_info.token'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_response_wrap_info_ttl
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: hashicorp_vault.audit.response.wrap_info.ttl'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: hashicorp_vault_audit_response_wrap_info_wrapped_accessor
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.response.wrap_info.wrapped_accessor'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hashicorp_vault_audit_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hashicorp_vault.audit.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: log_source_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.source.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nomad_allocation_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nomad.allocation.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nomad_namespace
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nomad.namespace'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nomad_node_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nomad.node.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nomad_task_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nomad.task.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

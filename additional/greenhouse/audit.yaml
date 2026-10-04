@@ -1,0 +1,100 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of greenhouse.audit at integrations 2c934eb5223b
+    columns:
+    - name: greenhouse_audit_event_meta
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: greenhouse.audit.event.meta'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: greenhouse_audit_event_target_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: greenhouse.audit.event.target_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: greenhouse_audit_event_target_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: greenhouse.audit.event.target_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: greenhouse_audit_event_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: greenhouse.audit.event.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: greenhouse_audit_performer_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: greenhouse.audit.performer.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: greenhouse_audit_performer_ip_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: greenhouse.audit.performer.ip_address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: greenhouse_audit_performer_meta_api_key_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: greenhouse.audit.performer.meta.api_key_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: greenhouse_audit_performer_meta_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: greenhouse.audit.performer.meta.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: greenhouse_audit_performer_meta_username
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: greenhouse.audit.performer.meta.username'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: greenhouse_audit_performer_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: greenhouse.audit.performer.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: greenhouse_audit_request_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: greenhouse.audit.request.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: greenhouse_audit_request_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: greenhouse.audit.request.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

@@ -1,0 +1,282 @@
+base: meta/elastic/ecs
+base_version: "1.0.0"
+current: "1.0.0"
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    summary: citrix_waf.log selection from meta/elastic/ecs
+    select:
+    - name: client_address
+      index: exact_match
+    - name: client_as_number
+      index: range
+    - name: client_as_organization_name
+      index: exact_match
+    - name: client_domain
+      index: exact_match
+    - name: client_geo_city_name
+      index: exact_match
+    - name: client_geo_continent_name
+      index: exact_match
+    - name: client_geo_country_iso_code
+      index: exact_match
+    - name: client_geo_country_name
+      index: exact_match
+    - name: client_geo_region_iso_code
+      index: exact_match
+    - name: client_geo_region_name
+      index: exact_match
+    - name: client_ip
+      index: dimension
+    - name: client_port
+      index: range
+    - name: client_user_name
+      index: exact_match
+    - name: cloud_account_id
+      index: exact_match
+    - name: cloud_availability_zone
+      index: exact_match
+    - name: cloud_instance_id
+      index: exact_match
+    - name: cloud_instance_name
+      index: exact_match
+    - name: cloud_machine_type
+      index: exact_match
+    - name: cloud_project_id
+      index: exact_match
+    - name: cloud_provider
+      index: exact_match
+    - name: cloud_region
+      index: exact_match
+    - name: container_id
+      index: exact_match
+    - name: container_image_name
+      index: exact_match
+    - name: container_labels
+      index: key_search
+    - name: container_name
+      index: exact_match
+    - name: data_stream_dataset
+      index: exact_match
+    - name: data_stream_namespace
+      index: exact_match
+    - name: data_stream_type
+      index: exact_match
+    - name: ecs_version
+      index: exact_match
+    - name: error_message
+      index: word_search
+    - name: event_action
+      index: exact_match
+    - name: event_category
+      index: exact_match
+    - name: event_code
+      index: exact_match
+    - name: event_created
+      index: range
+    - name: event_dataset
+      index: exact_match
+    - name: event_duration
+      index: range
+    - name: event_end
+      index: range
+    - name: event_id
+      index: exact_match
+    - name: event_ingested
+      index: range
+    - name: event_kind
+      index: exact_match
+    - name: event_module
+      index: exact_match
+    - name: event_original
+      index: none
+    - name: event_provider
+      index: exact_match
+    - name: event_severity
+      index: range
+    - name: event_start
+      index: range
+    - name: event_timezone
+      index: exact_match
+    - name: event_type
+      index: exact_match
+    - name: file_path
+      index: exact_match
+    - name: host_architecture
+      index: exact_match
+    - name: host_domain
+      index: exact_match
+    - name: host_hostname
+      index: exact_match
+    - name: host_id
+      index: exact_match
+    - name: host_ip
+      index: dimension
+    - name: host_mac
+      index: exact_match
+    - name: host_name
+      index: exact_match
+    - name: host_os_family
+      index: exact_match
+    - name: host_os_kernel
+      index: exact_match
+    - name: host_os_name
+      index: exact_match
+    - name: host_os_platform
+      index: exact_match
+    - name: host_os_version
+      index: exact_match
+    - name: host_type
+      index: exact_match
+    - name: http_request_id
+      index: exact_match
+    - name: http_request_method
+      index: exact_match
+    - name: labels
+      index: key_search
+    - name: log_file_path
+      index: exact_match
+    - name: log_level
+      index: exact_match
+    - name: log_syslog_appname
+      index: exact_match
+    - name: log_syslog_hostname
+      index: exact_match
+    - name: log_syslog_msgid
+      index: exact_match
+    - name: log_syslog_priority
+      index: range
+    - name: log_syslog_procid
+      index: exact_match
+    - name: log_syslog_version
+      index: exact_match
+    - name: message
+      index: word_search
+    - name: network_bytes
+      index: range
+    - name: network_community_id
+      index: exact_match
+    - name: network_direction
+      index: exact_match
+    - name: network_iana_number
+      index: exact_match
+    - name: network_protocol
+      index: exact_match
+    - name: network_transport
+      index: exact_match
+    - name: network_type
+      index: exact_match
+    - name: observer_egress_interface_name
+      index: exact_match
+    - name: observer_egress_zone
+      index: exact_match
+    - name: observer_hostname
+      index: exact_match
+    - name: observer_ingress_interface_name
+      index: exact_match
+    - name: observer_ingress_zone
+      index: exact_match
+    - name: observer_ip
+      index: dimension
+    - name: observer_name
+      index: exact_match
+    - name: observer_product
+      index: exact_match
+    - name: observer_type
+      index: exact_match
+    - name: observer_vendor
+      index: exact_match
+    - name: observer_version
+      index: exact_match
+    - name: process_name
+      index: exact_match
+    - name: process_pid
+      index: range
+    - name: related_hosts
+      index: exact_match
+    - name: related_ip
+      index: dimension
+    - name: related_user
+      index: exact_match
+    - name: server_address
+      index: exact_match
+    - name: server_domain
+      index: exact_match
+    - name: server_ip
+      index: dimension
+    - name: server_port
+      index: range
+    - name: server_user_name
+      index: exact_match
+    - name: source_address
+      index: exact_match
+    - name: source_as_number
+      index: range
+    - name: source_as_organization_name
+      index: exact_match
+    - name: source_bytes
+      index: range
+    - name: source_domain
+      index: exact_match
+    - name: source_geo_city_name
+      index: exact_match
+    - name: source_geo_continent_name
+      index: exact_match
+    - name: source_geo_country_iso_code
+      index: exact_match
+    - name: source_geo_country_name
+      index: exact_match
+    - name: source_geo_location
+      index: none
+    - name: source_geo_region_iso_code
+      index: exact_match
+    - name: source_geo_region_name
+      index: exact_match
+    - name: source_ip
+      index: dimension
+    - name: source_nat_ip
+      index: dimension
+    - name: source_nat_port
+      index: range
+    - name: source_port
+      index: range
+    - name: source_user_domain
+      index: exact_match
+    - name: source_user_group_name
+      index: exact_match
+    - name: source_user_name
+      index: exact_match
+    - name: tags
+      index: exact_match
+    - name: url_domain
+      index: exact_match
+    - name: url_extension
+      index: exact_match
+    - name: url_fragment
+      index: exact_match
+    - name: url_full
+      index: exact_match
+    - name: url_original
+      index: exact_match
+    - name: url_password
+      index: exact_match
+    - name: url_path
+      index: exact_match
+    - name: url_port
+      index: range
+    - name: url_query
+      index: exact_match
+    - name: url_registered_domain
+      index: exact_match
+    - name: url_scheme
+      index: exact_match
+    - name: url_subdomain
+      index: exact_match
+    - name: url_top_level_domain
+      index: exact_match
+    - name: url_username
+      index: exact_match
+    - name: user_email
+      index: exact_match
+    - name: user_name
+      index: exact_match

@@ -1,0 +1,828 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of cisco_meraki_metrics.device_health at integrations 2c934eb5223b
+    columns:
+    - name: meraki_device_address
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: meraki.device.address'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: meraki_device_channel_utilization_wifi0_utilization_80211
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: meraki.device.channel_utilization.wifi0.utilization_80211'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: meraki_device_channel_utilization_wifi0_utilization_non_80211
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: meraki.device.channel_utilization.wifi0.utilization_non_80211'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: meraki_device_channel_utilization_wifi0_utilization_total
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: meraki.device.channel_utilization.wifi0.utilization_total'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: meraki_device_channel_utilization_wifi1_utilization_80211
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: meraki.device.channel_utilization.wifi1.utilization_80211'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: meraki_device_channel_utilization_wifi1_utilization_non_80211
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: meraki.device.channel_utilization.wifi1.utilization_non_80211'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: meraki_device_channel_utilization_wifi1_utilization_total
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: meraki.device.channel_utilization.wifi1.utilization_total'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: meraki_device_firmware
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.device.firmware'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_device_high_availability_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: meraki.device.high_availability.enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: meraki_device_high_availability_role
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.device.high_availability.role'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_device_imei
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.device.imei'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_device_lan_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: meraki.device.lan_ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: meraki_device_license_activation_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: meraki.device.license.activation_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: meraki_device_license_claim_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: meraki.device.license.claim_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: meraki_device_license_duration_in_days
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: meraki.device.license.duration_in_days'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: meraki_device_license_expiration_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: meraki.device.license.expiration_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: meraki_device_license_head_license_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.device.license.head_license_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_device_license_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.device.license.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_device_license_license_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.device.license.license_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_device_license_order_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.device.license.order_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_device_license_seat_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: meraki.device.license.seat_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: meraki_device_license_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.device.license.state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_device_license_total_duration_in_days
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: meraki.device.license.total_duration_in_days'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: meraki_device_location
+      type: geo_point
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: meraki.device.location'
+      comment: 'Elasticsearch mapping type: geo_point'
+      _field_type: base
+    - name: meraki_device_mac
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.device.mac'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_device_model
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.device.model'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_device_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.device.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_device_network_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.device.network_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_device_notes
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: meraki.device.notes'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: meraki_device_performance_score
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: meraki.device.performance_score'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: meraki_device_product_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.device.product_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_device_serial
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.device.serial'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_device_status_gateway
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: meraki.device.status.gateway'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: meraki_device_status_ip_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.device.status.ip_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_device_status_last_reported_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: meraki.device.status.last_reported_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: meraki_device_status_primary_dns
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: meraki.device.status.primary_dns'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: meraki_device_status_public_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: meraki.device.status.public_ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: meraki_device_status_secondary_dns
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.device.status.secondary_dns'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_device_status_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.device.status.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_device_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.device.tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_organization_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.organization_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_switch_port_access_policy_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.switch.port.access_policy_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_switch_port_allowed_vlans
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.switch.port.allowed_vlans'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_switch_port_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: meraki.switch.port.enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: meraki_switch_port_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.switch.port.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_switch_port_link_negotiation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.switch.port.link_negotiation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_switch_port_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.switch.port.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_switch_port_poe_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: meraki.switch.port.poe_enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: meraki_switch_port_rstp_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: meraki.switch.port.rstp_enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: meraki_switch_port_status_cdp_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.switch.port.status.cdp.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_switch_port_status_cdp_capabilities
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.switch.port.status.cdp.capabilities'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_switch_port_status_cdp_device_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.switch.port.status.cdp.device_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_switch_port_status_cdp_management_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: meraki.switch.port.status.cdp.management_address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: meraki_switch_port_status_cdp_native_vlan
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: meraki.switch.port.status.cdp.native_vlan'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: meraki_switch_port_status_cdp_platform
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.switch.port.status.cdp.platform'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_switch_port_status_cdp_port_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.switch.port.status.cdp.port_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_switch_port_status_cdp_system_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.switch.port.status.cdp.system_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_switch_port_status_cdp_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.switch.port.status.cdp.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_switch_port_status_cdp_vtp_management_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.switch.port.status.cdp.vtp_management_domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_switch_port_status_client_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: meraki.switch.port.status.client_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: meraki_switch_port_status_duplex
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.switch.port.status.duplex'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_switch_port_status_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: meraki.switch.port.status.enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: meraki_switch_port_status_errors
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.switch.port.status.errors'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_switch_port_status_is_uplink
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: meraki.switch.port.status.is_uplink'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: meraki_switch_port_status_lldp_chassis_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.switch.port.status.lldp.chassis_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_switch_port_status_lldp_management_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.switch.port.status.lldp.management_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_switch_port_status_lldp_management_vlan
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: meraki.switch.port.status.lldp.management_vlan'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: meraki_switch_port_status_lldp_port_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.switch.port.status.lldp.port_description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_switch_port_status_lldp_port_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.switch.port.status.lldp.port_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_switch_port_status_lldp_port_vlan
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: meraki.switch.port.status.lldp.port_vlan'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: meraki_switch_port_status_lldp_system_capabilities
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.switch.port.status.lldp.system_capabilities'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_switch_port_status_lldp_system_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.switch.port.status.lldp.system_description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_switch_port_status_lldp_system_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.switch.port.status.lldp.system_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_switch_port_status_power_usage_in_wh
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: meraki.switch.port.status.power_usage_in_wh'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: meraki_switch_port_status_secure_port_active
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: meraki.switch.port.status.secure_port.active'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: meraki_switch_port_status_secure_port_authentication_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.switch.port.status.secure_port.authentication_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_switch_port_status_secure_port_config_overrides_allowed_vlans
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.switch.port.status.secure_port.config_overrides.allowed_vlans'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_switch_port_status_secure_port_config_overrides_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.switch.port.status.secure_port.config_overrides.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_switch_port_status_secure_port_config_overrides_vlan
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: meraki.switch.port.status.secure_port.config_overrides.vlan'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: meraki_switch_port_status_secure_port_config_overrides_voice_vlan
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: meraki.switch.port.status.secure_port.config_overrides.voice_vlan'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: meraki_switch_port_status_secure_port_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: meraki.switch.port.status.secure_port.enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: meraki_switch_port_status_speed
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.switch.port.status.speed'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_switch_port_status_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.switch.port.status.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_switch_port_status_stp_statuses
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.switch.port.status.stp_statuses'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_switch_port_status_throughput_recv
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: meraki.switch.port.status.throughput.recv'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: meraki_switch_port_status_throughput_sent
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: meraki.switch.port.status.throughput.sent'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: meraki_switch_port_status_throughput_total
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: meraki.switch.port.status.throughput.total'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: meraki_switch_port_status_usage_recv
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: meraki.switch.port.status.usage.recv'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: meraki_switch_port_status_usage_sent
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: meraki.switch.port.status.usage.sent'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: meraki_switch_port_status_usage_total
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: meraki.switch.port.status.usage.total'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: meraki_switch_port_status_warnings
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.switch.port.status.warnings'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_switch_port_sticky_mac_allow_list
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.switch.port.sticky_mac_allow_list'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_switch_port_sticky_mac_allow_list_limit
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: meraki.switch.port.sticky_mac_allow_list_limit'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: meraki_switch_port_stp_guard
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.switch.port.stp_guard'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_switch_port_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.switch.port.tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_switch_port_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.switch.port.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_switch_port_vlan
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: meraki.switch.port.vlan'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: meraki_switch_port_voice_vlan
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: meraki.switch.port.voice_vlan'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: meraki_uplink_apn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.uplink.apn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_uplink_connection_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.uplink.connection_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_uplink_gateway
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: meraki.uplink.gateway'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: meraki_uplink_iccid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.uplink.iccid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_uplink_interface
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.uplink.interface'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_uplink_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: meraki.uplink.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: meraki_uplink_ip_assigned_by
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.uplink.ip_assigned_by'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_uplink_last_reported_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: meraki.uplink.last_reported_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: meraki_uplink_latency_ms
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: meraki.uplink.latency.ms'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: meraki_uplink_loss_pct
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: meraki.uplink.loss.pct'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: meraki_uplink_model
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.uplink.model'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_uplink_primary_dns
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: meraki.uplink.primary_dns'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: meraki_uplink_provider
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.uplink.provider'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_uplink_public_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: meraki.uplink.public_ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: meraki_uplink_rsrp
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: meraki.uplink.rsrp'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: meraki_uplink_rsrq
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: meraki.uplink.rsrq'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: meraki_uplink_secondary_dns
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: meraki.uplink.secondary_dns'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: meraki_uplink_signal_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.uplink.signal_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: meraki_uplink_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: meraki.uplink.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

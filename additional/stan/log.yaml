@@ -1,0 +1,85 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of stan.log at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: stan_log_client_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: stan.log.client.id'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: stan_log_msg_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: stan.log.msg.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: stan_log_msg_error_message
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: stan.log.msg.error.message'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: stan_log_msg_max_messages
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: stan.log.msg.max_messages'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: stan_log_msg_queue_group
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: stan.log.msg.queue_group'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: stan_log_msg_reply_to
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: stan.log.msg.reply_to'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: stan_log_msg_sid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: stan.log.msg.sid'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: stan_log_msg_subject
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: stan.log.msg.subject'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: stan_log_msg_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: stan.log.msg.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

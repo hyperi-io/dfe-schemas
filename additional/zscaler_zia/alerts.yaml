@@ -1,0 +1,85 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of zscaler_zia.alerts at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: log_source_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.source.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_alerts_connection_lost_minutes
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.alerts.connection_lost_minutes'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: zscaler_zia_alerts_destination_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.alerts.destination.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_alerts_destination_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: zscaler_zia.alerts.destination.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: zscaler_zia_alerts_destination_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.alerts.destination.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_alerts_log_feed_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.alerts.log_feed_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_alerts_log_syslog_priority
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.alerts.log_syslog_priority'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zscaler_zia_alerts_message
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zscaler_zia.alerts.message'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zscaler_zia_alerts_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zscaler_zia.alerts.timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base

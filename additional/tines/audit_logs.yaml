@@ -1,0 +1,543 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of tines.audit_logs at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_created_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tines.audit_log.created_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tines_audit_log_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tines.audit_log.id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tines_audit_log_inputs_actionIds
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tines.audit_log.inputs.actionIds'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tines_audit_log_inputs_diagramNoteIds
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tines.audit_log.inputs.diagramNoteIds'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tines_audit_log_inputs_fieldId
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tines.audit_log.inputs.fieldId'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_actionId
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tines.audit_log.inputs.inputs.actionId'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_actionIds
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tines.audit_log.inputs.inputs.actionIds'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_actions_actionId
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tines.audit_log.inputs.inputs.actions.actionId'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_actions_options
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.inputs.inputs.actions.options'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_actions_schedule_cron
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.inputs.inputs.actions.schedule.cron'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_actions_schedule_timezone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.inputs.inputs.actions.schedule.timezone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_agents
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: tines.audit_log.inputs.inputs.agents'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_allowedHosts
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.inputs.inputs.allowedHosts'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_authenticationTokenId
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tines.audit_log.inputs.inputs.authenticationTokenId'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_awsAccessKey
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.inputs.inputs.awsAccessKey'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_awsAssumedRoleArn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.inputs.inputs.awsAssumedRoleArn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_awsAssumedRoleExternalId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.inputs.inputs.awsAssumedRoleExternalId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_awsAuthenticationType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.inputs.inputs.awsAuthenticationType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_awsSecretKey
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.inputs.inputs.awsSecretKey'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_content
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: tines.audit_log.inputs.inputs.content'
+      comment: 'Elasticsearch mapping type: match_only_text'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_dateMode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.inputs.inputs.dateMode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_delta_x
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tines.audit_log.inputs.inputs.delta.x'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_delta_y
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tines.audit_log.inputs.inputs.delta.y'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.inputs.inputs.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_diagramNoteIds
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tines.audit_log.inputs.inputs.diagramNoteIds'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_diagramNotes
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: tines.audit_log.inputs.inputs.diagramNotes'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_editingSource
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.inputs.inputs.editingSource'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_eventName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.inputs.inputs.eventName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_graphDirection
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.inputs.inputs.graphDirection'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_graphType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.inputs.inputs.graphType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_httpRequestLocationOfToken
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.inputs.inputs.httpRequestLocationOfToken'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_httpRequestOptions
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.inputs.inputs.httpRequestOptions'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_icon
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.inputs.inputs.icon'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tines.audit_log.inputs.inputs.id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_isServiceToken
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tines.audit_log.inputs.inputs.isServiceToken'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_jwtAlgorithm
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.inputs.inputs.jwtAlgorithm'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_jwtAutoGenerateTimeClaims
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.inputs.inputs.jwtAutoGenerateTimeClaims'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_jwtHs256Secret
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.inputs.inputs.jwtHs256Secret'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_jwtPayload
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.inputs.inputs.jwtPayload'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_jwtPrivateKey
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.inputs.inputs.jwtPrivateKey'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_links
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: tines.audit_log.inputs.inputs.links'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_mode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.inputs.inputs.mode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_mtlsClientCertificate
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.inputs.inputs.mtlsClientCertificate'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_mtlsClientPrivateKey
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.inputs.inputs.mtlsClientPrivateKey'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_mtlsRootCertificate
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.inputs.inputs.mtlsRootCertificate'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_multiSelect
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tines.audit_log.inputs.inputs.multiSelect'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.inputs.inputs.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_oauthClientId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.inputs.inputs.oauthClientId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_oauthClientSecret
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.inputs.inputs.oauthClientSecret'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_oauthGrantType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.inputs.inputs.oauthGrantType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_oauthPkceCodeChallengeMethod
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.inputs.inputs.oauthPkceCodeChallengeMethod'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_oauthScope
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.inputs.inputs.oauthScope'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_oauthTokenUrl
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.inputs.inputs.oauthTokenUrl'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_oauthUrl
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.inputs.inputs.oauthUrl'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_options_createFormEmptyState
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tines.audit_log.inputs.inputs.options.createFormEmptyState'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_readAccess
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.inputs.inputs.readAccess'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_required
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tines.audit_log.inputs.inputs.required'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_sharedTeamSlugs
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.inputs.inputs.sharedTeamSlugs'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.inputs.inputs.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_standardLibVersion
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.inputs.inputs.standardLibVersion'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_storyId
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tines.audit_log.inputs.inputs.storyId'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_style
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.inputs.inputs.style'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_teamId
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tines.audit_log.inputs.inputs.teamId'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tines_audit_log_inputs_inputs_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.inputs.inputs.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_inputs_linkIds
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tines.audit_log.inputs.linkIds'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tines_audit_log_inputs_storyId
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tines.audit_log.inputs.storyId'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tines_audit_log_operation_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.operation_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_request_ip
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.request_ip'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_request_user_agent
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.request_user_agent'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_tenant_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tines.audit_log.tenant_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tines_audit_log_updated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tines.audit_log.updated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tines_audit_log_user_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.user_email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_audit_log_user_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tines.audit_log.user_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tines_audit_log_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.audit_log.user_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tines_tenant_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tines.tenant_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

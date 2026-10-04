@@ -1,0 +1,773 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of snyk.issues at integrations 2c934eb5223b
+    columns:
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: labels_is_transform_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: labels.is_transform_source'
+      comment: 'Elasticsearch mapping type: constant_keyword'
+      _field_type: base
+    - name: log_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: snyk_issues_attributes_classes_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.attributes.classes.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_attributes_classes_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.attributes.classes.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_attributes_classes_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.attributes.classes.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_attributes_coordinates_cloud_resource
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: snyk.issues.attributes.coordinates.cloud_resource'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: snyk_issues_attributes_coordinates_is_fixable_manually
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: snyk.issues.attributes.coordinates.is_fixable_manually'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: snyk_issues_attributes_coordinates_is_fixable_snyk
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: snyk.issues.attributes.coordinates.is_fixable_snyk'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: snyk_issues_attributes_coordinates_is_fixable_upstream
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: snyk.issues.attributes.coordinates.is_fixable_upstream'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: snyk_issues_attributes_coordinates_is_patchable
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: snyk.issues.attributes.coordinates.is_patchable'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: snyk_issues_attributes_coordinates_is_pinnable
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: snyk.issues.attributes.coordinates.is_pinnable'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: snyk_issues_attributes_coordinates_is_upgradeable
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: snyk.issues.attributes.coordinates.is_upgradeable'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: snyk_issues_attributes_coordinates_reachability
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.attributes.coordinates.reachability'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_attributes_coordinates_representations_dependency_package_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.attributes.coordinates.representations.dependency.package_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_attributes_coordinates_representations_dependency_package_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.attributes.coordinates.representations.dependency.package_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_attributes_coordinates_resourcePath
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.attributes.coordinates.resourcePath'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_attributes_created_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: snyk.issues.attributes.created_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: snyk_issues_attributes_effective_severity_level
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.attributes.effective_severity_level'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_attributes_exploit_details_maturity_levels_format
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.attributes.exploit_details.maturity_levels.format'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_attributes_exploit_details_maturity_levels_level
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.attributes.exploit_details.maturity_levels.level'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_attributes_exploit_details_sources
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.attributes.exploit_details.sources'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_attributes_ignored
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: snyk.issues.attributes.ignored'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: snyk_issues_attributes_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.attributes.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_attributes_problems_disclosed_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: snyk.issues.attributes.problems.disclosed_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: snyk_issues_attributes_problems_discovered_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: snyk.issues.attributes.problems.discovered_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: snyk_issues_attributes_problems_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.attributes.problems.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_attributes_problems_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.attributes.problems.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_attributes_problems_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.attributes.problems.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_attributes_problems_updated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: snyk.issues.attributes.problems.updated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: snyk_issues_attributes_problems_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.attributes.problems.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_attributes_risk_score_model
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.attributes.risk.score.model'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_attributes_risk_score_updated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: snyk.issues.attributes.risk.score.updated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: snyk_issues_attributes_risk_score_value
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: snyk.issues.attributes.risk.score.value'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: snyk_issues_attributes_severities_level
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.attributes.severities.level'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_attributes_severities_modification_time
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.attributes.severities.modification_time'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_attributes_severities_score
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: snyk.issues.attributes.severities.score'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: snyk_issues_attributes_severities_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.attributes.severities.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_attributes_severities_vector
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.attributes.severities.vector'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_attributes_severities_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.attributes.severities.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_attributes_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.attributes.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_attributes_title
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.attributes.title'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_attributes_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.attributes.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_attributes_updated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: snyk.issues.attributes.updated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: snyk_issues_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_relationships_organization_data_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.relationships.organization.data.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_relationships_organization_data_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.relationships.organization.data.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_relationships_organization_links_related
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.relationships.organization.links.related'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_attributes_build_args_root_workspace
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.relationships.scan_item.data.attributes.build_args.root_workspace'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_attributes_business_criticality
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.relationships.scan_item.data.attributes.business_criticality'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_attributes_created
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.relationships.scan_item.data.attributes.created'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_attributes_environment
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.relationships.scan_item.data.attributes.environment'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_attributes_lifecycle
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.relationships.scan_item.data.attributes.lifecycle'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_attributes_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.relationships.scan_item.data.attributes.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_attributes_origin
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.relationships.scan_item.data.attributes.origin'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_attributes_read_only
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: snyk.issues.relationships.scan_item.data.attributes.read_only'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_attributes_settings_auto_dependency_upgrade_ignored_dependencies
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.relationships.scan_item.data.attributes.settings.auto_dependency_upgrade.ignored_dependencies'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_attributes_settings_auto_dependency_upgrade_is_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: snyk.issues.relationships.scan_item.data.attributes.settings.auto_dependency_upgrade.is_enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_attributes_settings_auto_dependency_upgrade_is_inherited
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: snyk.issues.relationships.scan_item.data.attributes.settings.auto_dependency_upgrade.is_inherited'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_attributes_settings_auto_dependency_upgrade_is_major_upgrade_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: snyk.issues.relationships.scan_item.data.attributes.settings.auto_dependency_upgrade.is_major_upgrade_enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_attributes_settings_auto_dependency_upgrade_limit
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: snyk.issues.relationships.scan_item.data.attributes.settings.auto_dependency_upgrade.limit'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_attributes_settings_auto_dependency_upgrade_minimum_age
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: snyk.issues.relationships.scan_item.data.attributes.settings.auto_dependency_upgrade.minimum_age'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_attributes_settings_auto_remediation_prs_is_backlog_prs_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: snyk.issues.relationships.scan_item.data.attributes.settings.auto_remediation_prs.is_backlog_prs_enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_attributes_settings_auto_remediation_prs_is_fresh_prs_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: snyk.issues.relationships.scan_item.data.attributes.settings.auto_remediation_prs.is_fresh_prs_enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_attributes_settings_auto_remediation_prs_is_patch_remediation_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: snyk.issues.relationships.scan_item.data.attributes.settings.auto_remediation_prs.is_patch_remediation_enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_attributes_settings_manual_remediation_prs_is_patch_remediation_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: snyk.issues.relationships.scan_item.data.attributes.settings.manual_remediation_prs.is_patch_remediation_enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_attributes_settings_pull_request_assignment_assignees
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.relationships.scan_item.data.attributes.settings.pull_request_assignment.assignees'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_attributes_settings_pull_request_assignment_is_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: snyk.issues.relationships.scan_item.data.attributes.settings.pull_request_assignment.is_enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_attributes_settings_pull_request_assignment_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.relationships.scan_item.data.attributes.settings.pull_request_assignment.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_attributes_settings_pull_requests_fail_only_for_issues_with_fix
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: snyk.issues.relationships.scan_item.data.attributes.settings.pull_requests.fail_only_for_issues_with_fix'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_attributes_settings_pull_requests_is_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: snyk.issues.relationships.scan_item.data.attributes.settings.pull_requests.is_enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_attributes_settings_pull_requests_policy
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.relationships.scan_item.data.attributes.settings.pull_requests.policy'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_attributes_settings_pull_requests_severity_threshold
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.relationships.scan_item.data.attributes.settings.pull_requests.severity_threshold'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_attributes_settings_recurring_tests_frequency
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.relationships.scan_item.data.attributes.settings.recurring_tests.frequency'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_attributes_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.relationships.scan_item.data.attributes.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_attributes_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.relationships.scan_item.data.attributes.tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_attributes_target_file
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.relationships.scan_item.data.attributes.target_file'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_attributes_target_reference
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.relationships.scan_item.data.attributes.target_reference'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_attributes_target_runtime
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.relationships.scan_item.data.attributes.target_runtime'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_attributes_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.relationships.scan_item.data.attributes.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.relationships.scan_item.data.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_meta_cli_monitored_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: snyk.issues.relationships.scan_item.data.meta.cli_monitored_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_meta_latest_dependency_total_total
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: snyk.issues.relationships.scan_item.data.meta.latest_dependency_total.total'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_meta_latest_dependency_total_updated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: snyk.issues.relationships.scan_item.data.meta.latest_dependency_total.updated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_meta_latest_issue_counts_critical
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: snyk.issues.relationships.scan_item.data.meta.latest_issue_counts.critical'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_meta_latest_issue_counts_high
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: snyk.issues.relationships.scan_item.data.meta.latest_issue_counts.high'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_meta_latest_issue_counts_low
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: snyk.issues.relationships.scan_item.data.meta.latest_issue_counts.low'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_meta_latest_issue_counts_medium
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: snyk.issues.relationships.scan_item.data.meta.latest_issue_counts.medium'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_meta_latest_issue_counts_updated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: snyk.issues.relationships.scan_item.data.meta.latest_issue_counts.updated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_relationships_importer_data_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.relationships.scan_item.data.relationships.importer.data.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_relationships_importer_data_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.relationships.scan_item.data.relationships.importer.data.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_relationships_importer_links_related_href
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.relationships.scan_item.data.relationships.importer.links.related.href'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_relationships_organization_data_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.relationships.scan_item.data.relationships.organization.data.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_relationships_organization_data_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.relationships.scan_item.data.relationships.organization.data.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_relationships_organization_links_related_href
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.relationships.scan_item.data.relationships.organization.links.related.href'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_relationships_owner_data_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.relationships.scan_item.data.relationships.owner.data.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_relationships_owner_data_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.relationships.scan_item.data.relationships.owner.data.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_relationships_owner_links_related_href
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.relationships.scan_item.data.relationships.owner.links.related.href'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_relationships_target_data_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.relationships.scan_item.data.relationships.target.data.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_relationships_target_data_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.relationships.scan_item.data.relationships.target.data.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_relationships_target_links_related_href
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.relationships.scan_item.data.relationships.target.links.related.href'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_data_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.relationships.scan_item.data.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_issues_relationships_scan_item_links_related
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.issues.relationships.scan_item.links.related'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: snyk_projects
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: snyk.projects'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: snyk_related_projects
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: snyk.related.projects'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

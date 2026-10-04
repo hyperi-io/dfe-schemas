@@ -1,0 +1,50 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of cyera.audit at integrations 2c934eb5223b
+    columns:
+    - name: cyera_audit_environment_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cyera.audit.environment_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cyera_audit_tenant_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cyera.audit.tenant_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cyera_audit_updated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cyera.audit.updated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: cyera_audit_vendor_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cyera.audit.vendor_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

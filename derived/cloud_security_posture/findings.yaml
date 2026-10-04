@@ -1,0 +1,160 @@
+base: meta/elastic/ecs
+base_version: "1.0.0"
+current: "1.0.0"
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    summary: cloud_security_posture.findings selection from meta/elastic/ecs
+    select:
+    - name: agent_ephemeral_id
+      index: exact_match
+    - name: agent_id
+      index: exact_match
+    - name: agent_name
+      index: exact_match
+    - name: agent_type
+      index: exact_match
+    - name: agent_version
+      index: exact_match
+    - name: cloud_account_id
+      index: exact_match
+    - name: cloud_account_name
+      index: exact_match
+    - name: cloud_provider
+      index: exact_match
+    - name: cloud_region
+      index: exact_match
+    - name: data_stream_dataset
+      index: exact_match
+    - name: data_stream_namespace
+      index: exact_match
+    - name: data_stream_type
+      index: exact_match
+    - name: ecs_version
+      index: exact_match
+    - name: event_agent_id_status
+      index: exact_match
+    - name: event_category
+      index: exact_match
+    - name: event_created
+      index: range
+    - name: event_id
+      index: exact_match
+    - name: event_ingested
+      index: range
+    - name: event_kind
+      index: exact_match
+    - name: event_outcome
+      index: exact_match
+    - name: event_sequence
+      index: range
+    - name: event_type
+      index: exact_match
+    - name: file_accessed
+      index: range
+    - name: file_ctime
+      index: range
+    - name: file_directory
+      index: exact_match
+    - name: file_extension
+      index: exact_match
+    - name: file_gid
+      index: exact_match
+    - name: file_group
+      index: exact_match
+    - name: file_inode
+      index: exact_match
+    - name: file_mode
+      index: exact_match
+    - name: file_mtime
+      index: range
+    - name: file_name
+      index: exact_match
+    - name: file_owner
+      index: exact_match
+    - name: file_path
+      index: exact_match
+    - name: file_size
+      index: range
+    - name: file_type
+      index: exact_match
+    - name: file_uid
+      index: exact_match
+    - name: host_architecture
+      index: exact_match
+    - name: host_hostname
+      index: exact_match
+    - name: host_ip
+      index: dimension
+    - name: host_mac
+      index: exact_match
+    - name: host_name
+      index: exact_match
+    - name: host_os_family
+      index: exact_match
+    - name: host_os_full
+      index: exact_match
+    - name: host_os_kernel
+      index: exact_match
+    - name: host_os_name
+      index: exact_match
+    - name: host_os_platform
+      index: exact_match
+    - name: host_os_type
+      index: exact_match
+    - name: host_os_version
+      index: exact_match
+    - name: message
+      index: word_search
+    - name: observer_vendor
+      index: exact_match
+    - name: orchestrator_cluster_id
+      index: exact_match
+    - name: orchestrator_cluster_name
+      index: exact_match
+    - name: orchestrator_cluster_version
+      index: exact_match
+    - name: orchestrator_resource_id
+      index: exact_match
+    - name: orchestrator_resource_name
+      index: exact_match
+    - name: orchestrator_resource_type
+      index: exact_match
+    - name: orchestrator_type
+      index: exact_match
+    - name: process_args
+      index: exact_match
+    - name: process_args_count
+      index: range
+    - name: process_command_line
+      index: exact_match
+    - name: process_name
+      index: exact_match
+    - name: process_parent_pid
+      index: range
+    - name: process_parent_start
+      index: range
+    - name: process_pid
+      index: range
+    - name: process_start
+      index: range
+    - name: process_title
+      index: exact_match
+    - name: process_uptime
+      index: range
+    - name: rule_description
+      index: exact_match
+    - name: rule_id
+      index: exact_match
+    - name: rule_name
+      index: exact_match
+    - name: rule_version
+      index: exact_match
+    - name: user_effective_id
+      index: exact_match
+    - name: user_effective_name
+      index: exact_match
+    - name: user_id
+      index: exact_match
+    - name: user_name
+      index: exact_match

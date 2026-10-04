@@ -1,0 +1,2126 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of o365.audit at integrations 2c934eb5223b
+    columns:
+    - name: application_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: application.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: o365_audit_AadAppId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.AadAppId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Actions
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: o365.audit.Actions'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: o365_audit_Activity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Activity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ActorContextId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.ActorContextId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ActorInfoString
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.ActorInfoString'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ActorIpAddress
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.ActorIpAddress'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ActorUserId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.ActorUserId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ActorYammerUserId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.ActorYammerUserId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Actor_ID
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Actor.ID'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Actor_Type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Actor.Type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_AdditionalData_Name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.AdditionalData.Name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_AdditionalData_Value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.AdditionalData.Value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_AirAdminActionSource
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.AirAdminActionSource'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_AirAdminActionType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.AirAdminActionType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_AlertEntityId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.AlertEntityId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_AlertId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.AlertId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_AlertLinks
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: o365.audit.AlertLinks'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: o365_audit_AlertType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.AlertType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_AppId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.AppId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Application
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Application'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ApplicationDisplayName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.ApplicationDisplayName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ApplicationId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.ApplicationId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Approver
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Approver'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_AttachmentData_FileName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.AttachmentData.FileName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_AttachmentData_FileType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.AttachmentData.FileType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_AttachmentData_FileVerdict
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.AttachmentData.FileVerdict'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_AttachmentData_MalwareFamily
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.AttachmentData.MalwareFamily'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_AttachmentData_SHA256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.AttachmentData.SHA256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_AuthDetails_Name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.AuthDetails.Name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_AuthDetails_Value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.AuthDetails.Value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_AuthenticationType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.AuthenticationType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_AzureActiveDirectoryEventType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.AzureActiveDirectoryEventType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_BCLValue
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.BCLValue'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_BulkApprovalId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.BulkApprovalId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ClientAppId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.ClientAppId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ClientApplication
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.ClientApplication'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ClientIP
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.ClientIP'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ClientIPAddress
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.ClientIPAddress'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ClientInfoString
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.ClientInfoString'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ClientRequestId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.ClientRequestId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_CmdletVersion
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.CmdletVersion'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Comments
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: o365.audit.Comments'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: o365_audit_Connector
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Connector'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_CorrelationId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.CorrelationId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_CreationTime
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.CreationTime'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_CustomUniqueId
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: o365.audit.CustomUniqueId'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: o365_audit_DataType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.DataType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_ad
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.ad'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_af
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.af'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_aii
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.aii'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_ail
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.ail'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_alk
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.alk'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_als
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.als'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_an
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.an'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: o365.audit.Data.at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: o365_audit_Data_cid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.cid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_cpid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.cpid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_dm
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.dm'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_dpn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.dpn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_eid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.eid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_etps
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.etps'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_etype
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.etype'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_f3u
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.f3u'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_flattened
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: o365.audit.Data.flattened'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: o365_audit_Data_fvs
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.fvs'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_imsgid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.imsgid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_lon
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.lon'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_mat
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.mat'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_md
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: o365.audit.Data.md'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: o365_audit_Data_ms
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.ms'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_od
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.od'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_op
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.op'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_ot
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.ot'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_plk
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.plk'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_pud
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.pud'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_reid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.reid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_rid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.rid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_sev
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.sev'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_sict
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.sict'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_sid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.sid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_sip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: o365.audit.Data.sip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: o365_audit_Data_sitmi
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.sitmi'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_srt
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.srt'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_ssic
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.ssic'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_suid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.suid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_tdc
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.tdc'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_te
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: o365.audit.Data.te'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: o365_audit_Data_thn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.thn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_tht
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.tht'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_tid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.tid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_tpid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.tpid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_tpt
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.tpt'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_trc
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.trc'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_ts
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: o365.audit.Data.ts'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: o365_audit_Data_tsd
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.tsd'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_ttdt
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: o365.audit.Data.ttdt'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: o365_audit_Data_ttr
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.ttr'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_upfc
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.upfc'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_upfv
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.upfv'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_ut
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.ut'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_von
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.von'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_wl
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.wl'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_zfh
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.zfh'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_zfn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.zfn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_zmfh
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.zmfh'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_zmfn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.zmfn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Data_zu
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Data.zu'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_DatabaseType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.DatabaseType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_DeepLinkUrl
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.DeepLinkUrl'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_DeliveryAction
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.DeliveryAction'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Description
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: o365.audit.Description'
+      comment: 'Elasticsearch mapping type: match_only_text'
+      _field_type: base
+    - name: o365_audit_DetectionMethod
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.DetectionMethod'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_DetectionType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.DetectionType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_DeviceName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.DeviceName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Directionality
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Directionality'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_EffectiveOrganization
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.EffectiveOrganization'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_EndTimeUtc
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: o365.audit.EndTimeUtc'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: o365_audit_EntityType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.EntityType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ErrorNumber
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.ErrorNumber'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_EventData
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.EventData'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_EventDeepLink
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.EventDeepLink'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_EventSource
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.EventSource'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ExchangeAggregatedFolders_FolderItems_Id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.ExchangeAggregatedFolders.FolderItems.Id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ExchangeAggregatedFolders_FolderItems_ImmutableId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.ExchangeAggregatedFolders.FolderItems.ImmutableId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ExchangeAggregatedFolders_FolderItems_InternetMessageId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.ExchangeAggregatedFolders.FolderItems.InternetMessageId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ExchangeAggregatedFolders_FolderItems_SizeInBytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: o365.audit.ExchangeAggregatedFolders.FolderItems.SizeInBytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: o365_audit_ExchangeAggregatedFolders_Id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.ExchangeAggregatedFolders.Id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ExchangeAggregatedFolders_Path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.ExchangeAggregatedFolders.Path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ExchangeAggregatedMessages_Id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.ExchangeAggregatedMessages.Id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ExchangeAggregatedMessages_MessageItems_Id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.ExchangeAggregatedMessages.MessageItems.Id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ExchangeAggregatedMessages_MessageItems_SizeInBytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: o365.audit.ExchangeAggregatedMessages.MessageItems.SizeInBytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: o365_audit_ExchangeAggregatedMessages_Path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.ExchangeAggregatedMessages.Path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ExchangeMetaData_CC
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.ExchangeMetaData.CC'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ExchangeMetaData_MessageID
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.ExchangeMetaData.MessageID'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ExchangeMetaData_Sent
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: o365.audit.ExchangeMetaData.Sent'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: o365_audit_ExchangeMetaData_Subject
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.ExchangeMetaData.Subject'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ExchangeMetaData_To
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.ExchangeMetaData.To'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ExchangeMetaData_UniqueID
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.ExchangeMetaData.UniqueID'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Experience
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Experience'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ExtendedProperties_RequestType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.ExtendedProperties.RequestType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ExtendedProperties_additionalDetails
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: o365.audit.ExtendedProperties.additionalDetails'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: o365_audit_ExternalAccess
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: o365.audit.ExternalAccess'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: o365_audit_FileExtension
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.FileExtension'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_FileSize
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.FileSize'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_FileSizeBytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: o365.audit.FileSizeBytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: o365_audit_FilteringDate
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: o365.audit.FilteringDate'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: o365_audit_GroupName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.GroupName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ImplicitShare
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.ImplicitShare'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_IncidentId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.IncidentId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_InsightData_Type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.InsightData.Type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_InsightId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.InsightId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_InterSystemsId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.InterSystemsId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_InternalLogonType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.InternalLogonType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_InternetMessageId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.InternetMessageId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_IntraSystemId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.IntraSystemId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_InvestigationId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.InvestigationId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_InvestigationName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.InvestigationName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_InvestigationType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.InvestigationType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_InvestigationUrn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.InvestigationUrn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ItemName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.ItemName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ItemType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.ItemType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_KesMailId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.KesMailId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Language
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Language'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_LastUpdateTimeUtc
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: o365.audit.LastUpdateTimeUtc'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: o365_audit_LatestDeliveryLocation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.LatestDeliveryLocation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ListBaseType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.ListBaseType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ListId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.ListId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ListItemUniqueId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.ListItemUniqueId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_LogonError
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.LogonError'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_LogonType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.LogonType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_LogonUserSid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.LogonUserSid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_MailboxGuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.MailboxGuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_MailboxOwnerMasterAccountSid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.MailboxOwnerMasterAccountSid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_MailboxOwnerSid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.MailboxOwnerSid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_MailboxOwnerUPN
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.MailboxOwnerUPN'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Members
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: o365.audit.Members'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: o365_audit_Message
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Message'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_MessageDate
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.MessageDate'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_MessageObject
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: o365.audit.MessageObject'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: o365_audit_MessageTime
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.MessageTime'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ModifiedProperties
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: o365.audit.ModifiedProperties'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: o365_audit_ModifiedProperties_Role_DisplayName_NewValue
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.ModifiedProperties.Role_DisplayName.NewValue'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_NetworkMessageId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.NetworkMessageId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_NewValue
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.NewValue'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_NonPIIParameters
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.NonPIIParameters'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ObjectDisplayName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.ObjectDisplayName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ObjectId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.ObjectId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ObjectType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.ObjectType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Operation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Operation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_OperationCount
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: o365.audit.OperationCount'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: o365_audit_OperationId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.OperationId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_OperationProperties
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: o365.audit.OperationProperties'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: o365_audit_OrganizationId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.OrganizationId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_OrganizationName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.OrganizationName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_OriginalDeliveryLocation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.OriginalDeliveryLocation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_OriginatingDomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.OriginatingDomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_OriginatingServer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.OriginatingServer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_P1Sender
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.P1Sender'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_P1SenderDomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.P1SenderDomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_P2Sender
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.P2Sender'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_P2SenderDomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.P2SenderDomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Parameters
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: o365.audit.Parameters'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: o365_audit_Parameters_AccessRights
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Parameters.AccessRights'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Parameters_AllowFederatedUsers
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Parameters.AllowFederatedUsers'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Parameters_AllowGuestUser
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Parameters.AllowGuestUser'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Parameters_Enabled
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Parameters.Enabled'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Parameters_ForwardAsAttachmentTo
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Parameters.ForwardAsAttachmentTo'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Parameters_ForwardTo
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Parameters.ForwardTo'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Parameters_From
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Parameters.From'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Parameters_RedirectTo
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Parameters.RedirectTo'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_PhishConfidenceLevel
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.PhishConfidenceLevel'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Platform
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Platform'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Policy
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Policy'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_PolicyAction
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.PolicyAction'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_PolicyDetails
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: o365.audit.PolicyDetails'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: o365_audit_PolicyId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.PolicyId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Recipients
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Recipients'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_RecordType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.RecordType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_RelativeUrl
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.RelativeUrl'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_RequestId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.RequestId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_RescanResult_Id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.RescanResult.Id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_RescanResult_RescanVerdict
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.RescanResult.RescanVerdict'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_RescanResult_Timestamp
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.RescanResult.Timestamp'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ResultCount
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.ResultCount'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ResultStatus
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.ResultStatus'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_RunningTime
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.RunningTime'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_SecurityComplianceCenterEventType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.SecurityComplianceCenterEventType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Sender
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Sender'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_SenderEntity
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: o365.audit.SenderEntity'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: o365_audit_SenderIP
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.SenderIP'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_SenderIp
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.SenderIp'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_SensitiveInfoDetectionIsIncluded
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: o365.audit.SensitiveInfoDetectionIsIncluded'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: o365_audit_SensitivityLabelEventData_ActionSourceDetail
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: o365.audit.SensitivityLabelEventData.ActionSourceDetail'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: o365_audit_SensitivityLabelEventData_ContentType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.SensitivityLabelEventData.ContentType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_SensitivityLabelEventData_LabelEventType
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: o365.audit.SensitivityLabelEventData.LabelEventType'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: o365_audit_SensitivityLabelEventData_SensitivityLabelId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.SensitivityLabelEventData.SensitivityLabelId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_SessionId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.SessionId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Severity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Severity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Sha1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Sha1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Site
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Site'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_SiteUrl
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.SiteUrl'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_SourceFileExtension
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.SourceFileExtension'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_SourceFileName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.SourceFileName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_SourceRelativeUrl
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.SourceRelativeUrl'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_StartTime
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.StartTime'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_StartTimeUtc
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.StartTimeUtc'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_SubAirAdminActionTypeMail
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.SubAirAdminActionTypeMail'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Subject
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Subject'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_SubmissionConfidenceLevel
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.SubmissionConfidenceLevel'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_SubmissionContentSubType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.SubmissionContentSubType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_SubmissionContentType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.SubmissionContentType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_SubmissionId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.SubmissionId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_SubmissionState
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.SubmissionState'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_SubmissionType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.SubmissionType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Submitter
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Submitter'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_SubmitterId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.SubmitterId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_SupportTicketId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.SupportTicketId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_SystemOverrides_Details
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.SystemOverrides.Details'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_SystemOverrides_FinalOverride
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.SystemOverrides.FinalOverride'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_SystemOverrides_Result
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.SystemOverrides.Result'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_SystemOverrides_Source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.SystemOverrides.Source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_TargetContextId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.TargetContextId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_TargetFilePath
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.TargetFilePath'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_TargetUserOrGroupName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.TargetUserOrGroupName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_TargetUserOrGroupType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.TargetUserOrGroupType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Target_ID
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Target.ID'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Target_Type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Target.Type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_TeamGuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.TeamGuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_TeamName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.TeamName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_ThreatDetectionMethods
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.ThreatDetectionMethods'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Timestamp
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Timestamp'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_TokenObjectId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.TokenObjectId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_TokenTenantId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.TokenTenantId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_UniqueSharingId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.UniqueSharingId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_UserAgent
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.UserAgent'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_UserId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.UserId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_UserKey
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.UserKey'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_UserType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.UserType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Verdict
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Verdict'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_WebId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.WebId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_Workload
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.Workload'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_WorkspaceId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.WorkspaceId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_WorkspaceName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.WorkspaceName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_audit_YammerNetworkId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.audit.YammerNetworkId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: session_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: session.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: token_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: token.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

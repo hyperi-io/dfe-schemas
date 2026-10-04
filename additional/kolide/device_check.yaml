@@ -1,0 +1,100 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of kolide.device_check at integrations 2c934eb5223b
+    columns:
+    - name: aws_s3_bucket_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_bucket_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_object_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.object.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcs_storage_bucket_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcs.storage.bucket.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcs_storage_object_content_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcs.storage.object.content_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcs_storage_object_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcs.storage.object.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_device_check_check_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: kolide.device_check.check_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: kolide_device_check_check_result_data
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: kolide.device_check.check_result_data'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: kolide_device_check_check_slug
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.device_check.check_slug'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_device_check_device_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: kolide.device_check.device_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: kolide_device_check_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.device_check.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

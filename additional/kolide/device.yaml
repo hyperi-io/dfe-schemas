@@ -1,0 +1,163 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of kolide.device at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_device_auth_configuration_authentication_mode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.device.auth_configuration.authentication_mode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_device_auth_configuration_device_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.device.auth_configuration.device_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_device_auth_configuration_person_groups
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: kolide.device.auth_configuration.person_groups'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: kolide_device_auth_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.device.auth_state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_device_device_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.device.device_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_device_device_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.device.device_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_device_form_factor
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.device.form_factor'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_device_hardware_model
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.device.hardware_model'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_device_hardware_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.device.hardware_uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_device_last_authenticated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: kolide.device.last_authenticated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: kolide_device_last_seen_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: kolide.device.last_seen_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: kolide_device_note
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: kolide.device.note'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: kolide_device_product_image_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.device.product_image_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_device_registered_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: kolide.device.registered_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: kolide_device_registered_owner_info_identifier
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.device.registered_owner_info.identifier'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_device_registered_owner_info_location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.device.registered_owner_info.location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_device_serial
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.device.serial'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_device_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.device.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_device_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.device.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_device_will_block_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: kolide.device.will_block_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

@@ -1,0 +1,121 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of blacklens.alerts at integrations 2c934eb5223b
+    columns:
+    - name: blacklens_alert_activities_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: blacklens.alert.activities.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: blacklens_alert_activities_created_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: blacklens.alert.activities.created_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: blacklens_alert_activities_data
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: blacklens.alert.activities.data'
+      comment: 'Elasticsearch mapping type: nested'
+      _field_type: base
+    - name: blacklens_alert_activities_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: blacklens.alert.activities.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: blacklens_alert_activities_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: blacklens.alert.activities.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: blacklens_alert_activities_trace_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: blacklens.alert.activities.trace_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: blacklens_alert_activities_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: blacklens.alert.activities.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: blacklens_alert_activities_updated_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: blacklens.alert.activities.updated_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: blacklens_alert_analysis
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: blacklens.alert.analysis'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: blacklens_alert_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: blacklens.alert.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: blacklens_alert_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: blacklens.alert.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: blacklens_alert_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: blacklens.alert.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: blacklens_alert_severity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: blacklens.alert.severity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: blacklens_alert_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: blacklens.alert.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: blacklens_alert_updated_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: blacklens.alert.updated_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

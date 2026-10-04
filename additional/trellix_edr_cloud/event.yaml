@@ -1,0 +1,604 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of trellix_edr_cloud.event at integrations 2c934eb5223b
+    columns:
+    - name: aws_s3_bucket_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_bucket_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_object_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.object.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: trellix_edr_cloud_event_access_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.access_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_arguments
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.arguments'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_author_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.author_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_bytes_received
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trellix_edr_cloud.event.bytes_received'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: trellix_edr_cloud_event_certs
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: trellix_edr_cloud.event.certs'
+      comment: 'Elasticsearch mapping type: nested'
+      _field_type: base
+    - name: trellix_edr_cloud_event_certs_issuer_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.certs.issuer_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_certs_public_key_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.certs.public_key_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_certs_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.certs.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_cmd_line
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.cmd_line'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_commands
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.commands'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_data
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.data'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_dest_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: trellix_edr_cloud.event.dest.address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: trellix_edr_cloud_event_dest_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trellix_edr_cloud.event.dest.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: trellix_edr_cloud_event_destination_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.destination_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_device_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.device_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_direction
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.direction'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_dns_class
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trellix_edr_cloud.event.dns.class'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: trellix_edr_cloud_event_dns_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.dns.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_dns_names
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.dns.names'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_dns_type
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trellix_edr_cloud.event.dns.type'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: trellix_edr_cloud_event_evid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.evid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_file_attributes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trellix_edr_cloud.event.file.attributes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: trellix_edr_cloud_event_file_creation_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trellix_edr_cloud.event.file.creation_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: trellix_edr_cloud_event_file_magic_bytes
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.file.magic_bytes'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_file_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.file.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_file_modification_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trellix_edr_cloud.event.file.modification_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: trellix_edr_cloud_event_file_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.file.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_file_sha1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.file.sha1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_file_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.file.sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_file_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trellix_edr_cloud.event.file.size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: trellix_edr_cloud_event_file_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.file.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_fqdn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.fqdn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_http_request_headers
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.http.request_headers'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_http_response_headers
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.http.response_headers'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_http_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.http.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_integrity_level
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trellix_edr_cloud.event.integrity_level'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: trellix_edr_cloud_event_key_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.key.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_key_old_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.key.old_value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_key_val
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.key.val'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_module_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.module_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_operation_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.operation_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_parent_event_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.parent_event_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_pid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trellix_edr_cloud.event.pid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: trellix_edr_cloud_event_pipe_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.pipe_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_result
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trellix_edr_cloud.event.result'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: trellix_edr_cloud_event_server_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.server_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_service_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.service.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_service_load_order_group
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.service.load_order_group'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_service_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.service.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_service_start_type
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trellix_edr_cloud.event.service.start_type'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: trellix_edr_cloud_event_service_type
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trellix_edr_cloud.event.service.type'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: trellix_edr_cloud_event_source_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: trellix_edr_cloud.event.source.address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: trellix_edr_cloud_event_source_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trellix_edr_cloud.event.source.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: trellix_edr_cloud_event_subsystem
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trellix_edr_cloud.event.subsystem'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: trellix_edr_cloud_event_tag_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.tag_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_target_pid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.target_pid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_task_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.task.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_task_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.task.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trellix_edr_cloud.event.time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: trellix_edr_cloud_event_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_user_cid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.user.cid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_user_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.user.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_user_groups
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.user.groups'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.user.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_user_names
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.user.names'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_user_sid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.user.sid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_value_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.value.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_value_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.value.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_ver
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.ver'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_version_info_file_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.version_info.file.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_version_info_file_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.version_info.file.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_version_info_product_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.version_info.product.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_version_info_product_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.version_info.product.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_version_info_vendor_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.version_info.vendor_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trellix_edr_cloud_event_wmi_local
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: trellix_edr_cloud.event.wmi.local'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: trellix_edr_cloud_event_wmi_ns
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trellix_edr_cloud.event.wmi.ns'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

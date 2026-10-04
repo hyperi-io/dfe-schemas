@@ -1,0 +1,190 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of eset_protect.detection at integrations 2c934eb5223b
+    columns:
+    - name: eset_protect_detection_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: eset_protect.detection.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: eset_protect_detection_context_circumstances
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: eset_protect.detection.context.circumstances'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: eset_protect_detection_context_device_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: eset_protect.detection.context.device_uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: eset_protect_detection_context_process_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: eset_protect.detection.context.process.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: eset_protect_detection_context_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: eset_protect.detection.context.user_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: eset_protect_detection_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: eset_protect.detection.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: eset_protect_detection_network_communication_direction
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: eset_protect.detection.network_communication.direction'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: eset_protect_detection_network_communication_local_ip_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: eset_protect.detection.network_communication.local.ip_address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: eset_protect_detection_network_communication_local_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: eset_protect.detection.network_communication.local.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: eset_protect_detection_network_communication_protocol_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: eset_protect.detection.network_communication.protocol_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: eset_protect_detection_network_communication_remote_ip_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: eset_protect.detection.network_communication.remote.ip_address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: eset_protect_detection_network_communication_remote_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: eset_protect.detection.network_communication.remote.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: eset_protect_detection_object_hash_sha1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: eset_protect.detection.object_hash_sha1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: eset_protect_detection_object_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: eset_protect.detection.object_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: eset_protect_detection_object_type_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: eset_protect.detection.object_type_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: eset_protect_detection_object_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: eset_protect.detection.object_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: eset_protect_detection_occur_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: eset_protect.detection.occur_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: eset_protect_detection_responses_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: eset_protect.detection.responses.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: eset_protect_detection_responses_device_restart_required
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: eset_protect.detection.responses.device_restart_required'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: eset_protect_detection_responses_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: eset_protect.detection.responses.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: eset_protect_detection_responses_protection_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: eset_protect.detection.responses.protection_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: eset_protect_detection_severity_level
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: eset_protect.detection.severity_level'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: eset_protect_detection_type_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: eset_protect.detection.type_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: eset_protect_detection_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: eset_protect.detection.uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

@@ -4,10 +4,82 @@
 #
 # Requires: ClickHouse 26.2+ (JSON type GA, text index GA)
 
-current: "1.0.1"
+current: "1.0.2"
 resource_type: core
 
 versions:
+  "1.0.2":
+    date: "2026-10-04"
+    type: revision
+    summary: "_timestamp_received reads the keys DFE stamps: _timestamp_received from dfe-fetcher, _timestamp_receiver from dfe-receiver"
+    columns:
+      - name: _timestamp_load
+        type: timestamp
+        default: "now64(3)"
+        order: 0
+        expr: "@generated: now64(3)"
+        comment: "Insertion timestamp (ms precision)"
+        _field_type: base
+
+      - name: _timestamp
+        type: timestamp
+        use_case: range
+        order: 1
+        expr: "@source: timestamp | now()"
+        comment: "Event timestamp from source data"
+        _field_type: base
+
+      - name: _timestamp_received
+        type: timestamp
+        expr: "@source: first(_timestamp_received/_timestamp_receiver/timestamp_received/received_at)"
+        comment: "When DFE first received the event: the dfe-fetcher stamp, else the dfe-receiver stamp"
+        _field_type: base
+
+      - name: _uuid
+        type: uuid
+        default: "generateUUIDv7()"
+        expr: "@generated: generateUUIDv7()"
+        comment: "Time-ordered unique event identifier"
+        _field_type: base
+
+      - name: _org_id
+        type: string
+        attribute: [lowcardinality, not_null]
+        use_case: dimension
+        order: 2
+        expr: "@source: org_id"
+        comment: "Tenant/organisation identifier"
+        _field_type: base
+
+      - name: _source
+        type: string
+        attribute: [lowcardinality]
+        use_case: dimension
+        expr: "@source: first(_source) | topic_name"
+        comment: "Data source label (e.g. beats, syslog, crowdstrike-edr)"
+        _field_type: base
+
+      - name: _raw
+        type: text
+        use_case: substring_search
+        index: "text(tokenizer = 'splitByNonAlpha') GRANULARITY 64"
+        comment: "Raw payload text, when the loader's capture mode writes one. A JSON payload lands in _json instead, so _raw is often empty. (full-text indexed)"
+        _field_type: base
+
+      - name: _json
+        type: json
+        attribute: [not_null]
+        max_dynamic_paths: 2048
+        comment: "The payload as structured JSON, when the loader's capture mode writes one"
+        _field_type: base
+
+      - name: _tags
+        type: json
+        attribute: [not_null]
+        expr: "@source: first(tags/_tags/meta/metadata.tags)"
+        comment: "Event metadata tags"
+        _field_type: base
+
   "1.0.1":
     date: "2026-08-05"
     type: revision

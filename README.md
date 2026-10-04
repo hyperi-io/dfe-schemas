@@ -67,8 +67,12 @@ dfe-schemas/
 |                      #   minimal (5 col), passthrough (4 col)
 |-- meta/              # source meta schemas, by provider (aws/ azure/ gcp/ m365/
 |                      #   runzero/ ...)
-|-- additional/        # extra-field overlays: aws/, and snapshot/envelope.yaml,
-|                      #   the store-snapshot envelope every dump store composes
+|-- additional/        # extra-field overlays: <package>/<data_stream>.yaml, the
+|                      #   937 vendor overlays dfe-schemagen generates for the
+|                      #   Elastic catalogue, and snapshot/envelope.yaml, the
+|                      #   store-snapshot envelope every dump store composes
+|-- derived/           # select lists over a base: <package>/<data_stream>.yaml
+|                      #   over meta/elastic/ecs (generated), and beats/*_hunt
 |-- hunts/             # hunt output (results.yaml) + runner checkpoint schema
 |-- tables/            # tables in exact ClickHouse types:
 |                      #   core/ (main, detection, detection_checkpoint)
@@ -221,7 +225,7 @@ another repo, which is why it runs from `validate-schemas.yml` and not `ci.yml`
 | Trust `make render` to mean an index string is valid | Check `tests/test_tokenizers.py` | The renderer dropped a declared `index` and rendered the `use_case` template instead, so two header strings kept ClickHouse's retired `default` tokenizer. Engine v1.20.20 honoured the string and every new source failed with `Unknown tokenizer` (`8934979`) |
 | Edit a published version entry | Add a new entry, as a complete snapshot | Consumers pin versions independently, so an in-place edit changes what an already-pinned consumer resolves. `generate_meta_schemas.py` refuses it |
 | Merge a table and expect a deployment to get it | Release the wheel, raise the floor in dfe-engine, relock | Nothing reads this repo directly. The floor bump is the only step that puts an object in front of a deployment |
-| Wrap JSON or an `ORDER BY` key in `Nullable` | Leave it bare, or mark it `not_null` | ClickHouse rejects JSON inside Nullable, code 43 (`2f28227`). `_sorting_key` refuses a Nullable key rather than dropping it |
+| Wrap an `ORDER BY` key in `Nullable` | Leave it bare, or mark it `not_null` | `_sorting_key` refuses a Nullable key rather than dropping it. JSON inside Nullable is a different case: ClickHouse 24.8 refused it, code 43 (`2f28227`), but 26.3.32.14 creates and fills a `Nullable(JSON)` column |
 | Point `PY` at a bare `python` | Leave it at `uv run python` | A bare `python` is absent on a stock Linux box, so `make validate` died before validating anything (`6c79570`) |
 
 ### Where this sits

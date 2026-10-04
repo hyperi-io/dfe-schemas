@@ -36,7 +36,7 @@ dfe-schemas/                      <- repo root, shipped as a PyPI wheel
 |   |-- minimal.yaml              <- 5-column high-volume profile
 |   '-- passthrough.yaml          <- 4-column transparent bridge
 |-- meta/                         <- source meta schemas (aws/ azure/ gcp/ m365/ runzero/)
-|-- additional/                   <- extra-field overlays (aws/, snapshot/)
+|-- additional/                   <- extra-field overlays (<package>/<data_stream>, snapshot/)
 |-- derived/                      <- derived schemas: a select list over a base
 |-- hunts/
 |   |-- results.yaml              <- hunt detection output columns
@@ -488,8 +488,8 @@ The profile determines which header columns are included.
 | Column | Type | Cardinality | Use Case | ORDER BY | Expr |
 |--------|------|-------------|----------|----------|------|
 | `_timestamp_load` | `timestamp` | | | 0 | `@generated: now64(3)` |
-| `_timestamp` | `datetime` | | `range` | 1 | `@source: timestamp \| now()` |
-| `_timestamp_received` | `datetime` | | | | `@source: first(timestamp_received/received_at)` |
+| `_timestamp` | `timestamp` | | `range` | 1 | `@source: timestamp \| now()` |
+| `_timestamp_received` | `timestamp` | | | | `@source: first(_timestamp_received/_timestamp_receiver/timestamp_received/received_at)` |
 | `_uuid` | `uuid` | | | | `@generated: generateUUIDv7()` |
 | `_org_id` | `string` | `low` | `dimension` | 2 | `@source: org_id` |
 | `_source` | `string` | `low` | `dimension` | | `@source: first(_source) \| topic_name` |
@@ -733,7 +733,7 @@ dfe-schemas/
 |   '-- detection_checkpoint.yaml
 |-- meta/                   # Source meta schemas, grouped by provider
 |   |-- aws/  azure/  beats/  elastic/  gcp/  m365/  otel/  runzero/
-|-- additional/             # Extra-field overlays (aws/, snapshot/)
+|-- additional/             # Extra-field overlays (<package>/<data_stream>, snapshot/)
 |-- derived/                # Derived schemas: a select list over a base
 '-- README.md
 ```

@@ -1,8 +1,17 @@
-# Meta schema: M365 DLP Alerts
+# Meta schema: Microsoft 365 DLP events
 #
-# Graph Security alerts filtered by DataLossPrevention category.
+# Office 365 Management Activity API `DLP.All` records, one row per record of
+# each content blob, as dfe-fetcher's `m365` profile lands it (unit `dlp`).
+# event_id, operation, workload and user_id read the fields dfe-fetcher's own
+# fixture for the unit lands (crates/fetcher/tests/integration/source_m365.rs).
+# Every other column reads a field of the Common or DLP schema Microsoft
+# publishes for the feed:
+# https://learn.microsoft.com/en-us/office/office-365-management-api/office-365-management-activity-api-schema
+#
+# 1.0.x described Microsoft Graph security alerts, a shape the `dlp` unit never
+# fetched; 2.0.0 replaces it.
 
-current: "1.0.1"
+current: "2.0.0"
 resource_type: core
 
 versions:
@@ -135,4 +144,92 @@ versions:
         use_case: dimension
         expr: "@source: vendorInformation.provider"
         comment: "Security provider that generated the alert"
+        _field_type: base
+
+  "2.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: "The Management Activity API DLP.All record the dlp unit fetches, replacing the Graph alert shape"
+    columns:
+      - name: event_id
+        type: string
+        use_case: exact_match
+        expr: "@source: Id"
+        comment: "Audit record identifier"
+        _field_type: base
+
+      - name: creation_time
+        type: datetime
+        use_case: range
+        expr: "@source: CreationTime"
+        comment: "When the audit record was generated, UTC"
+        _field_type: base
+
+      - name: record_type
+        type: integer
+        use_case: dimension
+        expr: "@source: RecordType"
+        comment: "Audit record type (e.g. 11 ComplianceDLPSharePoint, 13 ComplianceDLPExchange, 63 DLPEndpoint)"
+        _field_type: base
+
+      - name: operation
+        type: string
+        cardinality: low
+        use_case: dimension
+        expr: "@source: Operation"
+        comment: "DLP event type: DlpRuleMatch, DlpRuleUndo or DlpInfo"
+        _field_type: base
+
+      - name: workload
+        type: string
+        cardinality: low
+        use_case: dimension
+        expr: "@source: Workload"
+        comment: "Microsoft 365 workload where the content was found"
+        _field_type: base
+
+      - name: user_id
+        type: string
+        use_case: dimension
+        expr: "@source: UserId"
+        comment: "User principal name of the user whose action was logged"
+        _field_type: base
+
+      - name: object_id
+        type: string
+        attribute: [nullable]
+        expr: "@source: ObjectId"
+        comment: "Object the event concerns, e.g. the full path of a SharePoint or OneDrive file"
+        _field_type: base
+
+      - name: policy_details
+        type: json
+        ch_override: "Array(JSON)"
+        codec: "ZSTD(3)"
+        expr: "@source: PolicyDetails"
+        comment: "Policies that triggered the event, each with its matched rules and their actions, severity and conditions; [] when absent"
+        _field_type: base
+
+      - name: sensitive_info_detection_is_included
+        type: boolean
+        expr: "@source: SensitiveInfoDetectionIsIncluded"
+        comment: "Whether the record carries the matched sensitive values and their context"
+        _field_type: base
+
+      - name: sharepoint_metadata
+        type: json
+        expr: "@source: SharePointMetaData"
+        comment: "The SharePoint or OneDrive document that held the sensitive content"
+        _field_type: base
+
+      - name: exchange_metadata
+        type: json
+        expr: "@source: ExchangeMetaData"
+        comment: "The email message that held the sensitive content"
+        _field_type: base
+
+      - name: endpoint_metadata
+        type: json
+        expr: "@source: EndpointMetaData"
+        comment: "The endpoint document that held the sensitive content"
         _field_type: base

@@ -1,0 +1,225 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of azure_network_watcher_nsg.log at integrations 2c934eb5223b
+    columns:
+    - name: azure_network_watcher_nsg_log_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure_network_watcher_nsg.log.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_network_watcher_nsg_log_operation_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure_network_watcher_nsg.log.operation_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_network_watcher_nsg_log_properties_flows_flows_mac
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure_network_watcher_nsg.log.properties.flows.flows.mac'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_network_watcher_nsg_log_properties_flows_flows_tuples_bytes_received
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: azure_network_watcher_nsg.log.properties.flows.flows.tuples.bytes.received'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: azure_network_watcher_nsg_log_properties_flows_flows_tuples_bytes_sent
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: azure_network_watcher_nsg.log.properties.flows.flows.tuples.bytes.sent'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: azure_network_watcher_nsg_log_properties_flows_flows_tuples_destination_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: azure_network_watcher_nsg.log.properties.flows.flows.tuples.destination.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: azure_network_watcher_nsg_log_properties_flows_flows_tuples_destination_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: azure_network_watcher_nsg.log.properties.flows.flows.tuples.destination.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: azure_network_watcher_nsg_log_properties_flows_flows_tuples_flow_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure_network_watcher_nsg.log.properties.flows.flows.tuples.flow_state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_network_watcher_nsg_log_properties_flows_flows_tuples_packets_received
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: azure_network_watcher_nsg.log.properties.flows.flows.tuples.packets.received'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: azure_network_watcher_nsg_log_properties_flows_flows_tuples_packets_sent
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: azure_network_watcher_nsg.log.properties.flows.flows.tuples.packets.sent'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: azure_network_watcher_nsg_log_properties_flows_flows_tuples_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure_network_watcher_nsg.log.properties.flows.flows.tuples.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_network_watcher_nsg_log_properties_flows_flows_tuples_source_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: azure_network_watcher_nsg.log.properties.flows.flows.tuples.source.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: azure_network_watcher_nsg_log_properties_flows_flows_tuples_source_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: azure_network_watcher_nsg.log.properties.flows.flows.tuples.source.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: azure_network_watcher_nsg_log_properties_flows_flows_tuples_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: azure_network_watcher_nsg.log.properties.flows.flows.tuples.timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: azure_network_watcher_nsg_log_properties_flows_flows_tuples_traffic_decision
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure_network_watcher_nsg.log.properties.flows.flows.tuples.traffic.decision'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_network_watcher_nsg_log_properties_flows_flows_tuples_traffic_flow
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure_network_watcher_nsg.log.properties.flows.flows.tuples.traffic.flow'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_network_watcher_nsg_log_properties_flows_rule
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure_network_watcher_nsg.log.properties.flows.rule'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_network_watcher_nsg_log_properties_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure_network_watcher_nsg.log.properties.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_network_watcher_nsg_log_resource_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure_network_watcher_nsg.log.resource_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_network_watcher_nsg_log_system_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure_network_watcher_nsg.log.system_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_network_watcher_nsg_log_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: azure_network_watcher_nsg.log.time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: azure_resource_group
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.resource.group'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_resource_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.resource.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_resource_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.resource.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_resource_provider
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.resource.provider'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_storage_blob_content_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.storage.blob.content_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_storage_blob_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.storage.blob.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_storage_container_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.storage.container.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_subscription_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.subscription_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

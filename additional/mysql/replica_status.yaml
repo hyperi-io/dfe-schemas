@@ -1,0 +1,463 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of mysql.replica_status at integrations 2c934eb5223b
+    columns:
+    - name: mysql_replica_status_channel_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysql.replica_status.channel.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysql_replica_status_connection_retry_sec
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: mysql.replica_status.connection.retry.sec'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: mysql_replica_status_event_skip_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: mysql.replica_status.event_skip.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: mysql_replica_status_gtid_executed_set
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysql.replica_status.gtid.executed.set'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysql_replica_status_gtid_io_position
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: mysql.replica_status.gtid_io_position'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: mysql_replica_status_gtid_retrieved_set
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysql.replica_status.gtid.retrieved.set'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysql_replica_status_is_auto_position
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: mysql.replica_status.is_auto_position'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: mysql_replica_status_is_gtid_using
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysql.replica_status.is_gtid_using'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysql_replica_status_is_io_thread_running
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysql.replica_status.is_io_thread_running'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysql_replica_status_is_sql_thread_running
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysql.replica_status.is_sql_thread_running'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysql_replica_status_last_error_io_message
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysql.replica_status.last_error.io.message'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysql_replica_status_last_error_io_number
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: mysql.replica_status.last_error.io.number'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: mysql_replica_status_last_error_io_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: mysql.replica_status.last_error.io.timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: mysql_replica_status_last_error_message
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysql.replica_status.last_error.message'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysql_replica_status_last_error_number
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: mysql.replica_status.last_error.number'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: mysql_replica_status_last_error_sql_message
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysql.replica_status.last_error.sql.message'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysql_replica_status_last_error_sql_number
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: mysql.replica_status.last_error.sql.number'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: mysql_replica_status_last_error_sql_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: mysql.replica_status.last_error.sql.timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: mysql_replica_status_parallel_mode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysql.replica_status.parallel_mode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysql_replica_status_relay_log_file
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysql.replica_status.relay.log_file'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysql_replica_status_relay_log_position
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: mysql.replica_status.relay.log_position'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: mysql_replica_status_relay_log_space
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: mysql.replica_status.relay.log_space'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: mysql_replica_status_replica_ddl_groups
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: mysql.replica_status.replica.ddl_groups'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: mysql_replica_status_replica_io_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysql.replica_status.replica.io.state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysql_replica_status_replica_non_transactional_groups
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: mysql.replica_status.replica.non_transactional_groups'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: mysql_replica_status_replica_sql_running_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysql.replica_status.replica.sql.running_state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysql_replica_status_replica_transactional_groups
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: mysql.replica_status.replica.transactional_groups'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: mysql_replica_status_replicate_do_db
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysql.replica_status.replicate.do_db'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysql_replica_status_replicate_do_domain_ids
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysql.replica_status.replicate_do_domain_ids'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysql_replica_status_replicate_do_table
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysql.replica_status.replicate.do_table'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysql_replica_status_replicate_ignore_do_db
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysql.replica_status.replicate.ignore.do_db'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysql_replica_status_replicate_ignore_domain_ids
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysql.replica_status.replicate_ignore_domain_ids'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysql_replica_status_replicate_ignore_server_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysql.replica_status.replicate.ignore.server_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysql_replica_status_replicate_ignore_table
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysql.replica_status.replicate.ignore.table'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysql_replica_status_replicate_ignore_wild_table
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysql.replica_status.replicate.ignore.wild_table'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysql_replica_status_replicate_rewrite_db
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysql.replica_status.replicate.rewrite_db'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysql_replica_status_replicate_wild_do_table
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysql.replica_status.replicate.wild_do_table'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysql_replica_status_seconds_behind_source
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: mysql.replica_status.seconds_behind_source'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: mysql_replica_status_source_binary_log_file
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysql.replica_status.source.binary_log_file'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysql_replica_status_source_bind_interface_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysql.replica_status.source.bind.interface.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysql_replica_status_source_file_info
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysql.replica_status.source.file_info'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysql_replica_status_source_host_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysql.replica_status.source.host.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysql_replica_status_source_is_get_public_key
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: mysql.replica_status.source.is_get_public_key'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: mysql_replica_status_source_log_file_relay
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysql.replica_status.source.log_file.relay'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysql_replica_status_source_log_position_exec
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: mysql.replica_status.source.log_position.exec'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: mysql_replica_status_source_log_position_read
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: mysql.replica_status.source.log_position.read'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: mysql_replica_status_source_public_key_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysql.replica_status.source.public_key_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysql_replica_status_source_retry_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: mysql.replica_status.source.retry_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: mysql_replica_status_source_server_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: mysql.replica_status.source.server.id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: mysql_replica_status_source_server_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysql.replica_status.source.server.uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysql_replica_status_source_ssl_allowed
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysql.replica_status.source.ssl.allowed'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysql_replica_status_source_ssl_ca_file
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysql.replica_status.source.ssl.ca_file'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysql_replica_status_source_ssl_ca_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysql.replica_status.source.ssl.ca_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysql_replica_status_source_ssl_cert
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysql.replica_status.source.ssl.cert'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysql_replica_status_source_ssl_cipher
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysql.replica_status.source.ssl.cipher'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysql_replica_status_source_ssl_crl
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysql.replica_status.source.ssl.crl'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysql_replica_status_source_ssl_crl_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysql.replica_status.source.ssl.crl_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysql_replica_status_source_ssl_is_verify_server_cert
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: mysql.replica_status.source.ssl.is_verify_server_cert'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: mysql_replica_status_source_ssl_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysql.replica_status.source.ssl.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysql_replica_status_source_tls_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysql.replica_status.source.tls_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysql_replica_status_thread_sql_delay_remaining_sec
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: mysql.replica_status.thread.sql.delay_remaining.sec'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: mysql_replica_status_thread_sql_delay_sec
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: mysql.replica_status.thread.sql.delay.sec'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: mysql_replica_status_until_condition
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysql.replica_status.until.condition'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysql_replica_status_until_log_file
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysql.replica_status.until.log_file'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysql_replica_status_until_log_position
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: mysql.replica_status.until.log_position'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

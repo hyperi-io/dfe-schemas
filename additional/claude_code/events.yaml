@@ -1,0 +1,471 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of claude_code.events at integrations 2c934eb5223b
+    columns:
+    - name: claude_code_events_agent_path_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: claude_code.events.agent_path_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: claude_code_events_command_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: claude_code.events.command_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: claude_code_events_command_path_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: claude_code.events.command_path_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: claude_code_events_cost_usd
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: claude_code.events.cost_usd'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: claude_code_events_cost_usd_micros
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: claude_code.events.cost_usd_micros'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: claude_code_events_decision
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: claude_code.events.decision'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: claude_code_events_decision_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: claude_code.events.decision_source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: claude_code_events_decision_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: claude_code.events.decision_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: claude_code_events_effort
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: claude_code.events.effort'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: claude_code_events_enabled_via
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: claude_code.events.enabled_via'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: claude_code_events_error
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: claude_code.events.error'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: claude_code_events_event_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: claude_code.events.event.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: claude_code_events_event_sequence
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: claude_code.events.event.sequence'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: claude_code_events_event_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: claude_code.events.event.timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: claude_code_events_from_mode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: claude_code.events.from_mode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: claude_code_events_has_hooks
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: claude_code.events.has_hooks'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: claude_code_events_has_mcp
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: claude_code.events.has_mcp'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: claude_code_events_hook_event
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: claude_code.events.hook_event'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: claude_code_events_hook_matcher
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: claude_code.events.hook_matcher'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: claude_code_events_hook_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: claude_code.events.hook_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: claude_code_events_hook_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: claude_code.events.hook_source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: claude_code_events_hook_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: claude_code.events.hook_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: claude_code_events_host_owned_mcp
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: claude_code.events.host_owned_mcp'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: claude_code_events_invocation_trigger
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: claude_code.events.invocation_trigger'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: claude_code_events_is_plugin
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: claude_code.events.is_plugin'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: claude_code_events_managed_only
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: claude_code.events.managed_only'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: claude_code_events_marketplace_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: claude_code.events.marketplace.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: claude_code_events_mcp_server_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: claude_code.events.mcp_server_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: claude_code_events_mcp_server_scope
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: claude_code.events.mcp_server_scope'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: claude_code_events_num_blocking
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: claude_code.events.num_blocking'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: claude_code_events_num_cancelled
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: claude_code.events.num_cancelled'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: claude_code_events_num_hooks
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: claude_code.events.num_hooks'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: claude_code_events_num_non_blocking_error
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: claude_code.events.num_non_blocking_error'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: claude_code_events_num_success
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: claude_code.events.num_success'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: claude_code_events_plugin_id_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: claude_code.events.plugin_id_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: claude_code_events_plugin_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: claude_code.events.plugin.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: claude_code_events_plugin_scope
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: claude_code.events.plugin.scope'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: claude_code_events_plugin_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: claude_code.events.plugin.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: claude_code_events_prompt_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: claude_code.events.prompt.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: claude_code_events_prompt_length
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: claude_code.events.prompt_length'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: claude_code_events_prompt_text
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: claude_code.events.prompt_text'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: claude_code_events_safe_mode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: claude_code.events.safe_mode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: claude_code_events_server_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: claude_code.events.server_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: claude_code_events_server_scope
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: claude_code.events.server_scope'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: claude_code_events_session_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: claude_code.events.session.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: claude_code_events_skill_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: claude_code.events.skill.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: claude_code_events_skill_path_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: claude_code.events.skill_path_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: claude_code_events_skill_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: claude_code.events.skill.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: claude_code_events_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: claude_code.events.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: claude_code_events_speed
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: claude_code.events.speed'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: claude_code_events_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: claude_code.events.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: claude_code_events_success
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: claude_code.events.success'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: claude_code_events_terminal_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: claude_code.events.terminal.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: claude_code_events_to_mode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: claude_code.events.to_mode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: claude_code_events_tool_input
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: claude_code.events.tool_input'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: claude_code_events_tool_input_size_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: claude_code.events.tool_input_size_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: claude_code_events_tool_parameters
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: claude_code.events.tool_parameters'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: claude_code_events_tool_parameters_flattened
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: claude_code.events.tool_parameters_flattened'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: claude_code_events_tool_result_size_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: claude_code.events.tool_result_size_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: claude_code_events_total_duration_ms
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: claude_code.events.total_duration_ms'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: claude_code_events_transport_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: claude_code.events.transport_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: claude_code_events_trigger
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: claude_code.events.trigger'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: claude_code_events_user_account_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: claude_code.events.user.account_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: claude_code_events_user_account_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: claude_code.events.user.account_uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gen_ai_usage_cache_creation_input_tokens
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gen_ai.usage.cache_creation.input_tokens'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gen_ai_usage_cache_read_input_tokens
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gen_ai.usage.cache_read.input_tokens'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

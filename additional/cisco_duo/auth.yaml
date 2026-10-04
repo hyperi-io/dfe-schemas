@@ -1,0 +1,585 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of cisco_duo.auth at integrations 2c934eb5223b
+    columns:
+    - name: cisco_duo_auth_access_device_as_number
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cisco_duo.auth.access_device.as.number'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cisco_duo_auth_access_device_as_organization_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.access_device.as.organization.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_access_device_epkey
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.access_device.epkey'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_access_device_flash_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.access_device.flash_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_access_device_geo_city_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.access_device.geo.city_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_access_device_geo_continent_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.access_device.geo.continent_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_access_device_geo_country_iso_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.access_device.geo.country_iso_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_access_device_geo_country_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.access_device.geo.country_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_access_device_geo_location
+      type: geo_point
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: cisco_duo.auth.access_device.geo.location'
+      comment: 'Elasticsearch mapping type: geo_point'
+      _field_type: base
+    - name: cisco_duo_auth_access_device_geo_region_iso_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.access_device.geo.region_iso_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_access_device_geo_region_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.access_device.geo.region_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_access_device_hostname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.access_device.hostname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_access_device_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cisco_duo.auth.access_device.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: cisco_duo_auth_access_device_is_encryption_enabled
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.access_device.is_encryption_enabled'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_access_device_is_firewall_enabled
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.access_device.is_firewall_enabled'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_access_device_is_password_set
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.access_device.is_password_set'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_access_device_java_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.access_device.java_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_access_device_location_city
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.access_device.location.city'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_access_device_location_country
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.access_device.location.country'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_access_device_location_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.access_device.location.state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_access_device_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cisco_duo.auth.access_device.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cisco_duo_auth_access_device_security_agents
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: cisco_duo.auth.access_device.security_agents'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: cisco_duo_auth_adaptive_trust_assessments_more_secure_auth_detected_attack_detectors
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.adaptive_trust_assessments.more_secure_auth.detected_attack_detectors'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_adaptive_trust_assessments_more_secure_auth_features_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.adaptive_trust_assessments.more_secure_auth.features_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_adaptive_trust_assessments_more_secure_auth_model_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.adaptive_trust_assessments.more_secure_auth.model_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_adaptive_trust_assessments_more_secure_auth_policy_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cisco_duo.auth.adaptive_trust_assessments.more_secure_auth.policy_enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: cisco_duo_auth_adaptive_trust_assessments_more_secure_auth_preview_mode_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cisco_duo.auth.adaptive_trust_assessments.more_secure_auth.preview_mode_enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: cisco_duo_auth_adaptive_trust_assessments_more_secure_auth_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.adaptive_trust_assessments.more_secure_auth.reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_adaptive_trust_assessments_more_secure_auth_trust_level
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.adaptive_trust_assessments.more_secure_auth.trust_level'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_adaptive_trust_assessments_remember_me_features_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.adaptive_trust_assessments.remember_me.features_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_adaptive_trust_assessments_remember_me_model_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.adaptive_trust_assessments.remember_me.model_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_adaptive_trust_assessments_remember_me_policy_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cisco_duo.auth.adaptive_trust_assessments.remember_me.policy_enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: cisco_duo_auth_adaptive_trust_assessments_remember_me_preview_mode_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cisco_duo.auth.adaptive_trust_assessments.remember_me.preview_mode_enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: cisco_duo_auth_adaptive_trust_assessments_remember_me_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.adaptive_trust_assessments.remember_me.reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_adaptive_trust_assessments_remember_me_trust_level
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.adaptive_trust_assessments.remember_me.trust_level'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_alias
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.alias'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_application_destination_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.application.destination_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_application_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.application.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_application_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.application.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_auth_device_as_number
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cisco_duo.auth.auth_device.as.number'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cisco_duo_auth_auth_device_as_organization_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.auth_device.as.organization.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_auth_device_geo_city_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.auth_device.geo.city_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_auth_device_geo_continent_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.auth_device.geo.continent_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_auth_device_geo_country_iso_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.auth_device.geo.country_iso_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_auth_device_geo_country_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.auth_device.geo.country_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_auth_device_geo_location
+      type: geo_point
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: cisco_duo.auth.auth_device.geo.location'
+      comment: 'Elasticsearch mapping type: geo_point'
+      _field_type: base
+    - name: cisco_duo_auth_auth_device_geo_region_iso_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.auth_device.geo.region_iso_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_auth_device_geo_region_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.auth_device.geo.region_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_auth_device_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cisco_duo.auth.auth_device.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: cisco_duo_auth_auth_device_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.auth_device.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_auth_device_location_city
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.auth_device.location.city'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_auth_device_location_country
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.auth_device.location.country'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_auth_device_location_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.auth_device.location.state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_auth_device_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.auth_device.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_auth_device_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cisco_duo.auth.auth_device.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cisco_duo_auth_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_event_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.event_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_factor
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.factor'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_isotimestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cisco_duo.auth.isotimestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: cisco_duo_auth_ood_software
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.ood_software'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_passport_assessment_is_supported
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cisco_duo.auth.passport_assessment.is_supported'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: cisco_duo_auth_passport_assessment_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.passport_assessment.reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_rbfs_triggered_attacks_country_code_access
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.rbfs_triggered_attacks.country_code_access'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_rbfs_triggered_attacks_country_code_auth
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.rbfs_triggered_attacks.country_code_auth'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_rbfs_triggered_attacks_detected_occurrences
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cisco_duo.auth.rbfs_triggered_attacks.detected_occurrences'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cisco_duo_auth_rbfs_triggered_attacks_detector
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.rbfs_triggered_attacks.detector'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_rbfs_triggered_attacks_shadow_mode
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cisco_duo.auth.rbfs_triggered_attacks.shadow_mode'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: cisco_duo_auth_rbfs_triggered_attacks_suppressed
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.rbfs_triggered_attacks.suppressed'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_rbfs_triggered_attacks_threshold_occurrences
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cisco_duo.auth.rbfs_triggered_attacks.threshold_occurrences'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cisco_duo_auth_rbfs_triggered_attacks_threshold_time_frame
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cisco_duo.auth.rbfs_triggered_attacks.threshold_time_frame'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cisco_duo_auth_rbfs_triggered_attacks_unrealistic_travel_velocity
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cisco_duo.auth.rbfs_triggered_attacks.unrealistic_travel_velocity'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cisco_duo_auth_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_result
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.result'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_trusted_endpoint_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.trusted_endpoint_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_trusted_session_info_trusted_session_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.trusted_session_info.trusted_session_uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_auth_txid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.auth.txid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

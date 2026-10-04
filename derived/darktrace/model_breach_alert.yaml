@@ -1,0 +1,80 @@
+base: meta/elastic/ecs
+base_version: "1.0.0"
+current: "1.0.0"
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    summary: darktrace.model_breach_alert selection from meta/elastic/ecs
+    select:
+    - name: data_stream_dataset
+      index: exact_match
+    - name: data_stream_namespace
+      index: exact_match
+    - name: data_stream_type
+      index: exact_match
+    - name: ecs_version
+      index: exact_match
+    - name: event_action
+      index: exact_match
+    - name: event_category
+      index: exact_match
+    - name: event_created
+      index: range
+    - name: event_dataset
+      index: exact_match
+    - name: event_kind
+      index: exact_match
+    - name: event_module
+      index: exact_match
+    - name: event_original
+      index: none
+    - name: event_risk_score
+      index: range
+    - name: event_risk_score_norm
+      index: range
+    - name: event_severity
+      index: range
+    - name: event_start
+      index: range
+    - name: event_type
+      index: exact_match
+    - name: event_url
+      index: exact_match
+    - name: host_hostname
+      index: exact_match
+    - name: host_id
+      index: exact_match
+    - name: host_ip
+      index: dimension
+    - name: host_mac
+      index: exact_match
+    - name: host_type
+      index: exact_match
+    - name: log_syslog_appname
+      index: exact_match
+    - name: related_hosts
+      index: exact_match
+    - name: related_ip
+      index: dimension
+    - name: related_user
+      index: exact_match
+    - name: rule_author
+      index: exact_match
+    - name: rule_category
+      index: exact_match
+    - name: rule_description
+      index: exact_match
+    - name: rule_name
+      index: exact_match
+    - name: rule_ruleset
+      index: exact_match
+    - name: rule_uuid
+      index: exact_match
+    - name: rule_version
+      index: exact_match
+    - name: tags
+      index: exact_match
+    - name: threat_technique_id
+      index: exact_match
+    - name: threat_technique_name
+      index: exact_match

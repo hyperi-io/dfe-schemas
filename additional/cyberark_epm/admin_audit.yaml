@@ -1,0 +1,92 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of cyberark_epm.admin_audit at integrations 2c934eb5223b
+    columns:
+    - name: cyberark_epm_admin_audit_administrator
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cyberark_epm.admin_audit.administrator'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cyberark_epm_admin_audit_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cyberark_epm.admin_audit.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cyberark_epm_admin_audit_event_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cyberark_epm.admin_audit.event_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: cyberark_epm_admin_audit_feature
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cyberark_epm.admin_audit.feature'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cyberark_epm_admin_audit_internal_session_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cyberark_epm.admin_audit.internal_session_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cyberark_epm_admin_audit_logged_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cyberark_epm.admin_audit.logged_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: cyberark_epm_admin_audit_logged_from
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cyberark_epm.admin_audit.logged_from'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: cyberark_epm_admin_audit_permission_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cyberark_epm.admin_audit.permission_description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cyberark_epm_admin_audit_role
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cyberark_epm.admin_audit.role'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cyberark_epm_admin_audit_set_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cyberark_epm.admin_audit.set_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

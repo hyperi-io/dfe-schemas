@@ -1,0 +1,93 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of ti_strider.indicator at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: labels_is_ioc_transform_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: labels.is_ioc_transform_source'
+      comment: 'Elasticsearch mapping type: constant_keyword'
+      _field_type: base
+    - name: ti_strider_indicator_archive
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ti_strider.indicator.archive'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: ti_strider_indicator_changes
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_strider.indicator.changes'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_strider_indicator_dates_added
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ti_strider.indicator.dates_added'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: ti_strider_indicator_expires_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ti_strider.indicator.expires_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: ti_strider_indicator_is_new
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: ti_strider.indicator.is_new'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: ti_strider_indicator_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_strider.indicator.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_strider_indicator_name_primary
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_strider.indicator.name_primary'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_strider_indicator_name_secondary
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: ti_strider.indicator.name_secondary'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: ti_strider_indicator_risk_signal
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_strider.indicator.risk_signal'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_strider_indicator_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_strider.indicator.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

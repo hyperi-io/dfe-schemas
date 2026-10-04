@@ -1,0 +1,691 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of gcp.audit at integrations 2c934eb5223b
+    columns:
+    - name: actor_entity_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: actor.entity.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_access_caller_ip_geo_region_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.access.caller_ip_geo.region_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_access_method_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.access.method_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_access_principal_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.access.principal_email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_access_principal_subject
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.access.principal_subject'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_access_service_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.access.service_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_access_user_agent
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.access.user_agent'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_action_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gcp.audit.action_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: gcp_audit_action_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.action_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_affected_resources
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.affected_resources'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_authentication_info_authority_selector
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.authentication_info.authority_selector'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_authentication_info_principal_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.authentication_info.principal_email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_authentication_info_principal_subject
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.authentication_info.principal_subject'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_authentication_info_service_account_delegation_info
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: gcp.audit.authentication_info.service_account_delegation_info'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: gcp_audit_authentication_info_service_account_key_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.authentication_info.service_account_key_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_authentication_info_third_party_principal
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: gcp.audit.authentication_info.third_party_principal'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: gcp_audit_authorization_info
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: gcp.audit.authorization_info'
+      comment: 'Elasticsearch mapping type: nested'
+      _field_type: base
+    - name: gcp_audit_authorization_info_granted
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: gcp.audit.authorization_info.granted'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: gcp_audit_authorization_info_permission
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.authorization_info.permission'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_authorization_info_resource
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.authorization_info.resource'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_authorization_info_resource_attributes_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.authorization_info.resource_attributes.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_authorization_info_resource_attributes_service
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.authorization_info.resource_attributes.service'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_authorization_info_resource_attributes_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.authorization_info.resource_attributes.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_flattened
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: gcp.audit.flattened'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: gcp_audit_labels
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: gcp.audit.labels'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: gcp_audit_learn_more_uri
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.learn_more_uri'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_logentry_operation_first
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: gcp.audit.logentry_operation.first'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: gcp_audit_logentry_operation_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.logentry_operation.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_logentry_operation_last
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: gcp.audit.logentry_operation.last'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: gcp_audit_logentry_operation_producer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.logentry_operation.producer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_metadata
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: gcp.audit.metadata'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: gcp_audit_method_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.method_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_notification
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.notification'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_num_response_items
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gcp.audit.num_response_items'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gcp_audit_policy_violation_info_payload
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: gcp.audit.policy_violation_info.payload'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: gcp_audit_policy_violation_info_resource_tags
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: gcp.audit.policy_violation_info.resource_tags'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: gcp_audit_policy_violation_info_resource_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.policy_violation_info.resource_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_policy_violation_info_violations_checkedValue
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.policy_violation_info.violations.checkedValue'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_policy_violation_info_violations_constraint
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.policy_violation_info.violations.constraint'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_policy_violation_info_violations_errorMessage
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.policy_violation_info.violations.errorMessage'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_policy_violation_info_violations_policyType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.policy_violation_info.violations.policyType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_receive_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gcp.audit.receive_timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: gcp_audit_request
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: gcp.audit.request'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: gcp_audit_request_metadata_caller_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: gcp.audit.request_metadata.caller_ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: gcp_audit_request_metadata_caller_supplied_user_agent
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.request_metadata.caller_supplied_user_agent'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_request_metadata_raw_caller_ip
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.request_metadata.raw.caller_ip'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_resource_labels_resource_container
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.resource.labels.resource_container'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_resource_location_current_locations
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.resource_location.current_locations'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_resource_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.resource_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_resource_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.resource.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_response
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: gcp.audit.response'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: gcp_audit_service_data_policy_delta_binding_deltas_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.service_data.policy_delta.binding_deltas.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_service_data_policy_delta_binding_deltas_condition_description
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: gcp.audit.service_data.policy_delta.binding_deltas.condition.description'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: gcp_audit_service_data_policy_delta_binding_deltas_condition_expression
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: gcp.audit.service_data.policy_delta.binding_deltas.condition.expression'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: gcp_audit_service_data_policy_delta_binding_deltas_condition_location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.service_data.policy_delta.binding_deltas.condition.location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_service_data_policy_delta_binding_deltas_condition_title
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.service_data.policy_delta.binding_deltas.condition.title'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_service_data_policy_delta_binding_deltas_member
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.service_data.policy_delta.binding_deltas.member'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_service_data_policy_delta_binding_deltas_role
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.service_data.policy_delta.binding_deltas.role'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_service_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.service_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_source_log_ids_insert_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.source_log_ids.insert_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_source_log_ids_log_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gcp.audit.source_log_ids.log_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: gcp_audit_source_log_ids_query_uri
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.source_log_ids.query_uri'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_source_log_ids_resource_container
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.source_log_ids.resource_container'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_status_code
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gcp.audit.status.code'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: gcp_audit_status_details
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: gcp.audit.status.details'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: gcp_audit_status_message
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.status.message'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_audit_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.audit.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_destination_instance_project_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.destination.instance.project_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_destination_instance_region
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.destination.instance.region'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_destination_instance_zone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.destination.instance.zone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_destination_vpc_project_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.destination.vpc.project_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_destination_vpc_subnetwork_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.destination.vpc.subnetwork_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_destination_vpc_vpc_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.destination.vpc.vpc_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_source_instance_project_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.source.instance.project_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_source_instance_region
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.source.instance.region'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_source_instance_zone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.source.instance.zone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_source_vpc_project_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.source.vpc.project_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_source_vpc_subnetwork_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.source.vpc.subnetwork_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_source_vpc_vpc_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.source.vpc.vpc_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: labels_cluster_location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: labels.cluster_location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: labels_cluster_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: labels.cluster_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: labels_payload_currentVersion
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: labels.payload.currentVersion'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: labels_payload_operation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: labels.payload.operation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: labels_payload_resource
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: labels.payload.resource'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: labels_payload_resourceType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: labels.payload.resourceType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: labels_payload_targetVersion
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: labels.payload.targetVersion'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: labels_project_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: labels.project_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: labels_type_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: labels.type_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: related_entity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: related.entity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: target_entity_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: target.entity.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

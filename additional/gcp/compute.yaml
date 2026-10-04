@@ -1,0 +1,176 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of gcp.compute at integrations 2c934eb5223b
+    columns:
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcp_compute_firewall_dropped_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gcp.compute.firewall.dropped.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gcp_compute_firewall_dropped_packets_count_value
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gcp.compute.firewall.dropped_packets_count.value'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gcp_compute_instance_cpu_reserved_cores_value
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gcp.compute.instance.cpu.reserved_cores.value'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: gcp_compute_instance_cpu_usage_pct
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gcp.compute.instance.cpu.usage.pct'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: gcp_compute_instance_cpu_usage_time_sec
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gcp.compute.instance.cpu.usage_time.sec'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: gcp_compute_instance_disk_read_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gcp.compute.instance.disk.read.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gcp_compute_instance_disk_read_ops_count_value
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gcp.compute.instance.disk.read_ops_count.value'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gcp_compute_instance_disk_write_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gcp.compute.instance.disk.write.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gcp_compute_instance_disk_write_ops_count_value
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gcp.compute.instance.disk.write_ops_count.value'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gcp_compute_instance_memory_balloon_ram_size_value
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gcp.compute.instance.memory.balloon.ram_size.value'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gcp_compute_instance_memory_balloon_ram_used_value
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gcp.compute.instance.memory.balloon.ram_used.value'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gcp_compute_instance_memory_balloon_swap_in_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gcp.compute.instance.memory.balloon.swap_in.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gcp_compute_instance_memory_balloon_swap_out_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gcp.compute.instance.memory.balloon.swap_out.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gcp_compute_instance_network_egress_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gcp.compute.instance.network.egress.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gcp_compute_instance_network_egress_packets_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gcp.compute.instance.network.egress.packets.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gcp_compute_instance_network_ingress_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gcp.compute.instance.network.ingress.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gcp_compute_instance_network_ingress_packets_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gcp.compute.instance.network.ingress.packets.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gcp_compute_instance_uptime_sec
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gcp.compute.instance.uptime.sec'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gcp_compute_instance_uptime_total_sec
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gcp.compute.instance.uptime_total.sec'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gcp_labels_fingerprint
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcp.labels_fingerprint'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

@@ -1,0 +1,142 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of kolide.issues at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_issues_blocks_device_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: kolide.issues.blocks_device_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: kolide_issues_check_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.issues.check.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_issues_check_information_link
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.issues.check_information.link'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_issues_check_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.issues.check.tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_issues_detected_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: kolide.issues.detected_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: kolide_issues_detected_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.issues.detected_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_issues_device_information_link
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.issues.device_information.link'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_issues_exempted
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: kolide.issues.exempted'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: kolide_issues_expected_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.issues.expected_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_issues_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.issues.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_issues_issue_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.issues.issue_key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_issues_issue_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.issues.issue_value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_issues_last_rechecked_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: kolide.issues.last_rechecked_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: kolide_issues_resolved_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: kolide.issues.resolved_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: kolide_issues_ssh_key_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.issues.ssh_key_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_issues_title
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.issues.title'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_issues_value
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: kolide.issues.value'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

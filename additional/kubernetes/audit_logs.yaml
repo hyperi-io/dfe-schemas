@@ -1,0 +1,814 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of kubernetes.audit_logs at integrations 2c934eb5223b
+    columns:
+    - name: azure_consumer_group
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.consumer_group'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_enqueued_time
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.enqueued_time'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_eventhub
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.eventhub'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: azure.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: azure_partition_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.partition_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_sequence_number
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: azure.sequence_number'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_aks_metadata_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.aks_metadata.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_aks_metadata_container_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.aks_metadata.container_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_aks_metadata_operation_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.aks_metadata.operation_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_aks_metadata_pod
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.aks_metadata.pod'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_aks_metadata_resource_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.aks_metadata.resource_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_aks_metadata_service_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.aks_metadata.service_build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_aks_metadata_stream
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.aks_metadata.stream'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_aks_metadata_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: kubernetes.audit.aks_metadata.time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: kubernetes_audit_annotations_authorization_k8s_io/decision
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.annotations.authorization_k8s_io/decision'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_annotations_authorization_k8s_io/reason
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: kubernetes.audit.annotations.authorization_k8s_io/reason'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: kubernetes_audit_annotations_pod-security_kubernetes_io/audit-violations
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: kubernetes.audit.annotations.pod-security_kubernetes_io/audit-violations'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: kubernetes_audit_apiVersion
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.apiVersion'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_auditID
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.auditID'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_impersonatedUser_extra
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: kubernetes.audit.impersonatedUser.extra'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: kubernetes_audit_impersonatedUser_groups
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.impersonatedUser.groups'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_impersonatedUser_uid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.impersonatedUser.uid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_impersonatedUser_username
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.impersonatedUser.username'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_kind
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.kind'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_level
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.level'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_logName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.logName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_objectRef_apiGroup
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.objectRef.apiGroup'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_objectRef_apiVersion
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.objectRef.apiVersion'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_objectRef_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.objectRef.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_objectRef_namespace
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.objectRef.namespace'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_objectRef_resource
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.objectRef.resource'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_objectRef_resourceVersion
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.objectRef.resourceVersion'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_objectRef_subresource
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.objectRef.subresource'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_objectRef_uid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.objectRef.uid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_operation_first
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: kubernetes.audit.operation.first'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: kubernetes_audit_operation_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.operation.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_operation_last
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: kubernetes.audit.operation.last'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: kubernetes_audit_operation_producer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.operation.producer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_protoPayload_authenticationInfo_principalEmail
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.protoPayload.authenticationInfo.principalEmail'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_protoPayload_authorizationInfo_granted
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: kubernetes.audit.protoPayload.authorizationInfo.granted'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: kubernetes_audit_protoPayload_authorizationInfo_permission
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.protoPayload.authorizationInfo.permission'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_protoPayload_authorizationInfo_resource
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.protoPayload.authorizationInfo.resource'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_protoPayload_methodName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.protoPayload.methodName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_protoPayload_requestMetadata_callerIp
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: kubernetes.audit.protoPayload.requestMetadata.callerIp'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: kubernetes_audit_protoPayload_requestMetadata_callerSuppliedUserAgent
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.protoPayload.requestMetadata.callerSuppliedUserAgent'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_protoPayload_resourceName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.protoPayload.resourceName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_protoPayload_serviceName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.protoPayload.serviceName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_protoPayload_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.protoPayload.@type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_requestObject_roleRef_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.requestObject.roleRef.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_requestObject_rules
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: kubernetes.audit.requestObject.rules'
+      comment: 'Elasticsearch mapping type: nested'
+      _field_type: base
+    - name: kubernetes_audit_requestObject_spec_containers_command
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: kubernetes.audit.requestObject.spec.containers.command'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: kubernetes_audit_requestObject_spec_containers_image
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.requestObject.spec.containers.image'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_requestObject_spec_containers_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.requestObject.spec.containers.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_requestObject_spec_containers_securityContext_allowPrivilegeEscalation
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: kubernetes.audit.requestObject.spec.containers.securityContext.allowPrivilegeEscalation'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: kubernetes_audit_requestObject_spec_containers_securityContext_capabilities_add
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.requestObject.spec.containers.securityContext.capabilities.add'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_requestObject_spec_containers_securityContext_privileged
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: kubernetes.audit.requestObject.spec.containers.securityContext.privileged'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: kubernetes_audit_requestObject_spec_containers_securityContext_procMount
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.requestObject.spec.containers.securityContext.procMount'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_requestObject_spec_containers_securityContext_runAsGroup
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: kubernetes.audit.requestObject.spec.containers.securityContext.runAsGroup'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: kubernetes_audit_requestObject_spec_containers_securityContext_runAsNonRoot
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: kubernetes.audit.requestObject.spec.containers.securityContext.runAsNonRoot'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: kubernetes_audit_requestObject_spec_containers_securityContext_runAsUser
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: kubernetes.audit.requestObject.spec.containers.securityContext.runAsUser'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: kubernetes_audit_requestObject_spec_containers_securityContext_seccompProfile_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.requestObject.spec.containers.securityContext.seccompProfile.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_requestObject_spec_containers_volumeMounts
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: kubernetes.audit.requestObject.spec.containers.volumeMounts'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: kubernetes_audit_requestObject_spec_hostIPC
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: kubernetes.audit.requestObject.spec.hostIPC'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: kubernetes_audit_requestObject_spec_hostNetwork
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: kubernetes.audit.requestObject.spec.hostNetwork'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: kubernetes_audit_requestObject_spec_hostPID
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: kubernetes.audit.requestObject.spec.hostPID'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: kubernetes_audit_requestObject_spec_restartPolicy
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.requestObject.spec.restartPolicy'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_requestObject_spec_securityContext_runAsGroup
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: kubernetes.audit.requestObject.spec.securityContext.runAsGroup'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: kubernetes_audit_requestObject_spec_securityContext_runAsNonRoot
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: kubernetes.audit.requestObject.spec.securityContext.runAsNonRoot'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: kubernetes_audit_requestObject_spec_securityContext_runAsUser
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: kubernetes.audit.requestObject.spec.securityContext.runAsUser'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: kubernetes_audit_requestObject_spec_serviceAccountName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.requestObject.spec.serviceAccountName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_requestObject_spec_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.requestObject.spec.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_requestObject_spec_volumes_hostPath
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: kubernetes.audit.requestObject.spec.volumes.hostPath'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: kubernetes_audit_requestReceivedTimestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: kubernetes.audit.requestReceivedTimestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: kubernetes_audit_requestURI
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.requestURI'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_resource_labels_cluster_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.resource.labels.cluster_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_resource_labels_location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.resource.labels.location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_resource_labels_project_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.resource.labels.project_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_resource_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.resource.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_responseObject_roleRef_kind
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.responseObject.roleRef.kind'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_responseObject_rules
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: kubernetes.audit.responseObject.rules'
+      comment: 'Elasticsearch mapping type: nested'
+      _field_type: base
+    - name: kubernetes_audit_responseObject_spec_containers_securityContext_allowPrivilegeEscalation
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: kubernetes.audit.responseObject.spec.containers.securityContext.allowPrivilegeEscalation'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: kubernetes_audit_responseObject_spec_containers_securityContext_privileged
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: kubernetes.audit.responseObject.spec.containers.securityContext.privileged'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: kubernetes_audit_responseObject_spec_containers_securityContext_runAsUser
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: kubernetes.audit.responseObject.spec.containers.securityContext.runAsUser'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: kubernetes_audit_responseObject_spec_containers_volumeMounts
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: kubernetes.audit.responseObject.spec.containers.volumeMounts'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: kubernetes_audit_responseObject_spec_hostIPC
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: kubernetes.audit.responseObject.spec.hostIPC'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: kubernetes_audit_responseObject_spec_hostNetwork
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: kubernetes.audit.responseObject.spec.hostNetwork'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: kubernetes_audit_responseObject_spec_hostPID
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: kubernetes.audit.responseObject.spec.hostPID'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: kubernetes_audit_responseObject_spec_restartPolicy
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.responseObject.spec.restartPolicy'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_responseObject_spec_volumes_hostPath
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: kubernetes.audit.responseObject.spec.volumes.hostPath'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: kubernetes_audit_responseStatus_code
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: kubernetes.audit.responseStatus.code'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: kubernetes_audit_responseStatus_message
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: kubernetes.audit.responseStatus.message'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: kubernetes_audit_responseStatus_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.responseStatus.reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_responseStatus_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.responseStatus.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_sourceIPs
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: kubernetes.audit.sourceIPs'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: kubernetes_audit_stage
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.stage'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_stageTimestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: kubernetes.audit.stageTimestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: kubernetes_audit_userAgent
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: kubernetes.audit.userAgent'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: kubernetes_audit_user_extra
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: kubernetes.audit.user.extra'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: kubernetes_audit_user_groups
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.user.groups'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_user_uid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.user.uid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_user_username
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.user.username'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kubernetes_audit_verb
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kubernetes.audit.verb'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_device_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.device_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_fingerprint
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.fingerprint'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_idxhi
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.idxhi'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_idxlo
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.idxlo'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_inode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.inode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_vol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.vol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

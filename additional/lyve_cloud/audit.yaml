@@ -1,0 +1,169 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of lyve_cloud.audit at integrations 2c934eb5223b
+    columns:
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: lyve_cloud_audit_auditEntry_api_bucket
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: lyve_cloud.audit.auditEntry.api.bucket'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: lyve_cloud_audit_auditEntry_api_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: lyve_cloud.audit.auditEntry.api.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: lyve_cloud_audit_auditEntry_api_object
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: lyve_cloud.audit.auditEntry.api.object'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: lyve_cloud_audit_auditEntry_api_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: lyve_cloud.audit.auditEntry.api.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: lyve_cloud_audit_auditEntry_api_timeToFirstByte
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: lyve_cloud.audit.auditEntry.api.timeToFirstByte'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: lyve_cloud_audit_auditEntry_api_timeToResponse
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: lyve_cloud.audit.auditEntry.api.timeToResponse'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: lyve_cloud_audit_auditEntry_requestHeader_X-Forwarded-For
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: lyve_cloud.audit.auditEntry.requestHeader.X-Forwarded-For'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: lyve_cloud_audit_auditEntry_requestHeader_X-Forwarded-Host
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: lyve_cloud.audit.auditEntry.requestHeader.X-Forwarded-Host'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: lyve_cloud_audit_auditEntry_requestHeader_X-Forwarded-Port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: lyve_cloud.audit.auditEntry.requestHeader.X-Forwarded-Port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: lyve_cloud_audit_auditEntry_requestHeader_X-Real-Ip
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: lyve_cloud.audit.auditEntry.requestHeader.X-Real-Ip'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: lyve_cloud_audit_auditEntry_responseHeader_Accept-Ranges
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: lyve_cloud.audit.auditEntry.responseHeader.Accept-Ranges'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: lyve_cloud_audit_auditEntry_responseHeader_Last-Modified
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: lyve_cloud.audit.auditEntry.responseHeader.Last-Modified'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: lyve_cloud_audit_auditEntry_responseHeader_X-Amz-Bucket-Region
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: lyve_cloud.audit.auditEntry.responseHeader.X-Amz-Bucket-Region'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: lyve_cloud_audit_auditEntry_responseHeader_X-Amz-Object-Lock-Mode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: lyve_cloud.audit.auditEntry.responseHeader.X-Amz-Object-Lock-Mode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: lyve_cloud_audit_auditEntry_responseHeader_X-Amz-Server-Side-Encryption
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: lyve_cloud.audit.auditEntry.responseHeader.X-Amz-Server-Side-Encryption'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: lyve_cloud_audit_auditEntry_responseHeader_object_lock_retain_until_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: lyve_cloud.audit.auditEntry.responseHeader.object_lock_retain_until_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: lyve_cloud_audit_auditEntry_responseHeader_x-amz-version-id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: lyve_cloud.audit.auditEntry.responseHeader.x-amz-version-id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: lyve_cloud_audit_auditEntry_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: lyve_cloud.audit.auditEntry.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

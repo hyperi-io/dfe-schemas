@@ -1,0 +1,982 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of entityanalytics_entra_id.entity at integrations 2c934eb5223b
+    columns:
+    - name: asset_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: asset.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: asset_first_seen
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: asset.first_seen'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: asset_group_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: asset.group.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: asset_group_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: asset.group.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: asset_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: asset.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: asset_is_managed
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: asset.is_managed'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: asset_last_seen
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: asset.last_seen'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: asset_last_updated
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: asset.last_updated'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: asset_model
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: asset.model'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: asset_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: asset.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: asset_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: asset.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: asset_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: asset.tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: asset_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: asset.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: asset_vendor
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: asset.vendor'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: asset_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: asset.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: device_group_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: device.group.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: device_group_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: device.group.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: device_registered_owners_business_phones
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: device.registered_owners.business_phones'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: device_registered_owners_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: device.registered_owners.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: device_registered_owners_given_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: device.registered_owners.given_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: device_registered_owners_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: device.registered_owners.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: device_registered_owners_job_title
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: device.registered_owners.job_title'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: device_registered_owners_mail
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: device.registered_owners.mail'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: device_registered_owners_mobile_phone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: device.registered_owners.mobile_phone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: device_registered_owners_surname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: device.registered_owners.surname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: device_registered_owners_user_principal_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: device.registered_owners.user_principal_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: device_registered_users_business_phones
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: device.registered_users.business_phones'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: device_registered_users_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: device.registered_users.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: device_registered_users_given_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: device.registered_users.given_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: device_registered_users_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: device.registered_users.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: device_registered_users_job_title
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: device.registered_users.job_title'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: device_registered_users_mail
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: device.registered_users.mail'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: device_registered_users_mobile_phone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: device.registered_users.mobile_phone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: device_registered_users_surname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: device.registered_users.surname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: device_registered_users_user_principal_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: device.registered_users.user_principal_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_account_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: entityanalytics_entra_id.device.account_enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_alternative_security_ids_identity_provider
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.device.alternative_security_ids.identity_provider'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_alternative_security_ids_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.device.alternative_security_ids.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_alternative_security_ids_type
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: entityanalytics_entra_id.device.alternative_security_ids.type'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_approximate_last_sign_in_date_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: entityanalytics_entra_id.device.approximate_last_sign_in_date_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.device.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_compliance_expiration_date_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: entityanalytics_entra_id.device.compliance_expiration_date_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_d_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.device.d_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.device.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_enrollment_profile_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.device.enrollment_profile_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_extension_attributes
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: entityanalytics_entra_id.device.extension_attributes'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_group_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.device.group.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_group_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.device.group.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.device.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_is_compliant
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: entityanalytics_entra_id.device.is_compliant'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_is_managed
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: entityanalytics_entra_id.device.is_managed'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_manufacturer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.device.manufacturer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_mdm_app_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.device.mdm_app_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_metadata
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.device.metadata'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_model
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.device.model'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_on_premises_last_sync_date_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: entityanalytics_entra_id.device.on_premises_last_sync_date_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_on_premises_sync_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: entityanalytics_entra_id.device.on_premises_sync_enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_operating_system
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.device.operating_system'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_operating_system_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.device.operating_system_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_ownership
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.device.ownership'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_physical_ids
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.device.physical_ids'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_profile_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.device.profile_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_registered_owners_business_phones
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.device.registered_owners.business_phones'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_registered_owners_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.device.registered_owners.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_registered_owners_given_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.device.registered_owners.given_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_registered_owners_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.device.registered_owners.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_registered_owners_job_title
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.device.registered_owners.job_title'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_registered_owners_mail
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.device.registered_owners.mail'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_registered_owners_mobile_phone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.device.registered_owners.mobile_phone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_registered_owners_surname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.device.registered_owners.surname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_registered_owners_user_principal_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.device.registered_owners.user_principal_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_registered_users_business_phones
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.device.registered_users.business_phones'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_registered_users_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.device.registered_users.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_registered_users_given_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.device.registered_users.given_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_registered_users_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.device.registered_users.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_registered_users_job_title
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.device.registered_users.job_title'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_registered_users_mail
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.device.registered_users.mail'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_registered_users_mobile_phone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.device.registered_users.mobile_phone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_registered_users_surname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.device.registered_users.surname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_registered_users_user_principal_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.device.registered_users.user_principal_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_registration_date_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: entityanalytics_entra_id.device.registration_date_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_system_labels
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.device.system_labels'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_trust_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.device.trust_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_device_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.device.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_account_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: entityanalytics_entra_id.user.account_enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_app_role_assignments_app_role_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.user.app_role_assignments.app_role_display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_app_role_assignments_app_role_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.user.app_role_assignments.app_role_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_app_role_assignments_created_date_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: entityanalytics_entra_id.user.app_role_assignments.created_date_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_app_role_assignments_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.user.app_role_assignments.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_app_role_assignments_principal_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.user.app_role_assignments.principal_display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_app_role_assignments_principal_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.user.app_role_assignments.principal_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_app_role_assignments_resource_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.user.app_role_assignments.resource_display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_app_role_assignments_resource_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.user.app_role_assignments.resource_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_business_phones
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.user.business_phones'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_department
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.user.department'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_direct_reports_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.user.direct_reports.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_direct_reports_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.user.direct_reports.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_direct_reports_mail
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.user.direct_reports.mail'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_direct_reports_user_principal_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.user.direct_reports.user_principal_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.user.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_given_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.user.given_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_group_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.user.group.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_group_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.user.group.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.user.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_job_title
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.user.job_title'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_mail
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.user.mail'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_manager_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.user.manager.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_manager_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.user.manager.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_manager_mail
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.user.manager.mail'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_manager_user_principal_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.user.manager.user_principal_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_mfa_is_mfa_capable
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: entityanalytics_entra_id.user.mfa.is_mfa_capable'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_mfa_is_mfa_registered
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: entityanalytics_entra_id.user.mfa.is_mfa_registered'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_mfa_is_passwordless_capable
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: entityanalytics_entra_id.user.mfa.is_passwordless_capable'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_mfa_is_sspr_capable
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: entityanalytics_entra_id.user.mfa.is_sspr_capable'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_mfa_is_sspr_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: entityanalytics_entra_id.user.mfa.is_sspr_enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_mfa_is_sspr_registered
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: entityanalytics_entra_id.user.mfa.is_sspr_registered'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_mfa_is_system_preferred_authentication_method_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: entityanalytics_entra_id.user.mfa.is_system_preferred_authentication_method_enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_mfa_methods_registered
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.user.mfa.methods_registered'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_mfa_system_preferred_authentication_methods
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.user.mfa.system_preferred_authentication_methods'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_mfa_user_preferred_method_for_secondary_authentication
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.user.mfa.user_preferred_method_for_secondary_authentication'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_mfa_user_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.user.mfa.user_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_mobile_phone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.user.mobile_phone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_office_location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.user.office_location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_preferred_language
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.user.preferred_language'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_sign_in_activity_last_non_interactive_sign_in_date_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: entityanalytics_entra_id.user.sign_in_activity.last_non_interactive_sign_in_date_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_sign_in_activity_last_sign_in_date_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: entityanalytics_entra_id.user.sign_in_activity.last_sign_in_date_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_surname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.user.surname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_entra_id_user_user_principal_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_entra_id.user.user_principal_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: event_message
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: event.message'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: labels_identity_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: labels.identity_source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: user_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: user.enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: user_first_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: user.first_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: user_job_title
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: user.job_title'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: user_last_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: user.last_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: user_phone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: user.phone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: user_work_location_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: user.work.location_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

@@ -1,0 +1,1797 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of tanium.threat_response at integrations 2c934eb5223b
+    columns:
+    - name: aws_s3_bucket_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_bucket_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_object_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.object.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: log_source_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.source.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_alert_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.alert_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_computer_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tanium.threat_response.computer.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: tanium_threat_response_computer_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.computer.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_created_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.created_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tanium_threat_response_event_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.event.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_event_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.event.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_impact_score
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.impact_score'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: tanium_threat_response_intel_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.intel_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_intel_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.intel_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_intel_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.intel_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_link
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.link'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_config_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.config_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_config_rev_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.config_rev_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_first_seen
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.finding.first_seen'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_hunt_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.hunt_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_intel_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.intel_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_last_seen
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.finding.last_seen'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_reporting_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.reporting_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_source_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.source_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_system_info_bits
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.finding.system_info.bits'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_system_info_build_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.system_info.build_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_system_info_os_platform
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.system_info.os.platform'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_system_info_os_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.system_info.os.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_system_info_os_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.system_info.os.version'
+      comment: 'Elasticsearch mapping type: version'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_system_info_patch_level
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.system_info.patch_level'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_system_info_platform
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.system_info.platform'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_threat_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.threat_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: tanium.threat_response.match_details.finding.whats'
+      comment: 'Elasticsearch mapping type: nested'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_artifact_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.artifact_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_instance_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.instance_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_is_intel_target
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.is_intel_target'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_process_arguments
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.process.arguments'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_process_file_artifact_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.process.file.artifact_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_process_file_instance_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.process.file.instance_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_process_file_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.process.file.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_process_handles
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.process.handles'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_process_parent_artifact_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.process.parent.artifact_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_process_parent_instance_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.process.parent.instance_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_process_parent_process_arguments
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.process.parent.process.arguments'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_process_parent_process_file_artifact_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.process.parent.process.file.artifact_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_process_parent_process_file_instance_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.process.parent.process.file.instance_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_process_parent_process_file_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.process.parent.process.file.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_process_parent_process_handles
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.process.parent.process.handles'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_process_parent_process_parent_artifact_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.process.parent.process.parent.artifact_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_process_parent_process_parent_instance_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.process.parent.process.parent.instance_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_process_parent_process_parent_process_arguments
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.process.parent.process.parent.process.arguments'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_process_parent_process_parent_process_file_artifact_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.process.parent.process.parent.process.file.artifact_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_process_parent_process_parent_process_file_hash_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.process.parent.process.parent.process.file.hash.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_process_parent_process_parent_process_file_instance_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.process.parent.process.parent.process.file.instance_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_process_parent_process_parent_process_file_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.process.parent.process.parent.process.file.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_process_parent_process_parent_process_handles
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.process.parent.process.parent.process.handles'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_process_parent_process_parent_process_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.process.parent.process.parent.process.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_process_parent_process_parent_process_pid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.process.parent.process.parent.process.pid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_process_parent_process_parent_process_start_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.process.parent.process.parent.process.start_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_process_parent_process_parent_process_tanium_unique_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.process.parent.process.parent.process.tanium_unique_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_process_parent_process_parent_process_user_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.process.parent.process.parent.process.user.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_process_parent_process_parent_process_user_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.process.parent.process.parent.process.user.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_process_parent_process_parent_process_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.process.parent.process.parent.process.user.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_process_parent_process_pid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.process.parent.process.pid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_process_parent_process_start_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.process.parent.process.start_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_process_parent_process_tanium_unique_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.process.parent.process.tanium_unique_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_process_parent_process_user_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.process.parent.process.user.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_process_parent_process_user_group_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.process.parent.process.user.group_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_process_parent_process_user_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.process.parent.process.user.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_process_parent_process_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.process.parent.process.user.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_process_pid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.process.pid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_process_start_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.process.start_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_process_tanium_unique_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.process.tanium_unique_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_process_user_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.process.user.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_process_user_group_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.process.user.group_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_process_user_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.process.user.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_acting_artifact_process_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.acting_artifact.process.user.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions'
+      comment: 'Elasticsearch mapping type: nested'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_tanium_recorder_context_event_file_create_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.tanium_recorder_context.event.file_create.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_tanium_recorder_context_event_timestamp_ms
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.tanium_recorder_context.event.timestamp_ms'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_tanium_recorder_context_file_unique_event_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.tanium_recorder_context.file.unique_event_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_tanium_recorder_event_table_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.tanium_recorder_event_table_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_artifact_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.artifact_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_file_hash_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.file.hash.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_file_hash_sha1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.file.hash.sha1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_file_hash_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.file.hash.sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_file_instance_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.file.instance_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_file_instance_hash_salt
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.file.instance_hash_salt'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_file_magic_number_hex
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.file.magic_number_hex'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_file_modification_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.file.modification_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_file_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.file.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_file_size_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.file.size_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_instance_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.instance_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_is_intel_target
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.is_intel_target'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_connection_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.connection_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_local_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.local_ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_local_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.local_port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_artifact_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.artifact_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_instance_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.instance_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_arguments
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.arguments'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_file_artifact_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.file.artifact_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_file_file_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.file.file.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_file_file_signature_data_issuer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.file.file.signature_data.issuer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_file_file_signature_data_status
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.file.file.signature_data.status'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_file_file_signature_data_subject
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.file.file.signature_data.subject'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_file_instance_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.file.instance_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_artifact_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.artifact_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_instance_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.instance_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_arguments
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.arguments'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_file_artifact_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.file.artifact_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_file_file_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.file.file.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_file_file_signature_data_issuer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.file.file.signature_data.issuer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_file_file_signature_data_status
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.file.file.signature_data.status'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_file_file_signature_data_subject
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.file.file.signature_data.subject'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_file_instance_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.file.instance_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_parent_artifact_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.parent.artifact_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_parent_instance_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.parent.instance_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_parent_process_arguments
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.parent.process.arguments'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_parent_process_file_artifact_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.parent.process.file.artifact_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_parent_process_file_file_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.parent.process.file.file.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_parent_process_file_file_signature_data_issuer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.parent.process.file.file.signature_data.issuer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_parent_process_file_file_signature_data_status
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.parent.process.file.file.signature_data.status'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_parent_process_file_file_signature_data_subject
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.parent.process.file.file.signature_data.subject'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_parent_process_file_instance_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.parent.process.file.instance_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_parent_process_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.parent.process.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_parent_process_parent_artifact_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.parent.process.parent.artifact_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_parent_process_parent_instance_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.parent.process.parent.instance_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_parent_process_parent_process_arguments
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.parent.process.parent.process.arguments'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_parent_process_parent_process_file_artifact_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.parent.process.parent.process.file.artifact_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_parent_process_parent_process_file_file_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.parent.process.parent.process.file.file.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_parent_process_parent_process_file_instance_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.parent.process.parent.process.file.instance_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_parent_process_parent_process_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.parent.process.parent.process.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_parent_process_parent_process_parent_artifact_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.parent.process.parent.process.parent.artifact_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_parent_process_parent_process_parent_instance_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.parent.process.parent.process.parent.instance_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_parent_process_parent_process_parent_process_tanium_recorder_table_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.parent.process.parent.process.parent.process.tanium_recorder_table_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_parent_process_parent_process_pid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.parent.process.parent.process.pid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_parent_process_parent_process_start_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.parent.process.parent.process.start_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_parent_process_parent_process_tanium_recorder_table_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.parent.process.parent.process.tanium_recorder_table_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_parent_process_parent_process_user_user_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.parent.process.parent.process.user.user.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_parent_process_parent_process_user_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.parent.process.parent.process.user.user.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_parent_process_parent_process_user_user_user_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.parent.process.parent.process.user.user.user_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_parent_process_pid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.parent.process.pid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_parent_process_start_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.parent.process.start_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_parent_process_tanium_recorder_table_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.parent.process.tanium_recorder_table_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_parent_process_user_user_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.parent.process.user.user.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_parent_process_user_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.parent.process.user.user.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_parent_process_user_user_user_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.parent.process.user.user.user_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_pid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.pid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_start_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.start_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_tanium_recorder_table_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.tanium_recorder_table_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_user_user_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.user.user.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_user_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.user.user.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_parent_process_user_user_user_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.parent.process.user.user.user_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_pid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.pid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_start_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.start_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_tanium_recorder_table_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.tanium_recorder_table_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_user_user_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.user.user.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_user_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.user.user.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_process_process_user_user_user_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.process.process.user.user.user_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_remote_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.remote_ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_target_port_remote_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.target.port.remote_port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_artifact_activity_relevant_actions_verb
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.finding.whats.artifact_activity.relevant_actions.verb'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_intel_intra_ids
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: tanium.threat_response.match_details.finding.whats.intel_intra_ids'
+      comment: 'Elasticsearch mapping type: nested'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_intel_intra_ids_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.intel_intra_ids.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_intel_intra_ids_id_v2
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.intel_intra_ids.id_v2'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_finding_whats_source_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.finding.whats.source_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_intel_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.intel_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_contexts
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: tanium.threat_response.match_details.match.contexts'
+      comment: 'Elasticsearch mapping type: nested'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_contexts_event_file_create_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.match.contexts.event.file_create.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_contexts_event_timestampMs
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.match.contexts.event.timestampMs'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_contexts_file_unique_event_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.match.contexts.file.unique_event_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.match.hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_properties_args
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.match.properties.args'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_properties_file_full_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.match.properties.file.full_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_properties_fullpath
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.match.properties.fullpath'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_properties_local_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tanium.threat_response.match_details.match.properties.local_ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_properties_local_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.match.properties.local_port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_properties_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.match.properties.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_properties_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.match.properties.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_properties_parent_args
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.match.properties.parent.args'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_properties_parent_file_full_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.match.properties.parent.file.full_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_properties_parent_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.match.properties.parent.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_properties_parent_parent_args
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.match.properties.parent.parent.args'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_properties_parent_parent_file_full_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.match.properties.parent.parent.file.full_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_properties_parent_parent_file_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.match.properties.parent.parent.file.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_properties_parent_parent_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.match.properties.parent.parent.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_properties_parent_parent_pid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.match.properties.parent.parent.pid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_properties_parent_parent_recorder_unique_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.match.properties.parent.parent.recorder_unique_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_properties_parent_parent_start_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.match.properties.parent.parent.start_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_properties_parent_parent_user
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.match.properties.parent.parent.user'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_properties_parent_pid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.match.properties.parent.pid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_properties_parent_ppid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.match.properties.parent.ppid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_properties_parent_recorder_unique_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.match.properties.parent.recorder_unique_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_properties_parent_start_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.match.properties.parent.start_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_properties_parent_user
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.match.properties.parent.user'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_properties_pid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.match.properties.pid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_properties_ppid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.match.properties.ppid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_properties_process_args
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.match.properties.process.args'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_properties_process_file_fullpath
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.match.properties.process.file.fullpath'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_properties_process_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.match.properties.process.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_properties_process_pid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.match.properties.process.pid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_properties_process_ppid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.match.properties.process.ppid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_properties_process_recorder_table_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.match.properties.process.recorder_table_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_properties_process_start_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.match.properties.process.start_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_properties_process_user
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.match.properties.process.user'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_properties_recorder_unique_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.match.properties.recorder_unique_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_properties_remote_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tanium.threat_response.match_details.match.properties.remote_ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_properties_remote_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.match.properties.remote_port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_properties_sha1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.match.properties.sha1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_properties_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.match.properties.sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_properties_size
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.match.properties.size'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_properties_start_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.match_details.match.properties.start_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_properties_user
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.match.properties.user'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.match.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.match.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_match_details_match_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.match_details.match.version'
+      comment: 'Elasticsearch mapping type: version'
+      _field_type: base
+    - name: tanium_threat_response_other_parameters_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.other_parameters.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_other_parameters_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.other_parameters.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_other_parameters_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.other_parameters.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_priority
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.priority'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_revision
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.revision'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_row_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.row_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_severity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.severity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_state_action_expiration
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.state.action_expiration'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tanium_threat_response_state_action_id_unix
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.state.action_id_unix'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: tanium_threat_response_state_action_id_windows
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.state.action_id_windows'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: tanium_threat_response_state_computer_group_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.state.computer_group_id'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: tanium_threat_response_state_computer_ip_address
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.state.computer_ip_address'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: tanium_threat_response_state_computer_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.state.computer_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_state_connection_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.state.connection_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_state_created_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.state.created_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tanium_threat_response_state_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.state.id'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: tanium_threat_response_state_intel_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.state.intel_id'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: tanium_threat_response_state_legacy_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.state.legacy_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_state_service_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.state.service_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_state_session_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.state.session_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_state_target_eid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.state.target.eid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_state_target_hostname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.state.target.hostname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_state_updated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.state.updated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tanium_threat_response_state_user_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.state.user_id'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: tanium_threat_response_table
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.table'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tanium_threat_response_updated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.threat_response.updated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tanium_threat_response_user_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.user.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_user_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.user.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_threat_response_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.threat_response.user.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_truncations
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.truncations'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

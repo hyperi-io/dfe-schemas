@@ -1,0 +1,85 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of crowdstrike.identity_protection_assessment at integrations 2c934eb5223b
+    columns:
+    - name: crowdstrike_idp_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.idp.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_idp_security_assessment_assessment_factors_likelihood
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.idp.security_assessment.assessment_factors.likelihood'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_idp_security_assessment_assessment_factors_nested_likelihood
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.idp.security_assessment.assessment_factors_nested.likelihood'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_idp_security_assessment_assessment_factors_nested_risk_factor_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.idp.security_assessment.assessment_factors_nested.risk_factor_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_idp_security_assessment_assessment_factors_nested_severity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.idp.security_assessment.assessment_factors_nested.severity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_idp_security_assessment_assessment_factors_risk_factor_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.idp.security_assessment.assessment_factors.risk_factor_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_idp_security_assessment_assessment_factors_severity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.idp.security_assessment.assessment_factors.severity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_idp_security_assessment_overall_score
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: crowdstrike.idp.security_assessment.overall_score'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: crowdstrike_idp_security_assessment_overall_score_level
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.idp.security_assessment.overall_score_level'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

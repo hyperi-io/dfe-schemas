@@ -1,0 +1,76 @@
+base: meta/elastic/ecs
+base_version: "1.0.0"
+current: "1.0.0"
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    summary: fortinet_fortimanager.log selection from meta/elastic/ecs
+    select:
+    - name: container_id
+      index: exact_match
+    - name: data_stream_dataset
+      index: exact_match
+    - name: data_stream_namespace
+      index: exact_match
+    - name: data_stream_type
+      index: exact_match
+    - name: destination_address
+      index: exact_match
+    - name: destination_bytes
+      index: range
+    - name: destination_geo_country_name
+      index: exact_match
+    - name: destination_ip
+      index: dimension
+    - name: device_id
+      index: exact_match
+    - name: ecs_version
+      index: exact_match
+    - name: event_action
+      index: exact_match
+    - name: event_dataset
+      index: exact_match
+    - name: event_kind
+      index: exact_match
+    - name: event_module
+      index: exact_match
+    - name: event_original
+      index: none
+    - name: event_timezone
+      index: exact_match
+    - name: event_type
+      index: exact_match
+    - name: host_hostname
+      index: exact_match
+    - name: log_file_path
+      index: exact_match
+    - name: log_level
+      index: exact_match
+    - name: message
+      index: word_search
+    - name: network_direction
+      index: exact_match
+    - name: observer_name
+      index: exact_match
+    - name: process_pid
+      index: range
+    - name: related_hosts
+      index: exact_match
+    - name: related_user
+      index: exact_match
+    - name: rule_category
+      index: exact_match
+    - name: source_address
+      index: exact_match
+    - name: source_bytes
+      index: range
+    - name: source_ip
+      index: dimension
+    - name: source_port
+      index: range
+    - name: tags
+      index: exact_match
+    - name: user_domain
+      index: exact_match
+    - name: user_name
+      index: exact_match

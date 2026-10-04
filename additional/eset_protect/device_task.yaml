@@ -1,0 +1,141 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of eset_protect.device_task at integrations 2c934eb5223b
+    columns:
+    - name: eset_protect_device_task_action_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: eset_protect.device_task.action.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: eset_protect_device_task_action_params_actions_cancel_action
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: eset_protect.device_task.action.params.actions.cancel_action'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: eset_protect_device_task_action_params_actions_postpone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: eset_protect.device_task.action.params.actions.postpone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: eset_protect_device_task_action_params_cleaning_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: eset_protect.device_task.action.params.cleaning_enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: eset_protect_device_task_action_params_custom_profile_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: eset_protect.device_task.action.params.custom_profile_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: eset_protect_device_task_action_params_restart
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: eset_protect.device_task.action.params.restart'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: eset_protect_device_task_action_params_scan_profile
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: eset_protect.device_task.action.params.scan_profile'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: eset_protect_device_task_action_params_scan_targets
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: eset_protect.device_task.action.params.scan_targets'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: eset_protect_device_task_action_params_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: eset_protect.device_task.action.params.@type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: eset_protect_device_task_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: eset_protect.device_task.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: eset_protect_device_task_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: eset_protect.device_task.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: eset_protect_device_task_targets_device_groups_uuids
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: eset_protect.device_task.targets.device_groups_uuids'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: eset_protect_device_task_targets_devices_uuids
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: eset_protect.device_task.targets.devices_uuids'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: eset_protect_device_task_triggers_manual_create_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: eset_protect.device_task.triggers.manual.create_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: eset_protect_device_task_triggers_manual_expire_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: eset_protect.device_task.triggers.manual.expire_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: eset_protect_device_task_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: eset_protect.device_task.uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: eset_protect_device_task_version_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: eset_protect.device_task.version_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

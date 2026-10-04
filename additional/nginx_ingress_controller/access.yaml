@@ -1,0 +1,205 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of nginx_ingress_controller.access at integrations 2c934eb5223b
+    columns:
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_device_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.device_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_fingerprint
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.fingerprint'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_idxhi
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.idxhi'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_idxlo
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.idxlo'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_inode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.inode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_vol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.vol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: nginx_ingress_controller_access_geoip
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: nginx_ingress_controller.access.geoip'
+      comment: 'Elasticsearch mapping type: group'
+      _field_type: base
+    - name: nginx_ingress_controller_access_http_request_id
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: nginx_ingress_controller.access.http.request.id'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: nginx_ingress_controller_access_http_request_length
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nginx_ingress_controller.access.http.request.length'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: nginx_ingress_controller_access_http_request_time
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nginx_ingress_controller.access.http.request.time'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: nginx_ingress_controller_access_remote_ip_list
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nginx_ingress_controller.access.remote_ip_list'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nginx_ingress_controller_access_upstream_address_list
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nginx_ingress_controller.access.upstream_address_list'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nginx_ingress_controller_access_upstream_alternative_name
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: nginx_ingress_controller.access.upstream.alternative_name'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: nginx_ingress_controller_access_upstream_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: nginx_ingress_controller.access.upstream.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: nginx_ingress_controller_access_upstream_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nginx_ingress_controller.access.upstream.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nginx_ingress_controller_access_upstream_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nginx_ingress_controller.access.upstream.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: nginx_ingress_controller_access_upstream_response_length
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nginx_ingress_controller.access.upstream.response.length'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: nginx_ingress_controller_access_upstream_response_length_list
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nginx_ingress_controller.access.upstream.response.length_list'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nginx_ingress_controller_access_upstream_response_status_code
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nginx_ingress_controller.access.upstream.response.status_code'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: nginx_ingress_controller_access_upstream_response_status_code_list
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nginx_ingress_controller.access.upstream.response.status_code_list'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nginx_ingress_controller_access_upstream_response_time
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nginx_ingress_controller.access.upstream.response.time'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: nginx_ingress_controller_access_upstream_response_time_list
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nginx_ingress_controller.access.upstream.response.time_list'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

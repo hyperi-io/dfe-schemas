@@ -1,0 +1,458 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of ti_misp.threat_attributes at integrations 2c934eb5223b
+    columns:
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: labels_is_ioc_transform_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: labels.is_ioc_transform_source'
+      comment: 'Elasticsearch mapping type: constant_keyword'
+      _field_type: base
+    - name: log_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: misp_attribute_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: misp.attribute.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: misp_attribute_comment
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: misp.attribute.comment'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: misp_attribute_data
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: misp.attribute.data'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: misp_attribute_decay_score
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: misp.attribute.decay_score'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: misp_attribute_decayed
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: misp.attribute.decayed'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: misp_attribute_decayed_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: misp.attribute.decayed_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: misp_attribute_deleted
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: misp.attribute.deleted'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: misp_attribute_disable_correlation
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: misp.attribute.disable_correlation'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: misp_attribute_distribution
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: misp.attribute.distribution'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: misp_attribute_event_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: misp.attribute.event_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: misp_attribute_event_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: misp.attribute.event_uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: misp_attribute_first_seen
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: misp.attribute.first_seen'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: misp_attribute_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: misp.attribute.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: misp_attribute_last_seen
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: misp.attribute.last_seen'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: misp_attribute_object_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: misp.attribute.object_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: misp_attribute_object_relation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: misp.attribute.object_relation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: misp_attribute_sharing_group_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: misp.attribute.sharing_group_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: misp_attribute_to_ids
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: misp.attribute.to_ids'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: misp_attribute_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: misp.attribute.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: misp_attribute_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: misp.attribute.uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: misp_attribute_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: misp.attribute.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: misp_event_attribute_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: misp.event.attribute_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: misp_event_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: misp.event.date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: misp_event_disable_correlation
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: misp.event.disable_correlation'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: misp_event_distribution
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: misp.event.distribution'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: misp_event_extends_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: misp.event.extends_uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: misp_event_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: misp.event.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: misp_event_info
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: misp.event.info'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: misp_event_locked
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: misp.event.locked'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: misp_event_org_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: misp.event.org_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: misp_event_orgc_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: misp.event.orgc_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: misp_event_proposal_email_lock
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: misp.event.proposal_email_lock'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: misp_event_publish_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: misp.event.publish_timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: misp_event_published
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: misp.event.published'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: misp_event_sharing_group_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: misp.event.sharing_group_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: misp_event_sighting_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: misp.event.sighting_timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: misp_event_threat_level_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: misp.event.threat_level_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: misp_event_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: misp.event.timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: misp_event_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: misp.event.uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: misp_object_attribute
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: misp.object.attribute'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: misp_object_comment
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: misp.object.comment'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: misp_object_deleted
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: misp.object.deleted'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: misp_object_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: misp.object.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: misp_object_distribution
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: misp.object.distribution'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: misp_object_event_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: misp.object.event_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: misp_object_first_seen
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: misp.object.first_seen'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: misp_object_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: misp.object.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: misp_object_last_seen
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: misp.object.last_seen'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: misp_object_meta_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: misp.object.meta_category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: misp_object_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: misp.object.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: misp_object_sharing_group_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: misp.object.sharing_group_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: misp_object_template_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: misp.object.template_uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: misp_object_template_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: misp.object.template_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: misp_object_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: misp.object.timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: misp_object_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: misp.object.uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threat_indicator_email_subject
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat.indicator.email.subject'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

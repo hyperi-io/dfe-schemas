@@ -1,0 +1,166 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of ti_mandiant_advantage.threat_intelligence at integrations 2c934eb5223b
+    columns:
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: mandiant_threat_intelligence_ioc_associated_hashes
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: mandiant.threat_intelligence.ioc.associated_hashes'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: mandiant_threat_intelligence_ioc_attributed_associations
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: mandiant.threat_intelligence.ioc.attributed_associations'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: mandiant_threat_intelligence_ioc_campaigns
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: mandiant.threat_intelligence.ioc.campaigns'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: mandiant_threat_intelligence_ioc_categories
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mandiant.threat_intelligence.ioc.categories'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mandiant_threat_intelligence_ioc_first_seen
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: mandiant.threat_intelligence.ioc.first_seen'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: mandiant_threat_intelligence_ioc_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mandiant.threat_intelligence.ioc.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mandiant_threat_intelligence_ioc_is_exclusive
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: mandiant.threat_intelligence.ioc.is_exclusive'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: mandiant_threat_intelligence_ioc_is_publishable
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: mandiant.threat_intelligence.ioc.is_publishable'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: mandiant_threat_intelligence_ioc_last_seen
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: mandiant.threat_intelligence.ioc.last_seen'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: mandiant_threat_intelligence_ioc_last_update_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: mandiant.threat_intelligence.ioc.last_update_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: mandiant_threat_intelligence_ioc_misp_warning_list_hits
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mandiant.threat_intelligence.ioc.misp_warning_list_hits'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mandiant_threat_intelligence_ioc_misp_warning_list_misses
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mandiant.threat_intelligence.ioc.misp_warning_list_misses'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mandiant_threat_intelligence_ioc_mscore
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: mandiant.threat_intelligence.ioc.mscore'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: mandiant_threat_intelligence_ioc_reports
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: mandiant.threat_intelligence.ioc.reports'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: mandiant_threat_intelligence_ioc_sources_osint
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: mandiant.threat_intelligence.ioc.sources.osint'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: mandiant_threat_intelligence_ioc_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mandiant.threat_intelligence.ioc.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mandiant_threat_intelligence_ioc_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mandiant.threat_intelligence.ioc.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

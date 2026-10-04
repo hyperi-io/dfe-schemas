@@ -1,0 +1,106 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of apache_tomcat.access at integrations 2c934eb5223b
+    columns:
+    - name: apache_tomcat_access_connection_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: apache_tomcat.access.connection_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: apache_tomcat_access_http_ident
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: apache_tomcat.access.http.ident'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: apache_tomcat_access_http_useragent
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: apache_tomcat.access.http.useragent'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: apache_tomcat_access_ip_local
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: apache_tomcat.access.ip.local'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: apache_tomcat_access_request_process_time
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: apache_tomcat.access.request_process_time'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: apache_tomcat_access_response_time
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: apache_tomcat.access.response_time'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_device_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.device_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_fingerprint
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.fingerprint'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_idxhi
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.idxhi'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_idxlo
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.idxlo'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_inode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.inode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_vol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.vol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

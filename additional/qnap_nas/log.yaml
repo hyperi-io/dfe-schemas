@@ -1,0 +1,71 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of qnap_nas.log at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: log_source_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.source.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qnap_nas_application
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qnap.nas.application'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qnap_nas_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qnap.nas.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qnap_nas_connection_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qnap.nas.connection_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qnap_nas_file_new_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qnap.nas.file.new_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qnap_nas_file_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qnap.nas.file.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

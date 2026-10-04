@@ -1,0 +1,261 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of microsoft_intune.audit at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: microsoft_intune_audit_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_intune.audit.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_intune_audit_correlation_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_intune.audit.correlation_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_intune_audit_identity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_intune.audit.identity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_intune_audit_operation_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_intune.audit.operation_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_intune_audit_properties_activity_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_intune.audit.properties.activity_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: microsoft_intune_audit_properties_activity_result_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_intune.audit.properties.activity_result_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_intune_audit_properties_activity_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_intune.audit.properties.activity_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_intune_audit_properties_actor_actor_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_intune.audit.properties.actor.actor_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_intune_audit_properties_actor_application
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_intune.audit.properties.actor.application'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_intune_audit_properties_actor_application_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_intune.audit.properties.actor.application_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_intune_audit_properties_actor_is_delegated_admin
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: microsoft_intune.audit.properties.actor.is_delegated_admin'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: microsoft_intune_audit_properties_actor_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_intune.audit.properties.actor.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_intune_audit_properties_actor_object_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_intune.audit.properties.actor.object_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_intune_audit_properties_actor_partner_tenant_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_intune.audit.properties.actor.partner_tenant_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_intune_audit_properties_actor_upn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_intune.audit.properties.actor.upn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_intune_audit_properties_actor_user_permissions
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_intune.audit.properties.actor.user_permissions'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_intune_audit_properties_additional_detail_original
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_intune.audit.properties.additional_detail.original'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_intune_audit_properties_additional_detail_parsed
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: microsoft_intune.audit.properties.additional_detail.parsed'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: microsoft_intune_audit_properties_additional_details_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_intune.audit.properties.additional_details.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_intune_audit_properties_additional_details_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_intune.audit.properties.additional_details.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_intune_audit_properties_audit_event_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_intune.audit.properties.audit_event_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_intune_audit_properties_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_intune.audit.properties.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_intune_audit_properties_logged_by_service
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_intune.audit.properties.logged_by_service'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_intune_audit_properties_relation_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_intune.audit.properties.relation_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_intune_audit_properties_target_display_names
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_intune.audit.properties.target_display_names'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_intune_audit_properties_target_object_ids
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_intune.audit.properties.target_object_ids'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_intune_audit_properties_targets_modified_properties_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_intune.audit.properties.targets.modified_properties.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_intune_audit_properties_targets_modified_properties_new
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_intune.audit.properties.targets.modified_properties.new'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_intune_audit_properties_targets_modified_properties_old
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_intune.audit.properties.targets.modified_properties.old'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_intune_audit_properties_targets_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_intune.audit.properties.targets.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_intune_audit_result_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_intune.audit.result_description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_intune_audit_result_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_intune.audit.result_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_intune_audit_tenant_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_intune.audit.tenant_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_intune_audit_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_intune.audit.time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base

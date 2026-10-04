@@ -1,0 +1,806 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of macos.system_change at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: macos_activity_identifier
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.activity_identifier'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_backtrace_frames_image_offset
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.backtrace.frames.image.offset'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_backtrace_frames_image_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.backtrace.frames.image.uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_boot_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.boot_uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_account_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.account_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_accurate_ecn_client
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.accurate_ecn_client'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_accurate_ecn_server
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.accurate_ecn_server'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_ack
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.ack'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_acks_compressed
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: macos.event.message.acks_compressed'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: macos_event_message_acks_delayed
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: macos.event.message.acks_delayed'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: macos_event_message_alpn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.alpn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_attribution
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.attribution'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_base_rtt_ms
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.base_rtt_ms'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_bundle_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.bundle_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_cache_hit
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: macos.event.message.cache_hit'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: macos_event_message_cipher_suite
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.cipher_suite'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_connection
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: macos.event.message.connection'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: macos_event_message_connection_detail
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.connection_detail'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_connection_duration_ms
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: macos.event.message.connection_duration_ms'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: macos_event_message_connection_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.connection_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_connection_identifier
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.connection_identifier'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_connection_time
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.connection_time'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_connection_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.connection_uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_delayed_acks_sent
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: macos.event.message.delayed_acks_sent'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: macos_event_message_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_dns_duration
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.dns_duration'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_dns_start
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.dns_start'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_domain_lookup_duration_ms
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: macos.event.message.domain_lookup_duration_ms'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: macos_event_message_duration
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.duration'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_ecn_acked
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: macos.event.message.ecn_acked'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: macos_event_message_ecn_in
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: macos.event.message.ecn_in'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: macos_event_message_ecn_lost
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: macos.event.message.ecn_lost'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: macos_event_message_ecn_marked
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: macos.event.message.ecn_marked'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: macos_event_message_ecn_miss
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: macos.event.message.ecn_miss'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: macos_event_message_ecn_out
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: macos.event.message.ecn_out'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: macos_event_message_ecn_sent
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: macos.event.message.ecn_sent'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: macos_event_message_expected_workload
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.expected_workload'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_false_started
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: macos.event.message.false_started'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: macos_event_message_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_flight_time
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.flight_time'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_group
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.group'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_hostname_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: macos.event.message.hostname_port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: macos_event_message_init_flag
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: macos.event.message.init_flag'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: macos_event_message_interface
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.interface'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_listener
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: macos.event.message.listener'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: macos_event_message_mach
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: macos.event.message.mach'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: macos_event_message_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_ocsp_received
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: macos.event.message.ocsp_received'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: macos_event_message_offered_ticket
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: macos.event.message.offered_ticket'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: macos_event_message_out_of_order_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: macos.event.message.out_of_order_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: macos_event_message_pake
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.pake'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_path_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.path_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_peer
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: macos.event.message.peer'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: macos_event_message_privacy_stance
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.privacy_stance'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_private_relay
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: macos.event.message.private_relay'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: macos_event_message_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_rcv_nxt
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.rcv_nxt'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_rd_t_in
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: macos.event.message.rd_t_in'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: macos_event_message_rd_t_out
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: macos.event.message.rd_t_out'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: macos_event_message_read_stalls
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: macos.event.message.read_stalls'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: macos_event_message_request_duration_ms
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: macos.event.message.request_duration_ms'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: macos_event_message_request_start_ms
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: macos.event.message.request_start_ms'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: macos_event_message_response_duration_ms
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: macos.event.message.response_duration_ms'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: macos_event_message_response_start_ms
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: macos.event.message.response_start_ms'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: macos_event_message_resumed
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: macos.event.message.resumed'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: macos_event_message_retransmitted_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: macos.event.message.retransmitted_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: macos_event_message_rtt
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.rtt'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_rtt_cache
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.rtt_cache'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_rtt_nc_ms
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.rtt_nc_ms'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_rtt_updates
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: macos.event.message.rtt_updates'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: macos_event_message_rtt_var_ms
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.rtt_var_ms'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_rtt_var_nc_ms
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.rtt_var_nc_ms'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_sct_received
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: macos.event.message.sct_received'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: macos_event_message_secure_connection_duration_ms
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: macos.event.message.secure_connection_duration_ms'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: macos_event_message_seq
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.seq'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_server_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.server_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_session_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.session_uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_snd_una
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.snd_una'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_syns
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: macos.event.message.syns'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: macos_event_message_task_uid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.task_uid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_tcp_duration
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.tcp_duration'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_tcp_start
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.tcp_start'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_tfo_in
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: macos.event.message.tfo_in'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: macos_event_message_tfo_miss
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: macos.event.message.tfo_miss'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: macos_event_message_tfo_out
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: macos.event.message.tfo_out'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: macos_event_message_timestamp_enabled
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: macos.event.message.timestamp_enabled'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: macos_event_message_tls_duration
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.tls_duration'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_tls_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.tls_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_traffic_class
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.traffic_class'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_transaction_duration_ms
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: macos.event.message.transaction_duration_ms'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: macos_event_message_tso_enabled
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: macos.event.message.tso_enabled'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: macos_event_message_url_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.url_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_win
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.message.win'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_event_message_wr_t_in
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: macos.event.message.wr_t_in'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: macos_event_message_wr_t_out
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: macos.event.message.wr_t_out'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: macos_event_message_write_stalls
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: macos.event.message.write_stalls'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: macos_event_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.event.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_format_string
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.format_string'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_mach_timestamp
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: macos.mach_timestamp'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: macos_parent_activity_identifier
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.parent_activity_identifier'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_process_image_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.process.image_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_process_image_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.process.image_uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_sender_image_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.sender.image_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_sender_image_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.sender.image_uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_sender_program_counter
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: macos.sender.program_counter'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: macos_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_subsystem
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.subsystem'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_timezone_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.timezone_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: macos_trace_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: macos.trace_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

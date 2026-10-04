@@ -1,0 +1,64 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of o365_metrics.service_health at integrations 2c934eb5223b
+    columns:
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_metrics_service_health_services_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.metrics.service.health.services.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_metrics_service_health_services_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.metrics.service.health.services.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: o365_metrics_service_health_services_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: o365.metrics.service.health.services.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

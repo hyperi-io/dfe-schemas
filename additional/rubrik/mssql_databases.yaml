@@ -1,0 +1,64 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of rubrik.mssql_databases at integrations 2c934eb5223b
+    columns:
+    - name: rubrik_cluster_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rubrik.cluster.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rubrik_cluster_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rubrik.cluster.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rubrik_effective_sla_domain_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rubrik.effective_sla_domain.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rubrik_effective_sla_domain_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rubrik.effective_sla_domain.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rubrik_mssql_databases_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rubrik.mssql_databases.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rubrik_mssql_databases_is_online
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: rubrik.mssql_databases.is_online'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: rubrik_mssql_databases_missed_snapshots_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rubrik.mssql_databases.missed_snapshots.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: rubrik_mssql_databases_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rubrik.mssql_databases.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

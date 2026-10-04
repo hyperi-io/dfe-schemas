@@ -1,0 +1,99 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of apache.access at integrations 2c934eb5223b
+    columns:
+    - name: apache_access_http_request_headers
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: apache.access.http.request_headers'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: apache_access_identity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: apache.access.identity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: apache_access_remote_addresses
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: apache.access.remote_addresses'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: apache_access_response_time
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: apache.access.response_time'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: apache_access_ssl_cipher
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: apache.access.ssl.cipher'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: apache_access_ssl_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: apache.access.ssl.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: apache_access_tls_handshake_error
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: apache.access.tls_handshake.error'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

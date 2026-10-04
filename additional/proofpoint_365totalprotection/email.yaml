@@ -1,0 +1,358 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of proofpoint_365totalprotection.email at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_email_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint.email.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_email_attachments
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint.email.attachments'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_email_attachmentsExtensions
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint.email.attachmentsExtensions'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_email_attachmentsList
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint.email.attachmentsList'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_email_classification_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint.email.classification.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_email_classification_text
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint.email.classification.text'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_email_comm_partner
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint.email.comm_partner'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_email_crypt_type_in_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint.email.crypt_type_in.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_email_crypt_type_in_text
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint.email.crypt_type_in.text'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_email_crypt_type_out_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint.email.crypt_type_out.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_email_crypt_type_out_text
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint.email.crypt_type_out.text'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_email_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: proofpoint.email.date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: proofpoint_email_destination_hostname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint.email.destination_hostname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_email_destination_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: proofpoint.email.destination_ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: proofpoint_email_direction
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint.email.direction'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_email_direction_text
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint.email.direction_text'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_email_es_mail_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint.email.es_mail_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_email_fix_ids
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint.email.fix_ids'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_email_from
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint.email.from'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_email_gateway
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint.email.gateway'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_email_has_url_rewritten
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: proofpoint.email.has_url_rewritten'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: proofpoint_email_history
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: proofpoint.email.history'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: proofpoint_email_incoming_encryption
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint.email.incoming_encryption'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_email_is_archived
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: proofpoint.email.is_archived'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: proofpoint_email_last_remediation_actions
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint.email.last_remediation_actions'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_email_last_remediation_effectiveness
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint.email.last_remediation_effectiveness'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_email_last_remediation_folder
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint.email.last_remediation_folder'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_email_last_remediation_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint.email.last_remediation_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_email_last_report_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint.email.last_report_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_email_message_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint.email.message_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_email_msg_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint.email.msg_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_email_outgoing_encryption
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint.email.outgoing_encryption'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_email_owner
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint.email.owner'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_email_owner_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint.email.owner_domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_email_private
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: proofpoint.email.private'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: proofpoint_email_reason
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: proofpoint.email.reason'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: proofpoint_email_reason_intern
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: proofpoint.email.reason_intern'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: proofpoint_email_size
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint.email.size'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_email_smtp_dialog
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: proofpoint.email.smtp_dialog'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: proofpoint_email_smtp_status
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: proofpoint.email.smtp_status'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: proofpoint_email_smtp_status_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint.email.smtp_status_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_email_source_hostname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint.email.source_hostname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_email_source_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: proofpoint.email.source_ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: proofpoint_email_status_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint.email.status.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_email_status_text
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint.email.status.text'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_email_subject
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: proofpoint.email.subject'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: proofpoint_email_to
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint.email.to'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_email_ttl
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: proofpoint.email.ttl'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: proofpoint_email_ttl_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint.email.ttl_reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

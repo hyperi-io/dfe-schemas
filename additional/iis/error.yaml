@@ -1,0 +1,50 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of iis.error at integrations 2c934eb5223b
+    columns:
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: iis_error_queue_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: iis.error.queue_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: iis_error_reason_phrase
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: iis.error.reason_phrase'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

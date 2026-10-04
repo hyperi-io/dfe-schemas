@@ -1,0 +1,174 @@
+base: meta/elastic/ecs
+base_version: "1.0.0"
+current: "1.0.0"
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    summary: sonicwall_firewall.log selection from meta/elastic/ecs
+    select:
+    - name: data_stream_dataset
+      index: exact_match
+    - name: data_stream_namespace
+      index: exact_match
+    - name: data_stream_type
+      index: exact_match
+    - name: destination_address
+      index: exact_match
+    - name: destination_bytes
+      index: range
+    - name: destination_domain
+      index: exact_match
+    - name: destination_geo_city_name
+      index: exact_match
+    - name: destination_geo_continent_name
+      index: exact_match
+    - name: destination_geo_country_iso_code
+      index: exact_match
+    - name: destination_geo_country_name
+      index: exact_match
+    - name: destination_geo_location
+      index: none
+    - name: destination_geo_region_iso_code
+      index: exact_match
+    - name: destination_geo_region_name
+      index: exact_match
+    - name: destination_ip
+      index: dimension
+    - name: destination_mac
+      index: exact_match
+    - name: destination_nat_ip
+      index: dimension
+    - name: destination_nat_port
+      index: range
+    - name: destination_packets
+      index: range
+    - name: destination_port
+      index: range
+    - name: ecs_version
+      index: exact_match
+    - name: event_action
+      index: exact_match
+    - name: event_category
+      index: exact_match
+    - name: event_code
+      index: exact_match
+    - name: event_dataset
+      index: exact_match
+    - name: event_duration
+      index: range
+    - name: event_kind
+      index: exact_match
+    - name: event_module
+      index: exact_match
+    - name: event_original
+      index: none
+    - name: event_outcome
+      index: exact_match
+    - name: event_sequence
+      index: range
+    - name: event_severity
+      index: range
+    - name: event_timezone
+      index: exact_match
+    - name: event_type
+      index: exact_match
+    - name: host_ip
+      index: dimension
+    - name: http_request_body_bytes
+      index: range
+    - name: http_request_method
+      index: exact_match
+    - name: log_file_path
+      index: exact_match
+    - name: log_level
+      index: exact_match
+    - name: log_syslog_priority
+      index: range
+    - name: message
+      index: word_search
+    - name: network_bytes
+      index: range
+    - name: network_packets
+      index: range
+    - name: network_protocol
+      index: exact_match
+    - name: network_transport
+      index: exact_match
+    - name: observer_egress_interface_name
+      index: exact_match
+    - name: observer_egress_zone
+      index: exact_match
+    - name: observer_hostname
+      index: exact_match
+    - name: observer_ingress_interface_name
+      index: exact_match
+    - name: observer_ingress_zone
+      index: exact_match
+    - name: observer_ip
+      index: dimension
+    - name: observer_name
+      index: exact_match
+    - name: observer_product
+      index: exact_match
+    - name: observer_serial_number
+      index: exact_match
+    - name: observer_type
+      index: exact_match
+    - name: observer_vendor
+      index: exact_match
+    - name: related_ip
+      index: dimension
+    - name: related_user
+      index: exact_match
+    - name: rule_id
+      index: exact_match
+    - name: rule_name
+      index: exact_match
+    - name: rule_uuid
+      index: exact_match
+    - name: source_address
+      index: exact_match
+    - name: source_bytes
+      index: range
+    - name: source_domain
+      index: exact_match
+    - name: source_geo_city_name
+      index: exact_match
+    - name: source_geo_continent_name
+      index: exact_match
+    - name: source_geo_country_iso_code
+      index: exact_match
+    - name: source_geo_country_name
+      index: exact_match
+    - name: source_geo_location
+      index: none
+    - name: source_geo_region_iso_code
+      index: exact_match
+    - name: source_geo_region_name
+      index: exact_match
+    - name: source_ip
+      index: dimension
+    - name: source_mac
+      index: exact_match
+    - name: source_nat_ip
+      index: dimension
+    - name: source_nat_port
+      index: range
+    - name: source_packets
+      index: range
+    - name: source_port
+      index: range
+    - name: tags
+      index: exact_match
+    - name: url_domain
+      index: exact_match
+    - name: url_full
+      index: exact_match
+    - name: url_original
+      index: exact_match
+    - name: url_path
+      index: exact_match
+    - name: url_scheme
+      index: exact_match
+    - name: user_name
+      index: exact_match

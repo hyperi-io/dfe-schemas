@@ -1,0 +1,134 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of tanium.client_status at integrations 2c934eb5223b
+    columns:
+    - name: aws_s3_bucket_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_bucket_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_object_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.object.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: log_source_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.source.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_client_status_client_network_location
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tanium.client_status.client_network_location'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: tanium_client_status_computer_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.client_status.computer_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_client_status_full_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.client_status.full_version'
+      comment: 'Elasticsearch mapping type: version'
+      _field_type: base
+    - name: tanium_client_status_host_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.client_status.host_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_client_status_last_registration
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.client_status.last_registration'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tanium_client_status_protocol_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.client_status.protocol_version'
+      comment: 'Elasticsearch mapping type: version'
+      _field_type: base
+    - name: tanium_client_status_receive_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.client_status.receive_state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_client_status_registered_with_tLS
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.client_status.registered_with_tLS'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tanium_client_status_send_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.client_status.send_state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_client_status_server_network_location
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tanium.client_status.server_network_location'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: tanium_client_status_valid_key
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.client_status.valid_key'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tanium_client_status_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.client_status.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

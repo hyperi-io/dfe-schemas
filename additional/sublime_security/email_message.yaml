@@ -1,0 +1,2284 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of sublime_security.email_message at integrations 2c934eb5223b
+    columns:
+    - name: aws_s3_bucket_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_bucket_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_object_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.object.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sublime_security_email_message_attachments_content_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.attachments.content.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_attachments_content_transfer_encoding
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.attachments.content.transfer_encoding'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_attachments_content_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.attachments.content.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_attachments_file_extension
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.attachments.file.extension'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_attachments_file_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.attachments.file.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_attachments_file_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.attachments.file.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_attachments_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.attachments.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_attachments_raw
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.attachments.raw'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_attachments_sha1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.attachments.sha1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_attachments_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.attachments.sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_attachments_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sublime_security.email_message.attachments.size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sublime_security_email_message_body_current_thread_text
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.body.current_thread.text'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_body_html_charset
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.body.html.charset'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_body_html_content_transfer_encoding
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.body.html.content_transfer_encoding'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_body_html_display_text
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.body.html.display_text'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_body_html_inner_text
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.body.html.inner_text'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_body_html_raw
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.body.html.raw'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_body_ips_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.email_message.body.ips.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: sublime_security_email_message_body_links_display_text
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.body.links.display_text'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_body_links_display_url_domain_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.body.links.display_url.domain.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_body_links_display_url_domain_punycode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.body.links.display_url.domain.punycode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_body_links_display_url_domain_root_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.body.links.display_url.domain.root_domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_body_links_display_url_domain_sld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.body.links.display_url.domain.sld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_body_links_display_url_domain_subdomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.body.links.display_url.domain.subdomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_body_links_display_url_domain_tld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.body.links.display_url.domain.tld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_body_links_display_url_domain_valid
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.email_message.body.links.display_url.domain.valid'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sublime_security_email_message_body_links_display_url_fragment
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.body.links.display_url.fragment'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_body_links_display_url_password
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.body.links.display_url.password'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_body_links_display_url_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.body.links.display_url.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_body_links_display_url_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sublime_security.email_message.body.links.display_url.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sublime_security_email_message_body_links_display_url_query_params
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.body.links.display_url.query_params'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_body_links_display_url_rewrite_encoders
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.body.links.display_url.rewrite.encoders'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_body_links_display_url_rewrite_original
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.body.links.display_url.rewrite.original'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_body_links_display_url_scheme
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.body.links.display_url.scheme'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_body_links_display_url_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.body.links.display_url.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_body_links_display_url_username
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.body.links.display_url.username'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_body_links_href_url_domain_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.body.links.href_url.domain.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_body_links_href_url_domain_punycode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.body.links.href_url.domain.punycode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_body_links_href_url_domain_root_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.body.links.href_url.domain.root_domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_body_links_href_url_domain_sld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.body.links.href_url.domain.sld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_body_links_href_url_domain_subdomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.body.links.href_url.domain.subdomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_body_links_href_url_domain_tld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.body.links.href_url.domain.tld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_body_links_href_url_domain_valid
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.email_message.body.links.href_url.domain.valid'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sublime_security_email_message_body_links_href_url_fragment
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.body.links.href_url.fragment'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_body_links_href_url_password
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.body.links.href_url.password'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_body_links_href_url_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.body.links.href_url.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_body_links_href_url_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sublime_security.email_message.body.links.href_url.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sublime_security_email_message_body_links_href_url_query_params
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.body.links.href_url.query_params'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_body_links_href_url_rewrite_encoders
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.body.links.href_url.rewrite.encoders'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_body_links_href_url_rewrite_original
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.body.links.href_url.rewrite.original'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_body_links_href_url_scheme
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.body.links.href_url.scheme'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_body_links_href_url_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.body.links.href_url.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_body_links_href_url_username
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.body.links.href_url.username'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_body_links_mismatched
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.email_message.body.links.mismatched'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sublime_security_email_message_body_plain_charset
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.body.plain.charset'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_body_plain_content_transfer_encoding
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.body.plain.content_transfer_encoding'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_body_plain_raw
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.body.plain.raw'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_errors
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: sublime_security.email_message.errors'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: sublime_security_email_message_external_created_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sublime_security.email_message.external.created_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sublime_security_email_message_external_message_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.external.message_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_external_route_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.external.route_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_external_spam
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.email_message.external.spam'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sublime_security_email_message_external_spam_folder
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.email_message.external.spam_folder'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sublime_security_email_message_external_thread_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.external.thread_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_auth_summary_dmarc_details_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.auth_summary.dmarc.details.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_auth_summary_dmarc_details_disposition
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.auth_summary.dmarc.details.disposition'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_auth_summary_dmarc_details_from_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.auth_summary.dmarc.details.from.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_auth_summary_dmarc_details_from_punycode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.auth_summary.dmarc.details.from.punycode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_auth_summary_dmarc_details_from_root_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.auth_summary.dmarc.details.from.root_domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_auth_summary_dmarc_details_from_sld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.auth_summary.dmarc.details.from.sld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_auth_summary_dmarc_details_from_subdomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.auth_summary.dmarc.details.from.subdomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_auth_summary_dmarc_details_from_tld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.auth_summary.dmarc.details.from.tld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_auth_summary_dmarc_details_from_valid
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.email_message.headers.auth_summary.dmarc.details.from.valid'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sublime_security_email_message_headers_auth_summary_dmarc_details_policy
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.auth_summary.dmarc.details.policy'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_auth_summary_dmarc_details_sub_policy
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.auth_summary.dmarc.details.sub_policy'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_auth_summary_dmarc_details_verdict
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.auth_summary.dmarc.details.verdict'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_auth_summary_dmarc_details_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.auth_summary.dmarc.details.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_auth_summary_dmarc_pass
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.email_message.headers.auth_summary.dmarc.pass'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sublime_security_email_message_headers_auth_summary_dmarc_received_hop
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sublime_security.email_message.headers.auth_summary.dmarc.received_hop'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sublime_security_email_message_headers_auth_summary_spf_details_client_ip_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.email_message.headers.auth_summary.spf.details.client_ip.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: sublime_security_email_message_headers_auth_summary_spf_details_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.auth_summary.spf.details.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_auth_summary_spf_details_designator
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.auth_summary.spf.details.designator'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_auth_summary_spf_details_helo_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.auth_summary.spf.details.helo.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_auth_summary_spf_details_helo_punycode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.auth_summary.spf.details.helo.punycode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_auth_summary_spf_details_helo_root_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.auth_summary.spf.details.helo.root_domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_auth_summary_spf_details_helo_sld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.auth_summary.spf.details.helo.sld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_auth_summary_spf_details_helo_subdomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.auth_summary.spf.details.helo.subdomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_auth_summary_spf_details_helo_tld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.auth_summary.spf.details.helo.tld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_auth_summary_spf_details_helo_valid
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.email_message.headers.auth_summary.spf.details.helo.valid'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sublime_security_email_message_headers_auth_summary_spf_details_server_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.auth_summary.spf.details.server.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_auth_summary_spf_details_server_punycode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.auth_summary.spf.details.server.punycode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_auth_summary_spf_details_server_root_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.auth_summary.spf.details.server.root_domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_auth_summary_spf_details_server_sld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.auth_summary.spf.details.server.sld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_auth_summary_spf_details_server_subdomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.auth_summary.spf.details.server.subdomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_auth_summary_spf_details_server_tld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.auth_summary.spf.details.server.tld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_auth_summary_spf_details_server_valid
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.email_message.headers.auth_summary.spf.details.server.valid'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sublime_security_email_message_headers_auth_summary_spf_details_verdict
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.auth_summary.spf.details.verdict'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_auth_summary_spf_error
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.email_message.headers.auth_summary.spf.error'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sublime_security_email_message_headers_auth_summary_spf_pass
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.email_message.headers.auth_summary.spf.pass'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sublime_security_email_message_headers_auth_summary_spf_received_hop
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sublime_security.email_message.headers.auth_summary.spf.received_hop'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sublime_security_email_message_headers_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sublime_security.email_message.headers.date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sublime_security_email_message_headers_date_original_offset
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.date_original_offset'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_delivered_to_domain_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.delivered_to.domain.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_delivered_to_domain_punycode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.delivered_to.domain.punycode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_delivered_to_domain_root_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.delivered_to.domain.root_domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_delivered_to_domain_sld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.delivered_to.domain.sld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_delivered_to_domain_subdomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.delivered_to.domain.subdomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_delivered_to_domain_tld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.delivered_to.domain.tld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_delivered_to_domain_valid
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.email_message.headers.delivered_to.domain.valid'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sublime_security_email_message_headers_delivered_to_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.delivered_to.email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_delivered_to_local_part
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.delivered_to.local_part'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_domains_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.domains.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_domains_punycode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.domains.punycode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_domains_root_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.domains.root_domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_domains_sld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.domains.sld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_domains_subdomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.domains.subdomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_domains_tld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.domains.tld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_domains_valid
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.email_message.headers.domains.valid'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_compauth_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.compauth.reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_compauth_verdict
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.compauth.verdict'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_dkim
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.dkim'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_dkim_details_algorithm
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.dkim_details.algorithm'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_dkim_details_body_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.dkim_details.body_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_dkim_details_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.dkim_details.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_dkim_details_headers
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.dkim_details.headers'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_dkim_details_instance
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.dkim_details.instance'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_dkim_details_selector
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.dkim_details.selector'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_dkim_details_signature
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.dkim_details.signature'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_dkim_details_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.dkim_details.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_dkim_details_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.dkim_details.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_dmarc
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.dmarc'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_dmarc_details_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.dmarc_details.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_dmarc_details_disposition
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.dmarc_details.disposition'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_dmarc_details_from_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.dmarc_details.from.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_dmarc_details_from_punycode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.dmarc_details.from.punycode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_dmarc_details_from_root_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.dmarc_details.from.root_domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_dmarc_details_from_sld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.dmarc_details.from.sld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_dmarc_details_from_subdomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.dmarc_details.from.subdomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_dmarc_details_from_tld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.dmarc_details.from.tld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_dmarc_details_from_valid
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.dmarc_details.from.valid'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_dmarc_details_policy
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.dmarc_details.policy'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_dmarc_details_sub_policy
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.dmarc_details.sub_policy'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_dmarc_details_verdict
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.dmarc_details.verdict'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_dmarc_details_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.dmarc_details.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_instance
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.instance'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_server_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.server.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_server_punycode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.server.punycode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_server_root_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.server.root_domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_server_sld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.server.sld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_server_subdomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.server.subdomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_server_tld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.server.tld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_server_valid
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.server.valid'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_spf
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.spf'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_spf_details_client_ip_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.spf_details.client_ip.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_spf_details_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.spf_details.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_spf_details_designator
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.spf_details.designator'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_spf_details_helo_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.spf_details.helo.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_spf_details_helo_punycode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.spf_details.helo.punycode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_spf_details_helo_root_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.spf_details.helo.root_domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_spf_details_helo_sld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.spf_details.helo.sld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_spf_details_helo_subdomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.spf_details.helo.subdomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_spf_details_helo_tld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.spf_details.helo.tld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_spf_details_helo_valid
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.spf_details.helo.valid'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_spf_details_server_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.spf_details.server.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_spf_details_server_punycode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.spf_details.server.punycode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_spf_details_server_root_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.spf_details.server.root_domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_spf_details_server_sld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.spf_details.server.sld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_spf_details_server_subdomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.spf_details.server.subdomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_spf_details_server_tld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.spf_details.server.tld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_spf_details_server_valid
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.spf_details.server.valid'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_spf_details_verdict
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.spf_details.verdict'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_authentication_results_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.authentication_results.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_fields_position
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sublime_security.email_message.headers.hops.fields.position'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_index
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sublime_security.email_message.headers.hops.index'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_received_additional_raw
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.received.additional.raw'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_received_id_raw
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.received.id.raw'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_received_link_raw
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.received.link.raw'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_received_mailbox_raw
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.received.mailbox.raw'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_received_protocol_raw
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.received.protocol.raw'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_received_server_raw
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.received.server.raw'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_received_source_raw
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.received.source.raw'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_received_spf_client_ip_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.email_message.headers.hops.received_spf.client_ip.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_received_spf_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.received_spf.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_received_spf_designator
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.received_spf.designator'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_received_spf_helo_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.received_spf.helo.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_received_spf_helo_punycode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.received_spf.helo.punycode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_received_spf_helo_root_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.received_spf.helo.root_domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_received_spf_helo_sld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.received_spf.helo.sld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_received_spf_helo_subdomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.received_spf.helo.subdomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_received_spf_helo_tld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.received_spf.helo.tld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_received_spf_helo_valid
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.email_message.headers.hops.received_spf.helo.valid'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_received_spf_server_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.received_spf.server.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_received_spf_server_punycode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.received_spf.server.punycode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_received_spf_server_root_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.received_spf.server.root_domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_received_spf_server_sld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.received_spf.server.sld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_received_spf_server_subdomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.received_spf.server.subdomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_received_spf_server_tld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.received_spf.server.tld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_received_spf_server_valid
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.email_message.headers.hops.received_spf.server.valid'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_received_spf_verdict
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.received_spf.verdict'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_received_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sublime_security.email_message.headers.hops.received.time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_received_zone_offset
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.received.zone_offset'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_signature_algorithm
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.signature.algorithm'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_signature_body_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.signature.body_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_signature_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.signature.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_signature_headers
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.signature.headers'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_signature_instance
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.signature.instance'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_signature_selector
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.signature.selector'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_signature_signature
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.signature.signature'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_signature_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.signature.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_hops_signature_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.hops.signature.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_in_reply_to
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.in_reply_to'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_ips_ip
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.ips.ip'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_mailer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.mailer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_message_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.message_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_references
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.references'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_reply_to_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.reply_to.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_reply_to_email_domain_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.reply_to.email.domain.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_reply_to_email_domain_punycode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.reply_to.email.domain.punycode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_reply_to_email_domain_root_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.reply_to.email.domain.root_domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_reply_to_email_domain_sld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.reply_to.email.domain.sld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_reply_to_email_domain_subdomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.reply_to.email.domain.subdomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_reply_to_email_domain_tld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.reply_to.email.domain.tld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_reply_to_email_domain_valid
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.email_message.headers.reply_to.email.domain.valid'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sublime_security_email_message_headers_reply_to_email_local_part
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.reply_to.email.local_part'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_reply_to_email_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.reply_to.email.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_return_path_domain_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.return_path.domain.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_return_path_domain_punycode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.return_path.domain.punycode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_return_path_domain_root_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.return_path.domain.root_domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_return_path_domain_sld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.return_path.domain.sld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_return_path_domain_subdomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.return_path.domain.subdomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_return_path_domain_tld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.return_path.domain.tld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_return_path_domain_valid
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.email_message.headers.return_path.domain.valid'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sublime_security_email_message_headers_return_path_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.return_path.email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_return_path_local_part
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.return_path.local_part'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_x_authenticated_domain_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.x_authenticated_domain.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_x_authenticated_domain_punycode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.x_authenticated_domain.punycode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_x_authenticated_domain_root_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.x_authenticated_domain.root_domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_x_authenticated_domain_sld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.x_authenticated_domain.sld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_x_authenticated_domain_subdomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.x_authenticated_domain.subdomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_x_authenticated_domain_tld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.x_authenticated_domain.tld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_x_authenticated_domain_valid
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.email_message.headers.x_authenticated_domain.valid'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sublime_security_email_message_headers_x_authenticated_sender_domain_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.x_authenticated_sender.domain.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_x_authenticated_sender_domain_punycode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.x_authenticated_sender.domain.punycode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_x_authenticated_sender_domain_root_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.x_authenticated_sender.domain.root_domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_x_authenticated_sender_domain_sld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.x_authenticated_sender.domain.sld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_x_authenticated_sender_domain_subdomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.x_authenticated_sender.domain.subdomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_x_authenticated_sender_domain_tld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.x_authenticated_sender.domain.tld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_x_authenticated_sender_domain_valid
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.email_message.headers.x_authenticated_sender.domain.valid'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sublime_security_email_message_headers_x_authenticated_sender_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.x_authenticated_sender.email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_x_authenticated_sender_local_part
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.x_authenticated_sender.local_part'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_x_client_ip_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.email_message.headers.x_client_ip.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: sublime_security_email_message_headers_x_originating_ip_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.email_message.headers.x_originating_ip.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: sublime_security_email_message_headers_x_secure_server_account
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.x_secure_server_account'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_x_sender_domain_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.x_sender.domain.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_x_sender_domain_punycode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.x_sender.domain.punycode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_x_sender_domain_root_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.x_sender.domain.root_domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_x_sender_domain_sld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.x_sender.domain.sld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_x_sender_domain_subdomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.x_sender.domain.subdomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_x_sender_domain_tld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.x_sender.domain.tld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_x_sender_domain_valid
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.email_message.headers.x_sender.domain.valid'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sublime_security_email_message_headers_x_sender_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.x_sender.email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_headers_x_sender_local_part
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.headers.x_sender.local_part'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_mailbox_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.mailbox.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_mailbox_email_domain_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.mailbox.email.domain.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_mailbox_email_domain_punycode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.mailbox.email.domain.punycode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_mailbox_email_domain_root_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.mailbox.email.domain.root_domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_mailbox_email_domain_sld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.mailbox.email.domain.sld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_mailbox_email_domain_subdomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.mailbox.email.domain.subdomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_mailbox_email_domain_tld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.mailbox.email.domain.tld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_mailbox_email_domain_valid
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.email_message.mailbox.email.domain.valid'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sublime_security_email_message_mailbox_email_local_part
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.mailbox.email.local_part'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_mailbox_email_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.mailbox.email.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_meta_canonical_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.meta.canonical_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_meta_created_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sublime_security.email_message.meta.created_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sublime_security_email_message_meta_effective_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sublime_security.email_message.meta.effective_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sublime_security_email_message_meta_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.meta.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_recipients_bcc_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.recipients.bcc.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_recipients_bcc_email_domain_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.recipients.bcc.email.domain.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_recipients_bcc_email_domain_punycode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.recipients.bcc.email.domain.punycode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_recipients_bcc_email_domain_root_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.recipients.bcc.email.domain.root_domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_recipients_bcc_email_domain_sld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.recipients.bcc.email.domain.sld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_recipients_bcc_email_domain_subdomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.recipients.bcc.email.domain.subdomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_recipients_bcc_email_domain_tld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.recipients.bcc.email.domain.tld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_recipients_bcc_email_domain_valid
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.email_message.recipients.bcc.email.domain.valid'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sublime_security_email_message_recipients_bcc_email_local_part
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.recipients.bcc.email.local_part'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_recipients_bcc_email_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.recipients.bcc.email.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_recipients_cc_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.recipients.cc.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_recipients_cc_email_domain_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.recipients.cc.email.domain.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_recipients_cc_email_domain_punycode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.recipients.cc.email.domain.punycode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_recipients_cc_email_domain_root_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.recipients.cc.email.domain.root_domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_recipients_cc_email_domain_sld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.recipients.cc.email.domain.sld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_recipients_cc_email_domain_subdomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.recipients.cc.email.domain.subdomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_recipients_cc_email_domain_tld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.recipients.cc.email.domain.tld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_recipients_cc_email_domain_valid
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.email_message.recipients.cc.email.domain.valid'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sublime_security_email_message_recipients_cc_email_local_part
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.recipients.cc.email.local_part'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_recipients_cc_email_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.recipients.cc.email.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_recipients_to_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.recipients.to.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_recipients_to_email_domain_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.recipients.to.email.domain.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_recipients_to_email_domain_punycode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.recipients.to.email.domain.punycode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_recipients_to_email_domain_root_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.recipients.to.email.domain.root_domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_recipients_to_email_domain_sld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.recipients.to.email.domain.sld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_recipients_to_email_domain_subdomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.recipients.to.email.domain.subdomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_recipients_to_email_domain_tld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.recipients.to.email.domain.tld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_recipients_to_email_domain_valid
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.email_message.recipients.to.email.domain.valid'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sublime_security_email_message_recipients_to_email_local_part
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.recipients.to.email.local_part'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_recipients_to_email_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.recipients.to.email.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_sender_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.sender.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_sender_email_domain_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.sender.email.domain.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_sender_email_domain_punycode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.sender.email.domain.punycode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_sender_email_domain_root_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.sender.email.domain.root_domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_sender_email_domain_sld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.sender.email.domain.sld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_sender_email_domain_subdomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.sender.email.domain.subdomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_sender_email_domain_tld
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.sender.email.domain.tld'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_sender_email_domain_valid
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.email_message.sender.email.domain.valid'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sublime_security_email_message_sender_email_local_part
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.sender.email.local_part'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_sender_email_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.sender.email.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_subject_subject
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.email_message.subject.subject'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_email_message_type_inbound
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.email_message.type.inbound'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sublime_security_email_message_type_internal
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.email_message.type.internal'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sublime_security_email_message_type_outbound
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.email_message.type.outbound'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base

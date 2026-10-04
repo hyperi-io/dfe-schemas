@@ -1,0 +1,2347 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of qualys_gav.asset at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: labels_is_transform_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: labels.is_transform_source'
+      comment: 'Elasticsearch mapping type: constant_keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: qualys_gav_asset_activity_last_scanned_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.activity.last_scanned_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_activity_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.activity.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: qualys_gav.asset.address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: qualys_gav_asset_agent_activations_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.agent.activations.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_agent_activations_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.agent.activations.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_agent_configuration_profile
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.agent.configuration_profile'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_agent_connected_from
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: qualys_gav.asset.agent.connected_from'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: qualys_gav_asset_agent_error_status
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: qualys_gav.asset.agent.error_status'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: qualys_gav_asset_agent_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.agent_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_agent_last_activity
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.agent.last_activity'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_agent_last_checked_in
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.agent.last_checked_in'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_agent_last_inventory
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.agent.last_inventory'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_agent_udc_manifest_assigned
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: qualys_gav.asset.agent.udc_manifest_assigned'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: qualys_gav_asset_agent_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.agent.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_asn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.asn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_asset_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.asset_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_asset_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.asset_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_asset_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.asset_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_asset_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.asset_uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_assigned_location_city
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.assigned_location.city'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_assigned_location_country
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.assigned_location.country'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_assigned_location_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.assigned_location.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_assigned_location_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.assigned_location.state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_bios_asset_tag
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.bios_asset_tag'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_bios_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.bios_description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_bios_serial_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.bios_serial_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_business_app_list_data_business_app_business_criticality
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.business_app_list_data.business_app.business_criticality'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_business_app_list_data_business_app_environment
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.business_app_list_data.business_app.environment'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_business_app_list_data_business_app_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.business_app_list_data.business_app.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_business_app_list_data_business_app_managed_by
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.business_app_list_data.business_app.managed_by'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_business_app_list_data_business_app_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.business_app_list_data.business_app.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_business_app_list_data_business_app_operational_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.business_app_list_data.business_app.operational_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_business_app_list_data_business_app_owned_by
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.business_app_list_data.business_app.owned_by'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_business_app_list_data_business_app_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.business_app_list_data.business_app.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_business_app_list_data_business_app_support_group
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.business_app_list_data.business_app.support_group'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_business_app_list_data_business_app_supported_by
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.business_app_list_data.business_app.supported_by'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_business_app_list_data_business_app_used_for
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.business_app_list_data.business_app.used_for'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_business_information_company
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.business_information.company'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_business_information_department
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.business_information.department'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_business_information_environment
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.business_information.environment'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_business_information_managed_by
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.business_information.managed_by'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_business_information_operational_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.business_information.operational_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_business_information_owned_by
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.business_information.owned_by'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_business_information_support_group
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.business_information.support_group'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_business_information_supported_by
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.business_information.supported_by'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_aws_ec2_account_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.aws.ec2.account_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_aws_ec2_availability_zone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.aws.ec2.availability_zone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_aws_ec2_has_agent
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: qualys_gav.asset.cloud_provider.aws.ec2.has_agent'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_aws_ec2_hostname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.aws.ec2.hostname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_aws_ec2_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.aws.ec2.image_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_aws_ec2_instance_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.aws.ec2.instance_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_aws_ec2_instance_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.aws.ec2.instance_state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_aws_ec2_instance_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.aws.ec2.instance_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_aws_ec2_kernel_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.aws.ec2.kernel_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_aws_ec2_launchdate
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.cloud_provider.aws.ec2.launchdate'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_aws_ec2_private_dns
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.aws.ec2.private_dns'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_aws_ec2_private_ip_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.aws.ec2.private_ip_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_aws_ec2_public_dns
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.aws.ec2.public_dns'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_aws_ec2_public_ip_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.aws.ec2.public_ip_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_aws_ec2_qualys_scanner
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: qualys_gav.asset.cloud_provider.aws.ec2.qualys_scanner'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_aws_ec2_region_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.aws.ec2.region.code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_aws_ec2_region_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.aws.ec2.region.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_aws_ec2_spot_instance
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: qualys_gav.asset.cloud_provider.aws.ec2.spot_instance'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_aws_ec2_subnet_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.aws.ec2.subnet_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_aws_ec2_vpc_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.aws.ec2.vpc_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_aws_tags_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.aws.tags.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_aws_tags_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.aws.tags.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_azure_tags_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.azure.tags.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_azure_tags_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.azure.tags.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_azure_vm_image_offer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.azure.vm.image_offer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_azure_vm_image_publisher
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.azure.vm.image_publisher'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_azure_vm_image_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.azure.vm.image_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_azure_vm_location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.azure.vm.location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_azure_vm_mac_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.azure.vm.mac_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_azure_vm_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.azure.vm.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_azure_vm_platform
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.azure.vm.platform'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_azure_vm_private_ip_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.azure.vm.private_ip_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_azure_vm_public_ip_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.azure.vm.public_ip_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_azure_vm_resource_group_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.azure.vm.resource_group_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_azure_vm_size
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.azure.vm.size'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_azure_vm_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.azure.vm.state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_azure_vm_subnet
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.azure.vm.subnet'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_azure_vm_subscription_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.azure.vm.subscription_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_azure_vm_virtual_network
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.azure.vm.virtual_network'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_azure_vm_vm_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.azure.vm.vm_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_gcp_compute_hostname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.gcp.compute.hostname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_gcp_compute_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.gcp.compute.image_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_gcp_compute_instance_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.gcp.compute.instance_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_gcp_compute_mac_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.gcp.compute.mac_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_gcp_compute_machine_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.gcp.compute.machine_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_gcp_compute_network
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.gcp.compute.network'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_gcp_compute_private_ip_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.gcp.compute.private_ip_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_gcp_compute_project_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.gcp.compute.project_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_gcp_compute_project_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.gcp.compute.project_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_gcp_compute_public_ip_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.gcp.compute.public_ip_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_gcp_compute_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.gcp.compute.state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_gcp_compute_zone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.gcp.compute.zone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_gcp_tags_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.gcp.tags.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_gcp_tags_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.gcp.tags.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_ibm_tags_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.ibm.tags.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_ibm_tags_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.ibm.tags.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_ibm_virtual_server_datacenter_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.ibm.virtual_server.datacenter_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_ibm_virtual_server_device_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.ibm.virtual_server.device_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_ibm_virtual_server_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.ibm.virtual_server.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_ibm_virtual_server_ibm_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.ibm.virtual_server.ibm_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_ibm_virtual_server_location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.ibm.virtual_server.location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_ibm_virtual_server_private_ip
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.ibm.virtual_server.private_ip'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_ibm_virtual_server_private_vlan
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.ibm.virtual_server.private_vlan'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_ibm_virtual_server_public_ip
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.ibm.virtual_server.public_ip'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_ibm_virtual_server_public_vlan
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.ibm.virtual_server.public_vlan'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cloud_provider_ibm_virtual_server_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.cloud_provider.ibm.virtual_server.state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_container_has_sensor
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.container.has_sensor'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_container_no_of_containers
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.container.no_of_containers'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: qualys_gav_asset_container_no_of_images
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.container.no_of_images'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: qualys_gav_asset_container_product
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.container.product'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_container_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.container.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_cpu_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.cpu_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: qualys_gav_asset_created_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.created_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_criticality_is_default
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: qualys_gav.asset.criticality.is_default'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: qualys_gav_asset_criticality_last_updated
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.criticality.last_updated'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_criticality_score
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.criticality.score'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: qualys_gav_asset_custom_attributes_connector_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.custom_attributes.connector_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_custom_attributes_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.custom_attributes.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_custom_attributes_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.custom_attributes.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_dns_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.dns_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_domain_role
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.domain_role'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_easm_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.easm_tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_hardware_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.hardware.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_hardware_category1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.hardware.category1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_hardware_category2
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.hardware.category2'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_hardware_full_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.hardware.full_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_hardware_lifecycle_eos_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.hardware.lifecycle.eos_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_hardware_lifecycle_ga_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.hardware.lifecycle.ga_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_hardware_lifecycle_intro_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.hardware.lifecycle.intro_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_hardware_lifecycle_life_cycle_confidence
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.hardware.lifecycle.life_cycle_confidence'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_hardware_lifecycle_obsolete_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.hardware.lifecycle.obsolete_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_hardware_lifecycle_stage
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.hardware.lifecycle.stage'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_hardware_manufacturer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.hardware.manufacturer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_hardware_model
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.hardware.model'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_hardware_product_family
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.hardware.product_family'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_hardware_product_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.hardware.product_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_hardware_product_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.hardware.product_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_hardware_taxonomy_category1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.hardware.taxonomy.category1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_hardware_taxonomy_category2
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.hardware.taxonomy.category2'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_hardware_taxonomy_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.hardware.taxonomy.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_hardware_taxonomy_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.hardware.taxonomy.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_host_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.host_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_hosting_category1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.hosting_category1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_hw_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.hw_uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_interval_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.interval_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_interval_start
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.interval_start'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_inventory_created
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.inventory.created'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_inventory_last_updated
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.inventory.last_updated'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_inventory_list_data_inventory_created
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.inventory_list_data.inventory.created'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_inventory_list_data_inventory_last_updated
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.inventory_list_data.inventory.last_updated'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_inventory_list_data_inventory_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.inventory_list_data.inventory.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_inventory_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.inventory.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_is_container_host
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: qualys_gav.asset.is_container_host'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: qualys_gav_asset_isp
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.isp'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_last_boot
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.last_boot'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_last_location_city
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.last_location.city'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_last_location_continent
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.last_location.continent'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_last_location_country
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.last_location.country'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_last_location_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.last_location.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_last_location_postal
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.last_location.postal'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_last_location_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.last_location.state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_last_logged_on_user
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.last_logged_on_user'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_last_modified_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.last_modified_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_lpar_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.lpar_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_missing_software
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.missing_software'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_netbios_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.netbios_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_network_interface_list_data_network_interface_address_ip_v4
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: qualys_gav.asset.network_interface_list_data.network_interface.address_ip_v4'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: qualys_gav_asset_network_interface_list_data_network_interface_address_ip_v6
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: qualys_gav.asset.network_interface_list_data.network_interface.address_ip_v6'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: qualys_gav_asset_network_interface_list_data_network_interface_addresses
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.network_interface_list_data.network_interface.addresses'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_network_interface_list_data_network_interface_dns_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.network_interface_list_data.network_interface.dns_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_network_interface_list_data_network_interface_gateway_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.network_interface_list_data.network_interface.gateway_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_network_interface_list_data_network_interface_hostname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.network_interface_list_data.network_interface.hostname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_network_interface_list_data_network_interface_interface_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.network_interface_list_data.network_interface.interface_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_network_interface_list_data_network_interface_mac_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.network_interface_list_data.network_interface.mac_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_network_interface_list_data_network_interface_mac_vendor_intro_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.network_interface_list_data.network_interface.mac_vendor_intro_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_network_interface_list_data_network_interface_manufacturer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.network_interface_list_data.network_interface.manufacturer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_network_interface_list_data_network_interface_netmask
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.network_interface_list_data.network_interface.netmask'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_open_port_list_data_open_port_authorization
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.open_port_list_data.open_port.authorization'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_open_port_list_data_open_port_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.open_port_list_data.open_port.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_open_port_list_data_open_port_detected_service
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.open_port_list_data.open_port.detected_service'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_open_port_list_data_open_port_detection_score
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.open_port_list_data.open_port.detection_score'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: qualys_gav_asset_open_port_list_data_open_port_discovery_sources
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.open_port_list_data.open_port.discovery_sources'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_open_port_list_data_open_port_first_found
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.open_port_list_data.open_port.first_found'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_open_port_list_data_open_port_last_updated
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.open_port_list_data.open_port.last_updated'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_open_port_list_data_open_port_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.open_port_list_data.open_port.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: qualys_gav_asset_open_port_list_data_open_port_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.open_port_list_data.open_port.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_operating_system_architecture
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.operating_system.architecture'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_operating_system_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.operating_system.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_operating_system_category1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.operating_system.category1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_operating_system_category2
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.operating_system.category2'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_operating_system_cpe
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.operating_system.cpe'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_operating_system_cpe_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.operating_system.cpe_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_operating_system_cpe_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.operating_system.cpe_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_operating_system_edition
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.operating_system.edition'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_operating_system_full_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.operating_system.full_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_operating_system_install_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.operating_system.install_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_operating_system_lifecycle_detection_score
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.operating_system.lifecycle.detection_score'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: qualys_gav_asset_operating_system_lifecycle_eol_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.operating_system.lifecycle.eol_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_operating_system_lifecycle_eol_support_stage
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.operating_system.lifecycle.eol_support_stage'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_operating_system_lifecycle_eos_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.operating_system.lifecycle.eos_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_operating_system_lifecycle_eos_support_stage
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.operating_system.lifecycle.eos_support_stage'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_operating_system_lifecycle_ga_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.operating_system.lifecycle.ga_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_operating_system_lifecycle_life_cycle_confidence
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.operating_system.lifecycle.life_cycle_confidence'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_operating_system_lifecycle_stage
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.operating_system.lifecycle.stage'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_operating_system_market_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.operating_system.market_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_operating_system_os_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.operating_system.os_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_operating_system_product_family
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.operating_system.product_family'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_operating_system_product_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.operating_system.product_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_operating_system_product_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.operating_system.product_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_operating_system_publisher
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.operating_system.publisher'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_operating_system_release
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.operating_system.release'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_operating_system_taxonomy_category1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.operating_system.taxonomy.category1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_operating_system_taxonomy_category2
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.operating_system.taxonomy.category2'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_operating_system_taxonomy_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.operating_system.taxonomy.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_operating_system_taxonomy_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.operating_system.taxonomy.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_operating_system_update
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.operating_system.update'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_operating_system_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.operating_system.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_organization_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.organization_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_processor_cores_per_socket
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.processor.cores_per_socket'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: qualys_gav_asset_processor_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.processor.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_processor_multithreading_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.processor.multithreading_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_processor_no_of_socket
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.processor.no_of_socket'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: qualys_gav_asset_processor_num_cpus
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.processor.num_cpus'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: qualys_gav_asset_processor_speed
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.processor.speed'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: qualys_gav_asset_processor_threads_per_core
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.processor.threads_per_core'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: qualys_gav_asset_provider
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.provider'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_risk_score
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.risk_score'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: qualys_gav_asset_sensor_activated_for_modules
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.sensor.activated_for_modules'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_sensor_first_easm_scan_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.sensor.first_easm_scan_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_sensor_last_compliance_scan
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.sensor.last_compliance_scan'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_sensor_last_easm_scan_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.sensor.last_easm_scan_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_sensor_last_full_scan
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.sensor.last_full_scan'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_sensor_last_pc_scan_date_agent
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.sensor.last_pc_scan_date_agent'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_sensor_last_pc_scan_date_scanner
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.sensor.last_pc_scan_date_scanner'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_sensor_last_updated_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.sensor_last_updated_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_sensor_last_vm_scan_date_agent
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.sensor.last_vm_scan_date_agent'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_sensor_last_vm_scan_date_scanner
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.sensor.last_vm_scan_date_scanner'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_sensor_last_vmscan
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.sensor.last_vmscan'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_sensor_pending_activation_for_modules
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.sensor.pending_activation_for_modules'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_sensor_software_component
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.sensor.software_component'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_service_list_service_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.service_list.service.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_service_list_service_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.service_list.service.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_service_list_service_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.service_list.service.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_component
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_component'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_architecture
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.architecture'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_authorization
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.authorization'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_authorization_detection_score
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.software_list_data.software.authorization_detection_score'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_category1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.category1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_category2
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.category2'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_component
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.component'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_cpe
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.cpe'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_cpe_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.cpe_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_cpe_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.cpe_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_discovered_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.discovered_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_discovered_publisher
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.discovered_publisher'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_discovered_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.discovered_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_discovery_sources
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.discovery_sources'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_edition
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.edition'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_formerly_known_as
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.formerly_known_as'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_full_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.full_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_ignored_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.ignored_reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_install_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.software_list_data.software.install_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_install_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.install_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_is_ignored
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: qualys_gav.asset.software_list_data.software.is_ignored'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_is_package
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: qualys_gav.asset.software_list_data.software.is_package'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_is_package_component
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: qualys_gav.asset.software_list_data.software.is_package_component'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_language
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.language'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_last_updated
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.software_list_data.software.last_updated'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_last_use_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.software_list_data.software.last_use_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_license_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.license.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_license_subcategory
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.license.subcategory'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_lifecycle_detection_score
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.software_list_data.software.lifecycle.detection_score'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_lifecycle_eol_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.software_list_data.software.lifecycle.eol_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_lifecycle_eol_support_stage
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.lifecycle.eol_support_stage'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_lifecycle_eos_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.software_list_data.software.lifecycle.eos_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_lifecycle_eos_support_stage
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.lifecycle.eos_support_stage'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_lifecycle_ga_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.software_list_data.software.lifecycle.ga_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_lifecycle_life_cycle_confidence
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.lifecycle.life_cycle_confidence'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_lifecycle_stage
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.lifecycle.stage'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_market_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.market_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_package_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.package_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_product_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.product_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_product_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.product_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_publisher
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.publisher'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_software_instances_bin_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.software_instances.bin_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_software_instances_conf_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.software_instances.conf_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_software_instances_first_seen
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.software_list_data.software.software_instances.first_seen'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_software_instances_instance_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.software_instances.instance_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_software_instances_last_seen
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.software_list_data.software.software_instances.last_seen'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_software_instances_proc
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.software_instances.proc'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_software_instances_product
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.software_instances.product'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_software_instances_technology
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.software_instances.technology'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_software_instances_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.software_instances.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_software_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.software_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_support_stage_desc
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.support_stage_desc'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_update
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.update'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_software_list_data_software_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.software_list_data.software.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_subdomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.subdomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_tag_list_tag_background_color
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.tag_list.tag.background_color'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_tag_list_tag_business_impact
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.tag_list.tag.business_impact'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_tag_list_tag_criticality_score
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.tag_list.tag.criticality_score'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: qualys_gav_asset_tag_list_tag_foreground_color
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.tag_list.tag.foreground_color'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_tag_list_tag_tag_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.tag_list.tag.tag_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_tag_list_tag_tag_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.tag_list.tag.tag_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_time_zone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.time_zone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_total_memory
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.total_memory'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: qualys_gav_asset_user_account_list_data_user_account
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: qualys_gav.asset.user_account_list_data.user_account'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: qualys_gav_asset_volume_list_data_volume_free
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.volume_list_data.volume.free'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: qualys_gav_asset_volume_list_data_volume_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.volume_list_data.volume.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_volume_list_data_volume_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.volume_list_data.volume.size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: qualys_gav_asset_whois_created_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.whois.created_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_whois_dnssec
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.whois.dnssec'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_whois_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.whois.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_whois_domain_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.whois.domain_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_whois_expiration_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.whois.expiration_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: qualys_gav_asset_whois_organization_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.whois.organization_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_whois_registrant_contact
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.whois.registrant_contact'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_whois_registrant_country
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.whois.registrant_country'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_whois_registrant_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.whois.registrant_email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_whois_registrant_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.whois.registrant_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_whois_registrant_organization
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.whois.registrant_organization'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_whois_registrar
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: qualys_gav.asset.whois.registrar'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: qualys_gav_asset_whois_updated_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: qualys_gav.asset.whois.updated_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base

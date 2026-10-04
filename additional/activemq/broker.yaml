@@ -1,0 +1,85 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of activemq.broker at integrations 2c934eb5223b
+    columns:
+    - name: activemq_broker_connections_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: activemq.broker.connections.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: activemq_broker_consumers_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: activemq.broker.consumers.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: activemq_broker_mbean
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: activemq.broker.mbean'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: activemq_broker_memory_broker_pct
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: activemq.broker.memory.broker.pct'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: activemq_broker_memory_store_pct
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: activemq.broker.memory.store.pct'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: activemq_broker_memory_temp_pct
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: activemq.broker.memory.temp.pct'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: activemq_broker_messages_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: activemq.broker.messages.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: activemq_broker_messages_dequeue_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: activemq.broker.messages.dequeue.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: activemq_broker_messages_enqueue_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: activemq.broker.messages.enqueue.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: activemq_broker_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: activemq.broker.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: activemq_broker_producers_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: activemq.broker.producers.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

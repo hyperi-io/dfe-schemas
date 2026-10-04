@@ -1,0 +1,92 @@
+base: meta/elastic/ecs
+base_version: "1.0.0"
+current: "1.0.0"
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    summary: servicenow.event selection from meta/elastic/ecs
+    select:
+    - name: data_stream_dataset
+      index: exact_match
+    - name: data_stream_namespace
+      index: exact_match
+    - name: data_stream_type
+      index: exact_match
+    - name: device_manufacturer
+      index: exact_match
+    - name: device_model_name
+      index: exact_match
+    - name: ecs_version
+      index: exact_match
+    - name: event_category
+      index: exact_match
+    - name: event_created
+      index: range
+    - name: event_dataset
+      index: exact_match
+    - name: event_end
+      index: range
+    - name: event_id
+      index: exact_match
+    - name: event_kind
+      index: exact_match
+    - name: event_module
+      index: exact_match
+    - name: event_original
+      index: none
+    - name: event_provider
+      index: exact_match
+    - name: event_severity
+      index: range
+    - name: event_start
+      index: range
+    - name: event_timezone
+      index: exact_match
+    - name: event_type
+      index: exact_match
+    - name: host_geo_city_name
+      index: exact_match
+    - name: host_geo_country_name
+      index: exact_match
+    - name: host_geo_name
+      index: exact_match
+    - name: host_geo_timezone
+      index: exact_match
+    - name: host_ip
+      index: dimension
+    - name: host_os_name
+      index: exact_match
+    - name: host_os_version
+      index: exact_match
+    - name: message
+      index: word_search
+    - name: organization_name
+      index: exact_match
+    - name: related_ip
+      index: dimension
+    - name: related_user
+      index: exact_match
+    - name: tags
+      index: exact_match
+    - name: url_domain
+      index: exact_match
+    - name: url_extension
+      index: exact_match
+    - name: url_full
+      index: exact_match
+    - name: url_original
+      index: exact_match
+    - name: url_path
+      index: exact_match
+    - name: url_query
+      index: exact_match
+    - name: url_scheme
+      index: exact_match
+    - name: user_domain
+      index: exact_match
+    - name: user_email
+      index: exact_match
+    - name: user_full_name
+      index: exact_match
+    - name: user_name
+      index: exact_match

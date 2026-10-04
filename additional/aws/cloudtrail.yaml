@@ -1,0 +1,379 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of aws.cloudtrail at integrations 2c934eb5223b
+    columns:
+    - name: actor_entity_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: actor.entity.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_cloudtrail_additional_eventdata
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.cloudtrail.additional_eventdata'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_cloudtrail_api_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.cloudtrail.api_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_cloudtrail_console_login_additional_eventdata_login_to
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.cloudtrail.console_login.additional_eventdata.login_to'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_cloudtrail_console_login_additional_eventdata_mfa_used
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.cloudtrail.console_login.additional_eventdata.mfa_used'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: aws_cloudtrail_console_login_additional_eventdata_mobile_version
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.cloudtrail.console_login.additional_eventdata.mobile_version'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: aws_cloudtrail_error_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.cloudtrail.error_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_cloudtrail_error_message
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.cloudtrail.error_message'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_cloudtrail_event_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.cloudtrail.event_category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_cloudtrail_event_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.cloudtrail.event_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_cloudtrail_event_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.cloudtrail.event_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_cloudtrail_flattened_additional_eventdata
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: aws.cloudtrail.flattened.additional_eventdata'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: aws_cloudtrail_flattened_digest
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: aws.cloudtrail.flattened.digest'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: aws_cloudtrail_flattened_insight_details
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: aws.cloudtrail.flattened.insight_details'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: aws_cloudtrail_flattened_request_parameters
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: aws.cloudtrail.flattened.request_parameters'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: aws_cloudtrail_flattened_response_elements
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: aws.cloudtrail.flattened.response_elements'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: aws_cloudtrail_flattened_service_event_details
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: aws.cloudtrail.flattened.service_event_details'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: aws_cloudtrail_management_event
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.cloudtrail.management_event'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_cloudtrail_read_only
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.cloudtrail.read_only'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: aws_cloudtrail_recipient_account_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.cloudtrail.recipient_account_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_cloudtrail_request_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.cloudtrail.request_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_cloudtrail_request_parameters
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.cloudtrail.request_parameters'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_cloudtrail_resources_account_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.cloudtrail.resources.account_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_cloudtrail_resources_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.cloudtrail.resources.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_cloudtrail_resources_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.cloudtrail.resources.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_cloudtrail_response_elements
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.cloudtrail.response_elements'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_cloudtrail_service_event_details
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.cloudtrail.service_event_details'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_cloudtrail_session_credential_from_console
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.cloudtrail.session_credential_from_console'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_cloudtrail_shared_event_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.cloudtrail.shared_event_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_cloudtrail_user_identity_access_key_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.cloudtrail.user_identity.access_key_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_cloudtrail_user_identity_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.cloudtrail.user_identity.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_cloudtrail_user_identity_invoked_by
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.cloudtrail.user_identity.invoked_by'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_cloudtrail_user_identity_session_context_creation_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.cloudtrail.user_identity.session_context.creation_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_cloudtrail_user_identity_session_context_mfa_authenticated
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.cloudtrail.user_identity.session_context.mfa_authenticated'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_cloudtrail_user_identity_session_context_session_issuer_account_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.cloudtrail.user_identity.session_context.session_issuer.account_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_cloudtrail_user_identity_session_context_session_issuer_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.cloudtrail.user_identity.session_context.session_issuer.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_cloudtrail_user_identity_session_context_session_issuer_principal_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.cloudtrail.user_identity.session_context.session_issuer.principal_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_cloudtrail_user_identity_session_context_session_issuer_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.cloudtrail.user_identity.session_context.session_issuer.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_cloudtrail_user_identity_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.cloudtrail.user_identity.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_cloudtrail_vpc_endpoint_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.cloudtrail.vpc_endpoint_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_bucket_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_bucket_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_metadata
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: aws.s3.metadata'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: aws_s3_object_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.object.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: related_entity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: related.entity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: target_entity_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: target.entity.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

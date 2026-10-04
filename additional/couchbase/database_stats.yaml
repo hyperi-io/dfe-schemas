@@ -1,0 +1,57 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of couchbase.database_stats at integrations 2c934eb5223b
+    columns:
+    - name: couchbase_database_stats_database_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: couchbase.database_stats.database.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: couchbase_database_stats_dcp_received_time
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: couchbase.database_stats.dcp.received.time'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: couchbase_database_stats_document_reads_blip
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: couchbase.database_stats.document.reads.blip'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: couchbase_database_stats_document_reads_rest
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: couchbase.database_stats.document.reads.rest'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: couchbase_database_stats_document_writes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: couchbase.database_stats.document.writes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: couchbase_database_stats_replications_active
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: couchbase.database_stats.replications.active'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: couchbase_database_stats_replications_total
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: couchbase.database_stats.replications.total'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

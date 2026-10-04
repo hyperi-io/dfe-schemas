@@ -1,0 +1,324 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of aws.ec2_metrics at integrations 2c934eb5223b
+    columns:
+    - name: aws_cloudwatch_namespace
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.cloudwatch.namespace'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_dimensions_AutoScalingGroupName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.dimensions.AutoScalingGroupName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_dimensions_ImageId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.dimensions.ImageId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_dimensions_InstanceId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.dimensions.InstanceId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_dimensions_InstanceType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.dimensions.InstanceType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_ec2_instance_core_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.ec2.instance.core.count'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: aws_ec2_instance_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.ec2.instance.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_ec2_instance_monitoring_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.ec2.instance.monitoring.state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_ec2_instance_private_dns_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.ec2.instance.private.dns_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_ec2_instance_private_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.ec2.instance.private.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: aws_ec2_instance_public_dns_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.ec2.instance.public.dns_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_ec2_instance_public_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.ec2.instance.public.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: aws_ec2_instance_state_code
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.ec2.instance.state.code'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: aws_ec2_instance_state_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.ec2.instance.state.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_ec2_instance_threads_per_core
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.ec2.instance.threads_per_core'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: aws_ec2_metrics_CPUCreditBalance_avg
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.ec2.metrics.CPUCreditBalance.avg'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_ec2_metrics_CPUCreditUsage_avg
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.ec2.metrics.CPUCreditUsage.avg'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_ec2_metrics_CPUSurplusCreditBalance_avg
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.ec2.metrics.CPUSurplusCreditBalance.avg'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_ec2_metrics_CPUSurplusCreditsCharged_avg
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.ec2.metrics.CPUSurplusCreditsCharged.avg'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_ec2_metrics_CPUUtilization_avg
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.ec2.metrics.CPUUtilization.avg'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_ec2_metrics_DiskReadBytes_rate
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.ec2.metrics.DiskReadBytes.rate'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_ec2_metrics_DiskReadBytes_sum
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.ec2.metrics.DiskReadBytes.sum'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_ec2_metrics_DiskReadOps_rate
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.ec2.metrics.DiskReadOps.rate'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_ec2_metrics_DiskReadOps_sum
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.ec2.metrics.DiskReadOps.sum'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_ec2_metrics_DiskWriteBytes_rate
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.ec2.metrics.DiskWriteBytes.rate'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_ec2_metrics_DiskWriteBytes_sum
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.ec2.metrics.DiskWriteBytes.sum'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_ec2_metrics_DiskWriteOps_rate
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.ec2.metrics.DiskWriteOps.rate'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_ec2_metrics_DiskWriteOps_sum
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.ec2.metrics.DiskWriteOps.sum'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_ec2_metrics_NetworkIn_rate
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.ec2.metrics.NetworkIn.rate'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_ec2_metrics_NetworkIn_sum
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.ec2.metrics.NetworkIn.sum'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_ec2_metrics_NetworkOut_rate
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.ec2.metrics.NetworkOut.rate'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_ec2_metrics_NetworkOut_sum
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.ec2.metrics.NetworkOut.sum'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_ec2_metrics_NetworkPacketsIn_rate
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.ec2.metrics.NetworkPacketsIn.rate'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_ec2_metrics_NetworkPacketsIn_sum
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.ec2.metrics.NetworkPacketsIn.sum'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_ec2_metrics_NetworkPacketsOut_rate
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.ec2.metrics.NetworkPacketsOut.rate'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_ec2_metrics_NetworkPacketsOut_sum
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.ec2.metrics.NetworkPacketsOut.sum'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_ec2_metrics_StatusCheckFailed_Instance_avg
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.ec2.metrics.StatusCheckFailed_Instance.avg'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_ec2_metrics_StatusCheckFailed_System_avg
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.ec2.metrics.StatusCheckFailed_System.avg'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_ec2_metrics_StatusCheckFailed_avg
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.ec2.metrics.StatusCheckFailed.avg'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_metrics_names_fingerprint
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.metrics_names_fingerprint'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_tags
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: aws.tags'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

@@ -1,0 +1,932 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of canva.audit at integrations 2c934eb5223b
+    columns:
+    - name: aws_s3_bucket_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_bucket_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_object_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.object.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_app_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.app.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_app_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.app.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_app_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.app.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_approval_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.approval_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_changed_fields
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.changed_fields'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_changes_access_read
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: canva.audit.action.changes.access.read'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: canva_audit_action_changes_access_write
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: canva.audit.action.changes.access.write'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: canva_audit_action_changes_group
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.changes.group'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_changes_new_access_read
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: canva.audit.action.changes.new_access.read'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: canva_audit_action_changes_new_access_write
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: canva.audit.action.changes.new_access.write'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: canva_audit_action_changes_new_link_role_access_read
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: canva.audit.action.changes.new_link_role.access.read'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: canva_audit_action_changes_new_link_role_access_write
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: canva.audit.action.changes.new_link_role.access.write'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: canva_audit_action_changes_new_link_role_owning_team_only
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: canva.audit.action.changes.new_link_role.owning_team_only'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: canva_audit_action_changes_new_owner_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.changes.new_owner.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_changes_new_owner_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.changes.new_owner.email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_changes_new_owner_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.changes.new_owner.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_changes_old_access_read
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: canva.audit.action.changes.old_access.read'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: canva_audit_action_changes_old_access_write
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: canva.audit.action.changes.old_access.write'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: canva_audit_action_changes_old_link_role_access_read
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: canva.audit.action.changes.old_link_role.access.read'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: canva_audit_action_changes_old_link_role_access_write
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: canva.audit.action.changes.old_link_role.access.write'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: canva_audit_action_changes_old_link_role_owning_team_only
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: canva.audit.action.changes.old_link_role.owning_team_only'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: canva_audit_action_changes_old_owner_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.changes.old_owner.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_changes_old_owner_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.changes.old_owner.email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_changes_old_owner_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.changes.old_owner.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_changes_organization_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.changes.organization.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_changes_owning_team_only
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: canva.audit.action.changes.owning_team_only'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: canva_audit_action_changes_recipient
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.changes.recipient'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_changes_team_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.changes.team.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_changes_team_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.changes.team.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_changes_token_prefix
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.changes.token_prefix'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_changes_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.changes.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_changes_user_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.changes.user.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_changes_user_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.changes.user.email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_changes_user_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.changes.user.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_country_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.country_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_create_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.create_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_default_team_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.default_team.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_default_team_policy
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.default_team.policy'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_design_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.design_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_email_verified
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: canva.audit.action.email_verified'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: canva_audit_action_emails
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.emails'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_end_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: canva.audit.action.end_timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: canva_audit_action_first_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.first_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_last_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.last_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_locale
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.locale'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_login_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.login_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_managing_entity_organization_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.managing_entity.organization.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_managing_entity_team_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.managing_entity.team.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_managing_entity_team_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.managing_entity.team.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_managing_entity_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.managing_entity.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_new_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.new_display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_new_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.new_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_new_permissions
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.new_permissions'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_new_role
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.new_role'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_oauth_accounts_external_user_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.oauth_accounts.external_user_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_oauth_accounts_platform
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.oauth_accounts.platform'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_oauth_platform
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.oauth_platform'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_old_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.old_display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_old_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.old_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_old_permissions
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.old_permissions'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_old_role
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.old_role'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_original_design_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.original_design_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_output_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.output_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_permissions
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.permissions'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_phone_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.phone_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_reason_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.reason.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_report_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.report_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_role
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.role'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_saml_accounts_idp_issuer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.saml_accounts.idp_issuer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_saml_accounts_name_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.saml_accounts.name_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_session_scope
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.session_scope'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_sms_mfa_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: canva.audit.action.sms_mfa_enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: canva_audit_action_start_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: canva.audit.action.start_timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: canva_audit_action_team_address_city
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.team_address.city'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_team_address_country_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.team_address.country_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_team_address_postcode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.team_address.postcode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_team_address_street1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.team_address.street1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_team_address_subdivision
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.team_address.subdivision'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_team_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.team.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_team_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.team.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_title
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.title'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_totp_mfa_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: canva.audit.action.totp_mfa_enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: canva_audit_action_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_user_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.user.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_user_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.user.email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_user_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.user.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_user_scope
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.user_scope'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_action_view_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.action.view_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_actor_details_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.actor.details.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_actor_organization_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.actor.organization.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_actor_team_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.actor.team.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_actor_team_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.actor.team.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_actor_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.actor.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_actor_user_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.actor.user.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_actor_user_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.actor.user.email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_actor_user_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.actor.user.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_context_device_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.context.device_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_context_ip_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: canva.audit.context.ip_address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: canva_audit_context_request_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.context.request_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_context_session
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.context.session'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_outcome_details_resource_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.outcome.details.resource.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_outcome_details_resource_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.outcome.details.resource.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_outcome_details_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.outcome.details.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_outcome_details_user_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.outcome.details.user_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_outcome_result
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.outcome.result'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_target_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.target.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_target_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.target.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_target_organization_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.target.organization.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_target_owner_organization_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.target.owner.organization.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_target_owner_team_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.target.owner.team.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_target_owner_team_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.target.owner.team.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_target_owner_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.target.owner.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_target_owner_user_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.target.owner.user.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_target_owner_user_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.target.owner.user.email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_target_owner_user_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.target.owner.user.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_target_resource_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.target.resource_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_target_target_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.target.target_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_target_team_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.target.team.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_target_team_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.target.team.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_target_user_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.target.user.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_target_user_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.target.user.email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_target_user_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: canva.audit.target.user.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: canva_audit_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: canva.audit.timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

@@ -1,0 +1,57 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of airlock_digital.server_activities at integrations 2c934eb5223b
+    columns:
+    - name: airlock_digital_server_activities_checkpoint
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.server_activities.checkpoint'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_server_activities_datetime
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: airlock_digital.server_activities.datetime'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: airlock_digital_server_activities_description
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: airlock_digital.server_activities.description'
+      comment: 'Elasticsearch mapping type: match_only_text'
+      _field_type: base
+    - name: airlock_digital_server_activities_task
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.server_activities.task'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: airlock_digital_server_activities_user
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: airlock_digital.server_activities.user'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

@@ -1,0 +1,48 @@
+base: meta/elastic/ecs
+base_version: "1.0.0"
+current: "1.0.0"
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    summary: platform_observability.kibana_log selection from meta/elastic/ecs
+    select:
+    - name: data_stream_dataset
+      index: exact_match
+    - name: data_stream_namespace
+      index: exact_match
+    - name: data_stream_type
+      index: exact_match
+    - name: ecs_version
+      index: exact_match
+    - name: event_dataset
+      index: exact_match
+    - name: event_ingested
+      index: range
+    - name: event_kind
+      index: exact_match
+    - name: event_outcome
+      index: exact_match
+    - name: http_request_id
+      index: exact_match
+    - name: http_request_method
+      index: exact_match
+    - name: http_response_body_bytes
+      index: range
+    - name: http_response_status_code
+      index: range
+    - name: log_level
+      index: exact_match
+    - name: log_logger
+      index: exact_match
+    - name: message
+      index: word_search
+    - name: process_pid
+      index: range
+    - name: trace_id
+      index: exact_match
+    - name: transaction_id
+      index: exact_match
+    - name: url_path
+      index: exact_match
+    - name: url_query
+      index: exact_match

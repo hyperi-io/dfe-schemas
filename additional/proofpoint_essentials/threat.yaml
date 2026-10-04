@@ -1,0 +1,387 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of proofpoint_essentials.threat at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: proofpoint_essentials_threat_cc_addresses
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_essentials.threat.cc_addresses'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_essentials_threat_classification
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_essentials.threat.classification'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_essentials_threat_click_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: proofpoint_essentials.threat.click_ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: proofpoint_essentials_threat_click_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: proofpoint_essentials.threat.click_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: proofpoint_essentials_threat_completely_rewritten
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_essentials.threat.completely_rewritten'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_essentials_threat_customer_eid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_essentials.threat.customer_eid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_essentials_threat_customer_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_essentials.threat.customer_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_essentials_threat_event_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_essentials.threat.event_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_essentials_threat_from_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_essentials.threat.from_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_essentials_threat_guid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_essentials.threat.guid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_essentials_threat_header_from
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_essentials.threat.header_from'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_essentials_threat_header_reply_to
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_essentials.threat.header_reply_to'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_essentials_threat_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_essentials.threat.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_essentials_threat_impostor_score
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: proofpoint_essentials.threat.impostor_score'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: proofpoint_essentials_threat_malware_score
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: proofpoint_essentials.threat.malware_score'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: proofpoint_essentials_threat_message_details_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_essentials.threat.message_details_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_essentials_threat_message_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_essentials.threat.message_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_essentials_threat_message_parts_content_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_essentials.threat.message_parts.content_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_essentials_threat_message_parts_disposition
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_essentials.threat.message_parts.disposition'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_essentials_threat_message_parts_filename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_essentials.threat.message_parts.filename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_essentials_threat_message_parts_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_essentials.threat.message_parts.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_essentials_threat_message_parts_o_content_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_essentials.threat.message_parts.o_content_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_essentials_threat_message_parts_sandbox_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_essentials.threat.message_parts.sandbox_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_essentials_threat_message_parts_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_essentials.threat.message_parts.sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_essentials_threat_message_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: proofpoint_essentials.threat.message_size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: proofpoint_essentials_threat_message_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: proofpoint_essentials.threat.message_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: proofpoint_essentials_threat_parent_eid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_essentials.threat.parent_eid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_essentials_threat_parent_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_essentials.threat.parent_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_essentials_threat_phish_score
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: proofpoint_essentials.threat.phish_score'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: proofpoint_essentials_threat_quarantine_rule
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_essentials.threat.quarantine_rule'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_essentials_threat_recipient
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_essentials.threat.recipient'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_essentials_threat_reply_to_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_essentials.threat.reply_to_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_essentials_threat_sender
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_essentials.threat.sender'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_essentials_threat_sender_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: proofpoint_essentials.threat.sender_ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: proofpoint_essentials_threat_spam_score
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: proofpoint_essentials.threat.spam_score'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: proofpoint_essentials_threat_stack_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_essentials.threat.stack_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_essentials_threat_subject
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_essentials.threat.subject'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_essentials_threat_threat_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_essentials.threat.threat_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_essentials_threat_threat_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_essentials.threat.threat_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_essentials_threat_threat_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: proofpoint_essentials.threat.threat_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: proofpoint_essentials_threat_threats_info_map_actors
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: proofpoint_essentials.threat.threats_info_map.actors'
+      comment: 'Elasticsearch mapping type: nested'
+      _field_type: base
+    - name: proofpoint_essentials_threat_threats_info_map_classification
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_essentials.threat.threats_info_map.classification'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_essentials_threat_threats_info_map_detection_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_essentials.threat.threats_info_map.detection_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_essentials_threat_threats_info_map_threat
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_essentials.threat.threats_info_map.threat'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_essentials_threat_threats_info_map_threat_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_essentials.threat.threats_info_map.threat_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_essentials_threat_threats_info_map_threat_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_essentials.threat.threats_info_map.threat_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_essentials_threat_threats_info_map_threat_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: proofpoint_essentials.threat.threats_info_map.threat_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: proofpoint_essentials_threat_threats_info_map_threat_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_essentials.threat.threats_info_map.threat_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_essentials_threat_to_addresses
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_essentials.threat.to_addresses'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_essentials_threat_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_essentials.threat.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_essentials_threat_user_agent
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_essentials.threat.user_agent'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_essentials_threat_xmailer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_essentials.threat.xmailer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

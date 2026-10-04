@@ -1,0 +1,295 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of slack.audit at integrations 2c934eb5223b
+    columns:
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: slack_audit_actor_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: slack.audit.actor.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: slack_audit_actor_user_team
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: slack.audit.actor.user.team'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: slack_audit_context_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: slack.audit.context.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: slack_audit_context_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: slack.audit.context.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: slack_audit_context_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: slack.audit.context.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: slack_audit_context_session_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: slack.audit.context.session_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: slack_audit_context_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: slack.audit.context.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: slack_audit_details_location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: slack.audit.details.location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: slack_audit_details_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: slack.audit.details.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: slack_audit_details_previous_ip_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: slack.audit.details.previous_ip_address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: slack_audit_details_previous_user_agent
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: slack.audit.details.previous_user_agent'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: slack_audit_details_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: slack.audit.details.reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: slack_audit_details_url_private
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: slack.audit.details.url_private'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: slack_audit_entity_barriered_from_usergroup
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: slack.audit.entity.barriered_from_usergroup'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: slack_audit_entity_channel
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: slack.audit.entity.channel'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: slack_audit_entity_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: slack.audit.entity.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: slack_audit_entity_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: slack.audit.entity.email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: slack_audit_entity_entity_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: slack.audit.entity.entity_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: slack_audit_entity_filetype
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: slack.audit.entity.filetype'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: slack_audit_entity_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: slack.audit.entity.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: slack_audit_entity_is_directory_approved
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: slack.audit.entity.is_directory_approved'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: slack_audit_entity_is_distributed
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: slack.audit.entity.is_distributed'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: slack_audit_entity_is_org_shared
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: slack.audit.entity.is_org_shared'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: slack_audit_entity_is_shared
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: slack.audit.entity.is_shared'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: slack_audit_entity_is_workflow_app
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: slack.audit.entity.is_workflow_app'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: slack_audit_entity_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: slack.audit.entity.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: slack_audit_entity_primary_usergroup
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: slack.audit.entity.primary_usergroup'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: slack_audit_entity_privacy
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: slack.audit.entity.privacy'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: slack_audit_entity_scopes
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: slack.audit.entity.scopes'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: slack_audit_entity_team
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: slack.audit.entity.team'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: slack_audit_entity_teams_shared_with
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: slack.audit.entity.teams_shared_with'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: slack_audit_entity_timestamp
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: slack.audit.entity.timestamp'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: slack_audit_entity_title
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: slack.audit.entity.title'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: slack_audit_entity_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: slack.audit.entity.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

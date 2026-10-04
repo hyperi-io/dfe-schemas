@@ -1,0 +1,624 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of ti_threatq.threat at integrations 2c934eb5223b
+    columns:
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: labels_is_ioc_transform_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: labels.is_ioc_transform_source'
+      comment: 'Elasticsearch mapping type: constant_keyword'
+      _field_type: base
+    - name: log_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: threatq_adversaries_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threatq.adversaries.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threatq_adversaries_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threatq.adversaries.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threatq_attributes_attribute_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threatq.attributes.attribute_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threatq_attributes_created_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.attributes.created_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threatq_attributes_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threatq.attributes.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threatq_attributes_indicator_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threatq.attributes.indicator_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threatq_attributes_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threatq.attributes.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threatq_attributes_sources_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threatq.attributes.sources.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threatq_attributes_touched_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.attributes.touched_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threatq_attributes_updated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.attributes.updated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threatq_attributes_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threatq.attributes.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threatq_class
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threatq.class'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threatq_created_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.created_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threatq_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threatq.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threatq_expired_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.expired_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threatq_expires_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.expires_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threatq_expires_calculated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.expires_calculated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threatq_generated_score
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.generated_score'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: threatq_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threatq.hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threatq_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: threatq_indicator_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.indicator_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: threatq_indicator_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threatq.indicator_value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threatq_ioc_expiration_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threatq.ioc_expiration_reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threatq_ioc_expired_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.ioc_expired_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threatq_ioc_expires_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.ioc_expires_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threatq_manual_score
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.manual_score'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: threatq_published_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.published_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threatq_related_adversary_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.related_adversary_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: threatq_related_asset_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.related_asset_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: threatq_related_attachment_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.related_attachment_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: threatq_related_attack_pattern_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.related_attack_pattern_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: threatq_related_campaign_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.related_campaign_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: threatq_related_course_of_action_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.related_course_of_action_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: threatq_related_event_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.related_event_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: threatq_related_exploit_target_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.related_exploit_target_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: threatq_related_identity_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.related_identity_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: threatq_related_incident_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.related_incident_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: threatq_related_indicator_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.related_indicator_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: threatq_related_infrastructure_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.related_infrastructure_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: threatq_related_intrusion_set_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.related_intrusion_set_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: threatq_related_investigation_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.related_investigation_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: threatq_related_malware_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.related_malware_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: threatq_related_note_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.related_note_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: threatq_related_report_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.related_report_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: threatq_related_signature_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.related_signature_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: threatq_related_task_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.related_task_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: threatq_related_tool_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.related_tool_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: threatq_related_ttp_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.related_ttp_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: threatq_related_vulnerability_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.related_vulnerability_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: threatq_score
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.score'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: threatq_sources_created_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.sources.created_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threatq_sources_creator_source_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threatq.sources.creator_source_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threatq_sources_creator_source_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threatq.sources.creator_source_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threatq_sources_creator_source_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threatq.sources.creator_source_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threatq_sources_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threatq.sources.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threatq_sources_indicator_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threatq.sources.indicator_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threatq_sources_indicator_status_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threatq.sources.indicator_status_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threatq_sources_indicator_type_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threatq.sources.indicator_type_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threatq_sources_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threatq.sources.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threatq_sources_provider
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threatq.sources.provider'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threatq_sources_published_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.sources.published_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threatq_sources_reference_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threatq.sources.reference_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threatq_sources_source_expire_days
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threatq.sources.source_expire_days'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threatq_sources_source_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threatq.sources.source_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threatq_sources_source_score
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.sources.source_score'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: threatq_sources_source_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threatq.sources.source_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threatq_sources_tlp_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threatq.sources.tlp_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threatq_sources_tlp_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threatq.sources.tlp_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threatq_sources_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threatq.sources.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threatq_sources_updated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.sources.updated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threatq_status_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threatq.status.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threatq_status_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threatq.status.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threatq_status_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threatq.status.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threatq_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threatq.tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threatq_touched_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.touched_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threatq_type_class
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threatq.type.class'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threatq_type_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threatq.type.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threatq_type_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threatq.type.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: threatq_updated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: threatq.updated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: threatq_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threatq.uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

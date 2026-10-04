@@ -1,0 +1,276 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of microsoft_sentinel.event at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: microsoft_sentinel_event_alert_link
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.event.alert.link'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_event_alert_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.event.alert.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_event_alert_severity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.event.alert.severity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_event_alert_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.event.alert.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_event_compromised_entity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.event.compromised_entity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_event_confidence_level
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.event.confidence.level'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_event_confidence_score
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_sentinel.event.confidence.score'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: microsoft_sentinel_event_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.event.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_event_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.event.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_event_end_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_sentinel.event.end_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: microsoft_sentinel_event_entities
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: microsoft_sentinel.event.entities'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: microsoft_sentinel_event_extended_links
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.event.extended.links'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_event_extended_properties
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: microsoft_sentinel.event.extended.properties'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: microsoft_sentinel_event_internal_workspace_resource_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.event.internal_workspace_resource_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_event_is_incident
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: microsoft_sentinel.event.is_incident'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: microsoft_sentinel_event_item_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.event.item_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_event_processing_end_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_sentinel.event.processing_end_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: microsoft_sentinel_event_product_component_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.event.product.component_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_event_product_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.event.product.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_event_provider_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.event.provider_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_event_remediation_steps
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.event.remediation_steps'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_event_resource_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.event.resource_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_event_source_computer_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.event.source.computer_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_event_source_system
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.event.source.system'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_event_start_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_sentinel.event.start_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: microsoft_sentinel_event_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.event.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_event_system_alert_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.event.system_alert_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_event_tactics
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.event.tactics'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_event_techniques
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.event.techniques'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_event_tenant_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.event.tenant_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_event_time_generated
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: microsoft_sentinel.event.time_generated'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: microsoft_sentinel_event_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.event.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_event_vendor_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.event.vendor.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_event_vendor_original_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.event.vendor.original_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_event_workspace_resource_group
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.event.workspace.resource_group'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: microsoft_sentinel_event_workspace_subscription_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: microsoft_sentinel.event.workspace.subscription_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

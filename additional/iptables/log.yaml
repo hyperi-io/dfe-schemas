@@ -1,0 +1,281 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of iptables.log at integrations 2c934eb5223b
+    columns:
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hostname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hostname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: iptables_ether_type
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: iptables.ether_type'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: iptables_flow_label
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: iptables.flow_label'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: iptables_fragment_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: iptables.fragment_flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: iptables_fragment_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: iptables.fragment_offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: iptables_icmp_code
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: iptables.icmp.code'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: iptables_icmp_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: iptables.icmp.id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: iptables_icmp_parameter
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: iptables.icmp.parameter'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: iptables_icmp_redirect
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: iptables.icmp.redirect'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: iptables_icmp_seq
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: iptables.icmp.seq'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: iptables_icmp_type
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: iptables.icmp.type'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: iptables_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: iptables.id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: iptables_incomplete_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: iptables.incomplete_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: iptables_input_device
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: iptables.input_device'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: iptables_length
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: iptables.length'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: iptables_output_device
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: iptables.output_device'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: iptables_precedence_bits
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: iptables.precedence_bits'
+      comment: 'Elasticsearch mapping type: short'
+      _field_type: base
+    - name: iptables_tcp_ack
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: iptables.tcp.ack'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: iptables_tcp_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: iptables.tcp.flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: iptables_tcp_reserved_bits
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: iptables.tcp.reserved_bits'
+      comment: 'Elasticsearch mapping type: short'
+      _field_type: base
+    - name: iptables_tcp_seq
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: iptables.tcp.seq'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: iptables_tcp_window
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: iptables.tcp.window'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: iptables_tos
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: iptables.tos'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: iptables_ttl
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: iptables.ttl'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: iptables_ubiquiti_input_zone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: iptables.ubiquiti.input_zone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: iptables_ubiquiti_output_zone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: iptables.ubiquiti.output_zone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: iptables_ubiquiti_rule_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: iptables.ubiquiti.rule_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: iptables_ubiquiti_rule_set
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: iptables.ubiquiti.rule_set'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: iptables_udp_length
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: iptables.udp.length'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: journald_host_boot_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: journald.host.boot_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: log_source_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.source.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: process_program
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: process.program'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: systemd_transport
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: systemd.transport'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

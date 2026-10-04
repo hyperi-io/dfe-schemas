@@ -1,0 +1,64 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of google_workspace.user_accounts at integrations 2c934eb5223b
+    columns:
+    - name: google_workspace_actor_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_workspace.actor.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_workspace_actor_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_workspace.actor.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_workspace_event_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_workspace.event.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_workspace_kind
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_workspace.kind'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_workspace_organization_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_workspace.organization.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_workspace_user_accounts_email_forwarding_destination_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_workspace.user_accounts.email_forwarding_destination_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

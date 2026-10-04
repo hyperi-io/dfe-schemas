@@ -1,0 +1,855 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of tychon.host at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: labels_is_transform_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: labels.is_transform_source'
+      comment: 'Elasticsearch mapping type: constant_keyword'
+      _field_type: base
+    - name: log_file_device_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.device_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_fingerprint
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.fingerprint'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_idxhi
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.idxhi'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_idxlo
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.idxlo'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_inode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.inode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_vol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.vol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tychon_event_deviceguard_basevirtualizationsupport_available
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tychon.event.deviceguard.basevirtualizationsupport.available'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tychon_event_deviceguard_credentialguard_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tychon.event.deviceguard.credentialguard.enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tychon_event_deviceguard_credentialguard_running
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tychon.event.deviceguard.credentialguard.running'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tychon_event_deviceguard_dmaprotection_available
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tychon.event.deviceguard.dmaprotection.available'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tychon_event_deviceguard_hypervisorenforcedcodeint_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tychon.event.deviceguard.hypervisorenforcedcodeint.enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tychon_event_deviceguard_hypervisorenforcedcodeint_running
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tychon.event.deviceguard.hypervisorenforcedcodeint.running'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tychon_event_deviceguard_secureboot_available
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tychon.event.deviceguard.secureboot.available'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tychon_event_deviceguard_securememoverwrite_available
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tychon.event.deviceguard.securememoverwrite.available'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tychon_event_deviceguard_smmsecuritymigrations_available
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tychon.event.deviceguard.smmsecuritymigrations.available'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tychon_event_deviceguard_systemguardsecurelaunch_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tychon.event.deviceguard.systemguardsecurelaunch.enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tychon_event_deviceguard_systemguardsecurelaunch_running
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tychon.event.deviceguard.systemguardsecurelaunch.running'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tychon_event_deviceguard_ueficodereadonly_available
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tychon.event.deviceguard.ueficodereadonly.available'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tychon_event_deviceguard_usermodecodeintegrity_policyenforcement
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.event.deviceguard.usermodecodeintegrity.policyenforcement'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_event_deviceguard_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.event.deviceguard.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_event_deviceguard_virtualizationbasedsecurity_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.event.deviceguard.virtualizationbasedsecurity.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_event_directx_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.event.directx.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_event_ufi_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tychon.event.ufi.enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tychon_event_windows_11_compatible_core
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.event.windows_11_compatible.core'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_event_windows_11_compatible_cpu
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.event.windows_11_compatible.cpu'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_event_windows_11_compatible_disk
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.event.windows_11_compatible.disk'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_event_windows_11_compatible_dxv
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.event.windows_11_compatible.dxv'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_event_windows_11_compatible_memory
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.event.windows_11_compatible.memory'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_event_windows_11_compatible_proxy
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.event.windows_11_compatible.proxy'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_event_windows_11_compatible_uefi
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.event.windows_11_compatible.uefi'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_architecture
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.architecture'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_biossn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.biossn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_cloud_compute_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.cloud.compute.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_cloud_compute_resource_group_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.cloud.compute.resource_group_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_cloud_compute_resource_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.cloud.compute.resource_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_cloud_compute_subscription_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.cloud.compute.subscription_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_cloud_compute_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.cloud.compute.tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_cloud_compute_vm_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.cloud.compute.vm_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_cloud_hosted
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tychon.host.cloud.hosted'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tychon_host_cloud_network_mac_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.cloud.network.mac_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_cloud_network_public_ipv4
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.cloud.network.public_ipv4'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_cloud_network_public_ipv6
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.cloud.network.public_ipv6'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_compute_location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.compute.location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_cpu_caption
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: tychon.host.cpu.caption'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: tychon_host_cpu_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tychon.host.cpu.count'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: tychon_host_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_firmware_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.firmware.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_hardware_bios_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.hardware.bios.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_hardware_bios_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.hardware.bios.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_hardware_cpu_caption
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.hardware.cpu.caption'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_hardware_manufacturer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.hardware.manufacturer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_hardware_owner
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.hardware.owner'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_hardware_serial_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.hardware.serial_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_hostname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.hostname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tychon.host.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: tychon_host_ipv4
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tychon.host.ipv4'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: tychon_host_ipv6
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.ipv6'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_mac
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.mac'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_memory_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tychon.host.memory.size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tychon_host_motherboard_chipset
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.motherboard.chipset'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_motherboard_serial_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.motherboard.serial_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_oem_manufacturer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.oem.manufacturer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_oem_model
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.oem.model'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_os_description
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: tychon.host.os.description'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: tychon_host_os_edition
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.os.edition'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_os_extended_support_license
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.os.extended_support_license'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_os_extended_support_license_expiration
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tychon.host.os.extended_support_license_expiration'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tychon_host_os_family
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.os.family'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_os_kernel
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.os.kernel'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_os_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.os.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_os_organization
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.os.organization'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_os_supported_plan
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.os.supported_plan'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_os_vendor
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.os.vendor'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_os_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.os.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_risk_calculated_score
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tychon.host.risk.calculated_score'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: tychon_host_risk_compliant_nist_standards
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.risk.compliant.nist_standards'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_risk_count_ciphers
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.risk.count.ciphers'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_risk_count_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.risk.count.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_risk_count_signature_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.risk.count.signature_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_risk_noncompliant_nist_standards
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.risk.noncompliant.nist_standards'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_risk_score_ciphers
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.risk.score.ciphers'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_risk_score_nist_standards
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.risk.score.nist_standards'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_risk_score_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.risk.score.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_risk_score_signature_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.risk.score.signature_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_risk_weight_ciphers
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.risk.weight.ciphers'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_risk_weight_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.risk.weight.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_risk_weight_signature_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.risk.weight.signature_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_security_antivirus_exists
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tychon.host.security.antivirus.exists'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tychon_host_security_antivirus_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.security.antivirus.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_security_antivirus_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.security.antivirus.state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_security_antivirus_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.security.antivirus.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_tpm_compliant
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tychon.host.tpm.compliant'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tychon_host_tpm_digest_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.tpm.digest.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_tpm_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tychon.host.tpm.enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tychon_host_tpm_locked_out
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tychon.host.tpm.locked_out'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tychon_host_tpm_lockout_count
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.tpm.lockout.count'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_tpm_present
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tychon.host.tpm.present'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tychon_host_tpm_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.tpm.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_uptime
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tychon.host.uptime'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tychon_host_virtualization_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.virtualization_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_virtulization_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.virtulization_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_host_workgroup
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.host.workgroup'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_script_current_duration
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tychon.script.current_duration'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tychon_script_current_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tychon.script.current_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tychon_script_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.script.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_script_start
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tychon.script.start'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tychon_script_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.script.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_script_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.script.version'
+      comment: 'Elasticsearch mapping type: version'
+      _field_type: base
+    - name: tychon_tychon_data_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.tychon.data.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_tychon_definition_oval
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tychon.tychon.definition.oval'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tychon_tychon_definition_stig
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tychon.tychon.definition.stig'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tychon_tychon_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.tychon.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tychon_tychon_version_agent
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.tychon.version.agent'
+      comment: 'Elasticsearch mapping type: version'
+      _field_type: base
+    - name: tychon_tychon_version_content
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tychon.tychon.version.content'
+      comment: 'Elasticsearch mapping type: version'
+      _field_type: base

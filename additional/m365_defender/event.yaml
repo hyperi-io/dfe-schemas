@@ -1,0 +1,2704 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of m365_defender.event at integrations 2c934eb5223b
+    columns:
+    - name: Target_process_command_line
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: Target.process.command_line'
+      comment: 'Elasticsearch mapping type: wildcard'
+      _field_type: base
+    - name: Target_process_executable
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: Target.process.executable'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: Target_process_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: Target.process.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: application_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: application.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: dll_Ext_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: dll.Ext.size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: m365_defender_event_aad_device_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.aad_device_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_account_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.account.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_account_application_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.account_application_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_account_assigned_roles
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.account.assigned_roles'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_account_blast_radius
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.account.blast_radius'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_account_city
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.account.city'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_account_cloud_sid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.account.cloud_sid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_account_company_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.account.company_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_account_country
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.account.country'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_account_created
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.event.account.created'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: m365_defender_event_account_criticality_level
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.account.criticality_level'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_account_deleted_date_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.event.account.deleted_date_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: m365_defender_event_account_department
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.account.department'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_account_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.account.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_account_distinguished_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.account.distinguished_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_account_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.account.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_account_email_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.account.email_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_account_employee_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.account.employee_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_account_given_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.account.given_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_account_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.account.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_account_is_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: m365_defender.event.account.is_enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: m365_defender_event_account_job_title
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.account.job_title'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_account_manager
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.account.manager'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_account_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.account.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_account_object_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.account.object_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_account_on_prem_sid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.account.on_prem_sid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_account_other_mail_addresses
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.account.other_mail_addresses'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_account_phone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.account.phone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_account_risk_level
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.account.risk_level'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_account_risk_level_details
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.account.risk_level_details'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_account_sid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.account.sid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_account_sip_proxy_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.account.sip_proxy_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_account_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.account.state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_account_surname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.account.surname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_account_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.account.tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_account_tenant_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.account_tenant_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_account_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.account.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_account_upn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.account.upn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_action_result
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.action.result'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_action_trigger
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.action.trigger'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_action_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.action.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_action_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.action.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_active_users
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.active_users'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_activity_objects
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: m365_defender.event.activity.objects'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: m365_defender_event_activity_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.activity.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_additional_fields
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: m365_defender.event.additional_fields'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: m365_defender_event_alert_categories
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.alert.categories'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_alert_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.alert.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_alert_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.alert.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_anonymous_successful_operations
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.event.anonymous_successful_operations'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: m365_defender_event_app_guard_container_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.app_guard_container_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_app_instance_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.event.app_instance_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: m365_defender_event_application
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.application'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_application_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.application_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_asset_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.asset_value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_attachment_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.event.attachment_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: m365_defender_event_attack_techniques
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.attack_techniques'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_authentication_details
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.authentication_details'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_authentication_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.authentication_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_aws_resource_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.aws_resource_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_azure_resource_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.azure_resource_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_behavior_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.behavior_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_bulk_complaint_level
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.event.bulk_complaint_level'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: m365_defender_event_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_certificate_countersignature_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.event.certificate.countersignature_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: m365_defender_event_certificate_creation_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.event.certificate.creation_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: m365_defender_event_certificate_expiration_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.event.certificate.expiration_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: m365_defender_event_certificate_serial_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.certificate.serial_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_change_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.change_source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_city
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.city'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_city_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.city_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_client_cloud_platform_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.client_cloud_platform_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_client_system_service_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.client_system_service_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_client_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.client_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_cloud_platform
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.cloud_platform'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_cloud_resource_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.cloud_resource_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_cloud_resource_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.cloud_resource_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_cloud_subscription_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.cloud_subscription_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_confidence_level
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: m365_defender.event.confidence_level'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: m365_defender_event_connected_networks
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: m365_defender.event.connected_networks'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: m365_defender_event_connectors
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.connectors'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_container_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.container_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_container_image_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.container_image_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_container_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.container_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_country_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.country_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_country_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.country_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_crl_distribution_point_urls
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.crl_distribution_point_urls'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_data_aggregation_end_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.event.data_aggregation_end_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: m365_defender_event_data_aggregation_start_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.event.data_aggregation_start_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: m365_defender_event_data_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.data_source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_data_sources
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.data_sources'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_default_gateways
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.default_gateways'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_delivery_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.delivery.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_delivery_location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.delivery.location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_destination_device_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.destination.device_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_destination_ip_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: m365_defender.event.destination.ip_address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: m365_defender_event_destination_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.event.destination.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: m365_defender_event_detailed_entity_role
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.detailed_entity_role'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_detection_methods
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: m365_defender.event.detection.methods'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: m365_defender_event_detection_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.detection.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_device_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.device.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_device_dynamic_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.device_dynamic_tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_device_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.device.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_device_manual_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.device_manual_tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_device_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.device.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_device_sub_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.device.sub_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_device_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.device.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_distinct_get_operations
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.event.distinct_get_operations'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: m365_defender_event_dns_addresses
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.dns_addresses'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_dns_answers
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.dns.answers'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_dns_header_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.dns.header_flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_dns_qclass_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.dns.qclass_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_dns_qtype_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.dns.qtype_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_dns_query
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.dns.query'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_dns_rcode_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.dns.rcode_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_dns_ttls
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.event.dns.ttls'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: m365_defender_event_email_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.email.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_email_action_policy
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.email.action_policy'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_email_action_policy_guid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.email.action_policy_guid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_email_cluster_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.email.cluster_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_email_direction
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.email.direction'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_email_language
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.email.language'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_email_subject
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.email.subject'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_end_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.event.end_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: m365_defender_event_entity_role
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.entity_role'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_entity_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.entity_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_evidence_direction
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.evidence.direction'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_evidence_role
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.evidence.role'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_exclusion_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.exclusion_reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_exposure_level
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.exposure_level'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_failed_operations_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.event.failed_operations_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: m365_defender_event_failure_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.failure_reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_file_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.file.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_file_origin_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: m365_defender.event.file.origin_ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: m365_defender_event_file_origin_referrer_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.file.origin_referrer_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_file_origin_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.file.origin_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_file_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.event.file.size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: m365_defender_event_file_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.file.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_first_event_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.event.first_event_timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: m365_defender_event_folder_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.folder_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_gcp_full_resource_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.gcp_full_resource_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_group_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.group_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_group_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.group_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_has_anonymous_resource_not_found_failures
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: m365_defender.event.has_anonymous_resource_not_found_failures'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: m365_defender_event_initiating_process_account_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.initiating_process.account_domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_initiating_process_account_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.initiating_process.account_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_initiating_process_account_object_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.initiating_process.account_object_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_initiating_process_account_sid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.initiating_process.account_sid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_initiating_process_account_upn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.initiating_process.account_upn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_initiating_process_command_line
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.initiating_process.command_line'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_initiating_process_creation_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.event.initiating_process.creation_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: m365_defender_event_initiating_process_file_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.initiating_process.file_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_initiating_process_file_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.event.initiating_process.file_size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: m365_defender_event_initiating_process_folder_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.initiating_process.folder_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_initiating_process_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.event.initiating_process.id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: m365_defender_event_initiating_process_integrity_level
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.initiating_process.integrity_level'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_initiating_process_logon_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.initiating_process.logon_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_initiating_process_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.initiating_process.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_initiating_process_parent_creation_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.event.initiating_process.parent_creation_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: m365_defender_event_initiating_process_parent_file_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.initiating_process.parent_file_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_initiating_process_parent_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.event.initiating_process.parent_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: m365_defender_event_initiating_process_sha1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.initiating_process.sha1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_initiating_process_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.initiating_process.sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_initiating_process_signature_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.initiating_process.signature_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_initiating_process_signer_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.initiating_process.signer_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_initiating_process_token_elevation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.initiating_process.token_elevation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_initiating_process_version_info_company_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.initiating_process.version_info_company_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_initiating_process_version_info_file_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.initiating_process.version_info_file_description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_initiating_process_version_info_internal_file_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.initiating_process.version_info_internal_file_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_initiating_process_version_info_original_file_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.initiating_process.version_info_original_file_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_initiating_process_version_info_product_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.initiating_process.version_info_product_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_initiating_process_version_info_product_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.initiating_process.version_info_product_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_internet_message_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.internet_message_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_ip_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: m365_defender.event.ip_address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: m365_defender_event_ip_addresses
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: m365_defender.event.ip_addresses'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: m365_defender_event_ip_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.ip_category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_ip_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.ip_tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_ipv4_dhcp
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: m365_defender.event.ipv4_dhcp'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: m365_defender_event_ipv6_dhcp
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: m365_defender.event.ipv6_dhcp'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: m365_defender_event_is_admin_operation
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: m365_defender.event.is_admin_operation'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: m365_defender_event_is_anonymous_proxy
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: m365_defender.event.is_anonymous_proxy'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: m365_defender_event_is_azure_ad_joined
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: m365_defender.event.is_azure_ad_joined'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: m365_defender_event_is_azure_info_protection_applied
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: m365_defender.event.is_azure_info_protection_applied'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: m365_defender_event_is_clicked_through
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: m365_defender.event.is_clicked_through'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: m365_defender_event_is_excluded
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: m365_defender.event.is_excluded'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: m365_defender_event_is_external_thread
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: m365_defender.event.is_external_thread'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: m365_defender_event_is_external_user
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: m365_defender.event.is_external_user'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: m365_defender_event_is_impersonated
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: m365_defender.event.is_impersonated'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: m365_defender_event_is_internet_facing
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: m365_defender.event.is_internet_facing'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: m365_defender_event_is_known_suspicious_ip
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: m365_defender.event.is_known_suspicious_ip'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: m365_defender_event_is_local_admin
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: m365_defender.event.is_local_admin'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: m365_defender_event_is_owned_thread
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: m365_defender.event.is_owned_thread'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: m365_defender_event_is_private_ip
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: m365_defender.event.is_private_ip'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: m365_defender_event_is_root_signer_microsoft
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: m365_defender.event.is_root_signer_microsoft'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: m365_defender_event_is_signed
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: m365_defender.event.is_signed'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: m365_defender_event_is_tor_exit_node
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: m365_defender.event.is_tor_exit_node'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: m365_defender_event_is_trusted
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: m365_defender.event.is_trusted'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: m365_defender_event_isp
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.isp'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_issuer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.issuer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_issuer_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.issuer_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_join_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.join_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_kubernetes_namespace
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.kubernetes_namespace'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_kubernetes_pod_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.kubernetes_pod_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_kubernetes_resource
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.kubernetes_resource'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_last_edited_time
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.last_edited_time'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_last_event_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.event.last_event_timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: m365_defender_event_latest_delivery_location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.latest_delivery_location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_local_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: m365_defender.event.local.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: m365_defender_event_local_ip_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.local.ip_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_local_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.event.local.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: m365_defender_event_location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_logon_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.logon.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_logon_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.logon.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_mac_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.mac_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_machine_group
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.machine_group'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_merged_device_ids
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.merged_device_ids'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_merged_to_device_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.merged_to_device_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_message_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.message_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_message_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.message_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_model
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.model'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_network_adapter_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.network.adapter_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_network_adapter_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.network.adapter_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_network_adapter_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.network.adapter_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_network_adapter_vendor
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.network.adapter_vendor'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_network_direction
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.network_direction'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_network_message_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.network.message_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_oauth_application_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.oauth_application_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_object_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.object.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_object_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.object.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_object_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.object.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_onboarding_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.onboarding_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_operation_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.operation_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_operation_names_list
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.operation_names_list'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_operations_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.event.operations_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: m365_defender_event_org_level_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.org_level.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_org_level_policy
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.org_level.policy'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_os_architecture
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.os.architecture'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_os_distribution
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.os.distribution'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_os_platform
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.os.platform'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_os_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.os.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_os_version_info
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.os.version_info'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_parent_process_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.event.parent_process_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: m365_defender_event_parent_process_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.parent_process_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.event.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: m365_defender_event_previous_file_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.previous.file_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_previous_folder_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.previous.folder_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_previous_registry_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.previous.registry_key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_previous_registry_value_data
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.previous.registry_value_data'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_previous_registry_value_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.previous.registry_value_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_process_command_line
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.process.command_line'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_process_creation_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.event.process.creation_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: m365_defender_event_process_current_working_directory
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.process_current_working_directory'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_process_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.event.process.id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: m365_defender_event_process_integrity_level
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.process.integrity_level'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_process_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.process_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_process_token_elevation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.process.token_elevation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_process_version_info_company_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.process.version_info_company_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_process_version_info_file_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.process.version_info_file_description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_process_version_info_internal_file_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.process.version_info_internal_file_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_process_version_info_original_file_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.process.version_info_original_file_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_process_version_info_product_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.process.version_info_product_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_process_version_info_product_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.process.version_info_product_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_properties_operation_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.properties_operation_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_province_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.province_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_public_ip_geo_city_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.public_ip.geo.city_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_public_ip_geo_continent_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.public_ip.geo.continent_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_public_ip_geo_country_iso_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.public_ip.geo.country_iso_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_public_ip_geo_country_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.public_ip.geo.country_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_public_ip_geo_location
+      type: geo_point
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: m365_defender.event.public_ip.geo.location'
+      comment: 'Elasticsearch mapping type: geo_point'
+      _field_type: base
+    - name: m365_defender_event_public_ip_geo_region_iso_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.public_ip.geo.region_iso_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_public_ip_geo_region_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.public_ip.geo.region_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_public_ip_value
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: m365_defender.event.public_ip.value'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: m365_defender_event_query_target
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.query.target'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_query_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.query.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_query_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.query.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_raw_event_data
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: m365_defender.event.raw_event_data'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: m365_defender_event_recipient_email_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.recipient.email_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_recipient_object_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.recipient.object_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_registry_device_tag
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.registry.device_tag'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_registry_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.registry.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_registry_value_data
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.registry.value_data'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_registry_value_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.registry.value_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_registry_value_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.registry.value_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_remote_device_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.remote.device_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_remote_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: m365_defender.event.remote.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: m365_defender_event_remote_ip_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.remote.ip_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_remote_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.event.remote.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: m365_defender_event_remote_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.remote.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_report_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.report_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_request_account_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.request.account_domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_request_account_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.request.account_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_request_account_sid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.request.account_sid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_request_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.request.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_request_source_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: m365_defender.event.request.source_ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: m365_defender_event_request_source_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.event.request.source_port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: m365_defender_event_resource_group
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.resource_group'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_resource_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.resource_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_safety_tip
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.safety_tip'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_sender_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.sender.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_sender_email_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.sender_email_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_sender_from_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.sender.from_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_sender_from_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.sender.from_domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_sender_ipv4
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: m365_defender.event.sender.ipv4'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: m365_defender_event_sender_ipv6
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: m365_defender.event.sender.ipv6'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: m365_defender_event_sender_mail_from_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.sender.mail_from_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_sender_mail_from_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.sender.mail_from_domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_sender_object_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.sender.object_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_sender_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.sender_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_sensitivity_label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.sensitivity.label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_sensitivity_sub_label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.sensitivity.sub_label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_sensor_health_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.sensor_health_state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_service_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.service_source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_service_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.service_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_severity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.severity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_sha1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.sha1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_share_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.share_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_signature_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.signature_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_signer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.signer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_signer_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.signer_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_source_provider
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.source_provider'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_source_system
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.source_system'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_start_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.event.start_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: m365_defender_event_storage_account
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.storage_account'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_storage_container
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.storage_container'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_storage_file_share
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.storage_file_share'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_storage_ip_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: m365_defender.event.storage_ip_address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: m365_defender_event_subject
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.subject'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_subscription_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.subscription_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_successful_operations_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.event.successful_operations_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: m365_defender_event_successful_read_operations
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.event.successful_read_operations'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: m365_defender_event_suspicious_user_agent_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.suspicious_user_agent_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_target_account_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.target.account_display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_target_account_upn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.target.account_upn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_target_device_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.target.device_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_teams_message_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.teams_message_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_tenant_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.tenant.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_tenant_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.tenant.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_thread_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.thread_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_thread_subtype
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.thread_subtype'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_threat_family
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.threat.family'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_threat_names
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.threat.names'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_threat_types
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.threat.types'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.event.time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: m365_defender_event_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.event.timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: m365_defender_event_title
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.title'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_total_response_length
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.event.total_response_length'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: m365_defender_event_tunnel_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.tunnel_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_url_chain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.url_chain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_url_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: m365_defender.event.url_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: m365_defender_event_url_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.url_domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_url_location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.url_location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_user_agent
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.user_agent'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_user_agent_header
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.user_agent_header'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_user_agent_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.user_agent_tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_user_level_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.user_level_action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_user_level_policy
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.user_level_policy'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_vendor
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.vendor'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: m365_defender_event_workload
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: m365_defender.event.workload'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: process_Ext_api_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: process.Ext.api.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: process_Ext_api_parameters_address
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: process.Ext.api.parameters.address'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: process_Ext_api_parameters_desired_access_numeric
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: process.Ext.api.parameters.desired_access_numeric'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: process_Ext_api_parameters_protection
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: process.Ext.api.parameters.protection'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: process_Ext_api_parameters_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: process.Ext.api.parameters.size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: process_Ext_token_integrity_level_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: process.Ext.token.integrity_level_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: process_parent_group_leader_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: process.parent.group_leader.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: url_user_info
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: url.user_info'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

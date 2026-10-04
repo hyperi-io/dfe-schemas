@@ -1,0 +1,1649 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of prisma_cloud.host at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: log_source_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.source.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host__id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host._id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_agentless
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.agentless'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_all_compliance_data_cve
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.all_compliance.data.cve'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_all_compliance_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.all_compliance.enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_app_embedded
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.app_embedded'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_applications_installed_from_package
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.applications.installed_from_package'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_applications_known_vulnerabilities
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.applications.known_vulnerabilities'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: prisma_cloud_host_applications_layer_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.applications.layer_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: prisma_cloud_host_applications_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.applications.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_applications_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.applications.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_applications_service
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.applications.service'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_applications_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.applications.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_base_image
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.base_image'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_binaries_altered
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.binaries.altered'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_binaries_cve_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.binaries.cve_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: prisma_cloud_host_binaries_deps
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.binaries.deps'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_binaries_file_mode
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.binaries.file_mode'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: prisma_cloud_host_binaries_function_layer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.binaries.function_layer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_binaries_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.binaries.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_binaries_missing_pkg
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.binaries.missing_pkg'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_binaries_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.binaries.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_binaries_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.binaries.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_binaries_pkg_root_dir
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.binaries.pkg_root_dir'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_binaries_services
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.binaries.services'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_binaries_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.binaries.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_cloud_metadata_account_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.cloud_metadata.account_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_cloud_metadata_aws_execution_env
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.cloud_metadata.aws_execution_env'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_cloud_metadata_image
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.cloud_metadata.image'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_cloud_metadata_labels_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.cloud_metadata.labels.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_cloud_metadata_labels_source_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.cloud_metadata.labels.source.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_cloud_metadata_labels_source_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.cloud_metadata.labels.source.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_cloud_metadata_labels_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.cloud_metadata.labels.timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: prisma_cloud_host_cloud_metadata_labels_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.cloud_metadata.labels.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_cloud_metadata_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.cloud_metadata.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_cloud_metadata_provider
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.cloud_metadata.provider'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_cloud_metadata_region
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.cloud_metadata.region'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_cloud_metadata_resource_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.cloud_metadata.resource.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_cloud_metadata_resource_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.cloud_metadata.resource.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_cloud_metadata_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.cloud_metadata.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_cloud_metadata_vm_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.cloud_metadata.vm.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_cloud_metadata_vm_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.cloud_metadata.vm.image_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_cluster_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.cluster_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_clusters
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.clusters'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_collections
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.collections'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_compliance_distribution_critical
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.compliance_distribution.critical'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: prisma_cloud_host_compliance_distribution_high
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.compliance_distribution.high'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: prisma_cloud_host_compliance_distribution_low
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.compliance_distribution.low'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: prisma_cloud_host_compliance_distribution_medium
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.compliance_distribution.medium'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: prisma_cloud_host_compliance_distribution_total
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.compliance_distribution.total'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: prisma_cloud_host_compliance_issues_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.compliance_issues.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: prisma_cloud_host_compliance_issues_data_cve
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.compliance_issues.data.cve'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_compliance_risk_score
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.compliance_risk_score'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: prisma_cloud_host_creation_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.creation_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: prisma_cloud_host_devices_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.devices.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: prisma_cloud_host_devices_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.devices.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_distro
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.distro'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_ecs_cluster_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.ecs_cluster_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_err
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.err'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_external_labels_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.external_labels.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_external_labels_source_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.external_labels.source.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_external_labels_source_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.external_labels.source.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_external_labels_timestamp
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.external_labels.timestamp'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_external_labels_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.external_labels.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_files_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.files.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_files_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.files.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_files_sha1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.files.sha1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_files_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.files.sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_firewall_protection_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.firewall_protection.enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_firewall_protection_out_of_band_mode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.firewall_protection.out_of_band_mode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_firewall_protection_ports
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.firewall_protection.ports'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: prisma_cloud_host_firewall_protection_supported
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.firewall_protection.supported'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_firewall_protection_tls_ports
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.firewall_protection.tls_ports'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: prisma_cloud_host_firewall_protection_unprotected_processes_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.firewall_protection.unprotected_processes.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: prisma_cloud_host_firewall_protection_unprotected_processes_process
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.firewall_protection.unprotected_processes.process'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_firewall_protection_unprotected_processes_tls
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.firewall_protection.unprotected_processes.tls'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_first_scan_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.first_scan_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: prisma_cloud_host_history_base_layer
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.history.base_layer'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_history_created
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.history.created'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: prisma_cloud_host_history_empty_layer
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.history.empty_layer'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_history_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.history.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_history_instruction
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.history.instruction'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_history_size_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.history.size_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: prisma_cloud_host_history_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.history.tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_history_vulnerabilities_cve
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.history.vulnerabilities.cve'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_hostname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.hostname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_hosts
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: prisma_cloud.host.hosts'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: prisma_cloud_host_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_image_created
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.image.created'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: prisma_cloud_host_image_entrypoint
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.image.entrypoint'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_image_env
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.image.env'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_image_healthcheck
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.image.healthcheck'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_image_history_base_layer
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.image.history.base_layer'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_image_history_created
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.image.history.created'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: prisma_cloud_host_image_history_empty_layer
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.image.history.empty_layer'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_image_history_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.image.history.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_image_history_instruction
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.image.history.instruction'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_image_history_size_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.image.history.size_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: prisma_cloud_host_image_history_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.image.history.tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_image_history_vulnerabilities_cve
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.image.history.vulnerabilities.cve'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_image_labels
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: prisma_cloud.host.image.labels'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: prisma_cloud_host_image_layers
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.image.layers'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_image_os
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.image.os'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_image_repo_digest
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.image.repo.digest'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_image_repo_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.image.repo.tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_image_user
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.image.user'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_image_working_dir
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.image.working_dir'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_installed_products_agentless
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.installed_products.agentless'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_installed_products_apache
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.installed_products.apache'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_installed_products_aws_cloud
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.installed_products.aws_cloud'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_installed_products_cluster_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.installed_products.cluster_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_installed_products_crio
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.installed_products.crio'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_installed_products_docker
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.installed_products.docker'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_installed_products_docker_enterprise
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.installed_products.docker_enterprise'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_installed_products_has_package_manager
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.installed_products.has_package_manager'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_installed_products_k8s_api_server
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.installed_products.k8s_api_server'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_installed_products_k8s_controller_manager
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.installed_products.k8s_controller_manager'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_installed_products_k8s_etcd
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.installed_products.k8s_etcd'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_installed_products_k8s_federation_api_server
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.installed_products.k8s_federation_api_server'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_installed_products_k8s_federation_controller_manager
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.installed_products.k8s_federation_controller_manager'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_installed_products_k8s_kubelet
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.installed_products.k8s_kubelet'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_installed_products_k8s_proxy
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.installed_products.k8s_proxy'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_installed_products_k8s_scheduler
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.installed_products.k8s_scheduler'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_installed_products_kubernetes
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.installed_products.kubernetes'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_installed_products_managed_cluster_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.installed_products.managed_cluster_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_installed_products_openshift
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.installed_products.openshift'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_installed_products_openshift_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.installed_products.openshift_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_installed_products_os_distro
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.installed_products.os_distro'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_installed_products_serverless
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.installed_products.serverless'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_installed_products_swarm_manager
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.installed_products.swarm.manager'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_installed_products_swarm_node
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.installed_products.swarm.node'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_instances_host
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.instances.host'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_instances_image
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.instances.image'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_instances_modified
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.instances.modified'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: prisma_cloud_host_instances_registry
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.instances.registry'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_instances_repo
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.instances.repo'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_instances_tag
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.instances.tag'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_is_arm64
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.is_arm64'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_k8s_cluster_addr
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.k8s_cluster_addr'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_labels
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.labels'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_malware_analyzed_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.malware_analyzed_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: prisma_cloud_host_missing_distro_vuln_coverage
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.missing_distro_vuln_coverage'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_namespaces
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.namespaces'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_os_distro_release
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.os_distro.release'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_os_distro_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.os_distro.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_os_distro_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.os_distro.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_package_correlation_done
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.package.correlation_done'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_package_manager
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.package.manager'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_packages_pkgs_binary_idx
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.packages.pkgs.binary_idx'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: prisma_cloud_host_packages_pkgs_binary_pkgs
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.packages.pkgs.binary_pkgs'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_packages_pkgs_cve_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.packages.pkgs.cve_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: prisma_cloud_host_packages_pkgs_default_gem
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.packages.pkgs.default_gem'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_packages_pkgs_files_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.packages.pkgs.files.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_packages_pkgs_files_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.packages.pkgs.files.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_packages_pkgs_files_sha1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.packages.pkgs.files.sha1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_packages_pkgs_files_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.packages.pkgs.files.sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_packages_pkgs_function_layer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.packages.pkgs.function_layer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_packages_pkgs_go_pkg
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.packages.pkgs.go_pkg'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_packages_pkgs_jar_identifier
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.packages.pkgs.jar_identifier'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_packages_pkgs_layer_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.packages.pkgs.layer_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: prisma_cloud_host_packages_pkgs_license
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.packages.pkgs.license'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_packages_pkgs_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.packages.pkgs.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_packages_pkgs_os_package
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.packages.pkgs.os_package'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_packages_pkgs_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.packages.pkgs.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_packages_pkgs_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.packages.pkgs_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_packages_pkgs_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.packages.pkgs.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_pull_duration
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.pull_duration'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: prisma_cloud_host_push_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.push_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: prisma_cloud_host_red_hat_non_rpm_image
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.red_hat_non_rpm_image'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_registry_namespace
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.registry.namespace'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_registry_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.registry.tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_registry_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.registry.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_repo_digests
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.repo_digests'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_repo_tag_digest
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.repo_tag.digest'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_repo_tag_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.repo_tag.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_repo_tag_registry
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.repo_tag.registry'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_repo_tag_repo
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.repo_tag.repo'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_repo_tag_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.repo_tag.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_rhel_repos
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.rhel_repos'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_risk_factors
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: prisma_cloud.host.risk_factors'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: prisma_cloud_host_runtime_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.runtime_enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_scan_build_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.scan.build_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: prisma_cloud_host_scan_duration
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.scan.duration'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: prisma_cloud_host_scan_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.scan.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_scan_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.scan.time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: prisma_cloud_host_scan_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.scan.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_secrets
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.secrets'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_startup_binaries_altered
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.startup_binaries.altered'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_startup_binaries_cve_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.startup_binaries.cve_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: prisma_cloud_host_startup_binaries_deps
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.startup_binaries.deps'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_startup_binaries_file_mode
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.startup_binaries.file_mode'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: prisma_cloud_host_startup_binaries_function_layer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.startup_binaries.function_layer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_startup_binaries_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.startup_binaries.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_startup_binaries_missing_pkg
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.startup_binaries.missing_pkg'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_startup_binaries_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.startup_binaries.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_startup_binaries_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.startup_binaries.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_startup_binaries_pkg_root_dir
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.startup_binaries.pkg_root_dir'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_startup_binaries_services
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.startup_binaries.services'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_startup_binaries_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.startup_binaries.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_stopped
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.stopped'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_tags_digest
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.tags.digest'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_tags_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.tags.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_tags_registry
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.tags.registry'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_tags_repo
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.tags.repo'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_tags_tag
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.tags.tag'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_top_layer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.top_layer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_trust_result_groups__id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.trust_result.groups._id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_trust_result_groups_disabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.trust_result.groups.disabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_trust_result_groups_images
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.trust_result.groups.images'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_trust_result_groups_layers
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.trust_result.groups.layers'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_trust_result_groups_modified
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.trust_result.groups.modified'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: prisma_cloud_host_trust_result_groups_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.trust_result.groups.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_trust_result_groups_notes
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.trust_result.groups.notes'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_trust_result_groups_owner
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.trust_result.groups.owner'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_trust_result_groups_previous_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.trust_result.groups.previous_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_trust_result_hosts_statuses_host
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.trust_result.hosts_statuses.host'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_trust_result_hosts_statuses_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.trust_result.hosts_statuses.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_trust_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.trust_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_twistlock_image
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.host.twistlock_image'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_host_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_vulnerabilities_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.vulnerabilities.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: prisma_cloud_host_vulnerabilities_data_cve
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.host.vulnerabilities.data.cve'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_host_vulnerability_distribution_critical
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.vulnerability.distribution.critical'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: prisma_cloud_host_vulnerability_distribution_high
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.vulnerability.distribution.high'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: prisma_cloud_host_vulnerability_distribution_low
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.vulnerability.distribution.low'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: prisma_cloud_host_vulnerability_distribution_medium
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.vulnerability.distribution.medium'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: prisma_cloud_host_vulnerability_distribution_total
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.vulnerability.distribution.total'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: prisma_cloud_host_vulnerability_risk_score
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.vulnerability.risk_score'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: prisma_cloud_host_wild_fire_usage_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.wild_fire_usage.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: prisma_cloud_host_wild_fire_usage_queries
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.wild_fire_usage.queries'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: prisma_cloud_host_wild_fire_usage_uploads
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.host.wild_fire_usage.uploads'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

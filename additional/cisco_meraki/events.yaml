@@ -1,0 +1,212 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of cisco_meraki.events at integrations 2c934eb5223b
+    columns:
+    - name: cisco_meraki_event_alertData
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: cisco_meraki.event.alertData'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: cisco_meraki_event_alertId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_meraki.event.alertId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_meraki_event_alertLevel
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_meraki.event.alertLevel'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_meraki_event_alertType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_meraki.event.alertType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_meraki_event_alertTypeId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_meraki.event.alertTypeId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_meraki_event_deviceMac
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_meraki.event.deviceMac'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_meraki_event_deviceModel
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_meraki.event.deviceModel'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_meraki_event_deviceName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_meraki.event.deviceName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_meraki_event_deviceSerial
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_meraki.event.deviceSerial'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_meraki_event_deviceTags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_meraki.event.deviceTags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_meraki_event_deviceUrl
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_meraki.event.deviceUrl'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_meraki_event_networkId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_meraki.event.networkId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_meraki_event_networkName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_meraki.event.networkName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_meraki_event_networkTags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_meraki.event.networkTags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_meraki_event_networkUrl
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_meraki.event.networkUrl'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_meraki_event_occurredAt
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cisco_meraki.event.occurredAt'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: cisco_meraki_event_organizationId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_meraki.event.organizationId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_meraki_event_organizationName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_meraki.event.organizationName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_meraki_event_organizationUrl
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_meraki.event.organizationUrl'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_meraki_event_sentAt
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cisco_meraki.event.sentAt'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: cisco_meraki_event_sharedSecret
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_meraki.event.sharedSecret'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_meraki_event_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_meraki.event.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: log_source_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.source.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

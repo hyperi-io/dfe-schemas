@@ -1,0 +1,191 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of cisco_duo.trust_monitor at integrations 2c934eb5223b
+    columns:
+    - name: cisco_duo_trust_monitor_bypass_status_enabled
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cisco_duo.trust_monitor.bypass_status_enabled'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cisco_duo_trust_monitor_enabled_by_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.trust_monitor.enabled_by.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_trust_monitor_enabled_by_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.trust_monitor.enabled_by.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_trust_monitor_enabled_for_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.trust_monitor.enabled_for.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_trust_monitor_enabled_for_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.trust_monitor.enabled_for.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_trust_monitor_explanations_summary
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.trust_monitor.explanations.summary'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_trust_monitor_explanations_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.trust_monitor.explanations.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_trust_monitor_from_common_netblock
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cisco_duo.trust_monitor.from_common_netblock'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: cisco_duo_trust_monitor_from_new_user
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cisco_duo.trust_monitor.from_new_user'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: cisco_duo_trust_monitor_low_risk_ip
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cisco_duo.trust_monitor.low_risk_ip'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: cisco_duo_trust_monitor_priority_event
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cisco_duo.trust_monitor.priority_event'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: cisco_duo_trust_monitor_priority_reasons_label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.trust_monitor.priority_reasons.label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_trust_monitor_priority_reasons_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.trust_monitor.priority_reasons.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_trust_monitor_sekey
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.trust_monitor.sekey'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_trust_monitor_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.trust_monitor.state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_trust_monitor_state_updated_timestamp
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cisco_duo.trust_monitor.state_updated_timestamp'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cisco_duo_trust_monitor_surfaced_auth
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: cisco_duo.trust_monitor.surfaced_auth'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: cisco_duo_trust_monitor_triage_event_uri
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.trust_monitor.triage_event_uri'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_duo_trust_monitor_triaged_as_interesting
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cisco_duo.trust_monitor.triaged_as_interesting'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: cisco_duo_trust_monitor_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco_duo.trust_monitor.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

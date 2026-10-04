@@ -1,0 +1,569 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of github.issues at integrations 2c934eb5223b
+    columns:
+    - name: github_issues_active_lock_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.issues.active_lock_reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_issues_assignee_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.issues.assignee.email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_issues_assignee_html_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.issues.assignee.html_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_issues_assignee_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: github.issues.assignee.id'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: github_issues_assignee_login
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.issues.assignee.login'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_issues_assignee_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.issues.assignee.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_issues_assignee_site_admin
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: github.issues.assignee.site_admin'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: github_issues_assignee_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.issues.assignee.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_issues_assignee_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.issues.assignee.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_issues_assignees
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: github.issues.assignees'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: github_issues_author_association
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.issues.author_association'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_issues_body
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: github.issues.body'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: github_issues_closed_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: github.issues.closed_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: github_issues_closed_by_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.issues.closed_by.email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_issues_closed_by_html_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.issues.closed_by.html_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_issues_closed_by_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: github.issues.closed_by.id'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: github_issues_closed_by_login
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.issues.closed_by.login'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_issues_closed_by_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.issues.closed_by.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_issues_closed_by_site_admin
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: github.issues.closed_by.site_admin'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: github_issues_closed_by_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.issues.closed_by.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_issues_closed_by_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.issues.closed_by.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_issues_comments
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: github.issues.comments'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: github_issues_comments_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.issues.comments_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_issues_created_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: github.issues.created_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: github_issues_draft
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: github.issues.draft'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: github_issues_events_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.issues.events_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_issues_html_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.issues.html_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_issues_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: github.issues.id'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: github_issues_is_pr
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: github.issues.is_pr'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: github_issues_labels_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.issues.labels.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_issues_labels_integration
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.issues.labels.integration'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_issues_labels_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.issues.labels.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_issues_labels_team
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.issues.labels.team'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_issues_labels_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.issues.labels_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_issues_locked
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: github.issues.locked'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: github_issues_node_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.issues.node_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_issues_number
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: github.issues.number'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: github_issues_pull_request_diff_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.issues.pull_request.diff_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_issues_pull_request_html_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.issues.pull_request.html_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_issues_pull_request_patch_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.issues.pull_request.patch_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_issues_pull_request_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.issues.pull_request.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_issues_repository_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.issues.repository_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_issues_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.issues.state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_issues_state_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.issues.state_reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_issues_time_to_close_sec
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: github.issues.time_to_close.sec'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: github_issues_timeline_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.issues.timeline_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_issues_title
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.issues.title'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_issues_updated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: github.issues.updated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: github_issues_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.issues.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_issues_user_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.issues.user.email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_issues_user_html_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.issues.user.html_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_issues_user_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: github.issues.user.id'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: github_issues_user_login
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.issues.user.login'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_issues_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.issues.user.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_issues_user_site_admin
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: github.issues.user.site_admin'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: github_issues_user_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.issues.user.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_issues_user_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.issues.user.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_repository_description
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: github.repository.description'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: github_repository_fork
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: github.repository.fork'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: github_repository_full_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.repository.full_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_repository_html_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.repository.html_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_repository_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: github.repository.id'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: github_repository_is_in_organization
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: github.repository.is_in_organization'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: github_repository_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.repository.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_repository_owner_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.repository.owner.email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_repository_owner_html_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.repository.owner.html_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_repository_owner_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: github.repository.owner.id'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: github_repository_owner_login
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.repository.owner.login'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_repository_owner_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.repository.owner.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_repository_owner_site_admin
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: github.repository.owner.site_admin'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: github_repository_owner_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.repository.owner.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_repository_owner_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.repository.owner.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: github_repository_private
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: github.repository.private'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: github_repository_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: github.repository.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: labels_is_transform_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: labels.is_transform_source'
+      comment: 'Elasticsearch mapping type: constant_keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

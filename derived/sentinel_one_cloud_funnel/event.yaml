@@ -1,0 +1,190 @@
+base: meta/elastic/ecs
+base_version: "1.0.0"
+current: "1.0.0"
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    summary: sentinel_one_cloud_funnel.event selection from meta/elastic/ecs
+    select:
+    - name: data_stream_dataset
+      index: exact_match
+    - name: data_stream_namespace
+      index: exact_match
+    - name: data_stream_type
+      index: exact_match
+    - name: destination_address
+      index: exact_match
+    - name: destination_domain
+      index: exact_match
+    - name: destination_ip
+      index: dimension
+    - name: destination_port
+      index: range
+    - name: destination_registered_domain
+      index: exact_match
+    - name: destination_subdomain
+      index: exact_match
+    - name: destination_top_level_domain
+      index: exact_match
+    - name: dns_answers_data
+      index: exact_match
+    - name: dns_answers_type
+      index: exact_match
+    - name: dns_question_name
+      index: exact_match
+    - name: dns_question_type
+      index: exact_match
+    - name: dns_resolved_ip
+      index: dimension
+    - name: ecs_version
+      index: exact_match
+    - name: event_action
+      index: exact_match
+    - name: event_category
+      index: exact_match
+    - name: event_dataset
+      index: exact_match
+    - name: event_id
+      index: exact_match
+    - name: event_kind
+      index: exact_match
+    - name: event_module
+      index: exact_match
+    - name: event_original
+      index: none
+    - name: event_outcome
+      index: exact_match
+    - name: event_type
+      index: exact_match
+    - name: file_created
+      index: range
+    - name: file_directory
+      index: exact_match
+    - name: file_drive_letter
+      index: exact_match
+    - name: file_mtime
+      index: range
+    - name: file_name
+      index: exact_match
+    - name: file_path
+      index: exact_match
+    - name: file_size
+      index: range
+    - name: file_type
+      index: exact_match
+    - name: group_id
+      index: exact_match
+    - name: host_hostname
+      index: exact_match
+    - name: host_id
+      index: exact_match
+    - name: host_os_name
+      index: exact_match
+    - name: host_os_platform
+      index: exact_match
+    - name: host_os_type
+      index: exact_match
+    - name: host_type
+      index: exact_match
+    - name: network_direction
+      index: exact_match
+    - name: network_protocol
+      index: exact_match
+    - name: process_args
+      index: exact_match
+    - name: process_args_count
+      index: range
+    - name: process_code_signature_exists
+      index: dimension
+    - name: process_code_signature_subject_name
+      index: exact_match
+    - name: process_code_signature_trusted
+      index: dimension
+    - name: process_command_line
+      index: exact_match
+    - name: process_entity_id
+      index: exact_match
+    - name: process_executable
+      index: exact_match
+    - name: process_hash_md5
+      index: exact_match
+    - name: process_hash_sha1
+      index: exact_match
+    - name: process_hash_sha256
+      index: exact_match
+    - name: process_name
+      index: exact_match
+    - name: process_parent_args
+      index: exact_match
+    - name: process_parent_args_count
+      index: range
+    - name: process_parent_code_signature_exists
+      index: dimension
+    - name: process_parent_code_signature_subject_name
+      index: exact_match
+    - name: process_parent_code_signature_trusted
+      index: dimension
+    - name: process_parent_command_line
+      index: exact_match
+    - name: process_parent_entity_id
+      index: exact_match
+    - name: process_parent_executable
+      index: exact_match
+    - name: process_parent_hash_md5
+      index: exact_match
+    - name: process_parent_hash_sha1
+      index: exact_match
+    - name: process_parent_hash_sha256
+      index: exact_match
+    - name: process_parent_name
+      index: exact_match
+    - name: process_parent_pid
+      index: range
+    - name: process_parent_start
+      index: range
+    - name: process_parent_title
+      index: exact_match
+    - name: process_parent_user_name
+      index: exact_match
+    - name: process_pid
+      index: range
+    - name: process_start
+      index: range
+    - name: process_thread_id
+      index: range
+    - name: process_title
+      index: exact_match
+    - name: process_user_name
+      index: exact_match
+    - name: registry_data_type
+      index: exact_match
+    - name: registry_key
+      index: exact_match
+    - name: registry_path
+      index: exact_match
+    - name: registry_value
+      index: exact_match
+    - name: related_hash
+      index: exact_match
+    - name: related_hosts
+      index: exact_match
+    - name: related_ip
+      index: dimension
+    - name: related_user
+      index: exact_match
+    - name: source_ip
+      index: dimension
+    - name: source_port
+      index: range
+    - name: tags
+      index: exact_match
+    - name: url_domain
+      index: exact_match
+    - name: url_original
+      index: exact_match
+    - name: url_scheme
+      index: exact_match
+    - name: user_domain
+      index: exact_match
+    - name: user_name
+      index: exact_match

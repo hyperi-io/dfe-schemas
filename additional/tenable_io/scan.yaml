@@ -1,0 +1,1016 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of tenable_io.scan at integrations 2c934eb5223b
+    columns:
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_control
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.scan.control'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_io_scan_creation_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.creation_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_io_scan_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.scan.enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_io_scan_has_triggers
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.scan.has_triggers'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_io_scan_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_last_modification_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.last_modification_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_io_scan_legacy
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.scan.legacy'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_io_scan_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.scan.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_scan_owner
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.scan.owner'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_scan_permissions
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.permissions'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_policy_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.policy_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_progress
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.progress'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_read
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.scan.read'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_io_scan_rrules
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.scan.rrules'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_comphosts_asset_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.comphosts.asset_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_comphosts_critical
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.comphosts.critical'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_comphosts_high
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.comphosts.high'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_comphosts_host_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.comphosts.host_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_comphosts_host_index
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.comphosts.host_index'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_comphosts_hostname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.scan.scan_details.comphosts.hostname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_comphosts_info
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.comphosts.info'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_comphosts_low
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.comphosts.low'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_comphosts_medium
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.comphosts.medium'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_comphosts_numchecksconsidered
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.comphosts.numchecksconsidered'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_comphosts_progress
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.scan.scan_details.comphosts.progress'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_comphosts_scanprogresscurrent
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.comphosts.scanprogresscurrent'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_comphosts_scanprogresstotal
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.comphosts.scanprogresstotal'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_comphosts_score
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.comphosts.score'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_comphosts_severity
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.comphosts.severity'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_comphosts_severitycount_item_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.comphosts.severitycount.item.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_comphosts_severitycount_item_severitylevel
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.comphosts.severitycount.item.severitylevel'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_comphosts_totalchecksconsidered
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.comphosts.totalchecksconsidered'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_compliance_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.compliance.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_compliance_host_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.compliance.host_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_compliance_hostname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.scan.scan_details.compliance.hostname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_compliance_plugin_family
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.scan.scan_details.compliance.plugin_family'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_compliance_plugin_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.scan.scan_details.compliance.plugin_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_compliance_plugin_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.scan.scan_details.compliance.plugin_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_compliance_severity
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.compliance.severity'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_compliance_severity_index
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.compliance.severity_index'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_history_alt_targets_used
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.scan.scan_details.history.alt_targets_used'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_history_creation_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.history.creation_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_history_history_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.history.history_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_history_is_archived
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.scan.scan_details.history.is_archived'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_history_last_modification_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.history.last_modification_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_history_owner_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.history.owner_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_history_reporting_mode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.scan.scan_details.history.reporting_mode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_history_scheduler
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.history.scheduler'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_history_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.scan.scan_details.history.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_history_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.scan.scan_details.history.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_history_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.scan.scan_details.history.uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_hosts_asset_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.hosts.asset_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_hosts_critical
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.hosts.critical'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_hosts_high
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.hosts.high'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_hosts_host_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.hosts.host_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_hosts_host_index
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.hosts.host_index'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_hosts_hostname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.scan.scan_details.hosts.hostname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_hosts_info
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.hosts.info'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_hosts_low
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.hosts.low'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_hosts_medium
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.hosts.medium'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_hosts_numchecksconsidered
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.hosts.numchecksconsidered'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_hosts_progress
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.scan.scan_details.hosts.progress'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_hosts_scanprogresscurrent
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.hosts.scanprogresscurrent'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_hosts_scanprogresstotal
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.hosts.scanprogresstotal'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_hosts_score
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.hosts.score'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_hosts_severity
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.hosts.severity'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_hosts_severitycount_item_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.hosts.severitycount.item.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_hosts_severitycount_item_severitylevel
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.hosts.severitycount.item.severitylevel'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_hosts_totalchecksconsidered
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.hosts.totalchecksconsidered'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_info_acls_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.scan.scan_details.info.acls.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_info_acls_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.info.acls.id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_info_acls_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.scan.scan_details.info.acls.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_info_acls_owner
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.info.acls.owner'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_info_acls_permissions
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.info.acls.permissions'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_info_acls_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.scan.scan_details.info.acls.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_info_alt_targets_used
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.scan.scan_details.info.alt_targets_used'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_info_control
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.scan.scan_details.info.control'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_info_edit_allowed
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.scan.scan_details.info.edit_allowed'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_info_folder_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.info.folder_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_info_hasaudittrail
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.scan.scan_details.info.hasaudittrail'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_info_haskb
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.scan.scan_details.info.haskb'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_info_hostcount
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.info.hostcount'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_info_is_archived
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.scan.scan_details.info.is_archived'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_info_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.scan.scan_details.info.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_info_no_target
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.scan.scan_details.info.no_target'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_info_object_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.info.object_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_info_owner
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.scan.scan_details.info.owner'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_info_pci-can-upload
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.scan.scan_details.info.pci-can-upload'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_info_policy
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.scan.scan_details.info.policy'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_info_scan_end
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.info.scan_end'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_info_scan_start
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.info.scan_start'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_info_scan_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.scan.scan_details.info.scan_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_info_scanner_end
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.info.scanner_end'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_info_scanner_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.scan.scan_details.info.scanner_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_info_scanner_start
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.info.scanner_start'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_info_schedule_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.scan.scan_details.info.schedule_uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_info_shared
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.scan.scan_details.info.shared'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_info_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.scan.scan_details.info.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_info_tag_targets
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.scan.scan_details.info.tag_targets'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_info_targets
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.scan.scan_details.info.targets'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_info_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.info.timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_info_user_permissions
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.info.user_permissions'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_info_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.scan.scan_details.info.uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_notes_message
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.scan.scan_details.notes.message'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_notes_severity
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.notes.severity'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_notes_title
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.scan.scan_details.notes.title'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_progress
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.progress'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_remediations_num_cves
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.remediations.num_cves'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_remediations_num_hosts
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.remediations.num_hosts'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_remediations_num_impacted_hosts
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.remediations.num_impacted_hosts'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_remediations_num_remediated_cves
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.remediations.num_remediated_cves'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_remediations_remediations_hosts
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.remediations.remediations.hosts'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_remediations_remediations_remediation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.scan.scan_details.remediations.remediations.remediation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_remediations_remediations_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.scan.scan_details.remediations.remediations.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_remediations_remediations_vulns
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.remediations.remediations.vulns'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_vulnerabilities_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.vulnerabilities.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_vulnerabilities_plugin_family
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.scan.scan_details.vulnerabilities.plugin_family'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_vulnerabilities_plugin_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.vulnerabilities.plugin_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_vulnerabilities_plugin_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.scan.scan_details.vulnerabilities.plugin_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_vulnerabilities_severity
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.vulnerabilities.severity'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_vulnerabilities_severity_index
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.vulnerabilities.severity_index'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_scan_details_vulnerabilities_vuln_index
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.scan_details.vulnerabilities.vuln_index'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_schedule_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.scan.schedule_uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_scan_shared
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.scan.shared'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_io_scan_starttime
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.starttime'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_io_scan_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.scan.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_scan_status_times_initializing
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.status_times.initializing'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_status_times_pending
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.status_times.pending'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_status_times_processing
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.status_times.processing'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_status_times_publishing
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.status_times.publishing'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_status_times_running
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.status_times.running'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_template_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.scan.template_uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_scan_timezone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.scan.timezone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_scan_total_targets
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.total_targets'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.scan.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_scan_user_permissions
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.scan.user_permissions'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_scan_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.scan.uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_scan_wizard_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.scan.wizard_uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

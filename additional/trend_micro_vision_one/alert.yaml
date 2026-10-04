@@ -1,0 +1,526 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of trend_micro_vision_one.alert at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_alert_provider
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.alert_provider'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_campaign
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.campaign'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_case_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.case_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_created_by
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.created_by'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_created_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trend_micro_vision_one.alert.created_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_first_investigated_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trend_micro_vision_one.alert.first_investigated_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_impact_scope_account_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trend_micro_vision_one.alert.impact_scope.account_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_impact_scope_cloud_identity_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trend_micro_vision_one.alert.impact_scope.cloud_identity_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_impact_scope_cloud_workload_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trend_micro_vision_one.alert.impact_scope.cloud_workload_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_impact_scope_container_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trend_micro_vision_one.alert.impact_scope.container_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_impact_scope_desktop_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trend_micro_vision_one.alert.impact_scope.desktop_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_impact_scope_email_address_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trend_micro_vision_one.alert.impact_scope.email_address_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_impact_scope_entities_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.impact_scope.entities.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_impact_scope_entities_management_scope_group_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.impact_scope.entities.management_scope_group_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_impact_scope_entities_management_scope_instance_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.impact_scope.entities.management_scope_instance_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_impact_scope_entities_management_scope_partition_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.impact_scope.entities.management_scope_partition_key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_impact_scope_entities_provenance
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.impact_scope.entities.provenance'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_impact_scope_entities_related_entities
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.impact_scope.entities.related_entities'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_impact_scope_entities_related_indicator_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.impact_scope.entities.related_indicator_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_impact_scope_entities_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.impact_scope.entities.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_impact_scope_entities_value_account_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.impact_scope.entities.value.account_value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_impact_scope_entities_value_guid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.impact_scope.entities.value.guid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_impact_scope_entities_value_ips
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: trend_micro_vision_one.alert.impact_scope.entities.value.ips'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_impact_scope_entities_value_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.impact_scope.entities.value.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_impact_scope_server_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trend_micro_vision_one.alert.impact_scope.server_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_incident_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.incident_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_indicators_field
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.indicators.field'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_indicators_fields
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.indicators.fields'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_indicators_filter_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.indicators.filter_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_indicators_first_seen_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trend_micro_vision_one.alert.indicators.first_seen_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_indicators_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.indicators.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_indicators_last_seen_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trend_micro_vision_one.alert.indicators.last_seen_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_indicators_matched_indicator_pattern_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.indicators.matched_indicator.pattern_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_indicators_provenance
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.indicators.provenance'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_indicators_related_entities
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.indicators.related_entities'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_indicators_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.indicators.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_indicators_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.indicators.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_indicators_value_object_guid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.indicators.value_object.guid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_indicators_value_object_ips
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: trend_micro_vision_one.alert.indicators.value_object.ips'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_indicators_value_object_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.indicators.value_object.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_industry
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.industry'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_investigation_result
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.investigation_result'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_investigation_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.investigation_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_matched_indicator_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trend_micro_vision_one.alert.matched_indicator_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_matched_indicators_pattern_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.matched_indicators_pattern.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_matched_indicators_pattern_matched_log
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.matched_indicators_pattern.matched_log'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_matched_indicators_pattern_pattern
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.matched_indicators_pattern.pattern'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_matched_indicators_pattern_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.matched_indicators_pattern.tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_matched_rule_filter_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trend_micro_vision_one.alert.matched_rule.filter.date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_matched_rule_filter_events_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trend_micro_vision_one.alert.matched_rule.filter.events.date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_matched_rule_filter_events_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.matched_rule.filter.events.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_matched_rule_filter_events_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.matched_rule.filter.events.uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_matched_rule_filter_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.matched_rule.filter.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_matched_rule_filter_mitre_technique_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.matched_rule.filter.mitre_technique_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_matched_rule_filter_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.matched_rule.filter.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_matched_rule_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.matched_rule.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_matched_rule_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.matched_rule.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_model
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.model'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_model_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.model_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_model_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.model_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_owner_ids
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.owner_ids'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_region_and_country
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.region_and_country'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_report_link
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.report_link'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_schema_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.schema_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_score
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trend_micro_vision_one.alert.score'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_severity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.severity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_total_indicator_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trend_micro_vision_one.alert.total_indicator_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_updated_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: trend_micro_vision_one.alert.updated_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: trend_micro_vision_one_alert_workbench_link
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: trend_micro_vision_one.alert.workbench_link'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

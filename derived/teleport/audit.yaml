@@ -1,0 +1,194 @@
+base: meta/elastic/ecs
+base_version: "1.0.0"
+current: "1.0.0"
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    summary: teleport.audit selection from meta/elastic/ecs
+    select:
+    - name: client_address
+      index: exact_match
+    - name: client_bytes
+      index: range
+    - name: client_domain
+      index: exact_match
+    - name: client_ip
+      index: dimension
+    - name: client_port
+      index: range
+    - name: cloud_account_id
+      index: exact_match
+    - name: cloud_instance_id
+      index: exact_match
+    - name: cloud_provider
+      index: exact_match
+    - name: cloud_region
+      index: exact_match
+    - name: cloud_service_name
+      index: exact_match
+    - name: data_stream_dataset
+      index: exact_match
+    - name: data_stream_namespace
+      index: exact_match
+    - name: data_stream_type
+      index: exact_match
+    - name: destination_address
+      index: exact_match
+    - name: destination_bytes
+      index: range
+    - name: destination_ip
+      index: dimension
+    - name: destination_port
+      index: range
+    - name: ecs_version
+      index: exact_match
+    - name: event_action
+      index: exact_match
+    - name: event_category
+      index: exact_match
+    - name: event_code
+      index: exact_match
+    - name: event_dataset
+      index: exact_match
+    - name: event_end
+      index: range
+    - name: event_id
+      index: exact_match
+    - name: event_kind
+      index: exact_match
+    - name: event_module
+      index: exact_match
+    - name: event_original
+      index: none
+    - name: event_outcome
+      index: exact_match
+    - name: event_sequence
+      index: range
+    - name: event_start
+      index: range
+    - name: event_type
+      index: exact_match
+    - name: file_directory
+      index: exact_match
+    - name: file_path
+      index: exact_match
+    - name: group_name
+      index: exact_match
+    - name: host_hostname
+      index: exact_match
+    - name: host_id
+      index: exact_match
+    - name: host_name
+      index: exact_match
+    - name: http_request_body_content
+      index: exact_match
+    - name: http_request_method
+      index: exact_match
+    - name: http_response_status_code
+      index: range
+    - name: message
+      index: word_search
+    - name: network_protocol
+      index: exact_match
+    - name: network_type
+      index: exact_match
+    - name: orchestrator_api_version
+      index: exact_match
+    - name: orchestrator_cluster_name
+      index: exact_match
+    - name: orchestrator_namespace
+      index: exact_match
+    - name: orchestrator_resource_name
+      index: exact_match
+    - name: orchestrator_resource_type
+      index: exact_match
+    - name: orchestrator_type
+      index: exact_match
+    - name: process_args
+      index: exact_match
+    - name: process_command_line
+      index: exact_match
+    - name: process_executable
+      index: exact_match
+    - name: process_exit_code
+      index: range
+    - name: process_io_text
+      index: exact_match
+    - name: process_name
+      index: exact_match
+    - name: process_parent_pid
+      index: range
+    - name: process_pid
+      index: range
+    - name: process_tty_columns
+      index: range
+    - name: process_tty_rows
+      index: range
+    - name: process_user_name
+      index: exact_match
+    - name: process_working_directory
+      index: exact_match
+    - name: related_hosts
+      index: exact_match
+    - name: related_ip
+      index: dimension
+    - name: related_user
+      index: exact_match
+    - name: server_address
+      index: exact_match
+    - name: server_bytes
+      index: range
+    - name: server_domain
+      index: exact_match
+    - name: server_ip
+      index: dimension
+    - name: server_port
+      index: range
+    - name: server_user_domain
+      index: exact_match
+    - name: server_user_name
+      index: exact_match
+    - name: service_name
+      index: exact_match
+    - name: service_type
+      index: exact_match
+    - name: source_address
+      index: exact_match
+    - name: source_bytes
+      index: range
+    - name: source_ip
+      index: dimension
+    - name: tags
+      index: exact_match
+    - name: url_domain
+      index: exact_match
+    - name: url_original
+      index: exact_match
+    - name: url_path
+      index: exact_match
+    - name: url_port
+      index: range
+    - name: url_query
+      index: exact_match
+    - name: url_scheme
+      index: exact_match
+    - name: user_agent_device_name
+      index: exact_match
+    - name: user_agent_name
+      index: exact_match
+    - name: user_agent_original
+      index: exact_match
+    - name: user_agent_os_full
+      index: exact_match
+    - name: user_agent_os_name
+      index: exact_match
+    - name: user_agent_os_version
+      index: exact_match
+    - name: user_agent_version
+      index: exact_match
+    - name: user_domain
+      index: exact_match
+    - name: user_email
+      index: exact_match
+    - name: user_name
+      index: exact_match

@@ -1,0 +1,43 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of zoom.operation at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zoom_operation_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zoom.operation.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zoom_operation_category_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zoom.operation.category_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zoom_operation_operation_detail
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: zoom.operation.operation_detail'
+      comment: 'Elasticsearch mapping type: match_only_text'
+      _field_type: base

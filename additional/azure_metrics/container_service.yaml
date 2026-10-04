@@ -1,0 +1,190 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of azure_metrics.container_service at integrations 2c934eb5223b
+    columns:
+    - name: azure_application_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.application_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_container_service_kube_node_status_allocatable_cpu_cores_avg
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: azure.container_service.kube_node_status_allocatable_cpu_cores.avg'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: azure_container_service_kube_node_status_allocatable_memory_bytes_avg
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: azure.container_service.kube_node_status_allocatable_memory_bytes.avg'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: azure_container_service_kube_node_status_condition_avg
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: azure.container_service.kube_node_status_condition.avg'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: azure_container_service_kube_pod_status_phase_avg
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: azure.container_service.kube_pod_status_phase.avg'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: azure_container_service_kube_pod_status_ready_avg
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: azure.container_service.kube_pod_status_ready.avg'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: azure_dimensions_condition
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.dimensions.condition'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_dimensions_namespace
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.dimensions.namespace'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_dimensions_node
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.dimensions.node'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_dimensions_phase
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.dimensions.phase'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_dimensions_pod
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.dimensions.pod'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_dimensions_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.dimensions.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_namespace
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.namespace'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_resource_group
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.resource.group'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_resource_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.resource.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_resource_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.resource.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_resource_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.resource.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_subscription_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.subscription_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: azure_timegrain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: azure.timegrain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: dataset_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: dataset.name'
+      comment: 'Elasticsearch mapping type: constant_keyword'
+      _field_type: base
+    - name: dataset_namespace
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: dataset.namespace'
+      comment: 'Elasticsearch mapping type: constant_keyword'
+      _field_type: base
+    - name: dataset_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: dataset.type'
+      comment: 'Elasticsearch mapping type: constant_keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

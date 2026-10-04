@@ -1,0 +1,43 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of zoom.meeting_activity at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zoom_meeting_activity_activity_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zoom.meeting_activity.activity_category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zoom_meeting_activity_activity_detail
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zoom.meeting_activity.activity_detail'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zoom_meeting_activity_meeting_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zoom.meeting_activity.meeting_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

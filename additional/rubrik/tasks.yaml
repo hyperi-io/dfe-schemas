@@ -1,0 +1,71 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of rubrik.tasks at integrations 2c934eb5223b
+    columns:
+    - name: rubrik_cluster_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rubrik.cluster.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rubrik_cluster_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rubrik.cluster.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rubrik_sla_domain_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rubrik.sla_domain.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rubrik_sla_domain_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rubrik.sla_domain.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rubrik_tasks_canceled_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rubrik.tasks.canceled.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: rubrik_tasks_failed_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rubrik.tasks.failed.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: rubrik_tasks_metric_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rubrik.tasks.metric_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rubrik_tasks_missed_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rubrik.tasks.missed.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: rubrik_tasks_succeeded_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rubrik.tasks.succeeded.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

@@ -1,0 +1,436 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of cisco_secure_endpoint.event at integrations 2c934eb5223b
+    columns:
+    - name: cisco_secure_endpoint_bp_data
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: cisco.secure_endpoint.bp_data'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: cisco_secure_endpoint_cloud_ioc_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco.secure_endpoint.cloud_ioc.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_secure_endpoint_cloud_ioc_short_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco.secure_endpoint.cloud_ioc.short_description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_secure_endpoint_command_line_arguments
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco.secure_endpoint.command_line.arguments'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_secure_endpoint_computer_active
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cisco.secure_endpoint.computer.active'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: cisco_secure_endpoint_computer_connector_guid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco.secure_endpoint.computer.connector_guid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_secure_endpoint_computer_external_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cisco.secure_endpoint.computer.external_ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: cisco_secure_endpoint_computer_network_addresses
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: cisco.secure_endpoint.computer.network_addresses'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: cisco_secure_endpoint_connector_guid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco.secure_endpoint.connector_guid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_secure_endpoint_detection
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco.secure_endpoint.detection'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_secure_endpoint_detection_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco.secure_endpoint.detection_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_secure_endpoint_error_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco.secure_endpoint.error.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_secure_endpoint_error_error_code
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cisco.secure_endpoint.error.error_code'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cisco_secure_endpoint_event_type_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cisco.secure_endpoint.event_type_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cisco_secure_endpoint_file_archived_file_disposition
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco.secure_endpoint.file.archived_file.disposition'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_secure_endpoint_file_archived_file_identity_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco.secure_endpoint.file.archived_file.identity.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_secure_endpoint_file_archived_file_identity_sha1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco.secure_endpoint.file.archived_file.identity.sha1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_secure_endpoint_file_archived_file_identity_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco.secure_endpoint.file.archived_file.identity.sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_secure_endpoint_file_attack_details_application
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco.secure_endpoint.file.attack_details.application'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_secure_endpoint_file_attack_details_attacked_module
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco.secure_endpoint.file.attack_details.attacked_module'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_secure_endpoint_file_attack_details_base_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco.secure_endpoint.file.attack_details.base_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_secure_endpoint_file_attack_details_indicators
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: cisco.secure_endpoint.file.attack_details.indicators'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: cisco_secure_endpoint_file_attack_details_suspicious_files
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco.secure_endpoint.file.attack_details.suspicious_files'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_secure_endpoint_file_disposition
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco.secure_endpoint.file.disposition'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_secure_endpoint_file_parent_disposition
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco.secure_endpoint.file.parent.disposition'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_secure_endpoint_group_guids
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco.secure_endpoint.group_guids'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_secure_endpoint_network_info_disposition
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco.secure_endpoint.network_info.disposition'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_secure_endpoint_network_info_nfm_direction
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco.secure_endpoint.network_info.nfm.direction'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_secure_endpoint_network_info_parent_disposition
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco.secure_endpoint.network_info.parent.disposition'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_secure_endpoint_network_info_parent_identify_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco.secure_endpoint.network_info.parent.identify.sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_secure_endpoint_network_info_parent_identity_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco.secure_endpoint.network_info.parent.identity.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_secure_endpoint_network_info_parent_identity_sha1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco.secure_endpoint.network_info.parent.identity.sha1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_secure_endpoint_related_cve
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco.secure_endpoint.related.cve'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_secure_endpoint_related_mac
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco.secure_endpoint.related.mac'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_secure_endpoint_scan_clean
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cisco.secure_endpoint.scan.clean'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: cisco_secure_endpoint_scan_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco.secure_endpoint.scan.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_secure_endpoint_scan_malicious_detections
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cisco.secure_endpoint.scan.malicious_detections'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cisco_secure_endpoint_scan_scanned_files
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cisco.secure_endpoint.scan.scanned_files'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cisco_secure_endpoint_scan_scanned_paths
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cisco.secure_endpoint.scan.scanned_paths'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cisco_secure_endpoint_scan_scanned_processes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cisco.secure_endpoint.scan.scanned_processes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cisco_secure_endpoint_tactics
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: cisco.secure_endpoint.tactics'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: cisco_secure_endpoint_techniques
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: cisco.secure_endpoint.techniques'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: cisco_secure_endpoint_threat_hunting_incident_end_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cisco.secure_endpoint.threat_hunting.incident_end_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: cisco_secure_endpoint_threat_hunting_incident_hunt_guid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco.secure_endpoint.threat_hunting.incident_hunt_guid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_secure_endpoint_threat_hunting_incident_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cisco.secure_endpoint.threat_hunting.incident_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cisco_secure_endpoint_threat_hunting_incident_remediation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco.secure_endpoint.threat_hunting.incident_remediation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_secure_endpoint_threat_hunting_incident_report_guid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco.secure_endpoint.threat_hunting.incident_report_guid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_secure_endpoint_threat_hunting_incident_start_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cisco.secure_endpoint.threat_hunting.incident_start_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: cisco_secure_endpoint_threat_hunting_incident_summary
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco.secure_endpoint.threat_hunting.incident_summary'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_secure_endpoint_threat_hunting_incident_title
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco.secure_endpoint.threat_hunting.incident_title'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_secure_endpoint_threat_hunting_severity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cisco.secure_endpoint.threat_hunting.severity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cisco_secure_endpoint_threat_hunting_tactics
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: cisco.secure_endpoint.threat_hunting.tactics'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: cisco_secure_endpoint_threat_hunting_techniques
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: cisco.secure_endpoint.threat_hunting.techniques'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: cisco_secure_endpoint_timestamp_nanoseconds
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cisco.secure_endpoint.timestamp_nanoseconds'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: cisco_secure_endpoint_vulnerabilities
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: cisco.secure_endpoint.vulnerabilities'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

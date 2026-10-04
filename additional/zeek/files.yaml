@@ -1,0 +1,239 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of zeek.files at integrations 2c934eb5223b
+    columns:
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zeek_files_analyzers
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zeek.files.analyzers'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zeek_files_depth
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zeek.files.depth'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zeek_files_duration
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zeek.files.duration'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: zeek_files_entropy
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zeek.files.entropy'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: zeek_files_extracted
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zeek.files.extracted'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zeek_files_extracted_cutoff
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: zeek.files.extracted_cutoff'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: zeek_files_extracted_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zeek.files.extracted_size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zeek_files_filename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zeek.files.filename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zeek_files_fuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zeek.files.fuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zeek_files_is_orig
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: zeek.files.is_orig'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: zeek_files_local_orig
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: zeek.files.local_orig'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: zeek_files_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zeek.files.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zeek_files_mime_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zeek.files.mime_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zeek_files_missing_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zeek.files.missing_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zeek_files_overflow_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zeek.files.overflow_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zeek_files_parent_fuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zeek.files.parent_fuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zeek_files_rx_host
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: zeek.files.rx_host'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: zeek_files_seen_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zeek.files.seen_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zeek_files_session_ids
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zeek.files.session_ids'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zeek_files_sha1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zeek.files.sha1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zeek_files_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zeek.files.sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zeek_files_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zeek.files.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: zeek_files_timedout
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: zeek.files.timedout'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: zeek_files_total_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: zeek.files.total_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: zeek_files_tx_host
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: zeek.files.tx_host'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: zeek_session_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: zeek.session_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

@@ -1,0 +1,71 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of rubrik.monitoring_jobs at integrations 2c934eb5223b
+    columns:
+    - name: rubrik_cluster_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rubrik.cluster.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rubrik_cluster_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rubrik.cluster.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rubrik_monitoring_jobs_all_jobs_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rubrik.monitoring_jobs.all_jobs.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: rubrik_monitoring_jobs_archive_jobs_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rubrik.monitoring_jobs.archive_jobs.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: rubrik_monitoring_jobs_backup_jobs_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rubrik.monitoring_jobs.backup_jobs.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: rubrik_monitoring_jobs_conversion_jobs_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rubrik.monitoring_jobs.conversion_jobs.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: rubrik_monitoring_jobs_log_backup_jobs_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rubrik.monitoring_jobs.log_backup_jobs.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: rubrik_monitoring_jobs_recovery_jobs_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rubrik.monitoring_jobs.recovery_jobs.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: rubrik_monitoring_jobs_replication_jobs_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rubrik.monitoring_jobs.replication_jobs.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

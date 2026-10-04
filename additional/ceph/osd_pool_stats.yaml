@@ -1,0 +1,64 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of ceph.osd_pool_stats at integrations 2c934eb5223b
+    columns:
+    - name: ceph_osd_pool_stats_client_io_rate_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ceph.osd_pool_stats.client_io_rate.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: ceph_osd_pool_stats_client_io_rate_read_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ceph.osd_pool_stats.client_io_rate.read.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: ceph_osd_pool_stats_client_io_rate_read_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ceph.osd_pool_stats.client_io_rate.read.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: ceph_osd_pool_stats_client_io_rate_write_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ceph.osd_pool_stats.client_io_rate.write.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: ceph_osd_pool_stats_client_io_rate_write_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ceph.osd_pool_stats.client_io_rate.write.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: ceph_osd_pool_stats_pool_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ceph.osd_pool_stats.pool_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: ceph_osd_pool_stats_pool_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ceph.osd_pool_stats.pool_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

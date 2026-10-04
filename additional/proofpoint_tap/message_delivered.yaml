@@ -1,0 +1,246 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of proofpoint_tap.message_delivered at integrations 2c934eb5223b
+    columns:
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: proofpoint_tap_guid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_tap.guid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_tap_message_delivered_cluster
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_tap.message_delivered.cluster'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_tap_message_delivered_completely_rewritten
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_tap.message_delivered.completely_rewritten'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_tap_message_delivered_header_from
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_tap.message_delivered.header.from'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_tap_message_delivered_header_replyto
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_tap.message_delivered.header.replyto'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_tap_message_delivered_impostor_score
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: proofpoint_tap.message_delivered.impostor_score'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: proofpoint_tap_message_delivered_malware_score
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: proofpoint_tap.message_delivered.malware_score'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: proofpoint_tap_message_delivered_message_parts_disposition
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_tap.message_delivered.message_parts.disposition'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_tap_message_delivered_message_parts_o_content_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_tap.message_delivered.message_parts.o_content_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_tap_message_delivered_message_parts_sandbox_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_tap.message_delivered.message_parts.sandbox_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_tap_message_delivered_message_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: proofpoint_tap.message_delivered.message_size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: proofpoint_tap_message_delivered_modules_run
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_tap.message_delivered.modules_run'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_tap_message_delivered_phish_score
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: proofpoint_tap.message_delivered.phish_score'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: proofpoint_tap_message_delivered_policy_routes
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_tap.message_delivered.policy_routes'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_tap_message_delivered_qid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_tap.message_delivered.qid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_tap_message_delivered_quarantine_folder
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_tap.message_delivered.quarantine.folder'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_tap_message_delivered_quarantine_rule
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_tap.message_delivered.quarantine.rule'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_tap_message_delivered_recipient
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_tap.message_delivered.recipient'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_tap_message_delivered_spam_score
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: proofpoint_tap.message_delivered.spam_score'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: proofpoint_tap_message_delivered_threat_info_map_campaign_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_tap.message_delivered.threat_info_map.campaign_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_tap_message_delivered_threat_info_map_classification
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_tap.message_delivered.threat_info_map.classification'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_tap_message_delivered_threat_info_map_threat_artifact
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_tap.message_delivered.threat_info_map.threat.artifact'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_tap_message_delivered_threat_info_map_threat_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_tap.message_delivered.threat_info_map.threat.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_tap_message_delivered_threat_info_map_threat_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_tap.message_delivered.threat_info_map.threat.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_tap_message_delivered_threat_info_map_threat_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: proofpoint_tap.message_delivered.threat_info_map.threat.time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: proofpoint_tap_message_delivered_threat_info_map_threat_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_tap.message_delivered.threat_info_map.threat.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_tap_message_delivered_threat_info_map_threat_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_tap.message_delivered.threat_info_map.threat.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: proofpoint_tap_message_delivered_to_addresses
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: proofpoint_tap.message_delivered.to_addresses'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

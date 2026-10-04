@@ -1,0 +1,863 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of aws_billing.cur at integrations 2c934eb5223b
+    columns:
+    - name: aws_billing_cur_bill_billing_entity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.bill.billing_entity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_bill_billing_period_end_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.bill.billing_period_end_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_billing_cur_bill_billing_period_start_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.bill.billing_period_start_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_billing_cur_bill_invoice_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.bill.invoice_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_bill_invoicing_entity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.bill.invoicing_entity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_bill_payer_account_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.bill.payer_account_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_bill_payer_account_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.bill.payer_account_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_bill_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.bill.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_bundled_discount
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.bundled_discount'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_cost_amortized_cost
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.cost.amortized_cost'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_cost_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.cost_category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_cost_net_amortized_cost
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.cost.net_amortized_cost'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_discount
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: aws_billing.cur.discount'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: aws_billing_cur_identity_line_item_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.identity.line_item_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_identity_time_interval
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.identity.time_interval'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_line_item_availability_zone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.line_item.availability_zone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_line_item_blended_cost
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.line_item.blended_cost'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_line_item_blended_rate
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.line_item.blended_rate'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_line_item_currency_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.line_item.currency_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_line_item_description
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: aws_billing.cur.line_item.description'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: aws_billing_cur_line_item_legal_entity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.line_item.legal_entity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_line_item_net_unblended_cost
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.line_item.net_unblended_cost'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_line_item_net_unblended_rate
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.line_item.net_unblended_rate'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_line_item_normalization_factor
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.line_item.normalization_factor'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_line_item_normalized_usage_amount
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.line_item.normalized_usage_amount'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_line_item_operation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.line_item.operation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_line_item_product_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.line_item.product_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_line_item_resource_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.line_item.resource_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_line_item_tax_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.line_item.tax_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_line_item_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.line_item.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_line_item_unblended_cost
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.line_item.unblended_cost'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_line_item_unblended_cost_str
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.line_item.unblended_cost_str'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_line_item_unblended_rate
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.line_item.unblended_rate'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_line_item_usage_account_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.line_item.usage_account_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_line_item_usage_account_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.line_item.usage_account_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_line_item_usage_amount
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.line_item.usage_amount'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_line_item_usage_end_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.line_item.usage_end_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_billing_cur_line_item_usage_start_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.line_item.usage_start_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_billing_cur_line_item_usage_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.line_item.usage_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_pricing_currency
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.pricing.currency'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_pricing_lease_contract_length
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.pricing.lease_contract_length'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_pricing_offering_class
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.pricing.offering_class'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_pricing_public_on_demand_cost
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.pricing.public_on_demand_cost'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_pricing_public_on_demand_rate
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.pricing.public_on_demand_rate'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_pricing_purchase_option
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.pricing.purchase_option'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_pricing_rate_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.pricing.rate_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_pricing_rate_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.pricing.rate_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_pricing_term
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.pricing.term'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_pricing_unit
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.pricing.unit'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_product_comment
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: aws_billing.cur.product.comment'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: aws_billing_cur_product_family
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.product.family'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_product_fee_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.product.fee_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_product_fee_description
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: aws_billing.cur.product.fee_description'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: aws_billing_cur_product_from_location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.product.from_location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_product_from_location_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.product.from_location_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_product_from_region_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.product.from_region_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_product_instance_family
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.product.instance_family'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_product_instance_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.product.instance_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_product_instancesku
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.product.instancesku'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_product_location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.product.location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_product_location_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.product.location_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_product_operation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.product.operation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_product_pricing_unit
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.product.pricing_unit'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_product_product
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.product.product'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_product_region_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.product.region_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_product_servicecode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.product.servicecode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_product_sku
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.product.sku'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_product_to_location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.product.to_location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_product_to_location_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.product.to_location_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_product_to_region_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.product.to_region_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_product_usagetype
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.product.usagetype'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_reservation_a_r_n
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.reservation.a_r_n'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_reservation_amortized_upfront_cost_for_usage
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.reservation.amortized_upfront_cost_for_usage'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_reservation_amortized_upfront_fee_for_billing_period
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.reservation.amortized_upfront_fee_for_billing_period'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_reservation_availability_zone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.reservation.availability_zone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_reservation_effective_cost
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.reservation.effective_cost'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_reservation_end_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.reservation.end_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_billing_cur_reservation_modification_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.reservation.modification_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_reservation_net_amortized_upfront_cost_for_usage
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.reservation.net_amortized_upfront_cost_for_usage'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_reservation_net_amortized_upfront_fee_for_billing_period
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.reservation.net_amortized_upfront_fee_for_billing_period'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_reservation_net_effective_cost
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.reservation.net_effective_cost'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_reservation_net_recurring_fee_for_usage
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.reservation.net_recurring_fee_for_usage'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_reservation_net_unused_amortized_upfront_fee_for_billing_period
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.reservation.net_unused_amortized_upfront_fee_for_billing_period'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_reservation_net_unused_recurring_fee
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.reservation.net_unused_recurring_fee'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_reservation_net_upfront_value
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.reservation.net_upfront_value'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_reservation_normalized_units_per_reservation
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.reservation.normalized_units_per_reservation'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_reservation_number_of_reservations
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.reservation.number_of_reservations'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_reservation_recurring_fee_for_usage
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.reservation.recurring_fee_for_usage'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_reservation_start_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.reservation.start_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_billing_cur_reservation_subscription_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.reservation.subscription_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_reservation_total_reserved_normalized_units
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.reservation.total_reserved_normalized_units'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_reservation_total_reserved_units
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.reservation.total_reserved_units'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_reservation_units_per_reservation
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.reservation.units_per_reservation'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_reservation_unused_amortized_upfront_fee_for_billing_period
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.reservation.unused_amortized_upfront_fee_for_billing_period'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_reservation_unused_normalized_unit_quantity
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.reservation.unused_normalized_unit_quantity'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_reservation_unused_quantity
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.reservation.unused_quantity'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_reservation_unused_recurring_fee
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.reservation.unused_recurring_fee'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_reservation_upfront_value
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.reservation.upfront_value'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_resource_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.resource.tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_savings_plan_a_r_n
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.savings_plan.a_r_n'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_savings_plan_amortized_upfront_commitment_for_billing_period
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.savings_plan.amortized_upfront_commitment_for_billing_period'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_savings_plan_effective_cost
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.savings_plan.effective_cost'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_savings_plan_end_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.savings_plan.end_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_billing_cur_savings_plan_instance_type_family
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.savings_plan.instance_type_family'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_savings_plan_net_amortized_upfront_commitment_for_billing_period
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.savings_plan.net_amortized_upfront_commitment_for_billing_period'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_savings_plan_net_effective_cost
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.savings_plan.net_effective_cost'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_savings_plan_net_recurring_commitment_for_billing_period
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.savings_plan.net_recurring_commitment_for_billing_period'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_savings_plan_offering_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.savings_plan.offering_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_savings_plan_payment_option
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.savings_plan.payment_option'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_savings_plan_purchase_term
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.savings_plan.purchase_term'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_savings_plan_rate
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.savings_plan.rate'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_savings_plan_recurring_commitment_for_billing_period
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.savings_plan.recurring_commitment_for_billing_period'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_savings_plan_region
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_billing.cur.savings_plan.region'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_billing_cur_savings_plan_start_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.savings_plan.start_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_billing_cur_savings_plan_total_commitment_to_date
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.savings_plan.total_commitment_to_date'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_savings_plan_used_commitment
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.savings_plan.used_commitment'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_billing_cur_total_discount
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_billing.cur.total_discount'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_cloudwatch_message
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: aws.cloudwatch.message'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: aws_s3_bucket_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_bucket_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_object_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.object.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

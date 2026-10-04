@@ -1,0 +1,99 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of ceph.osd_tree at integrations 2c934eb5223b
+    columns:
+    - name: ceph_osd_tree_children
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ceph.osd_tree.children'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ceph_osd_tree_crush_weight
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ceph.osd_tree.crush_weight'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: ceph_osd_tree_depth
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ceph.osd_tree.depth'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: ceph_osd_tree_device_class
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ceph.osd_tree.device_class'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ceph_osd_tree_exists
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: ceph.osd_tree.exists'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: ceph_osd_tree_node_osd_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ceph.osd_tree.node_osd_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: ceph_osd_tree_node_osd_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ceph.osd_tree.node_osd_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ceph_osd_tree_primary_affinity_count
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ceph.osd_tree.primary_affinity.count'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: ceph_osd_tree_reweight
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ceph.osd_tree.reweight'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: ceph_osd_tree_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ceph.osd_tree.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ceph_osd_tree_type_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ceph.osd_tree.type.id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: ceph_osd_tree_type_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ceph.osd_tree.type.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

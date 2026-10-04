@@ -1,0 +1,365 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of cloudflare.logpull at integrations 2c934eb5223b
+    columns:
+    - name: cloudflare_bot_score_src
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: cloudflare.bot.score.src'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: cloudflare_bot_score_value
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cloudflare.bot.score.value'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cloudflare_cache_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cloudflare.cache.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cloudflare_cache_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare.cache.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_cache_status_code
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cloudflare.cache.status_code'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cloudflare_cache_tiered_fill
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cloudflare.cache.tiered_fill'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: cloudflare_client_ip_class
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare.client.ip_class'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_client_ssl_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare.client.ssl.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_device_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare.device_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_edge_colo_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare.edge.colo.code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_edge_colo_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cloudflare.edge.colo.id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cloudflare_edge_pathing_op
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare.edge.pathing.op'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_edge_pathing_src
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare.edge.pathing.src'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_edge_pathing_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare.edge.pathing.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_edge_rate_limit_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare.edge.rate_limit.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_edge_rate_limit_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cloudflare.edge.rate_limit.id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cloudflare_edge_request_host
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare.edge.request.host'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_edge_response_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cloudflare.edge.response.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cloudflare_edge_response_compression_ratio
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cloudflare.edge.response.compression_ratio'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cloudflare_edge_response_content_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare.edge.response.content_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_edge_response_status_code
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cloudflare.edge.response.status_code'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cloudflare_firewall_actions
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare.firewall.actions'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_firewall_rule_ids
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare.firewall.rule_ids'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_firewall_sources
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare.firewall.sources'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_origin_response_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cloudflare.origin.response.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cloudflare_origin_response_expires
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cloudflare.origin.response.expires'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: cloudflare_origin_response_last_modified
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cloudflare.origin.response.last_modified'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: cloudflare_origin_response_status_code
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cloudflare.origin.response.status_code'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cloudflare_origin_response_time
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cloudflare.origin.response.time'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cloudflare_origin_ssl_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare.origin.ssl.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_parent_ray_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare.parent.ray_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_ray_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare.ray_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_security_level
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare.security_level'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_waf_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare.waf.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_waf_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare.waf.flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_waf_matched_var
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare.waf.matched_var'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_waf_profile
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare.waf.profile'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_waf_rule_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare.waf.rule.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_waf_rule_message
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare.waf.rule.message'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_worker_cpu_time
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cloudflare.worker.cpu_time'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cloudflare_worker_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare.worker.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloudflare_worker_subrequest
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cloudflare.worker.subrequest'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: cloudflare_worker_subrequest_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cloudflare.worker.subrequest_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cloudflare_zone_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cloudflare.zone.id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cloudflare_zone_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloudflare.zone.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

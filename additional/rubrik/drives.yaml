@@ -1,0 +1,85 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of rubrik.drives at integrations 2c934eb5223b
+    columns:
+    - name: rubrik_cluster_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rubrik.cluster.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rubrik_cluster_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rubrik.cluster.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rubrik_drives_capacity_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rubrik.drives.capacity.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: rubrik_drives_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rubrik.drives.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rubrik_drives_is_encrypted
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: rubrik.drives.is_encrypted'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: rubrik_drives_node_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rubrik.drives.node_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rubrik_drives_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rubrik.drives.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rubrik_drives_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rubrik.drives.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rubrik_drives_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rubrik.drives.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rubrik_drives_unallocated_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rubrik.drives.unallocated.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: rubrik_drives_usable_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: rubrik.drives.usable.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

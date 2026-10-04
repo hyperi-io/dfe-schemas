@@ -1,0 +1,996 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of aws.inspector at integrations 2c934eb5223b
+    columns:
+    - name: aws_inspector_aws_account_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.aws_account_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_code_vulnerability_details_cwes
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.code_vulnerability_details.cwes'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_code_vulnerability_details_detector_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.code_vulnerability_details.detector_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_code_vulnerability_details_detector_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.code_vulnerability_details.detector_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_code_vulnerability_details_detector_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.code_vulnerability_details.detector_tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_code_vulnerability_details_file_path_end_line
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.inspector.code_vulnerability_details.file_path.end_line'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_inspector_code_vulnerability_details_file_path_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.code_vulnerability_details.file_path.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_code_vulnerability_details_file_path_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.code_vulnerability_details.file_path.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_code_vulnerability_details_file_path_start_line
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.inspector.code_vulnerability_details.file_path.start_line'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_inspector_code_vulnerability_details_reference_urls
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.code_vulnerability_details.reference_urls'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_code_vulnerability_details_rule_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.code_vulnerability_details.rule_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_code_vulnerability_details_source_lambda_layer_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.code_vulnerability_details.source_lambda_layer_arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_description
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: aws.inspector.description'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: aws_inspector_epss_score
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.inspector.epss.score'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_inspector_exploit_available
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.exploit_available'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_exploitability_details_last_known_exploit_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.inspector.exploitability_details.last_known_exploit_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_inspector_finding_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.finding_arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_first_observed_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.inspector.first_observed_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_inspector_fix_available
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.fix_available'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_inspector_score
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.inspector.inspector_score'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_inspector_inspector_score_details_adjusted_cvss_adjustments_metric
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.inspector_score_details.adjusted_cvss.adjustments.metric'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_inspector_score_details_adjusted_cvss_adjustments_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.inspector_score_details.adjusted_cvss.adjustments.reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_inspector_score_details_adjusted_cvss_cvss_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.inspector_score_details.adjusted_cvss.cvss_source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_inspector_score_details_adjusted_cvss_score_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.inspector_score_details.adjusted_cvss.score.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_inspector_score_details_adjusted_cvss_score_value
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.inspector.inspector_score_details.adjusted_cvss.score.value'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_inspector_inspector_score_details_adjusted_cvss_scoring_vector
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.inspector_score_details.adjusted_cvss.scoring_vector'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_inspector_score_details_adjusted_cvss_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.inspector_score_details.adjusted_cvss.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_last_observed_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.inspector.last_observed_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_inspector_network_reachability_details_network_path_steps_component_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.network_reachability_details.network_path.steps.component.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_network_reachability_details_network_path_steps_component_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.network_reachability_details.network_path.steps.component.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_network_reachability_details_network_path_steps_component_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.network_reachability_details.network_path.steps.component.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_network_reachability_details_open_port_range_begin
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.inspector.network_reachability_details.open_port_range.begin'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_inspector_network_reachability_details_open_port_range_end
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.inspector.network_reachability_details.open_port_range.end'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_inspector_network_reachability_details_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.network_reachability_details.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_package_nested_arch
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.package_nested.arch'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_package_nested_epoch
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.inspector.package_nested.epoch'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_inspector_package_nested_file_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.package_nested.file_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_package_nested_fixed_in_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.package_nested.fixed_in_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_package_nested_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.package_nested.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_package_nested_package_manager
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.package_nested.package_manager'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_package_nested_release
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.package_nested.release'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_package_nested_remediation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.package_nested.remediation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_package_nested_source_lambda_layer_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.package_nested.source_lambda_layer_arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_package_nested_source_layer_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.package_nested.source_layer_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_package_nested_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.package_nested.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_package_vulnerability_details_cvss_base_score
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.inspector.package_vulnerability_details.cvss.base_score'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_inspector_package_vulnerability_details_cvss_scoring_vector
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.package_vulnerability_details.cvss.scoring_vector'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_package_vulnerability_details_cvss_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.package_vulnerability_details.cvss.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_package_vulnerability_details_cvss_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.package_vulnerability_details.cvss.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_package_vulnerability_details_reference_urls
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.package_vulnerability_details.reference_urls'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_package_vulnerability_details_related_vulnerabilities
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.package_vulnerability_details.related_vulnerabilities'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_package_vulnerability_details_source_url_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.package_vulnerability_details.source.url.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_package_vulnerability_details_source_url_extension
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.package_vulnerability_details.source.url.extension'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_package_vulnerability_details_source_url_original
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.package_vulnerability_details.source.url.original'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_package_vulnerability_details_source_url_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.package_vulnerability_details.source.url.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_package_vulnerability_details_source_url_query
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.package_vulnerability_details.source.url.query'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_package_vulnerability_details_source_url_scheme
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.package_vulnerability_details.source.url.scheme'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_package_vulnerability_details_source_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.package_vulnerability_details.source.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_package_vulnerability_details_vendor_created_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.inspector.package_vulnerability_details.vendor.created_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_inspector_package_vulnerability_details_vendor_severity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.package_vulnerability_details.vendor.severity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_package_vulnerability_details_vendor_updated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.inspector.package_vulnerability_details.vendor.updated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_inspector_package_vulnerability_details_vulnerability_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.package_vulnerability_details.vulnerability_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_package_vulnerability_details_vulnerable_packages_arch
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.package_vulnerability_details.vulnerable_packages.arch'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_package_vulnerability_details_vulnerable_packages_epoch
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.inspector.package_vulnerability_details.vulnerable_packages.epoch'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_inspector_package_vulnerability_details_vulnerable_packages_file_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.package_vulnerability_details.vulnerable_packages.file_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_package_vulnerability_details_vulnerable_packages_fixed_in_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.package_vulnerability_details.vulnerable_packages.fixed_in_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_package_vulnerability_details_vulnerable_packages_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.package_vulnerability_details.vulnerable_packages.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_package_vulnerability_details_vulnerable_packages_package_manager
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.package_vulnerability_details.vulnerable_packages.package_manager'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_package_vulnerability_details_vulnerable_packages_release
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.package_vulnerability_details.vulnerable_packages.release'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_package_vulnerability_details_vulnerable_packages_remediation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.package_vulnerability_details.vulnerable_packages.remediation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_package_vulnerability_details_vulnerable_packages_source_lambda_layer_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.package_vulnerability_details.vulnerable_packages.source_lambda_layer_arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_package_vulnerability_details_vulnerable_packages_source_layer_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.package_vulnerability_details.vulnerable_packages.source_layer_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_package_vulnerability_details_vulnerable_packages_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.package_vulnerability_details.vulnerable_packages.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_remediation_recommendation_text
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.remediation.recommendation.text'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_remediation_recommendation_url_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.remediation.recommendation.url.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_remediation_recommendation_url_extension
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.remediation.recommendation.url.extension'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_remediation_recommendation_url_original
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.remediation.recommendation.url.original'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_remediation_recommendation_url_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.remediation.recommendation.url.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_remediation_recommendation_url_query
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.remediation.recommendation.url.query'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_remediation_recommendation_url_scheme
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.remediation.recommendation.url.scheme'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_resources_details_aws_ec2_instance_iam_instance_profile_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.resources.details.aws.ec2_instance.iam_instance_profile_arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_resources_details_aws_ec2_instance_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.resources.details.aws.ec2_instance.image_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_resources_details_aws_ec2_instance_ipv4_addresses
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.inspector.resources.details.aws.ec2_instance.ipv4_addresses'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: aws_inspector_resources_details_aws_ec2_instance_ipv6_addresses
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.inspector.resources.details.aws.ec2_instance.ipv6_addresses'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: aws_inspector_resources_details_aws_ec2_instance_key_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.resources.details.aws.ec2_instance.key_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_resources_details_aws_ec2_instance_launched_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.inspector.resources.details.aws.ec2_instance.launched_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_inspector_resources_details_aws_ec2_instance_platform
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.resources.details.aws.ec2_instance.platform'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_resources_details_aws_ec2_instance_subnet_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.resources.details.aws.ec2_instance.subnet_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_resources_details_aws_ec2_instance_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.resources.details.aws.ec2_instance.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_resources_details_aws_ec2_instance_vpc_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.resources.details.aws.ec2_instance.vpc_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_resources_details_aws_ecr_container_image_architecture
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.resources.details.aws.ecr_container_image.architecture'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_resources_details_aws_ecr_container_image_author
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.resources.details.aws.ecr_container_image.author'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_resources_details_aws_ecr_container_image_image_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.resources.details.aws.ecr_container_image.image.hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_resources_details_aws_ecr_container_image_image_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.resources.details.aws.ecr_container_image.image.tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_resources_details_aws_ecr_container_image_in_use_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.inspector.resources.details.aws.ecr_container_image.in_use_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_inspector_resources_details_aws_ecr_container_image_last_in_use_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.inspector.resources.details.aws.ecr_container_image.last_in_use_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_inspector_resources_details_aws_ecr_container_image_platform
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.resources.details.aws.ecr_container_image.platform'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_resources_details_aws_ecr_container_image_pushed_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.inspector.resources.details.aws.ecr_container_image.pushed_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_inspector_resources_details_aws_ecr_container_image_registry
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.resources.details.aws.ecr_container_image.registry'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_resources_details_aws_ecr_container_image_repository_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.resources.details.aws.ecr_container_image.repository_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_resources_details_aws_lambda_function_architectures
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.resources.details.aws.lambda_function.architectures'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_resources_details_aws_lambda_function_code_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.resources.details.aws.lambda_function.code_sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_resources_details_aws_lambda_function_execution_role_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.resources.details.aws.lambda_function.execution_role_arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_resources_details_aws_lambda_function_function_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.resources.details.aws.lambda_function.function_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_resources_details_aws_lambda_function_last_modified_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.inspector.resources.details.aws.lambda_function.last_modified_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_inspector_resources_details_aws_lambda_function_layers
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.resources.details.aws.lambda_function.layers'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_resources_details_aws_lambda_function_package_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.resources.details.aws.lambda_function.package_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_resources_details_aws_lambda_function_runtime
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.resources.details.aws.lambda_function.runtime'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_resources_details_aws_lambda_function_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.resources.details.aws.lambda_function.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_resources_details_aws_lambda_function_vpc_config_security_group_ids
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.resources.details.aws.lambda_function.vpc_config.security_group_ids'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_resources_details_aws_lambda_function_vpc_config_subnet_ids
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.resources.details.aws.lambda_function.vpc_config.subnet_ids'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_resources_details_aws_lambda_function_vpc_config_vpc_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.resources.details.aws.lambda_function.vpc_config.vpc_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_resources_details_code_repository_integration_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.resources.details.code_repository.integration_arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_resources_details_code_repository_project_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.resources.details.code_repository.project_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_resources_details_code_repository_provider_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.resources.details.code_repository.provider_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_resources_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.resources.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_resources_partition
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.resources.partition'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_resources_region
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.resources.region'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_resources_tags
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: aws.inspector.resources.tags'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: aws_inspector_resources_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.resources.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_severity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.severity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_title
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.title'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_transform_unique_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.transform_unique_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.inspector.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_inspector_updated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.inspector.updated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_device_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.device_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_inode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.inode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: package_fixed_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: package.fixed_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: resource_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: resource.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: resource_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: resource.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: resource_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: resource.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vulnerability_cve
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vulnerability.cve'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vulnerability_published_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vulnerability.published_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: vulnerability_title
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vulnerability.title'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

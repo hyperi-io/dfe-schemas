@@ -1,0 +1,78 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of vsphere.log at integrations 2c934eb5223b
+    columns:
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: hostname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: hostname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_source_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.source.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: process_program
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: process.program'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vsphere_log_api_invocations
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vsphere.log.api.invocations'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: vsphere_log_datacenter
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vsphere.log.datacenter'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vsphere_log_file_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vsphere.log.file.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

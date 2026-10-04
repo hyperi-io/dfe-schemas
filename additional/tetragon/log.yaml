@@ -1,0 +1,1142 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of tetragon.log at integrations 2c934eb5223b
+    columns:
+    - name: cilium_tetragon_log_cluster_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.cluster_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_node_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.node_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exec_parent_auid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_exec.parent.auid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exec_parent_docker
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exec.parent.docker'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exec_parent_exec_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exec.parent.exec_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exec_parent_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exec.parent.flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exec_parent_parent_exec_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exec.parent.parent_exec_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exec_parent_pod_container_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exec.parent.pod.container.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exec_parent_pod_container_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exec.parent.pod.container.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exec_parent_pod_container_image_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exec.parent.pod.container.image.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exec_parent_pod_container_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exec.parent.pod.container.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exec_parent_pod_container_pid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_exec.parent.pod.container.pid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exec_parent_pod_container_start_time
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exec.parent.pod.container.start_time'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exec_parent_pod_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exec.parent.pod.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exec_parent_pod_namespace
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exec.parent.pod.namespace'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exec_parent_pod_pod_labels_app_kubernetes_io/name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exec.parent.pod.pod_labels.app.kubernetes.io/name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exec_parent_pod_pod_labels_class
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exec.parent.pod.pod_labels.class'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exec_parent_pod_pod_labels_org
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exec.parent.pod.pod_labels.org'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exec_parent_pod_pod_labels_pod-template-hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exec.parent.pod.pod_labels.pod-template-hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exec_parent_pod_workload
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exec.parent.pod.workload'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exec_parent_pod_workload_kind
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exec.parent.pod.workload_kind'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exec_parent_refcnt
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_exec.parent.refcnt'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exec_parent_start_time
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exec.parent.start_time'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exec_parent_tid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_exec.parent.tid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exec_process_auid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_exec.process.auid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exec_process_docker
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exec.process.docker'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exec_process_exec_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exec.process.exec_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exec_process_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exec.process.flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exec_process_parent_exec_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exec.process.parent_exec_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exec_process_pod_container_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exec.process.pod.container.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exec_process_pod_container_pid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_exec.process.pod.container.pid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exec_process_pod_container_start_time
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exec.process.pod.container.start_time'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exec_process_pod_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exec.process.pod.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exec_process_pod_namespace
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exec.process.pod.namespace'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exec_process_pod_pod_labels_app
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exec.process.pod.pod_labels.app'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exec_process_pod_pod_labels_app_kubernetes_io/name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exec.process.pod.pod_labels.app.kubernetes.io/name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exec_process_pod_pod_labels_class
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exec.process.pod.pod_labels.class'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exec_process_pod_pod_labels_org
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exec.process.pod.pod_labels.org'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exec_process_pod_pod_labels_pod-template-hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exec.process.pod.pod_labels.pod-template-hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exec_process_pod_workload
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exec.process.pod.workload'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exec_process_pod_workload_kind
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exec.process.pod.workload_kind'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exec_process_start_time
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exec.process.start_time'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exec_process_uid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_exec.process.uid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_parent_auid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_exit.parent.auid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_parent_docker
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exit.parent.docker'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_parent_exec_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exit.parent.exec_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_parent_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exit.parent.flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_parent_parent_exec_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exit.parent.parent_exec_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_parent_pod_container_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exit.parent.pod.container.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_parent_pod_container_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exit.parent.pod.container.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_parent_pod_container_image_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exit.parent.pod.container.image.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_parent_pod_container_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exit.parent.pod.container.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_parent_pod_container_pid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_exit.parent.pod.container.pid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_parent_pod_container_start_time
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exit.parent.pod.container.start_time'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_parent_pod_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exit.parent.pod.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_parent_pod_namespace
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exit.parent.pod.namespace'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_parent_pod_pod_labels_app_kubernetes_io/name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exit.parent.pod.pod_labels.app.kubernetes.io/name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_parent_pod_pod_labels_class
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exit.parent.pod.pod_labels.class'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_parent_pod_pod_labels_org
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exit.parent.pod.pod_labels.org'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_parent_pod_pod_labels_pod-template-hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exit.parent.pod.pod_labels.pod-template-hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_parent_pod_workload
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exit.parent.pod.workload'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_parent_pod_workload_kind
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exit.parent.pod.workload_kind'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_parent_refcnt
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_exit.parent.refcnt'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_parent_start_time
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exit.parent.start_time'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_parent_tid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_exit.parent.tid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_process_auid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_exit.process.auid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_process_docker
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exit.process.docker'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_process_exec_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exit.process.exec_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_process_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exit.process.flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_process_parent_exec_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exit.process.parent_exec_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_process_pod_container_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exit.process.pod.container.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_process_pod_container_pid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_exit.process.pod.container.pid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_process_pod_container_start_time
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exit.process.pod.container.start_time'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_process_pod_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exit.process.pod.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_process_pod_namespace
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exit.process.pod.namespace'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_process_pod_pod_labels_app_kubernetes_io/name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exit.process.pod.pod_labels.app.kubernetes.io/name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_process_pod_pod_labels_class
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exit.process.pod.pod_labels.class'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_process_pod_pod_labels_org
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exit.process.pod.pod_labels.org'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_process_pod_pod_labels_pod-template-hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exit.process.pod.pod_labels.pod-template-hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_process_pod_workload
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exit.process.pod.workload'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_process_pod_workload_kind
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exit.process.pod.workload_kind'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_process_refcnt
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_exit.process.refcnt'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_process_start_time
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exit.process.start_time'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_process_uid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_exit.process.uid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_signal
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exit.signal'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_status
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_exit.status'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: cilium_tetragon_log_process_exit_time
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_exit.time'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_kprobe.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_args_capability_arg_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_kprobe.args.capability_arg.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_args_capability_arg_value
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_kprobe.args.capability_arg.value'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_args_file_arg_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_kprobe.args.file_arg.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_args_file_arg_permission
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_kprobe.args.file_arg.permission'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_args_int_arg
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_kprobe.args.int_arg'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_args_user_ns_arg_gid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_kprobe.args.user_ns_arg.gid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_args_user_ns_arg_level
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_kprobe.args.user_ns_arg.level'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_args_user_ns_arg_ns_inum
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_kprobe.args.user_ns_arg.ns.inum'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_args_user_ns_arg_ns_is_host
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cilium_tetragon.log.process_kprobe.args.user_ns_arg.ns.is_host'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_args_user_ns_arg_uid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_kprobe.args.user_ns_arg.uid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_function_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_kprobe.function_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_parent_auid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_kprobe.parent.auid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_parent_docker
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_kprobe.parent.docker'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_parent_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_kprobe.parent.flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_parent_parent_exec_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_kprobe.parent.parent_exec_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_parent_pod_container_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_kprobe.parent.pod.container.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_parent_pod_container_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_kprobe.parent.pod.container.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_parent_pod_container_image_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_kprobe.parent.pod.container.image.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_parent_pod_container_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_kprobe.parent.pod.container.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_parent_pod_container_pid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_kprobe.parent.pod.container.pid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_parent_pod_container_start_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_kprobe.parent.pod.container.start_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_parent_pod_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_kprobe.parent.pod.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_parent_pod_namespace
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_kprobe.parent.pod.namespace'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_parent_pod_pod_labels_app_kubernetes_io/name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_kprobe.parent.pod.pod_labels.app.kubernetes.io/name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_parent_pod_pod_labels_class
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_kprobe.parent.pod.pod_labels.class'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_parent_pod_pod_labels_org
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_kprobe.parent.pod.pod_labels.org'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_parent_pod_workload
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_kprobe.parent.pod.workload'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_parent_pod_workload_kind
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_kprobe.parent.pod.workload_kind'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_parent_refcnt
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_kprobe.parent.refcnt'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_policy_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_kprobe.policy_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_process_auid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_kprobe.process.auid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_process_docker
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_kprobe.process.docker'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_process_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_kprobe.process.flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_process_ns_cgroup_inum
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_kprobe.process.ns.cgroup.inum'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_process_ns_ipc_inum
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_kprobe.process.ns.ipc.inum'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_process_ns_mnt_inum
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_kprobe.process.ns.mnt.inum'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_process_ns_net_inum
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_kprobe.process.ns.net.inum'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_process_ns_pid_for_children_inum
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_kprobe.process.ns.pid_for_children.inum'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_process_ns_pid_inum
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_kprobe.process.ns.pid.inum'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_process_ns_pid_pid_for_children_inum
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_kprobe.process.ns.pid.pid_for_children.inum'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_process_ns_time_for_children_inum
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_kprobe.process.ns.time_for_children.inum'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_process_ns_time_for_children_is_host
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cilium_tetragon.log.process_kprobe.process.ns.time_for_children.is_host'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_process_ns_time_inum
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_kprobe.process.ns.time.inum'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_process_ns_time_is_host
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cilium_tetragon.log.process_kprobe.process.ns.time.is_host'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_process_ns_time_time_for_children_inum
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_kprobe.process.ns.time.time_for_children.inum'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_process_ns_time_time_for_children_is_host
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cilium_tetragon.log.process_kprobe.process.ns.time.time_for_children.is_host'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_process_ns_user_inum
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_kprobe.process.ns.user.inum'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_process_ns_user_is_host
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cilium_tetragon.log.process_kprobe.process.ns.user.is_host'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_process_ns_uts_inum
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_kprobe.process.ns.uts.inum'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_process_parent_exec_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_kprobe.process.parent_exec_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_process_pod_container_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_kprobe.process.pod.container.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_process_pod_container_pid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_kprobe.process.pod.container.pid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_process_pod_container_start_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_kprobe.process.pod.container.start_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_process_pod_pod_labels_app_kubernetes_io/name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_kprobe.process.pod.pod_labels.app.kubernetes.io/name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_process_pod_pod_labels_class
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_kprobe.process.pod.pod_labels.class'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_process_pod_pod_labels_org
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_kprobe.process.pod.pod_labels.org'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_process_pod_workload
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_kprobe.process.pod.workload'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_process_refcnt
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_kprobe.process.refcnt'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_return_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.process_kprobe.return_action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cilium_tetragon_log_process_kprobe_return_int_arg
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cilium_tetragon.log.process_kprobe.return.int_arg'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cilium_tetragon_log_time
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cilium_tetragon.log.time'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_device_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.device_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_fingerprint
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.fingerprint'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_idxhi
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.idxhi'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_idxlo
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.idxlo'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_inode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.inode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_vol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.vol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

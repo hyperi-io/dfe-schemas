@@ -1,0 +1,92 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of contrast_security.incident at integrations 2c934eb5223b
+    columns:
+    - name: contrast_security_event_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: contrast_security.event_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: contrast_security_http_source_ip_blocked
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: contrast_security.http_source_ip.blocked'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: contrast_security_http_source_ip_count
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: contrast_security.http_source_ip.count'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: contrast_security_http_source_ip_ipAddress
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: contrast_security.http_source_ip.ipAddress'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: contrast_security_issue_ids
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: contrast_security.issue_ids'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: contrast_security_recommended_actions
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: contrast_security.recommended_actions'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: contrast_security_related_rules
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: contrast_security.related_rules'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: contrast_security_servers_environment
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: contrast_security.servers.environment'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: contrast_security_servers_hostname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: contrast_security.servers.hostname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: contrast_security_servers_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: contrast_security.servers.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: contrast_security_servers_operatingSystem
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: contrast_security.servers.operatingSystem'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: contrast_security_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: contrast_security.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

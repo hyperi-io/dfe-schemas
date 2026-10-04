@@ -1,0 +1,591 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of prisma_cloud.incident_audit at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: log_source_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.source.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit__id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit._id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_account_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.account_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_acknowledged
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.incident_audit.acknowledged'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_app_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.app.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_app_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.app.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_cluster
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.cluster'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_collections
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.collections'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_container_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.container.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_container_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.container.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_custom_rule_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.custom_rule_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data__id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data._id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_account_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data.account_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_app_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data.app.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_app_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data.app.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_attack_techniques
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data.attack.techniques'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_attack_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data.attack.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_cluster
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data.cluster'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_collections
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data.collections'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_command
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data.command'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_container_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data.container.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_container_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data.container.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_container_value
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.incident_audit.data.container.value'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.incident_audit.data.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_country
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data.country'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_effect
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data.effect'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_err
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data.err'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_filepath
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data.filepath'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_fqdn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data.fqdn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_function_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data.function.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_function_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data.function.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_hostname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data.hostname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_image_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data.image.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_interactive
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.incident_audit.data.interactive'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.incident_audit.data.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data.label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_labels
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: prisma_cloud.incident_audit.data.labels'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_msg
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data.msg'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_namespace
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data.namespace'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_os
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data.os'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_pid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.incident_audit.data.pid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.incident_audit.data.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_process_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data.process_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_profile_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data.profile_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_provider
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data.provider'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_raw_event
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data.raw_event'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_region
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data.region'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_request_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data.request_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_resource_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data.resource_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_rule_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data.rule_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_runtime
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data.runtime'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_severity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data.severity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.incident_audit.data.time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_user
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data.user'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_vm_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data.vm_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_data_wild_fire_report_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.data.wild_fire_report_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_fqdn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.fqdn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_function_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.function.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_function_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.function.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_hostname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.hostname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_image_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.image.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_labels
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: prisma_cloud.incident_audit.labels'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_namespace
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.namespace'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_profile_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.profile_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_provider
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.provider'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_region
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.region'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_resource_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.resource_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_runtime
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.runtime'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_serial_num
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.incident_audit.serial_num'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_should_collect
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.incident_audit.should_collect'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.incident_audit.time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_vm_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.incident_audit.vm_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_incident_audit_windows
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.incident_audit.windows'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base

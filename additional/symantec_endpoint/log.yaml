@@ -1,0 +1,765 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of symantec_endpoint.log at integrations 2c934eb5223b
+    columns:
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: log_source_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.source.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_syslog_process_name
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: log.syslog.process.name'
+      comment: 'Elasticsearch mapping type: alias'
+      _field_type: base
+    - name: log_syslog_process_pid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.syslog.process.pid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: symantec_endpoint_log_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_actual_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.actual_action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_admin
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.admin'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_api_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.api_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_application
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.application'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_application_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.application_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_application_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.application_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_application_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.application_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_application_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.application_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_begin
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.begin'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_caller_process_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.caller_process_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_caller_process_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.caller_process_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_caller_return_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.caller_return_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_caller_return_module_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.caller_return_module_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_category_set
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.category_set'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_category_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.category_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_certificate_issuer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.certificate_issuer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_certificate_serial_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.certificate_serial_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_certificate_signer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.certificate_signer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_certificate_thumbprint
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.certificate_thumbprint'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_cids_signature_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.cids_signature_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_cids_signature_string
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.cids_signature_string'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_cids_signature_subid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.cids_signature_subid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_coh_engine_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.coh_engine_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_command
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.command'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_company_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.company_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_computer_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.computer_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_confidence
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.confidence'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_detection_score
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.detection_score'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_detection_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.detection_source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_detection_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.detection_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_device_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.device_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_disposition
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.disposition'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_domain_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.domain_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_download_site
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.download_site'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_downloaded_by
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.downloaded_by'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_duration_seconds
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.duration_seconds'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_end
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.end'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_event_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.event_description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_event_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.event_source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_event_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: symantec_endpoint.log.event_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: symantec_endpoint_log_file_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.file_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_file_size_bytes
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.file_size_bytes'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_first_seen
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.first_seen'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_group
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.group'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_hash_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.hash_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_infected
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: symantec_endpoint.log.infected'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: symantec_endpoint_log_inserted
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: symantec_endpoint.log.inserted'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: symantec_endpoint_log_intensive_protection_level
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.intensive_protection_level'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_intrusion_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.intrusion_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_intrusion_payload_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.intrusion_payload_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_intrusion_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.intrusion_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_ip_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.ip_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_last_update_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: symantec_endpoint.log.last_update_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: symantec_endpoint_log_local_host
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.local_host'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_local_host_ip
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.local_host_ip'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_local_host_mac
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.local_host_mac'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_local_host_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.local_host_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_local_port
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.local_port'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_md-5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.md-5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_network_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.network_protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_occurrences
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.occurrences'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_omitted
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: symantec_endpoint.log.omitted'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: symantec_endpoint_log_parameters
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.parameters'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_permitted_application_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.permitted_application_reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_policy_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.policy_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_prevalence
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.prevalence'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_remote_host_ip
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.remote_host_ip'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_remote_host_mac
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.remote_host_mac'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_remote_port
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.remote_port'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_requested_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.requested_action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_risk_level
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.risk_level'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_risk_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.risk_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_risk_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.risk_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_rule
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.rule'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_scan_complete
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.scan_complete'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_scan_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.scan_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_secondary_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.secondary_action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_sensitivity
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: symantec_endpoint.log.sensitivity'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: symantec_endpoint_log_server
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.server'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_server_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.server_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_sha-256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.sha-256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_signing_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: symantec_endpoint.log.signing_timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: symantec_endpoint_log_site
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.site'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_source_computer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.source_computer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_source_ip
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.source_ip'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_submission_recommended
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: symantec_endpoint.log.submission_recommended'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: symantec_endpoint_log_threats
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: symantec_endpoint.log.threats'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: symantec_endpoint_log_total_files
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: symantec_endpoint.log.total_files'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: symantec_endpoint_log_traffic_direction
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.traffic_direction'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_url_tracking_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.url_tracking_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_user1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.user1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_user2
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.user2'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.user_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: symantec_endpoint_log_web_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: symantec_endpoint.log.web_domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

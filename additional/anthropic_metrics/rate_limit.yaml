@@ -1,0 +1,85 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of anthropic_metrics.rate_limit at integrations 2c934eb5223b
+    columns:
+    - name: anthropic_rate_limit_enqueued_batch_requests
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: anthropic.rate_limit.enqueued_batch_requests'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: anthropic_rate_limit_group_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: anthropic.rate_limit.group_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: anthropic_rate_limit_input_tokens_per_minute
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: anthropic.rate_limit.input_tokens_per_minute'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: anthropic_rate_limit_input_tokens_per_minute_cache_aware
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: anthropic.rate_limit.input_tokens_per_minute_cache_aware'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: anthropic_rate_limit_limits_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: anthropic.rate_limit.limits.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: anthropic_rate_limit_limits_value
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: anthropic.rate_limit.limits.value'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: anthropic_rate_limit_models
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: anthropic.rate_limit.models'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: anthropic_rate_limit_output_tokens_per_minute
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: anthropic.rate_limit.output_tokens_per_minute'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: anthropic_rate_limit_requests_per_minute
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: anthropic.rate_limit.requests_per_minute'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: anthropic_rate_limit_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: anthropic.rate_limit.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

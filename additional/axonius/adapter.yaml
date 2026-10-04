@@ -1,0 +1,251 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of axonius.adapter at integrations 2c934eb5223b
+    columns:
+    - name: axonius_adapter_adapter_configs
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: axonius.adapter.adapter_configs'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: axonius_adapter_connections_active
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: axonius.adapter.connections.active'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: axonius_adapter_connections_adapter_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: axonius.adapter.connections.adapter_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: axonius_adapter_connections_connection_adapter_config
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: axonius.adapter.connections.connection_adapter_config'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: axonius_adapter_connections_connection_advanced_config
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: axonius.adapter.connections.connection_advanced_config'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: axonius_adapter_connections_connection_config
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: axonius.adapter.connections.connection_config'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: axonius_adapter_connections_connection_discovery
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: axonius.adapter.connections.connection_discovery'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: axonius_adapter_connections_connection_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: axonius.adapter.connections.connection_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: axonius_adapter_connections_count_error_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: axonius.adapter.connections_count.error_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: axonius_adapter_connections_count_inactive_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: axonius.adapter.connections_count.inactive_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: axonius_adapter_connections_count_success_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: axonius.adapter.connections_count.success_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: axonius_adapter_connections_count_total_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: axonius.adapter.connections_count.total_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: axonius_adapter_connections_count_warning_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: axonius.adapter.connections_count.warning_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: axonius_adapter_connections_curl
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: axonius.adapter.connections.curl'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: axonius_adapter_connections_did_notify_error
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: axonius.adapter.connections.did_notify_error'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: axonius_adapter_connections_error
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: axonius.adapter.connections.error'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: axonius_adapter_connections_failed_connections_limit_exceeded
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: axonius.adapter.connections.failed_connections_limit_exceeded'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: axonius_adapter_connections_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: axonius.adapter.connections.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: axonius_adapter_connections_last_fetch_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: axonius.adapter.connections.last_fetch_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: axonius_adapter_connections_last_successful_fetch
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: axonius.adapter.connections.last_successful_fetch'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: axonius_adapter_connections_node_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: axonius.adapter.connections.node_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: axonius_adapter_connections_note
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: axonius.adapter.connections.note'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: axonius_adapter_connections_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: axonius.adapter.connections.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: axonius_adapter_connections_tunnel_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: axonius.adapter.connections.tunnel_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: axonius_adapter_connections_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: axonius.adapter.connections.uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: axonius_adapter_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: axonius.adapter.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: axonius_adapter_is_master
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: axonius.adapter.is_master'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: axonius_adapter_node_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: axonius.adapter.node_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: axonius_adapter_node_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: axonius.adapter.node_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: axonius_adapter_plugin_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: axonius.adapter.plugin_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: axonius_adapter_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: axonius.adapter.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: axonius_adapter_unique_plugin_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: axonius.adapter.unique_plugin_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: labels_is_transform_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: labels.is_transform_source'
+      comment: 'Elasticsearch mapping type: constant_keyword'
+      _field_type: base

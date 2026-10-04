@@ -1,0 +1,381 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of wiz.issue at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: wiz_issue_created_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: wiz.issue.created_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: wiz_issue_due_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: wiz.issue.due_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: wiz_issue_entity_snapshot_cloud_platform
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.entity_snapshot.cloud.platform'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_entity_snapshot_cloud_provider_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.entity_snapshot.cloud.provider_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_entity_snapshot_external_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.entity_snapshot.external_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_entity_snapshot_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.entity_snapshot.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_entity_snapshot_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.entity_snapshot.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_entity_snapshot_native_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.entity_snapshot.native_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_entity_snapshot_provider_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.entity_snapshot.provider_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_entity_snapshot_region
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.entity_snapshot.region'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_entity_snapshot_resource_group_external_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.entity_snapshot.resource_group_external_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_entity_snapshot_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.entity_snapshot.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_entity_snapshot_subscription_external_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.entity_snapshot.subscription.external_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_entity_snapshot_subscription_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.entity_snapshot.subscription.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_entity_snapshot_subscription_tags
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: wiz.issue.entity_snapshot.subscription.tags'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: wiz_issue_entity_snapshot_tags
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: wiz.issue.entity_snapshot.tags'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: wiz_issue_entity_snapshot_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.entity_snapshot.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_notes_created_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: wiz.issue.notes.created_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: wiz_issue_notes_service_account_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.notes.service_account.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_notes_text
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.notes.text'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_notes_updated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: wiz.issue.notes.updated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: wiz_issue_notes_user_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.notes.user.email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_notes_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.notes.user.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_projects_business_unit
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.projects.business_unit'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_projects_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.projects.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_projects_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.projects.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_projects_risk_profile_business_impact
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.projects.risk_profile.business_impact'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_projects_slug
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.projects.slug'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_resolved_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: wiz.issue.resolved_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: wiz_issue_service_tickets_external_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.service_tickets.external_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_service_tickets_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.service_tickets.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_service_tickets_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.service_tickets.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_severity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.severity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_source_rules___typename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.source_rules.__typename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_source_rules_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.source_rules.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_source_rules_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.source_rules.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_source_rules_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.source_rules.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_source_rules_remediation_instructions
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.source_rules.remediation_instructions'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_source_rules_resolution_recommendation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.source_rules.resolution_recommendation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_source_rules_risks
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.source_rules.risks'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_source_rules_security_sub_categories_category_framework_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.source_rules.security_sub_categories.category.framework.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_source_rules_security_sub_categories_category_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.source_rules.security_sub_categories.category.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_source_rules_security_sub_categories_title
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.source_rules.security_sub_categories.title'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_source_rules_service_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.source_rules.service_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_source_rules_source_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.source_rules.source_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_source_rules_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.source_rules.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_status_changed_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: wiz.issue.status.changed_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: wiz_issue_status_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.status.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: wiz.issue.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: wiz_issue_updated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: wiz.issue.updated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base

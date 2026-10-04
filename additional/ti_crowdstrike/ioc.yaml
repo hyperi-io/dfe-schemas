@@ -1,0 +1,163 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of ti_crowdstrike.ioc at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: labels_is_ioc_transform_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: labels.is_ioc_transform_source'
+      comment: 'Elasticsearch mapping type: constant_keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: ti_crowdstrike_ioc_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_crowdstrike.ioc.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_crowdstrike_ioc_applied_globally
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: ti_crowdstrike.ioc.applied_globally'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: ti_crowdstrike_ioc_created_by
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_crowdstrike.ioc.created_by'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_crowdstrike_ioc_created_on
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ti_crowdstrike.ioc.created_on'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: ti_crowdstrike_ioc_deleted
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: ti_crowdstrike.ioc.deleted'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: ti_crowdstrike_ioc_deleted_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ti_crowdstrike.ioc.deleted_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: ti_crowdstrike_ioc_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_crowdstrike.ioc.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_crowdstrike_ioc_expiration_duration
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_crowdstrike.ioc.expiration_duration'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_crowdstrike_ioc_expired
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: ti_crowdstrike.ioc.expired'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: ti_crowdstrike_ioc_from_parent
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: ti_crowdstrike.ioc.from_parent'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: ti_crowdstrike_ioc_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_crowdstrike.ioc.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_crowdstrike_ioc_metadata
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: ti_crowdstrike.ioc.metadata'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: ti_crowdstrike_ioc_modified_by
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_crowdstrike.ioc.modified_by'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_crowdstrike_ioc_modified_on
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ti_crowdstrike.ioc.modified_on'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: ti_crowdstrike_ioc_platforms
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_crowdstrike.ioc.platforms'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_crowdstrike_ioc_severity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_crowdstrike.ioc.severity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_crowdstrike_ioc_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_crowdstrike.ioc.tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_crowdstrike_ioc_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_crowdstrike.ioc.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_crowdstrike_ioc_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_crowdstrike.ioc.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

@@ -1,0 +1,2117 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of netskope.events at integrations 2c934eb5223b
+    columns:
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: log_source_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.source.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_access_method
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.access_method'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_ack
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: netskope.events.ack'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: netskope_events_activity_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.activity.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_activity_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.activity.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_activity_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.activity.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_alarm_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.alarm.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_alarm_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.alarm.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_alert_is_present
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: netskope.events.alert.is_present'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: netskope_events_alert_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.alert.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_alert_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.alert.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_app_activity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.app.activity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_app_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.app.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_app_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.app.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_app_region
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.app.region'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_app_session_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.app.session.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_attachment
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.attachment'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_audit_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.audit.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_audit_log_event
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.audit.log.event'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_audit_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.audit.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_browser_session_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.browser.session.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_bucket
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.bucket'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_category_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.category.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_category_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.category.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_cci
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.cci'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_ccl
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.ccl'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_channel
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.channel'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_client_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.client.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_client_packets
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.client.packets'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_connection_duration
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.connection.duration'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_connection_end_time
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.connection.end_time'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_connection_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.connection.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_connection_start_time
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.connection.start_time'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_destination_geoip_source
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.destination.geoip.source'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_detail
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.detail'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_detection_engine
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.detection.engine'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_detection_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.detection.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_device_classification
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.device.classification'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_device_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.device.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_device_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.device.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_dlp_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.dlp.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_dlp_file
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.dlp.file'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_dlp_fingerprint_classificaiton
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.dlp.fingerprint.classificaiton'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_dlp_fingerprint_match
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.dlp.fingerprint.match'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_dlp_fingerprint_score
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.dlp.fingerprint.score'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_dlp_fv
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.dlp.fv'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_dlp_incident_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.dlp.incident.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_dlp_is_unique_count
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: netskope.events.dlp.is_unique_count'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: netskope_events_dlp_mail_parent_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.dlp.mail.parent_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_dlp_parent_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.dlp.parent.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_dlp_profile
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.dlp.profile'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_dlp_score
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.dlp.score'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_dlp_severity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.dlp.severity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_dlp_unique_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.dlp.unique_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_domain_shared_with
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.domain_shared_with'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_drive_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.drive.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_encrypt_failure
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.encrypt.failure'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_end_time
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.end_time'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_enterprise_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.enterprise.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_enterprise_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.enterprise.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_event_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.event.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_exposure
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.exposure'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_external_collaborator_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.external_collaborator_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_file_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.file.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_file_is_password_protected
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.file.is_password_protected'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_file_lang
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.file.lang'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_from_logs
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.from.logs'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_from_object
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.from.object'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_from_storage
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.from.storage'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_from_user_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.from.user_category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_gateway
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.gateway'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_graph_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.graph.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_http_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.http_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_http_transaction_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.http_transaction_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_iaas_asset_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.iaas_asset_tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_insertion_timestamp
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.insertion.timestamp'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_instance_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.instance.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_instance_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.instance.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_instance_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.instance.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_internal_collaborator_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.internal_collaborator_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_ip_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.ip.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_is_bypass_traffic
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: netskope.events.is_bypass_traffic'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: netskope_events_is_malicious
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: netskope.events.is_malicious'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: netskope_events_item_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.item.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_justification_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.justification.reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_justification_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.justification.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_last_app
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.last.app'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_last_country
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.last.country'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_last_device
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.last.device'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_last_location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.last.location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_last_region
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.last.region'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_last_timestamp
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.last.timestamp'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_latency_max
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.latency.max'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_latency_min
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.latency.min'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_latency_total
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.latency.total'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_legal_hold_profile_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.legal_hold_profile_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_lh_custodian_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.lh.custodian.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_lh_destination_app
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.lh.destination.app'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_lh_destination_instance
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.lh.destination.instance'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_lh_file_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.lh.file_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_lh_filename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.lh.filename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_lh_filename_original
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.lh.filename_original'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_lh_filepath
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.lh.filepath'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_lh_shared
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.lh.shared'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_lh_shared_with
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.lh.shared_with'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_lh_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.lh.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_list_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.list.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_log_file_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.log_file.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_login_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.login.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_login_url_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.login.url.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_login_url_extension
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.login.url.extension'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_login_url_fragment
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.login.url.fragment'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_login_url_full
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.login.url.full'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_login_url_original
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.login.url.original'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_login_url_password
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.login.url.password'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_login_url_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.login.url.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_login_url_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.login.url.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_login_url_query
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.login.url.query'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_login_url_scheme
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.login.url.scheme'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_login_url_username
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.login.url.username'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_malsite_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.malsite_category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_malware_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.malware.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_malware_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.malware.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_malware_profile
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.malware.profile'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_malware_severity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.malware.severity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_malware_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.malware.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_managed_app
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: netskope.events.managed_app'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: netskope_events_management_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.management.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_metric_value
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.metric_value'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_modified_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.modified_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: netskope_events_netskope_pop
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.netskope_pop'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_network
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.network'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_new_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.new_value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_notify_template
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.notify_template'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_ns_activity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.ns.activity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_ns_device_uid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.ns.device_uid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_num_sessions
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.num_sessions'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_numbytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.numbytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_obfuscate
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: netskope.events.obfuscate'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: netskope_events_object_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.object.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_object_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.object.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_object_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.object.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_object_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.object.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_old_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.old_value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_org
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.org'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_organization_unit
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.organization_unit'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_orig_ty
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.orig_ty'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_original_file_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.original_file_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_other_categories
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.other.categories'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_owner
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.owner'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_page
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.page'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_page_site
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.page_site'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_parent_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.parent.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_path_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.path_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_policy_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.policy.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_policy_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.policy.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_profile_emails
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.profile.emails'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_profile_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.profile.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_publisher_cn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.publisher_cn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_qar
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.qar'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_quarantine_action_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.quarantine.action.reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_quarantine_admin
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.quarantine.admin'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_quarantine_app
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.quarantine.app'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_quarantine_app_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.quarantine.app_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_quarantine_failure
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.quarantine.failure'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_quarantine_file_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.quarantine.file.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_quarantine_file_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.quarantine.file.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_quarantine_instance
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.quarantine.instance'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_quarantine_original_file_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.quarantine.original.file.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_quarantine_original_file_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.quarantine.original.file.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_quarantine_original_shared
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.quarantine.original.shared'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_quarantine_original_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.quarantine.original.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_quarantine_profile_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.quarantine.profile.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_quarantine_profile_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.quarantine.profile.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_quarantine_shared_with
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.quarantine.shared_with'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_referer_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.referer.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_referer_extension
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.referer.extension'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_referer_fragment
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.referer.fragment'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_referer_full
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.referer.full'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_referer_original
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.referer.original'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_referer_password
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.referer.password'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_referer_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.referer.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_referer_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.referer.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_referer_query
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.referer.query'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_referer_scheme
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.referer.scheme'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_referer_username
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.referer.username'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_repo
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.repo'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_request_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.request.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_request_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.request.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_response_content_length
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.response.content.length'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_response_content_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.response.content.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_response_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.response.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_retro_scan_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.retro_scan_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_risk_level
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.risk_level'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_risk_level_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.risk_level_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_role
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.role'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_run_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.run_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_sa_profile_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.sa.profile.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_sa_profile_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.sa.profile.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_sa_rule_severity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.sa.rule.severity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_scan_time
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.scan.time'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_scan_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.scan.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_scopes
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.scopes'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_serial
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.serial'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_server_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.server.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_server_packets
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.server.packets'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_session_duration
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.session.duration'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_session_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.session.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_session_packets
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.session.packets'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_severity_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.severity.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_severity_level
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.severity.level'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_severity_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.severity.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_sfwder
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.sfwder'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_shared_domains
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.shared.domains'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_shared_is_shared
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: netskope.events.shared.is_shared'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: netskope_events_shared_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.shared.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_shared_with
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.shared.with'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_site
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.site'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_slc_geo_location
+      type: geo_point
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: netskope.events.slc.geo.location'
+      comment: 'Elasticsearch mapping type: geo_point'
+      _field_type: base
+    - name: netskope_events_source_geoip_src
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.source.geoip_src'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_ssl_decrypt_policy
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.ssl_decrypt_policy'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_start_time
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.start_time'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_sub_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.sub_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_supporting_data
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.supporting_data'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_suppression_end_time
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.suppression.end_time'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_suppression_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.suppression.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_suppression_start_time
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.suppression.start_time'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_team
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.team'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_telemetry_app
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.telemetry_app'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_temp_user
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.temp_user'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_tenant_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.tenant.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_threat_match_field
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.threat.match_field'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_threat_source_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.threat.source.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_threshold
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.threshold'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_tnetwork_session_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.tnetwork_session_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_to_object
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.to.object'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_to_storage
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.to.storage'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_to_user
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.to.user'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_to_user_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.to.user_category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_total_collaborator_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.total.collaborator_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_total_packets
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.total_packets'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_traffic_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.traffic.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_transaction_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.transaction.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_tss_mode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.tss_mode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_tunnel_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.tunnel.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_tunnel_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.tunnel.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_tunnel_up_time
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.tunnel.up_time'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_two_factor_auth
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.two_factor_auth'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_universal_connector
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.universal_connector'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_url_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.url.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_url_extension
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.url.extension'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_url_fragment
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.url.fragment'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_url_full
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.url.full'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_url_original
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.url.original'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_url_password
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.url.password'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_url_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.url.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_url_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.url.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_url_query
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.url.query'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_url_scheme
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.url.scheme'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_url_to_activity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.url_to_activity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_url_username
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.url.username'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_user_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.user.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_user_generated
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: netskope.events.user.generated'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: netskope_events_user_geo_city_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.user.geo.city_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_user_geo_continent_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.user.geo.continent_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_user_geo_country_iso_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.user.geo.country_iso_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_user_geo_country_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.user.geo.country_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_user_geo_location
+      type: geo_point
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: netskope.events.user.geo.location'
+      comment: 'Elasticsearch mapping type: geo_point'
+      _field_type: base
+    - name: netskope_events_user_geo_region_iso_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.user.geo.region_iso_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_user_geo_region_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.user.geo.region_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_user_group
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.user.group'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_user_ip
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.user.ip'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_user_is_aggregated
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: netskope.events.user.is_aggregated'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: netskope_events_violating_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.violating.user.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_violating_user_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.violating.user.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_web_universal_connector
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.web_universal_connector'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_web_url_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.web.url.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_web_url_extension
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.web.url.extension'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_web_url_fragment
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.web.url.fragment'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_web_url_full
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.web.url.full'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_web_url_original
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.web.url.original'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_web_url_password
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.web.url.password'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_web_url_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.web.url.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_web_url_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netskope.events.web.url.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netskope_events_web_url_query
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.web.url.query'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_web_url_scheme
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.web.url.scheme'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_web_url_username
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.web.url.username'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_workspace_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.workspace.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_workspace_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.workspace.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netskope_events_zip_password
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netskope.events.zip_password'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

@@ -1,0 +1,840 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of nozomi_networks.node at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: nozomi_networks_node_appliance_host
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.appliance_host'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_asset_kb_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.asset_kb_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_bpf_filter
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.bpf_filter'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_capture_device
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.capture_device'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_created_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nozomi_networks.node.created_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: nozomi_networks_node_custom_fields
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: nozomi_networks.node.custom_fields'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: nozomi_networks_node_device_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.device_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_device_modules_children_cip_attributes_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.device_modules.children.cip.attributes.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_device_modules_children_cip_attributes_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.device_modules.children.cip.attributes.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_device_modules_children_cip_children_attributes_device_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.device_modules.children.cip.children.attributes.device_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_device_modules_children_cip_children_attributes_device_type_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.device_modules.children.cip.children.attributes.device_type_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_device_modules_children_cip_children_attributes_firmware_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.device_modules.children.cip.children.attributes.firmware_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_device_modules_children_cip_children_attributes_product_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.device_modules.children.cip.children.attributes.product_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_device_modules_children_cip_children_attributes_product_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.device_modules.children.cip.children.attributes.product_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_device_modules_children_cip_children_attributes_serial_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.device_modules.children.cip.children.attributes.serial_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_device_modules_children_cip_children_attributes_vendor
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.device_modules.children.cip.children.attributes.vendor'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_device_modules_children_cip_children_attributes_vendor_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.device_modules.children.cip.children.attributes.vendor_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_device_modules_children_cip_children_children_attributes_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.device_modules.children.cip.children.children.attributes.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_device_modules_children_cip_children_children_attributes_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.device_modules.children.cip.children.children.attributes.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_device_modules_children_cip_children_children_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.device_modules.children.cip.children.children.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_device_modules_children_cip_children_children_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.device_modules.children.cip.children.children.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_device_modules_children_cip_children_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.device_modules.children.cip.children.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_device_modules_children_cip_children_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.device_modules.children.cip.children.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_device_modules_children_cip_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.device_modules.children.cip.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_device_modules_children_cip_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.device_modules.children.cip.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_device_modules_firmware_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.device_modules.firmware_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_device_modules_product_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.device_modules.product_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_device_modules_serial_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.device_modules.serial_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_device_modules_vendor
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.device_modules.vendor'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_end_of_sale_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nozomi_networks.node.end_of_sale_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: nozomi_networks_node_end_of_sale_date_info
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: nozomi_networks.node.end_of_sale_date_info'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: nozomi_networks_node_end_of_support_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nozomi_networks.node.end_of_support_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: nozomi_networks_node_end_of_support_date_info
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: nozomi_networks.node.end_of_support_date_info'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: nozomi_networks_node_firmware_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.firmware_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_firmware_version_info
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: nozomi_networks.node.firmware_version_info'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: nozomi_networks_node_first_activity_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nozomi_networks.node.first_activity_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: nozomi_networks_node_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: nozomi_networks.node.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: nozomi_networks_node_is_ai_enriched
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: nozomi_networks.node.is_ai_enriched'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: nozomi_networks_node_is_arc_enriched
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: nozomi_networks.node.is_arc_enriched'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: nozomi_networks_node_is_broadcast
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: nozomi_networks.node.is_broadcast'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: nozomi_networks_node_is_compromised
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: nozomi_networks.node.is_compromised'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: nozomi_networks_node_is_confirmed
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: nozomi_networks.node.is_confirmed'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: nozomi_networks_node_is_disabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: nozomi_networks.node.is_disabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: nozomi_networks_node_is_fully_learned
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: nozomi_networks.node.is_fully_learned'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: nozomi_networks_node_is_learned
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: nozomi_networks.node.is_learned'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: nozomi_networks_node_is_licensed
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: nozomi_networks.node.is_licensed'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: nozomi_networks_node_is_public
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: nozomi_networks.node.is_public'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: nozomi_networks_node_is_sp_enriched
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: nozomi_networks.node.is_sp_enriched'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: nozomi_networks_node_is_ti_enriched
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: nozomi_networks.node.is_ti_enriched'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: nozomi_networks_node_label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_label_info
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: nozomi_networks.node.label_info'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: nozomi_networks_node_last_activity_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nozomi_networks.node.last_activity_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: nozomi_networks_node_level
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nozomi_networks.node.level'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: nozomi_networks_node_lifecycle
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.lifecycle'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_lifecycle_info
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: nozomi_networks.node.lifecycle_info'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: nozomi_networks_node_links
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.links'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_links_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nozomi_networks.node.links_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: nozomi_networks_node_mac_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.mac_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_mac_address_info
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: nozomi_networks.node.mac_address_info'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: nozomi_networks_node_mac_vendor
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.mac_vendor'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_os
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.os'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_os_info
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: nozomi_networks.node.os_info'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: nozomi_networks_node_private_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.private_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_product_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.product_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_product_name_info_source
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: nozomi_networks.node.product_name_info.source'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: nozomi_networks_node_properties_ethernetip_device_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.properties.ethernetip_device_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_properties_ethernetip_device_type_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.properties.ethernetip_device_type_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_properties_ethernetip_firmware_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.properties.ethernetip_firmware_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_properties_ethernetip_product_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.properties.ethernetip_product_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_properties_ethernetip_product_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.properties.ethernetip_product_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_properties_ethernetip_serial_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.properties.ethernetip_serial_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_properties_ethernetip_vendor
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.properties.ethernetip_vendor'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_properties_ethernetip_vendor_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.properties.ethernetip_vendor_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_properties_product_name_passive
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.properties.product_name.passive'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_properties_type_passive
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.properties.type.passive'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_properties_vendor_passive
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.properties.vendor.passive'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_protocols
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.protocols'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_received_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nozomi_networks.node.received.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: nozomi_networks_node_received_last_15m_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nozomi_networks.node.received.last_15m_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: nozomi_networks_node_received_last_1d_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nozomi_networks.node.received.last_1d_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: nozomi_networks_node_received_last_1h_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nozomi_networks.node.received.last_1h_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: nozomi_networks_node_received_last_1w_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nozomi_networks.node.received.last_1w_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: nozomi_networks_node_received_last_30m_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nozomi_networks.node.received.last_30m_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: nozomi_networks_node_received_last_5m_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nozomi_networks.node.received.last_5m_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: nozomi_networks_node_received_packets
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nozomi_networks.node.received.packets'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: nozomi_networks_node_record_created_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nozomi_networks.node.record_created_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: nozomi_networks_node_reputation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.reputation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_roles
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.roles'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_sent_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nozomi_networks.node.sent.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: nozomi_networks_node_sent_last_15m_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nozomi_networks.node.sent.last_15m_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: nozomi_networks_node_sent_last_1d_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nozomi_networks.node.sent.last_1d_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: nozomi_networks_node_sent_last_1h_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nozomi_networks.node.sent.last_1h_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: nozomi_networks_node_sent_last_1w_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nozomi_networks.node.sent.last_1w_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: nozomi_networks_node_sent_last_30m_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nozomi_networks.node.sent.last_30m_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: nozomi_networks_node_sent_last_5m_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nozomi_networks.node.sent.last_5m_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: nozomi_networks_node_sent_packets
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nozomi_networks.node.sent.packets'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: nozomi_networks_node_serial_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.serial_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_serial_number_info
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: nozomi_networks.node.serial_number_info'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: nozomi_networks_node_subnet
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.subnet'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_tcp_retransmission_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nozomi_networks.node.tcp_retransmission.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: nozomi_networks_node_tcp_retransmission_last_15m_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nozomi_networks.node.tcp_retransmission.last_15m_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: nozomi_networks_node_tcp_retransmission_last_30m_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nozomi_networks.node.tcp_retransmission.last_30m_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: nozomi_networks_node_tcp_retransmission_last_5m_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nozomi_networks.node.tcp_retransmission.last_5m_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: nozomi_networks_node_tcp_retransmission_packets
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nozomi_networks.node.tcp_retransmission.packets'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: nozomi_networks_node_tcp_retransmission_percent
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nozomi_networks.node.tcp_retransmission.percent'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: nozomi_networks_node_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_type_info
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: nozomi_networks.node.type_info'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: nozomi_networks_node_variables_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nozomi_networks.node.variables_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: nozomi_networks_node_vendor
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.vendor'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_vendor_info
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: nozomi_networks.node.vendor_info'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: nozomi_networks_node_vlan_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.vlan_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_node_vlan_id_info
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: nozomi_networks.node.vlan_id_info'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: nozomi_networks_node_zone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.node.zone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

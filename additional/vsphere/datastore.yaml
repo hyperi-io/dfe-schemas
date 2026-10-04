@@ -1,0 +1,204 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of vsphere.datastore at integrations 2c934eb5223b
+    columns:
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vsphere_datastore_alert_names
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vsphere.datastore.alert.names'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vsphere_datastore_capacity_free_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vsphere.datastore.capacity.free.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: vsphere_datastore_capacity_total_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vsphere.datastore.capacity.total.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: vsphere_datastore_capacity_used_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vsphere.datastore.capacity.used.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: vsphere_datastore_capacity_used_pct
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vsphere.datastore.capacity.used.pct'
+      comment: 'Elasticsearch mapping type: scaled_float'
+      _field_type: base
+    - name: vsphere_datastore_disk_capacity_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vsphere.datastore.disk.capacity.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: vsphere_datastore_disk_capacity_usage_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vsphere.datastore.disk.capacity.usage.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: vsphere_datastore_disk_provisioned_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vsphere.datastore.disk.provisioned.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: vsphere_datastore_fstype
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vsphere.datastore.fstype'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vsphere_datastore_host_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vsphere.datastore.host.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: vsphere_datastore_host_names
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vsphere.datastore.host.names'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vsphere_datastore_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vsphere.datastore.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vsphere_datastore_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vsphere.datastore.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vsphere_datastore_read_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vsphere.datastore.read.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: vsphere_datastore_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vsphere.datastore.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vsphere_datastore_triggered_alarms_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vsphere.datastore.triggered_alarms.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vsphere_datastore_triggered_alarms_entity_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vsphere.datastore.triggered_alarms.entity_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vsphere_datastore_triggered_alarms_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vsphere.datastore.triggered_alarms.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vsphere_datastore_triggered_alarms_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vsphere.datastore.triggered_alarms.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vsphere_datastore_triggered_alarms_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vsphere.datastore.triggered_alarms.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vsphere_datastore_triggered_alarms_triggered_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vsphere.datastore.triggered_alarms.triggered_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: vsphere_datastore_vm_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vsphere.datastore.vm.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: vsphere_datastore_vm_names
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vsphere.datastore.vm.names'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vsphere_datastore_warning_names
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: vsphere.datastore.warning.names'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: vsphere_datastore_write_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: vsphere.datastore.write.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

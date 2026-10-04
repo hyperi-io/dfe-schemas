@@ -1,0 +1,1443 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of fortinet_fortimanager.log at integrations 2c934eb5223b
+    columns:
+    - name: fortimanager_log_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: fortimanager.log.address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: fortimanager_log_admin_prof
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.admin_prof'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_adom_lock
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.adom.lock'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_adom_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.adom.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_adom_oid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.adom.oid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_app
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.app'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_appcat
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.appcat'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_apprisk
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.apprisk'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_attribute_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.attribute_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_auth_msg
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.auth_msg'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_bid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.bid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_capacity
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: fortimanager.log.capacity'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: fortimanager_log_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_cause
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.cause'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_cert_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.cert.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_cert_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.cert.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_changes
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: fortimanager.log.changes'
+      comment: 'Elasticsearch mapping type: match_only_text'
+      _field_type: base
+    - name: fortimanager_log_cli_act
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.cli_act'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_cmd_from
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.cmd_from'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_comment
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.comment'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_condition
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.condition'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_conf_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.conf_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_connect_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.connect_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_const_msg
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.const_msg'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_cpu_usage
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: fortimanager.log.cpu_usage'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: fortimanager_log_crlevel
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.crlevel'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_crscore
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: fortimanager.log.crscore'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: fortimanager_log_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: fortimanager.log.date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: fortimanager_log_db_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.db.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_db_ver
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.db.ver'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_desc
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.desc'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_detail
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.detail'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_dev_grps
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.dev.grps'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_dev_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.dev.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_dev_log
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.dev.log'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_dev_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.dev.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_dev_oid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.dev.oid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_device_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.device.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_device_log_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.device_log.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_device_log_last_logging
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.device_log.last_logging'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_device_log_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.device_log.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_device_log_offline_duration
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.device_log.offline_duration'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_device_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.device.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_direction
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.direction'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_disk_label
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: fortimanager.log.disk.label'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: fortimanager_log_disk_status_before
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.disk.status.before'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_disk_status_current
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.disk.status.current'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_dm_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.dm_state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_dstcountry
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.dstcountry'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_dste_pid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.dste.pid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_dste_uid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.dste.uid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_dstip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: fortimanager.log.dstip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: fortimanager_log_dstname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.dstname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_dvid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.dvid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_dvmdb_obj
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.dvmdb_obj'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_end_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: fortimanager.log.end_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: fortimanager_log_epid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.epid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_err_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.err_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_error
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.error'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_euid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.euid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_event_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.event.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_event_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.event.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_expiration
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: fortimanager.log.expiration'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: fortimanager_log_extra_info
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.extra_info'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_file
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.file'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_fips_err
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.fips.err'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_fips_method
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.fips.method'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_function
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.function'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_importance
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.importance'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_inst_adom
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.inst.adom'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_inst_dev
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.inst.dev'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_inst_pkg
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.inst.pkg'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_intfname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.intfname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_itime
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: fortimanager.log.itime'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: fortimanager_log_level
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.level'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_license_type
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: fortimanager.log.license_type'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: fortimanager_log_lickey_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.lickey_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_lnk_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.lnk_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_local_file
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.local_file'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_max_mb
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: fortimanager.log.max_mb'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: fortimanager_log_mem_usage
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: fortimanager.log.mem_usage'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: fortimanager_log_meta_field_leng
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: fortimanager.log.meta_field.leng'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: fortimanager_log_meta_field_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.meta_field.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_meta_field_stat
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.meta_field.stat'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_module
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: fortimanager.log.module'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: fortimanager_log_msg
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.msg'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_msg_rate
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: fortimanager.log.msg_rate'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: fortimanager_log_new_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.new.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_new_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.new.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_new_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.new.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_obj_attr
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.obj.attr'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_obj_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.obj.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_obj_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.obj.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_obj_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.obj.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_object
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.object'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_offline_stat
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.offline_stat'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_old_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.old_value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_oper_stat
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.oper_stat'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_operation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.operation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_osname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.osname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_package_desc
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.package.desc'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_package_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.package.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_package_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.package.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_peer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.peer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_percent
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: fortimanager.log.percent'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: fortimanager_log_performed_on
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.performed_on'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_pid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: fortimanager.log.pid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: fortimanager_log_pkg_adom
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.pkg.adom'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_pkg_gname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.pkg.gname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_pkg_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.pkg.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_pkg_oid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.pkg.oid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_pre_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.pre_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_pri
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.pri'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_priority_number
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: fortimanager.log.priority_number'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: fortimanager_log_product
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.product'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_prof_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.prof_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_pty_err
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.pty.err'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_pty_oper
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.pty.oper'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_pty_sess
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.pty.sess'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_pty_step
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.pty.step'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_quota
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: fortimanager.log.quota'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: fortimanager_log_raid_state_before
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.raid_state.before'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_raid_state_current
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.raid_state.current'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_rate
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: fortimanager.log.rate'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: fortimanager_log_rate_limit
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: fortimanager.log.rate_limit'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: fortimanager_log_rate_peak
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: fortimanager.log.rate_peak'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: fortimanager_log_rate_value
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: fortimanager.log.rate_value'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: fortimanager_log_rcvdbyte
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: fortimanager.log.rcvdbyte'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: fortimanager_log_reboot_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.reboot_reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_remote_filename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.remote.filename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_remote_host
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.remote.host'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_remote_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: fortimanager.log.remote.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: fortimanager_log_remote_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.remote.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_remote_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: fortimanager.log.remote.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: fortimanager_log_result
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.result'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_revision
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: fortimanager.log.revision'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: fortimanager_log_rolling_cur_number
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: fortimanager.log.rolling.cur_number'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: fortimanager_log_rolling_max_allowed
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: fortimanager.log.rolling.max_allowed'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: fortimanager_log_run_from
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.run_from'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_rundb_ver
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.rundb_ver'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_script
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.script'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_sensor_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.sensor.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_sensor_st
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.sensor.st'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_sensor_val
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.sensor.val'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_sentbyte
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: fortimanager.log.sentbyte'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: fortimanager_log_serial
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.serial'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_service
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.service'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_session_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.session_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_setup
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: fortimanager.log.setup'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: fortimanager_log_shutdown_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.shutdown_reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: fortimanager.log.size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: fortimanager_log_srcip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: fortimanager.log.srcip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: fortimanager_log_srcname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.srcname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_srcport
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: fortimanager.log.srcport'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: fortimanager_log_start_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: fortimanager.log.start_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: fortimanager_log_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_subtype
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.subtype'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_sw_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.sw_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_time
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.time'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_title
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.title'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_to_build
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: fortimanager.log.to_build'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: fortimanager_log_to_release
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.to_release'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_to_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.to_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_tz
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.tz'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_uid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.uid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_unauthuser
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.unauthuser'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_upddb_ver
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.upddb_ver'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_upg_act
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.upg_act'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_upgrade_adom
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.upgrade.adom'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_upgrade_from
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.upgrade.from'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_upgrade_to
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.upgrade.to'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_uploading_cur_number
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: fortimanager.log.uploading.cur_number'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: fortimanager_log_uploading_max_allowed
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: fortimanager.log.uploading.max_allowed'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: fortimanager_log_uploading_oper
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.uploading.oper'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_uploading_pid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.uploading.pid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_uploading_server_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.uploading.server_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_use_mb
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: fortimanager.log.use_mb'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: fortimanager_log_user_from
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.user.from'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_user_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.user.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.user.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_user_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.user.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_ustr
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.ustr'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_valid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: fortimanager.log.valid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: fortimanager_log_vdom
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.vdom'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_vdoms
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.vdoms'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_whitelist_size
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.whitelist_size'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: fortimanager_log_zip_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: fortimanager.log.zip_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_device_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.device_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_fingerprint
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.fingerprint'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_idxhi
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.idxhi'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_idxlo
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.idxlo'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_inode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.inode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_vol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.vol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: log_source_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.source.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

@@ -1,0 +1,218 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of sublime_security.message_event at integrations 2c934eb5223b
+    columns:
+    - name: aws_s3_bucket_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_bucket_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_object_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.object.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sublime_security_message_event_canonical_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.message_event.canonical_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_message_event_created_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sublime_security.message_event.created_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sublime_security_message_event_data_flagged_rules_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.message_event.data.flagged_rules.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_message_event_data_flagged_rules_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.message_event.data.flagged_rules.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_message_event_data_flagged_rules_severity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.message_event.data.flagged_rules.severity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_message_event_data_flagged_rules_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.message_event.data.flagged_rules.tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_message_event_data_triggered_actions_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.message_event.data.triggered_actions.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_message_event_data_triggered_actions_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.message_event.data.triggered_actions.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_message_event_data_triggered_actions_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.message_event.data.triggered_actions.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_message_event_external_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.message_event.external_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_message_event_forward_recipients
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.message_event.forward_recipients'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_message_event_forwarded_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sublime_security.message_event.forwarded_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sublime_security_message_event_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.message_event.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_message_event_landed_in_spam
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: sublime_security.message_event.landed_in_spam'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: sublime_security_message_event_mailbox_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.message_event.mailbox.email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_message_event_mailbox_external_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.message_event.mailbox.external_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_message_event_mailbox_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.message_event.mailbox.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_message_event_message_source_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.message_event.message_source_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_message_event_read_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sublime_security.message_event.read_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sublime_security_message_event_recipients_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.message_event.recipients.email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_message_event_replied_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sublime_security.message_event.replied_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: sublime_security_message_event_sender_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.message_event.sender.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_message_event_sender_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.message_event.sender.email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_message_event_subject
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.message_event.subject'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: sublime_security_message_event_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: sublime_security.message_event.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

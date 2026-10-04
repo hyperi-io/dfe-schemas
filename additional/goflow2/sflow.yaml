@@ -1,0 +1,57 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of goflow2.sflow at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_device_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.device_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_inode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.inode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sflow_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sflow.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sflow_sample_rate
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sflow.sample_rate'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: sflow_sequence_num
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: sflow.sequence_num'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

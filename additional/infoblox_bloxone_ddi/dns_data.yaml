@@ -1,0 +1,409 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of infoblox_bloxone_ddi.dns_data at integrations 2c934eb5223b
+    columns:
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_absolute_name_spec
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_bloxone_ddi.dns_data.absolute.name.spec'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_absolute_zone_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_bloxone_ddi.dns_data.absolute.zone.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_comment
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_bloxone_ddi.dns_data.comment'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_created_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: infoblox_bloxone_ddi.dns_data.created_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_delegation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_bloxone_ddi.dns_data.delegation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_disabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: infoblox_bloxone_ddi.dns_data.disabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_bloxone_ddi.dns_data.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_inheritance_sources_ttl_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_bloxone_ddi.dns_data.inheritance.sources.ttl.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_inheritance_sources_ttl_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_bloxone_ddi.dns_data.inheritance.sources.ttl.display.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_inheritance_sources_ttl_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_bloxone_ddi.dns_data.inheritance.sources.ttl.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_inheritance_sources_ttl_value
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: infoblox_bloxone_ddi.dns_data.inheritance.sources.ttl.value'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_name_in_zone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_bloxone_ddi.dns_data.name_in.zone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_options_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: infoblox_bloxone_ddi.dns_data.options.address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_options_check_rmz
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: infoblox_bloxone_ddi.dns_data.options.check_rmz'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_options_create_ptr
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: infoblox_bloxone_ddi.dns_data.options.create_ptr'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_provider_metadata
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: infoblox_bloxone_ddi.dns_data.provider_metadata'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_rdata_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: infoblox_bloxone_ddi.dns_data.rdata.address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_rdata_cname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_bloxone_ddi.dns_data.rdata.cname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_rdata_dhcid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_bloxone_ddi.dns_data.rdata.dhcid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_rdata_dname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_bloxone_ddi.dns_data.rdata.dname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_rdata_exchange
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_bloxone_ddi.dns_data.rdata.exchange'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_rdata_expire
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: infoblox_bloxone_ddi.dns_data.rdata.expire'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_rdata_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_bloxone_ddi.dns_data.rdata.flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_rdata_length_kind
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: infoblox_bloxone_ddi.dns_data.rdata.length_kind'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_rdata_mname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_bloxone_ddi.dns_data.rdata.mname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_rdata_negative_ttl
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: infoblox_bloxone_ddi.dns_data.rdata.negative_ttl'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_rdata_order
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: infoblox_bloxone_ddi.dns_data.rdata.order'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_rdata_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: infoblox_bloxone_ddi.dns_data.rdata.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_rdata_preference
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: infoblox_bloxone_ddi.dns_data.rdata.preference'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_rdata_priority
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: infoblox_bloxone_ddi.dns_data.rdata.priority'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_rdata_refresh
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: infoblox_bloxone_ddi.dns_data.rdata.refresh'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_rdata_regexp
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_bloxone_ddi.dns_data.rdata.regexp'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_rdata_replacement
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_bloxone_ddi.dns_data.rdata.replacement'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_rdata_retry
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: infoblox_bloxone_ddi.dns_data.rdata.retry'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_rdata_rname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_bloxone_ddi.dns_data.rdata.rname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_rdata_serial
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: infoblox_bloxone_ddi.dns_data.rdata.serial'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_rdata_services
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_bloxone_ddi.dns_data.rdata.services'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_rdata_tag
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_bloxone_ddi.dns_data.rdata.tag'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_rdata_target
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_bloxone_ddi.dns_data.rdata.target'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_rdata_text
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_bloxone_ddi.dns_data.rdata.text'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_rdata_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_bloxone_ddi.dns_data.rdata.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_rdata_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_bloxone_ddi.dns_data.rdata.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_rdata_weight
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: infoblox_bloxone_ddi.dns_data.rdata.weight'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_bloxone_ddi.dns_data.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_tags
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: infoblox_bloxone_ddi.dns_data.tags'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_ttl
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: infoblox_bloxone_ddi.dns_data.ttl'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_bloxone_ddi.dns_data.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_updated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: infoblox_bloxone_ddi.dns_data.updated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_view
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_bloxone_ddi.dns_data.view'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_view_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_bloxone_ddi.dns_data.view_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: infoblox_bloxone_ddi_dns_data_zone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: infoblox_bloxone_ddi.dns_data.zone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

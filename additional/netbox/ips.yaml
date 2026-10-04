@@ -1,0 +1,478 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of netbox.ips at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netbox_comments
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: netbox.comments'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: netbox_created
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netbox.created'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: netbox_custom_fields
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: netbox.custom_fields'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: netbox_display
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netbox.display'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netbox_display_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netbox.display_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netbox_ip_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: netbox.ip.address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: netbox_ip_assigned_object__occupied
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: netbox.ip.assigned_object._occupied'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: netbox_ip_assigned_object_cable
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netbox.ip.assigned_object.cable'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netbox_ip_assigned_object_description
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: netbox.ip.assigned_object.description'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: netbox_ip_assigned_object_device_description
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: netbox.ip.assigned_object.device.description'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: netbox_ip_assigned_object_device_display
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netbox.ip.assigned_object.device.display'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netbox_ip_assigned_object_device_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netbox.ip.assigned_object.device.id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netbox_ip_assigned_object_device_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netbox.ip.assigned_object.device.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netbox_ip_assigned_object_device_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netbox.ip.assigned_object.device.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netbox_ip_assigned_object_display
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netbox.ip.assigned_object.display'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netbox_ip_assigned_object_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netbox.ip.assigned_object.id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netbox_ip_assigned_object_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netbox.ip.assigned_object.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netbox_ip_assigned_object_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netbox.ip.assigned_object_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netbox_ip_assigned_object_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netbox.ip.assigned_object.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netbox_ip_assigned_object_virtual_machine_description
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: netbox.ip.assigned_object.virtual_machine.description'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: netbox_ip_assigned_object_virtual_machine_display
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netbox.ip.assigned_object.virtual_machine.display'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netbox_ip_assigned_object_virtual_machine_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netbox.ip.assigned_object.virtual_machine.id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netbox_ip_assigned_object_virtual_machine_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netbox.ip.assigned_object.virtual_machine.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netbox_ip_assigned_object_virtual_machine_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netbox.ip.assigned_object.virtual_machine.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netbox_ip_description
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: netbox.ip.description'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: netbox_ip_dns_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netbox.ip.dns_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netbox_ip_family_label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netbox.ip.family.label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netbox_ip_family_value
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netbox.ip.family.value'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netbox_ip_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netbox.ip.id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netbox_ip_nat_inside_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: netbox.ip.nat_inside.address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: netbox_ip_nat_inside_display
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netbox.ip.nat_inside.display'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netbox_ip_nat_inside_display_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netbox.ip.nat_inside.display_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netbox_ip_nat_inside_family
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netbox.ip.nat_inside.family'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netbox_ip_nat_inside_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netbox.ip.nat_inside.id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netbox_ip_nat_inside_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netbox.ip.nat_inside.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netbox_ip_nat_outside_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: netbox.ip.nat_outside.address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: netbox_ip_nat_outside_display
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netbox.ip.nat_outside.display'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netbox_ip_nat_outside_display_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netbox.ip.nat_outside.display_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netbox_ip_nat_outside_family
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netbox.ip.nat_outside.family'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netbox_ip_nat_outside_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netbox.ip.nat_outside.id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netbox_ip_nat_outside_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netbox.ip.nat_outside.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netbox_ip_role_label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netbox.ip.role.label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netbox_ip_role_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netbox.ip.role.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netbox_ip_status_label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netbox.ip.status.label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netbox_ip_status_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netbox.ip.status.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netbox_ip_vrf_description
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: netbox.ip.vrf.description'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: netbox_ip_vrf_display
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netbox.ip.vrf.display'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netbox_ip_vrf_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netbox.ip.vrf.id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netbox_ip_vrf_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netbox.ip.vrf.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netbox_ip_vrf_rd
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netbox.ip.vrf.rd'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netbox_ip_vrf_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netbox.ip.vrf.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netbox_last_updated
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netbox.last_updated'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: netbox_tags_color
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netbox.tags.color'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netbox_tags_display
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netbox.tags.display'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netbox_tags_display_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netbox.tags.display_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netbox_tags_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netbox.tags.id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netbox_tags_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netbox.tags.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netbox_tags_slug
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netbox.tags.slug'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netbox_tags_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netbox.tags.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netbox_tenant_description
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: netbox.tenant.description'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: netbox_tenant_display
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netbox.tenant.display'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netbox_tenant_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: netbox.tenant.id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: netbox_tenant_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netbox.tenant.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netbox_tenant_slug
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netbox.tenant.slug'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netbox_tenant_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netbox.tenant.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: netbox_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: netbox.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

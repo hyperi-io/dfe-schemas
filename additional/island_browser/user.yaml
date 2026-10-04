@@ -1,0 +1,177 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of island_browser.user at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: island_browser_user_allowed_tenants_ids
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: island_browser.user.allowed_tenants_ids'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: island_browser_user_claims
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: island_browser.user.claims'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: island_browser_user_connection_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: island_browser.user.connection_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: island_browser_user_created_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: island_browser.user.created_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: island_browser_user_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: island_browser.user.email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: island_browser_user_email_verified
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: island_browser.user.email_verified'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: island_browser_user_expiration_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: island_browser.user.expiration_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: island_browser_user_first_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: island_browser.user.first_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: island_browser_user_groups
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: island_browser.user.groups'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: island_browser_user_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: island_browser.user.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: island_browser_user_invitation_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: island_browser.user.invitation_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: island_browser_user_last_login
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: island_browser.user.last_login'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: island_browser_user_last_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: island_browser.user.last_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: island_browser_user_last_seen
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: island_browser.user.last_seen'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: island_browser_user_scim_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: island_browser.user.scim_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: island_browser_user_tenant_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: island_browser.user.tenant_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: island_browser_user_updated_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: island_browser.user.updated_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: island_browser_user_user_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: island_browser.user.user_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: island_browser_user_user_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: island_browser.user.user_source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: island_browser_user_user_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: island_browser.user.user_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: island_browser_user_user_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: island_browser.user.user_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: labels_is_transform_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: labels.is_transform_source'
+      comment: 'Elasticsearch mapping type: constant_keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

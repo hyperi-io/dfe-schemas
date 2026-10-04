@@ -1,0 +1,253 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of tanium.discover at integrations 2c934eb5223b
+    columns:
+    - name: aws_s3_bucket_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_bucket_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_object_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.object.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: log_source_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.source.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_discover_arp
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.discover.arp'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: tanium_discover_aws_api
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.discover.aws_api'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: tanium_discover_centralized_nmap
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.discover.centralized_nmap'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: tanium_discover_computer_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.discover.computer_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tanium_discover_connected
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.discover.connected'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tanium_discover_created_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.discover.created_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tanium_discover_first_managed_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.discover.first_managed_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tanium_discover_host_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.discover.host_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_discover_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.discover.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_discover_ip_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tanium.discover.ip_address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: tanium_discover_labels
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.discover.labels'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_discover_last_discovered_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.discover.last.discovered_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tanium_discover_last_managed_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.discover.last.managed_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tanium_discover_locations
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.discover.locations'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_discover_mac_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.discover.mac_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_discover_mac_organization
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.discover.mac_organization'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_discover_managed
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.discover.managed'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tanium_discover_nat_ip_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tanium.discover.nat_ip_address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: tanium_discover_nmap
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.discover.nmap'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: tanium_discover_os
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.discover.os'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_discover_os_generation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.discover.os_generation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_discover_ping
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.discover.ping'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tanium_discover_ports
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.discover.ports'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_discover_profile
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.discover.profile'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_discover_satellite_dec_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.discover.satellite.dec_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_discover_satellite_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tanium.discover.satellite.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tanium_discover_satellite_nmap
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.discover.satellite.nmap'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tanium_discover_unmanageable
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.discover.unmanageable'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tanium_discover_updated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tanium.discover.updated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base

@@ -1,0 +1,298 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of haproxy.log at integrations 2c934eb5223b
+    columns:
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: haproxy_backend_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: haproxy.backend_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: haproxy_backend_queue
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: haproxy.backend_queue'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: haproxy_bind_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: haproxy.bind_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: haproxy_bytes_read
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: haproxy.bytes_read'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: haproxy_client
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: haproxy.client'
+      comment: 'Elasticsearch mapping type: group'
+      _field_type: base
+    - name: haproxy_connection_wait_time_ms
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: haproxy.connection_wait_time_ms'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: haproxy_connections_active
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: haproxy.connections.active'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: haproxy_connections_backend
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: haproxy.connections.backend'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: haproxy_connections_fc_err
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: haproxy.connections.fc_err'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: haproxy_connections_frontend
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: haproxy.connections.frontend'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: haproxy_connections_retries
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: haproxy.connections.retries'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: haproxy_connections_server
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: haproxy.connections.server'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: haproxy_connections_ssl_c_ca_err
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: haproxy.connections.ssl_c_ca_err'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: haproxy_connections_ssl_c_err
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: haproxy.connections.ssl_c_err'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: haproxy_connections_ssl_fc_err
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: haproxy.connections.ssl_fc_err'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: haproxy_destination
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: haproxy.destination'
+      comment: 'Elasticsearch mapping type: group'
+      _field_type: base
+    - name: haproxy_error_message
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: haproxy.error_message'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: haproxy_frontend_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: haproxy.frontend_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: haproxy_geoip
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: haproxy.geoip'
+      comment: 'Elasticsearch mapping type: group'
+      _field_type: base
+    - name: haproxy_http_request_captured_cookie
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: haproxy.http.request.captured_cookie'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: haproxy_http_request_captured_headers
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: haproxy.http.request.captured_headers'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: haproxy_http_request_raw_request_line
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: haproxy.http.request.raw_request_line'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: haproxy_http_request_time_wait_ms
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: haproxy.http.request.time_wait_ms'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: haproxy_http_request_time_wait_without_data_ms
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: haproxy.http.request.time_wait_without_data_ms'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: haproxy_http_response_captured_cookie
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: haproxy.http.response.captured_cookie'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: haproxy_http_response_captured_headers
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: haproxy.http.response.captured_headers'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: haproxy_mode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: haproxy.mode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: haproxy_server_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: haproxy.server_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: haproxy_server_queue
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: haproxy.server_queue'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: haproxy_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: haproxy.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: haproxy_tcp_connection_waiting_time_ms
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: haproxy.tcp.connection_waiting_time_ms'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: haproxy_termination_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: haproxy.termination_state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: haproxy_time_backend_connect
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: haproxy.time_backend_connect'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: haproxy_time_queue
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: haproxy.time_queue'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: haproxy_total_waiting_time_ms
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: haproxy.total_waiting_time_ms'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

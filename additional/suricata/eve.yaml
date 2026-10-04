@@ -1,0 +1,1543 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of suricata.eve at integrations 2c934eb5223b
+    columns:
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_alert_affected_product
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.alert.affected_product'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_alert_attack_target
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.alert.attack_target'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_alert_capec_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.alert.capec_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_alert_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.alert.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_alert_classtype
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.alert.classtype'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_alert_created_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.alert.created_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: suricata_eve_alert_cve
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.alert.cve'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_alert_cvss_v2_base
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.alert.cvss_v2_base'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_alert_cvss_v2_temporal
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.alert.cvss_v2_temporal'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_alert_cvss_v3_base
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.alert.cvss_v3_base'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_alert_cvss_v3_temporal
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.alert.cvss_v3_temporal'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_alert_cwe_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.alert.cwe_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_alert_deployment
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.alert.deployment'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_alert_former_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.alert.former_category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_alert_gid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.alert.gid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_alert_hostile
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.alert.hostile'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_alert_infected
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.alert.infected'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_alert_malware
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.alert.malware'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_alert_metadata
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: suricata.eve.alert.metadata'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: suricata_eve_alert_mitre_tool_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.alert.mitre_tool_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_alert_performance_impact
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.alert.performance_impact'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_alert_priority
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.alert.priority'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_alert_protocols
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.alert.protocols'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_alert_rev
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.alert.rev'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_alert_rule_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.alert.rule_source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_alert_sid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.alert.sid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_alert_signature
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.alert.signature'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_alert_signature_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.alert.signature_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_alert_signature_severity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.alert.signature_severity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_alert_tag
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.alert.tag'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_alert_updated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.alert.updated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: suricata_eve_app_proto_expected
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.app_proto_expected'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_app_proto_orig
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.app_proto_orig'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_app_proto_tc
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.app_proto_tc'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_app_proto_ts
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.app_proto_ts'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_dns_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.dns.id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_dns_rcode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.dns.rcode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_dns_rdata
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.dns.rdata'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_dns_rrname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.dns.rrname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_dns_rrtype
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.dns.rrtype'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_dns_ttl
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.dns.ttl'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_dns_tx_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.dns.tx_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_dns_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.dns.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_email_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.email.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_event_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.event_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_fileinfo_gaps
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: suricata.eve.fileinfo.gaps'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: suricata_eve_fileinfo_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.fileinfo.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_fileinfo_sha1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.fileinfo.sha1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_fileinfo_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.fileinfo.sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_fileinfo_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.fileinfo.state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_fileinfo_stored
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: suricata.eve.fileinfo.stored'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: suricata_eve_fileinfo_tx_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.fileinfo.tx_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_flags
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: suricata.eve.flags'
+      comment: 'Elasticsearch mapping type: group'
+      _field_type: base
+    - name: suricata_eve_flow_age
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.flow.age'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_flow_alerted
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: suricata.eve.flow.alerted'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: suricata_eve_flow_end
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.flow.end'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: suricata_eve_flow_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.flow_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_flow_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.flow.reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_flow_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.flow.state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_http_http_content_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.http.http_content_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_http_http_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.http.http_port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_http_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.http.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_http_redirect
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.http.redirect'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_icmp_code
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.icmp_code'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_icmp_type
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.icmp_type'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_in_iface
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.in_iface'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_pcap_cnt
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.pcap_cnt'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_smtp_helo
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.smtp.helo'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_smtp_mail_from
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.smtp.mail_from'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_smtp_rcpt_to
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.smtp.rcpt_to'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_ssh_client_proto_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.ssh.client.proto_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_ssh_client_software_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.ssh.client.software_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_ssh_server_proto_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.ssh.server.proto_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_ssh_server_software_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.ssh.server.software_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_stats_app_layer_flow_dcerpc_tcp
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.app_layer.flow.dcerpc_tcp'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_app_layer_flow_dcerpc_udp
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.app_layer.flow.dcerpc_udp'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_app_layer_flow_dns_tcp
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.app_layer.flow.dns_tcp'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_app_layer_flow_dns_udp
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.app_layer.flow.dns_udp'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_app_layer_flow_failed_tcp
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.app_layer.flow.failed_tcp'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_app_layer_flow_failed_udp
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.app_layer.flow.failed_udp'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_app_layer_flow_ftp
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.app_layer.flow.ftp'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_app_layer_flow_http
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.app_layer.flow.http'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_app_layer_flow_imap
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.app_layer.flow.imap'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_app_layer_flow_msn
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.app_layer.flow.msn'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_app_layer_flow_smb
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.app_layer.flow.smb'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_app_layer_flow_smtp
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.app_layer.flow.smtp'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_app_layer_flow_ssh
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.app_layer.flow.ssh'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_app_layer_flow_tls
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.app_layer.flow.tls'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_app_layer_tx_dcerpc_tcp
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.app_layer.tx.dcerpc_tcp'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_app_layer_tx_dcerpc_udp
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.app_layer.tx.dcerpc_udp'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_app_layer_tx_dns_tcp
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.app_layer.tx.dns_tcp'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_app_layer_tx_dns_udp
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.app_layer.tx.dns_udp'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_app_layer_tx_ftp
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.app_layer.tx.ftp'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_app_layer_tx_http
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.app_layer.tx.http'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_app_layer_tx_smb
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.app_layer.tx.smb'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_app_layer_tx_smtp
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.app_layer.tx.smtp'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_app_layer_tx_ssh
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.app_layer.tx.ssh'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_app_layer_tx_tls
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.app_layer.tx.tls'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_capture_kernel_drops
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.capture.kernel_drops'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_capture_kernel_ifdrops
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.capture.kernel_ifdrops'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_capture_kernel_packets
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.capture.kernel_packets'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_decoder_avg_pkt_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.decoder.avg_pkt_size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_decoder_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.decoder.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_decoder_dce_pkt_too_small
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.decoder.dce.pkt_too_small'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_decoder_erspan
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.decoder.erspan'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_decoder_ethernet
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.decoder.ethernet'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_decoder_gre
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.decoder.gre'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_decoder_icmpv4
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.decoder.icmpv4'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_decoder_icmpv6
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.decoder.icmpv6'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_decoder_ieee8021ah
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.decoder.ieee8021ah'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_decoder_invalid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.decoder.invalid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_decoder_ipraw_invalid_ip_version
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.decoder.ipraw.invalid_ip_version'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_decoder_ipv4
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.decoder.ipv4'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_decoder_ipv4_in_ipv6
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.decoder.ipv4_in_ipv6'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_decoder_ipv6
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.decoder.ipv6'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_decoder_ipv6_in_ipv6
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.decoder.ipv6_in_ipv6'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_decoder_ltnull_pkt_too_small
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.decoder.ltnull.pkt_too_small'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_decoder_ltnull_unsupported_type
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.decoder.ltnull.unsupported_type'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_decoder_max_pkt_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.decoder.max_pkt_size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_decoder_mpls
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.decoder.mpls'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_decoder_null
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.decoder.null'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_decoder_pkts
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.decoder.pkts'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_decoder_ppp
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.decoder.ppp'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_decoder_pppoe
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.decoder.pppoe'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_decoder_raw
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.decoder.raw'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_decoder_sctp
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.decoder.sctp'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_decoder_sll
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.decoder.sll'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_decoder_tcp
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.decoder.tcp'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_decoder_teredo
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.decoder.teredo'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_decoder_udp
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.decoder.udp'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_decoder_vlan
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.decoder.vlan'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_decoder_vlan_qinq
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.decoder.vlan_qinq'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_defrag_ipv4_fragments
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.defrag.ipv4.fragments'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_defrag_ipv4_reassembled
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.defrag.ipv4.reassembled'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_defrag_ipv4_timeouts
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.defrag.ipv4.timeouts'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_defrag_ipv6_fragments
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.defrag.ipv6.fragments'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_defrag_ipv6_reassembled
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.defrag.ipv6.reassembled'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_defrag_ipv6_timeouts
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.defrag.ipv6.timeouts'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_defrag_max_frag_hits
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.defrag.max_frag_hits'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_detect_alert
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.detect.alert'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_dns_memcap_global
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.dns.memcap_global'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_dns_memcap_state
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.dns.memcap_state'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_dns_memuse
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.dns.memuse'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_file_store_open_files
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.file_store.open_files'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_flow_emerg_mode_entered
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.flow.emerg_mode_entered'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_flow_emerg_mode_over
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.flow.emerg_mode_over'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_flow_icmpv4
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.flow.icmpv4'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_flow_icmpv6
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.flow.icmpv6'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_flow_memcap
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.flow.memcap'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_flow_memuse
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.flow.memuse'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_flow_mgr_bypassed_pruned
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.flow_mgr.bypassed_pruned'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_flow_mgr_closed_pruned
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.flow_mgr.closed_pruned'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_flow_mgr_est_pruned
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.flow_mgr.est_pruned'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_flow_mgr_flows_checked
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.flow_mgr.flows_checked'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_flow_mgr_flows_notimeout
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.flow_mgr.flows_notimeout'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_flow_mgr_flows_removed
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.flow_mgr.flows_removed'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_flow_mgr_flows_timeout
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.flow_mgr.flows_timeout'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_flow_mgr_flows_timeout_inuse
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.flow_mgr.flows_timeout_inuse'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_flow_mgr_new_pruned
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.flow_mgr.new_pruned'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_flow_mgr_rows_busy
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.flow_mgr.rows_busy'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_flow_mgr_rows_checked
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.flow_mgr.rows_checked'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_flow_mgr_rows_empty
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.flow_mgr.rows_empty'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_flow_mgr_rows_maxlen
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.flow_mgr.rows_maxlen'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_flow_mgr_rows_skipped
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.flow_mgr.rows_skipped'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_flow_spare
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.flow.spare'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_flow_tcp
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.flow.tcp'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_flow_tcp_reuse
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.flow.tcp_reuse'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_flow_udp
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.flow.udp'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_http_memcap
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.http.memcap'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_http_memuse
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.http.memuse'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_tcp_insert_data_normal_fail
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.tcp.insert_data_normal_fail'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_tcp_insert_data_overlap_fail
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.tcp.insert_data_overlap_fail'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_tcp_insert_list_fail
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.tcp.insert_list_fail'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_tcp_invalid_checksum
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.tcp.invalid_checksum'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_tcp_memuse
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.tcp.memuse'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_tcp_no_flow
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.tcp.no_flow'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_tcp_overlap
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.tcp.overlap'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_tcp_overlap_diff_data
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.tcp.overlap_diff_data'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_tcp_pseudo
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.tcp.pseudo'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_tcp_pseudo_failed
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.tcp.pseudo_failed'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_tcp_reassembly_gap
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.tcp.reassembly_gap'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_tcp_reassembly_memuse
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.tcp.reassembly_memuse'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_tcp_rst
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.tcp.rst'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_tcp_segment_memcap_drop
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.tcp.segment_memcap_drop'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_tcp_sessions
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.tcp.sessions'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_tcp_ssn_memcap_drop
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.tcp.ssn_memcap_drop'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_tcp_stream_depth_reached
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.tcp.stream_depth_reached'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_tcp_syn
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.tcp.syn'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_tcp_synack
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.tcp.synack'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_stats_uptime
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.stats.uptime'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: suricata_eve_tcp_ack
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: suricata.eve.tcp.ack'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: suricata_eve_tcp_fin
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: suricata.eve.tcp.fin'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: suricata_eve_tcp_psh
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: suricata.eve.tcp.psh'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: suricata_eve_tcp_rst
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: suricata.eve.tcp.rst'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: suricata_eve_tcp_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.tcp.state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_tcp_syn
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: suricata.eve.tcp.syn'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: suricata_eve_tcp_tcp_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.tcp.tcp_flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_tcp_tcp_flags_tc
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.tcp.tcp_flags_tc'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_tcp_tcp_flags_ts
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.tcp.tcp_flags_ts'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_tls_fingerprint
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.tls.fingerprint'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_tls_issuerdn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.tls.issuerdn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_tls_ja3_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.tls.ja3.hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_tls_ja3_string
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.tls.ja3.string'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_tls_ja3s_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.tls.ja3s.hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_tls_ja3s_string
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.tls.ja3s.string'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_tls_notafter
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.tls.notafter'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: suricata_eve_tls_notbefore
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.tls.notbefore'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: suricata_eve_tls_serial
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.tls.serial'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_tls_session_resumed
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: suricata.eve.tls.session_resumed'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: suricata_eve_tls_sni
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.tls.sni'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_tls_subject
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.tls.subject'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_tls_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: suricata.eve.tls.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: suricata_eve_tx_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: suricata.eve.tx_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

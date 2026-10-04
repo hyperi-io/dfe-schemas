@@ -1,0 +1,575 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of opencanary.events at integrations 2c934eb5223b
+    columns:
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_device_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.device_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_fingerprint
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.fingerprint'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_inode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.inode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: opencanary_dst_host
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.dst_host'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_dst_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: opencanary.dst_port'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: opencanary_honeycred
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: opencanary.honeycred'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: opencanary_level
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.level'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_local_time
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.local_time'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_local_time_adjusted
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.local_time_adjusted'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_logdata_auditaction
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.logdata.auditaction'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_logdata_banner_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.logdata.banner_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_logdata_community_string
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.logdata.community_string'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_logdata_cwr
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.logdata.cwr'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_logdata_data
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.logdata.data'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_logdata_df
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.logdata.df'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_logdata_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.logdata.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_logdata_ece
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.logdata.ece'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_logdata_function
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.logdata.function'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_logdata_host
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.logdata.host'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_logdata_hostname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.logdata.hostname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_logdata_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: opencanary.logdata.id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: opencanary_logdata_in
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.logdata.in'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_logdata_language
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.logdata.language'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_logdata_len
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.logdata.len'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_logdata_localname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.logdata.localname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_logdata_mac
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.logdata.mac'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_logdata_msg_logdata
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: opencanary.logdata.msg.logdata'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: opencanary_logdata_password
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.logdata.password'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_logdata_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.logdata.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_logdata_prec
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.logdata.prec'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_logdata_proto
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.logdata.proto'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_logdata_remotename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.logdata.remotename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_logdata_repo
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.logdata.repo'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_logdata_requests
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.logdata.requests'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_logdata_res
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.logdata.res'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_logdata_session
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.logdata.session'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_logdata_syn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.logdata.syn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_logdata_tos
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.logdata.tos'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_logdata_ttl
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: opencanary.logdata.ttl'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: opencanary_logdata_urgp
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: opencanary.logdata.urgp'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: opencanary_logdata_user
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.logdata.user'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_logdata_useragent
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.logdata.useragent'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_logdata_username
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.logdata.username'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_logdata_window
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: opencanary.logdata.window'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: opencanary_logtype
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: opencanary.logtype'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: opencanary_mssql_client_app
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.mssql.client.app'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_mssql_client_hostname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.mssql.client.hostname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_mssql_client_interface_library
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.mssql.client.interface_library'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_mssql_database
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.mssql.database'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_node_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.node.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_ntp_cmd
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.ntp.cmd'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_redis_args
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.redis.args'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_redis_command
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.redis.command'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_skin
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.skin'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_smb_audit_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.smb.audit_action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_smb_filename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.smb.filename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_smb_share_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.smb.share_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_smb_smb_arch
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.smb.smb_arch'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_smb_smb_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.smb.smb_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_smb_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.smb.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_src_host
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.src_host'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_src_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: opencanary.src_port'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: opencanary_ssh_local_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.ssh.local_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_ssh_remote_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.ssh.remote_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_tcp_banner_banner_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.tcp_banner.banner_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_tcp_banner_data
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.tcp_banner.data'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_tcp_banner_function
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.tcp_banner.function'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_tcp_banner_secret_string
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.tcp_banner.secret_string'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_tftp_filename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.tftp.filename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_tftp_node
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.tftp.node'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_tftp_opcode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.tftp.opcode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_utc_time
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.utc_time'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_vnc_client_response
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.vnc.client_response'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_vnc_password
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.vnc.password'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: opencanary_vnc_server_challenge
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: opencanary.vnc.server_challenge'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

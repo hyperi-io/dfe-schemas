@@ -1,0 +1,321 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of gdacs.events at integrations 2c934eb5223b
+    columns:
+    - name: event_modified
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: event.modified'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: gdacs_affected_area
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: gdacs.affected_area'
+      comment: 'Elasticsearch mapping type: geo_shape'
+      _field_type: base
+    - name: gdacs_affected_area_coordinates
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: gdacs.affected_area.coordinates'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: gdacs_affected_area_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gdacs.affected_area.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gdacs_affected_countries
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: gdacs.affected_countries'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: gdacs_affected_country_iso2
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gdacs.affected_country_iso2'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gdacs_affected_country_iso3
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gdacs.affected_country_iso3'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gdacs_affected_country_names
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gdacs.affected_country_names'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gdacs_alert_level
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gdacs.alert_level'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gdacs_alert_score
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gdacs.alert_score'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: gdacs_class
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gdacs.class'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gdacs_country
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gdacs.country'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gdacs_description
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: gdacs.description'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: gdacs_episode_alert_level
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gdacs.episode_alert_level'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gdacs_episode_alert_score
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gdacs.episode_alert_score'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: gdacs_episode_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gdacs.episode_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gdacs_event_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gdacs.event_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gdacs_event_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gdacs.event_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gdacs_event_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gdacs.event_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gdacs_event_type_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gdacs.event_type_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gdacs_geo_country_iso_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gdacs.geo.country_iso_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gdacs_geo_country_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gdacs.geo.country_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gdacs_geo_location
+      type: geo_point
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: gdacs.geo.location'
+      comment: 'Elasticsearch mapping type: geo_point'
+      _field_type: base
+    - name: gdacs_geo_location_coordinates
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: gdacs.geo.location.coordinates'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: gdacs_geo_location_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gdacs.geo.location.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gdacs_geo_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gdacs.geo.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gdacs_geometry_role
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gdacs.geometry_role'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gdacs_glide
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gdacs.glide'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gdacs_html_description
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: gdacs.html_description'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: gdacs_icon
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gdacs.icon'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gdacs_is_current
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: gdacs.is_current'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: gdacs_is_temporary
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: gdacs.is_temporary'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: gdacs_iso3
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gdacs.iso3'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gdacs_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gdacs.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gdacs_polygon_label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gdacs.polygon_label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gdacs_severity_text
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gdacs.severity.text'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gdacs_severity_unit
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gdacs.severity.unit'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gdacs_severity_value
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gdacs.severity.value'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: gdacs_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gdacs.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gdacs_source_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gdacs.source_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gdacs_url_details
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gdacs.url.details'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gdacs_url_geometry
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gdacs.url.geometry'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gdacs_url_report
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gdacs.url.report'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

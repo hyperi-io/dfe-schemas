@@ -1,0 +1,631 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of crowdstrike.host at integrations 2c934eb5223b
+    columns:
+    - name: crowdstrike_host_agent_load_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.agent.load_flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_agent_local_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: crowdstrike.host.agent.local_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: crowdstrike_host_agent_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.agent.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_bios_manufacturer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.bios.manufacturer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_bios_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.bios.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_chassis_type_desc
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.chassis_type.desc'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_chassis_type_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.chassis_type.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_cid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.cid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_config_id_base
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.config_id.base'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_config_id_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.config_id.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_config_id_platform
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.config_id.platform'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_connection_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: crowdstrike.host.connection_ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: crowdstrike_host_cpu_signature
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.cpu_signature'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_device_policies_device_control_applied
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: crowdstrike.host.device_policies.device_control.applied'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: crowdstrike_host_device_policies_device_control_applied_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: crowdstrike.host.device_policies.device_control.applied_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: crowdstrike_host_device_policies_device_control_assigned_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: crowdstrike.host.device_policies.device_control.assigned_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: crowdstrike_host_device_policies_device_control_policy_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.device_policies.device_control.policy_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_device_policies_device_control_policy_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.device_policies.device_control.policy_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_device_policies_firewall_applied
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: crowdstrike.host.device_policies.firewall.applied'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: crowdstrike_host_device_policies_firewall_applied_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: crowdstrike.host.device_policies.firewall.applied_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: crowdstrike_host_device_policies_firewall_assigned_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: crowdstrike.host.device_policies.firewall.assigned_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: crowdstrike_host_device_policies_firewall_policy_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.device_policies.firewall.policy.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_device_policies_firewall_policy_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.device_policies.firewall.policy.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_device_policies_firewall_rule_set_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.device_policies.firewall.rule_set_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_device_policies_global_config_applied
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: crowdstrike.host.device_policies.global_config.applied'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: crowdstrike_host_device_policies_global_config_applied_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: crowdstrike.host.device_policies.global_config.applied_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: crowdstrike_host_device_policies_global_config_assigned_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: crowdstrike.host.device_policies.global_config.assigned_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: crowdstrike_host_device_policies_global_config_policy_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.device_policies.global_config.policy.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_device_policies_global_config_policy_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.device_policies.global_config.policy.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_device_policies_global_config_settings_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.device_policies.global_config.settings_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_device_policies_prevention_applied
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: crowdstrike.host.device_policies.prevention.applied'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: crowdstrike_host_device_policies_prevention_applied_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: crowdstrike.host.device_policies.prevention.applied_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: crowdstrike_host_device_policies_prevention_assigned_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: crowdstrike.host.device_policies.prevention.assigned_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: crowdstrike_host_device_policies_prevention_policy_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.device_policies.prevention.policy.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_device_policies_prevention_policy_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.device_policies.prevention.policy.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_device_policies_prevention_rule_groups
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.device_policies.prevention.rule_groups'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_device_policies_prevention_settings_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.device_policies.prevention.settings_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_device_policies_remote_response_applied
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: crowdstrike.host.device_policies.remote_response.applied'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: crowdstrike_host_device_policies_remote_response_applied_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: crowdstrike.host.device_policies.remote_response.applied_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: crowdstrike_host_device_policies_remote_response_assigned_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: crowdstrike.host.device_policies.remote_response.assigned_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: crowdstrike_host_device_policies_remote_response_policy_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.device_policies.remote_response.policy.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_device_policies_remote_response_policy_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.device_policies.remote_response.policy.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_device_policies_remote_response_settings_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.device_policies.remote_response.settings_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_device_policies_sensor_update_applied
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: crowdstrike.host.device_policies.sensor_update.applied'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: crowdstrike_host_device_policies_sensor_update_applied_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: crowdstrike.host.device_policies.sensor_update.applied_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: crowdstrike_host_device_policies_sensor_update_assigned_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: crowdstrike.host.device_policies.sensor_update.assigned_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: crowdstrike_host_device_policies_sensor_update_policy_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.device_policies.sensor_update.policy.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_device_policies_sensor_update_policy_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.device_policies.sensor_update.policy.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_device_policies_sensor_update_settings_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.device_policies.sensor_update.settings_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_device_policies_sensor_update_uninstall_protection
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.device_policies.sensor_update.uninstall_protection'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_external_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: crowdstrike.host.external_ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: crowdstrike_host_first_seen
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: crowdstrike.host.first_seen'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: crowdstrike_host_group_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.group_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_groups
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.groups'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_hostname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.hostname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_kernel_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.kernel_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_last_seen
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: crowdstrike.host.last_seen'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: crowdstrike_host_local_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: crowdstrike.host.local_ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: crowdstrike_host_mac_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.mac_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_machine_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.machine_domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_major_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.major_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_meta_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.meta.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_meta_version_string
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.meta.version_string'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_minor_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.minor_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_modified_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: crowdstrike.host.modified_timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: crowdstrike_host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_os_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.os.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_ou
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.ou'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_platform_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.platform.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_platform_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.platform.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_policies_applied
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: crowdstrike.host.policies.applied'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: crowdstrike_host_policies_applied_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: crowdstrike.host.policies.applied_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: crowdstrike_host_policies_assigned_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: crowdstrike.host.policies.assigned_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: crowdstrike_host_policies_policy_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.policies.policy.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_policies_policy_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.policies.policy.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_policies_rule_groups
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.policies.rule_groups'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_policies_settings_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.policies.settings_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_product_type_desc
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.product_type_desc'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_provision_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.provision_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_reduced_functionality_mode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.reduced_functionality_mode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_serial_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.serial_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_site_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.site_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_system_manufacturer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.system.manufacturer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_system_product_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.system.product_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: crowdstrike_host_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: crowdstrike.host.tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

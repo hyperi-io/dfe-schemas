@@ -1,0 +1,913 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of entityanalytics_okta.entity at integrations 2c934eb5223b
+    columns:
+    - name: asset_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: asset.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: asset_costCenter
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: asset.costCenter'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: asset_create_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: asset.create_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: asset_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: asset.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: asset_last_seen
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: asset.last_seen'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: asset_last_status_change_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: asset.last_status_change_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: asset_last_updated
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: asset.last_updated'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: asset_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: asset.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: asset_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: asset.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: asset_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: asset.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: asset_vendor
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: asset.vendor'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_device__embedded
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: entityanalytics_okta.device._embedded'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: entityanalytics_okta_device__links
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: entityanalytics_okta.device._links'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: entityanalytics_okta_device_activated
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: entityanalytics_okta.device.activated'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: entityanalytics_okta_device_created
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: entityanalytics_okta.device.created'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: entityanalytics_okta_device_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.device.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_device_last_login
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: entityanalytics_okta.device.last_login'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: entityanalytics_okta_device_last_updated
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: entityanalytics_okta.device.last_updated'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: entityanalytics_okta_device_password_changed
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: entityanalytics_okta.device.password_changed'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: entityanalytics_okta_device_profile_registered
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: entityanalytics_okta.device.profile.registered'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: entityanalytics_okta_device_profile_secure_hardware_present
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: entityanalytics_okta.device.profile.secure_hardware_present'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: entityanalytics_okta_device_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.device.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_device_status_changed
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: entityanalytics_okta.device.status_changed'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: entityanalytics_okta_device_transitioning_to_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.device.transitioning_to_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_device_type
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: entityanalytics_okta.device.type'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: entityanalytics_okta_device_users
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: entityanalytics_okta.device.users'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: entityanalytics_okta_groups_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.groups.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_roles_assignment_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.roles.assignment_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_roles_created
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: entityanalytics_okta.roles.created'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: entityanalytics_okta_roles_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.roles.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_roles_label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.roles.label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_roles_last_updated
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: entityanalytics_okta.roles.last_updated'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: entityanalytics_okta_roles_permissions_created
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: entityanalytics_okta.roles.permissions.created'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: entityanalytics_okta_roles_permissions_label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.roles.permissions.label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_roles_permissions_last_updated
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: entityanalytics_okta.roles.permissions.last_updated'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: entityanalytics_okta_roles_role
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.roles.role'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_roles_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.roles.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_roles_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.roles.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user__embedded
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: entityanalytics_okta.user._embedded'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: entityanalytics_okta_user__links
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: entityanalytics_okta.user._links'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: entityanalytics_okta_user_activated
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: entityanalytics_okta.user.activated'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: entityanalytics_okta_user_created
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: entityanalytics_okta.user.created'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: entityanalytics_okta_user_credentials_provider_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.credentials.provider.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_credentials_provider_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.credentials.provider.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_credentials_recovery_question_is_set
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: entityanalytics_okta.user.credentials.recovery_question.is_set'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: entityanalytics_okta_user_devices
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: entityanalytics_okta.user.devices'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: entityanalytics_okta_user_factors_created
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: entityanalytics_okta.user.factors.created'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: entityanalytics_okta_user_factors_factorType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.factors.factorType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_factors_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.factors.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_factors_lastUpdated
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: entityanalytics_okta.user.factors.lastUpdated'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: entityanalytics_okta_user_factors_profile
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: entityanalytics_okta.user.factors.profile'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: entityanalytics_okta_user_factors_provider
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.factors.provider'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_factors_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.factors.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_factors_vendorName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.factors.vendorName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_last_login
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: entityanalytics_okta.user.last_login'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: entityanalytics_okta_user_last_updated
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: entityanalytics_okta.user.last_updated'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: entityanalytics_okta_user_password_changed
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: entityanalytics_okta.user.password_changed'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: entityanalytics_okta_user_profile_city
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.profile.city'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_profile_cost_center
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.profile.cost_center'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_profile_country_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.profile.country_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_profile_department
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.profile.department'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_profile_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.profile.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_profile_division
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.profile.division'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_profile_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.profile.email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_profile_employee_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.profile.employee_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_profile_external_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.profile.external_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_profile_first_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.profile.first_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_profile_honorific_prefix
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.profile.honorific.prefix'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_profile_honorific_suffix
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.profile.honorific.suffix'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_profile_last_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.profile.last_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_profile_locale
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.profile.locale'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_profile_login
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.profile.login'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_profile_manager_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.profile.manager.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_profile_manager_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.profile.manager.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_profile_middle_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.profile.middle_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_profile_mobile_phone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.profile.mobile_phone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_profile_nick_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.profile.nick_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_profile_organization
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.profile.organization'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_profile_postal_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.profile.postal_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_profile_preferred_language
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.profile.preferred_language'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_profile_primary_phone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.profile.primary_phone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_profile_second_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.profile.second_email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_profile_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.profile.state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_profile_street_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.profile.street_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_profile_timezone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.profile.timezone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_profile_title
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.profile.title'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_profile_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.profile.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_profile_user_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.profile.user_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_profile_zip_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.profile.zip_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_status_changed
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: entityanalytics_okta.user.status_changed'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: entityanalytics_okta_user_supervises_user_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.supervises.user.email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_supervises_user_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.supervises.user.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_supervises_user_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.supervises.user.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_transitioning_to_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: entityanalytics_okta.user.transitioning_to_status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: entityanalytics_okta_user_type
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: entityanalytics_okta.user.type'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: labels_identity_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: labels.identity_source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: user_account_activated_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: user.account.activated_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: user_account_change_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: user.account.change_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: user_account_create_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: user.account.create_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: user_account_password_change_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: user.account.password_change_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: user_account_status_deprovisioned
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: user.account.status.deprovisioned'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: user_account_status_locked_out
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: user.account.status.locked_out'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: user_account_status_password_expired
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: user.account.status.password_expired'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: user_account_status_recovery
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: user.account.status.recovery'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: user_account_status_suspended
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: user.account.status.suspended'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: user_geo_city_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: user.geo.city_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: user_geo_country_iso_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: user.geo.country_iso_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: user_geo_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: user.geo.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: user_geo_postal_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: user.geo.postal_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: user_geo_region_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: user.geo.region_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: user_geo_timezone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: user.geo.timezone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: user_organization_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: user.organization.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: user_profile_department
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: user.profile.department'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: user_profile_first_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: user.profile.first_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: user_profile_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: user.profile.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: user_profile_job_title
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: user.profile.job_title'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: user_profile_last_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: user.profile.last_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: user_profile_manager
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: user.profile.manager'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: user_profile_mobile_phone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: user.profile.mobile_phone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: user_profile_other_identities
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: user.profile.other_identities'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: user_profile_primaryPhone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: user.profile.primaryPhone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: user_profile_secondEmail
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: user.profile.secondEmail'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: user_profile_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: user.profile.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: user_profile_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: user.profile.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

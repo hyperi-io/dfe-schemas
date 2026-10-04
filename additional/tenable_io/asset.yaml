@@ -1,0 +1,589 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of tenable_io.asset at integrations 2c934eb5223b
+    columns:
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_asset_acr_score
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.asset.acr_score'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_asset_agent_names
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.agent_names'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_agent_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.agent_uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_aws_availability_zone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.aws.availability_zone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_aws_ec2_instance_ami_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.aws.ec2_instance.ami_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_aws_ec2_instance_group_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.aws.ec2_instance.group_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_aws_ec2_instance_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.aws.ec2_instance.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_aws_ec2_instance_state_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.aws.ec2_instance.state_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_aws_ec2_instance_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.aws.ec2_instance.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_aws_ec2_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.aws.ec2_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_aws_ec2_product_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.aws.ec2_product_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_aws_owner_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.aws.owner_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_aws_region
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.aws.region'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_aws_subnet_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.aws.subnet_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_aws_vpc_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.aws.vpc_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_azure_resource_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.azure.resource_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_azure_vm_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.azure.vm_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_bigfix_asset_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.bigfix_asset_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_bios_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.bios_uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_created_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.asset.created_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_io_asset_deleted_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.asset.deleted_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_io_asset_deleted_by
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.deleted_by'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_exposure_score
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.asset.exposure_score'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_asset_first_scan_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.asset.first_scan_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_io_asset_first_seen
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.asset.first_seen'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_io_asset_fqdns
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.fqdns'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_gcp_instance_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.gcp.instance_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_gcp_project_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.gcp.project_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_gcp_zone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.gcp.zone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_has_agent
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.asset.has_agent'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_io_asset_has_plugin_results
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.asset.has_plugin_results'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_io_asset_hostnames
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.hostnames'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_installed_software
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.installed_software'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_ipv4s
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.asset.ipv4s'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: tenable_io_asset_ipv6s
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.asset.ipv6s'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: tenable_io_asset_last_authenticated_scan_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.asset.last_authenticated_scan_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_io_asset_last_licensed_scan_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.asset.last_licensed_scan_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_io_asset_last_scan_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.last_scan_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_last_scan_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.asset.last_scan_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_io_asset_last_schedule_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.last_schedule_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_last_seen
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.asset.last_seen'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_io_asset_mac_addresses
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.mac_addresses'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_manufacturer_tpm_ids
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.manufacturer_tpm_ids'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_mcafee_epo_agent_guid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.mcafee_epo.agent_guid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_mcafee_epo_guid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.mcafee_epo.guid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_netbios_names
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.netbios_names'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_network_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.network.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_network_interfaces_aliased
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.asset.network_interfaces.aliased'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_io_asset_network_interfaces_fqdns
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.network_interfaces.fqdns'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_network_interfaces_ipv4s
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.asset.network_interfaces.ipv4s'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: tenable_io_asset_network_interfaces_ipv6s
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_io.asset.network_interfaces.ipv6s'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: tenable_io_asset_network_interfaces_mac_addresses
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.network_interfaces.mac_addresses'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_network_interfaces_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.network_interfaces.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_network_interfaces_virtual
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.network_interfaces.virtual'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_network_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.network.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_operating_systems
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.operating_systems'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_qualys_asset_ids
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.qualys.asset_ids'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_qualys_host_ids
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.qualys.host_ids'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_ratings_acr_score
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.asset.ratings.acr.score'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_asset_ratings_aes_score
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.asset.ratings.aes.score'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_io_asset_serial_number
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.serial_number'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_servicenow_sysid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.servicenow_sysid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_sources_first_seen
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.asset.sources.first_seen'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_io_asset_sources_last_seen
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.asset.sources.last_seen'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_io_asset_sources_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.sources.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_ssh_fingerprints
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.ssh_fingerprints'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_symantec_ep_hardware_keys
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.symantec_ep_hardware_keys'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_system_types
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.system_types'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_tags_added_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.asset.tags.added_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_io_asset_tags_added_by
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.tags.added_by'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_tags_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.tags.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_tags_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.tags.uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_tags_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.tags.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_terminated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.asset.terminated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_io_asset_terminated_by
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_io.asset.terminated_by'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_io_asset_updated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_io.asset.updated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base

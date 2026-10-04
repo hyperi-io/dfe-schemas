@@ -1,0 +1,71 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of xm_cyber.product at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: xm_cyber_product_affected_critical_assets
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: xm_cyber.product.affected_critical_assets'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: xm_cyber_product_choke_points_found_on
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: xm_cyber.product.choke_points_found_on'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: xm_cyber_product_devices_found_on
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: xm_cyber.product.devices_found_on'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: xm_cyber_product_product_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: xm_cyber.product.product_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: xm_cyber_product_product_operating_systems
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: xm_cyber.product.product_operating_systems'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: xm_cyber_product_product_vulnerabilities
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: xm_cyber.product.product_vulnerabilities'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: xm_cyber_product_products_critical_assets_at_risk
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: xm_cyber.product.products_critical_assets_at_risk'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: xm_cyber_product_vendor
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: xm_cyber.product.vendor'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

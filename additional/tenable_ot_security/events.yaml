@@ -1,0 +1,1513 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of tenable_ot_security.events at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_comment
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: tenable_ot_security.events.comment'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: tenable_ot_security_events_completion
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.completion'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_continuous
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.continuous'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_dst_interface_dns_names
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.dst_interface.dns_names'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_dst_interface_family
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.dst_interface.family'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_dst_interface_first_seen
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_ot_security.events.dst_interface.first_seen'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_ot_security_events_dst_interface_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.dst_interface.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_dst_interface_ip_trail_end_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_ot_security.events.dst_interface.ip_trail.end_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_ot_security_events_dst_interface_ip_trail_ip
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.dst_interface.ip_trail.ip'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_dst_interface_ip_trail_is_active
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.dst_interface.ip_trail.is_active'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_dst_interface_ip_trail_start_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_ot_security.events.dst_interface.ip_trail.start_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_ot_security_events_dst_interface_ips_dns_names
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.dst_interface.ips.dns_names'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_dst_interface_ips_ip
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.dst_interface.ips.ip'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_dst_interface_ips_open_ports_in_on_demand_scan
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.dst_interface.ips.open_ports.in_on_demand_scan'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_dst_interface_ips_open_ports_ports_description
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: tenable_ot_security.events.dst_interface.ips.open_ports.ports.description'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: tenable_ot_security_events_dst_interface_ips_open_ports_ports_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.dst_interface.ips.open_ports.ports.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_dst_interface_ips_open_ports_ports_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_ot_security.events.dst_interface.ips.open_ports.ports.port'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: tenable_ot_security_events_dst_interface_ips_open_ports_ports_scan_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_ot_security.events.dst_interface.ips.open_ports.ports.scan_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_ot_security_events_dst_interface_ips_open_ports_ports_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.dst_interface.ips.open_ports.ports.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_dst_interface_ips_open_ports_scanned_once
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.dst_interface.ips.open_ports.scanned_once'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_dst_interface_last_seen
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_ot_security.events.dst_interface.last_seen'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_ot_security_events_dst_interface_mac
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.dst_interface.mac'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_dst_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.dst_ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: tenable_ot_security_events_dst_mac
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.dst_mac'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_dst_names
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.dst_names'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_event_type_actions
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.event_type.actions'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_event_type_can_capture
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.event_type.can_capture'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_event_type_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.event_type.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_event_type_description
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: tenable_ot_security.events.event_type.description'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: tenable_ot_security_events_event_type_exclusion
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.event_type.exclusion'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_event_type_family
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.event_type.family'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_event_type_group
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.event_type.group'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_event_type_schema
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.event_type.schema'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_event_type_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.event_type.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_has_details
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.has_details'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_hit_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.hit_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_log_id
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_ot_security.events.log_id'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: tenable_ot_security_events_payload_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_ot_security.events.payload_size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_actions_aid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.actions.aid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_actions_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.actions.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_aggregated_events_count_last24h
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_ot_security.events.policy.aggregated_events_count.last24h'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_aggregated_events_count_last30d
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_ot_security.events.policy.aggregated_events_count.last30d'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_aggregated_events_count_last7d
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_ot_security.events.policy.aggregated_events_count.last7d'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_archived
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.policy.archived'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_continuous
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.policy.continuous'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_disable_after_hit
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.policy.disable_after_hit'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_disabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.policy.disabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_event_type_details_actions
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.event_type_details.actions'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_event_type_details_can_capture
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.policy.event_type_details.can_capture'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_event_type_details_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.event_type_details.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_event_type_details_description
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: tenable_ot_security.events.policy.event_type_details.description'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_event_type_details_exclusion
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.event_type_details.exclusion'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_event_type_details_family
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.event_type_details.family'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_event_type_details_group
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.event_type_details.group'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_event_type_details_schema
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.event_type_details.schema'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_event_type_details_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.event_type_details.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_exclusions_comment
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: tenable_ot_security.events.policy.exclusions.comment'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_exclusions_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_ot_security.events.policy.exclusions.count'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_exclusions_created
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_ot_security.events.policy.exclusions.created'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_exclusions_created_by
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.exclusions.created_by'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_exclusions_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.exclusions.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_exclusions_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.exclusions.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_index
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_ot_security.events.policy.index'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_last_modified_by
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.last_modified_by'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_last_modified_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_ot_security.events.policy.last_modified_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_level
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.level'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_paused
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.policy.paused'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_port_group_group_archived
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.policy.port_group.group.archived'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_port_group_group_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.port_group.group.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_port_group_group_items_end_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_ot_security.events.policy.port_group.group.items.end_port'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_port_group_group_items_start_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_ot_security.events.policy.port_group.group.items.start_port'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_port_group_group_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.port_group.group.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_port_group_group_last_modified_by
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.port_group.group.last_modified_by'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_port_group_group_last_modified_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_ot_security.events.policy.port_group.group.last_modified_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_port_group_group_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.port_group.group.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_port_group_group_system
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.policy.port_group.group.system'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_port_group_group_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.port_group.group.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_port_group_group_usage_info_editable
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.policy.port_group.group.usage_info.editable'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_port_group_group_usage_info_used
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.policy.port_group.group.usage_info.used'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_port_group_negate
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.policy.port_group.negate'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_protocol_group_group_archived
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.policy.protocol_group.group.archived'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_protocol_group_group_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.protocol_group.group.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_protocol_group_group_items_end_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_ot_security.events.policy.protocol_group.group.items.end_port'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_protocol_group_group_items_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.protocol_group.group.items.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_protocol_group_group_items_start_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_ot_security.events.policy.protocol_group.group.items.start_port'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_protocol_group_group_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.protocol_group.group.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_protocol_group_group_last_modified_by
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.protocol_group.group.last_modified_by'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_protocol_group_group_last_modified_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_ot_security.events.policy.protocol_group.group.last_modified_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_protocol_group_group_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.protocol_group.group.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_protocol_group_group_system
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.policy.protocol_group.group.system'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_protocol_group_group_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.protocol_group.group.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_protocol_group_group_usage_info_editable
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.policy.protocol_group.group.usage_info.editable'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_protocol_group_group_usage_info_used
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.policy.protocol_group.group.usage_info.used'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_protocol_group_negate
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.policy.protocol_group.negate'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_archived
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.archived'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_items_bidirectional
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.items.bidirectional'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_items_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.items.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_items_classification
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.items.classification'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_items_created_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.items.created_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_items_dst_ips
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.items.dst_ips'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_items_dst_ports
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.items.dst_ports'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_items_enabled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.items.enabled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_items_msg
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.items.msg'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_items_payload
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.items.payload'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_items_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.items.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_items_references_by_type_arachnids
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.items.references_by_type.arachnids'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_items_references_by_type_bid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.items.references_by_type.bid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_items_references_by_type_bugtraq
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.items.references_by_type.bugtraq'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_items_references_by_type_cve
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.items.references_by_type.cve'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_items_references_by_type_et
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.items.references_by_type.et'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_items_references_by_type_etpro
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.items.references_by_type.etpro'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_items_references_by_type_exploitdb
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.items.references_by_type.exploitdb'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_items_references_by_type_mcafee
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.items.references_by_type.mcafee'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_items_references_by_type_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.items.references_by_type.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_items_references_by_type_msft
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.items.references_by_type.msft'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_items_references_by_type_nessus
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.items.references_by_type.nessus'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_items_references_by_type_openpacket
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.items.references_by_type.openpacket'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_items_references_by_type_osvdb
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.items.references_by_type.osvdb'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_items_references_by_type_secunia
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.items.references_by_type.secunia'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_items_references_by_type_securitytracker
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.items.references_by_type.securitytracker'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_items_references_by_type_telus
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.items.references_by_type.telus'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_items_references_by_type_threatexpert
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.items.references_by_type.threatexpert'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_items_references_by_type_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.items.references_by_type.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_items_references_by_type_xforce
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.items.references_by_type.xforce'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_items_references_rev
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.items.references.rev'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_items_references_sid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.items.references.sid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_items_references_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.items.references.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_items_references_value
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.items.references.value'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_items_rev
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.items.rev'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_items_sid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.items.sid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_items_src_ips
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.items.src_ips'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_items_src_ports
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.items.src_ports'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_items_updated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.items.updated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_last_modified_by
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.last_modified_by'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_last_modified_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.last_modified_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_system
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.system'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_usage_info_editable
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.usage_info.editable'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_group_usage_info_used
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.policy.rule_group.group.usage_info.used'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_rule_group_negate
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.policy.rule_group.negate'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_schedule_group_archived
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.policy.schedule.group.archived'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_schedule_group_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.schedule.group.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_schedule_group_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.schedule.group.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_schedule_group_last_modified_by
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.schedule.group.last_modified_by'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_schedule_group_last_modified_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_ot_security.events.policy.schedule.group.last_modified_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_schedule_group_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.schedule.group.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_schedule_group_system
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.policy.schedule.group.system'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_schedule_group_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.schedule.group.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_schedule_group_usage_info_editable
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.policy.schedule.group.usage_info.editable'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_schedule_group_usage_info_used
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.policy.schedule.group.usage_info.used'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_schedule_group_used_in_restrictions
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.policy.schedule.group.used_in_restrictions'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_schedule_negate
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.policy.schedule.negate'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_schema
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.schema'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_snapshot
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.policy.snapshot'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_system
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.policy.system'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_tag_group_group_archived
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.policy.tag_group.group.archived'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_tag_group_group_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.tag_group.group.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_tag_group_group_items_tag_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.tag_group.group.items.tag_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_tag_group_group_items_tag_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.tag_group.group.items.tag_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_tag_group_group_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.tag_group.group.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_tag_group_group_last_modified_by
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.tag_group.group.last_modified_by'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_tag_group_group_last_modified_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_ot_security.events.policy.tag_group.group.last_modified_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_tag_group_group_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.tag_group.group.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_tag_group_group_system
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.policy.tag_group.group.system'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_tag_group_group_tag_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.tag_group.group.tag_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_tag_group_group_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.tag_group.group.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_tag_group_group_usage_info_editable
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.policy.tag_group.group.usage_info.editable'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_tag_group_group_usage_info_used
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.policy.tag_group.group.usage_info.used'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_tag_group_negate
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.policy.tag_group.negate'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_title
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: tenable_ot_security.events.policy.title'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_value_group_group_any
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.policy.value_group.group.any'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_value_group_group_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.value_group.group.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_value_group_group_max
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_ot_security.events.policy.value_group.group.max'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_value_group_group_min
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_ot_security.events.policy.value_group.group.min'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: tenable_ot_security_events_policy_value_group_group_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.policy.value_group.group.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_ot_security.events.port'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: tenable_ot_security_events_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_protocol_nice_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.protocol_nice_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_protocol_raw
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.protocol_raw'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_resolved
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.resolved'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_resolved_ts
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_ot_security.events.resolved_ts'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_ot_security_events_resolved_user
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.resolved_user'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_severity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.severity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_src_interface_dns_names
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.src_interface.dns_names'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_src_interface_family
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.src_interface.family'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_src_interface_first_seen
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_ot_security.events.src_interface.first_seen'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_ot_security_events_src_interface_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.src_interface.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_src_interface_ip_trail_end_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_ot_security.events.src_interface.ip_trail.end_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_ot_security_events_src_interface_ip_trail_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.src_interface.ip_trail.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: tenable_ot_security_events_src_interface_ip_trail_is_active
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.src_interface.ip_trail.is_active'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_src_interface_ip_trail_start_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_ot_security.events.src_interface.ip_trail.start_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_ot_security_events_src_interface_ips_dns_names
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.src_interface.ips.dns_names'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_src_interface_ips_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.src_interface.ips.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: tenable_ot_security_events_src_interface_ips_open_ports_in_on_demand_scan
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.src_interface.ips.open_ports.in_on_demand_scan'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_src_interface_ips_open_ports_ports_description
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: tenable_ot_security.events.src_interface.ips.open_ports.ports.description'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: tenable_ot_security_events_src_interface_ips_open_ports_ports_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.src_interface.ips.open_ports.ports.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_src_interface_ips_open_ports_ports_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_ot_security.events.src_interface.ips.open_ports.ports.port'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: tenable_ot_security_events_src_interface_ips_open_ports_ports_scan_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_ot_security.events.src_interface.ips.open_ports.ports.scan_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_ot_security_events_src_interface_ips_open_ports_ports_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.src_interface.ips.open_ports.ports.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_src_interface_ips_open_ports_scanned_once
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.src_interface.ips.open_ports.scanned_once'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: tenable_ot_security_events_src_interface_last_seen
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_ot_security.events.src_interface.last_seen'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_ot_security_events_src_interface_mac
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.src_interface.mac'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_src_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: tenable_ot_security.events.src_ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: tenable_ot_security_events_src_mac
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.src_mac'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_src_names
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.src_names'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: tenable_ot_security_events_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: tenable_ot_security.events.time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: tenable_ot_security_events_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: tenable_ot_security.events.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

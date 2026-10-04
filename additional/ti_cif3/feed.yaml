@@ -1,0 +1,269 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of ti_cif3.feed at integrations 2c934eb5223b
+    columns:
+    - name: cif3_application
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cif3.application'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cif3_asn
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cif3.asn'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: cif3_asn_desc
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cif3.asn_desc'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cif3_cc
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cif3.cc'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cif3_city
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cif3.city'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cif3_confidence
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cif3.confidence'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: cif3_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cif3.count'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: cif3_deleted_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cif3.deleted_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: cif3_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cif3.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cif3_expiration_duration
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cif3.expiration_duration'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cif3_indicator
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cif3.indicator'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cif3_indicator_iprange
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: cif3.indicator_iprange'
+      comment: 'Elasticsearch mapping type: ip_range'
+      _field_type: base
+    - name: cif3_indicator_ipv4
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cif3.indicator_ipv4'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: cif3_indicator_ipv4_mask
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cif3.indicator_ipv4_mask'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: cif3_indicator_ipv6
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cif3.indicator_ipv6'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cif3_indicator_ipv6_mask
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cif3.indicator_ipv6_mask'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: cif3_indicator_ssdeep_chunk
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: cif3.indicator_ssdeep_chunk'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: cif3_indicator_ssdeep_chunksize
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cif3.indicator_ssdeep_chunksize'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: cif3_indicator_ssdeep_double_chunk
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: cif3.indicator_ssdeep_double_chunk'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: cif3_itype
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cif3.itype'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cif3_latitude
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cif3.latitude'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cif3_location
+      type: geo_point
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: cif3.location'
+      comment: 'Elasticsearch mapping type: geo_point'
+      _field_type: base
+    - name: cif3_longitude
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cif3.longitude'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cif3_portlist
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: cif3.portlist'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: cif3_protocol
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: cif3.protocol'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: cif3_provider
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cif3.provider'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cif3_rdata
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cif3.rdata'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cif3_reference
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cif3.reference'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cif3_region
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cif3.region'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cif3_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cif3.tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cif3_timezone
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: cif3.timezone'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: cif3_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cif3.uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: labels_is_ioc_transform_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: labels.is_ioc_transform_source'
+      comment: 'Elasticsearch mapping type: constant_keyword'
+      _field_type: base
+    - name: log_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: threat_indicator_tls_client_ja3
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: threat.indicator.tls.client.ja3'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

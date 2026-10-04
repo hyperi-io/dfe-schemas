@@ -1,0 +1,108 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of kibana.log at integrations 2c934eb5223b
+    columns:
+    - name: http_request_headers
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: http.request.headers'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: http_response_headers
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: http.response.headers'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: http_response_responseTime
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: http.response.responseTime'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: process_eventLoopDelay
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: process.eventLoopDelay'
+      comment: 'Elasticsearch mapping type: unsigned_long'
+      _field_type: base
+    - name: process_eventLoopDelayHistogram_50
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: process.eventLoopDelayHistogram.50'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: process_eventLoopDelayHistogram_95
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: process.eventLoopDelayHistogram.95'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: process_eventLoopDelayHistogram_99
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: process.eventLoopDelayHistogram.99'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: process_eventLoopUtilization_active
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: process.eventLoopUtilization.active'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: process_eventLoopUtilization_idle
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: process.eventLoopUtilization.idle'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: process_eventLoopUtilization_utilization
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: process.eventLoopUtilization.utilization'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: process_memory_heap_usedInBytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: process.memory.heap.usedInBytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: session_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: session_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

@@ -1,0 +1,78 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of prisma_cloud.audit at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: prisma_cloud_audit_action_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.audit.action.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_audit_action_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.audit.action.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_audit_ip_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: prisma_cloud.audit.ip_address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: prisma_cloud_audit_resource_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.audit.resource.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_audit_resource_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.audit.resource.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_audit_result
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.audit.result'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: prisma_cloud_audit_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: prisma_cloud.audit.timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: prisma_cloud_audit_user
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: prisma_cloud.audit.user'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

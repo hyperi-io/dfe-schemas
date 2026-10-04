@@ -1,0 +1,810 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of google_scc.audit at integrations 2c934eb5223b
+    columns:
+    - name: google_scc_audit_http_request_cache_fill_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: google_scc.audit.http_request.cache.fill_bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: google_scc_audit_http_request_cache_hit
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: google_scc.audit.http_request.cache.hit'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: google_scc_audit_http_request_cache_look_up
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: google_scc.audit.http_request.cache.look_up'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: google_scc_audit_http_request_cache_validated_with_origin_server
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: google_scc.audit.http_request.cache.validated_with_origin_server'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: google_scc_audit_http_request_latency
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.http_request.latency'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_http_request_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.http_request.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_http_request_referer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.http_request.referer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_http_request_remote_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: google_scc.audit.http_request.remote.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: google_scc_audit_http_request_remote_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: google_scc.audit.http_request.remote.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: google_scc_audit_http_request_request_method
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.http_request.request_method'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_http_request_request_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: google_scc.audit.http_request.request_size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: google_scc_audit_http_request_request_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.http_request.request_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_http_request_response_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: google_scc.audit.http_request.response_size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: google_scc_audit_http_request_server_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: google_scc.audit.http_request.server.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: google_scc_audit_http_request_server_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: google_scc.audit.http_request.server.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: google_scc_audit_http_request_status
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: google_scc.audit.http_request.status'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: google_scc_audit_http_request_user_agent
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.http_request.user_agent'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_insert_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.insert_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_labels
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: google_scc.audit.labels'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: google_scc_audit_log_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.log_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_operation_first
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: google_scc.audit.operation.first'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: google_scc_audit_operation_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.operation.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_operation_last
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: google_scc.audit.operation.last'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: google_scc_audit_operation_producer
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.operation.producer'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_authentication_info_authority_selector
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.authentication_info.authority_selector'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_authentication_info_principal_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.authentication_info.principal_email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_authentication_info_principal_subject
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.authentication_info.principal_subject'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_authentication_info_service_account_delegation_info_first_party_principal_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.authentication_info.service_account_delegation_info.first_party_principal.email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_authentication_info_service_account_delegation_info_first_party_principal_service_metadata
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: google_scc.audit.proto_payload.authentication_info.service_account_delegation_info.first_party_principal.service_metadata'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_authentication_info_service_account_delegation_info_principal_subject
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.authentication_info.service_account_delegation_info.principal_subject'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_authentication_info_service_account_delegation_info_third_party_principal_claims
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: google_scc.audit.proto_payload.authentication_info.service_account_delegation_info.third_party_principal.claims'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_authentication_info_service_account_key_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.authentication_info.service_account_key_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_authentication_info_third_party_principal
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: google_scc.audit.proto_payload.authentication_info.third_party_principal'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_authorization_info_granted
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: google_scc.audit.proto_payload.authorization_info.granted'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_authorization_info_permission
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.authorization_info.permission'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_authorization_info_resource
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.authorization_info.resource'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_authorization_info_resource_attributes_annotations
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: google_scc.audit.proto_payload.authorization_info.resource_attributes.annotations'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_authorization_info_resource_attributes_create_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: google_scc.audit.proto_payload.authorization_info.resource_attributes.create_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_authorization_info_resource_attributes_delete_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: google_scc.audit.proto_payload.authorization_info.resource_attributes.delete_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_authorization_info_resource_attributes_display_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.authorization_info.resource_attributes.display_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_authorization_info_resource_attributes_etag
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.authorization_info.resource_attributes.etag'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_authorization_info_resource_attributes_labels
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: google_scc.audit.proto_payload.authorization_info.resource_attributes.labels'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_authorization_info_resource_attributes_location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.authorization_info.resource_attributes.location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_authorization_info_resource_attributes_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.authorization_info.resource_attributes.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_authorization_info_resource_attributes_service
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.authorization_info.resource_attributes.service'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_authorization_info_resource_attributes_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.authorization_info.resource_attributes.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_authorization_info_resource_attributes_uid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.authorization_info.resource_attributes.uid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_authorization_info_resource_attributes_update_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: google_scc.audit.proto_payload.authorization_info.resource_attributes.update_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_metadata
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: google_scc.audit.proto_payload.metadata'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_method_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.method_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_num_response_items
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: google_scc.audit.proto_payload.num_response_items'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_policy_violation_info_org_policy_violation_info_payload
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: google_scc.audit.proto_payload.policy_violation_info.org_policy_violation_info.payload'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_policy_violation_info_org_policy_violation_info_resource_tags
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: google_scc.audit.proto_payload.policy_violation_info.org_policy_violation_info.resource.tags'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_policy_violation_info_org_policy_violation_info_resource_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.policy_violation_info.org_policy_violation_info.resource.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_policy_violation_info_org_policy_violation_info_violation_info_checked_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.policy_violation_info.org_policy_violation_info.violation_info.checked_value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_policy_violation_info_org_policy_violation_info_violation_info_constraint
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.policy_violation_info.org_policy_violation_info.violation_info.constraint'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_policy_violation_info_org_policy_violation_info_violation_info_error_message
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.policy_violation_info.org_policy_violation_info.violation_info.error_message'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_policy_violation_info_org_policy_violation_info_violation_info_policy_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.policy_violation_info.org_policy_violation_info.violation_info.policy_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_request
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: google_scc.audit.proto_payload.request'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_request_metadata_caller_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: google_scc.audit.proto_payload.request_metadata.caller.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_request_metadata_caller_ip_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.request_metadata.caller.ip_value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_request_metadata_caller_network
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.request_metadata.caller.network'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_request_metadata_caller_supplied_user_agent
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.request_metadata.caller.supplied_user_agent'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_request_metadata_destination_attributes_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: google_scc.audit.proto_payload.request_metadata.destination_attributes.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_request_metadata_destination_attributes_labels
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: google_scc.audit.proto_payload.request_metadata.destination_attributes.labels'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_request_metadata_destination_attributes_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: google_scc.audit.proto_payload.request_metadata.destination_attributes.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_request_metadata_destination_attributes_principal
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.request_metadata.destination_attributes.principal'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_request_metadata_destination_attributes_region_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.request_metadata.destination_attributes.region_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_request_metadata_request_attributes_auth_access_levels
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.request_metadata.request_attributes.auth.access_levels'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_request_metadata_request_attributes_auth_audiences
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.request_metadata.request_attributes.auth.audiences'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_request_metadata_request_attributes_auth_claims
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: google_scc.audit.proto_payload.request_metadata.request_attributes.auth.claims'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_request_metadata_request_attributes_auth_presenter
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.request_metadata.request_attributes.auth.presenter'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_request_metadata_request_attributes_auth_principal
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.request_metadata.request_attributes.auth.principal'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_request_metadata_request_attributes_headers
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: google_scc.audit.proto_payload.request_metadata.request_attributes.headers'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_request_metadata_request_attributes_host
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.request_metadata.request_attributes.host'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_request_metadata_request_attributes_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.request_metadata.request_attributes.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_request_metadata_request_attributes_method
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.request_metadata.request_attributes.method'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_request_metadata_request_attributes_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.request_metadata.request_attributes.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_request_metadata_request_attributes_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.request_metadata.request_attributes.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_request_metadata_request_attributes_query
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.request_metadata.request_attributes.query'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_request_metadata_request_attributes_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.request_metadata.request_attributes.reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_request_metadata_request_attributes_schema
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.request_metadata.request_attributes.schema'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_request_metadata_request_attributes_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: google_scc.audit.proto_payload.request_metadata.request_attributes.size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_request_metadata_request_attributes_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: google_scc.audit.proto_payload.request_metadata.request_attributes.time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_resource_location_current_locations
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.resource_location.current_locations'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_resource_location_original_locations
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.resource_location.original_locations'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_resource_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.resource_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_resource_original_state
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: google_scc.audit.proto_payload.resource_original_state'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_response
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: google_scc.audit.proto_payload.response'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_service_data
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: google_scc.audit.proto_payload.service_data'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_service_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.service_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_status_code
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: google_scc.audit.proto_payload.status.code'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_status_details
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: google_scc.audit.proto_payload.status.details'
+      comment: 'Elasticsearch mapping type: nested'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_status_message
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.status.message'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_proto_payload_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.proto_payload.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_receive_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: google_scc.audit.receive_timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: google_scc_audit_resource_labels
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: google_scc.audit.resource.labels'
+      comment: 'Elasticsearch mapping type: object'
+      _field_type: base
+    - name: google_scc_audit_resource_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.resource.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_severity_code
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: google_scc.audit.severity.code'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: google_scc_audit_severity_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.severity.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_source_location_file
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.source_location.file'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_source_location_function
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.source_location.function'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_source_location_line
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: google_scc.audit.source_location.line'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: google_scc_audit_span_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.span_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_split_index
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: google_scc.audit.split.index'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: google_scc_audit_split_total_splits
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: google_scc.audit.split.total_splits'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: google_scc_audit_split_uid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.split.uid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: google_scc.audit.timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: google_scc_audit_trace
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: google_scc.audit.trace'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: google_scc_audit_trace_sampled
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: google_scc.audit.trace_sampled'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

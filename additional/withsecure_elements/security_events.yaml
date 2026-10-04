@@ -1,0 +1,561 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of withsecure_elements.security_events at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_ackTimestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: withsecure_elements.security_events.ackTimestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: withsecure_elements_security_events_acknowledged
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: withsecure_elements.security_events.acknowledged'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: withsecure_elements_security_events_acknowledgedBy
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.acknowledgedBy'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_client_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: withsecure_elements.security_events.client_timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: withsecure_elements_security_events_description
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: withsecure_elements.security_events.description'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_affectedFiles
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.affectedFiles'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_affectedSharedFolders
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.affectedSharedFolders'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_alertSource
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.alertSource'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_alertType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.alertType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_categories
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.categories'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_clientTimestamp
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.clientTimestamp'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_container
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.container'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_containerSha1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.containerSha1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_created
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.created'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_creator
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.creator'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_creatorSha1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.creatorSha1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_direction
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.direction'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_filePath
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.filePath'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_fileScanningType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.fileScanningType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_fingerprint
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.fingerprint'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_fullUsername
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.fullUsername'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_hostIpAddress
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.hostIpAddress'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_incidentId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.incidentId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_incidentPublicId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.incidentPublicId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_infectionName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.infectionName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_infectionType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.infectionType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_initialDetectionTimestamp
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.initialDetectionTimestamp'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_initiatorHash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.initiatorHash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_localAddress
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.localAddress'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_localPort
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.localPort'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_modified
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.modified'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_parentCommandLine
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.parentCommandLine'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_parentPath
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.parentPath'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_prevalence
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.prevalence'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_process
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.process'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_profileId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.profileId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_profileName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.profileName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_profileVersion
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.profileVersion'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_quarantineId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.quarantineId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_remoteAddress
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.remoteAddress'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_remotePort
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.remotePort'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_reputation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.reputation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_resolution
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.resolution'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_risk
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.risk'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_ruleEvent
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.ruleEvent'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_ruleId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.ruleId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_ruleName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.ruleName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_sha1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.sha1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_size
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.size'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_targetCommandLine
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.targetCommandLine'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_targetData
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.targetData'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_targetPath
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.targetPath'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_targetSha1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.targetSha1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_targetSha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.targetSha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_throttledCount
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.throttledCount'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_userName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.userName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_userSid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.userSid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_details_vaultId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.details.vaultId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_device_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.device.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_device_labels
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.device.labels'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_device_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.device.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_engine
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.engine'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_eventTransactionId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.eventTransactionId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_message
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: withsecure_elements.security_events.message'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: withsecure_elements_security_events_organization_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.organization.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_organization_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.organization.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_persistence_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: withsecure_elements.security_events.persistence_timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: withsecure_elements_security_events_severity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.severity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_target_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.target.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_target_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.target.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: withsecure_elements_security_events_userName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: withsecure_elements.security_events.userName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

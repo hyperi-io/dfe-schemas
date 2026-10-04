@@ -1,0 +1,1363 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of aws.securityhub_findings_full_posture at integrations 2c934eb5223b
+    columns:
+    - name: aws_securityhub_findings_full_posture_action_aws_api_call_affected_resources
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: aws.securityhub_findings_full_posture.action.aws_api_call.affected_resources'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_aws_api_call_api
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.action.aws_api_call.api'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_aws_api_call_caller_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.action.aws_api_call.caller.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_aws_api_call_domain_details_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.action.aws_api_call.domain_details.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_aws_api_call_first_seen
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.action.aws_api_call.first_seen'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_aws_api_call_last_seen
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.action.aws_api_call.last_seen'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_aws_api_call_remote_ip_city_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.action.aws_api_call.remote_ip.city.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_aws_api_call_remote_ip_country_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.action.aws_api_call.remote_ip.country.code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_aws_api_call_remote_ip_country_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.action.aws_api_call.remote_ip.country.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_aws_api_call_remote_ip_geolocation_latitude
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.action.aws_api_call.remote_ip.geolocation.latitude'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_aws_api_call_remote_ip_geolocation_longitude
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.action.aws_api_call.remote_ip.geolocation.longitude'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_aws_api_call_remote_ip_ip_address_v4
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.securityhub_findings_full_posture.action.aws_api_call.remote_ip.ip.address_v4'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_aws_api_call_remote_ip_organization_asn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.action.aws_api_call.remote_ip.organization.asn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_aws_api_call_remote_ip_organization_asn_organization
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.action.aws_api_call.remote_ip.organization.asn_organization'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_aws_api_call_remote_ip_organization_internet_provider
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.action.aws_api_call.remote_ip.organization.internet_provider'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_aws_api_call_remote_ip_organization_internet_service_provider
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.action.aws_api_call.remote_ip.organization.internet_service_provider'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_aws_api_call_service_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.action.aws_api_call.service.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_dns_request_blocked
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.securityhub_findings_full_posture.action.dns_request.blocked'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_dns_request_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.action.dns_request.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_dns_request_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.action.dns_request.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_network_connection_blocked
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.securityhub_findings_full_posture.action.network_connection.blocked'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_network_connection_direction
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.action.network_connection.direction'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_network_connection_local_port_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.action.network_connection.local.port.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_network_connection_local_port_number
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.action.network_connection.local.port.number'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_network_connection_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.action.network_connection.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_network_connection_remote_ip_city_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.action.network_connection.remote_ip.city.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_network_connection_remote_ip_country_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.action.network_connection.remote_ip.country.code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_network_connection_remote_ip_country_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.action.network_connection.remote_ip.country.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_network_connection_remote_ip_geolocation_latitude
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.action.network_connection.remote_ip.geolocation.latitude'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_network_connection_remote_ip_geolocation_longitude
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.action.network_connection.remote_ip.geolocation.longitude'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_network_connection_remote_ip_ip_address_v4
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.securityhub_findings_full_posture.action.network_connection.remote_ip.ip.address_v4'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_network_connection_remote_ip_organization_asn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.action.network_connection.remote_ip.organization.asn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_network_connection_remote_ip_organization_asn_organization
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.action.network_connection.remote_ip.organization.asn_organization'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_network_connection_remote_ip_organization_internet_provider
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.action.network_connection.remote_ip.organization.internet_provider'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_network_connection_remote_ip_organization_internet_service_provider
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.action.network_connection.remote_ip.organization.internet_service_provider'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_network_connection_remote_port_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.action.network_connection.remote.port.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_network_connection_remote_port_number
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.action.network_connection.remote.port.number'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_port_probe_blocked
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.securityhub_findings_full_posture.action.port_probe.blocked'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_port_probe_details_local_ip_address_v4
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.securityhub_findings_full_posture.action.port_probe.details.local.ip.address_v4'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_port_probe_details_local_port_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.action.port_probe.details.local.port.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_port_probe_details_local_port_number
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.action.port_probe.details.local.port.number'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_port_probe_details_remote_ip_city_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.action.port_probe.details.remote_ip.city.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_port_probe_details_remote_ip_country_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.action.port_probe.details.remote_ip.country.code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_port_probe_details_remote_ip_country_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.action.port_probe.details.remote_ip.country.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_port_probe_details_remote_ip_geolocation_latitude
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.action.port_probe.details.remote_ip.geolocation.latitude'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_port_probe_details_remote_ip_geolocation_longitude
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.action.port_probe.details.remote_ip.geolocation.longitude'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_port_probe_details_remote_ip_ip_address_v4
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.securityhub_findings_full_posture.action.port_probe.details.remote_ip.ip.address_v4'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_port_probe_details_remote_ip_organization_asn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.action.port_probe.details.remote_ip.organization.asn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_port_probe_details_remote_ip_organization_asn_organization
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.action.port_probe.details.remote_ip.organization.asn_organization'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_port_probe_details_remote_ip_organization_internet_provider
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.action.port_probe.details.remote_ip.organization.internet_provider'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_port_probe_details_remote_ip_organization_internet_service_provider
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.action.port_probe.details.remote_ip.organization.internet_service_provider'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_action_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.action.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_aws_account_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.aws_account_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_company_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.company.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_compliance_related_requirements
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.compliance.related_requirements'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_compliance_security_control_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.compliance.security_control_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_compliance_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.compliance.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_compliance_status_reasons_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.compliance.status_reasons.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_compliance_status_reasons_reason_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.compliance.status_reasons.reason_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_confidence
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.confidence'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_created_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.created_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_criticality
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.criticality'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_first_observed_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.first_observed_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_generator_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.generator.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_last_observed_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.last_observed_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_malware_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.malware.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_malware_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.malware.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_malware_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.malware.state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_malware_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.malware.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_network_destination_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.network.destination.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_network_destination_ip_v4
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.securityhub_findings_full_posture.network.destination.ip.v4'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_network_destination_ip_v6
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.securityhub_findings_full_posture.network.destination.ip.v6'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_network_destination_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.network.destination.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_network_direction
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.network.direction'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_network_open_port_range_begin
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.network.open_port_range.begin'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_network_open_port_range_end
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.network.open_port_range.end'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_network_path_component_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.network_path.component.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_network_path_component_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.network_path.component.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_network_path_egress_destination_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.network_path.egress.destination.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_network_path_egress_destination_port_ranges_begin
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.network_path.egress.destination.port_ranges.begin'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_network_path_egress_destination_port_ranges_end
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.network_path.egress.destination.port_ranges.end'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_network_path_egress_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.network_path.egress.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_network_path_egress_source_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.network_path.egress.source.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_network_path_egress_source_port_ranges_begin
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.network_path.egress.source.port_ranges.begin'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_network_path_egress_source_port_ranges_end
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.network_path.egress.source.port_ranges.end'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_network_path_ingress_destination_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.network_path.ingress.destination.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_network_path_ingress_destination_port_ranges_begin
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.network_path.ingress.destination.port_ranges.begin'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_network_path_ingress_destination_port_ranges_end
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.network_path.ingress.destination.port_ranges.end'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_network_path_ingress_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.network_path.ingress.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_network_path_ingress_source_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.network_path.ingress.source.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_network_path_ingress_source_port_ranges_begin
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.network_path.ingress.source.port_ranges.begin'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_network_path_ingress_source_port_ranges_end
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.network_path.ingress.source.port_ranges.end'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_network_protocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.network.protocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_network_source_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.network.source.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_network_source_ip_v4
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.securityhub_findings_full_posture.network.source.ip.v4'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_network_source_ip_v6
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.securityhub_findings_full_posture.network.source.ip.v6'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_network_source_mac
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.network.source.mac'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_network_source_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.network.source.port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_note_text
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.note.text'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_note_updated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.note.updated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_note_updated_by
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.note.updated_by'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_patch_summary_failed_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.patch_summary.failed.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_patch_summary_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.patch_summary.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_patch_summary_installed_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.patch_summary.installed.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_patch_summary_installed_other_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.patch_summary.installed.other.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_patch_summary_installed_pending_reboot
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.patch_summary.installed.pending_reboot'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_patch_summary_installed_rejected_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.patch_summary.installed.rejected.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_patch_summary_missing_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.patch_summary.missing.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_patch_summary_operation_end_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.patch_summary.operation.end_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_patch_summary_operation_start_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.patch_summary.operation.start_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_patch_summary_operation_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.patch_summary.operation.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_patch_summary_reboot_option
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.patch_summary.reboot_option'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_process_launched_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.process.launched_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_process_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.process.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_process_parent_pid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.process.parent.pid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_process_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.process.path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_process_pid
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.process.pid'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_process_terminated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.process.terminated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_processed_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.processed_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_product_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.product.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_product_fields
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: aws.securityhub_findings_full_posture.product.fields'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_product_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.product.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_provider_fields_confidence
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.provider_fields.confidence'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_provider_fields_criticality
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.provider_fields.criticality'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_provider_fields_related_findings_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.provider_fields.related_findings.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_provider_fields_related_findings_product_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.provider_fields.related_findings.product.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_provider_fields_severity_label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.provider_fields.severity.label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_provider_fields_severity_normalized
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.provider_fields.severity.normalized'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_provider_fields_severity_original
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.provider_fields.severity.original'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_provider_fields_severity_product
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.provider_fields.severity.product'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_provider_fields_types
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.provider_fields.types'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_record_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.record_state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_region
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.region'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_related_findings_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.related_findings.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_related_findings_product_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.related_findings.product.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_remediation_recommendation_text
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: aws.securityhub_findings_full_posture.remediation.recommendation.text'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_remediation_recommendation_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.remediation.recommendation.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_resources
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: aws.securityhub_findings_full_posture.resources'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_sample
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: aws.securityhub_findings_full_posture.sample'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_schema_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.schema.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_severity_label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.severity.label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_severity_normalized
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.severity.normalized'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_severity_original
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.severity.original'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_severity_product
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.severity.product'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_source_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.source_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_threat_intel_indicators_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.threat_intel_indicators.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_threat_intel_indicators_last_observed_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.threat_intel_indicators.last_observed_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_threat_intel_indicators_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.threat_intel_indicators.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_threat_intel_indicators_source_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.threat_intel_indicators.source_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_threat_intel_indicators_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.threat_intel_indicators.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_threat_intel_indicators_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.threat_intel_indicators.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_title
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: aws.securityhub_findings_full_posture.title'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_types
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.types'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_updated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.updated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_user_defined_fields
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: aws.securityhub_findings_full_posture.user_defined_fields'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_verification_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.verification_state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_vulnerabilities_cvss_adjustments_metric
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.vulnerabilities.cvss.adjustments.metric'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_vulnerabilities_cvss_adjustments_reason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.vulnerabilities.cvss.adjustments.reason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_vulnerabilities_cvss_base_score
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.vulnerabilities.cvss.base_score'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_vulnerabilities_cvss_base_vector
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.vulnerabilities.cvss.base_vector'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_vulnerabilities_cvss_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.vulnerabilities.cvss.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_vulnerabilities_cvss_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.vulnerabilities.cvss.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_vulnerabilities_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.vulnerabilities.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_vulnerabilities_reference_urls
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.vulnerabilities.reference_urls'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_vulnerabilities_related_vulnerabilities
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.vulnerabilities.related_vulnerabilities'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_vulnerabilities_vendor_created_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.vulnerabilities.vendor.created_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_vulnerabilities_vendor_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.vulnerabilities.vendor.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_vulnerabilities_vendor_severity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.vulnerabilities.vendor.severity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_vulnerabilities_vendor_updated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws.securityhub_findings_full_posture.vulnerabilities.vendor.updated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_vulnerabilities_vendor_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.vulnerabilities.vendor.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_vulnerabilities_vulnerable_packages_architecture
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.vulnerabilities.vulnerable_packages.architecture'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_vulnerabilities_vulnerable_packages_epoch
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.vulnerabilities.vulnerable_packages.epoch'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_vulnerabilities_vulnerable_packages_file_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.vulnerabilities.vulnerable_packages.file_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_vulnerabilities_vulnerable_packages_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.vulnerabilities.vulnerable_packages.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_vulnerabilities_vulnerable_packages_package_manager
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.vulnerabilities.vulnerable_packages.package_manager'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_vulnerabilities_vulnerable_packages_release
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.vulnerabilities.vulnerable_packages.release'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_vulnerabilities_vulnerable_packages_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.vulnerabilities.vulnerable_packages.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_workflow_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.workflow.state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_securityhub_findings_full_posture_workflow_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.securityhub_findings_full_posture.workflow.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: resource_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: resource.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: resource_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: resource.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: resource_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: resource.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: result_evaluation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: result.evaluation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: rule_remediation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: rule.remediation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: url_user_info
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: url.user_info'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

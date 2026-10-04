@@ -1,0 +1,308 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of akamai.siem at integrations 2c934eb5223b
+    columns:
+    - name: akamai_siem_bot_response_segment
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: akamai.siem.bot.response_segment'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: akamai_siem_bot_score
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: akamai.siem.bot.score'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: akamai_siem_client_data_app_bundle_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: akamai.siem.client_data.app_bundle_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: akamai_siem_client_data_app_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: akamai.siem.client_data.app_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: akamai_siem_client_data_sdk_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: akamai.siem.client_data.sdk_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: akamai_siem_client_data_telemetry_type
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: akamai.siem.client_data.telemetry_type'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: akamai_siem_client_reputation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: akamai.siem.client_reputation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: akamai_siem_config_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: akamai.siem.config_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: akamai_siem_identity_ja4
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: akamai.siem.identity.ja4'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: akamai_siem_identity_tls_fingerprint_v2
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: akamai.siem.identity.tls_fingerprint_v2'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: akamai_siem_identity_tls_fingerprint_v3
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: akamai.siem.identity.tls_fingerprint_v3'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: akamai_siem_policy_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: akamai.siem.policy_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: akamai_siem_request_headers
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: akamai.siem.request.headers'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: akamai_siem_response_headers
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: akamai.siem.response.headers'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: akamai_siem_rule_actions
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: akamai.siem.rule_actions'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: akamai_siem_rule_tags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: akamai.siem.rule_tags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: akamai_siem_rules
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: akamai.siem.rules'
+      comment: 'Elasticsearch mapping type: nested'
+      _field_type: base
+    - name: akamai_siem_rules_ruleActions
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: akamai.siem.rules.ruleActions'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: akamai_siem_rules_ruleData
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: akamai.siem.rules.ruleData'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: akamai_siem_rules_ruleMessages
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: akamai.siem.rules.ruleMessages'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: akamai_siem_rules_ruleSelectors
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: akamai.siem.rules.ruleSelectors'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: akamai_siem_rules_ruleTags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: akamai.siem.rules.ruleTags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: akamai_siem_rules_ruleVersions
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: akamai.siem.rules.ruleVersions'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: akamai_siem_rules_rules
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: akamai.siem.rules.rules'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: akamai_siem_slow_post_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: akamai.siem.slow_post_action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: akamai_siem_slow_post_rate
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: akamai.siem.slow_post_rate'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: akamai_siem_user_risk_allow
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: akamai.siem.user_risk.allow'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: akamai_siem_user_risk_general
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: akamai.siem.user_risk.general'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: akamai_siem_user_risk_risk
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: akamai.siem.user_risk.risk'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: akamai_siem_user_risk_score
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: akamai.siem.user_risk.score'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: akamai_siem_user_risk_status
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: akamai.siem.user_risk.status'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: akamai_siem_user_risk_trust
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: akamai.siem.user_risk.trust'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: akamai_siem_user_risk_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: akamai.siem.user_risk.uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcs_storage_bucket_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcs.storage.bucket.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcs_storage_object_content_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcs.storage.object.content_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gcs_storage_object_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gcs.storage.object.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

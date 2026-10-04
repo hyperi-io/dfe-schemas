@@ -1,0 +1,491 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of carbon_black_cloud.endpoint_event at integrations 2c934eb5223b
+    columns:
+    - name: aws_s3_bucket_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_bucket_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_object_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.object.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_alert_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.alert_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_backend_timestamp
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.backend.timestamp'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_create_time
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.create_time'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_crossproc_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.crossproc.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_crossproc_api
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.crossproc.api'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_crossproc_guid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.crossproc.guid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_crossproc_hash_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.crossproc.hash.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_crossproc_hash_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.crossproc.hash.sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_crossproc_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.crossproc.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_crossproc_publisher_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.crossproc.publisher.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_crossproc_publisher_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.crossproc.publisher.state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_crossproc_reputation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.crossproc.reputation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_crossproc_target
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: carbon_black_cloud.endpoint_event.crossproc.target'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_device_external_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: carbon_black_cloud.endpoint_event.device.external_ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_device_internal_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: carbon_black_cloud.endpoint_event.device.internal_ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_device_os
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.device.os'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_device_timestamp
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.device.timestamp'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_event_origin
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.event_origin'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_fileless_scriptload_cmdline
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.fileless_scriptload.cmdline'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_fileless_scriptload_cmdline_length
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.fileless_scriptload.cmdline_length'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_fileless_scriptload_hash_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.fileless_scriptload.hash.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_fileless_scriptload_hash_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.fileless_scriptload.hash.sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_modload_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: carbon_black_cloud.endpoint_event.modload.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_modload_effective_reputation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.modload.effective_reputation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_modload_publisher_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.modload.publisher.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_modload_publisher_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.modload.publisher.state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_netconn_proxy_domain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.netconn.proxy.domain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_netconn_proxy_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: carbon_black_cloud.endpoint_event.netconn.proxy.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_netconn_proxy_port
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.netconn.proxy.port'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_organization_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.organization_key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_process_duration
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: carbon_black_cloud.endpoint_event.process.duration'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_process_grandparent_command_line
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.process.grandparent.command_line'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_process_grandparent_entity_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.process.grandparent.entity_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_process_grandparent_executable
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.process.grandparent.executable'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_process_grandparent_hash_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.process.grandparent.hash.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_process_grandparent_hash_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.process.grandparent.hash.sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_process_grandparent_pid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.process.grandparent.pid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_process_grandparent_reputation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.process.grandparent.reputation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_process_parent_publisher_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.process.parent.publisher.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_process_parent_publisher_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.process.parent.publisher.state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_process_parent_reputation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.process.parent.reputation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_process_parent_terminated
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: carbon_black_cloud.endpoint_event.process.parent.terminated'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_process_parent_username
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.process.parent.username'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_process_publisher_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.process.publisher.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_process_publisher_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.process.publisher.state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_process_reputation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.process.reputation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_process_terminated
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: carbon_black_cloud.endpoint_event.process.terminated'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_process_username
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.process.username'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_schema
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: carbon_black_cloud.endpoint_event.schema'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_scriptload_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: carbon_black_cloud.endpoint_event.scriptload.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_scriptload_effective_reputation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.scriptload.effective_reputation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_scriptload_hash_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.scriptload.hash.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_scriptload_hash_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.scriptload.hash.sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_scriptload_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.scriptload.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_scriptload_publisher_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.scriptload.publisher.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_scriptload_publisher_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.scriptload.publisher.state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_scriptload_reputation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.scriptload.reputation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_sensor_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.sensor_action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_target_cmdline
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.target_cmdline'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: carbon_black_cloud_endpoint_event_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: carbon_black_cloud.endpoint_event.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

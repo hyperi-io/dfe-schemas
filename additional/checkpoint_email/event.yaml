@@ -1,0 +1,212 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of checkpoint_email.event at integrations 2c934eb5223b
+    columns:
+    - name: checkpoint_email_event_actions_action_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: checkpoint_email.event.actions.action_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: checkpoint_email_event_actions_create_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: checkpoint_email.event.actions.create_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: checkpoint_email_event_actions_related_entity_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: checkpoint_email.event.actions.related_entity_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: checkpoint_email_event_additional_data
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: checkpoint_email.event.additional_data'
+      comment: 'Elasticsearch mapping type: group'
+      _field_type: base
+    - name: checkpoint_email_event_available_event_actions_action_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: checkpoint_email.event.available_event_actions.action_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: checkpoint_email_event_available_event_actions_action_parameter_eventId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: checkpoint_email.event.available_event_actions.action_parameter.eventId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: checkpoint_email_event_available_event_actions_action_parameter_newSeverity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: checkpoint_email.event.available_event_actions.action_parameter.newSeverity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: checkpoint_email_event_confidence_indicator
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: checkpoint_email.event.confidence_indicator'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: checkpoint_email_event_created
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: checkpoint_email.event.created'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: checkpoint_email_event_customer_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: checkpoint_email.event.customer_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: checkpoint_email_event_data
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: checkpoint_email.event.data'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: checkpoint_email_event_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: checkpoint_email.event.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: checkpoint_email_event_destination_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: checkpoint_email.event.destination_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: checkpoint_email_event_email_subject
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: checkpoint_email.event.email_subject'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: checkpoint_email_event_entity_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: checkpoint_email.event.entity_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: checkpoint_email_event_entity_link
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: checkpoint_email.event.entity_link'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: checkpoint_email_event_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: checkpoint_email.event.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: checkpoint_email_event_saas
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: checkpoint_email.event.saas'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: checkpoint_email_event_scan_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: checkpoint_email.event.scan_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: checkpoint_email_event_sender_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: checkpoint_email.event.sender_address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: checkpoint_email_event_severity
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: checkpoint_email.event.severity'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: checkpoint_email_event_severity_enum
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: checkpoint_email.event.severity_enum'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: checkpoint_email_event_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: checkpoint_email.event.state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: checkpoint_email_event_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: checkpoint_email.event.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: checkpoint_email_event_user_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: checkpoint_email.event.user.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: checkpoint_email_event_user_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: checkpoint_email.event.user.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: checkpoint_email_event_user_country
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: checkpoint_email.event.user.country'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

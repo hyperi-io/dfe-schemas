@@ -1,0 +1,64 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of ceph.pool_disk at integrations 2c934eb5223b
+    columns:
+    - name: ceph_pool_disk_available_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ceph.pool_disk.available.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: ceph_pool_disk_object_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ceph.pool_disk.object.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: ceph_pool_disk_pool_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ceph.pool_disk.pool_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: ceph_pool_disk_pool_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ceph.pool_disk.pool_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ceph_pool_disk_stored_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ceph.pool_disk.stored.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: ceph_pool_disk_used_bytes
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ceph.pool_disk.used.bytes'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: ceph_pool_disk_used_pct
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ceph.pool_disk.used.pct'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

@@ -1,0 +1,78 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of php_fpm.process at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: php_fpm_process_pool_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: php_fpm.process.pool.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: php_fpm_process_request_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: php_fpm.process.request.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: php_fpm_process_request_duration
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: php_fpm.process.request.duration'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: php_fpm_process_request_last_cpu_pct
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: php_fpm.process.request.last.cpu.pct'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: php_fpm_process_request_last_memory
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: php_fpm.process.request.last.memory'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: php_fpm_process_script
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: php_fpm.process.script'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: php_fpm_process_start_since
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: php_fpm.process.start_since'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: php_fpm_process_start_time
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: php_fpm.process.start_time'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: php_fpm_process_state
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: php_fpm.process.state'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

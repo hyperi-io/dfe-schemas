@@ -1,0 +1,233 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of postgresql.log at integrations 2c934eb5223b
+    columns:
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_flags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.flags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: postgresql
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: postgresql'
+      comment: 'Elasticsearch mapping type: group'
+      _field_type: base
+    - name: postgresql_log_application_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: postgresql.log.application_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: postgresql_log_backend_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: postgresql.log.backend_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: postgresql_log_client_addr
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: postgresql.log.client_addr'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: postgresql_log_client_port
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: postgresql.log.client_port'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: postgresql_log_command_tag
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: postgresql.log.command_tag'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: postgresql_log_context
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: postgresql.log.context'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: postgresql_log_database
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: postgresql.log.database'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: postgresql_log_detail
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: postgresql.log.detail'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: postgresql_log_hint
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: postgresql.log.hint'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: postgresql_log_internal_query
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: postgresql.log.internal_query'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: postgresql_log_internal_query_pos
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: postgresql.log.internal_query_pos'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: postgresql_log_location
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: postgresql.log.location'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: postgresql_log_query
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: postgresql.log.query'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: postgresql_log_query_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: postgresql.log.query_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: postgresql_log_query_pos
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: postgresql.log.query_pos'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: postgresql_log_query_step
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: postgresql.log.query_step'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: postgresql_log_sequence_number
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: postgresql.log.sequence_number'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: postgresql_log_session_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: postgresql.log.session_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: postgresql_log_session_line_number
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: postgresql.log.session_line_number'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: postgresql_log_session_start_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: postgresql.log.session_start_time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: postgresql_log_sql_state_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: postgresql.log.sql_state_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: postgresql_log_timestamp
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: postgresql.log.timestamp'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: postgresql_log_transaction_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: postgresql.log.transaction_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: postgresql_log_virtual_transaction_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: postgresql.log.virtual_transaction_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

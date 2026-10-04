@@ -1,0 +1,122 @@
+base: meta/elastic/ecs
+base_version: "1.0.0"
+current: "1.0.0"
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    summary: box_events.events selection from meta/elastic/ecs
+    select:
+    - name: client_ip
+      index: dimension
+    - name: data_stream_dataset
+      index: exact_match
+    - name: data_stream_namespace
+      index: exact_match
+    - name: data_stream_type
+      index: exact_match
+    - name: ecs_version
+      index: exact_match
+    - name: event_action
+      index: exact_match
+    - name: event_category
+      index: exact_match
+    - name: event_dataset
+      index: exact_match
+    - name: event_id
+      index: exact_match
+    - name: event_kind
+      index: exact_match
+    - name: event_module
+      index: exact_match
+    - name: event_original
+      index: none
+    - name: event_risk_score
+      index: range
+    - name: event_sequence
+      index: range
+    - name: event_type
+      index: exact_match
+    - name: file_created
+      index: range
+    - name: file_ctime
+      index: range
+    - name: file_directory
+      index: exact_match
+    - name: file_hash_sha1
+      index: exact_match
+    - name: file_mtime
+      index: range
+    - name: file_name
+      index: exact_match
+    - name: file_size
+      index: range
+    - name: file_type
+      index: exact_match
+    - name: related_hash
+      index: exact_match
+    - name: related_ip
+      index: dimension
+    - name: related_user
+      index: exact_match
+    - name: rule_category
+      index: exact_match
+    - name: rule_id
+      index: exact_match
+    - name: rule_name
+      index: exact_match
+    - name: tags
+      index: exact_match
+    - name: threat_enrichments_indicator_description
+      index: exact_match
+    - name: threat_enrichments_indicator_first_seen
+      index: range
+    - name: threat_enrichments_indicator_ip
+      index: dimension
+    - name: threat_enrichments_indicator_last_seen
+      index: range
+    - name: threat_enrichments_indicator_provider
+      index: exact_match
+    - name: threat_enrichments_indicator_type
+      index: exact_match
+    - name: threat_indicator_description
+      index: exact_match
+    - name: threat_indicator_first_seen
+      index: range
+    - name: threat_indicator_ip
+      index: dimension
+    - name: threat_indicator_last_seen
+      index: range
+    - name: threat_indicator_provider
+      index: exact_match
+    - name: threat_indicator_reference
+      index: exact_match
+    - name: threat_indicator_sightings
+      index: range
+    - name: threat_indicator_type
+      index: exact_match
+    - name: user_domain
+      index: exact_match
+    - name: user_effective_email
+      index: exact_match
+    - name: user_effective_id
+      index: exact_match
+    - name: user_effective_name
+      index: exact_match
+    - name: user_email
+      index: exact_match
+    - name: user_full_name
+      index: exact_match
+    - name: user_id
+      index: exact_match
+    - name: user_name
+      index: exact_match
+    - name: user_target_domain
+      index: exact_match
+    - name: user_target_email
+      index: exact_match
+    - name: user_target_full_name
+      index: exact_match
+    - name: user_target_id
+      index: exact_match
+    - name: user_target_name
+      index: exact_match

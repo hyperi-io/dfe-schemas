@@ -1,0 +1,254 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of mysql_enterprise.audit at integrations 2c934eb5223b
+    columns:
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_device_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.device_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_fingerprint
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.fingerprint'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_idxhi
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.idxhi'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_idxlo
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.idxlo'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_inode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.inode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_file_vol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.file.vol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: mysqlenterprise_audit_account_host
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysqlenterprise.audit.account.host'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysqlenterprise_audit_account_user
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysqlenterprise.audit.account.user'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysqlenterprise_audit_class
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysqlenterprise.audit.class'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysqlenterprise_audit_connection_data_connection_attributes
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: mysqlenterprise.audit.connection_data.connection_attributes'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: mysqlenterprise_audit_connection_data_connection_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysqlenterprise.audit.connection_data.connection_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysqlenterprise_audit_connection_data_db
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysqlenterprise.audit.connection_data.db'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysqlenterprise_audit_connection_data_status
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: mysqlenterprise.audit.connection_data.status'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: mysqlenterprise_audit_connection_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysqlenterprise.audit.connection_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysqlenterprise_audit_general_data_command
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysqlenterprise.audit.general_data.command'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysqlenterprise_audit_general_data_query
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysqlenterprise.audit.general_data.query'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysqlenterprise_audit_general_data_sql_command
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysqlenterprise.audit.general_data.sql_command'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysqlenterprise_audit_general_data_status
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: mysqlenterprise.audit.general_data.status'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: mysqlenterprise_audit_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysqlenterprise.audit.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysqlenterprise_audit_login_os
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysqlenterprise.audit.login.os'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysqlenterprise_audit_login_proxy
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysqlenterprise.audit.login.proxy'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysqlenterprise_audit_login_user
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysqlenterprise.audit.login.user'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysqlenterprise_audit_shutdown_data_server_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysqlenterprise.audit.shutdown_data.server_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysqlenterprise_audit_startup_data_mysql_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysqlenterprise.audit.startup_data.mysql_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysqlenterprise_audit_startup_data_server_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysqlenterprise.audit.startup_data.server_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysqlenterprise_audit_table_access_data_db
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysqlenterprise.audit.table_access_data.db'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysqlenterprise_audit_table_access_data_query
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysqlenterprise.audit.table_access_data.query'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysqlenterprise_audit_table_access_data_sql_command
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysqlenterprise.audit.table_access_data.sql_command'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mysqlenterprise_audit_table_access_data_table
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mysqlenterprise.audit.table_access_data.table'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

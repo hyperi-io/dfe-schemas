@@ -1,0 +1,749 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of aws_bedrock.invocation at integrations 2c934eb5223b
+    columns:
+    - name: aws_bedrock_invocation_artifacts
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: aws_bedrock.invocation.artifacts'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: aws_bedrock_invocation_error
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_bedrock.invocation.error'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_bedrock_invocation_error_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_bedrock.invocation.error_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_bedrock_invocation_image_generation_config_cfg_scale
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_bedrock.invocation.image_generation_config.cfg_scale'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: aws_bedrock_invocation_image_generation_config_height
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_bedrock.invocation.image_generation_config.height'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_bedrock_invocation_image_generation_config_number_of_images
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_bedrock.invocation.image_generation_config.number_of_images'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_bedrock_invocation_image_generation_config_quality
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_bedrock.invocation.image_generation_config.quality'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_bedrock_invocation_image_generation_config_seed
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_bedrock.invocation.image_generation_config.seed'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_bedrock_invocation_image_generation_config_width
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_bedrock.invocation.image_generation_config.width'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_bedrock_invocation_image_variation_params_images
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_bedrock.invocation.image_variation_params.images'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_bedrock_invocation_image_variation_params_text
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_bedrock.invocation.image_variation_params.text'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_bedrock_invocation_images
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_bedrock.invocation.images'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_bedrock_invocation_input_input_body_json
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: aws_bedrock.invocation.input.input_body_json'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: aws_bedrock_invocation_input_input_body_json_massive_hash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_bedrock.invocation.input.input_body_json_massive_hash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_bedrock_invocation_input_input_body_json_massive_length
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_bedrock.invocation.input.input_body_json_massive_length'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_bedrock_invocation_input_input_body_s3_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_bedrock.invocation.input.input_body_s3_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_bedrock_invocation_input_input_content_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_bedrock.invocation.input.input_content_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_bedrock_invocation_input_input_token_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_bedrock.invocation.input.input_token_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_bedrock_invocation_input_messages_content_kinds
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_bedrock.invocation.input.messages_content_kinds'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_bedrock_invocation_messages_content_text
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: aws_bedrock.invocation.messages.content.text'
+      comment: 'Elasticsearch mapping type: match_only_text'
+      _field_type: base
+    - name: aws_bedrock_invocation_messages_content_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_bedrock.invocation.messages.content.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_bedrock_invocation_messages_role
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_bedrock.invocation.messages.role'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_bedrock_invocation_model_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_bedrock.invocation.model_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_bedrock_invocation_output_completion_text
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: aws_bedrock.invocation.output.completion_text'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: aws_bedrock_invocation_output_output_body_json
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: aws_bedrock.invocation.output.output_body_json'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: aws_bedrock_invocation_output_output_body_s3_path
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_bedrock.invocation.output.output_body_s3_path'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_bedrock_invocation_output_output_content_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_bedrock.invocation.output.output_content_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_bedrock_invocation_output_output_token_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: aws_bedrock.invocation.output.output_token_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: aws_bedrock_invocation_request_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_bedrock.invocation.request_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_bedrock_invocation_result
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_bedrock.invocation.result'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_bedrock_invocation_schema_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_bedrock.invocation.schema_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_bedrock_invocation_schema_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_bedrock.invocation.schema_version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_bedrock_invocation_system_text
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: aws_bedrock.invocation.system.text'
+      comment: 'Elasticsearch mapping type: match_only_text'
+      _field_type: base
+    - name: aws_bedrock_invocation_system_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_bedrock.invocation.system.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_bedrock_invocation_task_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws_bedrock.invocation.task_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_cloudwatch_message
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: aws.cloudwatch.message'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: aws_s3_bucket_arn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.arn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_bucket_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.bucket.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: aws_s3_object_key
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: aws.s3.object.key'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gen_ai_analysis_action_recommended
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gen_ai.analysis.action_recommended'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gen_ai_analysis_findings
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: gen_ai.analysis.findings'
+      comment: 'Elasticsearch mapping type: nested'
+      _field_type: base
+    - name: gen_ai_analysis_function
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gen_ai.analysis.function'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gen_ai_analysis_tool_names
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gen_ai.analysis.tool_names'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gen_ai_completion
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: gen_ai.completion'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: gen_ai_compliance_request_triggered
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gen_ai.compliance.request_triggered'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gen_ai_compliance_response_triggered
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gen_ai.compliance.response_triggered'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gen_ai_compliance_violation_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gen_ai.compliance.violation_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gen_ai_compliance_violation_detected
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: gen_ai.compliance.violation_detected'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: gen_ai_guardrail_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gen_ai.guardrail_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gen_ai_owasp_description
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: gen_ai.owasp.description'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: gen_ai_owasp_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gen_ai.owasp.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gen_ai_performance_request_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gen_ai.performance.request_size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gen_ai_performance_response_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gen_ai.performance.response_size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gen_ai_performance_response_time
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gen_ai.performance.response_time'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gen_ai_performance_start_response_time
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gen_ai.performance.start_response_time'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: gen_ai_policy_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gen_ai.policy.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gen_ai_policy_confidence
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gen_ai.policy.confidence'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gen_ai_policy_match_detail
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: gen_ai.policy.match_detail'
+      comment: 'Elasticsearch mapping type: group'
+      _field_type: base
+    - name: gen_ai_policy_match_detail_score
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gen_ai.policy.match_detail.score'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: gen_ai_policy_match_detail_threshold
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gen_ai.policy.match_detail.threshold'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: gen_ai_policy_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gen_ai.policy.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gen_ai_policy_violation
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: gen_ai.policy.violation'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: gen_ai_prompt
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: gen_ai.prompt'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: gen_ai_request_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gen_ai.request.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gen_ai_request_model_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gen_ai.request.model.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gen_ai_request_model_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gen_ai.request.model.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gen_ai_request_model_instructions
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: gen_ai.request.model.instructions'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: gen_ai_request_model_role
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gen_ai.request.model.role'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gen_ai_request_model_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gen_ai.request.model.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gen_ai_request_model_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gen_ai.request.model.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gen_ai_request_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gen_ai.request.timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: gen_ai_response_error_code
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gen_ai.response.error_code'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gen_ai_response_timestamp
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gen_ai.response.timestamp'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: gen_ai_security_hallucination_consistency
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gen_ai.security.hallucination_consistency'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: gen_ai_security_jailbreak_score
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gen_ai.security.jailbreak_score'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: gen_ai_security_prompt_injection_score
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gen_ai.security.prompt_injection_score'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: gen_ai_security_refusal_score
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gen_ai.security.refusal_score'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: gen_ai_security_regex_pattern_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gen_ai.security.regex_pattern_count'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: gen_ai_sentiment_content_categories
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gen_ai.sentiment.content_categories'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gen_ai_sentiment_content_inappropriate
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: gen_ai.sentiment.content_inappropriate'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: gen_ai_sentiment_score
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gen_ai.sentiment.score'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: gen_ai_sentiment_toxicity_score
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gen_ai.sentiment.toxicity_score'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: gen_ai_system
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gen_ai.system'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gen_ai_text_complexity_score
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gen_ai.text.complexity_score'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: gen_ai_text_readability_score
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gen_ai.text.readability_score'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: gen_ai_text_similarity_score
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gen_ai.text.similarity_score'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: gen_ai_threat_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gen_ai.threat.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gen_ai_threat_category
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gen_ai.threat.category'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gen_ai_threat_description
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: gen_ai.threat.description'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: gen_ai_threat_detected
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: gen_ai.threat.detected'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: gen_ai_threat_risk_score
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gen_ai.threat.risk_score'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: gen_ai_threat_signature
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gen_ai.threat.signature'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gen_ai_threat_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gen_ai.threat.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gen_ai_threat_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gen_ai.threat.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gen_ai_threat_yara_matches
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: gen_ai.threat.yara_matches'
+      comment: 'Elasticsearch mapping type: nested'
+      _field_type: base
+    - name: gen_ai_usage_completion_tokens
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gen_ai.usage.completion_tokens'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: gen_ai_usage_prompt_tokens
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: gen_ai.usage.prompt_tokens'
+      comment: 'Elasticsearch mapping type: integer'
+      _field_type: base
+    - name: gen_ai_user_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gen_ai.user.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: gen_ai_user_rn
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: gen_ai.user.rn'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

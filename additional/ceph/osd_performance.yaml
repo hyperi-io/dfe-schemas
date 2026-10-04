@@ -1,0 +1,36 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of ceph.osd_performance at integrations 2c934eb5223b
+    columns:
+    - name: ceph_osd_performance_latency_apply_ms
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ceph.osd_performance.latency.apply.ms'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: ceph_osd_performance_latency_commit_ms
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ceph.osd_performance.latency.commit.ms'
+      comment: 'Elasticsearch mapping type: float'
+      _field_type: base
+    - name: ceph_osd_performance_osd_id
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ceph.osd_performance.osd_id'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

@@ -1,0 +1,1262 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of cyberark_pta.events at integrations 2c934eb5223b
+    columns:
+    - name: cef_device_event_class_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.device.event_class_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_device_product
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.device.product'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_device_vendor
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.device.vendor'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_device_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.device.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_TrendMicroDsDetectionConfidence
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.TrendMicroDsDetectionConfidence'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_TrendMicroDsFileMD5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.TrendMicroDsFileMD5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_TrendMicroDsFileSHA1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.TrendMicroDsFileSHA1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_TrendMicroDsFileSHA256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.TrendMicroDsFileSHA256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_TrendMicroDsFrameType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.TrendMicroDsFrameType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_TrendMicroDsMalwareTarget
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.TrendMicroDsMalwareTarget'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_TrendMicroDsMalwareTargetType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.TrendMicroDsMalwareTargetType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_TrendMicroDsPacketData
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.TrendMicroDsPacketData'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_TrendMicroDsRelevantDetectionNames
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.TrendMicroDsRelevantDetectionNames'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_TrendMicroDsTenant
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.TrendMicroDsTenant'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_TrendMicroDsTenantId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.TrendMicroDsTenantId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_ad
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: cef.extensions.ad'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: cef_extensions_agentAddress
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cef.extensions.agentAddress'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: cef_extensions_agentHostName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.agentHostName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_agentId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.agentId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_agentMacAddress
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.agentMacAddress'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_agentReceiptTime
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cef.extensions.agentReceiptTime'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: cef_extensions_agentTimeZone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.agentTimeZone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_agentType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.agentType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_agentVersion
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.agentVersion'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_agentZoneURI
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.agentZoneURI'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_aggregationType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.aggregationType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_applicationProtocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.applicationProtocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_assetCriticality
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.assetCriticality'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_baseEventCount
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cef.extensions.baseEventCount'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cef_extensions_bytesIn
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cef.extensions.bytesIn'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cef_extensions_bytesOut
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cef.extensions.bytesOut'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cef_extensions_categoryBehavior
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.categoryBehavior'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_categoryDeviceGroup
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.categoryDeviceGroup'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_categoryDeviceType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.categoryDeviceType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_categoryObject
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.categoryObject'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_categoryOutcome
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.categoryOutcome'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_categorySignificance
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.categorySignificance'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_categoryTechnique
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.categoryTechnique'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_cp_app_risk
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.cp_app_risk'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_cp_severity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.cp_severity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_destinationAddress
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cef.extensions.destinationAddress'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: cef_extensions_destinationHostName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.destinationHostName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_destinationMacAddress
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.destinationMacAddress'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_destinationNtDomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.destinationNtDomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_destinationPort
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cef.extensions.destinationPort'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cef_extensions_destinationServiceName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.destinationServiceName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_destinationTranslatedAddress
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cef.extensions.destinationTranslatedAddress'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: cef_extensions_destinationTranslatedPort
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cef.extensions.destinationTranslatedPort'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cef_extensions_destinationUserName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.destinationUserName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_destinationUserPrivileges
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.destinationUserPrivileges'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_deviceAction
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.deviceAction'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_deviceAddress
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cef.extensions.deviceAddress'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: cef_extensions_deviceAssetId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.deviceAssetId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_deviceCustomDate1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.deviceCustomDate1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_deviceCustomDate1Label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.deviceCustomDate1Label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_deviceCustomDate2
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.deviceCustomDate2'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_deviceCustomDate2Label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.deviceCustomDate2Label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_deviceCustomIPv6Address1
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cef.extensions.deviceCustomIPv6Address1'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: cef_extensions_deviceCustomIPv6Address1Label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.deviceCustomIPv6Address1Label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_deviceCustomIPv6Address2
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cef.extensions.deviceCustomIPv6Address2'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: cef_extensions_deviceCustomIPv6Address2Label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.deviceCustomIPv6Address2Label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_deviceCustomIPv6Address3
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cef.extensions.deviceCustomIPv6Address3'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: cef_extensions_deviceCustomIPv6Address3Label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.deviceCustomIPv6Address3Label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_deviceCustomIPv6Address4
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cef.extensions.deviceCustomIPv6Address4'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: cef_extensions_deviceCustomIPv6Address4Label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.deviceCustomIPv6Address4Label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_deviceCustomNumber1
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cef.extensions.deviceCustomNumber1'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cef_extensions_deviceCustomNumber1Label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.deviceCustomNumber1Label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_deviceCustomNumber2
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cef.extensions.deviceCustomNumber2'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cef_extensions_deviceCustomNumber2Label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.deviceCustomNumber2Label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_deviceCustomNumber3
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cef.extensions.deviceCustomNumber3'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cef_extensions_deviceCustomNumber3Label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.deviceCustomNumber3Label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_deviceCustomString1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.deviceCustomString1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_deviceCustomString1Label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.deviceCustomString1Label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_deviceCustomString2
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.deviceCustomString2'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_deviceCustomString2Label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.deviceCustomString2Label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_deviceCustomString3
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.deviceCustomString3'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_deviceCustomString3Label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.deviceCustomString3Label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_deviceCustomString4
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.deviceCustomString4'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_deviceCustomString4Label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.deviceCustomString4Label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_deviceCustomString5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.deviceCustomString5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_deviceCustomString5Label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.deviceCustomString5Label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_deviceCustomString6
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.deviceCustomString6'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_deviceCustomString6Label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.deviceCustomString6Label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_deviceDirection
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cef.extensions.deviceDirection'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cef_extensions_deviceEventCategory
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.deviceEventCategory'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_deviceExternalId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.deviceExternalId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_deviceFacility
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.deviceFacility'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_deviceHostName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.deviceHostName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_deviceInboundInterface
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.deviceInboundInterface'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_deviceOutboundInterface
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.deviceOutboundInterface'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_deviceProcessName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.deviceProcessName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_deviceReceiptTime
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.deviceReceiptTime'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_deviceSeverity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.deviceSeverity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_deviceTimeZone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.deviceTimeZone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_deviceZoneID
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.deviceZoneID'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_deviceZoneURI
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.deviceZoneURI'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_dvc
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cef.extensions.dvc'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: cef_extensions_dvchost
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.dvchost'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_eventAnnotationAuditTrail
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.eventAnnotationAuditTrail'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_eventAnnotationEndTime
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cef.extensions.eventAnnotationEndTime'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: cef_extensions_eventAnnotationFlags
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.eventAnnotationFlags'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_eventAnnotationManagerReceiptTime
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cef.extensions.eventAnnotationManagerReceiptTime'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: cef_extensions_eventAnnotationModificationTime
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cef.extensions.eventAnnotationModificationTime'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: cef_extensions_eventAnnotationStageUpdateTime
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cef.extensions.eventAnnotationStageUpdateTime'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: cef_extensions_eventAnnotationVersion
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.eventAnnotationVersion'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_eventId
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cef.extensions.eventId'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cef_extensions_fileHash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.fileHash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_filePath
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.filePath'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_fileSize
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cef.extensions.fileSize'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cef_extensions_fileType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.fileType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_filename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.filename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_ifname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.ifname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_inzone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.inzone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_layer_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.layer_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_layer_uuid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.layer_uuid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_locality
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.locality'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_logid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.logid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_loguid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.loguid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_managerReceiptTime
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cef.extensions.managerReceiptTime'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: cef_extensions_match_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.match_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_message
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.message'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_method
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.method'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_modelConfidence
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.modelConfidence'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_nat_addtnl_rulenum
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.nat_addtnl_rulenum'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_nat_rulenum
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.nat_rulenum'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_oldFileHash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.oldFileHash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_origin
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.origin'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_originalAgentAddress
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.originalAgentAddress'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_originalAgentHostName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.originalAgentHostName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_originalAgentId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.originalAgentId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_originalAgentType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.originalAgentType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_originalAgentVersion
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.originalAgentVersion'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_originalAgentZoneURI
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.originalAgentZoneURI'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_originsicname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.originsicname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_outzone
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.outzone'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_parent_rule
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.parent_rule'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_priority
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.priority'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_product
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.product'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_relevance
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.relevance'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_repeatCount
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.repeatCount'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_requestContext
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.requestContext'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_requestMethod
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.requestMethod'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_requestUrl
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.requestUrl'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_requestUrlFileName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.requestUrlFileName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_rule_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.rule_action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_rule_uid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.rule_uid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_sequencenum
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.sequencenum'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_service_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.service_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_severity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.severity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_sourceAddress
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cef.extensions.sourceAddress'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: cef_extensions_sourceGeoLatitude
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cef.extensions.sourceGeoLatitude'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cef_extensions_sourceGeoLongitude
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cef.extensions.sourceGeoLongitude'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cef_extensions_sourceHostName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.sourceHostName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_sourceMacAddress
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.sourceMacAddress'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_sourceNtDomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.sourceNtDomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_sourcePort
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cef.extensions.sourcePort'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cef_extensions_sourceServiceName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.sourceServiceName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_sourceTranslatedAddress
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: cef.extensions.sourceTranslatedAddress'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: cef_extensions_sourceTranslatedPort
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cef.extensions.sourceTranslatedPort'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cef_extensions_sourceTranslatedZoneID
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.sourceTranslatedZoneID'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_sourceTranslatedZoneURI
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.sourceTranslatedZoneURI'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_sourceUserId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.sourceUserId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_sourceUserName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.sourceUserName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_sourceUserPrivileges
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.sourceUserPrivileges'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_sourceZoneID
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.sourceZoneID'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_sourceZoneURI
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.sourceZoneURI'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_startTime
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cef.extensions.startTime'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: cef_extensions_target
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.target'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_transportProtocol
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.transportProtocol'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_extensions_type
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: cef.extensions.type'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: cef_extensions_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.extensions.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_severity
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.severity'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cef_version
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cef.version'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: cyberark_pta_log_event_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cyberark_pta.log.event_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: destination_service_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: destination.service.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_source_address
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: log.source.address'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: source_service_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: source.service.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

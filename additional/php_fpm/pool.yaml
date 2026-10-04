@@ -1,0 +1,113 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of php_fpm.pool at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: php_fpm_pool_connections_accepted
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: php_fpm.pool.connections.accepted'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: php_fpm_pool_connections_listen_queue_max_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: php_fpm.pool.connections.listen_queue.max_size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: php_fpm_pool_connections_listen_queue_requests_max
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: php_fpm.pool.connections.listen_queue.requests.max'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: php_fpm_pool_connections_queued
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: php_fpm.pool.connections.queued'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: php_fpm_pool_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: php_fpm.pool.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: php_fpm_pool_process_manager_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: php_fpm.pool.process_manager.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: php_fpm_pool_processes_active_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: php_fpm.pool.processes.active.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: php_fpm_pool_processes_active_max
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: php_fpm.pool.processes.active.max'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: php_fpm_pool_processes_children_reached_max
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: php_fpm.pool.processes.children_reached.max'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: php_fpm_pool_processes_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: php_fpm.pool.processes.count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: php_fpm_pool_processes_idle
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: php_fpm.pool.processes.idle'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: php_fpm_pool_slow_requests
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: php_fpm.pool.slow_requests'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: php_fpm_pool_start_since
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: php_fpm.pool.start_since'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: php_fpm_pool_start_time
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: php_fpm.pool.start_time'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

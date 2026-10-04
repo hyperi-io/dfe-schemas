@@ -1,0 +1,463 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of ironscales.incident at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ironscales_incident_affected_mailboxes_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ironscales.incident.affected_mailboxes_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: ironscales_incident_assignee
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ironscales.incident.assignee'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ironscales_incident_attachments_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ironscales.incident.attachments_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: ironscales_incident_attachments_file_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ironscales.incident.attachments.file_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ironscales_incident_attachments_file_size
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ironscales.incident.attachments.file_size'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: ironscales_incident_attachments_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ironscales.incident.attachments.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ironscales_incident_attachments_scan_result
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ironscales.incident.attachments.scan_result'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ironscales_incident_banner_displayed
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ironscales.incident.banner_displayed'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ironscales_incident_challenged_events_property1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ironscales.incident.challenged_events.property1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ironscales_incident_challenged_events_property2
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ironscales.incident.challenged_events.property2'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ironscales_incident_challenged_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ironscales.incident.challenged_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ironscales_incident_classification
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ironscales.incident.classification'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ironscales_incident_comments_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ironscales.incident.comments_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: ironscales_incident_company_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ironscales.incident.company_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ironscales_incident_company_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ironscales.incident.company_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ironscales_incident_created
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ironscales.incident.created'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: ironscales_incident_detailed_classification
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ironscales.incident.detailed_classification'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ironscales_incident_email_body_text
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: ironscales.incident.email_body_text'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: ironscales_incident_email_subject
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ironscales.incident.email_subject'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ironscales_incident_federation_companies_affected
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ironscales.incident.federation.companies_affected'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: ironscales_incident_federation_companies_marked_fp
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ironscales.incident.federation.companies_marked_fp'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: ironscales_incident_federation_companies_marked_phishing
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ironscales.incident.federation.companies_marked_phishing'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: ironscales_incident_federation_companies_marked_spam
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ironscales.incident.federation.companies_marked_spam'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: ironscales_incident_federation_companies_unclassified
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ironscales.incident.federation.companies_unclassified'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: ironscales_incident_federation_phishing_ratio
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ironscales.incident.federation.phishing_ratio'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: ironscales_incident_first_challenged_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ironscales.incident.first_challenged_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: ironscales_incident_first_reported_by
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ironscales.incident.first_reported_by'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ironscales_incident_first_reported_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ironscales.incident.first_reported_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: ironscales_incident_incident_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ironscales.incident.incident_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ironscales_incident_incident_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ironscales.incident.incident_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ironscales_incident_latest_email_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ironscales.incident.latest_email_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: ironscales_incident_links_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ironscales.incident.links_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: ironscales_incident_links_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ironscales.incident.links.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ironscales_incident_links_scan_result
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ironscales.incident.links.scan_result'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ironscales_incident_links_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ironscales.incident.links.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ironscales_incident_mail_server_host
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ironscales.incident.mail_server.host'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ironscales_incident_mail_server_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: ironscales.incident.mail_server.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: ironscales_incident_original_email_body
+      type: text
+      cardinality: unknown
+      use_case: word_search
+      expr: '@source: ironscales.incident.original_email_body'
+      comment: 'Elasticsearch mapping type: text'
+      _field_type: base
+    - name: ironscales_incident_recipient_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ironscales.incident.recipient_email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ironscales_incident_recipient_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ironscales.incident.recipient_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ironscales_incident_related_incidents
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ironscales.incident.related_incidents'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: ironscales_incident_release_request_count
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ironscales.incident.release_request_count'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: ironscales_incident_reply_to
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ironscales.incident.reply_to'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ironscales_incident_reported_by
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ironscales.incident.reported_by'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ironscales_incident_reported_by_end_user
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: ironscales.incident.reported_by_end_user'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: ironscales_incident_reporter_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ironscales.incident.reporter_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ironscales_incident_reports_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ironscales.incident.reports.email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ironscales_incident_reports_headers_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ironscales.incident.reports.headers.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ironscales_incident_reports_headers_value
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ironscales.incident.reports.headers.value'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ironscales_incident_reports_mail_server_host
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ironscales.incident.reports.mail_server.host'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ironscales_incident_reports_mail_server_ip
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: ironscales.incident.reports.mail_server.ip'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: ironscales_incident_reports_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ironscales.incident.reports.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ironscales_incident_reports_sender_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ironscales.incident.reports.sender_email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ironscales_incident_reports_subject
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ironscales.incident.reports.subject'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ironscales_incident_resolved_by
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ironscales.incident.resolved_by'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ironscales_incident_sender_email
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ironscales.incident.sender_email'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ironscales_incident_sender_is_internal
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: ironscales.incident.sender_is_internal'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: ironscales_incident_sender_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ironscales.incident.sender_name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ironscales_incident_sender_reputation
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ironscales.incident.sender_reputation'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ironscales_incident_spf_result
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ironscales.incident.spf_result'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ironscales_incident_themis_proba
+      type: float
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ironscales.incident.themis_proba'
+      comment: 'Elasticsearch mapping type: double'
+      _field_type: base
+    - name: ironscales_incident_themis_verdict
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ironscales.incident.themis_verdict'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: labels_is_transform_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: labels.is_transform_source'
+      comment: 'Elasticsearch mapping type: constant_keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

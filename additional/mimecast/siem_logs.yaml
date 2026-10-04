@@ -1,0 +1,870 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of mimecast.siem_logs at integrations 2c934eb5223b
+    columns:
+    - name: cloud_image_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: cloud.image.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_containerized
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: host.containerized'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: host_os_build
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.build'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: host_os_codename
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: host.os.codename'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: mimecast_AttCnt
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: mimecast.AttCnt'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: mimecast_AttNames
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.AttNames'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_Attempt
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: mimecast.Attempt'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: mimecast_CustomName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.CustomName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_CustomThreatDictionary
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.CustomThreatDictionary'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_CustomerIP
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.CustomerIP'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_Hits
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.Hits'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_Hostname
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.Hostname'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_IPInternalName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.IPInternalName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_IPNewDomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.IPNewDomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_IPReplyMismatch
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.IPReplyMismatch'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_IPSimilarDomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.IPSimilarDomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_IPThreadDict
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.IPThreadDict'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_InternalName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.InternalName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_Latency
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: mimecast.Latency'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: mimecast_MimecastIP
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.MimecastIP'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_MsgId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.MsgId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_MsgSize
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: mimecast.MsgSize'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: mimecast_RcptActType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.RcptActType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_RcptHdrType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.RcptHdrType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_ReceiptAck
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.ReceiptAck'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_Recipient
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.Recipient'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_ReplyMismatch
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.ReplyMismatch'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_Route
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.Route'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_ScanResultInfo
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.ScanResultInfo'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_SenderDomainInternal
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.SenderDomainInternal'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_SimilarCustomExternalDomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.SimilarCustomExternalDomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_SimilarInternalDomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.SimilarInternalDomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_SimilarMimecastExternalDomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.SimilarMimecastExternalDomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_Snt
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: mimecast.Snt'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: mimecast_SpamInfo
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.SpamInfo'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_SpamLimit
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: mimecast.SpamLimit'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: mimecast_SpamProcessingDetail
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: mimecast.SpamProcessingDetail'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: mimecast_SpamScore
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: mimecast.SpamScore'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: mimecast_Subject
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.Subject'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_TaggedExternal
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.TaggedExternal'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_TaggedMalicious
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.TaggedMalicious'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_ThreatDictionary
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.ThreatDictionary'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_UrlCategory
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.UrlCategory'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_Virus
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.Virus'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_acc
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.acc'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_accountId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.accountId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_aggregateId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.aggregateId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_analysis
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.analysis'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_attachments
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.attachments'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_blockReason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.blockReason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_credentialTheft
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.credentialTheft'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_customNameMatch
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.customNameMatch'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_customThreatDictionary
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.customThreatDictionary'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_customerIp
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.customerIp'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_delivered
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.delivered'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_delivery
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.delivery'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_deliveryAttempts
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.deliveryAttempts'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_deliveryErrors
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.deliveryErrors'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_deliveryTime
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.deliveryTime'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_destinationIp
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.destinationIp'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_direction
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.direction'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_emailSize
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.emailSize'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_fileExtension
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.fileExtension'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_fileName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.fileName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_holdReason
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.holdReason'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_internalUserName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.internalUserName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_ipNewDomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.ipNewDomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_ipReplyMismatch
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.ipReplyMismatch'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_ipSimilarDomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.ipSimilarDomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_ipThreatDictionary
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.ipThreatDictionary'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_ipUserName
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.ipUserName'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_itemsDetected
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.itemsDetected'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_log_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.log_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_md5
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.md5'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_messageId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.messageId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_mimecastThreatDictionary
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.mimecastThreatDictionary'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_monitoredDomainSource
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.monitoredDomainSource'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_msgid
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.msgid'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_newDomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.newDomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_numberAttachments
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.numberAttachments'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_policyDefinition
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.policyDefinition'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_processingId
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.processingId'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_receiptErrors
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.receiptErrors'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_recipients
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.recipients'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_rejectionCode
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.rejectionCode'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_rejectionInfo
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.rejectionInfo'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_rejectionType
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.rejectionType'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_replyMismatch
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.replyMismatch'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_route
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.route'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_scanResults
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.scanResults'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_senderDomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.senderDomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_senderDomainInternal
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.senderDomainInternal'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_senderEnvelope
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.senderEnvelope'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_senderHeader
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.senderHeader'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_senderIp
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.senderIp'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_sha1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.sha1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_sha256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.sha256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_similarCustomExternalDomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.similarCustomExternalDomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_similarDomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.similarDomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_similarInternalDomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.similarInternalDomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_similarMimecastExternalDomain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.similarMimecastExternalDomain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_similarMimecastExternalDomainResults
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.similarMimecastExternalDomainResults'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_sizeAttachment
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.sizeAttachment'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_sourceIp
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.sourceIp'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_spamDetectionLevel
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.spamDetectionLevel'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_spamInfo
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.spamInfo'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_spamProcessingDetail
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.spamProcessingDetail'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_spamScore
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.spamScore'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_subject
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.subject'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_subtype
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.subtype'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_taggedExternal
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: mimecast.taggedExternal'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: mimecast_taggedMalicious
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: mimecast.taggedMalicious'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: mimecast_timestamp
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.timestamp'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_tlsCipher
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.tlsCipher'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_tlsUsed
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.tlsUsed'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_tlsVersion
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.tlsVersion'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_totalSizeAttachments
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.totalSizeAttachments'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_urlCategory
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.urlCategory'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: mimecast_virusFound
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: mimecast.virusFound'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

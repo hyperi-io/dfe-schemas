@@ -1,0 +1,459 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of ti_flashpoint.alert at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: ti_flashpoint_alert_created_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ti_flashpoint.alert.created_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: ti_flashpoint_alert_data_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.data_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_generated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ti_flashpoint.alert.generated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: ti_flashpoint_alert_highlight_text
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.highlight_text'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_highlights_body_text/plain
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.highlights.body.text/plain'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_highlights_container_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.highlights.container.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_highlights_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.highlights.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_highlights_site_actor_names_aliases
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.highlights.site_actor.names.aliases'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_highlights_site_actor_names_handle
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.highlights.site_actor.names.handle'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_highlights_site_title
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.highlights.site.title'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_highlights_title
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.highlights.title'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_is_read
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: ti_flashpoint.alert.is_read'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: ti_flashpoint_alert_parent_data_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.parent_data_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_reason_details_params_exclude
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: ti_flashpoint.alert.reason.details.params.exclude'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: ti_flashpoint_alert_reason_details_params_include_date_end
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.reason.details.params.include.date.end'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_reason_details_params_include_date_label
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.reason.details.params.include.date.label'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_reason_details_params_include_date_start
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.reason.details.params.include.date.start'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_reason_details_sources
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.reason.details.sources'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_reason_entity
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: ti_flashpoint.alert.reason.entity'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base
+    - name: ti_flashpoint_alert_reason_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.reason.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_reason_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.reason.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_reason_origin
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.reason.origin'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_reason_text
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.reason.text'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_resource_author
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.resource.author'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_resource_authors
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.resource.authors'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_resource_basetypes
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.resource.basetypes'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_resource_container_container_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.resource.container.container.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_resource_container_container_native_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.resource.container.container.native_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_resource_container_container_title
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.resource.container.container.title'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_resource_container_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.resource.container.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_resource_container_native_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.resource.container.native_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_resource_container_server
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.resource.container.server'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_resource_container_title
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.resource.container.title'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_resource_country
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.resource.country'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_resource_created_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ti_flashpoint.alert.resource.created_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: ti_flashpoint_alert_resource_description
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.resource.description'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_resource_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.resource.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_resource_link
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.resource.link'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_resource_media_v2_image_enrichment_enrichments_v1_image_analysis_safe_search_adult
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ti_flashpoint.alert.resource.media_v2.image_enrichment.enrichments.v1.image_analysis.safe_search.adult'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: ti_flashpoint_alert_resource_media_v2_image_enrichment_enrichments_v1_image_analysis_safe_search_medical
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ti_flashpoint.alert.resource.media_v2.image_enrichment.enrichments.v1.image_analysis.safe_search.medical'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: ti_flashpoint_alert_resource_media_v2_image_enrichment_enrichments_v1_image_analysis_safe_search_racy
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ti_flashpoint.alert.resource.media_v2.image_enrichment.enrichments.v1.image_analysis.safe_search.racy'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: ti_flashpoint_alert_resource_media_v2_image_enrichment_enrichments_v1_image_analysis_safe_search_spoof
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ti_flashpoint.alert.resource.media_v2.image_enrichment.enrichments.v1.image_analysis.safe_search.spoof'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: ti_flashpoint_alert_resource_media_v2_image_enrichment_enrichments_v1_image_analysis_safe_search_violence
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ti_flashpoint.alert.resource.media_v2.image_enrichment.enrichments.v1.image_analysis.safe_search.violence'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: ti_flashpoint_alert_resource_media_v2_media_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.resource.media_v2.media_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_resource_media_v2_mime_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.resource.media_v2.mime_type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_resource_media_v2_phash
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.resource.media_v2.phash'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_resource_media_v2_phash256
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.resource.media_v2.phash256'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_resource_media_v2_sha1
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.resource.media_v2.sha1'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_resource_media_v2_storage_uri
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.resource.media_v2.storage_uri'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_resource_parent_basetypes
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.resource.parent_basetypes'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_resource_report_summary
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.resource.report.summary'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_resource_report_title
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.resource.report.title'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_resource_section
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.resource.section'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_resource_site_actor_names_handle
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.resource.site_actor.names.handle'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_resource_site_actor_native_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.resource.site_actor.native_id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_resource_site_title
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.resource.site.title'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_resource_sort_date
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: ti_flashpoint.alert.resource.sort_date'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: ti_flashpoint_alert_resource_title
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.resource.title'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_source
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.source'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_status
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: ti_flashpoint.alert.status'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: ti_flashpoint_alert_tags
+      type: json
+      attribute:
+      - not_null
+      cardinality: unknown
+      expr: '@source: ti_flashpoint.alert.tags'
+      comment: 'Elasticsearch mapping type: flattened'
+      _field_type: base

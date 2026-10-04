@@ -1,0 +1,57 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of kolide.deprovisioned_person at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_deprovisioned_person_api_url
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.deprovisioned_person.api_url'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_deprovisioned_person_created_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: kolide.deprovisioned_person.created_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: kolide_deprovisioned_person_has_registered_device
+      type: boolean
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: kolide.deprovisioned_person.has_registered_device'
+      comment: 'Elasticsearch mapping type: boolean'
+      _field_type: base
+    - name: kolide_deprovisioned_person_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: kolide.deprovisioned_person.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: kolide_deprovisioned_person_last_authenticated_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: kolide.deprovisioned_person.last_authenticated_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base

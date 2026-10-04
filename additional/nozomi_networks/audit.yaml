@@ -1,0 +1,99 @@
+current: "1.0.0"
+resource_type: core
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: Vendor fields of nozomi_networks.audit at integrations 2c934eb5223b
+    columns:
+    - name: input_type
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: input.type'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: log_offset
+      type: integer
+      cardinality: unknown
+      use_case: range
+      expr: '@source: log.offset'
+      comment: 'Elasticsearch mapping type: long'
+      _field_type: base
+    - name: nozomi_networks_audit_action
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.audit.action'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_audit_browser
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.audit.browser'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_audit_controller
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.audit.controller'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_audit_details
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.audit.details'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_audit_event
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.audit.event'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_audit_id
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.audit.id'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_audit_ip_address
+      type: ip
+      cardinality: unknown
+      use_case: dimension
+      expr: '@source: nozomi_networks.audit.ip_address'
+      comment: 'Elasticsearch mapping type: ip'
+      _field_type: base
+    - name: nozomi_networks_audit_name
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.audit.name'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base
+    - name: nozomi_networks_audit_record_created_at
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nozomi_networks.audit.record_created_at'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: nozomi_networks_audit_time
+      type: datetime
+      cardinality: unknown
+      use_case: range
+      expr: '@source: nozomi_networks.audit.time'
+      comment: 'Elasticsearch mapping type: date'
+      _field_type: base
+    - name: nozomi_networks_audit_username
+      type: string
+      cardinality: unknown
+      use_case: exact_match
+      expr: '@source: nozomi_networks.audit.username'
+      comment: 'Elasticsearch mapping type: keyword'
+      _field_type: base

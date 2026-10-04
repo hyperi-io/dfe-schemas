@@ -1,0 +1,23 @@
+# Meta schema: Azure Entra ID directory audits
+#
+# Microsoft Graph `auditLogs/directoryAudits`, one row per element of `value`,
+# as dfe-fetcher's `azure` profile lands it (unit `entra_directory_audits`). The
+# columns are the fields dfe-fetcher's own fixture for the unit asserts
+# (crates/fetcher/tests/integration/source_azure.rs); widen this schema only
+# with a field that fixture lands.
+
+current: "1.0.0"
+resource_type: core
+
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: "Initial Entra ID directory audits schema"
+    columns:
+      - name: event_id
+        type: string
+        use_case: exact_match
+        expr: "@source: id"
+        comment: "Directory audit record identifier"
+        _field_type: base

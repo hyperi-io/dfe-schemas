@@ -1,0 +1,30 @@
+# Meta schema: AWS Health
+#
+# AWS Health events, one row per element of `DescribeEvents` `events`, as
+# dfe-fetcher's `aws` profile lands it (unit `health`). The columns are the
+# fields dfe-fetcher's own fixture for the unit asserts
+# (crates/fetcher/tests/integration/source_aws.rs); widen this schema only with
+# a field that fixture lands.
+
+current: "1.0.0"
+resource_type: core
+
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: "Initial AWS Health events schema"
+    columns:
+      - name: event_arn
+        type: string
+        use_case: exact_match
+        expr: "@source: arn"
+        comment: "ARN of the Health event"
+        _field_type: base
+
+      - name: service
+        type: string
+        use_case: dimension
+        expr: "@source: service"
+        comment: "AWS service the event concerns, e.g. EC2"
+        _field_type: base

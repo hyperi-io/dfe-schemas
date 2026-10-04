@@ -1,0 +1,23 @@
+# Meta schema: Azure Entra ID provisioning
+#
+# Microsoft Graph `auditLogs/provisioning`, one row per element of `value`, as
+# dfe-fetcher's `azure` profile lands it (unit `entra_provisioning`). The
+# columns are the fields dfe-fetcher's own fixture for the unit asserts
+# (crates/fetcher/tests/integration/source_azure.rs); widen this schema only
+# with a field that fixture lands.
+
+current: "1.0.0"
+resource_type: core
+
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: "Initial Entra ID provisioning schema"
+    columns:
+      - name: event_id
+        type: string
+        use_case: exact_match
+        expr: "@source: id"
+        comment: "Provisioning record identifier"
+        _field_type: base

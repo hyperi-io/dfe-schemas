@@ -1,0 +1,44 @@
+# Meta schema: Microsoft 365 Exchange audit
+#
+# Office 365 Management Activity API `Audit.Exchange` records, one row per
+# record of each content blob, as dfe-fetcher's `m365` profile lands it (unit
+# `exchange_audit`). The columns are the fields dfe-fetcher's own fixture for
+# the unit asserts (crates/fetcher/tests/integration/source_m365.rs); widen this
+# schema only with a field that fixture lands.
+
+current: "1.0.0"
+resource_type: core
+
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: "Initial Exchange audit schema"
+    columns:
+      - name: event_id
+        type: string
+        use_case: exact_match
+        expr: "@source: Id"
+        comment: "Audit record identifier"
+        _field_type: base
+
+      - name: operation
+        type: string
+        use_case: dimension
+        expr: "@source: Operation"
+        comment: "Operation performed"
+        _field_type: base
+
+      - name: workload
+        type: string
+        use_case: dimension
+        expr: "@source: Workload"
+        comment: "Microsoft 365 workload that recorded the operation"
+        _field_type: base
+
+      - name: user_id
+        type: string
+        use_case: dimension
+        expr: "@source: UserId"
+        comment: "User that performed the operation"
+        _field_type: base

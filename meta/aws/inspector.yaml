@@ -1,0 +1,30 @@
+# Meta schema: AWS Inspector
+#
+# Inspector v2 findings, one row per element of `ListFindings` `findings`, as
+# dfe-fetcher's `aws` profile lands it (unit `inspector`). The columns are the
+# fields dfe-fetcher's own fixture for the unit asserts
+# (crates/fetcher/tests/integration/source_aws.rs); widen this schema only with
+# a field that fixture lands.
+
+current: "1.0.0"
+resource_type: core
+
+versions:
+  "1.0.0":
+    date: "2026-10-04"
+    type: model
+    summary: "Initial Inspector v2 findings schema"
+    columns:
+      - name: finding_arn
+        type: string
+        use_case: exact_match
+        expr: "@source: findingArn"
+        comment: "ARN of the finding"
+        _field_type: base
+
+      - name: severity
+        type: string
+        use_case: dimension
+        expr: "@source: severity"
+        comment: "Severity label, e.g. HIGH"
+        _field_type: base

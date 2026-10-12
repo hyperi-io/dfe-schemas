@@ -17,18 +17,21 @@ cluster would read as drifted against every single node, and the migration
 ledger would say the schema changed on a deploy that changed nothing.
 """
 
-from __future__ import annotations
-
 import pytest
 
 import dfe_schemas
 from dfe_schemas.clickhouse import Topology
+from dfe_schemas.deploy_defaults import JSON_TABLE_SETTINGS
 from dfe_schemas.loader import SchemaError
 from dfe_schemas.manifest import load_manifest
 from dfe_schemas.render import Renderer, checksum, qualified_name, referenced_objects
 
 ROOT = dfe_schemas.schemas_root()
 TOPOLOGIES = (Topology.SINGLE, Topology.REPLICATED, Topology.REPLICATED_ON_CLUSTER)
+
+# The manifest tables that carry a JSON column; every other table carries none.
+JSON_TABLES = {"data.main", "data.detection", "data.otel_logs"}
+MERGE_CAP = "merge_max_dynamic_subcolumns_in_wide_part"
 
 
 @pytest.fixture(scope="module")
@@ -131,6 +134,32 @@ def test_a_declared_retention_beats_the_deployment_default(manifest):
         .statements[0]
     )
     assert "INTERVAL 30 DAY" in sql
+
+
+def _settings_clause(sql: str) -> str:
+    """The SETTINGS clause of a rendered CREATE TABLE, up to the table COMMENT."""
+    _, sep, tail = sql.partition("\nSETTINGS\n")
+    assert sep, f"no SETTINGS clause in:\n{sql}"
+    return tail.split("\nCOMMENT ", 1)[0]
+
+
+def test_a_json_table_caps_the_subcolumns_a_merge_writes(rendered):
+    """Uncapped, a merge over map-shaped JSON keys writes a stream per key and runs out of memory."""
+    for topology in TOPOLOGIES:
+        for object_id in sorted(JSON_TABLES):
+            clause = _settings_clause(rendered[topology][object_id].statements[0])
+            assert f"{MERGE_CAP} = " in clause, f"{object_id} ({topology}) has no {MERGE_CAP}"
+            for name, value in JSON_TABLE_SETTINGS.items():
+                assert f"{name} = {value}" in clause, f"{object_id} ({topology}): {clause}"
+
+
+def test_a_table_without_a_json_column_carries_no_json_setting(rendered, manifest):
+    """The cap means nothing without a JSON column, so it stays off every other table."""
+    tables = [obj.id for obj in manifest.objects if obj.kind == "table"]
+    assert set(tables) > JSON_TABLES
+    for object_id in tables:
+        clause = _settings_clause(rendered[Topology.SINGLE][object_id].statements[0])
+        assert (MERGE_CAP in clause) is (object_id in JSON_TABLES), f"{object_id}: {clause}"
 
 
 def test_the_ledger_carries_no_ttl(rendered):

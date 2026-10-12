@@ -30,6 +30,7 @@ from pathlib import Path
 from typing import Any
 
 from dfe_schemas.clickhouse import EngineSpec, Topology, parse_engine, render_engine
+from dfe_schemas.deploy_defaults import json_table_settings
 from dfe_schemas.loader import (
     LOW_CARDINALITY,
     Column,
@@ -457,6 +458,10 @@ class Renderer:
             # retain data forever; those need the row-level delete instead.
             aligned = bool(partition) and all(col in partition for col in config.ttl_columns)
             settings.append(f"ttl_only_drop_parts = {int(aligned)}")
+        column_types = [self._registry.resolve(column).ch_type for column in columns]
+        settings.extend(
+            f"{key} = {value}" for key, value in json_table_settings(column_types).items()
+        )
         lines.append("SETTINGS\n    " + ",\n    ".join(settings))
 
         if table_comment:

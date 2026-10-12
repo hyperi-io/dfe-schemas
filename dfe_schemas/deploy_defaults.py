@@ -14,8 +14,13 @@ and the single-node ``users.d`` overlay) and dfe-docker's
 ``clickhouse/default-user.xml`` each carry a rendering of this dict; this is
 the declared source those renderings mirror, and what a future config
 renderer consumes directly.
+
+``JSON_TABLE_SETTINGS`` is table-level instead: every renderer of a table with
+a JSON column emits it, and dfe-engine reconciles it onto tables that exist.
 """
 
+import re
+from collections.abc import Iterable
 from typing import Any
 
 # Applied to the DEFAULT settings profile -- the base every identity
@@ -41,3 +46,32 @@ SERVER_CONFIG: dict[str, Any] = {  # noqa: V107 - public API
         "select_from_information_schema_requires_grant": True,
     },
 }
+
+# MergeTree settings for a table with a JSON column: uncapped, a merge writes one
+# stream per dynamic subcolumn, which map-shaped keys push past the server's
+# memory limit.
+JSON_TABLE_SETTINGS: dict[str, int] = {
+    "merge_max_dynamic_subcolumns_in_wide_part": 64,
+}
+
+_QUOTED_LITERAL = re.compile(r"'(?:[^'\\]|\\.)*'")
+_JSON_TYPE = re.compile(r"\bJSON\b", re.IGNORECASE)
+
+
+def json_table_settings(column_types: Iterable[str]) -> dict[str, int]:
+    """The SETTINGS a table carries for its JSON columns, given every column's type.
+
+    A copy of :data:`JSON_TABLE_SETTINGS` when any type is or wraps ``JSON``, and
+    empty otherwise. Quoted literals are dropped first, so an ``Enum8('JSON' = 1)``
+    label does not read as a JSON column.
+
+    Args:
+        column_types: The full ClickHouse type of each column, as rendered.
+
+    Returns:
+        Setting name to value, ready for the table's ``SETTINGS`` clause.
+    """
+    for ch_type in column_types:
+        if _JSON_TYPE.search(_QUOTED_LITERAL.sub("", ch_type)):
+            return dict(JSON_TABLE_SETTINGS)
+    return {}

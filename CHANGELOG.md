@@ -3,6 +3,12 @@
 Rendered by CI and committed back at the end of a release -- do not edit by
 hand. Release notes also appear on the GitHub Releases page, one per tag.
 
+## [0.2.10](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.9...v0.2.10) (2026-10-12)
+
+### Bug Fixes
+
+* cap the dynamic subcolumns a JSON table's merge writes ([#66](https://github.com/hyperi-io/dfe-schemas/issues/66)) ([1861555](https://github.com/hyperi-io/dfe-schemas/commit/186155502e30306f42ded558df2658d27bc625ad))
+
 ## [0.2.9](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.8...v0.2.9) (2026-10-06)
 
 ### Bug Fixes

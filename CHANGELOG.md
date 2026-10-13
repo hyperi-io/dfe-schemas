@@ -3,6 +3,12 @@
 Rendered by CI and committed back at the end of a release -- do not edit by
 hand. Release notes also appear on the GitHub Releases page, one per tag.
 
+## [0.2.11](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.10...v0.2.11) (2026-10-13)
+
+### Bug Fixes
+
+* promote data_stream.dataset in meta/beats/filebeat ([#69](https://github.com/hyperi-io/dfe-schemas/issues/69)) ([a0d62e0](https://github.com/hyperi-io/dfe-schemas/commit/a0d62e08b1654b5b5ef0b487cf8a5dd3428c179c))
+
 ## [0.2.10](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.9...v0.2.10) (2026-10-12)
 
 ### Bug Fixes

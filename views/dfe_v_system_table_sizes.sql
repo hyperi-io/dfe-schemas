@@ -9,7 +9,7 @@ SELECT
     count() AS parts
 FROM system.parts
 WHERE active
-  AND database = {org_id:String}
+  AND database = '{db}'
 GROUP BY database, `table`
 ORDER BY sum(bytes_on_disk) DESC
 LIMIT {limit:UInt32}

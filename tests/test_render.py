@@ -90,6 +90,14 @@ def test_a_view_is_replaced_cluster_wide(rendered):
     )
 
 
+@pytest.mark.parametrize("view", ["view.dfe_v_system_health", "view.dfe_v_system_table_sizes"])
+def test_the_system_views_measure_the_data_database_not_an_org(rendered, view):
+    """An org id is a tenant id, never a database name."""
+    sql = rendered[Topology.SINGLE][view].statements[0]
+    assert "database = 'dfe'" in sql
+    assert "org_id" not in sql
+
+
 def test_engine_parameters_survive_replication(rendered):
     """Dropping a version column changes merge behaviour, silently."""
     sql = rendered[Topology.REPLICATED]["data.alert_state"].statements[0]

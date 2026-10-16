@@ -3,6 +3,12 @@
 Rendered by CI and committed back at the end of a release -- do not edit by
 hand. Release notes also appear on the GitHub Releases page, one per tag.
 
+## [0.2.12](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.11...v0.2.12) (2026-10-16)
+
+### Bug Fixes
+
+* system views measure the data database ([#72](https://github.com/hyperi-io/dfe-schemas/issues/72)) ([95a28bd](https://github.com/hyperi-io/dfe-schemas/commit/95a28bdb06d2649902593dd8e3bc189cc0b79a01))
+
 ## [0.2.11](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.10...v0.2.11) (2026-10-13)
 
 ### Bug Fixes

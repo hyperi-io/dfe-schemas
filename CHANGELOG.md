@@ -3,6 +3,13 @@
 Rendered by CI and committed back at the end of a release -- do not edit by
 hand. Release notes also appear on the GitHub Releases page, one per tag.
 
+## [0.2.13](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.12...v0.2.13) (2026-10-17)
+
+### Bug Fixes
+
+* **deps:** update actions/create-github-app-token action to v3.3.0 ([#70](https://github.com/hyperi-io/dfe-schemas/issues/70)) ([884c8e2](https://github.com/hyperi-io/dfe-schemas/commit/884c8e249a4a40466f75aabe1daec3bb61ae83e6))
+* **security:** give each app its own CH role ([#73](https://github.com/hyperi-io/dfe-schemas/issues/73)) ([64316d9](https://github.com/hyperi-io/dfe-schemas/commit/64316d979a99d5f48e9171c0aff6595fc7269387))
+
 ## [0.2.12](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.11...v0.2.12) (2026-10-16)
 
 ### Bug Fixes

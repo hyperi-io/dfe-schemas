@@ -424,6 +424,16 @@ objects:
     additive: true
     depends_on: [db.data]
 
+  - id: role.otel_writer
+    kind: role
+    database: data
+    defines: roles/clickhouse
+    section: service_roles
+    key: otel_writer
+    topology: fixed
+    additive: true
+    depends_on: [db.data]
+
   - id: role.otel_reader
     kind: role
     database: data

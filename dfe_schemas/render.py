@@ -184,11 +184,14 @@ def referenced_objects(rendered: RenderedObject) -> set[str]:
 
     Only ``<database>.<object>`` counts. A bare name resolves against whichever
     database the connection is on and a quoted one is a string literal, so
-    neither is a reference anything can check from the text.
+    neither is a reference anything can check from the text. A grant's
+    table-prefix wildcard (``dfe.otel_*``) names no one object either.
     """
     if rendered.database is None:
         return set()
-    pattern = re.compile(rf"(?<!')\b{re.escape(rendered.database)}\.`?([A-Za-z_][A-Za-z0-9_]*)`?")
+    pattern = re.compile(
+        rf"(?<!')\b{re.escape(rendered.database)}\.`?([A-Za-z_][A-Za-z0-9_]*)`?(?![A-Za-z0-9_*])"
+    )
     found = {
         f"{rendered.database}.{name}"
         for statement in rendered.statements

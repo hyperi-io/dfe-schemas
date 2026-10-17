@@ -286,6 +286,23 @@ def test_a_reference_to_an_undeclared_object_is_visible():
     assert referenced_objects(rendered) == {"dfe.gone"}
 
 
+def test_a_grant_wildcard_names_no_object():
+    from dfe_schemas.render import RenderedObject
+
+    rendered = RenderedObject(
+        id="role.x",
+        kind="role",
+        database="dfe",
+        name="x",
+        topology="fixed",
+        additive=True,
+        optional=False,
+        statements=("GRANT INSERT ON dfe.otel_* TO `r`", "GRANT SELECT ON dfe.kept TO `r`"),
+        checksum="",
+    )
+    assert referenced_objects(rendered) == {"dfe.kept"}
+
+
 def test_an_unknown_kind_does_not_render(manifest):
     from dataclasses import replace
 

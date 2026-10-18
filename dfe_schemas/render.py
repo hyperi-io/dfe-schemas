@@ -150,7 +150,7 @@ _QUOTED_LITERAL_RE = re.compile(r"'(?:[^'\\]|\\.)*'")
 _ON_CLUSTER_WORDS_RE = re.compile(r"\bON\s+CLUSTER\b", re.IGNORECASE)
 _ENGINE_NAME_RE = re.compile(r"\bENGINE\s*=\s*([A-Za-z_][A-Za-z0-9_]*)", re.IGNORECASE)
 # Two literal leading arguments are a Keeper path and a replica name, which a
-# Replicated database refuses (code 36). Read after literals are blanked to ''.
+# Replicated database refuses (code 36, or 80 with no macros). Read after literals are blanked.
 _EXPLICIT_KEEPER_PATH_RE = re.compile(
     r"\bENGINE\s*=\s*(Replicated[A-Za-z]*MergeTree)\s*\(\s*''\s*,\s*''", re.IGNORECASE
 )

@@ -20,9 +20,7 @@ CREATE DATABASE IF NOT EXISTS dfe ON CLUSTER '{cluster}'
 ENGINE = Replicated('/clickhouse/databases/dfe', '{shard}', '{replica}')
 ```
 
-Inside a Replicated database ClickHouse refuses `ON CLUSTER` on a table outright (code 80), so nothing else may carry it. It also refuses a Keeper path and replica name written into the engine (code 36). `scripts/render_manifest.py` and `tests/test_render.py` fail the build on any table that is not `Replicated*`, any table naming its own Keeper path, and any other statement carrying `ON CLUSTER`.
-
-The Replicated engines deduplicate an insert block byte-identical to a recent one (`insert_deduplicate`), and so a single node now deduplicates too, where plain `MergeTree`'s window was 0. That absorbs only a resend of the same block. A retry that `async_insert` coalesces with other rows forms a different block and lands again, so at-least-once delivery can still store a duplicate, and that is accepted. A writer whose identical rows must all land, such as a ledger, sends `insert_deduplicate = 0`.
+Inside a Replicated database ClickHouse refuses `ON CLUSTER` on a table outright (code 80), so nothing else may carry it. It also refuses a Keeper path and replica name written into the engine (code 36, or 80 when the path names no macros). `scripts/render_manifest.py` and `tests/test_render.py` fail the build on any table that is not `Replicated*`, any table naming its own Keeper path, and any other statement carrying `ON CLUSTER`.
 
 Self-hosted ClickHouse therefore needs Keeper (embedded `keeper_server` on a single node, an ensemble on a cluster), the `{cluster}`, `{shard}` and `{replica}` macros, and a `remote_servers` cluster named by `{cluster}`. A single node declares a cluster of one. Keeper's data lives on the same persistent volume as ClickHouse's: lose one without the other and every replicated table goes read-only until `SYSTEM RESTORE REPLICA`.
 
@@ -52,6 +50,12 @@ A server missing any of these is refused at startup with a message naming what i
     </user_directories>
 </clickhouse>
 ```
+
+## Inserts deduplicate
+
+The Replicated engines drop an insert whose data is byte-identical to a recent one, and so a single node now deduplicates too, where plain `MergeTree`'s window was 0. That absorbs only a resend of the same data. An async insert is hashed per insert, so a resend is caught even when `async_insert` coalesces it with other rows (measured on 26.3). A retry that re-batches its rows with new ones is different data and lands again, so at-least-once delivery can still store a duplicate, and that is accepted.
+
+On 26.3 `deduplicate_insert` (default `enable`) overrides `insert_deduplicate` and `async_insert_deduplicate`, so `insert_deduplicate = 0` alone no longer turns it off. A writer whose identical rows must all land, such as a ledger, sends `deduplicate_insert = 'disable'`.
 
 ## The probe, and the SQL it picks from
 

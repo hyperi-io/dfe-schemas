@@ -66,8 +66,9 @@ not, so two parsers over one schema tree gives two answers.
 | `__init__.py` | `schemas_root()` and `manifest_path()` -- the only path resolution |
 | `manifest.py` | Reads the manifest and refuses a bad one |
 | `loader.py` | Version trees, the two column shapes, composition, the type registry, `quote_ident` |
-| `clickhouse.py` | Topology sensing, and the `ENGINE` / `ON CLUSTER` forms |
-| `render.py` | One object to statements, for one topology, with a checksum |
+| `clickhouse.py` | The platform probe, the Keeper refusal and the one `ENGINE` form |
+| `variants.py` | Picks one platform's block out of `sql/platform.sql`, knowing nothing of ClickHouse |
+| `render.py` | One object to statements, for one platform, with a checksum, and the one-DDL gate |
 | `topics.py` | The Kafka naming rule, defaults and bootstrap set |
 | `deploy_defaults.py` | The declared deployment defaults |
 
@@ -103,26 +104,28 @@ it earn nothing.
 
 ## Rendering
 
-### Topology is a parameter, never a literal
+### One DDL, and the platform is probed
 
-The same definition renders three ways: plain for a keeperless node,
-`Replicated` for a Replicated database or ClickHouse Cloud, and `Replicated`
-plus `ON CLUSTER` for an Atomic database on a real cluster. The topology is
-sensed from the live server where there is one, and otherwise taken from the
-deployment's setting.
+Every table renders the argumentless `Replicated<variant>` engine with no
+`ON CLUSTER`, inside a database that replicates its own DDL. Cloud rewrites the
+engine to `SharedMergeTree`, and a self-hosted server without Keeper is refused
+rather than given a plain form. The CREATE DATABASE and a JSON table's
+platform-only settings are the only difference, written once per platform in
+`dfe_schemas/sql/platform.sql` and picked by one probe per connection.
+`docs/clickhouse-platform.md` has the detail.
 
-This is the whole reason rendering happens here rather than in a definition. A
-literal engine is correct on a single node and lands on ONE replica of a
-cluster, where every query succeeds and the answer depends which node answered.
+This is the reason rendering happens here rather than in a definition. A literal
+plain engine is accepted on a cluster and lands on ONE replica, where every
+query succeeds and the answer depends which node answered.
 
-### Checksums ignore the topology
+### Checksums ignore the platform
 
 Every rendered object carries a sha256 checksum taken over the statement with
-the topology token removed -- the `ON CLUSTER` suffix, the `Replicated` prefix
-and the empty argument list that goes with it -- and whitespace collapsed. One
-schema therefore reads as one checksum whether it was applied to a single node
-or to a cluster, which is what lets the applier's ledger answer "has this object
-changed" rather than "was it applied somewhere else".
+the platform token removed -- the database's `ON CLUSTER` and `ENGINE`, a
+table's `Replicated` prefix or empty argument list, and the platform-only
+settings -- and whitespace collapsed. One schema therefore reads as one checksum
+on Cloud and on self-hosted ClickHouse, which is what lets the applier's ledger
+answer "has this object changed" rather than "was it applied somewhere else".
 
 A `.sql` view's opening comment block is stripped before the statement is
 checksummed. Left in, a reworded comment would read as a changed view on every

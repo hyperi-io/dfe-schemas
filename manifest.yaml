@@ -15,8 +15,8 @@
 #               that renamed its own does not have
 #   defines     the definition file, relative to the schemas root, without a
 #               suffix. Absent where the object needs none
-#   topology    `resolved` renders per topology (single, replicated,
-#               replicated_on_cluster); `fixed` renders the same everywhere
+#   topology    `resolved` renders per ClickHouse platform (cloud,
+#               self_hosted); `fixed` renders the same everywhere
 #   additive    whether an additive change to this object may be applied
 #               automatically. A changed type, ORDER BY, PARTITION BY, TTL or
 #               codec is drift either way and is refused
@@ -39,13 +39,6 @@ parameters:
     description: Retention for a time-series table that declares none
     setting: DFE_CLICKHOUSE_DEFAULT_TTL_DAYS
     default: 90
-  topology:
-    description: >-
-      single, replicated or replicated_on_cluster. Sensed from the live server
-      where there is one; this setting is the fallback and never emits ON
-      CLUSTER on its own.
-    setting: DFE_CLICKHOUSE_TOPOLOGY
-    default: single
   kafka_tiered_storage:
     description: >-
       Whether this deployment's broker moves closed log segments to object
@@ -322,7 +315,7 @@ objects:
   # -- roles, profiles, quotas and grants ----------------------------------
   #
   # ClickHouse access objects are cluster-wide state, not per-database, so they
-  # render the same under every topology. They come after the tables the
+  # render the same on every platform. They come after the tables the
   # tenant row policies are written against.
 
   - id: role.tenant

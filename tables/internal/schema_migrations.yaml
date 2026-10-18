@@ -9,8 +9,8 @@
 #
 # Keyed on (database, object) so the latest row per object wins; `applied_at`
 # is the ReplacingMergeTree version. The checksum is sha256 over the rendered
-# statement with whitespace collapsed and the topology token removed, so the
-# same schema reads the same on a single node and on a cluster.
+# statement with whitespace collapsed and the platform token removed, so the
+# same schema reads the same on ClickHouse Cloud and on self-hosted ClickHouse.
 #
 # No TTL: a ledger that expires cannot answer which version an object came
 # from.
@@ -52,15 +52,15 @@ versions:
       - name: "statement"
         ch_type: "String"
         codec: "ZSTD(3)"
-        comment: "the statement as it ran, topology token included"
+        comment: "the statement as it ran, platform token included"
       - name: "action"
         ch_type: "String"
         lowcardinality: true
         comment: "created, altered or unchanged"
-      - name: "topology"
+      - name: "platform"
         ch_type: "String"
         lowcardinality: true
-        comment: "single, replicated or replicated_on_cluster"
+        comment: "cloud or self_hosted"
       - name: "applied_at"
         ch_type: "DateTime64(3)"
         default: "now64(3)"

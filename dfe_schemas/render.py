@@ -1,26 +1,25 @@
 #  Project:      dfe-schemas
 #  File:         dfe_schemas/render.py
-#  Purpose:      Render every manifest object for a chosen topology, checksummed
+#  Purpose:      Render every manifest object for a ClickHouse platform, checksummed
 #  Language:     Python
 #
 #  License:      BUSL-1.1
 #  Copyright:    (c) 2026 HYPERI PTY LIMITED
 
-"""Turn the manifest into statements, for a topology the caller names.
+"""Turn the manifest into statements, for the ClickHouse platform the caller names.
 
-The topology is a PARAMETER, never a literal in a definition. That is the whole
-point of rendering here: the same table is rendered plain for a keeperless
-node, ``Replicated`` for a Replicated database or Cloud, and ``Replicated`` plus
-``ON CLUSTER`` for an Atomic database on a real cluster, from one definition. A
-literal engine is correct on a single node and lands on one replica of a
-cluster, where every query succeeds and the answer depends which node answered.
+Every table renders one way: the argumentless ``Replicated<variant>`` engine and
+no ``ON CLUSTER``, inside a database that replicates its own DDL. Only the
+CREATE DATABASE and a JSON table's platform-only settings differ between Cloud
+and self-hosted, and :mod:`dfe_schemas.clickhouse` supplies both, so the
+platform is a PARAMETER here and never a literal in a definition.
 
 Every rendered object carries a CHECKSUM. It is taken over the statement with
-the topology token removed -- the ``ON CLUSTER`` suffix, the ``Replicated``
-prefix and the empty argument list that goes with it -- and whitespace
-collapsed, so one schema reads as one checksum whether it was applied to a
-single node or to a cluster. That is what lets the applier's ledger answer
-"has this object changed" rather than "was it applied somewhere else".
+the platform token removed -- the database's ``ON CLUSTER`` and ``ENGINE``, a
+table's ``Replicated`` prefix or empty argument list, and the platform-only
+settings -- and whitespace collapsed, so one schema reads as one checksum on
+either platform. That is what lets the applier's ledger answer "has this object
+changed" rather than "was it applied somewhere else".
 """
 
 import hashlib
@@ -29,7 +28,13 @@ from dataclasses import dataclass, replace
 from pathlib import Path
 from typing import Any
 
-from dfe_schemas.clickhouse import EngineSpec, Topology, parse_engine, render_engine
+from dfe_schemas.clickhouse import (
+    Platform,
+    create_database,
+    engine_clause,
+    parse_engine,
+    platform_only_setting_names,
+)
 from dfe_schemas.deploy_defaults import json_table_settings
 from dfe_schemas.loader import (
     LOW_CARDINALITY,
@@ -52,6 +57,8 @@ __all__ = [
     "RenderedObject",
     "Renderer",
     "checksum",
+    "ddl_violations",
+    "one_ddl_violations",
     "qualified_name",
     "referenced_objects",
     "split_use_case",
@@ -127,30 +134,100 @@ _DEFAULT_PARTITION_COLUMN = "_timestamp_load"
 _DEFAULT_PARTITION_GRANULARITY = "day"
 
 _ON_CLUSTER_RE = re.compile(r"\s+ON CLUSTER\s+\S+")
-# The topology token inside an ENGINE clause: the Replicated prefix, and the
-# empty argument list the single form carries and the replicated form drops.
+# A database's engine: the Replicated database a self-hosted server gets.
+_DATABASE_ENGINE_RE = re.compile(r"\s+ENGINE\s*=\s*Replicated\([^)]*\)")
+# A table's engine with the Replicated prefix and any empty argument list out,
+# so the checksum names the variant alone.
 _ENGINE_RE = re.compile(r"ENGINE = (?:Replicated)?([A-Za-z]*MergeTree)(?:\(\))?")
 
 
+def _platform_settings_re() -> re.Pattern[str]:
+    names = "|".join(re.escape(name) for name in sorted(platform_only_setting_names()))
+    return re.compile(rf",\s*(?:{names})\s*=\s*[^,\n]+")
+
+
+_QUOTED_LITERAL_RE = re.compile(r"'(?:[^'\\]|\\.)*'")
+_ON_CLUSTER_WORDS_RE = re.compile(r"\bON\s+CLUSTER\b", re.IGNORECASE)
+_ENGINE_NAME_RE = re.compile(r"\bENGINE\s*=\s*([A-Za-z_][A-Za-z0-9_]*)", re.IGNORECASE)
+# Two literal leading arguments are a Keeper path and a replica name, which a
+# Replicated database refuses (code 36, or 80 with no macros). Read after literals are blanked.
+_EXPLICIT_KEEPER_PATH_RE = re.compile(
+    r"\bENGINE\s*=\s*(Replicated[A-Za-z]*MergeTree)\s*\(\s*''\s*,\s*''", re.IGNORECASE
+)
+_CREATE_RE = re.compile(
+    r"^\s*CREATE\s+(?:OR\s+REPLACE\s+)?(?P<kind>DATABASE|TABLE|MATERIALIZED\s+VIEW)\b",
+    re.IGNORECASE,
+)
+
+
+def ddl_violations(statement: str) -> list[str]:
+    """Where one statement breaks the one-DDL shape, or an empty list.
+
+    A table, or a materialised view's inner table, must take a ``Replicated*``
+    engine with no Keeper path or replica name of its own, and nothing but a
+    CREATE DATABASE for a Replicated database may carry ``ON CLUSTER``. Comment
+    lines and quoted literals are read past, so a column comment naming an engine
+    is not mistaken for one.
+    """
+    lines = [line for line in statement.splitlines() if not line.lstrip().startswith("--")]
+    text = _QUOTED_LITERAL_RE.sub("''", "\n".join(lines))
+    head = text.strip().splitlines()[0] if text.strip() else ""
+    create = _CREATE_RE.match(text)
+    kind = " ".join(create["kind"].upper().split()) if create else ""
+    engine = _ENGINE_NAME_RE.search(text)
+    problems: list[str] = []
+
+    if _ON_CLUSTER_WORDS_RE.search(text):
+        replicated_database = (
+            kind == "DATABASE" and engine is not None and engine[1] == "Replicated"
+        )
+        if not replicated_database:
+            problems.append(f"carries ON CLUSTER: {head}")
+    if kind == "TABLE":
+        if engine is None:
+            problems.append(f"declares no ENGINE: {head}")
+        elif not engine[1].startswith("Replicated"):
+            problems.append(f"engine {engine[1]} is not Replicated*: {head}")
+    if (
+        kind == "MATERIALIZED VIEW"
+        and engine is not None
+        and not engine[1].startswith("Replicated")
+    ):
+        problems.append(f"inner engine {engine[1]} is not Replicated*: {head}")
+    explicit = _EXPLICIT_KEEPER_PATH_RE.search(text)
+    if explicit is not None:
+        problems.append(f"engine {explicit[1]} names its own Keeper path and replica: {head}")
+    return problems
+
+
+def one_ddl_violations(rendered: RenderedObject) -> list[str]:
+    """Every :func:`ddl_violations` finding across one rendered object's statements."""
+    return [problem for statement in rendered.statements for problem in ddl_violations(statement)]
+
+
 def checksum(statements: tuple[str, ...] | list[str]) -> str:
-    """sha256 over the statements with the topology token out and space collapsed."""
+    """sha256 over the statements with the platform token out and space collapsed."""
+    platform_settings = _platform_settings_re()
     normalised = []
     for statement in statements:
         text = _ON_CLUSTER_RE.sub("", statement)
+        if text.lstrip().upper().startswith("CREATE DATABASE"):
+            text = _DATABASE_ENGINE_RE.sub("", text)
         text = _ENGINE_RE.sub(r"ENGINE = \1", text)
+        text = platform_settings.sub("", text)
         normalised.append(" ".join(text.split()))
     return hashlib.sha256("\n".join(normalised).encode("utf-8")).hexdigest()
 
 
 @dataclass(frozen=True)
 class RenderedObject:
-    """One manifest object, rendered for one topology."""
+    """One manifest object, rendered for one ClickHouse platform."""
 
     id: str
     kind: str
     database: str | None
     name: str
-    topology: str
+    platform: str
     additive: bool
     optional: bool
     statements: tuple[str, ...]
@@ -238,20 +315,19 @@ def _table_config(block: dict[str, Any]) -> _TableConfig:
 
 
 class Renderer:
-    """Renders manifest objects for one topology.
+    """Renders manifest objects for one ClickHouse platform.
 
-    Construct one per topology. ``cluster`` is only read under
-    ``replicated_on_cluster`` -- every other topology fans nothing out.
+    Construct one per platform, which :class:`~dfe_schemas.clickhouse.PlatformProbe`
+    names for a live connection.
     """
 
     def __init__(
         self,
         manifest: Manifest,
         *,
-        topology: Topology = Topology.SINGLE,
+        platform: Platform = Platform.SELF_HOSTED,
         data_database: str = "dfe",
         default_ttl_days: int | None = 90,
-        cluster: str = "dfe_cluster",
         broker_count: int = 1,
         kafka_tiered_storage: bool = False,
     ) -> None:
@@ -259,22 +335,19 @@ class Renderer:
 
         Args:
             manifest: the checked manifest whose objects this renders.
-            topology: the deployment shape, which picks each table's engine form
-                and whether DDL fans out with ``ON CLUSTER``.
+            platform: the ClickHouse platform, which picks the CREATE DATABASE
+                and a JSON table's platform-only settings.
             data_database: the name a parameter-bound database key resolves to.
             default_ttl_days: retention for a time-series table that declares
                 none. None leaves such a table without a TTL.
-            cluster: the cluster ``ON CLUSTER`` names, read only under
-                ``replicated_on_cluster``.
             broker_count: the Kafka broker count topic replication is clamped to.
             kafka_tiered_storage: whether the deployment's brokers tier, so
                 topics in a tiered section render the tiering keys.
         """
         self._manifest = manifest
-        self._topology = topology
+        self._platform = platform
         self._data_database = data_database
         self._default_ttl_days = default_ttl_days
-        self._cluster = cluster
         self._broker_count = broker_count
         self._kafka_tiered_storage = kafka_tiered_storage
         self._root = manifest.root
@@ -316,18 +389,6 @@ class Renderer:
             self._required(obj, "database"), data_database=self._data_database
         )
 
-    def _engine(self, engine: str) -> tuple[str, str]:
-        """The ENGINE clause and the ON CLUSTER suffix for this topology."""
-        rendered = render_engine(parse_engine(engine), self._topology, cluster=self._cluster)
-        return rendered.clause, rendered.on_cluster
-
-    @property
-    def _on_cluster(self) -> str:
-        """The ON CLUSTER suffix for a statement that carries no engine."""
-        return render_engine(
-            EngineSpec("MergeTree"), self._topology, cluster=self._cluster
-        ).on_cluster
-
     def _finish(
         self,
         obj: ManifestObject,
@@ -343,7 +404,7 @@ class Renderer:
             kind=obj.kind,
             database=database,
             name=name,
-            topology=self._topology.value,
+            platform=self._platform.value,
             additive=obj.additive,
             optional=obj.optional,
             statements=frozen,
@@ -354,13 +415,9 @@ class Renderer:
     # -- databases -----------------------------------------------------------
 
     def _render_database(self, obj: ManifestObject) -> RenderedObject:
-        """A database, cluster-wide when the topology fans out.
-
-        Without the suffix here, ON CLUSTER table DDL lands on nodes that have
-        no database to put it in.
-        """
+        """A database that replicates every table DDL issued inside it."""
         database = self._database(obj)
-        statement = f"CREATE DATABASE IF NOT EXISTS {database}{self._on_cluster}"
+        statement = create_database(database, self._platform)
         return self._finish(obj, database, [statement], database=database)
 
     # -- tables --------------------------------------------------------------
@@ -427,11 +484,10 @@ class Renderer:
         config: _TableConfig,
         table_comment: str | None,
     ) -> str:
-        clause, on_cluster = self._engine(config.engine)
         target = f"{quote_ident(database, what='database')}.{quote_ident(name, what='table name')}"
-        lines = [f"CREATE TABLE IF NOT EXISTS {target}{on_cluster}\n("]
+        lines = [f"CREATE TABLE IF NOT EXISTS {target}\n("]
         lines.append(",\n".join(self._body(columns, config)))
-        lines.append(f")\nENGINE = {clause}")
+        lines.append(f")\nENGINE = {engine_clause(parse_engine(config.engine))}")
 
         partition = self._partition(columns, config)
         if partition:
@@ -463,7 +519,8 @@ class Renderer:
             settings.append(f"ttl_only_drop_parts = {int(aligned)}")
         column_types = [self._registry.resolve(column).ch_type for column in columns]
         settings.extend(
-            f"{key} = {value}" for key, value in json_table_settings(column_types).items()
+            f"{key} = {value}"
+            for key, value in json_table_settings(column_types, platform=self._platform).items()
         )
         lines.append("SETTINGS\n    " + ",\n    ".join(settings))
 
@@ -619,7 +676,7 @@ class Renderer:
         name = view["name"]
         select = view["select"].format(db=database)
         statement = (
-            f"CREATE MATERIALIZED VIEW IF NOT EXISTS {database}.{name}{self._on_cluster} "
+            f"CREATE MATERIALIZED VIEW IF NOT EXISTS {database}.{name} "
             f"TO {database}.{view['to']} AS\n{select}"
         )
         return self._finish(obj, name, [statement], database=database)
@@ -627,10 +684,8 @@ class Renderer:
     def _render_view(self, obj: ManifestObject) -> RenderedObject:
         """A plain view, plus the SELECT grant its reader role needs.
 
-        The header line must be exactly ``CREATE OR REPLACE VIEW {db}.<name>``:
-        that is where the ON CLUSTER suffix goes, and without it a view is
-        created on the ONE node the connection landed on while the siblings
-        behind a headless Service silently diverge.
+        The header line must be exactly ``CREATE OR REPLACE VIEW {db}.<name>``,
+        so the rendered name is the one the manifest declares.
         """
         database = self._database(obj)
         defines = self._required(obj, "defines")
@@ -640,9 +695,9 @@ class Renderer:
         header = f"CREATE OR REPLACE VIEW {{db}}.{name}"
         if header not in body:
             raise SchemaError(f"{obj.id}: {path} does not open with {header!r}")
-        statement = body.replace(
-            header, f"CREATE OR REPLACE VIEW {database}.{name}{self._on_cluster}", 1
-        ).replace("{db}", database)
+        statement = body.replace(header, f"CREATE OR REPLACE VIEW {database}.{name}", 1).replace(
+            "{db}", database
+        )
         reader = self._view_reader_role()
         grant = f"GRANT SELECT ON {database}.{name} TO {reader}"
         return self._finish(obj, name, [statement.strip(), grant], database=database)

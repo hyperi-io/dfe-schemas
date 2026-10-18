@@ -11,8 +11,8 @@
 This package is the only place a DFE table, view, TTL, role, grant or Kafka
 bootstrap topic is defined. ``manifest.yaml`` lists every one of them in the
 order they are created; :mod:`dfe_schemas.manifest` reads and checks it, and
-:mod:`dfe_schemas.render` turns it into checksummed statements for a topology
-the caller names.
+:mod:`dfe_schemas.render` turns it into checksummed statements for the
+ClickHouse platform :mod:`dfe_schemas.clickhouse` probes.
 
 Installed as a wheel, the schema trees (``tables/``, ``hunts/``,
 ``common-header/``, ``meta/``, ``additional/``, ``sources/``, ``registries/``,
@@ -20,8 +20,6 @@ Installed as a wheel, the schema trees (``tables/``, ``hunts/``,
 ``manifest.yaml``; in a git checkout the same trees sit at the repository root.
 :func:`schemas_root` resolves either.
 """
-
-from __future__ import annotations
 
 from importlib.metadata import PackageNotFoundError, version
 from pathlib import Path

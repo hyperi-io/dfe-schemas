@@ -20,15 +20,17 @@ pip install dfe-schemas
 python -c "import dfe_schemas; print(dfe_schemas.schemas_root())"
 ```
 
-Read the manifest and render it for a topology:
+Read the manifest and render it for the ClickHouse platform a connection reaches:
 
 ```python
-from dfe_schemas.clickhouse import Topology
+from dfe_schemas.clickhouse import PlatformProbe
 from dfe_schemas.manifest import load_manifest
 from dfe_schemas.render import Renderer
 
+probe = PlatformProbe(client, host="clickhouse.example.internal")
+probe.require_replication()  # a self-hosted server without Keeper is refused here
 manifest = load_manifest()
-renderer = Renderer(manifest, topology=Topology.REPLICATED, data_database="dfe")
+renderer = Renderer(manifest, platform=probe.platform, data_database="dfe")
 for obj in manifest.objects:
     rendered = renderer.render(obj)
     print(rendered.id, rendered.checksum[:12])
@@ -45,15 +47,16 @@ export DFE_SCHEMAS_DIR=/opt/dfe/schemas
 ## Checking it
 
 ```bash
-make render      # every object, every topology -- needs only this package
+make render      # every object, every platform -- needs only this package
 make test        # the pytest suite, which does the same and more
 make validate PY=../dfe-engine/.venv/bin/python   # the meta schemas
 ```
 
 `render` is the check that matters for the manifest: it fails on a duplicate
 object name, on a dependency that is unknown or declared after its dependant,
-on a definition that will not render under some topology, and on a checksum
-that differs between topologies.
+on a definition that will not render on some platform, on a table that is not
+`Replicated*` or a table statement carrying `ON CLUSTER`, and on a checksum that
+differs between platforms.
 
 `validate` still borrows dfe-engine's loader for the `meta/` schemas, which is
 the one remaining cross-repo step.
@@ -125,11 +128,12 @@ an app at runtime, not the OTel collector -- the exporter runs with
 `create_schema: false` precisely because it senses no topology and would create
 the same table plain on one replica and Replicated on the others.
 
-Rendering is topology-aware and the topology is a parameter: sensed from the
-live server where there is one, and otherwise the deployment's setting. One
-definition renders plain for a keeperless node, `Replicated` for a Replicated
-database or ClickHouse Cloud, and `Replicated` plus `ON CLUSTER` for an Atomic
-database on a real cluster.
+Every table renders one way on every ClickHouse: the argumentless
+`Replicated<variant>` engine with no `ON CLUSTER`, inside a database that
+replicates its own DDL. Cloud rewrites it to `SharedMergeTree`, and self-hosted
+ClickHouse needs Keeper for it. The platform is probed from the server unless an
+operator pins it, and picks only the CREATE DATABASE and a JSON table's
+platform-only settings. `docs/clickhouse-platform.md` has the pattern.
 
 ## Consumers
 
@@ -188,7 +192,7 @@ touches a database -- this repo supplies definitions and dfe-engine applies them
 | Path | What it holds |
 |------|---------------|
 | `manifest.yaml` | Every object a deployment creates, in dependency order |
-| `dfe_schemas/` | The package: manifest reader, renderer, loader, topology sensing |
+| `dfe_schemas/` | The package: manifest reader, renderer, loader, platform probe, `sql/platform.sql` |
 | `tables/`, `views/`, `roles/`, `topics/` | Definitions in exact ClickHouse types, SQL, the role catalogue, the Kafka policy |
 | `common-header/`, `meta/`, `additional/`, `hunts/` | Definitions in DFE primitives, mapped through `registries/types.yaml` |
 | `registries/` | The allow-lists dfe-engine validates against |
@@ -197,14 +201,14 @@ touches a database -- this repo supplies definitions and dfe-engine applies them
 ### Commands that prove a change
 
 ```bash
-make render      # every object, every topology -- needs only this package
+make render      # every object, every platform -- needs only this package
 make test        # the pytest suite
 make validate PY=../dfe-engine/.venv/bin/python   # the meta schemas
 hyperi-ci check  # the quality gate CI runs
 ```
 
-`make render` needs nothing but this package, and reports 54 objects across 3
-topologies on `origin/main`. Coverage is gated at 80% and measures 92.97%.
+`make render` needs nothing but this package, and reports 55 objects across 2
+platforms. Coverage is gated at 80% and measures 92.97%.
 
 Two ways green lies. `make test` fails on a dirty repo root: the tokenizer guard
 rglobs `schemas_root()`, which in a checkout IS the repo root, and excludes

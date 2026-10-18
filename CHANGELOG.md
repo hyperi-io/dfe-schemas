@@ -3,6 +3,12 @@
 Rendered by CI and committed back at the end of a release -- do not edit by
 hand. Release notes also appear on the GitHub Releases page, one per tag.
 
+## [0.2.14](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.13...v0.2.14) (2026-10-18)
+
+### Bug Fixes
+
+* one DDL shape and a ClickHouse probe ([#74](https://github.com/hyperi-io/dfe-schemas/issues/74)) ([ea72fb0](https://github.com/hyperi-io/dfe-schemas/commit/ea72fb075bdea5e3c91baeb314d88b2c352da830))
+
 ## [0.2.13](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.12...v0.2.13) (2026-10-17)
 
 ### Bug Fixes

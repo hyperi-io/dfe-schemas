@@ -630,20 +630,21 @@ unless `projection_order_by` is set.
 Uncapped, a merge over a JSON column with map-shaped keys writes one stream per
 dynamic subcolumn and runs ClickHouse out of memory. `json_table_settings()` in
 `deploy_defaults.py` decides whether a table carries the cap, after dropping quoted
-literals so an `Enum8('JSON' = 1)` label does not count. Every table renderer
-(`Renderer` for the manifest tables, the engine's `DDLGenerator` for source tables)
-emits it on `CREATE`. dfe-engine also issues `ALTER TABLE ... MODIFY SETTING` on a
-JSON table that exists without it or with another value, on engine start and on a
-source redeploy. A setting the table carries that the declared set omits is left
-alone.
+literals so an `Enum8('JSON' = 1)` label does not count, and adds the platform's own
+JSON settings from `dfe_schemas/sql/platform.sql`
+(`write_marks_for_substreams_in_compact_parts = 0` on self-hosted only). Every table
+renderer (`Renderer` for the manifest tables, the engine's `DDLGenerator` for source
+tables) emits them on `CREATE`. dfe-engine also issues `ALTER TABLE ... MODIFY SETTING`
+on a JSON table that exists without them or with another value, and `RESET SETTING`
+for a platform-only setting the platform does not take, on engine start and on a
+source redeploy. Any other setting the table carries is left alone.
 
 ### DDL Configuration (`DDLConfig`)
 
 | Field | Default | Description |
 |-------|---------|-------------|
 | `db` | `"{db}"` | Database placeholder (replaced at deploy time) |
-| `engine` | `"MergeTree"` | Engine variant, with its arguments if it takes any (`ReplacingMergeTree(ver)`). The `Replicated` prefix comes from the target server, not from this field. |
-| `topology` | `"single"` | `single` or `replicated`. Read only when the generator has no resolver sensing the server. |
+| `engine` | `"MergeTree"` | Engine variant, with its arguments if it takes any (`ReplacingMergeTree(ver)`). The renderer adds the `Replicated` prefix, never this field. |
 | `ttl_days` | `None` | Data retention in days. `None` is undeclared and adds no TTL. `0` declares none. |
 | `ttl_columns` | `["_timestamp_load"]` | Columns used in TTL expressions. The partition column alone, so `ttl_only_drop_parts` can drop whole parts. `ttl_days` over an empty list, or over a column the table lacks, is refused. |
 | `partition_column` | `"_timestamp_load"` | Column `PARTITION BY` is built from. No `PARTITION BY` when the table lacks it. |
@@ -654,7 +655,6 @@ alone.
 | `extra_indexes` | `[]` | Raw `INDEX` definitions appended to the column list. |
 | `index_granularity` | `2048` | ClickHouse granule size |
 | `ttl_only_drop_parts` | `True` | Emit the `ttl_only_drop_parts` setting on a table with a TTL. See Table SETTINGS. |
-| `cluster` | `None` | Pins `ON CLUSTER <name>`. Unset, the clause comes from the server the engine senses. |
 | `sample_by` | `None` | Optional `SAMPLE BY` expression |
 | `projection_order_by` | `None` | Column for a `SELECT * ORDER BY` projection named `<column>_optimized`. Off unless set: on a JSON-heavy table the projection copies every column and doubles the substream metadata ClickHouse holds in memory. |
 | `schema_version` | `None` | Written to the table comment as `@<table>_version`. |

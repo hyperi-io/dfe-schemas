@@ -12,7 +12,7 @@ deployment would create was to read all five.
 | Key | Meaning |
 |---|---|
 | `manifest_version` | The format this file is written in. The reader refuses a version it does not know rather than guessing at the fields. |
-| `parameters` | The deployment values the renderer substitutes: the data database, the default retention, the topology. Each names the setting that supplies it. |
+| `parameters` | The deployment values the renderer substitutes: the data database, the default retention, Kafka tiered storage. Each names the setting that supplies it. The ClickHouse platform is not one of them: it is probed from the server. |
 | `databases` | The databases objects land in, by KEY. A key carries either `parameter` (the deployment supplies the name) or `name` (fixed). |
 | `objects` | The list. |
 
@@ -31,7 +31,7 @@ query it in a database that deployment does not have.
 | `section` / `key` | Where inside `defines` the entry is, for the files that carry several: a role's section in `roles/clickhouse.yaml`, a topic's section in `topics/kafka.yaml`. |
 | `header` | The common-header profile to compose, for a table whose columns come from one. |
 | `compose` | A second definition composed over the header (or used alone), e.g. `hunts/results` for the detection table. |
-| `topology` | `resolved` renders per topology; `fixed` renders the same everywhere. ClickHouse access objects and Kafka topics are `fixed`. |
+| `topology` | `resolved` renders per ClickHouse platform, and `fixed` renders the same everywhere. ClickHouse access objects and Kafka topics are `fixed`. |
 | `additive` | Whether an additive change may be applied automatically. A changed type, ORDER BY, PARTITION BY, TTL or codec is drift either way and is refused. |
 | `optional` | The apply may skip this object without failing the pass. |
 | `depends_on` | Ids declared EARLIER in the list. |
@@ -41,31 +41,23 @@ exists. A view over a table declared after it is an apply that fails on a fresh
 cluster and succeeds on every re-run afterwards -- it only breaks for whoever
 stands one up.
 
-## Topology
+## Platform and checksums
 
-The topology is a parameter the caller names, and never a literal in a
-definition. One table definition renders three ways:
+Every table renders `ENGINE = Replicated<variant>` with no `ON CLUSTER`, on
+ClickHouse Cloud and self-hosted ClickHouse alike. The platform the caller names
+picks only the CREATE DATABASE and a JSON table's platform-only settings.
+`docs/clickhouse-platform.md` has the probe, the SQL variants and what a
+self-hosted server needs.
 
-| Topology | ENGINE | ON CLUSTER |
-|---|---|---|
-| `single` | `MergeTree()` | none |
-| `replicated` | `ReplicatedMergeTree` | none -- a Replicated database propagates DDL itself |
-| `replicated_on_cluster` | `ReplicatedMergeTree` | `" ON CLUSTER <name>"` |
+Every rendered object carries a sha256 over its statements with the platform
+token removed -- the database's `ON CLUSTER` and `ENGINE`, a table's
+`Replicated` prefix or empty argument list, and the platform-only settings --
+and whitespace collapsed.
 
-The replica path and name are never emitted: they come from the server's
-`default_replica_path` and `default_replica_name` macros, which are the
-operator's to set.
-
-## Checksums
-
-Every rendered object carries a sha256 over its statements with the topology
-token removed -- the `ON CLUSTER` suffix, the `Replicated` prefix and the empty
-argument list that goes with it -- and whitespace collapsed.
-
-That is what makes one schema read as one checksum whether it was applied to a
-single node or to a cluster. With the topology in it, every cluster would read
-as drifted against every single node and the migration ledger would report a
-change on a deploy that changed nothing.
+That is what makes one schema read as one checksum on either platform. With the
+platform in it, moving a deployment between Cloud and self-hosted would read as
+drift on every object and the migration ledger would report a change on a
+deploy that changed nothing.
 
 ## What the renderer refuses
 
@@ -73,9 +65,11 @@ change on a deploy that changed nothing.
 
 * a duplicate `id`, or a `depends_on` that is unknown or declared later
 * two objects rendering to the same qualified name
-* a definition that will not render under some topology
+* a definition that will not render on some platform
+* a table whose engine is not `Replicated*`, or a statement other than the
+  self-hosted CREATE DATABASE that carries `ON CLUSTER`
 * a statement naming a `<database>.<object>` the manifest does not declare
-* a checksum that differs between topologies
+* a checksum that differs between platforms
 
 ## Known gaps
 

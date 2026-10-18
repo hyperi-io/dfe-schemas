@@ -9,12 +9,15 @@
 import pytest
 
 import dfe_schemas
+from dfe_schemas.clickhouse import Platform
 from dfe_schemas.deploy_defaults import (
     DEFAULT_PROFILE_SETTINGS,
     JSON_TABLE_SETTINGS,
     SERVER_CONFIG,
     json_table_settings,
 )
+
+WRITE_MARKS = "write_marks_for_substreams_in_compact_parts"
 
 
 def test_schemas_root_finds_the_trees():
@@ -52,7 +55,11 @@ def test_the_json_merge_cap_is_a_positive_count():
     ],
 )
 def test_a_table_with_a_json_column_takes_the_json_settings(column_types):
-    assert json_table_settings(column_types) == JSON_TABLE_SETTINGS
+    assert json_table_settings(column_types, platform=Platform.CLOUD) == JSON_TABLE_SETTINGS
+    assert json_table_settings(column_types, platform=Platform.SELF_HOSTED) == {
+        **JSON_TABLE_SETTINGS,
+        WRITE_MARKS: 0,
+    }
 
 
 @pytest.mark.parametrize(
@@ -66,14 +73,25 @@ def test_a_table_with_a_json_column_takes_the_json_settings(column_types):
     ],
 )
 def test_a_table_without_a_json_column_takes_none(column_types):
-    assert json_table_settings(column_types) == {}
+    for platform in Platform:
+        assert json_table_settings(column_types, platform=platform) == {}
 
 
 def test_the_settings_handed_out_are_a_copy():
     """A caller adding to its table's settings must not change every other table's."""
-    first = json_table_settings(["JSON"])
+    first = json_table_settings(["JSON"], platform=Platform.SELF_HOSTED)
     first["index_granularity"] = 1
-    assert "index_granularity" not in json_table_settings(["JSON"])
+    first[WRITE_MARKS] = 1
+    again = json_table_settings(["JSON"], platform=Platform.SELF_HOSTED)
+    assert "index_granularity" not in again
+    assert again[WRITE_MARKS] == 0
+
+
+def test_the_platform_sql_ships_inside_the_package():
+    """Read by import path, so a DFE_SCHEMAS_DIR pointing at an older tree cannot lose it."""
+    from importlib import resources
+
+    assert (resources.files("dfe_schemas") / "sql" / "platform.sql").is_file()
 
 
 def test_version_attribute_exists():

@@ -47,7 +47,7 @@ versions:
 
 | Key | Meaning |
 |---|---|
-| `engine` | The engine INTENT (`MergeTree`, `ReplacingMergeTree(updated_at)`). Resolved per topology at apply time, which is what adds `Replicated` and `ON CLUSTER`. |
+| `engine` | The engine INTENT (`MergeTree`, `ReplacingMergeTree(updated_at)`). The renderer adds the `Replicated` prefix every DFE table takes, on every platform. |
 | `partition_by` | Raw PARTITION BY expression. |
 | `order_by` | Raw ORDER BY expression. Used when the sorting key is expressions rather than bare columns. |
 | `index_granularity` | Rows per granule. 8192 for range scans, 2048 for point lookups. |

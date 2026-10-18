@@ -16,12 +16,16 @@ the declared source those renderings mirror, and what a future config
 renderer consumes directly.
 
 ``JSON_TABLE_SETTINGS`` is table-level instead: every renderer of a table with
-a JSON column emits it, and dfe-engine reconciles it onto tables that exist.
+a JSON column emits it on every platform, together with the platform-only
+settings :mod:`dfe_schemas.clickhouse` reads from ``sql/platform.sql``, and
+dfe-engine reconciles both onto tables that exist.
 """
 
 import re
 from collections.abc import Iterable
 from typing import Any
+
+from dfe_schemas.clickhouse import Platform, platform_json_settings
 
 # Applied to the DEFAULT settings profile -- the base every identity
 # inherits -- because async_insert is user/query scope with no table-level
@@ -58,20 +62,21 @@ _QUOTED_LITERAL = re.compile(r"'(?:[^'\\]|\\.)*'")
 _JSON_TYPE = re.compile(r"\bJSON\b", re.IGNORECASE)
 
 
-def json_table_settings(column_types: Iterable[str]) -> dict[str, int]:
+def json_table_settings(column_types: Iterable[str], *, platform: Platform) -> dict[str, int]:
     """The SETTINGS a table carries for its JSON columns, given every column's type.
 
-    A copy of :data:`JSON_TABLE_SETTINGS` when any type is or wraps ``JSON``, and
-    empty otherwise. Quoted literals are dropped first, so an ``Enum8('JSON' = 1)``
-    label does not read as a JSON column.
+    :data:`JSON_TABLE_SETTINGS` plus *platform*'s own JSON settings when any type
+    is or wraps ``JSON``, and empty otherwise. Quoted literals are dropped first,
+    so an ``Enum8('JSON' = 1)`` label does not read as a JSON column.
 
     Args:
         column_types: The full ClickHouse type of each column, as rendered.
+        platform: The ClickHouse platform the table is created on.
 
     Returns:
         Setting name to value, ready for the table's ``SETTINGS`` clause.
     """
     for ch_type in column_types:
         if _JSON_TYPE.search(_QUOTED_LITERAL.sub("", ch_type)):
-            return dict(JSON_TABLE_SETTINGS)
+            return {**JSON_TABLE_SETTINGS, **platform_json_settings(platform)}
     return {}

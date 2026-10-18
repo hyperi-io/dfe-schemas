@@ -1,6 +1,6 @@
 # ClickHouse platforms: one probe, one DDL
 
-Every DFE table is created with the same DDL on every ClickHouse. What differs between ClickHouse Cloud and self-hosted ClickHouse is detected from the server, never configured, so pointing a deployment at the other platform works with no setting changed.
+Every DFE table is created with the same DDL on every ClickHouse. What differs between ClickHouse Cloud and self-hosted ClickHouse is detected from the server, so pointing a deployment at the other platform works with no setting changed. An operator can still pin the platform where the probe is wrong for them.
 
 ## One DDL, and what it needs
 
@@ -20,11 +20,15 @@ CREATE DATABASE IF NOT EXISTS dfe ON CLUSTER '{cluster}'
 ENGINE = Replicated('/clickhouse/databases/dfe', '{shard}', '{replica}')
 ```
 
-Inside a Replicated database ClickHouse refuses `ON CLUSTER` on a table outright (code 80), so nothing else may carry it. `scripts/render_manifest.py` and `tests/test_render.py` fail the build on any table that is not `Replicated*` and any other statement carrying `ON CLUSTER`. The Replicated engines also deduplicate an insert block identical to a recent one (`insert_deduplicate`), which is what an at-least-once retry wants.
+Inside a Replicated database ClickHouse refuses `ON CLUSTER` on a table outright (code 80), so nothing else may carry it. It also refuses a Keeper path and replica name written into the engine (code 36). `scripts/render_manifest.py` and `tests/test_render.py` fail the build on any table that is not `Replicated*`, any table naming its own Keeper path, and any other statement carrying `ON CLUSTER`.
+
+The Replicated engines deduplicate an insert block byte-identical to a recent one (`insert_deduplicate`), and so a single node now deduplicates too, where plain `MergeTree`'s window was 0. That absorbs only a resend of the same block. A retry that `async_insert` coalesces with other rows forms a different block and lands again, so at-least-once delivery can still store a duplicate, and that is accepted. A writer whose identical rows must all land, such as a ledger, sends `insert_deduplicate = 0`.
 
 Self-hosted ClickHouse therefore needs Keeper (embedded `keeper_server` on a single node, an ensemble on a cluster), the `{cluster}`, `{shard}` and `{replica}` macros, and a `remote_servers` cluster named by `{cluster}`. A single node declares a cluster of one. Keeper's data lives on the same persistent volume as ClickHouse's: lose one without the other and every replicated table goes read-only until `SYSTEM RESTORE REPLICA`.
 
-A server missing any of these is refused at startup with a message naming what is missing. There is no plain `MergeTree` fallback, because a second engine form is how one table ended up plain on one replica and replicated on the others. A single node, for reference:
+A cluster of more than one server also needs its SQL users and roles in Keeper. DFE creates them once, and a `local_directory` storage keeps them on the one server that ran the statement. The `user_directories` block must REPLACE the default. Appending `<replicated>` leaves `local_directory` ahead of it, and the first writable storage takes every `CREATE ROLE`. A single node may keep local access storage.
+
+A server missing any of these is refused at startup with a message naming what is missing. There is no plain `MergeTree` fallback, because a second engine form is how one table ended up plain on one replica and replicated on the others. A single node, for reference, with the access storage a cluster needs:
 
 ```xml
 <clickhouse>
@@ -42,6 +46,10 @@ A server missing any of these is refused at startup with a message naming what i
     <remote_servers>
         <dfe><shard><replica><host>localhost</host><port>9000</port></replica></shard></dfe>
     </remote_servers>
+    <user_directories replace="replace">
+        <users_xml><path>users.xml</path></users_xml>
+        <replicated><zookeeper_path>/clickhouse/access/</zookeeper_path></replicated>
+    </user_directories>
 </clickhouse>
 ```
 
@@ -49,7 +57,7 @@ A server missing any of these is refused at startup with a message naming what i
 
 `PlatformProbe` names the platform behind one connection and asks the server at most once. First match wins:
 
-1. an override, for a test or a call site that pins it
+1. an override: `cloud` or `self_hosted` from a deployment setting (dfe-engine's `clickhouse.platform`), a test or a call site. `auto` is no override
 2. `SELECT count() FROM system.table_engines WHERE name = 'SharedMergeTree'`, where more than 0 is Cloud
 3. the hostname when there is no client: `*.clickhouse.cloud` or `*.clickhouse-byoc.com` is Cloud
 4. self-hosted

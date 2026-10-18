@@ -149,6 +149,11 @@ def _platform_settings_re() -> re.Pattern[str]:
 _QUOTED_LITERAL_RE = re.compile(r"'(?:[^'\\]|\\.)*'")
 _ON_CLUSTER_WORDS_RE = re.compile(r"\bON\s+CLUSTER\b", re.IGNORECASE)
 _ENGINE_NAME_RE = re.compile(r"\bENGINE\s*=\s*([A-Za-z_][A-Za-z0-9_]*)", re.IGNORECASE)
+# Two literal leading arguments are a Keeper path and a replica name, which a
+# Replicated database refuses (code 36). Read after literals are blanked to ''.
+_EXPLICIT_KEEPER_PATH_RE = re.compile(
+    r"\bENGINE\s*=\s*(Replicated[A-Za-z]*MergeTree)\s*\(\s*''\s*,\s*''", re.IGNORECASE
+)
 _CREATE_RE = re.compile(
     r"^\s*CREATE\s+(?:OR\s+REPLACE\s+)?(?P<kind>DATABASE|TABLE|MATERIALIZED\s+VIEW)\b",
     re.IGNORECASE,
@@ -159,9 +164,10 @@ def ddl_violations(statement: str) -> list[str]:
     """Where one statement breaks the one-DDL shape, or an empty list.
 
     A table, or a materialised view's inner table, must take a ``Replicated*``
-    engine, and nothing but a CREATE DATABASE for a Replicated database may carry
-    ``ON CLUSTER``. Comment lines and quoted literals are read past, so a column
-    comment naming an engine is not mistaken for one.
+    engine with no Keeper path or replica name of its own, and nothing but a
+    CREATE DATABASE for a Replicated database may carry ``ON CLUSTER``. Comment
+    lines and quoted literals are read past, so a column comment naming an engine
+    is not mistaken for one.
     """
     lines = [line for line in statement.splitlines() if not line.lstrip().startswith("--")]
     text = _QUOTED_LITERAL_RE.sub("''", "\n".join(lines))
@@ -188,6 +194,9 @@ def ddl_violations(statement: str) -> list[str]:
         and not engine[1].startswith("Replicated")
     ):
         problems.append(f"inner engine {engine[1]} is not Replicated*: {head}")
+    explicit = _EXPLICIT_KEEPER_PATH_RE.search(text)
+    if explicit is not None:
+        problems.append(f"engine {explicit[1]} names its own Keeper path and replica: {head}")
     return problems
 
 

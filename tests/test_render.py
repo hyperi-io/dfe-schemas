@@ -155,6 +155,21 @@ def test_the_checksum_matches_the_plain_engine_form():
             "CREATE MATERIALIZED VIEW d.mv ENGINE = SummingMergeTree ORDER BY x AS SELECT 1",
             "inner engine SummingMergeTree",
         ),
+        (
+            "CREATE TABLE d.t (x UInt8)\n"
+            "ENGINE = ReplicatedMergeTree('/clickhouse/tables/{shard}/t', '{replica}')\nORDER BY x",
+            "names its own Keeper path",
+        ),
+        (
+            "CREATE TABLE d.t (x UInt8, v UInt8)\n"
+            "ENGINE = ReplicatedReplacingMergeTree( '/zk/t' , 'r1', v)\nORDER BY x",
+            "names its own Keeper path",
+        ),
+        (
+            "CREATE MATERIALIZED VIEW d.mv ENGINE = ReplicatedSummingMergeTree('/zk/mv', '{replica}') "
+            "ORDER BY x AS SELECT 1",
+            "names its own Keeper path",
+        ),
     ],
 )
 def test_the_gate_names_every_way_off_the_one_shape(statement, problem):
@@ -172,6 +187,10 @@ def test_the_gate_names_every_way_off_the_one_shape(statement, problem):
         "ENGINE = Replicated('/clickhouse/databases/d', '{shard}', '{replica}')",
         "CREATE MATERIALIZED VIEW IF NOT EXISTS d.mv TO d.t AS\nSELECT 1",
         "GRANT SELECT ON d.v TO r",
+        # One literal is a Graphite config section, not a Keeper path.
+        "CREATE TABLE d.t (x UInt8)\nENGINE = ReplicatedGraphiteMergeTree('graphite_rollup')\n"
+        "ORDER BY x",
+        "CREATE TABLE d.t (x UInt8, v UInt8)\nENGINE = ReplicatedReplacingMergeTree(v)\nORDER BY x",
     ],
 )
 def test_the_gate_passes_the_one_shape(statement):

@@ -131,9 +131,9 @@ the same table plain on one replica and Replicated on the others.
 Every table renders one way on every ClickHouse: the argumentless
 `Replicated<variant>` engine with no `ON CLUSTER`, inside a database that
 replicates its own DDL. Cloud rewrites it to `SharedMergeTree`, and self-hosted
-ClickHouse needs Keeper for it. The platform is probed from the server, never
-configured, and picks only the CREATE DATABASE and a JSON table's platform-only
-settings. `docs/clickhouse-platform.md` has the pattern.
+ClickHouse needs Keeper for it. The platform is probed from the server unless an
+operator pins it, and picks only the CREATE DATABASE and a JSON table's
+platform-only settings. `docs/clickhouse-platform.md` has the pattern.
 
 ## Consumers
 

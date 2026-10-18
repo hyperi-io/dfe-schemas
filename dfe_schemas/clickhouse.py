@@ -11,9 +11,11 @@
 Every DFE table is created the same way everywhere: the argumentless
 ``Replicated<variant>`` engine, no ``ON CLUSTER``, inside a database that
 replicates its own DDL. ClickHouse Cloud rewrites that engine to
-``SharedMergeTree`` on CREATE. Self-hosted ClickHouse needs Keeper and the
-``{cluster}``, ``{shard}`` and ``{replica}`` macros for it, and a server without
-them is refused rather than handed a second engine form.
+``SharedMergeTree`` on CREATE. Self-hosted ClickHouse needs Keeper, the
+``{cluster}``, ``{shard}`` and ``{replica}`` macros and a ``remote_servers``
+cluster for it, plus access storage in Keeper once that cluster has more than
+one server. A server without them is refused rather than handed a second
+engine form.
 
 What does differ by platform -- the CREATE DATABASE, and the settings a JSON
 table carries only on self-hosted -- is SQL in ``sql/platform.sql``, one variant
@@ -22,7 +24,8 @@ names the platform and the variant follows.
 
 The platform resolves down a cascade, first match wins:
 
-1. an explicit override, for a test or a call site that pins it
+1. an explicit override: a deployment setting, a test or a call site that pins
+   it. ``auto`` is no override
 2. the live probe: ``SharedMergeTree`` in ``system.table_engines`` is Cloud.
    ``cloud_mode`` is not the signal, because it can be set on any server
 3. the hostname, when there is no client: ``*.clickhouse.cloud`` or
@@ -47,12 +50,14 @@ logger = logging.getLogger("dfe_schemas.clickhouse")
 
 __all__ = [
     "CLOUD_HOST_SUFFIXES",
+    "PLATFORM_AUTO",
+    "PLATFORM_CHOICES",
     "PLATFORM_DOCS",
     "EngineSpec",
-    "KeeperMissingError",
     "Platform",
     "PlatformProbe",
     "QueryClient",
+    "ReplicationNotConfiguredError",
     "SettingsRealign",
     "create_database",
     "engine_clause",
@@ -60,6 +65,7 @@ __all__ = [
     "platform_from_host",
     "platform_json_settings",
     "platform_only_setting_names",
+    "platform_override",
     "realign_settings",
 ]
 
@@ -71,6 +77,8 @@ PLATFORM_DOCS = "https://github.com/hyperi-io/dfe-schemas/blob/main/docs/clickho
 _KEEPER_TABLE = "zookeeper_connection"
 # The macros the Replicated database statement names.
 _REQUIRED_MACROS = ("cluster", "shard", "replica")
+# Access storages a CREATE ROLE can write to. The first by precedence takes it.
+_WRITABLE_ACCESS = frozenset({"local_directory", "memory", "replicated"})
 _BARE_NAME = re.compile(r"[A-Za-z_][A-Za-z0-9_]*")
 _TOPOLOGY_PREFIXES = ("Replicated", "Shared")
 
@@ -82,8 +90,12 @@ class Platform(StrEnum):
     SELF_HOSTED = "self_hosted"
 
 
-class KeeperMissingError(Exception):
-    """A self-hosted server lacks the Keeper or the macros every DFE table needs."""
+PLATFORM_AUTO = "auto"
+PLATFORM_CHOICES = (PLATFORM_AUTO, *(platform.value for platform in Platform))
+
+
+class ReplicationNotConfiguredError(Exception):
+    """A self-hosted server lacks what a Replicated database and its roles need."""
 
 
 @dataclass(frozen=True)
@@ -143,6 +155,27 @@ def platform_from_host(host: str) -> Platform:
     """The platform a hostname names: Cloud for a Cloud or BYOC endpoint, else self-hosted."""
     name = host.strip().rstrip(".").lower()
     return Platform.CLOUD if name.endswith(CLOUD_HOST_SUFFIXES) else Platform.SELF_HOSTED
+
+
+def platform_override(value: Platform | str | None) -> Platform | None:
+    """The platform an override pins, or None for ``auto`` and no value.
+
+    A deployment passes its configured choice straight through, so ``auto``
+    leaves the probe and the hostname to decide.
+
+    Raises:
+        ValueError: *value* is none of :data:`PLATFORM_CHOICES`.
+    """
+    if value is None or isinstance(value, Platform):
+        return value
+    choice = value.strip().lower()
+    if choice == PLATFORM_AUTO:
+        return None
+    if choice not in PLATFORM_CHOICES:
+        raise ValueError(
+            f"clickhouse platform {value!r} is not one of {', '.join(PLATFORM_CHOICES)}"
+        )
+    return Platform(choice)
 
 
 @cache
@@ -275,13 +308,14 @@ class PlatformProbe:
             host: the server's hostname, read when there is no client or the
                 probe fails.
             override: a platform pinned by the caller, ``cloud`` or ``self_hosted``.
+                ``auto`` and None pin nothing.
 
         Raises:
-            ValueError: *override* names no platform.
+            ValueError: *override* is none of :data:`PLATFORM_CHOICES`.
         """
         self._client = client
         self._host = host
-        self._override = Platform(override) if override is not None else None
+        self._override = platform_override(override)
         self._resolved: tuple[Platform, str] | None = None
 
     @property
@@ -316,13 +350,18 @@ class PlatformProbe:
         return Platform.SELF_HOSTED, "default"
 
     def require_replication(self) -> None:  # noqa: V105 - public API
-        """Refuse a self-hosted server that cannot hold a Replicated database.
+        """Refuse a self-hosted server that cannot hold a Replicated database and its roles.
 
-        Cloud supplies its own coordination and passes without a query.
+        Cloud supplies its own coordination and passes without a query. A cluster
+        of more than one server also needs its SQL users and roles in Keeper,
+        because DFE creates them once and a local access storage keeps them on
+        the one server that ran the statement. A single node may keep them local.
 
         Raises:
-            KeeperMissingError: Keeper is not configured, or a macro the database
-                statement names is not defined.
+            ReplicationNotConfiguredError: Keeper is not configured, a macro the
+                database statement names is not defined, ``remote_servers`` has
+                no cluster the ``{cluster}`` macro names, or a cluster of more
+                than one server writes roles to an access storage of its own.
             RuntimeError: There is no client to ask.
         """
         if self.platform is Platform.CLOUD:
@@ -336,18 +375,49 @@ class PlatformProbe:
         )
         if keeper == 0:
             missing.append("Keeper (no Keeper or ZooKeeper connection is configured)")
-        defined = {str(row[0]) for row in self._rows("SELECT macro FROM system.macros")}
+        macros = {
+            str(row[0]): str(row[1])
+            for row in self._rows("SELECT macro, substitution FROM system.macros")
+        }
         missing.extend(
-            "the {" + macro + "} macro" for macro in _REQUIRED_MACROS if macro not in defined
+            "the {" + macro + "} macro" for macro in _REQUIRED_MACROS if macro not in macros
         )
+        servers = 0
+        if "cluster" in macros:
+            servers = self._scalar(
+                "SELECT count() FROM system.clusters WHERE cluster = {name:String}",
+                {"name": macros["cluster"]},
+            )
+            if servers == 0:
+                missing.append("a remote_servers cluster named by the {cluster} macro")
         if missing:
             # Names no host: the engine serves this text on its status route.
-            raise KeeperMissingError(
+            raise ReplicationNotConfiguredError(
                 f"self-hosted ClickHouse is missing {', '.join(missing)}. DFE creates "
                 "every table as an argumentless ReplicatedMergeTree inside a Replicated "
-                "database, which needs Keeper and the {cluster}, {shard} and {replica} "
-                f"macros. A single node runs Keeper embedded. See {PLATFORM_DOCS}"
+                "database, which needs Keeper, the {cluster}, {shard} and {replica} "
+                "macros and a remote_servers cluster. A single node runs Keeper embedded "
+                f"and declares a cluster of one. See {PLATFORM_DOCS}"
             )
+        if servers > 1:
+            self._require_replicated_access(servers)
+
+    def _require_replicated_access(self, servers: int) -> None:
+        directories = [
+            str(row[0])
+            for row in self._rows("SELECT type FROM system.user_directories ORDER BY precedence")
+        ]
+        writes_to = next((kind for kind in directories if kind in _WRITABLE_ACCESS), None)
+        if writes_to == "replicated":
+            return
+        storage = f"{writes_to} access storage" if writes_to else "no writable access storage"
+        raise ReplicationNotConfiguredError(
+            f"self-hosted ClickHouse cluster has {servers} servers but creates SQL users and "
+            f"roles in {storage}, which keeps them on the one server that ran the statement. "
+            "DFE creates its roles and users once, so they must live in Keeper: a "
+            "user_directories that replaces the default with users_xml and replicated. "
+            f"Adding replicated alone leaves local_directory first, and that wins. See {PLATFORM_DOCS}"
+        )
 
     def _rows(self, sql: str, parameters: dict[str, str] | None = None) -> list:
         if self._client is None:

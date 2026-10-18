@@ -9,8 +9,6 @@ checkout on the machine. Those pass on clean CI and fail on a developer's box,
 which makes them look like the change under test.
 """
 
-from __future__ import annotations
-
 from pathlib import Path
 
 # A directory name here prunes the whole subtree. `site-packages` catches an

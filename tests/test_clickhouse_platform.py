@@ -55,12 +55,15 @@ class _FakeClient:
         keeper=True,
         macros=("cluster", "shard", "replica"),
         servers=1,
+        replicated_database=False,
         directories=LOCAL_ACCESS,
     ):
         self._shared_engine = shared_engine
         self._keeper = keeper
         self._macros = macros
-        self._servers = servers
+        # A Replicated database named like the cluster lists every replica a second time.
+        replicas = [(1, number) for number in range(1, servers + 1)]
+        self._cluster_rows = replicas * 2 if replicated_database else replicas
         self._directories = directories
         self.queries: list[str] = []
         self.parameters: list[dict[str, str] | None] = []
@@ -75,10 +78,17 @@ class _FakeClient:
         if "system.macros" in sql:
             return _Result([[m, f"{m}-value"] for m in self._macros])
         if "system.clusters" in sql:
-            return _Result([[self._servers]])
+            return _Result([[self._cluster_aggregate(sql)]])
         if "system.user_directories" in sql:
             return _Result([[kind] for kind in self._directories])
         raise AssertionError(f"unexpected query: {sql}")
+
+    def _cluster_aggregate(self, sql: str) -> int:
+        if "uniqExact((shard_num, replica_num))" in sql:
+            return len(set(self._cluster_rows))
+        if "count()" in sql:
+            return len(self._cluster_rows)
+        raise AssertionError(f"unexpected system.clusters aggregate: {sql}")
 
 
 class _ExplodingClient:
@@ -319,6 +329,21 @@ def test_a_single_node_keeps_local_access_storage():
     client = _FakeClient(servers=1, directories=LOCAL_ACCESS)
     PlatformProbe(client).require_replication()
     assert not any("system.user_directories" in sql for sql in client.queries)
+
+
+def test_a_single_node_listed_twice_by_its_replicated_database_is_one_server():
+    """system.clusters carries the database's own cluster of the same name."""
+    client = _FakeClient(servers=1, replicated_database=True, directories=LOCAL_ACCESS)
+    PlatformProbe(client).require_replication()
+    assert not any("system.user_directories" in sql for sql in client.queries)
+
+
+def test_replicas_listed_twice_by_a_replicated_database_count_once():
+    probe = PlatformProbe(
+        _FakeClient(servers=3, replicated_database=True, directories=LOCAL_ACCESS)
+    )
+    with pytest.raises(ReplicationNotConfiguredError, match="cluster has 3 servers"):
+        probe.require_replication()
 
 
 def test_a_cluster_writing_roles_to_local_storage_is_refused_with_the_docs():

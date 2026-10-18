@@ -3,6 +3,12 @@
 Rendered by CI and committed back at the end of a release -- do not edit by
 hand. Release notes also appear on the GitHub Releases page, one per tag.
 
+## [0.2.15](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.14...v0.2.15) (2026-10-18)
+
+### Bug Fixes
+
+* count each replica once in the cluster probe ([#75](https://github.com/hyperi-io/dfe-schemas/issues/75)) ([b97eec4](https://github.com/hyperi-io/dfe-schemas/commit/b97eec4620aa8c42cca3a819bc51fe87968cd15d))
+
 ## [0.2.14](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.13...v0.2.14) (2026-10-18)
 
 ### Bug Fixes

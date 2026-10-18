@@ -384,8 +384,10 @@ class PlatformProbe:
         )
         servers = 0
         if "cluster" in macros:
+            # A Replicated database named like the cluster lists each replica again.
             servers = self._scalar(
-                "SELECT count() FROM system.clusters WHERE cluster = {name:String}",
+                "SELECT uniqExact((shard_num, replica_num)) FROM system.clusters "
+                "WHERE cluster = {name:String}",
                 {"name": macros["cluster"]},
             )
             if servers == 0:

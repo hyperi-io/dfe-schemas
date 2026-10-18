@@ -39,7 +39,10 @@ A server missing any of these is refused at startup with a message naming what i
             <server><id>1</id><hostname>localhost</hostname><port>9234</port></server>
         </raft_configuration>
     </keeper_server>
-    <zookeeper><node><host>localhost</host><port>9181</port></node></zookeeper>
+    <zookeeper>
+        <node><host>localhost</host><port>9181</port></node>
+        <identity from_env="DFE_KEEPER_IDENTITY" hide_in_preprocessed="1"/>
+    </zookeeper>
     <macros><cluster>dfe</cluster><shard>01</shard><replica>r1</replica></macros>
     <remote_servers>
         <dfe><shard><replica><host>localhost</host><port>9000</port></replica></shard></dfe>
@@ -50,6 +53,8 @@ A server missing any of these is refused at startup with a message naming what i
     </user_directories>
 </clickhouse>
 ```
+
+The `<identity>` is `dfe:<password>` from a generated secret, fixed for the life of the Keeper data: changing it later locks ClickHouse out (it exits 231, measured on 26.9).
 
 ## Inserts deduplicate
 

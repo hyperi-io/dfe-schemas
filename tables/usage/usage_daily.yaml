@@ -1,0 +1,64 @@
+# usage_daily -- every usage metric per UTC day, kept for the audit year
+#
+# One row per metric, scope and UTC day, rolled up from usage_minute: the day's
+# total for ingested_bytes, and the day's highest minute for cores_deployed,
+# node_cores and events_per_second. The scope is the org, or '' for the whole
+# deployment. These are the numbers a deployment is licensed on.
+#
+# usage_daily_mv recomputes today and the two UTC days before it on every
+# refresh, a minute after the minute rollups run, and ReplacingMergeTree keeps
+# the latest computation of each day. A read takes FINAL or argMax(value,
+# computed_at).
+#
+# Kept 400 days, past the year an audit asks for. The otel tables keep 90, so
+# this table is the only record of anything older. Partitions are months and a
+# part drops once its newest day expires, so a day stays at least 400 days and
+# at most 430. The TTL is declared here, so the deployment default retention
+# never moves it.
+
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-10-19"
+    type: model
+    summary: "Every usage metric per UTC day, rolled up from usage_minute, kept 400 days"
+    table:
+      name: "usage_daily"
+      engine: "ReplacingMergeTree(computed_at)"
+      partition_by: "toYYYYMM(day)"
+      ttl_days: 400
+      ttl_columns: ["day"]
+      index_granularity: 8192
+      reader_grant: true
+    materialized_view:
+      name: usage_daily_mv
+      to: usage_daily
+      refresh: "EVERY 5 MINUTE OFFSET 1 MINUTE"
+      select: |-
+        SELECT day, metric, _org_id, value
+        FROM {db}.usage_daily_recent
+    columns:
+      - name: "metric"
+        ch_type: "String"
+        cardinality: low
+        order: 0
+        comment: "cores_deployed, node_cores, ingested_bytes or events_per_second"
+      - name: "_org_id"
+        ch_type: "String"
+        cardinality: low
+        order: 1
+        comment: "The org, or empty for the whole deployment"
+      - name: "day"
+        ch_type: "Date"
+        order: 2
+        comment: "The UTC day"
+      - name: "value"
+        ch_type: "Float64"
+        codec: "Gorilla, ZSTD(1)"
+        comment: "The day's bytes, or its highest minute of cores or events per second"
+      - name: "computed_at"
+        ch_type: "DateTime64(3,'UTC')"
+        default: "now64(3)"
+        codec: "Delta, ZSTD(1)"
+        comment: "When the refresh wrote the row, and the latest one wins"

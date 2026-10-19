@@ -118,6 +118,10 @@ This is the reason rendering happens here rather than in a definition. A literal
 plain engine is accepted on a cluster and lands on ONE replica, where every
 query succeeds and the answer depends which node answered.
 
+A table whose engine stores no rows is the one exception. `usage_events` is a
+`Merge` table over dfe-engine's `all_sources`, so it takes the engine it names
+and the Replicated database still replicates its DDL.
+
 ### Checksums ignore the platform
 
 Every rendered object carries a sha256 checksum taken over the statement with
@@ -150,6 +154,14 @@ something that looks like success.
   partition expression. It waits for every row in a part to expire, so an
   unaligned TTL would retain data indefinitely -- those tables get the row-level
   delete instead.
+- A refreshable materialised view renders `APPEND` and an `EVERY` or `AFTER`
+  schedule, and nothing else. Without `APPEND` each refresh swaps the target for
+  its own result and drops every day the source no longer holds. A `SETTINGS
+  all_replicas = 1` would run every refresh on every replica, where the
+  Replicated database otherwise hands each one to a single replica.
+- A `${name}` placeholder in a view with no value in
+  `dfe_schemas.usage.SQL_VALUES` is refused, so the names the usage views read
+  cannot drift from the ones the engine imports.
 - **A role is created before its quota**, because ClickHouse rejects a quota
   naming a role that does not exist yet, and that only shows up against a
   cluster where the role was not already present.

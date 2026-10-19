@@ -54,9 +54,9 @@ make validate PY=../dfe-engine/.venv/bin/python   # the meta schemas
 
 `render` is the check that matters for the manifest: it fails on a duplicate
 object name, on a dependency that is unknown or declared after its dependant,
-on a definition that will not render on some platform, on a table that is not
-`Replicated*` or a table statement carrying `ON CLUSTER`, and on a checksum that
-differs between platforms.
+on a definition that will not render on some platform, on a table that stores
+rows and is not `Replicated*` or a table statement carrying `ON CLUSTER`, and on
+a checksum that differs between platforms.
 
 `validate` still borrows dfe-engine's loader for the `meta/` schemas, which is
 the one remaining cross-repo step.
@@ -81,8 +81,10 @@ dfe-schemas/
 |                      #   core/ (main, detection, detection_checkpoint)
 |                      #   internal/ (engine state, the migration ledger, the lock)
 |                      #   otel/ (the telemetry tables HyperDX reads)
+|                      #   usage/ (usage per minute and per day, the licence numbers)
 |                      #   meta/ (the dfe_meta governance projection)
-|-- views/             # the built-in dfe_v_* parameterised views, as SQL
+|-- views/             # the built-in dfe_v_* parameterised views and the usage_*
+|                      #   rollup views, as SQL
 |-- roles/             # the ClickHouse tier, service-role and grant catalogue
 |-- topics/            # the Kafka naming rule, defaults and bootstrap set
 |-- sources/           # engine-owned source definitions (main, dfe-alerts)
@@ -207,8 +209,12 @@ make validate PY=../dfe-engine/.venv/bin/python   # the meta schemas
 hyperi-ci check  # the quality gate CI runs
 ```
 
-`make render` needs nothing but this package, and reports 55 objects across 2
-platforms. Coverage is gated at 80% and measures 92.97%.
+`make render` needs nothing but this package, and reports 72 objects across 2
+platforms. Coverage is gated at 80% and measures 94.64%.
+
+`make test` also starts ClickHouse in docker for `tests/test_usage_rollup.py`,
+applies the whole manifest to it and checks the usage numbers. Without docker
+those tests skip, and in CI they fail instead.
 
 Two ways green lies. `make test` fails on a dirty repo root: the tokenizer guard
 rglobs `schemas_root()`, which in a checkout IS the repo root, and excludes

@@ -515,6 +515,156 @@ objects:
     additive: true
     depends_on: [role.query_reader]
 
+  # -- usage metrics --------------------------------------------------------
+  #
+  # The numbers a deployment is licensed on: cores deployed, worker-node cores,
+  # bytes ingested and events per second, per UTC minute and per UTC day.
+  # Parameterised views hold the arithmetic and the sources, so a fix to either
+  # is a view replaced on the next apply. Each refreshable materialised view
+  # only names the plain view that sets its window and the table it appends to.
+  # The two tables grant SELECT to the reader role as part of their own apply,
+  # as the views do. dfe_schemas.usage names every metric the views read and
+  # write.
+
+  - id: data.usage_minute
+    kind: table
+    database: data
+    defines: tables/usage/usage_minute
+    topology: resolved
+    additive: true
+    depends_on: [db.data, role.query_reader]
+
+  - id: data.usage_daily
+    kind: table
+    database: data
+    defines: tables/usage/usage_daily
+    topology: resolved
+    additive: true
+    depends_on: [db.data, role.query_reader]
+
+  - id: data.usage_events
+    kind: table
+    database: data
+    defines: tables/usage/usage_events
+    topology: resolved
+    additive: true
+    depends_on: [db.data]
+
+  - id: view.usage_source_container_cores
+    kind: view
+    database: data
+    defines: views/usage_source_container_cores
+    topology: resolved
+    additive: true
+    depends_on: [data.otel_metrics_gauge, role.query_reader]
+
+  - id: view.usage_source_node_cores
+    kind: view
+    database: data
+    defines: views/usage_source_node_cores
+    topology: resolved
+    additive: true
+    depends_on: [data.otel_metrics_sum, role.query_reader]
+
+  - id: view.usage_minute_cores
+    kind: view
+    database: data
+    defines: views/usage_minute_cores
+    topology: resolved
+    additive: true
+    depends_on: [view.usage_source_container_cores, view.usage_source_node_cores]
+
+  - id: view.usage_minute_ingest
+    kind: view
+    database: data
+    defines: views/usage_minute_ingest
+    topology: resolved
+    additive: true
+    depends_on: [data.otel_metrics_sum, role.query_reader]
+
+  - id: view.usage_minute_events
+    kind: view
+    database: data
+    defines: views/usage_minute_events
+    topology: resolved
+    additive: true
+    depends_on: [data.usage_events, role.query_reader]
+
+  - id: view.usage_daily_rollup
+    kind: view
+    database: data
+    defines: views/usage_daily_rollup
+    topology: resolved
+    additive: true
+    depends_on: [data.usage_minute, role.query_reader]
+
+  - id: view.usage_minute_cores_recent
+    kind: view
+    database: data
+    defines: views/usage_minute_cores_recent
+    topology: resolved
+    additive: true
+    depends_on: [view.usage_minute_cores]
+
+  - id: view.usage_minute_ingest_recent
+    kind: view
+    database: data
+    defines: views/usage_minute_ingest_recent
+    topology: resolved
+    additive: true
+    depends_on: [view.usage_minute_ingest]
+
+  - id: view.usage_minute_events_recent
+    kind: view
+    database: data
+    defines: views/usage_minute_events_recent
+    topology: resolved
+    additive: true
+    depends_on: [view.usage_minute_events]
+
+  - id: view.usage_daily_recent
+    kind: view
+    database: data
+    defines: views/usage_daily_recent
+    topology: resolved
+    additive: true
+    depends_on: [view.usage_daily_rollup]
+
+  - id: data.usage_minute_cores_mv
+    kind: materialized_view
+    database: data
+    defines: tables/usage/usage_minute
+    key: usage_minute_cores_mv
+    topology: resolved
+    additive: false
+    depends_on: [data.usage_minute, view.usage_minute_cores_recent]
+
+  - id: data.usage_minute_ingest_mv
+    kind: materialized_view
+    database: data
+    defines: tables/usage/usage_minute
+    key: usage_minute_ingest_mv
+    topology: resolved
+    additive: false
+    depends_on: [data.usage_minute, view.usage_minute_ingest_recent]
+
+  - id: data.usage_minute_events_mv
+    kind: materialized_view
+    database: data
+    defines: tables/usage/usage_minute
+    key: usage_minute_events_mv
+    topology: resolved
+    additive: false
+    depends_on: [data.usage_minute, view.usage_minute_events_recent]
+
+  - id: data.usage_daily_mv
+    kind: materialized_view
+    database: data
+    defines: tables/usage/usage_daily
+    topology: resolved
+    additive: false
+    depends_on: [data.usage_daily, view.usage_daily_recent]
+
   # -- the Kafka bootstrap topic set ---------------------------------------
   #
   # Topics are not a ClickHouse object and carry no topology. A deployment with

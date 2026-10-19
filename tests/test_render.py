@@ -39,6 +39,8 @@ PLATFORMS = tuple(Platform)
 
 # The manifest tables that carry a JSON column; every other table carries none.
 JSON_TABLES = {"data.main", "data.detection", "data.otel_logs"}
+# A Merge table stores no rows, so it takes no MergeTree SETTINGS at all.
+DATALESS_TABLES = {"data.usage_events"}
 MERGE_CAP = "merge_max_dynamic_subcolumns_in_wide_part"
 WRITE_MARKS = "write_marks_for_substreams_in_compact_parts"
 
@@ -191,6 +193,10 @@ def test_the_gate_names_every_way_off_the_one_shape(statement, problem):
         "CREATE TABLE d.t (x UInt8)\nENGINE = ReplicatedGraphiteMergeTree('graphite_rollup')\n"
         "ORDER BY x",
         "CREATE TABLE d.t (x UInt8, v UInt8)\nENGINE = ReplicatedReplacingMergeTree(v)\nORDER BY x",
+        # A Merge table stores no rows, so no replica can hold data another lacks.
+        "CREATE TABLE IF NOT EXISTS d.t (x UInt8)\nENGINE = Merge(`d`, '^all_sources$')",
+        "CREATE MATERIALIZED VIEW IF NOT EXISTS d.mv REFRESH EVERY 5 MINUTE APPEND TO d.t AS\n"
+        "SELECT 1",
     ],
 )
 def test_the_gate_passes_the_one_shape(statement):
@@ -258,7 +264,9 @@ def test_a_json_table_takes_write_marks_off_on_self_hosted_only(rendered):
 
 def test_a_table_without_a_json_column_carries_no_json_setting(rendered, manifest):
     """The cap means nothing without a JSON column, so it stays off every other table."""
-    tables = [obj.id for obj in manifest.objects if obj.kind == "table"]
+    tables = [
+        obj.id for obj in manifest.objects if obj.kind == "table" and obj.id not in DATALESS_TABLES
+    ]
     assert set(tables) > JSON_TABLES
     for object_id in tables:
         clause = _settings_clause(rendered[Platform.SELF_HOSTED][object_id].statements[0])

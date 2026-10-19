@@ -1,9 +1,9 @@
 -- Cores per UTC minute, for usage_minute. Deployment-wide, so _org_id is the
 -- all-orgs value.
 --
--- cores_deployed: the CPU requested by every running DFE container at one tick,
+-- cores_deployed: the CPU requested by every running container at one tick,
 -- summed, and the highest tick in the minute.
--- node_cores: the logical CPUs of every node that ran a DFE container at some
+-- node_cores: the logical CPUs of every node that ran a container at some
 -- tick in the minute. The two receivers collect on unrelated ticks, so the
 -- minute is the tick the node count is taken on.
 CREATE OR REPLACE VIEW {db}.usage_minute_cores AS

@@ -147,7 +147,6 @@ def main() -> int:
         from dfe_engine.schema.table_loader import (  # ty: ignore[unresolved-import]
             load_table_config,
             load_table_spec,
-            load_view_ddl,
         )
     except ImportError:
         print(
@@ -166,7 +165,6 @@ def main() -> int:
                 # through the config loader rather than the spec loader.
                 if "columns" in entry:
                     load_table_spec(ref, "dfe")
-                    load_view_ddl(ref, "dfe")
                 else:
                     load_table_config(ref, "dfe")
                 checked_tables += 1

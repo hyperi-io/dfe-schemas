@@ -38,8 +38,6 @@ __all__ = [
     "NODE_CORES",
     "NODE_LOGICAL_CPU_METRIC",
     "ORG_ID_ATTRIBUTE",
-    "PART_OF_ATTRIBUTE",
-    "PART_OF_VALUE",
     "SQL_VALUES",
     "USAGE_DAILY_TABLE",
     "USAGE_MINUTE_TABLE",
@@ -56,10 +54,6 @@ K8S_POD_PHASE_RUNNING = 2
 K8S_POD_UID_ATTRIBUTE = "k8s.pod.uid"
 K8S_CONTAINER_NAME_ATTRIBUTE = "k8s.container.name"
 K8S_NODE_NAME_ATTRIBUTE = "k8s.node.name"
-
-# The pod label k8sattributes copies onto the k8s_cluster resource, which marks a DFE container.
-PART_OF_ATTRIBUTE = "app.kubernetes.io/part-of"
-PART_OF_VALUE = "dfe"
 
 # hostmetrics: a node's logical CPU count, a non-monotonic sum.
 NODE_LOGICAL_CPU_METRIC = "system.cpu.logical.count"
@@ -115,8 +109,6 @@ SQL_VALUES: dict[str, str] = {
     "k8s_pod_uid_attribute": K8S_POD_UID_ATTRIBUTE,
     "k8s_container_name_attribute": K8S_CONTAINER_NAME_ATTRIBUTE,
     "k8s_node_name_attribute": K8S_NODE_NAME_ATTRIBUTE,
-    "part_of_attribute": PART_OF_ATTRIBUTE,
-    "part_of_value": PART_OF_VALUE,
     "node_logical_cpu_metric": NODE_LOGICAL_CPU_METRIC,
     "ingested_bytes_metric": INGESTED_BYTES_METRIC,
     "org_id_attribute": ORG_ID_ATTRIBUTE,

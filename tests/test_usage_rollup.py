@@ -95,13 +95,12 @@ def _map(attributes: dict[str, str]) -> str:
     return f"map({pairs})"
 
 
-def _container(pod: str, container: str, node: str, part_of: str = usage.PART_OF_VALUE) -> str:
+def _container(pod: str, container: str, node: str) -> str:
     return _map(
         {
             usage.K8S_POD_UID_ATTRIBUTE: pod,
             usage.K8S_CONTAINER_NAME_ATTRIBUTE: container,
             usage.K8S_NODE_NAME_ATTRIBUTE: node,
-            usage.PART_OF_ATTRIBUTE: part_of,
         }
     )
 
@@ -179,11 +178,11 @@ def rolled_up(deployed: ClickHouse, days: tuple[str, str]) -> ClickHouse:
     _insert_gauges(
         deployed,
         [
-            # 10:00, everything running: pa 0.75 on node-a, pb 2 on node-b, pc not DFE.
+            # 10:00, everything running: pa 0.75 on node-a, pb 2 on node-b, pc 8 on node-c.
             (request, _container("pa", "recv", a), f"{d1} 10:00:00", 0.5),
             (request, _container("pa", "side", a), f"{d1} 10:00:00", 0.25),
             (request, _container("pb", "load", b), f"{d1} 10:00:00", 2.0),
-            (request, _container("pc", "other", c, part_of="other"), f"{d1} 10:00:00", 8.0),
+            (request, _container("pc", "other", c), f"{d1} 10:00:00", 8.0),
             (phase, _pod("pa", a), f"{d1} 10:00:00", 2),
             (phase, _pod("pb", b), f"{d1} 10:00:00", 2),
             (phase, _pod("pc", c), f"{d1} 10:00:00", 2),
@@ -267,23 +266,23 @@ def _on(values: dict[tuple[str, str], float], days: tuple[str, ...]) -> dict:
     return {key: value for key, value in values.items() if key[0][:10] in days}
 
 
-def test_cores_deployed_is_the_peak_tick_of_running_dfe_containers(rolled_up, days):
-    """2.75 at 10:00. Counting Pending gives 4.75, the non-DFE pod 10.75, the duplicate 3.25."""
+def test_cores_deployed_is_the_peak_tick_of_running_containers(rolled_up, days):
+    """10.75 at 10:00. Counting Pending makes 11:00 4.75, and the duplicate makes 10:00 11.25."""
     d1, d2 = days
-    assert _on(_daily(rolled_up, usage.CORES_DEPLOYED), days) == {(d1, ""): 2.75, (d2, ""): 0.75}
+    assert _on(_daily(rolled_up, usage.CORES_DEPLOYED), days) == {(d1, ""): 10.75, (d2, ""): 0.75}
     assert _on(_minute(rolled_up, usage.CORES_DEPLOYED), days) == {
-        (f"{d1} 10:00:00", ""): 2.75,
+        (f"{d1} 10:00:00", ""): 10.75,
         (f"{d1} 11:00:00", ""): 0.75,
         (f"{d2} 00:00:00", ""): 0.75,
     }
 
 
-def test_node_cores_count_only_nodes_running_a_dfe_container(rolled_up, days):
-    """node-c runs only the non-DFE pod, and node-b only a Pending one at 11:00."""
+def test_node_cores_count_only_nodes_running_a_container(rolled_up, days):
+    """All three nodes at 10:00. node-b runs only a Pending pod at 11:00."""
     d1, d2 = days
-    assert _on(_daily(rolled_up, usage.NODE_CORES), days) == {(d1, ""): 12, (d2, ""): 4}
+    assert _on(_daily(rolled_up, usage.NODE_CORES), days) == {(d1, ""): 28, (d2, ""): 4}
     assert _on(_minute(rolled_up, usage.NODE_CORES), days) == {
-        (f"{d1} 10:00:00", ""): 12,
+        (f"{d1} 10:00:00", ""): 28,
         (f"{d1} 11:00:00", ""): 4,
         (f"{d2} 00:00:00", ""): 4,
     }

@@ -137,7 +137,6 @@ def test_no_usage_view_writes_a_contract_name_by_hand():
             usage.K8S_POD_PHASE_METRIC,
             usage.NODE_LOGICAL_CPU_METRIC,
             usage.INGESTED_BYTES_METRIC,
-            usage.PART_OF_ATTRIBUTE,
         ):
             assert name not in body, f"{path.name} writes {name!r} by hand"
 
@@ -148,7 +147,7 @@ def test_the_rendered_views_carry_the_contract_names(rendered):
     assert f"MetricName = '{usage.K8S_CPU_REQUEST_METRIC}'" in container
     assert f"MetricName = '{usage.K8S_POD_PHASE_METRIC}'" in container
     assert f"Value = {usage.K8S_POD_PHASE_RUNNING}" in container
-    assert f"['{usage.PART_OF_ATTRIBUTE}'] = '{usage.PART_OF_VALUE}'" in container
+    assert "part-of" not in container, "cores deployed counts every container, not a labelled set"
     node = views["view.usage_source_node_cores"].statements[0]
     assert f"MetricName = '{usage.NODE_LOGICAL_CPU_METRIC}'" in node
     ingest = views["view.usage_minute_ingest"].statements[0]

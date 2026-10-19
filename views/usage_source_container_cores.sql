@@ -1,9 +1,10 @@
--- The CPU each running DFE container requests, per k8s_cluster collection tick,
--- for the usage rollup. This is the Kubernetes source. A deployment that runs DFE
--- some other way swaps this view's body and keeps its columns.
+-- The CPU each running container on the cluster requests, per k8s_cluster
+-- collection tick, for the usage rollup. This is the Kubernetes source. A
+-- deployment that runs DFE some other way swaps this view's body and keeps its
+-- columns.
 --
--- A DFE container is one whose pod carries the part-of label, which k8sattributes
--- copies onto the k8s_cluster resource. A pod counts at a tick only when its own
+-- Every container counts, so the DFE apps and the backing services DFE installs
+-- are covered whatever their labels. A pod counts at a tick only when its own
 -- phase reading at that same tick is Running: the receiver stamps every reading
 -- of one collection with one timestamp. A second collector reporting the same
 -- container at the same tick is taken once.
@@ -31,7 +32,6 @@ INNER JOIN
     ON running.TimeUnix = request.TimeUnix
    AND running.pod_uid = request.ResourceAttributes['${k8s_pod_uid_attribute}']
 WHERE request.MetricName = '${k8s_cpu_request_metric}'
-  AND request.ResourceAttributes['${part_of_attribute}'] = '${part_of_value}'
   AND request.TimeUnix >= {from:DateTime}
   AND request.TimeUnix < {to:DateTime}
 GROUP BY tick, node, container

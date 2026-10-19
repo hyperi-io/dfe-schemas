@@ -3,6 +3,12 @@
 Rendered by CI and committed back at the end of a release -- do not edit by
 hand. Release notes also appear on the GitHub Releases page, one per tag.
 
+## [0.2.16](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.15...v0.2.16) (2026-10-19)
+
+### Bug Fixes
+
+* add the usage rollup tables and views ([#77](https://github.com/hyperi-io/dfe-schemas/issues/77)) ([1902f18](https://github.com/hyperi-io/dfe-schemas/commit/1902f185c7929d4eb9f939ac9c20f5e8624b875b))
+
 ## [0.2.15](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.14...v0.2.15) (2026-10-18)
 
 ### Bug Fixes

@@ -1,12 +1,13 @@
 # Table definitions (`tables/`)
 
 `tables/` holds tables written directly in ClickHouse types, as opposed to the
-`meta/` schemas that map DFE's 13 primitives onto ClickHouse. Four sets live
+`meta/` schemas that map DFE's 13 primitives onto ClickHouse. Five sets live
 here: `core/` (the landing table and the detection pair, whose columns come
 from a common-header profile), `otel/` (the telemetry tables the collector
 writes into and HyperDX reads), `internal/` (the engine's own working state,
-including the applier's migration ledger and its lock) and `meta/` (the
-governance projection, which lands in `dfe_meta` rather than the data
+including the applier's migration ledger and its lock), `usage/` (the usage
+rollup a deployment is licensed on, and the views that refresh it) and `meta/`
+(the governance projection, which lands in `dfe_meta` rather than the data
 database).
 
 They are here for the same reason every other schema is -- one definition, in
@@ -53,6 +54,19 @@ versions:
 | `index_granularity` | Rows per granule. 8192 for range scans, 2048 for point lookups. |
 | `ttl_days` / `ttl_columns` | Retention. `ttl_columns` alone takes the deployment default (`DFE_CLICKHOUSE_DEFAULT_TTL_DAYS`, 90 days unless the deploy sets otherwise); `ttl_days` overrides it for this table. Omit both for a table that keeps everything. The default applies to time-series tables (`core/`, `otel/`); the engine's state tables under `internal/` and `detection_checkpoint` declare their own. |
 | `indexes` | Data-skipping indexes, emitted verbatim. |
+| `reader_grant` | `true` renders `GRANT SELECT` on the table to the reader role after the CREATE, as every view does. |
+
+A TTL over a `Date` column renders without the `>= 0` guard, which 26.3 refuses
+there (code 43).
+
+A `Merge` engine, which stores no rows, renders as written with `{db}` filled
+in, and takes none of the MergeTree clauses above:
+
+```yaml
+    table:
+      name: "usage_events"
+      engine: "Merge({db}, '^all_sources$')"
+```
 
 An ORDER BY built from bare columns is expressed on the columns instead: give
 each key column an `order` and leave `order_by` out.
@@ -80,6 +94,22 @@ A nested `LowCardinality` is part of the type and stays in `ch_type`
 
 A materialised view has no columns to reconcile, only a SELECT. `to` names the
 target table, and `{db}` in `select` is substituted at apply time.
+
+`refresh` makes it a refreshable view, `EVERY` or `AFTER` a count and a unit,
+with an optional `OFFSET`. It always renders `APPEND`, and inside the
+Replicated database each scheduled refresh runs on one replica. A file holding
+several views lists them under `materialized_views`, and each manifest object
+picks one by `key`:
+
+```yaml
+    materialized_views:
+      - name: usage_minute_cores_mv
+        to: usage_minute
+        refresh: "EVERY 5 MINUTE"
+        select: |-
+          SELECT minute, metric, _org_id, value
+          FROM {db}.usage_minute_cores_recent
+```
 
 ```yaml
     materialized_view:

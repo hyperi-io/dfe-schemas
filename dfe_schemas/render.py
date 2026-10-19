@@ -52,6 +52,7 @@ from dfe_schemas.loader import (
 )
 from dfe_schemas.manifest import Manifest, ManifestObject
 from dfe_schemas.topics import TopicPolicy, load_topic_policy
+from dfe_schemas.usage import SQL_VALUES
 
 __all__ = [
     "RenderedObject",
@@ -159,15 +160,31 @@ _CREATE_RE = re.compile(
     re.IGNORECASE,
 )
 
+# Engines that store no rows, so no replica can hold data another lacks. The
+# Replicated database still replicates their DDL.
+_DATALESS_ENGINES = frozenset({"Merge"})
+
+# A refresh schedule a refreshable materialised view may take. Nothing else is
+# accepted: `SETTINGS all_replicas = 1` would run the refresh on every replica.
+_REFRESH_RE = re.compile(
+    r"(?:EVERY|AFTER) [1-9]\d* (?:SECOND|MINUTE|HOUR|DAY|WEEK|MONTH|YEAR)"
+    r"(?: OFFSET \d+ (?:SECOND|MINUTE|HOUR|DAY|WEEK|MONTH))?"
+)
+
+# A `${name}` token in a view's SQL, filled from dfe_schemas.usage.SQL_VALUES.
+_PLACEHOLDER_RE = re.compile(r"\$\{(?P<name>[a-z][a-z0-9_]*)\}")
+
+_DATE_TYPES = frozenset({"Date", "Date32"})
+
 
 def ddl_violations(statement: str) -> list[str]:
     """Where one statement breaks the one-DDL shape, or an empty list.
 
     A table, or a materialised view's inner table, must take a ``Replicated*``
-    engine with no Keeper path or replica name of its own, and nothing but a
-    CREATE DATABASE for a Replicated database may carry ``ON CLUSTER``. Comment
-    lines and quoted literals are read past, so a column comment naming an engine
-    is not mistaken for one.
+    engine with no Keeper path or replica name of its own, unless the engine
+    stores no rows (``Merge``). Nothing but a CREATE DATABASE for a Replicated
+    database may carry ``ON CLUSTER``. Comment lines and quoted literals are read
+    past, so a column comment naming an engine is not mistaken for one.
     """
     lines = [line for line in statement.splitlines() if not line.lstrip().startswith("--")]
     text = _QUOTED_LITERAL_RE.sub("''", "\n".join(lines))
@@ -186,7 +203,7 @@ def ddl_violations(statement: str) -> list[str]:
     if kind == "TABLE":
         if engine is None:
             problems.append(f"declares no ENGINE: {head}")
-        elif not engine[1].startswith("Replicated"):
+        elif not engine[1].startswith("Replicated") and engine[1] not in _DATALESS_ENGINES:
             problems.append(f"engine {engine[1]} is not Replicated*: {head}")
     if (
         kind == "MATERIALIZED VIEW"
@@ -249,6 +266,26 @@ def _strip_leading_comments(body: str) -> str:
     return "\n".join(lines)
 
 
+def _fill_placeholders(body: str, source: Path) -> str:
+    """Fill each ``${name}`` in a view's SQL from :data:`dfe_schemas.usage.SQL_VALUES`.
+
+    An unknown name raises, and so does a ``${`` left over that names nothing,
+    rather than rendering the token into SQL the server then refuses or, inside
+    a literal, matches nothing.
+    """
+
+    def value(match: re.Match[str]) -> str:
+        name = match["name"]
+        if name not in SQL_VALUES:
+            raise SchemaError(f"{source}: no value for ${{{name}}}, known: {', '.join(SQL_VALUES)}")
+        return SQL_VALUES[name]
+
+    filled = _PLACEHOLDER_RE.sub(value, body)
+    if "${" in filled:
+        raise SchemaError(f"{source}: a '${{' token is not a ${{name}} placeholder")
+    return filled
+
+
 def qualified_name(rendered: RenderedObject) -> str:
     """What a rendered object is known by: database-qualified, or bare for a topic."""
     if rendered.database is None:
@@ -291,6 +328,7 @@ class _TableConfig:
     order_by: str | None = None
     extra_indexes: tuple[str, ...] = ()
     index_granularity: int = _DEFAULT_INDEX_GRANULARITY
+    reader_grant: bool = False
 
 
 def _table_config(block: dict[str, Any]) -> _TableConfig:
@@ -311,6 +349,7 @@ def _table_config(block: dict[str, Any]) -> _TableConfig:
         order_by=block.get("order_by"),
         extra_indexes=tuple(block.get("indexes") or ()),
         index_granularity=int(block.get("index_granularity", _DEFAULT_INDEX_GRANULARITY)),
+        reader_grant=bool(block.get("reader_grant", False)),
     )
 
 
@@ -462,9 +501,46 @@ class Renderer:
             raise SchemaError(f"{obj.id}: {path} does not name its table")
         name = block["name"]
         columns = self._columns(obj, entry, path)
-        config = self._with_default_ttl(_table_config(block))
-        statement = self._create_table(database, name, columns, config, self._profile_comment(obj))
-        return self._finish(obj, name, [statement], database=database)
+        config = _table_config(block)
+        if parse_engine(config.engine).variant in _DATALESS_ENGINES:
+            statement = self._create_dataless_table(database, name, columns, config)
+        else:
+            config = self._with_default_ttl(config)
+            statement = self._create_table(
+                database, name, columns, config, self._profile_comment(obj)
+            )
+        statements = [statement]
+        # As a view does. ClickHouse folds it into the role's SELECT ON <db>.* where that exists.
+        if config.reader_grant:
+            statements.append(f"GRANT SELECT ON {database}.{name} TO {self._view_reader_role()}")
+        return self._finish(obj, name, statements, database=database)
+
+    def _create_dataless_table(
+        self, database: str, name: str, columns: list[Column], config: _TableConfig
+    ) -> str:
+        """A table whose engine stores no rows: columns and the engine, nothing else.
+
+        ``{db}`` in the engine arguments is the deployment's data database, so a
+        Merge table reads the database it lands in. A clause only a MergeTree
+        takes is refused rather than dropped.
+        """
+        declared = {
+            "ttl_days": config.ttl_days,
+            "ttl_columns": config.ttl_columns,
+            "partition_by": config.partition_by,
+            "order_by": config.order_by,
+            "indexes": config.extra_indexes,
+            "projection_order_by": config.projection_order_by,
+        }
+        stray = sorted(key for key, value in declared.items() if value)
+        if stray:
+            raise SchemaError(
+                f"{name}: engine {config.engine!r} stores no rows and takes none of {stray}"
+            )
+        target = f"{quote_ident(database, what='database')}.{quote_ident(name, what='table name')}"
+        engine = config.engine.replace("{db}", quote_ident(database, what="database"))
+        body = ",\n".join(self._body(columns, config))
+        return f"CREATE TABLE IF NOT EXISTS {target}\n(\n{body}\n)\nENGINE = {engine}"
 
     def _with_default_ttl(self, config: _TableConfig) -> _TableConfig:
         """Give a time-series table the deployment's retention when it declares none.
@@ -652,34 +728,67 @@ class Renderer:
             return None
         if not config.ttl_columns:
             raise SchemaError(f"{table}: ttl_days={config.ttl_days} declared with no ttl_columns")
-        present = {column.name for column in columns}
-        missing = [col for col in config.ttl_columns if col not in present]
+        types = {column.name: self._registry.resolve(column).ch_type for column in columns}
+        missing = [col for col in config.ttl_columns if col not in types]
         if missing:
             raise SchemaError(
                 f"{table}: ttl_days={config.ttl_days} declared over absent column(s) "
                 f"{', '.join(missing)}; the table would keep every row forever"
             )
         parts = [
-            f"{col} + INTERVAL {config.ttl_days} DAY DELETE WHERE {col} >= 0"
-            for col in config.ttl_columns
+            self._ttl_expression(col, types[col], config.ttl_days) for col in config.ttl_columns
         ]
         return "TTL " + ",\n    ".join(parts)
+
+    @staticmethod
+    def _ttl_expression(column: str, ch_type: str, days: int) -> str:
+        """One column's TTL. A Date takes no ``>= 0`` guard: 26.3 refuses Date >= UInt8 (code 43)."""
+        if ch_type in _DATE_TYPES:
+            return f"{column} + INTERVAL {days} DAY DELETE"
+        return f"{column} + INTERVAL {days} DAY DELETE WHERE {column} >= 0"
 
     # -- views ---------------------------------------------------------------
 
     def _render_materialized_view(self, obj: ManifestObject) -> RenderedObject:
+        """An incremental view, or a refreshable one when it declares ``refresh``.
+
+        A refreshable view always APPENDs. Without it ClickHouse swaps the target
+        for each refresh's result, which would drop every row older than what the
+        source still holds. Inside the Replicated database Keeper hands each
+        scheduled refresh to one replica.
+        """
         database = self._database(obj)
         path = resolve(self._required(obj, "defines"), root=self._root)
-        view = load_version_entry(path, require_columns=False).get("materialized_view")
-        if not view:
-            raise SchemaError(f"{obj.id}: {path} declares no materialized_view")
+        view = self._materialized_view_entry(obj, load_version_entry(path, require_columns=False))
         name = view["name"]
         select = view["select"].format(db=database)
+        refresh = view.get("refresh")
+        if refresh is None:
+            schedule = ""
+        elif _REFRESH_RE.fullmatch(str(refresh)):
+            schedule = f"REFRESH {refresh} APPEND "
+        else:
+            raise SchemaError(
+                f"{obj.id}: refresh {refresh!r} is not EVERY|AFTER <n> <unit> [OFFSET <n> <unit>]"
+            )
         statement = (
             f"CREATE MATERIALIZED VIEW IF NOT EXISTS {database}.{name} "
-            f"TO {database}.{view['to']} AS\n{select}"
+            f"{schedule}TO {database}.{view['to']} AS\n{select}"
         )
         return self._finish(obj, name, [statement], database=database)
+
+    @staticmethod
+    def _materialized_view_entry(obj: ManifestObject, entry: dict[str, Any]) -> dict[str, Any]:
+        """The view a manifest object names: by ``key`` from ``materialized_views``, else the one."""
+        if obj.key is None:
+            view = entry.get("materialized_view")
+            if not view:
+                raise SchemaError(f"{obj.id}: {obj.defines} declares no materialized_view")
+            return view
+        for view in entry.get("materialized_views") or ():
+            if view.get("name") == obj.key:
+                return view
+        raise SchemaError(f"{obj.id}: {obj.defines} has no materialized_views entry {obj.key!r}")
 
     def _render_view(self, obj: ManifestObject) -> RenderedObject:
         """A plain view, plus the SELECT grant its reader role needs.
@@ -691,7 +800,7 @@ class Renderer:
         defines = self._required(obj, "defines")
         name = Path(defines).name
         path = resolve(defines, root=self._root, suffix=".sql")
-        body = _strip_leading_comments(path.read_text(encoding="utf-8"))
+        body = _fill_placeholders(_strip_leading_comments(path.read_text(encoding="utf-8")), path)
         header = f"CREATE OR REPLACE VIEW {{db}}.{name}"
         if header not in body:
             raise SchemaError(f"{obj.id}: {path} does not open with {header!r}")

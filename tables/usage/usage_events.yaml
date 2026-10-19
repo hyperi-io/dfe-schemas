@@ -1,0 +1,28 @@
+# usage_events -- the two columns of all_sources the events-per-second rollup reads
+#
+# dfe-engine creates all_sources after the manifest applies and replaces it
+# whenever the source set changes (dfe_engine/clickhouse/all_sources.py). A
+# materialised view naming it directly fails to create on a fresh cluster with
+# code 60, because ClickHouse resolves a view's tables at CREATE. A Merge table
+# resolves its tables on every read, so this one creates before all_sources
+# exists, reads nothing until it does, and follows each replacement.
+#
+# It stores nothing, so it takes no Replicated engine: the Replicated database
+# replicates its DDL like any other table's.
+
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-10-19"
+    type: model
+    summary: "A Merge table over all_sources, readable before the engine creates it"
+    table:
+      name: "usage_events"
+      engine: "Merge({db}, '^all_sources$')"
+    columns:
+      - name: "_timestamp_load"
+        ch_type: "DateTime64(3,'UTC')"
+      - name: "_org_id"
+        ch_type: "String"
+        cardinality: low

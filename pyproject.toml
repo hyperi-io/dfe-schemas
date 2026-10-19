@@ -114,6 +114,8 @@ external = ["V"]
 
 [tool.ruff.lint.per-file-ignores]
 "tests/**/*.py" = ["S101"]
+# Builds its SQL from the module's own constants, against the container it starts.
+"tests/test_usage_rollup.py" = ["S101", "S608"]
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"

@@ -1,0 +1,85 @@
+# usage_minute -- every usage metric per UTC minute, and the views that fill it
+#
+# One row per metric, scope and minute: cores deployed, worker-node cores, bytes
+# ingested and events per second. The scope is the org for the per-org metrics
+# and '' for a deployment-wide row. dfe_schemas.usage names every metric.
+#
+# Refreshable materialised views APPEND recomputed recent minutes, and
+# ReplacingMergeTree keeps the latest computation of each minute, so a refresh
+# that sees more of a minute than the last one replaces its row. A read takes
+# FINAL or argMax(value, computed_at). Each source has its own view, so one that
+# fails does not hold the others back, and each view's SELECT names a plain view
+# carrying the logic: a fix to a plain view applies on the next deploy, where a
+# changed materialised view is refused as drift.
+#
+# Kept 7 days. usage_daily_mv recomputes today and the two days before it from
+# this table on every refresh, so a day must outlive that window or a recompute
+# reads a partly expired day and replaces a complete row with a short one.
+# Partitions are whole days and drop whole, so the oldest day the daily view
+# reads is never closer than four days to its drop. The rest of the week is
+# room to recompute a missed day by hand:
+#
+#   INSERT INTO <db>.usage_daily (day, metric, _org_id, value)
+#   SELECT day, metric, _org_id, value FROM (
+#       SELECT day, metric, _org_id, value
+#       FROM <db>.usage_daily_rollup(from = '<day>', to = '<day after>'))
+
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-10-19"
+    type: model
+    summary: "Every usage metric per UTC minute, refreshed from the otel tables and all_sources"
+    table:
+      name: "usage_minute"
+      engine: "ReplacingMergeTree(computed_at)"
+      partition_by: "toYYYYMMDD(minute)"
+      ttl_days: 7
+      ttl_columns: ["minute"]
+      index_granularity: 8192
+      reader_grant: true
+    materialized_views:
+      - name: usage_minute_cores_mv
+        to: usage_minute
+        refresh: "EVERY 5 MINUTE"
+        select: |-
+          SELECT minute, metric, _org_id, value
+          FROM {db}.usage_minute_cores_recent
+      - name: usage_minute_ingest_mv
+        to: usage_minute
+        refresh: "EVERY 5 MINUTE"
+        select: |-
+          SELECT minute, metric, _org_id, value
+          FROM {db}.usage_minute_ingest_recent
+      - name: usage_minute_events_mv
+        to: usage_minute
+        refresh: "EVERY 5 MINUTE"
+        select: |-
+          SELECT minute, metric, _org_id, value
+          FROM {db}.usage_minute_events_recent
+    columns:
+      - name: "metric"
+        ch_type: "String"
+        cardinality: low
+        order: 0
+        comment: "cores_deployed, node_cores, ingested_bytes or events_per_second"
+      - name: "_org_id"
+        ch_type: "String"
+        cardinality: low
+        order: 1
+        comment: "The org, or empty for the whole deployment"
+      - name: "minute"
+        ch_type: "DateTime('UTC')"
+        order: 2
+        codec: "Delta(4), ZSTD(1)"
+        comment: "Start of the UTC minute"
+      - name: "value"
+        ch_type: "Float64"
+        codec: "Gorilla, ZSTD(1)"
+        comment: "Cores, bytes, or events per second averaged over the minute"
+      - name: "computed_at"
+        ch_type: "DateTime64(3,'UTC')"
+        default: "now64(3)"
+        codec: "Delta, ZSTD(1)"
+        comment: "When the refresh wrote the row, and the latest one wins"

@@ -28,7 +28,7 @@ query it in a database that deployment does not have.
 | `kind` | `database`, `table`, `materialized_view`, `view`, `role` or `topic`. |
 | `database` | The declared database key. A topic names none. |
 | `defines` | The definition file, relative to the schemas root, without a suffix. `.yaml` for everything but a view, which is `.sql`. |
-| `section` / `key` | Where inside `defines` the entry is, for the files that carry several: a role's section in `roles/clickhouse.yaml`, a topic's section in `topics/kafka.yaml`. |
+| `section` / `key` | Where inside `defines` the entry is, for the files that carry several: a role's section in `roles/clickhouse.yaml`, a topic's section in `topics/kafka.yaml`, a materialised view's name in a table file's `materialized_views`. |
 | `header` | The common-header profile to compose, for a table whose columns come from one. |
 | `compose` | A second definition composed over the header (or used alone), e.g. `hunts/results` for the detection table. |
 | `topology` | `resolved` renders per ClickHouse platform, and `fixed` renders the same everywhere. ClickHouse access objects and Kafka topics are `fixed`. |
@@ -66,8 +66,10 @@ deploy that changed nothing.
 * a duplicate `id`, or a `depends_on` that is unknown or declared later
 * two objects rendering to the same qualified name
 * a definition that will not render on some platform
-* a table whose engine is not `Replicated*`, or a statement other than the
-  self-hosted CREATE DATABASE that carries `ON CLUSTER`
+* a table that stores rows and whose engine is not `Replicated*`, or a
+  statement other than the self-hosted CREATE DATABASE that carries `ON CLUSTER`
+* a refreshable materialised view whose `refresh` is not an `EVERY` or `AFTER`
+  schedule, which is what keeps `APPEND` and one replica per refresh
 * a statement naming a `<database>.<object>` the manifest does not declare
 * a checksum that differs between platforms
 

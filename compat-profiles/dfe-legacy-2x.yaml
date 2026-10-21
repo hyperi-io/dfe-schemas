@@ -1,0 +1,42 @@
+# Compatibility profile: dfe-legacy-2x
+#
+# Reads the header fields a DFE 2.0 or 2.1 sender writes into the DFE header.
+# Format: profile.schema.json beside this file. Rows: scalo.rules.
+
+id: dfe-legacy-2x
+resource_type: core
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-10-21"
+    type: model
+    summary: "Org, category and receive time from a DFE 2.0 or 2.1 sender"
+    title: DFE 2.0 and 2.1 senders
+    description: >-
+      Reads the org and category a DFE 2.0 or 2.1 collector sends.
+      tags.event.org_id, then org_id, become _org_id. tags.event.category
+      becomes _source through each source's 2.x category aliases.
+      timestamp_received, then received_at, become _timestamp_received.
+    covers:
+      - platform: dfe
+        version: ">=2.0 <2.2"
+    targets: [_source, _org_id, _timestamp_received]
+    lookups:
+      # Empty here: the engine fills it from each source's aliases for this profile.
+      aliases: {}
+    rules:
+      - id: category
+        set: {_source: {lookup: aliases, from: tags.event.category}}
+      - id: org-tags
+        match: {field: tags.event.org_id, op: exists}
+        set: {_org_id: {from: tags.event.org_id}}
+      - id: org-flat
+        match: {field: org_id, op: exists}
+        set: {_org_id: {from: org_id}}
+      - id: received
+        match: {field: timestamp_received, op: exists}
+        set: {_timestamp_received: {from: timestamp_received}}
+      - id: received-at
+        match: {field: received_at, op: exists}
+        set: {_timestamp_received: {from: received_at}}

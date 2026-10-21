@@ -66,6 +66,7 @@ not, so two parsers over one schema tree gives two answers.
 | `__init__.py` | `schemas_root()` and `manifest_path()` -- the only path resolution |
 | `manifest.py` | Reads the manifest and refuses a bad one |
 | `loader.py` | Version trees, the two column shapes, composition, the type registry, `quote_ident` |
+| `compat.py` | The compatibility profiles, each version handed out as a scalo.rules rule set |
 | `clickhouse.py` | The platform probe, the Keeper refusal and the one `ENGINE` form |
 | `variants.py` | Picks one platform's block out of `sql/platform.sql`, knowing nothing of ClickHouse |
 | `render.py` | One object to statements, for one platform, with a checksum, and the one-DDL gate |

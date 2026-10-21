@@ -35,6 +35,7 @@ dfe-schemas/                      <- repo root, shipped as a PyPI wheel
 |   |-- timeseries.yaml           <- 9-column default profile
 |   |-- minimal.yaml              <- 5-column high-volume profile
 |   '-- passthrough.yaml          <- 4-column transparent bridge
+|-- compat-profiles/              <- rule rows that read another platform's header (compat-profiles.md)
 |-- meta/                         <- source meta schemas (aws/ azure/ gcp/ m365/ runzero/)
 |-- additional/                   <- extra-field overlays (<package>/<data_stream>, snapshot/)
 |-- derived/                      <- derived schemas: a select list over a base
@@ -132,7 +133,7 @@ columns:
     attribute: [not_null]            # Optional: storage modifiers
     default: null                    # Optional: DEFAULT expression
     order: 2                         # Optional: ORDER BY position
-    expr: "@source: org_id"          # Optional: DFE loader directive
+    expr: "@source: _org_id"         # Optional: DFE loader directive
     comment: "Tenant identifier"     # Optional: human description
     ch_override: null                # Optional: exact ClickHouse type
 ```
@@ -489,13 +490,15 @@ The profile determines which header columns are included.
 |--------|------|-------------|----------|----------|------|
 | `_timestamp_load` | `timestamp` | | | 0 | `@generated: now64(3)` |
 | `_timestamp` | `timestamp` | | `range` | 1 | `@source: timestamp \| now()` |
-| `_timestamp_received` | `timestamp` | | | | `@source: first(_timestamp_received/_timestamp_receiver/timestamp_received/received_at)` |
+| `_timestamp_received` | `timestamp` | | | | `@source: first(_timestamp_received/timestamp_received/received_at)` |
 | `_uuid` | `uuid` | | | | `@generated: generateUUIDv7()` |
-| `_org_id` | `string` | `low` | `dimension` | 2 | `@source: org_id` |
+| `_org_id` | `string` | `low` | `dimension` | 2 | `@source: _org_id` |
 | `_source` | `string` | `low` | `dimension` | | `@source: first(_source) \| topic_name` |
 | `_raw` | `text` | | `substring_search` | | capture mode |
 | `_json` | `json` | | | | capture mode |
-| `_tags` | `json` | | | | `@source: first(tags/_tags/meta/metadata.tags)` |
+| `_tags` | `json` | | | | `@source: first(_tags/tags/meta/metadata.tags)` |
+
+Each header field reads its `_`-prefixed wire name first, except the event timestamp. The header expects the first hop, dfe-receiver or dfe-fetcher, to stamp `_org_id` and `_timestamp_received` on every record. dfe-loader takes a column's directive ahead of its own `routing.org_id_field`, so the `_org_id` directive decides which field every row's tenant comes from. A sender's own spelling of the tenant, such as a DFE 2.x `org_id`, reaches `_org_id` only through a [compatibility profile](compat-profiles.md) at the first hop.
 
 ### minimal -- 5 columns
 
@@ -585,13 +588,13 @@ CREATE TABLE IF NOT EXISTS `{db}`.`windows_audit`
 (
     `_timestamp_load` DateTime64(3,'UTC') DEFAULT now64(3) COMMENT '@generated: now64(3) - Insertion timestamp (ms precision)' CODEC(Delta, LZ4),
     `_timestamp` DateTime64(3,'UTC') COMMENT '@source: timestamp | now() - Event timestamp from source data' CODEC(Delta, LZ4),
-    `_timestamp_received` DateTime64(3,'UTC') COMMENT '@source: first(_timestamp_received/_timestamp_receiver/timestamp_received/received_at) - When DFE first received the event: the dfe-fetcher stamp, else the dfe-receiver stamp' CODEC(Delta, LZ4),
+    `_timestamp_received` DateTime64(3,'UTC') COMMENT '@source: first(_timestamp_received/timestamp_received/received_at) - When DFE first received the event: the dfe-receiver or dfe-fetcher stamp' CODEC(Delta, LZ4),
     `_uuid` Nullable(UUID) DEFAULT generateUUIDv7() COMMENT '@generated: generateUUIDv7() - Time-ordered unique event identifier',
-    `_org_id` LowCardinality(String) COMMENT '@source: org_id - Tenant/organisation identifier' CODEC(ZSTD(1)),
+    `_org_id` LowCardinality(String) COMMENT '@source: _org_id - Tenant/organisation identifier' CODEC(ZSTD(1)),
     `_source` LowCardinality(Nullable(String)) COMMENT '@source: first(_source) | topic_name - Data source label (e.g. beats, syslog, crowdstrike-edr)' CODEC(ZSTD(1)),
     `_raw` Nullable(String) COMMENT 'Raw payload text, when the loader''s capture mode writes one. A JSON payload lands in _json instead, so _raw is often empty. (full-text indexed)' CODEC(ZSTD(3)),
     `_json` JSON(max_dynamic_paths=2048) COMMENT 'The payload as structured JSON, when the loader''s capture mode writes one' CODEC(ZSTD(3)),
-    `_tags` JSON COMMENT '@source: first(tags/_tags/meta/metadata.tags) - Event metadata tags' CODEC(ZSTD(3)),
+    `_tags` JSON COMMENT '@source: first(_tags/tags/meta/metadata.tags) - Event metadata tags' CODEC(ZSTD(3)),
     `user_name` Nullable(String) COMMENT '@source: first(user_id/uid/id) - User identifier' CODEC(ZSTD(1)),
     `source_ip` Nullable(IPv6) COMMENT '@source: src_ip - Source IP address' CODEC(LZ4),
     `message` Nullable(String) COMMENT 'Log message body' CODEC(ZSTD(3)),
@@ -612,7 +615,7 @@ SETTINGS
     index_granularity = 2048,
     ttl_only_drop_parts = 1,
     merge_max_dynamic_subcolumns_in_wide_part = 64
-COMMENT '@profile: timeseries | @profile_version: 1.0.0 | @windows_audit_version: 2';
+COMMENT '@profile: timeseries | @profile_version: 1.0.3 | @windows_audit_version: 2';
 ```
 
 Clauses follow ClickHouse's order: `ENGINE`, `PARTITION BY`, `PRIMARY KEY` and
@@ -770,6 +773,7 @@ dfe-schemas/
 |   |-- timeseries.yaml
 |   |-- minimal.yaml
 |   '-- passthrough.yaml
+|-- compat-profiles/        # Compatibility profiles and their JSON schema (shipped)
 |-- hunts/                  # Hunt output + checkpoint schemas (shipped)
 |   |-- results.yaml
 |   '-- detection_checkpoint.yaml

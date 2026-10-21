@@ -1,0 +1,35 @@
+# Compatibility profile: elastic-agent
+#
+# Routes an Elastic-shipped event on data_stream.dataset, the identifier Elastic
+# gives each integration's data stream.
+# Format: profile.schema.json beside this file. Rows: scalo.rules.
+
+id: elastic-agent
+resource_type: core
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-10-21"
+    type: model
+    summary: "Source from data_stream.dataset, and an opt-in org from data_stream.namespace"
+    title: Elastic Agent
+    description: >-
+      Routes an event by data_stream.dataset, which names the integration and
+      data stream that produced it. The dataset becomes _source through each
+      source's dataset aliases. data_stream.namespace becomes _org_id only on a
+      source that opts in.
+    covers:
+      - platform: elastic-agent
+    targets: [_source, _org_id]
+    lookups:
+      # Empty here: the engine fills it from each source's aliases for this profile.
+      aliases: {}
+    rules:
+      - id: dataset
+        set: {_source: {lookup: aliases, from: data_stream.dataset}}
+      - id: org-namespace
+        match: {field: data_stream.namespace, op: exists}
+        set: {_org_id: {from: data_stream.namespace}}
+    # A namespace is free text the sender chooses, so it names a tenant only where a source says so.
+    opt_in: [org-namespace]

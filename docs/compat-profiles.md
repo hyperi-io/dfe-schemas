@@ -5,12 +5,13 @@ A compatibility profile reads the header fields another platform, or an older DF
 | Profile | Reads | Sets | Off until a source opts in |
 |---------|-------|------|----------------------------|
 | `dfe-legacy-2x` | `tags.event.category` through the `aliases` table | `_source` | |
-| | `tags.event.org_id`, then `org_id` | `_org_id` | |
-| | `timestamp_received`, then `received_at` | `_timestamp_received` | |
+| | `tags.event.org_id`, then `org_id`, skipping `unknown` and `dfesystem` | `_org_id` | |
 | `elastic-agent` | `data_stream.dataset` through the `aliases` table | `_source` | |
 | | `data_stream.namespace` | `_org_id` | `org-namespace` |
 
-`data_stream.dataset` is the identifier Elastic gives each integration's data stream (`cisco_ios.log`), so one lookup covers every Elastic-shipped source. A namespace is free text the sender picks, which is why it names a tenant only on a source that says so.
+DFE 2.1 wrote `unknown` where it had no org and `dfesystem` for its DLQ. Neither is a tenant, so both fall through to the default org instead of counting as a clamp violation. A 2.x receive time needs no row: the first hop stamps its own `_timestamp_received`, and the header reads `timestamp_received` and `received_at` after it.
+
+`data_stream.dataset` is the identifier Elastic gives each integration's data stream (`cisco_ios.log`), so one lookup covers every Elastic-shipped source. A namespace is free text the sender picks, which is why it names a tenant only on a source that says so. Elastic's `data_stream.namespace` commonly defaults to `default`, which maps to the DFE default org when the `org-namespace` row is opted in.
 
 ## The format
 
@@ -42,7 +43,7 @@ versions:
 
 Two checks own a profile between them. `compat-profiles/profile.schema.json` (JSON Schema 2020-12) owns the document: the version tree, the fields a row may set, ids and the `opt_in` list. scalo.rules owns what a row means, so `targets`, `lookups` and `rules` are exactly a scalo.rules rule set, and the tests compile every version with scalo's own checker. The row format, its tests and its actions are in scalo-py's `docs/api/RULES.md`.
 
-A profile sets scalar header fields only: `_source`, `_org_id`, `_timestamp` and `_timestamp_received`. Moving a subtree or reshaping a payload is a transform's job. Each version is a complete snapshot and a published one never changes, so a fix is a new version entry.
+A profile sets scalar header fields only: `_source`, `_org_id` and `_timestamp`. Moving a subtree or reshaping a payload is a transform's job. Each version is a complete snapshot and a published one never changes, so a fix is a new version entry.
 
 ## Compiling and adding one
 

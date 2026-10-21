@@ -92,6 +92,11 @@ def _target_outside_the_header(doc):
     doc["versions"]["1.0.0"]["targets"].append("message")
 
 
+def _target_the_receive_time(doc):
+    """The first hop stamps the receive time itself, and the header reads a sender's own."""
+    doc["versions"]["1.0.0"]["targets"] = ["_source", "_org_id", "_timestamp_received"]
+
+
 def _no_rules(doc):
     doc["versions"]["1.0.0"]["rules"] = []
 
@@ -118,6 +123,7 @@ def _no_current(doc):
         _set_host,
         _set_two_fields,
         _target_outside_the_header,
+        _target_the_receive_time,
         _no_rules,
         _unknown_entry_key,
         _binding_separator_in_the_id,
@@ -162,18 +168,29 @@ LEGACY_RECORD = {
 }
 
 
-def test_a_2x_record_takes_its_org_category_and_receive_time():
+def test_a_2x_record_takes_its_org_and_category():
     outcome = _compiled("dfe-legacy-2x", {"logs_syslog": "syslog"}).evaluate(LEGACY_RECORD)
     assert outcome.value("_source") == "syslog"
     assert outcome.value("_org_id") == "acme"
-    assert outcome.value("_timestamp_received") == "2026-01-01T00:00:00.250Z"
 
 
-def test_a_2x_record_without_tags_takes_the_flat_org_and_received_at():
-    record = {"org_id": "flat-org", "received_at": "2026-01-01T00:00:00Z"}
-    outcome = _compiled("dfe-legacy-2x", {}).evaluate(record)
+def test_a_2x_record_without_tags_takes_the_flat_org():
+    outcome = _compiled("dfe-legacy-2x", {}).evaluate({"org_id": "flat-org"})
     assert outcome.value("_org_id") == "flat-org"
-    assert outcome.value("_timestamp_received") == "2026-01-01T00:00:00Z"
+
+
+@pytest.mark.parametrize("placeholder", ["unknown", "dfesystem"])
+def test_a_2x_placeholder_org_takes_the_default_and_is_not_counted(placeholder):
+    """2.1 wrote these where it had no tenant, so they are no sender's claim on one."""
+    rules = _compiled("dfe-legacy-2x", {})
+    record = {"org_id": placeholder, "tags": {"event": {"org_id": placeholder}}}
+    clamp = Clamp("_org_id", frozenset({"default", "acme"}), "default")
+    outcome = rules.evaluate(record, clamp)
+    assert outcome.value("_org_id") == "default"
+    assert outcome.clamp is not None
+    assert outcome.clamp.outcome is ClampOutcome.DEFAULTED
+    assert sum(row.clamped for row in rules.usage()) == 0
+    assert rules.record_clamped() == 0
 
 
 def test_a_category_no_source_aliases_sets_no_source():

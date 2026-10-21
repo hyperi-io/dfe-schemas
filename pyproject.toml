@@ -70,8 +70,8 @@ packages = ["dfe_schemas"]
 # Supply-chain cooldown (standards/universal/ci.md): never resolve a package
 # version published in the last 7 days.
 exclude-newer = "7 days"
-# Inside the cooldown: scalo.rules first ships in scalo 2.31.20, and certifi 2026.10.19 fixes PYSEC-2026-4320.
-exclude-newer-package = { scalo = false, certifi = false }
+# Remove on 2026-10-28: each date replaces the 7-day span for its package only, to admit scalo 2.31.20 (scalo.rules) and certifi 2026.10.19 (PYSEC-2026-4320).
+exclude-newer-package = { scalo = "2026-10-21T00:00:00Z", certifi = "2026-10-21T00:00:00Z" }
 
 [dependency-groups]
 # scalo[expression] is the rule engine the profiles compile under, jsonschema reads their schema.

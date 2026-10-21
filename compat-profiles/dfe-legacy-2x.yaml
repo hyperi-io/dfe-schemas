@@ -1,0 +1,46 @@
+# Compatibility profile: dfe-legacy-2x
+#
+# Reads the header fields a DFE 2.0 or 2.1 sender writes into the DFE header.
+# Format: profile.schema.json beside this file. Rows: scalo.rules.
+
+id: dfe-legacy-2x
+resource_type: core
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-10-21"
+    type: model
+    summary: "Org and category from a DFE 2.0 or 2.1 sender"
+    title: DFE 2.0 and 2.1 senders
+    description: >-
+      Reads the org and category a DFE 2.0 or 2.1 collector sends.
+      tags.event.org_id, then org_id, become _org_id, except the 2.1
+      placeholders unknown and dfesystem, which take the default org.
+      tags.event.category becomes _source through each source's 2.x category
+      aliases.
+    covers:
+      - platform: dfe
+        version: ">=2.0 <2.2"
+    targets: [_source, _org_id]
+    lookups:
+      # Empty here: the engine fills it from each source's aliases for this profile.
+      aliases: {}
+    rules:
+      - id: category
+        set: {_source: {lookup: aliases, from: tags.event.category}}
+      # 2.1 wrote unknown for no org and dfesystem for its DLQ, neither of them a tenant.
+      - id: org-tags
+        match:
+          all:
+            - {field: tags.event.org_id, op: exists}
+            - {field: tags.event.org_id, op: equals, value: unknown, negate: true}
+            - {field: tags.event.org_id, op: equals, value: dfesystem, negate: true}
+        set: {_org_id: {from: tags.event.org_id}}
+      - id: org-flat
+        match:
+          all:
+            - {field: org_id, op: exists}
+            - {field: org_id, op: equals, value: unknown, negate: true}
+            - {field: org_id, op: equals, value: dfesystem, negate: true}
+        set: {_org_id: {from: org_id}}

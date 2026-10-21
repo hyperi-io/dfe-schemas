@@ -22,7 +22,16 @@ WRITE_MARKS = "write_marks_for_substreams_in_compact_parts"
 
 def test_schemas_root_finds_the_trees():
     root = dfe_schemas.schemas_root()
-    for tree in ("tables", "hunts", "common-header", "meta", "views", "roles", "topics"):
+    for tree in (
+        "tables",
+        "hunts",
+        "common-header",
+        "compat-profiles",
+        "meta",
+        "views",
+        "roles",
+        "topics",
+    ):
         assert (root / tree).is_dir(), f"{tree} missing under {root}"
     # The file name matches the table name: a file called default.yaml declaring
     # a table called main is how the engine ended up creating dfe.default.

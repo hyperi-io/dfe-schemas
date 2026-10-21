@@ -68,6 +68,8 @@ dfe-schemas/
 |-- manifest.yaml      # THE apply manifest: every object, in dependency order
 |-- common-header/     # header profiles: timeseries (9 col, default),
 |                      #   minimal (5 col), passthrough (4 col)
+|-- compat-profiles/   # compatibility profiles: rule rows that read another
+|                      #   platform's header (dfe-legacy-2x, elastic-agent)
 |-- meta/              # source meta schemas, by provider (aws/ azure/ gcp/ m365/
 |                      #   runzero/ ...)
 |-- additional/        # extra-field overlays: <package>/<data_stream>.yaml, the
@@ -93,6 +95,7 @@ dfe-schemas/
 |-- scripts/           # render_manifest / validate_schemas / annotate + generate
 |-- docs/manifest.md     # the manifest format, and how to add an object
 |-- docs/meta-schema.md  # the YAML format reference (version tree, columns, types)
+|-- docs/compat-profiles.md  # the compatibility profile format
 |-- docs/tables.md     # the tables/ format reference (clauses, exact CH columns)
 '-- Makefile           # render, validate
 ```
@@ -197,6 +200,7 @@ touches a database -- this repo supplies definitions and dfe-engine applies them
 | `dfe_schemas/` | The package: manifest reader, renderer, loader, platform probe, `sql/platform.sql` |
 | `tables/`, `views/`, `roles/`, `topics/` | Definitions in exact ClickHouse types, SQL, the role catalogue, the Kafka policy |
 | `common-header/`, `meta/`, `additional/`, `hunts/` | Definitions in DFE primitives, mapped through `registries/types.yaml` |
+| `compat-profiles/` | Compatibility profiles, their JSON schema, and rows in the scalo.rules format |
 | `registries/` | The allow-lists dfe-engine validates against |
 | `docs/architecture.md` | Why it is shaped this way, and the invariants |
 

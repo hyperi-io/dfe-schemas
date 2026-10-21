@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/hyperi-io/dfe-schemas/blob/main/compat-profiles/profile.schema.json",
+  "title": "DFE compatibility profile",
+  "description": "A versioned block of first-hop rule rows that reads a platform's own header fields into the DFE header. What a row means is scalo.rules' format, checked by scalo.rules itself.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "resource_type", "current", "versions"],
+  "properties": {
+    "id": {
+      "description": "The file name without .yaml. A source binds a revision as <id>@<version>.",
+      "$ref": "#/$defs/name"
+    },
+    "resource_type": {
+      "description": "core ships in this package and refuses edits. custom is an operator's own.",
+      "enum": ["core", "custom"]
+    },
+    "current": {
+      "description": "The version a binding with no revision takes.",
+      "$ref": "#/$defs/version"
+    },
+    "versions": {
+      "description": "Each version is a complete snapshot, and a published one never changes.",
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "$ref": "#/$defs/version" },
+      "additionalProperties": { "$ref": "#/$defs/entry" }
+    }
+  },
+  "$defs": {
+    "name": {
+      "description": "Lower case words joined by hyphens, short enough that the engine can prefix a rule id with it inside the rule engine's 128-character id.",
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+      "maxLength": 63
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+    },
+    "header_field": {
+      "description": "The scalar header fields a profile may set. Moving a subtree or reshaping a payload is a transform's job.",
+      "enum": ["_source", "_org_id", "_timestamp"]
+    },
+    "entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["date", "type", "summary", "title", "description", "covers", "targets", "lookups", "rules"],
+      "properties": {
+        "date": {
+          "type": "string",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+        },
+        "type": {
+          "description": "SchemaVer: model is a major change, addition a minor one, revision a patch.",
+          "enum": ["model", "addition", "revision"]
+        },
+        "summary": { "type": "string", "minLength": 1 },
+        "title": {
+          "description": "The name the UI shows for the profile.",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "description": {
+          "description": "The UI tooltip: what the profile reads and what it sets.",
+          "type": "string",
+          "minLength": 1
+        },
+        "covers": {
+          "description": "The senders the profile reads, shown as a chip.",
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/cover" }
+        },
+        "targets": {
+          "description": "The header fields the rows set, in evaluation order. _source comes before _org_id so an org row can test the source the same pass chose.",
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/header_field" }
+        },
+        "lookups": {
+          "description": "Lookup tables the rows read. A shipped table may be empty: the engine fills it from each registered source before it compiles the rows.",
+          "type": "object",
+          "propertyNames": { "$ref": "#/$defs/rule_id" },
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": { "type": "string", "minLength": 1 }
+          }
+        },
+        "rules": {
+          "description": "The rows, in the order they fire. Fixed by the revision: copy the profile into a custom one to reorder them.",
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/rule" }
+        },
+        "opt_in": {
+          "description": "Ids of rows the engine leaves out until a source opts in to them.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/rule_id" }
+        }
+      }
+    },
+    "cover": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["platform"],
+      "properties": {
+        "platform": { "$ref": "#/$defs/name" },
+        "version": {
+          "description": "A version range of the platform, when the profile reads only some of them.",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "rule_id": {
+      "$ref": "#/$defs/name"
+    },
+    "rule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "set"],
+      "not": { "required": ["match", "when"] },
+      "properties": {
+        "id": { "$ref": "#/$defs/rule_id" },
+        "match": {
+          "description": "A scalo.rules native test.",
+          "type": "object"
+        },
+        "when": {
+          "description": "A scalo.rules CEL Fast condition, in place of match.",
+          "type": "string",
+          "minLength": 1
+        },
+        "set": {
+          "description": "Exactly one header field and the scalo.rules action that finds its value.",
+          "type": "object",
+          "minProperties": 1,
+          "maxProperties": 1,
+          "propertyNames": { "$ref": "#/$defs/header_field" },
+          "additionalProperties": { "type": "object" }
+        }
+      }
+    }
+  }
+}

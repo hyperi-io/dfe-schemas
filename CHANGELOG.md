@@ -3,6 +3,13 @@
 Rendered by CI and committed back at the end of a release -- do not edit by
 hand. Release notes also appear on the GitHub Releases page, one per tag.
 
+## [0.2.17](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.16...v0.2.17) (2026-10-21)
+
+### Bug Fixes
+
+* **deps:** update astral-sh/setup-uv action to v10 ([#76](https://github.com/hyperi-io/dfe-schemas/issues/76)) ([0e34309](https://github.com/hyperi-io/dfe-schemas/commit/0e34309449d5dafa32c8109a3e7bf0a8f4150f24))
+* read the tenant from _org_id and ship the compatibility profiles ([#78](https://github.com/hyperi-io/dfe-schemas/issues/78)) ([03b2c73](https://github.com/hyperi-io/dfe-schemas/commit/03b2c73c81bf099441961f68b0a85d8d210777db))
+
 ## [0.2.16](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.15...v0.2.16) (2026-10-19)
 
 ### Bug Fixes

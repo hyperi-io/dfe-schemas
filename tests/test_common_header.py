@@ -71,3 +71,14 @@ def test_every_profile_is_current_at_one_version():
         for header in PROFILES
     }
     assert len(set(current.values())) == 1, current
+
+
+def test_every_core_source_pins_its_header_at_current():
+    """The engine builds main and detection from these, so a lagging pin rebuilds them on an old header."""
+    sources = sorted((ROOT / "sources").glob("*.yaml"))
+    assert sources
+    for path in sources:
+        source = read_yaml(path)
+        header = source["versions"][source["current"]]["header"]
+        profile = read_yaml(ROOT / "common-header" / f"{header['type']}.yaml")
+        assert header["version"] == profile["current"], f"{path.name} pins {header}"

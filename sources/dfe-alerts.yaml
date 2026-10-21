@@ -17,10 +17,24 @@ description: >-
   Contains matched_uuid linking back to the original source record, plus rule
   metadata (rule_id, rule_name, hunt_name, severity).
 state: active
-deployed_version: "1.0.1"
-current: "1.0.1"
+deployed_version: "1.0.2"
+current: "1.0.2"
 
 versions:
+  "1.0.2":
+    date_time: "2026-10-21"
+    header:
+      type: timeseries
+      version: "1.0.3"
+    match:
+      field: _source
+      value: dfe-alerts
+    schema:
+      ttl_days: 365
+      engine: MergeTree
+      additional_fields: hunts/results.yaml
+    views:
+      - standard: sigma
   "1.0.1":
     date_time: "2026-09-16"
     header:

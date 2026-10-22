@@ -3,6 +3,12 @@
 Rendered by CI and committed back at the end of a release -- do not edit by
 hand. Release notes also appear on the GitHub Releases page, one per tag.
 
+## [0.2.18](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.17...v0.2.18) (2026-10-22)
+
+### Bug Fixes
+
+* ship the source catalogue as source bodies ([#79](https://github.com/hyperi-io/dfe-schemas/issues/79)) ([b42e1f9](https://github.com/hyperi-io/dfe-schemas/commit/b42e1f936f71c17db9babf4d95affe22593ec296))
+
 ## [0.2.17](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.16...v0.2.17) (2026-10-21)
 
 ### Bug Fixes

@@ -1,0 +1,23 @@
+# Catalogue source system-audit-package: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: system-audit-package
+display_name: system_audit.package
+description: The package data stream of the Elastic system_audit integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: system_audit.package
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/system_audit/package
+  additional_fields: additional/system_audit/package
+transform:
+  engine: elastic
+  variant: filebeat.system_audit_package.default
+catalogue:
+  package: system_audit
+  data_stream: package
+  intakes: [beats]
+  variants:
+    - filebeat.system_audit_package.default

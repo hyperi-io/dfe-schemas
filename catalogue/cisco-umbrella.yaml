@@ -1,0 +1,23 @@
+# Catalogue source cisco-umbrella: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: cisco-umbrella
+display_name: cisco_umbrella.log
+description: The log data stream of the Elastic cisco_umbrella integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: cisco_umbrella.log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/cisco_umbrella/log
+  additional_fields: additional/cisco_umbrella/log
+transform:
+  engine: elastic
+  variant: filebeat.cisco_umbrella.default
+catalogue:
+  package: cisco_umbrella
+  data_stream: log
+  intakes: [beats]
+  variants:
+    - filebeat.cisco_umbrella.default

@@ -1,0 +1,23 @@
+# Catalogue source websphere-app-server-session-manager: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: websphere-app-server-session-manager
+display_name: websphere_application_server.session_manager
+description: The session_manager data stream of the Elastic websphere_application_server integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: websphere_application_server.session_manager
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/websphere_application_server/session_manager
+  additional_fields: additional/websphere_application_server/session_manager
+transform:
+  engine: elastic
+  variant: filebeat.websphere_application_server_session_manager.default
+catalogue:
+  package: websphere_application_server
+  data_stream: session_manager
+  intakes: [beats]
+  variants:
+    - filebeat.websphere_application_server_session_manager.default

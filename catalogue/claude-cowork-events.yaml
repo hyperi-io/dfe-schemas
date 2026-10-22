@@ -1,0 +1,23 @@
+# Catalogue source claude-cowork-events: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: claude-cowork-events
+display_name: claude_cowork.events
+description: The events data stream of the Elastic claude_cowork integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: claude_cowork.events
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/claude_cowork/events
+  additional_fields: additional/claude_cowork/events
+transform:
+  engine: elastic
+  variant: filebeat.claude_cowork_events.default
+catalogue:
+  package: claude_cowork
+  data_stream: events
+  intakes: [beats]
+  variants:
+    - filebeat.claude_cowork_events.default

@@ -1,0 +1,23 @@
+# Catalogue source ti-otx-pulses-subscribed: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ti-otx-pulses-subscribed
+display_name: ti_otx.pulses_subscribed
+description: The pulses_subscribed data stream of the Elastic ti_otx integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ti_otx.pulses_subscribed
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ti_otx/pulses_subscribed
+  additional_fields: additional/ti_otx/pulses_subscribed
+transform:
+  engine: elastic
+  variant: filebeat.ti_otx_pulses_subscribed.default
+catalogue:
+  package: ti_otx
+  data_stream: pulses_subscribed
+  intakes: [beats]
+  variants:
+    - filebeat.ti_otx_pulses_subscribed.default

@@ -1,0 +1,23 @@
+# Catalogue source mimecast-message-release-logs: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: mimecast-message-release-logs
+display_name: mimecast.message_release_logs
+description: The message_release_logs data stream of the Elastic mimecast integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: mimecast.message_release_logs
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/mimecast/message_release_logs
+  additional_fields: additional/mimecast/message_release_logs
+transform:
+  engine: elastic
+  variant: filebeat.mimecast_message_release_logs.default
+catalogue:
+  package: mimecast
+  data_stream: message_release_logs
+  intakes: [beats]
+  variants:
+    - filebeat.mimecast_message_release_logs.default

@@ -1,0 +1,23 @@
+# Catalogue source oracle-database-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: oracle-database-audit
+display_name: oracle.database_audit
+description: The database_audit data stream of the Elastic oracle integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: oracle.database_audit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/oracle/database_audit
+  additional_fields: additional/oracle/database_audit
+transform:
+  engine: elastic
+  variant: filebeat.oracle_database_audit.default
+catalogue:
+  package: oracle
+  data_stream: database_audit
+  intakes: [beats]
+  variants:
+    - filebeat.oracle_database_audit.default

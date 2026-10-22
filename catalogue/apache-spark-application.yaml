@@ -1,0 +1,19 @@
+# Catalogue source apache-spark-application: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: apache-spark-application
+display_name: apache_spark.application
+description: The application data stream of the Elastic apache_spark integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: apache_spark.application
+transform:
+  engine: elastic
+  variant: filebeat.apache_spark_application.default
+catalogue:
+  package: apache_spark
+  data_stream: application
+  intakes: [beats]
+  variants:
+    - filebeat.apache_spark_application.default

@@ -1,0 +1,23 @@
+# Catalogue source openai-rate-limits: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: openai-rate-limits
+display_name: openai.rate_limits
+description: The rate_limits data stream of the Elastic openai integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: openai.rate_limits
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/openai/rate_limits
+  additional_fields: additional/openai/rate_limits
+transform:
+  engine: elastic
+  variant: filebeat.openai_rate_limits.default
+catalogue:
+  package: openai
+  data_stream: rate_limits
+  intakes: [beats]
+  variants:
+    - filebeat.openai_rate_limits.default

@@ -1,0 +1,19 @@
+# Catalogue source oracle-weblogic-deployed-application: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: oracle-weblogic-deployed-application
+display_name: oracle_weblogic.deployed_application
+description: The deployed_application data stream of the Elastic oracle_weblogic integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: oracle_weblogic.deployed_application
+transform:
+  engine: elastic
+  variant: filebeat.oracle_weblogic_deployed_application.default
+catalogue:
+  package: oracle_weblogic
+  data_stream: deployed_application
+  intakes: [beats]
+  variants:
+    - filebeat.oracle_weblogic_deployed_application.default

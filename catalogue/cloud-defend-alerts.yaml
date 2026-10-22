@@ -1,0 +1,19 @@
+# Catalogue source cloud-defend-alerts: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: cloud-defend-alerts
+display_name: cloud_defend.alerts
+description: The alerts data stream of the Elastic cloud_defend integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: cloud_defend.alerts
+transform:
+  engine: elastic
+  variant: filebeat.cloud_defend_alerts.default
+catalogue:
+  package: cloud_defend
+  data_stream: alerts
+  intakes: [beats]
+  variants:
+    - filebeat.cloud_defend_alerts.default

@@ -1,0 +1,24 @@
+# Catalogue source vsphere-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: vsphere-log
+display_name: vsphere.log
+description: The log data stream of the Elastic vsphere integration.
+match:
+  field: _source
+  operator: equals
+  value: vsphere-log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/vsphere/log
+  additional_fields: additional/vsphere/log
+transform:
+  engine: elastic
+  variant: filebeat.vsphere_log.default
+catalogue:
+  package: vsphere
+  data_stream: log
+  intakes: [beats, receiver]
+  framing: line
+  variants:
+    - filebeat.vsphere_log.default

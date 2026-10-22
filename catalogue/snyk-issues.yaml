@@ -1,0 +1,23 @@
+# Catalogue source snyk-issues: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: snyk-issues
+display_name: snyk.issues
+description: The issues data stream of the Elastic snyk integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: snyk.issues
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/snyk/issues
+  additional_fields: additional/snyk/issues
+transform:
+  engine: elastic
+  variant: filebeat.snyk_issues.default
+catalogue:
+  package: snyk
+  data_stream: issues
+  intakes: [beats]
+  variants:
+    - filebeat.snyk_issues.default

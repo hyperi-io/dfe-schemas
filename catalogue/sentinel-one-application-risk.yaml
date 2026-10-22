@@ -1,0 +1,23 @@
+# Catalogue source sentinel-one-application-risk: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: sentinel-one-application-risk
+display_name: sentinel_one.application_risk
+description: The application_risk data stream of the Elastic sentinel_one integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: sentinel_one.application_risk
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/sentinel_one/application_risk
+  additional_fields: additional/sentinel_one/application_risk
+transform:
+  engine: elastic
+  variant: filebeat.sentinel_one_application_risk.default
+catalogue:
+  package: sentinel_one
+  data_stream: application_risk
+  intakes: [beats]
+  variants:
+    - filebeat.sentinel_one_application_risk.default

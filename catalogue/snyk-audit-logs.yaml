@@ -1,0 +1,23 @@
+# Catalogue source snyk-audit-logs: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: snyk-audit-logs
+display_name: snyk.audit_logs
+description: The audit_logs data stream of the Elastic snyk integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: snyk.audit_logs
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/snyk/audit_logs
+  additional_fields: additional/snyk/audit_logs
+transform:
+  engine: elastic
+  variant: filebeat.snyk_audit_logs.default
+catalogue:
+  package: snyk
+  data_stream: audit_logs
+  intakes: [beats]
+  variants:
+    - filebeat.snyk_audit_logs.default

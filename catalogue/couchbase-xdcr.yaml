@@ -1,0 +1,23 @@
+# Catalogue source couchbase-xdcr: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: couchbase-xdcr
+display_name: couchbase.xdcr
+description: The xdcr data stream of the Elastic couchbase integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: couchbase.xdcr
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/couchbase/xdcr
+  additional_fields: additional/couchbase/xdcr
+transform:
+  engine: elastic
+  variant: filebeat.couchbase_xdcr.default
+catalogue:
+  package: couchbase
+  data_stream: xdcr
+  intakes: [beats]
+  variants:
+    - filebeat.couchbase_xdcr.default

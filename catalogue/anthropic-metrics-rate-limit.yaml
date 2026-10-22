@@ -1,0 +1,23 @@
+# Catalogue source anthropic-metrics-rate-limit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: anthropic-metrics-rate-limit
+display_name: anthropic_metrics.rate_limit
+description: The rate_limit data stream of the Elastic anthropic_metrics integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: anthropic_metrics.rate_limit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/anthropic_metrics/rate_limit
+  additional_fields: additional/anthropic_metrics/rate_limit
+transform:
+  engine: elastic
+  variant: filebeat.anthropic_metrics_rate_limit.default
+catalogue:
+  package: anthropic_metrics
+  data_stream: rate_limit
+  intakes: [beats]
+  variants:
+    - filebeat.anthropic_metrics_rate_limit.default

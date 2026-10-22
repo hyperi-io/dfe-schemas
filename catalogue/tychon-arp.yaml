@@ -1,0 +1,23 @@
+# Catalogue source tychon-arp: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: tychon-arp
+display_name: tychon.arp
+description: The arp data stream of the Elastic tychon integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: tychon.arp
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/tychon/arp
+  additional_fields: additional/tychon/arp
+transform:
+  engine: elastic
+  variant: filebeat.tychon_arp.default
+catalogue:
+  package: tychon
+  data_stream: arp
+  intakes: [beats]
+  variants:
+    - filebeat.tychon_arp.default

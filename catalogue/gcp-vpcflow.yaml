@@ -1,0 +1,22 @@
+# Catalogue source gcp-vpcflow: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: gcp-vpcflow
+display_name: gcp.vpcflow
+description: The vpcflow data stream of the Elastic gcp integration.
+fetcher:
+  source_type: gcp
+  topic: own
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/gcp/vpcflow
+  additional_fields: additional/gcp/vpcflow
+transform:
+  engine: elastic
+  variant: filebeat.gcp_vpcflow.default
+catalogue:
+  package: gcp
+  data_stream: vpcflow
+  intakes: [beats, fetcher]
+  variants:
+    - filebeat.gcp_vpcflow.default

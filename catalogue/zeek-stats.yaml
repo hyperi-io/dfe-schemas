@@ -1,0 +1,23 @@
+# Catalogue source zeek-stats: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zeek-stats
+display_name: zeek.stats
+description: The stats data stream of the Elastic zeek integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: zeek.stats
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zeek/stats
+  additional_fields: additional/zeek/stats
+transform:
+  engine: elastic
+  variant: filebeat.zeek_stats.default
+catalogue:
+  package: zeek
+  data_stream: stats
+  intakes: [beats]
+  variants:
+    - filebeat.zeek_stats.default

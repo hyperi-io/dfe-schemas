@@ -1,0 +1,23 @@
+# Catalogue source tencent-cloud-scf: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: tencent-cloud-scf
+display_name: tencent_cloud.scf
+description: The scf data stream of the Elastic tencent_cloud integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: tencent_cloud.scf
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/tencent_cloud/scf
+  additional_fields: additional/tencent_cloud/scf
+transform:
+  engine: elastic
+  variant: filebeat.tencent_cloud_scf.default
+catalogue:
+  package: tencent_cloud
+  data_stream: scf
+  intakes: [beats]
+  variants:
+    - filebeat.tencent_cloud_scf.default

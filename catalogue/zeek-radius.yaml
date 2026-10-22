@@ -1,0 +1,23 @@
+# Catalogue source zeek-radius: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zeek-radius
+display_name: zeek.radius
+description: The radius data stream of the Elastic zeek integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: zeek.radius
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zeek/radius
+  additional_fields: additional/zeek/radius
+transform:
+  engine: elastic
+  variant: filebeat.zeek_radius.default
+catalogue:
+  package: zeek
+  data_stream: radius
+  intakes: [beats]
+  variants:
+    - filebeat.zeek_radius.default

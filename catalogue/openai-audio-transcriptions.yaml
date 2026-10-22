@@ -1,0 +1,19 @@
+# Catalogue source openai-audio-transcriptions: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: openai-audio-transcriptions
+display_name: openai.audio_transcriptions
+description: The audio_transcriptions data stream of the Elastic openai integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: openai.audio_transcriptions
+transform:
+  engine: elastic
+  variant: filebeat.openai_audio_transcriptions.default
+catalogue:
+  package: openai
+  data_stream: audio_transcriptions
+  intakes: [beats]
+  variants:
+    - filebeat.openai_audio_transcriptions.default

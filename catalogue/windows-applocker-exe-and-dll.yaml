@@ -1,0 +1,23 @@
+# Catalogue source windows-applocker-exe-and-dll: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: windows-applocker-exe-and-dll
+display_name: windows.applocker_exe_and_dll
+description: The applocker_exe_and_dll data stream of the Elastic windows integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: windows.applocker_exe_and_dll
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/windows/applocker_exe_and_dll
+  additional_fields: additional/windows/applocker_exe_and_dll
+transform:
+  engine: elastic
+  variant: filebeat.windows_applocker_exe_and_dll.default
+catalogue:
+  package: windows
+  data_stream: applocker_exe_and_dll
+  intakes: [beats]
+  variants:
+    - filebeat.windows_applocker_exe_and_dll.default

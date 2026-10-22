@@ -1,0 +1,23 @@
+# Catalogue source microsoft-dnsserver-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: microsoft-dnsserver-audit
+display_name: microsoft_dnsserver.audit
+description: The audit data stream of the Elastic microsoft_dnsserver integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: microsoft_dnsserver.audit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/microsoft_dnsserver/audit
+  additional_fields: additional/microsoft_dnsserver/audit
+transform:
+  engine: elastic
+  variant: filebeat.microsoft_dnsserver_audit.default
+catalogue:
+  package: microsoft_dnsserver
+  data_stream: audit
+  intakes: [beats]
+  variants:
+    - filebeat.microsoft_dnsserver_audit.default

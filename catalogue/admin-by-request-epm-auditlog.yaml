@@ -1,0 +1,23 @@
+# Catalogue source admin-by-request-epm-auditlog: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: admin-by-request-epm-auditlog
+display_name: admin_by_request_epm.auditlog
+description: The auditlog data stream of the Elastic admin_by_request_epm integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: admin_by_request_epm.auditlog
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/admin_by_request_epm/auditlog
+  additional_fields: additional/admin_by_request_epm/auditlog
+transform:
+  engine: elastic
+  variant: filebeat.admin_by_request_epm_auditlog.default
+catalogue:
+  package: admin_by_request_epm
+  data_stream: auditlog
+  intakes: [beats]
+  variants:
+    - filebeat.admin_by_request_epm_auditlog.default

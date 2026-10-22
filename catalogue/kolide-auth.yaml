@@ -1,0 +1,23 @@
+# Catalogue source kolide-auth: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: kolide-auth
+display_name: kolide.auth
+description: The auth data stream of the Elastic kolide integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: kolide.auth
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/kolide/auth
+  additional_fields: additional/kolide/auth
+transform:
+  engine: elastic
+  variant: filebeat.kolide_auth.default
+catalogue:
+  package: kolide
+  data_stream: auth
+  intakes: [beats]
+  variants:
+    - filebeat.kolide_auth.default

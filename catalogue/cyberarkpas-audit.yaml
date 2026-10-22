@@ -1,0 +1,24 @@
+# Catalogue source cyberarkpas-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: cyberarkpas-audit
+display_name: cyberarkpas.audit
+description: The audit data stream of the Elastic cyberarkpas integration.
+match:
+  field: _source
+  operator: equals
+  value: cyberarkpas-audit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/cyberarkpas/audit
+  additional_fields: additional/cyberarkpas/audit
+transform:
+  engine: elastic
+  variant: filebeat.cyberarkpas_audit.default
+catalogue:
+  package: cyberarkpas
+  data_stream: audit
+  intakes: [beats, receiver]
+  framing: line
+  variants:
+    - filebeat.cyberarkpas_audit.default

@@ -1,0 +1,23 @@
+# Catalogue source tenable-ot-security-system-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: tenable-ot-security-system-log
+display_name: tenable_ot_security.system_log
+description: The system_log data stream of the Elastic tenable_ot_security integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: tenable_ot_security.system_log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/tenable_ot_security/system_log
+  additional_fields: additional/tenable_ot_security/system_log
+transform:
+  engine: elastic
+  variant: filebeat.tenable_ot_security_system_log.default
+catalogue:
+  package: tenable_ot_security
+  data_stream: system_log
+  intakes: [beats]
+  variants:
+    - filebeat.tenable_ot_security_system_log.default

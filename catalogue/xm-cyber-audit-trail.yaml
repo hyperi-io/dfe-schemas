@@ -1,0 +1,23 @@
+# Catalogue source xm-cyber-audit-trail: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: xm-cyber-audit-trail
+display_name: xm_cyber.audit_trail
+description: The audit_trail data stream of the Elastic xm_cyber integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: xm_cyber.audit_trail
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/xm_cyber/audit_trail
+  additional_fields: additional/xm_cyber/audit_trail
+transform:
+  engine: elastic
+  variant: filebeat.xm_cyber_audit_trail.default
+catalogue:
+  package: xm_cyber
+  data_stream: audit_trail
+  intakes: [beats]
+  variants:
+    - filebeat.xm_cyber_audit_trail.default

@@ -1,0 +1,23 @@
+# Catalogue source zoom-activity: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zoom-activity
+display_name: zoom.activity
+description: The activity data stream of the Elastic zoom integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: zoom.activity
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zoom/activity
+  additional_fields: additional/zoom/activity
+transform:
+  engine: elastic
+  variant: filebeat.zoom_activity.default
+catalogue:
+  package: zoom
+  data_stream: activity
+  intakes: [beats]
+  variants:
+    - filebeat.zoom_activity.default

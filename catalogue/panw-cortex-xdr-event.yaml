@@ -1,0 +1,23 @@
+# Catalogue source panw-cortex-xdr-event: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: panw-cortex-xdr-event
+display_name: panw_cortex_xdr.event
+description: The event data stream of the Elastic panw_cortex_xdr integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: panw_cortex_xdr.event
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/panw_cortex_xdr/event
+  additional_fields: additional/panw_cortex_xdr/event
+transform:
+  engine: elastic
+  variant: filebeat.panw_cortex_xdr_event.default
+catalogue:
+  package: panw_cortex_xdr
+  data_stream: event
+  intakes: [beats]
+  variants:
+    - filebeat.panw_cortex_xdr_event.default

@@ -1,0 +1,23 @@
+# Catalogue source tychon-cmrs: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: tychon-cmrs
+display_name: tychon.cmrs
+description: The cmrs data stream of the Elastic tychon integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: tychon.cmrs
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/tychon/cmrs
+  additional_fields: additional/tychon/cmrs
+transform:
+  engine: elastic
+  variant: filebeat.tychon_cmrs.default
+catalogue:
+  package: tychon
+  data_stream: cmrs
+  intakes: [beats]
+  variants:
+    - filebeat.tychon_cmrs.default

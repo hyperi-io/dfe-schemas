@@ -1,0 +1,23 @@
+# Catalogue source zeek-intel: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zeek-intel
+display_name: zeek.intel
+description: The intel data stream of the Elastic zeek integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: zeek.intel
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zeek/intel
+  additional_fields: additional/zeek/intel
+transform:
+  engine: elastic
+  variant: filebeat.zeek_intel.default
+catalogue:
+  package: zeek
+  data_stream: intel
+  intakes: [beats]
+  variants:
+    - filebeat.zeek_intel.default

@@ -1,0 +1,23 @@
+# Catalogue source sysmon-linux-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: sysmon-linux-log
+display_name: sysmon_linux.log
+description: The log data stream of the Elastic sysmon_linux integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: sysmon_linux.log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/sysmon_linux/log
+  additional_fields: additional/sysmon_linux/log
+transform:
+  engine: elastic
+  variant: filebeat.sysmon_linux_log.default
+catalogue:
+  package: sysmon_linux
+  data_stream: log
+  intakes: [beats]
+  variants:
+    - filebeat.sysmon_linux_log.default

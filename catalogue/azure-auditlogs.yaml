@@ -1,0 +1,25 @@
+# Catalogue source azure-auditlogs: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: azure-auditlogs
+display_name: azure.auditlogs
+description: The auditlogs data stream of the Elastic azure integration.
+fetcher:
+  source_type: azure
+  topic: own
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/azure/auditlogs
+  additional_fields: additional/azure/auditlogs
+transform:
+  engine: elastic
+  variant: filebeat.azure_auditlogs.default
+catalogue:
+  package: azure
+  data_stream: auditlogs
+  intakes: [beats, fetcher]
+  beats:
+    module: azure
+    fileset: auditlogs
+  variants:
+    - filebeat.azure_auditlogs.default

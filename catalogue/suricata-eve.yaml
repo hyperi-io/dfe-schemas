@@ -1,0 +1,23 @@
+# Catalogue source suricata-eve: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: suricata-eve
+display_name: suricata.eve
+description: The eve data stream of the Elastic suricata integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: suricata.eve
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/suricata/eve
+  additional_fields: additional/suricata/eve
+transform:
+  engine: elastic
+  variant: filebeat.suricata_eve.default
+catalogue:
+  package: suricata
+  data_stream: eve
+  intakes: [beats]
+  variants:
+    - filebeat.suricata_eve.default

@@ -1,0 +1,23 @@
+# Catalogue source checkpoint-email-event: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: checkpoint-email-event
+display_name: checkpoint_email.event
+description: The event data stream of the Elastic checkpoint_email integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: checkpoint_email.event
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/checkpoint_email/event
+  additional_fields: additional/checkpoint_email/event
+transform:
+  engine: elastic
+  variant: filebeat.checkpoint_email_event.default
+catalogue:
+  package: checkpoint_email
+  data_stream: event
+  intakes: [beats]
+  variants:
+    - filebeat.checkpoint_email_event.default

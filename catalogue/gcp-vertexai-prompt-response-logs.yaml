@@ -1,0 +1,19 @@
+# Catalogue source gcp-vertexai-prompt-response-logs: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: gcp-vertexai-prompt-response-logs
+display_name: gcp_vertexai.prompt_response_logs
+description: The prompt_response_logs data stream of the Elastic gcp_vertexai integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: gcp_vertexai.prompt_response_logs
+transform:
+  engine: elastic
+  variant: filebeat.gcp_vertexai_prompt_response_logs.default
+catalogue:
+  package: gcp_vertexai
+  data_stream: prompt_response_logs
+  intakes: [beats]
+  variants:
+    - filebeat.gcp_vertexai_prompt_response_logs.default

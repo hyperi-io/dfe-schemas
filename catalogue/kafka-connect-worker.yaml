@@ -1,0 +1,19 @@
+# Catalogue source kafka-connect-worker: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: kafka-connect-worker
+display_name: kafka_connect.worker
+description: The worker data stream of the Elastic kafka_connect integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: kafka_connect.worker
+transform:
+  engine: elastic
+  variant: filebeat.kafka_connect_worker.default
+catalogue:
+  package: kafka_connect
+  data_stream: worker
+  intakes: [beats]
+  variants:
+    - filebeat.kafka_connect_worker.default

@@ -1,0 +1,23 @@
+# Catalogue source atlassian-bitbucket-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: atlassian-bitbucket-audit
+display_name: atlassian_bitbucket.audit
+description: The audit data stream of the Elastic atlassian_bitbucket integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: atlassian_bitbucket.audit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/atlassian_bitbucket/audit
+  additional_fields: additional/atlassian_bitbucket/audit
+transform:
+  engine: elastic
+  variant: filebeat.atlassian_bitbucket_audit.default
+catalogue:
+  package: atlassian_bitbucket
+  data_stream: audit
+  intakes: [beats]
+  variants:
+    - filebeat.atlassian_bitbucket_audit.default

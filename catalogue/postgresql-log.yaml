@@ -1,0 +1,23 @@
+# Catalogue source postgresql-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: postgresql-log
+display_name: postgresql.log
+description: The log data stream of the Elastic postgresql integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: postgresql.log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/postgresql/log
+  additional_fields: additional/postgresql/log
+transform:
+  engine: elastic
+  variant: filebeat.postgresql_log.default
+catalogue:
+  package: postgresql
+  data_stream: log
+  intakes: [beats]
+  variants:
+    - filebeat.postgresql_log.default

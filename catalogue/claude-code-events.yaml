@@ -1,0 +1,23 @@
+# Catalogue source claude-code-events: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: claude-code-events
+display_name: claude_code.events
+description: The events data stream of the Elastic claude_code integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: claude_code.events
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/claude_code/events
+  additional_fields: additional/claude_code/events
+transform:
+  engine: elastic
+  variant: filebeat.claude_code_events.default
+catalogue:
+  package: claude_code
+  data_stream: events
+  intakes: [beats]
+  variants:
+    - filebeat.claude_code_events.default

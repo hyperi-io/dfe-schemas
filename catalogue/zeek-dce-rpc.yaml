@@ -1,0 +1,23 @@
+# Catalogue source zeek-dce-rpc: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zeek-dce-rpc
+display_name: zeek.dce_rpc
+description: The dce_rpc data stream of the Elastic zeek integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: zeek.dce_rpc
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zeek/dce_rpc
+  additional_fields: additional/zeek/dce_rpc
+transform:
+  engine: elastic
+  variant: filebeat.zeek_dce_rpc.default
+catalogue:
+  package: zeek
+  data_stream: dce_rpc
+  intakes: [beats]
+  variants:
+    - filebeat.zeek_dce_rpc.default

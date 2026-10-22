@@ -1,0 +1,19 @@
+# Catalogue source aws-bedrock-agentcore-metrics: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: aws-bedrock-agentcore-metrics
+display_name: aws_bedrock_agentcore.metrics
+description: The metrics data stream of the Elastic aws_bedrock_agentcore integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: aws_bedrock_agentcore.metrics
+transform:
+  engine: elastic
+  variant: filebeat.aws_bedrock_agentcore_metrics.default
+catalogue:
+  package: aws_bedrock_agentcore
+  data_stream: metrics
+  intakes: [beats]
+  variants:
+    - filebeat.aws_bedrock_agentcore_metrics.default

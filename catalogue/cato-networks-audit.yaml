@@ -1,0 +1,23 @@
+# Catalogue source cato-networks-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: cato-networks-audit
+display_name: cato_networks.audit
+description: The audit data stream of the Elastic cato_networks integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: cato_networks.audit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/cato_networks/audit
+  additional_fields: additional/cato_networks/audit
+transform:
+  engine: elastic
+  variant: filebeat.cato_networks_audit.default
+catalogue:
+  package: cato_networks
+  data_stream: audit
+  intakes: [beats]
+  variants:
+    - filebeat.cato_networks_audit.default

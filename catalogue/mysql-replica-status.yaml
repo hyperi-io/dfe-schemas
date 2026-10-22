@@ -1,0 +1,23 @@
+# Catalogue source mysql-replica-status: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: mysql-replica-status
+display_name: mysql.replica_status
+description: The replica_status data stream of the Elastic mysql integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: mysql.replica_status
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/mysql/replica_status
+  additional_fields: additional/mysql/replica_status
+transform:
+  engine: elastic
+  variant: filebeat.mysql_replica_status.default
+catalogue:
+  package: mysql
+  data_stream: replica_status
+  intakes: [beats]
+  variants:
+    - filebeat.mysql_replica_status.default

@@ -1,0 +1,19 @@
+# Catalogue source aws-lambda: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: aws-lambda
+display_name: aws.lambda
+description: The lambda data stream of the Elastic aws integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: aws.lambda
+transform:
+  engine: elastic
+  variant: filebeat.aws_lambda.default
+catalogue:
+  package: aws
+  data_stream: lambda
+  intakes: [beats]
+  variants:
+    - filebeat.aws_lambda.default

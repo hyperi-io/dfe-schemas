@@ -1,0 +1,24 @@
+# Catalogue source darktrace-model-breach-alert: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: darktrace-model-breach-alert
+display_name: darktrace.model_breach_alert
+description: The model_breach_alert data stream of the Elastic darktrace integration.
+match:
+  field: _source
+  operator: equals
+  value: darktrace-model-breach-alert
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/darktrace/model_breach_alert
+  additional_fields: additional/darktrace/model_breach_alert
+transform:
+  engine: elastic
+  variant: filebeat.darktrace_model_breach_alert.default
+catalogue:
+  package: darktrace
+  data_stream: model_breach_alert
+  intakes: [beats, receiver]
+  framing: body
+  variants:
+    - filebeat.darktrace_model_breach_alert.default

@@ -1,0 +1,23 @@
+# Catalogue source goflow2-sflow: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: goflow2-sflow
+display_name: goflow2.sflow
+description: The sflow data stream of the Elastic goflow2 integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: goflow2.sflow
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/goflow2/sflow
+  additional_fields: additional/goflow2/sflow
+transform:
+  engine: elastic
+  variant: filebeat.goflow2_sflow.default
+catalogue:
+  package: goflow2
+  data_stream: sflow
+  intakes: [beats]
+  variants:
+    - filebeat.goflow2_sflow.default

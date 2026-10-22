@@ -1,0 +1,23 @@
+# Catalogue source microsoft-exchange-server-imap4-pop3: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: microsoft-exchange-server-imap4-pop3
+display_name: microsoft_exchange_server.imap4_pop3
+description: The imap4_pop3 data stream of the Elastic microsoft_exchange_server integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: microsoft_exchange_server.imap4_pop3
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/microsoft_exchange_server/imap4_pop3
+  additional_fields: additional/microsoft_exchange_server/imap4_pop3
+transform:
+  engine: elastic
+  variant: filebeat.microsoft_exchange_server_imap4_pop3.default
+catalogue:
+  package: microsoft_exchange_server
+  data_stream: imap4_pop3
+  intakes: [beats]
+  variants:
+    - filebeat.microsoft_exchange_server_imap4_pop3.default

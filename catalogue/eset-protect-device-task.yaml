@@ -1,0 +1,23 @@
+# Catalogue source eset-protect-device-task: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: eset-protect-device-task
+display_name: eset_protect.device_task
+description: The device_task data stream of the Elastic eset_protect integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: eset_protect.device_task
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/eset_protect/device_task
+  additional_fields: additional/eset_protect/device_task
+transform:
+  engine: elastic
+  variant: filebeat.eset_protect_device_task.default
+catalogue:
+  package: eset_protect
+  data_stream: device_task
+  intakes: [beats]
+  variants:
+    - filebeat.eset_protect_device_task.default

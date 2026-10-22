@@ -1,0 +1,19 @@
+# Catalogue source azure-metrics-container-registry: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: azure-metrics-container-registry
+display_name: azure_metrics.container_registry
+description: The container_registry data stream of the Elastic azure_metrics integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: azure_metrics.container_registry
+transform:
+  engine: elastic
+  variant: filebeat.azure_metrics_container_registry.default
+catalogue:
+  package: azure_metrics
+  data_stream: container_registry
+  intakes: [beats]
+  variants:
+    - filebeat.azure_metrics_container_registry.default

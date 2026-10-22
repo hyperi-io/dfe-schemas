@@ -1,0 +1,23 @@
+# Catalogue source gcp-vertexai-auditlogs: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: gcp-vertexai-auditlogs
+display_name: gcp_vertexai.auditlogs
+description: The auditlogs data stream of the Elastic gcp_vertexai integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: gcp_vertexai.auditlogs
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/gcp_vertexai/auditlogs
+  additional_fields: additional/gcp_vertexai/auditlogs
+transform:
+  engine: elastic
+  variant: filebeat.gcp_vertexai_auditlogs.default
+catalogue:
+  package: gcp_vertexai
+  data_stream: auditlogs
+  intakes: [beats]
+  variants:
+    - filebeat.gcp_vertexai_auditlogs.default

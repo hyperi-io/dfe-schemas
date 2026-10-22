@@ -1,0 +1,24 @@
+# Catalogue source pulse-connect-secure-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: pulse-connect-secure-log
+display_name: pulse_connect_secure.log
+description: The log data stream of the Elastic pulse_connect_secure integration.
+match:
+  field: _source
+  operator: equals
+  value: pulse-connect-secure-log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/pulse_connect_secure/log
+  additional_fields: additional/pulse_connect_secure/log
+transform:
+  engine: elastic
+  variant: filebeat.pulse_connect_secure_log.default
+catalogue:
+  package: pulse_connect_secure
+  data_stream: log
+  intakes: [beats, receiver]
+  framing: line
+  variants:
+    - filebeat.pulse_connect_secure_log.default

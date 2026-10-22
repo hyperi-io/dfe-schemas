@@ -1,0 +1,24 @@
+# Catalogue source jamf-pro-events: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: jamf-pro-events
+display_name: jamf_pro.events
+description: The events data stream of the Elastic jamf_pro integration.
+match:
+  field: _source
+  operator: equals
+  value: jamf-pro-events
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/jamf_pro/events
+  additional_fields: additional/jamf_pro/events
+transform:
+  engine: elastic
+  variant: filebeat.jamf_pro_events.default
+catalogue:
+  package: jamf_pro
+  data_stream: events
+  intakes: [beats, receiver]
+  framing: body
+  variants:
+    - filebeat.jamf_pro_events.default

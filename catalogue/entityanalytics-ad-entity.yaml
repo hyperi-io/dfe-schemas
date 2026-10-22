@@ -1,0 +1,26 @@
+# Catalogue source entityanalytics-ad-entity: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: entityanalytics-ad-entity
+display_name: entityanalytics_ad.entity
+description: The entity data stream of the Elastic entityanalytics_ad integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: entityanalytics_ad.entity
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/entityanalytics_ad/entity
+  additional_fields: additional/entityanalytics_ad/entity
+transform:
+  engine: elastic
+  variant: filebeat.entityanalytics_ad_entity.default
+catalogue:
+  package: entityanalytics_ad
+  data_stream: entity
+  intakes: [beats]
+  variants:
+    - filebeat.entityanalytics_ad_entity.default
+    - filebeat.entityanalytics_ad_entity.device
+    - filebeat.entityanalytics_ad_entity.group
+    - filebeat.entityanalytics_ad_entity.user

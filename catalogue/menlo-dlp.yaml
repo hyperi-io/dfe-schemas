@@ -1,0 +1,23 @@
+# Catalogue source menlo-dlp: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: menlo-dlp
+display_name: menlo.dlp
+description: The dlp data stream of the Elastic menlo integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: menlo.dlp
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/menlo/dlp
+  additional_fields: additional/menlo/dlp
+transform:
+  engine: elastic
+  variant: filebeat.menlo_dlp.default
+catalogue:
+  package: menlo
+  data_stream: dlp
+  intakes: [beats]
+  variants:
+    - filebeat.menlo_dlp.default

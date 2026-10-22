@@ -1,0 +1,23 @@
+# Catalogue source tychon-coams: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: tychon-coams
+display_name: tychon.coams
+description: The coams data stream of the Elastic tychon integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: tychon.coams
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/tychon/coams
+  additional_fields: additional/tychon/coams
+transform:
+  engine: elastic
+  variant: filebeat.tychon_coams.default
+catalogue:
+  package: tychon
+  data_stream: coams
+  intakes: [beats]
+  variants:
+    - filebeat.tychon_coams.default

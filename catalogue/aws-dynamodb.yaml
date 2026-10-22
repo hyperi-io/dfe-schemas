@@ -1,0 +1,19 @@
+# Catalogue source aws-dynamodb: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: aws-dynamodb
+display_name: aws.dynamodb
+description: The dynamodb data stream of the Elastic aws integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: aws.dynamodb
+transform:
+  engine: elastic
+  variant: filebeat.aws_dynamodb.default
+catalogue:
+  package: aws
+  data_stream: dynamodb
+  intakes: [beats]
+  variants:
+    - filebeat.aws_dynamodb.default

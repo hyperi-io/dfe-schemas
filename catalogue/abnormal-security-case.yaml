@@ -1,0 +1,23 @@
+# Catalogue source abnormal-security-case: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: abnormal-security-case
+display_name: abnormal_security.case
+description: The case data stream of the Elastic abnormal_security integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: abnormal_security.case
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/abnormal_security/case
+  additional_fields: additional/abnormal_security/case
+transform:
+  engine: elastic
+  variant: filebeat.abnormal_security_case.default
+catalogue:
+  package: abnormal_security
+  data_stream: case
+  intakes: [beats]
+  variants:
+    - filebeat.abnormal_security_case.default

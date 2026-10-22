@@ -1,0 +1,23 @@
+# Catalogue source trellix-edr-cloud-event: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: trellix-edr-cloud-event
+display_name: trellix_edr_cloud.event
+description: The event data stream of the Elastic trellix_edr_cloud integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: trellix_edr_cloud.event
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/trellix_edr_cloud/event
+  additional_fields: additional/trellix_edr_cloud/event
+transform:
+  engine: elastic
+  variant: filebeat.trellix_edr_cloud_event.default
+catalogue:
+  package: trellix_edr_cloud
+  data_stream: event
+  intakes: [beats]
+  variants:
+    - filebeat.trellix_edr_cloud_event.default

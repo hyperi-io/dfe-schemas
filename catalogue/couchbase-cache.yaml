@@ -1,0 +1,23 @@
+# Catalogue source couchbase-cache: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: couchbase-cache
+display_name: couchbase.cache
+description: The cache data stream of the Elastic couchbase integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: couchbase.cache
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/couchbase/cache
+  additional_fields: additional/couchbase/cache
+transform:
+  engine: elastic
+  variant: filebeat.couchbase_cache.default
+catalogue:
+  package: couchbase
+  data_stream: cache
+  intakes: [beats]
+  variants:
+    - filebeat.couchbase_cache.default

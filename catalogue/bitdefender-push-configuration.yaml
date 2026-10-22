@@ -1,0 +1,23 @@
+# Catalogue source bitdefender-push-configuration: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: bitdefender-push-configuration
+display_name: bitdefender.push_configuration
+description: The push_configuration data stream of the Elastic bitdefender integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: bitdefender.push_configuration
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/bitdefender/push_configuration
+  additional_fields: additional/bitdefender/push_configuration
+transform:
+  engine: elastic
+  variant: filebeat.bitdefender_push_configuration.default
+catalogue:
+  package: bitdefender
+  data_stream: push_configuration
+  intakes: [beats]
+  variants:
+    - filebeat.bitdefender_push_configuration.default

@@ -1,0 +1,23 @@
+# Catalogue source anthropic-metrics-usage: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: anthropic-metrics-usage
+display_name: anthropic_metrics.usage
+description: The usage data stream of the Elastic anthropic_metrics integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: anthropic_metrics.usage
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/anthropic_metrics/usage
+  additional_fields: additional/anthropic_metrics/usage
+transform:
+  engine: elastic
+  variant: filebeat.anthropic_metrics_usage.default
+catalogue:
+  package: anthropic_metrics
+  data_stream: usage
+  intakes: [beats]
+  variants:
+    - filebeat.anthropic_metrics_usage.default

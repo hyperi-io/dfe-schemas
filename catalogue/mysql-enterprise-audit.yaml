@@ -1,0 +1,23 @@
+# Catalogue source mysql-enterprise-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: mysql-enterprise-audit
+display_name: mysql_enterprise.audit
+description: The audit data stream of the Elastic mysql_enterprise integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: mysql_enterprise.audit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/mysql_enterprise/audit
+  additional_fields: additional/mysql_enterprise/audit
+transform:
+  engine: elastic
+  variant: filebeat.mysql_enterprise_audit.default
+catalogue:
+  package: mysql_enterprise
+  data_stream: audit
+  intakes: [beats]
+  variants:
+    - filebeat.mysql_enterprise_audit.default

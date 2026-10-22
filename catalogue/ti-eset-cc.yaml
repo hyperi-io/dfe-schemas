@@ -1,0 +1,23 @@
+# Catalogue source ti-eset-cc: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ti-eset-cc
+display_name: ti_eset.cc
+description: The cc data stream of the Elastic ti_eset integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ti_eset.cc
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ti_eset/cc
+  additional_fields: additional/ti_eset/cc
+transform:
+  engine: elastic
+  variant: filebeat.ti_eset_cc.default
+catalogue:
+  package: ti_eset
+  data_stream: cc
+  intakes: [beats]
+  variants:
+    - filebeat.ti_eset_cc.default

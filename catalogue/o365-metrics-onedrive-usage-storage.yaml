@@ -1,0 +1,23 @@
+# Catalogue source o365-metrics-onedrive-usage-storage: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: o365-metrics-onedrive-usage-storage
+display_name: o365_metrics.onedrive_usage_storage
+description: The onedrive_usage_storage data stream of the Elastic o365_metrics integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: o365_metrics.onedrive_usage_storage
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/o365_metrics/onedrive_usage_storage
+  additional_fields: additional/o365_metrics/onedrive_usage_storage
+transform:
+  engine: elastic
+  variant: filebeat.o365_metrics_onedrive_usage_storage.default
+catalogue:
+  package: o365_metrics
+  data_stream: onedrive_usage_storage
+  intakes: [beats]
+  variants:
+    - filebeat.o365_metrics_onedrive_usage_storage.default

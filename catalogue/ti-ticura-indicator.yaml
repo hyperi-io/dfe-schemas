@@ -1,0 +1,23 @@
+# Catalogue source ti-ticura-indicator: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ti-ticura-indicator
+display_name: ti_ticura.indicator
+description: The indicator data stream of the Elastic ti_ticura integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ti_ticura.indicator
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ti_ticura/indicator
+  additional_fields: additional/ti_ticura/indicator
+transform:
+  engine: elastic
+  variant: filebeat.ti_ticura_indicator.default
+catalogue:
+  package: ti_ticura
+  data_stream: indicator
+  intakes: [beats]
+  variants:
+    - filebeat.ti_ticura_indicator.default

@@ -1,0 +1,23 @@
+# Catalogue source kolide-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: kolide-audit
+display_name: kolide.audit
+description: The audit data stream of the Elastic kolide integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: kolide.audit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/kolide/audit
+  additional_fields: additional/kolide/audit
+transform:
+  engine: elastic
+  variant: filebeat.kolide_audit.default
+catalogue:
+  package: kolide
+  data_stream: audit
+  intakes: [beats]
+  variants:
+    - filebeat.kolide_audit.default

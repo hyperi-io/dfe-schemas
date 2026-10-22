@@ -1,0 +1,23 @@
+# Catalogue source zeek-smb-files: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zeek-smb-files
+display_name: zeek.smb_files
+description: The smb_files data stream of the Elastic zeek integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: zeek.smb_files
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zeek/smb_files
+  additional_fields: additional/zeek/smb_files
+transform:
+  engine: elastic
+  variant: filebeat.zeek_smb_files.default
+catalogue:
+  package: zeek
+  data_stream: smb_files
+  intakes: [beats]
+  variants:
+    - filebeat.zeek_smb_files.default

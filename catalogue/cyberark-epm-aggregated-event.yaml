@@ -1,0 +1,23 @@
+# Catalogue source cyberark-epm-aggregated-event: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: cyberark-epm-aggregated-event
+display_name: cyberark_epm.aggregated_event
+description: The aggregated_event data stream of the Elastic cyberark_epm integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: cyberark_epm.aggregated_event
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/cyberark_epm/aggregated_event
+  additional_fields: additional/cyberark_epm/aggregated_event
+transform:
+  engine: elastic
+  variant: filebeat.cyberark_epm_aggregated_event.default
+catalogue:
+  package: cyberark_epm
+  data_stream: aggregated_event
+  intakes: [beats]
+  variants:
+    - filebeat.cyberark_epm_aggregated_event.default

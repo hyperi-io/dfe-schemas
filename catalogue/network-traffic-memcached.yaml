@@ -1,0 +1,23 @@
+# Catalogue source network-traffic-memcached: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: network-traffic-memcached
+display_name: network_traffic.memcached
+description: The memcached data stream of the Elastic network_traffic integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: network_traffic.memcached
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/network_traffic/memcached
+  additional_fields: additional/network_traffic/memcached
+transform:
+  engine: elastic
+  variant: filebeat.network_traffic_memcached.default
+catalogue:
+  package: network_traffic
+  data_stream: memcached
+  intakes: [beats]
+  variants:
+    - filebeat.network_traffic_memcached.default

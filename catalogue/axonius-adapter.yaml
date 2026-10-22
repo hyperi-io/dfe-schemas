@@ -1,0 +1,23 @@
+# Catalogue source axonius-adapter: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: axonius-adapter
+display_name: axonius.adapter
+description: The adapter data stream of the Elastic axonius integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: axonius.adapter
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/axonius/adapter
+  additional_fields: additional/axonius/adapter
+transform:
+  engine: elastic
+  variant: filebeat.axonius_adapter.default
+catalogue:
+  package: axonius
+  data_stream: adapter
+  intakes: [beats]
+  variants:
+    - filebeat.axonius_adapter.default

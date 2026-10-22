@@ -1,0 +1,24 @@
+# Catalogue source cisco-meraki: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: cisco-meraki
+display_name: cisco_meraki.log
+description: The log data stream of the Elastic cisco_meraki integration.
+match:
+  field: _source
+  operator: equals
+  value: cisco-meraki
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/cisco_meraki/log
+  additional_fields: additional/cisco_meraki/log
+transform:
+  engine: elastic
+  variant: filebeat.cisco_meraki.default
+catalogue:
+  package: cisco_meraki
+  data_stream: log
+  intakes: [beats, receiver]
+  framing: body
+  variants:
+    - filebeat.cisco_meraki.default

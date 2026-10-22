@@ -1,0 +1,23 @@
+# Catalogue source canva-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: canva-audit
+display_name: canva.audit
+description: The audit data stream of the Elastic canva integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: canva.audit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/canva/audit
+  additional_fields: additional/canva/audit
+transform:
+  engine: elastic
+  variant: filebeat.canva_audit.default
+catalogue:
+  package: canva
+  data_stream: audit
+  intakes: [beats]
+  variants:
+    - filebeat.canva_audit.default

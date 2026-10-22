@@ -1,0 +1,19 @@
+# Catalogue source oracle-tablespace: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: oracle-tablespace
+display_name: oracle.tablespace
+description: The tablespace data stream of the Elastic oracle integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: oracle.tablespace
+transform:
+  engine: elastic
+  variant: filebeat.oracle_tablespace.default
+catalogue:
+  package: oracle
+  data_stream: tablespace
+  intakes: [beats]
+  variants:
+    - filebeat.oracle_tablespace.default

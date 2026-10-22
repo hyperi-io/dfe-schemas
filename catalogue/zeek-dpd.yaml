@@ -1,0 +1,23 @@
+# Catalogue source zeek-dpd: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zeek-dpd
+display_name: zeek.dpd
+description: The dpd data stream of the Elastic zeek integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: zeek.dpd
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zeek/dpd
+  additional_fields: additional/zeek/dpd
+transform:
+  engine: elastic
+  variant: filebeat.zeek_dpd.default
+catalogue:
+  package: zeek
+  data_stream: dpd
+  intakes: [beats]
+  variants:
+    - filebeat.zeek_dpd.default

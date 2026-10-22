@@ -1,0 +1,19 @@
+# Catalogue source aws-kafka-metrics: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: aws-kafka-metrics
+display_name: aws.kafka_metrics
+description: The kafka_metrics data stream of the Elastic aws integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: aws.kafka_metrics
+transform:
+  engine: elastic
+  variant: filebeat.aws_kafka_metrics.default
+catalogue:
+  package: aws
+  data_stream: kafka_metrics
+  intakes: [beats]
+  variants:
+    - filebeat.aws_kafka_metrics.default

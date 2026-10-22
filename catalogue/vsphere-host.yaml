@@ -1,0 +1,23 @@
+# Catalogue source vsphere-host: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: vsphere-host
+display_name: vsphere.host
+description: The host data stream of the Elastic vsphere integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: vsphere.host
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/vsphere/host
+  additional_fields: additional/vsphere/host
+transform:
+  engine: elastic
+  variant: filebeat.vsphere_host.default
+catalogue:
+  package: vsphere
+  data_stream: host
+  intakes: [beats]
+  variants:
+    - filebeat.vsphere_host.default

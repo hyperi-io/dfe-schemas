@@ -1,0 +1,19 @@
+# Catalogue source redisenterprise-proxy: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: redisenterprise-proxy
+display_name: redisenterprise.proxy
+description: The proxy data stream of the Elastic redisenterprise integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: redisenterprise.proxy
+transform:
+  engine: elastic
+  variant: filebeat.redisenterprise_proxy.default
+catalogue:
+  package: redisenterprise
+  data_stream: proxy
+  intakes: [beats]
+  variants:
+    - filebeat.redisenterprise_proxy.default

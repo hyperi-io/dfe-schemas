@@ -1,0 +1,23 @@
+# Catalogue source cybereason-malop-process: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: cybereason-malop-process
+display_name: cybereason.malop_process
+description: The malop_process data stream of the Elastic cybereason integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: cybereason.malop_process
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/cybereason/malop_process
+  additional_fields: additional/cybereason/malop_process
+transform:
+  engine: elastic
+  variant: filebeat.cybereason_malop_process.default
+catalogue:
+  package: cybereason
+  data_stream: malop_process
+  intakes: [beats]
+  variants:
+    - filebeat.cybereason_malop_process.default

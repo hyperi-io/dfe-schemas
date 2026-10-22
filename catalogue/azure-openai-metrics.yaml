@@ -1,0 +1,23 @@
+# Catalogue source azure-openai-metrics: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: azure-openai-metrics
+display_name: azure_openai.metrics
+description: The metrics data stream of the Elastic azure_openai integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: azure_openai.metrics
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/azure_openai/metrics
+  additional_fields: additional/azure_openai/metrics
+transform:
+  engine: elastic
+  variant: filebeat.azure_openai_metrics.default
+catalogue:
+  package: azure_openai
+  data_stream: metrics
+  intakes: [beats]
+  variants:
+    - filebeat.azure_openai_metrics.default

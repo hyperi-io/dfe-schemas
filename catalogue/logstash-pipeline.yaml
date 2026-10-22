@@ -1,0 +1,19 @@
+# Catalogue source logstash-pipeline: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: logstash-pipeline
+display_name: logstash.pipeline
+description: The pipeline data stream of the Elastic logstash integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: logstash.pipeline
+transform:
+  engine: elastic
+  variant: filebeat.logstash_pipeline.default
+catalogue:
+  package: logstash
+  data_stream: pipeline
+  intakes: [beats]
+  variants:
+    - filebeat.logstash_pipeline.default

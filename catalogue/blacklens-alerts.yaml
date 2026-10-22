@@ -1,0 +1,23 @@
+# Catalogue source blacklens-alerts: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: blacklens-alerts
+display_name: blacklens.alerts
+description: The alerts data stream of the Elastic blacklens integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: blacklens.alerts
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/blacklens/alerts
+  additional_fields: additional/blacklens/alerts
+transform:
+  engine: elastic
+  variant: filebeat.blacklens_alerts.default
+catalogue:
+  package: blacklens
+  data_stream: alerts
+  intakes: [beats]
+  variants:
+    - filebeat.blacklens_alerts.default

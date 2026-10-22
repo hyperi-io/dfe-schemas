@@ -1,0 +1,23 @@
+# Catalogue source proofpoint-tap-clicks-blocked: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: proofpoint-tap-clicks-blocked
+display_name: proofpoint_tap.clicks_blocked
+description: The clicks_blocked data stream of the Elastic proofpoint_tap integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: proofpoint_tap.clicks_blocked
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/proofpoint_tap/clicks_blocked
+  additional_fields: additional/proofpoint_tap/clicks_blocked
+transform:
+  engine: elastic
+  variant: filebeat.proofpoint_tap_clicks_blocked.default
+catalogue:
+  package: proofpoint_tap
+  data_stream: clicks_blocked
+  intakes: [beats]
+  variants:
+    - filebeat.proofpoint_tap_clicks_blocked.default

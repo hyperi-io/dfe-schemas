@@ -1,0 +1,23 @@
+# Catalogue source ti-mandiant-advantage-ti: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ti-mandiant-advantage-ti
+display_name: ti_mandiant_advantage.threat_intelligence
+description: The threat_intelligence data stream of the Elastic ti_mandiant_advantage integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ti_mandiant_advantage.threat_intelligence
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ti_mandiant_advantage/threat_intelligence
+  additional_fields: additional/ti_mandiant_advantage/threat_intelligence
+transform:
+  engine: elastic
+  variant: filebeat.ti_mandiant_advantage_threat_intelligence.default
+catalogue:
+  package: ti_mandiant_advantage
+  data_stream: threat_intelligence
+  intakes: [beats]
+  variants:
+    - filebeat.ti_mandiant_advantage_threat_intelligence.default

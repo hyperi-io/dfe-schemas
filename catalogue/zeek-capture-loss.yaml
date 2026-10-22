@@ -1,0 +1,23 @@
+# Catalogue source zeek-capture-loss: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zeek-capture-loss
+display_name: zeek.capture_loss
+description: The capture_loss data stream of the Elastic zeek integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: zeek.capture_loss
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zeek/capture_loss
+  additional_fields: additional/zeek/capture_loss
+transform:
+  engine: elastic
+  variant: filebeat.zeek_capture_loss.default
+catalogue:
+  package: zeek
+  data_stream: capture_loss
+  intakes: [beats]
+  variants:
+    - filebeat.zeek_capture_loss.default

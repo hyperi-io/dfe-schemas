@@ -1,0 +1,23 @@
+# Catalogue source nginx-ingress-controller-access: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: nginx-ingress-controller-access
+display_name: nginx_ingress_controller.access
+description: The access data stream of the Elastic nginx_ingress_controller integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: nginx_ingress_controller.access
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/nginx_ingress_controller/access
+  additional_fields: additional/nginx_ingress_controller/access
+transform:
+  engine: elastic
+  variant: filebeat.nginx_ingress_controller_access.default
+catalogue:
+  package: nginx_ingress_controller
+  data_stream: access
+  intakes: [beats]
+  variants:
+    - filebeat.nginx_ingress_controller_access.default

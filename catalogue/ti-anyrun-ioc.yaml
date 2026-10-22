@@ -1,0 +1,23 @@
+# Catalogue source ti-anyrun-ioc: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ti-anyrun-ioc
+display_name: ti_anyrun.ioc
+description: The ioc data stream of the Elastic ti_anyrun integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ti_anyrun.ioc
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ti_anyrun/ioc
+  additional_fields: additional/ti_anyrun/ioc
+transform:
+  engine: elastic
+  variant: filebeat.ti_anyrun_ioc.default
+catalogue:
+  package: ti_anyrun
+  data_stream: ioc
+  intakes: [beats]
+  variants:
+    - filebeat.ti_anyrun_ioc.default

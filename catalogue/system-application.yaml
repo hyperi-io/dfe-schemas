@@ -1,0 +1,19 @@
+# Catalogue source system-application: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: system-application
+display_name: system.application
+description: The application data stream of the Elastic system integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: system.application
+transform:
+  engine: elastic
+  variant: filebeat.system_application.default
+catalogue:
+  package: system
+  data_stream: application
+  intakes: [beats]
+  variants:
+    - filebeat.system_application.default

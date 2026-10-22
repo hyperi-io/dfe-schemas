@@ -1,0 +1,22 @@
+# Catalogue source aws-emr-logs: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: aws-emr-logs
+display_name: aws.emr_logs
+description: The emr_logs data stream of the Elastic aws integration.
+fetcher:
+  source_type: aws
+  topic: own
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/aws/emr_logs
+  additional_fields: additional/aws/emr_logs
+transform:
+  engine: elastic
+  variant: filebeat.aws_emr_logs.default
+catalogue:
+  package: aws
+  data_stream: emr_logs
+  intakes: [beats, fetcher]
+  variants:
+    - filebeat.aws_emr_logs.default

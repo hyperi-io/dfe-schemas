@@ -1,0 +1,23 @@
+# Catalogue source armis-alert: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: armis-alert
+display_name: armis.alert
+description: The alert data stream of the Elastic armis integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: armis.alert
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/armis/alert
+  additional_fields: additional/armis/alert
+transform:
+  engine: elastic
+  variant: filebeat.armis_alert.default
+catalogue:
+  package: armis
+  data_stream: alert
+  intakes: [beats]
+  variants:
+    - filebeat.armis_alert.default

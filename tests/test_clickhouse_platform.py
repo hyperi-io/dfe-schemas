@@ -188,7 +188,7 @@ def test_a_configured_choice_parses_to_its_override(value, platform):
 
 @pytest.mark.parametrize("value", ["", "hybrid", "selfhosted"])
 def test_a_configured_choice_outside_the_list_is_refused_naming_the_list(value):
-    with pytest.raises(ValueError) as raised:
+    with pytest.raises(ValueError, match="is not one of") as raised:
         platform_override(value)
     for choice in PLATFORM_CHOICES:
         assert choice in str(raised.value)

@@ -1,0 +1,19 @@
+# Catalogue source oracle-memory: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: oracle-memory
+display_name: oracle.memory
+description: The memory data stream of the Elastic oracle integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: oracle.memory
+transform:
+  engine: elastic
+  variant: filebeat.oracle_memory.default
+catalogue:
+  package: oracle
+  data_stream: memory
+  intakes: [beats]
+  variants:
+    - filebeat.oracle_memory.default

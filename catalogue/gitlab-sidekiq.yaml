@@ -1,0 +1,23 @@
+# Catalogue source gitlab-sidekiq: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: gitlab-sidekiq
+display_name: gitlab.sidekiq
+description: The sidekiq data stream of the Elastic gitlab integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: gitlab.sidekiq
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/gitlab/sidekiq
+  additional_fields: additional/gitlab/sidekiq
+transform:
+  engine: elastic
+  variant: filebeat.gitlab_sidekiq.default
+catalogue:
+  package: gitlab
+  data_stream: sidekiq
+  intakes: [beats]
+  variants:
+    - filebeat.gitlab_sidekiq.default

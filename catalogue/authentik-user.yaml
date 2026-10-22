@@ -1,0 +1,23 @@
+# Catalogue source authentik-user: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: authentik-user
+display_name: authentik.user
+description: The user data stream of the Elastic authentik integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: authentik.user
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/authentik/user
+  additional_fields: additional/authentik/user
+transform:
+  engine: elastic
+  variant: filebeat.authentik_user.default
+catalogue:
+  package: authentik
+  data_stream: user
+  intakes: [beats]
+  variants:
+    - filebeat.authentik_user.default

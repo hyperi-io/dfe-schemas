@@ -1,0 +1,23 @@
+# Catalogue source google-scc-source: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: google-scc-source
+display_name: google_scc.source
+description: The source data stream of the Elastic google_scc integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: google_scc.source
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/google_scc/source
+  additional_fields: additional/google_scc/source
+transform:
+  engine: elastic
+  variant: filebeat.google_scc_source.default
+catalogue:
+  package: google_scc
+  data_stream: source
+  intakes: [beats]
+  variants:
+    - filebeat.google_scc_source.default

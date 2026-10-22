@@ -1,0 +1,23 @@
+# Catalogue source haproxy-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: haproxy-log
+display_name: haproxy.log
+description: The log data stream of the Elastic haproxy integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: haproxy.log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/haproxy/log
+  additional_fields: additional/haproxy/log
+transform:
+  engine: elastic
+  variant: filebeat.haproxy_log.default
+catalogue:
+  package: haproxy
+  data_stream: log
+  intakes: [beats]
+  variants:
+    - filebeat.haproxy_log.default

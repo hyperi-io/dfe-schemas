@@ -1,0 +1,23 @@
+# Catalogue source sophos-central-event: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: sophos-central-event
+display_name: sophos_central.event
+description: The event data stream of the Elastic sophos_central integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: sophos_central.event
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/sophos_central/event
+  additional_fields: additional/sophos_central/event
+transform:
+  engine: elastic
+  variant: filebeat.sophos_central_event.default
+catalogue:
+  package: sophos_central
+  data_stream: event
+  intakes: [beats]
+  variants:
+    - filebeat.sophos_central_event.default

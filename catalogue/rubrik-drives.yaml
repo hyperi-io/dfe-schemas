@@ -1,0 +1,23 @@
+# Catalogue source rubrik-drives: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: rubrik-drives
+display_name: rubrik.drives
+description: The drives data stream of the Elastic rubrik integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: rubrik.drives
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/rubrik/drives
+  additional_fields: additional/rubrik/drives
+transform:
+  engine: elastic
+  variant: filebeat.rubrik_drives.default
+catalogue:
+  package: rubrik
+  data_stream: drives
+  intakes: [beats]
+  variants:
+    - filebeat.rubrik_drives.default

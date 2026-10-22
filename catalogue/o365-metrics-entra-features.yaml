@@ -1,0 +1,19 @@
+# Catalogue source o365-metrics-entra-features: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: o365-metrics-entra-features
+display_name: o365_metrics.entra_features
+description: The entra_features data stream of the Elastic o365_metrics integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: o365_metrics.entra_features
+transform:
+  engine: elastic
+  variant: filebeat.o365_metrics_entra_features.default
+catalogue:
+  package: o365_metrics
+  data_stream: entra_features
+  intakes: [beats]
+  variants:
+    - filebeat.o365_metrics_entra_features.default

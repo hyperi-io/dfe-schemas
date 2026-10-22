@@ -1,0 +1,23 @@
+# Catalogue source endace-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: endace-log
+display_name: endace.log
+description: The log data stream of the Elastic endace integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: endace.log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/endace/log
+  additional_fields: additional/endace/log
+transform:
+  engine: elastic
+  variant: filebeat.endace_log.default
+catalogue:
+  package: endace
+  data_stream: log
+  intakes: [beats]
+  variants:
+    - filebeat.endace_log.default

@@ -1,0 +1,23 @@
+# Catalogue source axonius-alert-finding: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: axonius-alert-finding
+display_name: axonius.alert_finding
+description: The alert_finding data stream of the Elastic axonius integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: axonius.alert_finding
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/axonius/alert_finding
+  additional_fields: additional/axonius/alert_finding
+transform:
+  engine: elastic
+  variant: filebeat.axonius_alert_finding.default
+catalogue:
+  package: axonius
+  data_stream: alert_finding
+  intakes: [beats]
+  variants:
+    - filebeat.axonius_alert_finding.default

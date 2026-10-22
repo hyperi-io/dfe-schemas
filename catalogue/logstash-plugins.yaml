@@ -1,0 +1,19 @@
+# Catalogue source logstash-plugins: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: logstash-plugins
+display_name: logstash.plugins
+description: The plugins data stream of the Elastic logstash integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: logstash.plugins
+transform:
+  engine: elastic
+  variant: filebeat.logstash_plugins.default
+catalogue:
+  package: logstash
+  data_stream: plugins
+  intakes: [beats]
+  variants:
+    - filebeat.logstash_plugins.default

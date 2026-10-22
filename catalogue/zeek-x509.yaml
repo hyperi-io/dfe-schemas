@@ -1,0 +1,23 @@
+# Catalogue source zeek-x509: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zeek-x509
+display_name: zeek.x509
+description: The x509 data stream of the Elastic zeek integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: zeek.x509
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zeek/x509
+  additional_fields: additional/zeek/x509
+transform:
+  engine: elastic
+  variant: filebeat.zeek_x509.default
+catalogue:
+  package: zeek
+  data_stream: x509
+  intakes: [beats]
+  variants:
+    - filebeat.zeek_x509.default

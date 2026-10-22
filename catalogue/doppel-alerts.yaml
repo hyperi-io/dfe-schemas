@@ -1,0 +1,23 @@
+# Catalogue source doppel-alerts: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: doppel-alerts
+display_name: doppel.alerts
+description: The alerts data stream of the Elastic doppel integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: doppel.alerts
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/doppel/alerts
+  additional_fields: additional/doppel/alerts
+transform:
+  engine: elastic
+  variant: filebeat.doppel_alerts.default
+catalogue:
+  package: doppel
+  data_stream: alerts
+  intakes: [beats]
+  variants:
+    - filebeat.doppel_alerts.default

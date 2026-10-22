@@ -1,0 +1,19 @@
+# Catalogue source etcd-self: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: etcd-self
+display_name: etcd.self
+description: The self data stream of the Elastic etcd integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: etcd.self
+transform:
+  engine: elastic
+  variant: filebeat.etcd_self.default
+catalogue:
+  package: etcd
+  data_stream: self
+  intakes: [beats]
+  variants:
+    - filebeat.etcd_self.default

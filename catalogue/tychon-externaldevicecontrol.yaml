@@ -1,0 +1,23 @@
+# Catalogue source tychon-externaldevicecontrol: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: tychon-externaldevicecontrol
+display_name: tychon.externaldevicecontrol
+description: The externaldevicecontrol data stream of the Elastic tychon integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: tychon.externaldevicecontrol
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/tychon/externaldevicecontrol
+  additional_fields: additional/tychon/externaldevicecontrol
+transform:
+  engine: elastic
+  variant: filebeat.tychon_externaldevicecontrol.default
+catalogue:
+  package: tychon
+  data_stream: externaldevicecontrol
+  intakes: [beats]
+  variants:
+    - filebeat.tychon_externaldevicecontrol.default

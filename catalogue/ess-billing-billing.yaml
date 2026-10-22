@@ -1,0 +1,23 @@
+# Catalogue source ess-billing-billing: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ess-billing-billing
+display_name: ess_billing.billing
+description: The billing data stream of the Elastic ess_billing integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ess_billing.billing
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ess_billing/billing
+  additional_fields: additional/ess_billing/billing
+transform:
+  engine: elastic
+  variant: filebeat.ess_billing_billing.default
+catalogue:
+  package: ess_billing
+  data_stream: billing
+  intakes: [beats]
+  variants:
+    - filebeat.ess_billing_billing.default

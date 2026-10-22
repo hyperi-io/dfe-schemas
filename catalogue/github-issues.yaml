@@ -1,0 +1,23 @@
+# Catalogue source github-issues: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: github-issues
+display_name: github.issues
+description: The issues data stream of the Elastic github integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: github.issues
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/github/issues
+  additional_fields: additional/github/issues
+transform:
+  engine: elastic
+  variant: filebeat.github_issues.default
+catalogue:
+  package: github
+  data_stream: issues
+  intakes: [beats]
+  variants:
+    - filebeat.github_issues.default

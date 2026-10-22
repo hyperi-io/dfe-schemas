@@ -1,0 +1,19 @@
+# Catalogue source aws-s3-request: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: aws-s3-request
+display_name: aws.s3_request
+description: The s3_request data stream of the Elastic aws integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: aws.s3_request
+transform:
+  engine: elastic
+  variant: filebeat.aws_s3_request.default
+catalogue:
+  package: aws
+  data_stream: s3_request
+  intakes: [beats]
+  variants:
+    - filebeat.aws_s3_request.default

@@ -1,0 +1,24 @@
+# Catalogue source forescout-event: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: forescout-event
+display_name: forescout.event
+description: The event data stream of the Elastic forescout integration.
+match:
+  field: _source
+  operator: equals
+  value: forescout-event
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/forescout/event
+  additional_fields: additional/forescout/event
+transform:
+  engine: elastic
+  variant: filebeat.forescout_event.default
+catalogue:
+  package: forescout
+  data_stream: event
+  intakes: [beats, receiver]
+  framing: body
+  variants:
+    - filebeat.forescout_event.default

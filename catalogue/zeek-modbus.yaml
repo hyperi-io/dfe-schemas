@@ -1,0 +1,23 @@
+# Catalogue source zeek-modbus: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zeek-modbus
+display_name: zeek.modbus
+description: The modbus data stream of the Elastic zeek integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: zeek.modbus
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zeek/modbus
+  additional_fields: additional/zeek/modbus
+transform:
+  engine: elastic
+  variant: filebeat.zeek_modbus.default
+catalogue:
+  package: zeek
+  data_stream: modbus
+  intakes: [beats]
+  variants:
+    - filebeat.zeek_modbus.default

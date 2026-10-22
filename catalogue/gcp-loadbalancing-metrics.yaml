@@ -1,0 +1,19 @@
+# Catalogue source gcp-loadbalancing-metrics: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: gcp-loadbalancing-metrics
+display_name: gcp.loadbalancing_metrics
+description: The loadbalancing_metrics data stream of the Elastic gcp integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: gcp.loadbalancing_metrics
+transform:
+  engine: elastic
+  variant: filebeat.gcp_loadbalancing_metrics.default
+catalogue:
+  package: gcp
+  data_stream: loadbalancing_metrics
+  intakes: [beats]
+  variants:
+    - filebeat.gcp_loadbalancing_metrics.default

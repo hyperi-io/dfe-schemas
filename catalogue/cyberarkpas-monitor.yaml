@@ -1,0 +1,23 @@
+# Catalogue source cyberarkpas-monitor: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: cyberarkpas-monitor
+display_name: cyberarkpas.monitor
+description: The monitor data stream of the Elastic cyberarkpas integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: cyberarkpas.monitor
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/cyberarkpas/monitor
+  additional_fields: additional/cyberarkpas/monitor
+transform:
+  engine: elastic
+  variant: filebeat.cyberarkpas_monitor.default
+catalogue:
+  package: cyberarkpas
+  data_stream: monitor
+  intakes: [beats]
+  variants:
+    - filebeat.cyberarkpas_monitor.default

@@ -1,0 +1,23 @@
+# Catalogue source microsoft-defender-endpoint-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: microsoft-defender-endpoint-log
+display_name: microsoft_defender_endpoint.log
+description: The log data stream of the Elastic microsoft_defender_endpoint integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: microsoft_defender_endpoint.log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/microsoft_defender_endpoint/log
+  additional_fields: additional/microsoft_defender_endpoint/log
+transform:
+  engine: elastic
+  variant: filebeat.microsoft_defender_endpoint_log.default
+catalogue:
+  package: microsoft_defender_endpoint
+  data_stream: log
+  intakes: [beats]
+  variants:
+    - filebeat.microsoft_defender_endpoint_log.default

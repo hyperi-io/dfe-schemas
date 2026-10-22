@@ -1,0 +1,23 @@
+# Catalogue source cybereason-malop-connection: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: cybereason-malop-connection
+display_name: cybereason.malop_connection
+description: The malop_connection data stream of the Elastic cybereason integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: cybereason.malop_connection
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/cybereason/malop_connection
+  additional_fields: additional/cybereason/malop_connection
+transform:
+  engine: elastic
+  variant: filebeat.cybereason_malop_connection.default
+catalogue:
+  package: cybereason
+  data_stream: malop_connection
+  intakes: [beats]
+  variants:
+    - filebeat.cybereason_malop_connection.default

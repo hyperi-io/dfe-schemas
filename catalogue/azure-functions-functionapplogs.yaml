@@ -1,0 +1,23 @@
+# Catalogue source azure-functions-functionapplogs: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: azure-functions-functionapplogs
+display_name: azure_functions.functionapplogs
+description: The functionapplogs data stream of the Elastic azure_functions integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: azure_functions.functionapplogs
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/azure_functions/functionapplogs
+  additional_fields: additional/azure_functions/functionapplogs
+transform:
+  engine: elastic
+  variant: filebeat.azure_functions_functionapplogs.default
+catalogue:
+  package: azure_functions
+  data_stream: functionapplogs
+  intakes: [beats]
+  variants:
+    - filebeat.azure_functions_functionapplogs.default

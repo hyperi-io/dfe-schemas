@@ -1,0 +1,23 @@
+# Catalogue source nagios-xi-service: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: nagios-xi-service
+display_name: nagios_xi.service
+description: The service data stream of the Elastic nagios_xi integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: nagios_xi.service
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/nagios_xi/service
+  additional_fields: additional/nagios_xi/service
+transform:
+  engine: elastic
+  variant: filebeat.nagios_xi_service.default
+catalogue:
+  package: nagios_xi
+  data_stream: service
+  intakes: [beats]
+  variants:
+    - filebeat.nagios_xi_service.default

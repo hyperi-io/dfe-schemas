@@ -1,0 +1,23 @@
+# Catalogue source dataminr-pulse-alerts: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: dataminr-pulse-alerts
+display_name: dataminr_pulse.alerts
+description: The alerts data stream of the Elastic dataminr_pulse integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: dataminr_pulse.alerts
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/dataminr_pulse/alerts
+  additional_fields: additional/dataminr_pulse/alerts
+transform:
+  engine: elastic
+  variant: filebeat.dataminr_pulse_alerts.default
+catalogue:
+  package: dataminr_pulse
+  data_stream: alerts
+  intakes: [beats]
+  variants:
+    - filebeat.dataminr_pulse_alerts.default

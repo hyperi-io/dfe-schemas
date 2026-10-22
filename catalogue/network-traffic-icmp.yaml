@@ -1,0 +1,19 @@
+# Catalogue source network-traffic-icmp: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: network-traffic-icmp
+display_name: network_traffic.icmp
+description: The icmp data stream of the Elastic network_traffic integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: network_traffic.icmp
+transform:
+  engine: elastic
+  variant: filebeat.network_traffic_icmp.default
+catalogue:
+  package: network_traffic
+  data_stream: icmp
+  intakes: [beats]
+  variants:
+    - filebeat.network_traffic_icmp.default

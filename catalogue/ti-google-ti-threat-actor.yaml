@@ -1,0 +1,23 @@
+# Catalogue source ti-google-ti-threat-actor: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ti-google-ti-threat-actor
+display_name: ti_google_threat_intelligence.threat_actor
+description: The threat_actor data stream of the Elastic ti_google_threat_intelligence integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ti_google_threat_intelligence.threat_actor
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ti_google_threat_intelligence/threat_actor
+  additional_fields: additional/ti_google_threat_intelligence/threat_actor
+transform:
+  engine: elastic
+  variant: filebeat.ti_google_threat_intelligence_threat_actor.default
+catalogue:
+  package: ti_google_threat_intelligence
+  data_stream: threat_actor
+  intakes: [beats]
+  variants:
+    - filebeat.ti_google_threat_intelligence_threat_actor.default

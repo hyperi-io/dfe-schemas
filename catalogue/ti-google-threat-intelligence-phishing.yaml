@@ -1,0 +1,23 @@
+# Catalogue source ti-google-threat-intelligence-phishing: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ti-google-threat-intelligence-phishing
+display_name: ti_google_threat_intelligence.phishing
+description: The phishing data stream of the Elastic ti_google_threat_intelligence integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ti_google_threat_intelligence.phishing
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ti_google_threat_intelligence/phishing
+  additional_fields: additional/ti_google_threat_intelligence/phishing
+transform:
+  engine: elastic
+  variant: filebeat.ti_google_threat_intelligence_phishing.default
+catalogue:
+  package: ti_google_threat_intelligence
+  data_stream: phishing
+  intakes: [beats]
+  variants:
+    - filebeat.ti_google_threat_intelligence_phishing.default

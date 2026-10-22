@@ -1,0 +1,25 @@
+# Catalogue source azure-platformlogs: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: azure-platformlogs
+display_name: azure.platformlogs
+description: The platformlogs data stream of the Elastic azure integration.
+fetcher:
+  source_type: azure
+  topic: own
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/azure/platformlogs
+  additional_fields: additional/azure/platformlogs
+transform:
+  engine: elastic
+  variant: filebeat.azure_platformlogs.default
+catalogue:
+  package: azure
+  data_stream: platformlogs
+  intakes: [beats, fetcher]
+  beats:
+    module: azure
+    fileset: platformlogs
+  variants:
+    - filebeat.azure_platformlogs.default

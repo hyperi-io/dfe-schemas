@@ -1,0 +1,23 @@
+# Catalogue source windows-applocker-packaged-app-execution: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: windows-applocker-packaged-app-execution
+display_name: windows.applocker_packaged_app_execution
+description: The applocker_packaged_app_execution data stream of the Elastic windows integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: windows.applocker_packaged_app_execution
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/windows/applocker_packaged_app_execution
+  additional_fields: additional/windows/applocker_packaged_app_execution
+transform:
+  engine: elastic
+  variant: filebeat.windows_applocker_packaged_app_execution.default
+catalogue:
+  package: windows
+  data_stream: applocker_packaged_app_execution
+  intakes: [beats]
+  variants:
+    - filebeat.windows_applocker_packaged_app_execution.default

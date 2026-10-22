@@ -1,0 +1,19 @@
+# Catalogue source kafka-connect-connector: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: kafka-connect-connector
+display_name: kafka_connect.connector
+description: The connector data stream of the Elastic kafka_connect integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: kafka_connect.connector
+transform:
+  engine: elastic
+  variant: filebeat.kafka_connect_connector.default
+catalogue:
+  package: kafka_connect
+  data_stream: connector
+  intakes: [beats]
+  variants:
+    - filebeat.kafka_connect_connector.default

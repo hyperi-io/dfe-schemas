@@ -1,0 +1,23 @@
+# Catalogue source kafka-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: kafka-log
+display_name: kafka.log
+description: The log data stream of the Elastic kafka integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: kafka.log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/kafka/log
+  additional_fields: additional/kafka/log
+transform:
+  engine: elastic
+  variant: filebeat.kafka_log.default
+catalogue:
+  package: kafka
+  data_stream: log
+  intakes: [beats]
+  variants:
+    - filebeat.kafka_log.default

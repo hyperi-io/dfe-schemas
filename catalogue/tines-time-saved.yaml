@@ -1,0 +1,23 @@
+# Catalogue source tines-time-saved: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: tines-time-saved
+display_name: tines.time_saved
+description: The time_saved data stream of the Elastic tines integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: tines.time_saved
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/tines/time_saved
+  additional_fields: additional/tines/time_saved
+transform:
+  engine: elastic
+  variant: filebeat.tines_time_saved.default
+catalogue:
+  package: tines
+  data_stream: time_saved
+  intakes: [beats]
+  variants:
+    - filebeat.tines_time_saved.default

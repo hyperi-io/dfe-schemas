@@ -1,0 +1,23 @@
+# Catalogue source netbox-devices: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: netbox-devices
+display_name: netbox.devices
+description: The devices data stream of the Elastic netbox integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: netbox.devices
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/netbox/devices
+  additional_fields: additional/netbox/devices
+transform:
+  engine: elastic
+  variant: filebeat.netbox_devices.default
+catalogue:
+  package: netbox
+  data_stream: devices
+  intakes: [beats]
+  variants:
+    - filebeat.netbox_devices.default

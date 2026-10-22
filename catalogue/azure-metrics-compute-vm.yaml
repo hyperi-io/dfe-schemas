@@ -1,0 +1,23 @@
+# Catalogue source azure-metrics-compute-vm: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: azure-metrics-compute-vm
+display_name: azure_metrics.compute_vm
+description: The compute_vm data stream of the Elastic azure_metrics integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: azure_metrics.compute_vm
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/azure_metrics/compute_vm
+  additional_fields: additional/azure_metrics/compute_vm
+transform:
+  engine: elastic
+  variant: filebeat.azure_metrics_compute_vm.default
+catalogue:
+  package: azure_metrics
+  data_stream: compute_vm
+  intakes: [beats]
+  variants:
+    - filebeat.azure_metrics_compute_vm.default

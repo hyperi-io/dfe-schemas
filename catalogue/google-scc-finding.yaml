@@ -1,0 +1,23 @@
+# Catalogue source google-scc-finding: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: google-scc-finding
+display_name: google_scc.finding
+description: The finding data stream of the Elastic google_scc integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: google_scc.finding
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/google_scc/finding
+  additional_fields: additional/google_scc/finding
+transform:
+  engine: elastic
+  variant: filebeat.google_scc_finding.default
+catalogue:
+  package: google_scc
+  data_stream: finding
+  intakes: [beats]
+  variants:
+    - filebeat.google_scc_finding.default

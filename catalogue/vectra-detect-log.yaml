@@ -1,0 +1,24 @@
+# Catalogue source vectra-detect-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: vectra-detect-log
+display_name: vectra_detect.log
+description: The log data stream of the Elastic vectra_detect integration.
+match:
+  field: _source
+  operator: equals
+  value: vectra-detect-log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/vectra_detect/log
+  additional_fields: additional/vectra_detect/log
+transform:
+  engine: elastic
+  variant: filebeat.vectra_detect_log.default
+catalogue:
+  package: vectra_detect
+  data_stream: log
+  intakes: [beats, receiver]
+  framing: body
+  variants:
+    - filebeat.vectra_detect_log.default

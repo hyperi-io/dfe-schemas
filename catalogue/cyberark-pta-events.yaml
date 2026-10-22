@@ -1,0 +1,24 @@
+# Catalogue source cyberark-pta-events: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: cyberark-pta-events
+display_name: cyberark_pta.events
+description: The events data stream of the Elastic cyberark_pta integration.
+match:
+  field: _source
+  operator: equals
+  value: cyberark-pta-events
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/cyberark_pta/events
+  additional_fields: additional/cyberark_pta/events
+transform:
+  engine: elastic
+  variant: filebeat.cyberark_pta_events.default
+catalogue:
+  package: cyberark_pta
+  data_stream: events
+  intakes: [beats, receiver]
+  framing: line
+  variants:
+    - filebeat.cyberark_pta_events.default

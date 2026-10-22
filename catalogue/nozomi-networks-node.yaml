@@ -1,0 +1,23 @@
+# Catalogue source nozomi-networks-node: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: nozomi-networks-node
+display_name: nozomi_networks.node
+description: The node data stream of the Elastic nozomi_networks integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: nozomi_networks.node
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/nozomi_networks/node
+  additional_fields: additional/nozomi_networks/node
+transform:
+  engine: elastic
+  variant: filebeat.nozomi_networks_node.default
+catalogue:
+  package: nozomi_networks
+  data_stream: node
+  intakes: [beats]
+  variants:
+    - filebeat.nozomi_networks_node.default

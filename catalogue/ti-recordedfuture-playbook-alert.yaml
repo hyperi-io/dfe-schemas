@@ -1,0 +1,23 @@
+# Catalogue source ti-recordedfuture-playbook-alert: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ti-recordedfuture-playbook-alert
+display_name: ti_recordedfuture.playbook_alert
+description: The playbook_alert data stream of the Elastic ti_recordedfuture integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ti_recordedfuture.playbook_alert
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ti_recordedfuture/playbook_alert
+  additional_fields: additional/ti_recordedfuture/playbook_alert
+transform:
+  engine: elastic
+  variant: filebeat.ti_recordedfuture_playbook_alert.default
+catalogue:
+  package: ti_recordedfuture
+  data_stream: playbook_alert
+  intakes: [beats]
+  variants:
+    - filebeat.ti_recordedfuture_playbook_alert.default

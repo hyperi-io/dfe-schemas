@@ -1,0 +1,19 @@
+# Catalogue source aws-usage: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: aws-usage
+display_name: aws.usage
+description: The usage data stream of the Elastic aws integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: aws.usage
+transform:
+  engine: elastic
+  variant: filebeat.aws_usage.default
+catalogue:
+  package: aws
+  data_stream: usage
+  intakes: [beats]
+  variants:
+    - filebeat.aws_usage.default

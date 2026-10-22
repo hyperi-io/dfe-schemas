@@ -1,0 +1,23 @@
+# Catalogue source cloud-security-posture-findings: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: cloud-security-posture-findings
+display_name: cloud_security_posture.findings
+description: The findings data stream of the Elastic cloud_security_posture integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: cloud_security_posture.findings
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/cloud_security_posture/findings
+  additional_fields: additional/cloud_security_posture/findings
+transform:
+  engine: elastic
+  variant: filebeat.cloud_security_posture_findings.default
+catalogue:
+  package: cloud_security_posture
+  data_stream: findings
+  intakes: [beats]
+  variants:
+    - filebeat.cloud_security_posture_findings.default

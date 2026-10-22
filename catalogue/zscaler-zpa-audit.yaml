@@ -1,0 +1,24 @@
+# Catalogue source zscaler-zpa-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zscaler-zpa-audit
+display_name: zscaler_zpa.audit
+description: The audit data stream of the Elastic zscaler_zpa integration.
+match:
+  field: _source
+  operator: equals
+  value: zscaler-zpa-audit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zscaler_zpa/audit
+  additional_fields: additional/zscaler_zpa/audit
+transform:
+  engine: elastic
+  variant: filebeat.zscaler_zpa_audit.default
+catalogue:
+  package: zscaler_zpa
+  data_stream: audit
+  intakes: [beats, receiver]
+  framing: body
+  variants:
+    - filebeat.zscaler_zpa_audit.default

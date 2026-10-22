@@ -1,0 +1,24 @@
+# Catalogue source snort-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: snort-log
+display_name: snort.log
+description: The log data stream of the Elastic snort integration.
+match:
+  field: _source
+  operator: equals
+  value: snort-log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/snort/log
+  additional_fields: additional/snort/log
+transform:
+  engine: elastic
+  variant: filebeat.snort_log.default
+catalogue:
+  package: snort
+  data_stream: log
+  intakes: [beats, receiver]
+  framing: line
+  variants:
+    - filebeat.snort_log.default

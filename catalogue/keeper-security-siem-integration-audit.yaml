@@ -1,0 +1,23 @@
+# Catalogue source keeper-security-siem-integration-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: keeper-security-siem-integration-audit
+display_name: keeper_security_siem_integration.audit
+description: The audit data stream of the Elastic keeper_security_siem_integration integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: keeper_security_siem_integration.audit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/keeper_security_siem_integration/audit
+  additional_fields: additional/keeper_security_siem_integration/audit
+transform:
+  engine: elastic
+  variant: filebeat.keeper_security_siem_integration_audit.default
+catalogue:
+  package: keeper_security_siem_integration
+  data_stream: audit
+  intakes: [beats]
+  variants:
+    - filebeat.keeper_security_siem_integration_audit.default

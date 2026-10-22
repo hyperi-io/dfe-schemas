@@ -1,0 +1,23 @@
+# Catalogue source island-browser-admin-actions: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: island-browser-admin-actions
+display_name: island_browser.admin_actions
+description: The admin_actions data stream of the Elastic island_browser integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: island_browser.admin_actions
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/island_browser/admin_actions
+  additional_fields: additional/island_browser/admin_actions
+transform:
+  engine: elastic
+  variant: filebeat.island_browser_admin_actions.default
+catalogue:
+  package: island_browser
+  data_stream: admin_actions
+  intakes: [beats]
+  variants:
+    - filebeat.island_browser_admin_actions.default

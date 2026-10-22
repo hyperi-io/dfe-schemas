@@ -1,0 +1,23 @@
+# Catalogue source windows-powershell: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: windows-powershell
+display_name: windows.powershell
+description: The powershell data stream of the Elastic windows integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: windows.powershell
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/windows/powershell
+  additional_fields: additional/windows/powershell
+transform:
+  engine: elastic
+  variant: filebeat.windows_powershell.default
+catalogue:
+  package: windows
+  data_stream: powershell
+  intakes: [beats]
+  variants:
+    - filebeat.windows_powershell.default

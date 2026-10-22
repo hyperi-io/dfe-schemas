@@ -1,0 +1,24 @@
+# Catalogue source barracuda-waf: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: barracuda-waf
+display_name: barracuda.waf
+description: The waf data stream of the Elastic barracuda integration.
+match:
+  field: _source
+  operator: equals
+  value: barracuda-waf
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/barracuda/waf
+  additional_fields: additional/barracuda/waf
+transform:
+  engine: elastic
+  variant: filebeat.barracuda_waf.default
+catalogue:
+  package: barracuda
+  data_stream: waf
+  intakes: [beats, receiver]
+  framing: body
+  variants:
+    - filebeat.barracuda_waf.default

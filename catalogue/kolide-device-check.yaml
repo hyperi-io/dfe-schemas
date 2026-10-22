@@ -1,0 +1,23 @@
+# Catalogue source kolide-device-check: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: kolide-device-check
+display_name: kolide.device_check
+description: The device_check data stream of the Elastic kolide integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: kolide.device_check
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/kolide/device_check
+  additional_fields: additional/kolide/device_check
+transform:
+  engine: elastic
+  variant: filebeat.kolide_device_check.default
+catalogue:
+  package: kolide
+  data_stream: device_check
+  intakes: [beats]
+  variants:
+    - filebeat.kolide_device_check.default

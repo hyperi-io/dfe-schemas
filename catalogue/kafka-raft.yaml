@@ -1,0 +1,19 @@
+# Catalogue source kafka-raft: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: kafka-raft
+display_name: kafka.raft
+description: The raft data stream of the Elastic kafka integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: kafka.raft
+transform:
+  engine: elastic
+  variant: filebeat.kafka_raft.default
+catalogue:
+  package: kafka
+  data_stream: raft
+  intakes: [beats]
+  variants:
+    - filebeat.kafka_raft.default

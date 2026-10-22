@@ -1,0 +1,23 @@
+# Catalogue source github-dependabot: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: github-dependabot
+display_name: github.dependabot
+description: The dependabot data stream of the Elastic github integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: github.dependabot
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/github/dependabot
+  additional_fields: additional/github/dependabot
+transform:
+  engine: elastic
+  variant: filebeat.github_dependabot.default
+catalogue:
+  package: github
+  data_stream: dependabot
+  intakes: [beats]
+  variants:
+    - filebeat.github_dependabot.default

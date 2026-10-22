@@ -1,0 +1,23 @@
+# Catalogue source lastpass-user: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: lastpass-user
+display_name: lastpass.user
+description: The user data stream of the Elastic lastpass integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: lastpass.user
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/lastpass/user
+  additional_fields: additional/lastpass/user
+transform:
+  engine: elastic
+  variant: filebeat.lastpass_user.default
+catalogue:
+  package: lastpass
+  data_stream: user
+  intakes: [beats]
+  variants:
+    - filebeat.lastpass_user.default

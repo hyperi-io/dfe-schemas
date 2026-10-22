@@ -1,0 +1,23 @@
+# Catalogue source elasticsearch-gc: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: elasticsearch-gc
+display_name: elasticsearch.gc
+description: The gc data stream of the Elastic elasticsearch integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: elasticsearch.gc
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/elasticsearch/gc
+  additional_fields: additional/elasticsearch/gc
+transform:
+  engine: elastic
+  variant: filebeat.elasticsearch_gc.default
+catalogue:
+  package: elasticsearch
+  data_stream: gc
+  intakes: [beats]
+  variants:
+    - filebeat.elasticsearch_gc.default

@@ -1,0 +1,23 @@
+# Catalogue source carbon-black-cloud-watchlist-hit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: carbon-black-cloud-watchlist-hit
+display_name: carbon_black_cloud.watchlist_hit
+description: The watchlist_hit data stream of the Elastic carbon_black_cloud integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: carbon_black_cloud.watchlist_hit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/carbon_black_cloud/watchlist_hit
+  additional_fields: additional/carbon_black_cloud/watchlist_hit
+transform:
+  engine: elastic
+  variant: filebeat.carbon_black_cloud_watchlist_hit.default
+catalogue:
+  package: carbon_black_cloud
+  data_stream: watchlist_hit
+  intakes: [beats]
+  variants:
+    - filebeat.carbon_black_cloud_watchlist_hit.default

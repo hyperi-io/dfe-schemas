@@ -1,0 +1,23 @@
+# Catalogue source microsoft-dhcp-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: microsoft-dhcp-log
+display_name: microsoft_dhcp.log
+description: The log data stream of the Elastic microsoft_dhcp integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: microsoft_dhcp.log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/microsoft_dhcp/log
+  additional_fields: additional/microsoft_dhcp/log
+transform:
+  engine: elastic
+  variant: filebeat.microsoft_dhcp_log.default
+catalogue:
+  package: microsoft_dhcp
+  data_stream: log
+  intakes: [beats]
+  variants:
+    - filebeat.microsoft_dhcp_log.default

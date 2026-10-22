@@ -1,0 +1,23 @@
+# Catalogue source macos-system-change: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: macos-system-change
+display_name: macos.system_change
+description: The system_change data stream of the Elastic macos integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: macos.system_change
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/macos/system_change
+  additional_fields: additional/macos/system_change
+transform:
+  engine: elastic
+  variant: filebeat.macos_system_change.default
+catalogue:
+  package: macos
+  data_stream: system_change
+  intakes: [beats]
+  variants:
+    - filebeat.macos_system_change.default

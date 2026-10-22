@@ -1,0 +1,24 @@
+# Catalogue source prisma-cloud-incident-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: prisma-cloud-incident-audit
+display_name: prisma_cloud.incident_audit
+description: The incident_audit data stream of the Elastic prisma_cloud integration.
+match:
+  field: _source
+  operator: equals
+  value: prisma-cloud-incident-audit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/prisma_cloud/incident_audit
+  additional_fields: additional/prisma_cloud/incident_audit
+transform:
+  engine: elastic
+  variant: filebeat.prisma_cloud_incident_audit.default
+catalogue:
+  package: prisma_cloud
+  data_stream: incident_audit
+  intakes: [beats, receiver]
+  framing: body
+  variants:
+    - filebeat.prisma_cloud_incident_audit.default

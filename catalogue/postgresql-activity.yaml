@@ -1,0 +1,19 @@
+# Catalogue source postgresql-activity: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: postgresql-activity
+display_name: postgresql.activity
+description: The activity data stream of the Elastic postgresql integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: postgresql.activity
+transform:
+  engine: elastic
+  variant: filebeat.postgresql_activity.default
+catalogue:
+  package: postgresql
+  data_stream: activity
+  intakes: [beats]
+  variants:
+    - filebeat.postgresql_activity.default

@@ -1,0 +1,23 @@
+# Catalogue source admin-by-request-epm-events: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: admin-by-request-epm-events
+display_name: admin_by_request_epm.events
+description: The events data stream of the Elastic admin_by_request_epm integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: admin_by_request_epm.events
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/admin_by_request_epm/events
+  additional_fields: additional/admin_by_request_epm/events
+transform:
+  engine: elastic
+  variant: filebeat.admin_by_request_epm_events.default
+catalogue:
+  package: admin_by_request_epm
+  data_stream: events
+  intakes: [beats]
+  variants:
+    - filebeat.admin_by_request_epm_events.default

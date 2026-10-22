@@ -1,0 +1,22 @@
+# Catalogue source google-workspace-rules: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: google-workspace-rules
+display_name: google_workspace.rules
+description: The rules data stream of the Elastic google_workspace integration.
+fetcher:
+  source_type: google_workspace
+  topic: own
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/google_workspace/rules
+  additional_fields: additional/google_workspace/rules
+transform:
+  engine: elastic
+  variant: filebeat.google_workspace_rules.default
+catalogue:
+  package: google_workspace
+  data_stream: rules
+  intakes: [beats, fetcher]
+  variants:
+    - filebeat.google_workspace_rules.default

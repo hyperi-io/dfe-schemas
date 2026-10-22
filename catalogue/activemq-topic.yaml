@@ -1,0 +1,23 @@
+# Catalogue source activemq-topic: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: activemq-topic
+display_name: activemq.topic
+description: The topic data stream of the Elastic activemq integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: activemq.topic
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/activemq/topic
+  additional_fields: additional/activemq/topic
+transform:
+  engine: elastic
+  variant: filebeat.activemq_topic.default
+catalogue:
+  package: activemq
+  data_stream: topic
+  intakes: [beats]
+  variants:
+    - filebeat.activemq_topic.default

@@ -1,0 +1,23 @@
+# Catalogue source trellix-epo-cloud-device: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: trellix-epo-cloud-device
+display_name: trellix_epo_cloud.device
+description: The device data stream of the Elastic trellix_epo_cloud integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: trellix_epo_cloud.device
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/trellix_epo_cloud/device
+  additional_fields: additional/trellix_epo_cloud/device
+transform:
+  engine: elastic
+  variant: filebeat.trellix_epo_cloud_device.default
+catalogue:
+  package: trellix_epo_cloud
+  data_stream: device
+  intakes: [beats]
+  variants:
+    - filebeat.trellix_epo_cloud_device.default

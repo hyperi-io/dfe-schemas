@@ -1,0 +1,23 @@
+# Catalogue source system-security: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: system-security
+display_name: system.security
+description: The security data stream of the Elastic system integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: system.security
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/system/security
+  additional_fields: additional/system/security
+transform:
+  engine: elastic
+  variant: filebeat.system_security.default
+catalogue:
+  package: system
+  data_stream: security
+  intakes: [beats]
+  variants:
+    - filebeat.system_security.default

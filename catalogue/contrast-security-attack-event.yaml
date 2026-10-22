@@ -1,0 +1,22 @@
+# Catalogue source contrast-security-attack-event: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: contrast-security-attack-event
+display_name: contrast_security.attack_event
+description: The attack_event data stream of the Elastic contrast_security integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: contrast_security.attack_event
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/contrast_security/attack_event
+transform:
+  engine: elastic
+  variant: filebeat.contrast_security_attack_event.default
+catalogue:
+  package: contrast_security
+  data_stream: attack_event
+  intakes: [beats]
+  variants:
+    - filebeat.contrast_security_attack_event.default

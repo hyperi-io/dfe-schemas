@@ -1,0 +1,23 @@
+# Catalogue source azure-eventhub: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: azure-eventhub
+display_name: azure.eventhub
+description: The eventhub data stream of the Elastic azure integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: azure.eventhub
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/azure/eventhub
+  additional_fields: additional/azure/eventhub
+transform:
+  engine: elastic
+  variant: filebeat.azure_eventhub.default
+catalogue:
+  package: azure
+  data_stream: eventhub
+  intakes: [beats]
+  variants:
+    - filebeat.azure_eventhub.default

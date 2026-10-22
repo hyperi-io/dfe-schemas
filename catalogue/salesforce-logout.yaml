@@ -1,0 +1,23 @@
+# Catalogue source salesforce-logout: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: salesforce-logout
+display_name: salesforce.logout
+description: The logout data stream of the Elastic salesforce integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: salesforce.logout
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/salesforce/logout
+  additional_fields: additional/salesforce/logout
+transform:
+  engine: elastic
+  variant: filebeat.salesforce_logout.default
+catalogue:
+  package: salesforce
+  data_stream: logout
+  intakes: [beats]
+  variants:
+    - filebeat.salesforce_logout.default

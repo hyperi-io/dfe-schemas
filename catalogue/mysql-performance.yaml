@@ -1,0 +1,19 @@
+# Catalogue source mysql-performance: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: mysql-performance
+display_name: mysql.performance
+description: The performance data stream of the Elastic mysql integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: mysql.performance
+transform:
+  engine: elastic
+  variant: filebeat.mysql_performance.default
+catalogue:
+  package: mysql
+  data_stream: performance
+  intakes: [beats]
+  variants:
+    - filebeat.mysql_performance.default

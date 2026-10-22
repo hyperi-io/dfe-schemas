@@ -1,0 +1,22 @@
+# Catalogue source slack-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: slack-audit
+display_name: slack.audit
+description: The audit data stream of the Elastic slack integration.
+fetcher:
+  source_type: slack
+  topic: own
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/slack/audit
+  additional_fields: additional/slack/audit
+transform:
+  engine: elastic
+  variant: filebeat.slack_audit.default
+catalogue:
+  package: slack
+  data_stream: audit
+  intakes: [beats, fetcher]
+  variants:
+    - filebeat.slack_audit.default

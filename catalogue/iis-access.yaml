@@ -1,0 +1,23 @@
+# Catalogue source iis-access: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: iis-access
+display_name: iis.access
+description: The access data stream of the Elastic iis integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: iis.access
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/iis/access
+  additional_fields: additional/iis/access
+transform:
+  engine: elastic
+  variant: filebeat.iis_access.default
+catalogue:
+  package: iis
+  data_stream: access
+  intakes: [beats]
+  variants:
+    - filebeat.iis_access.default

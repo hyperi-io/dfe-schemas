@@ -1,0 +1,23 @@
+# Catalogue source apache-tomcat-localhost: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: apache-tomcat-localhost
+display_name: apache_tomcat.localhost
+description: The localhost data stream of the Elastic apache_tomcat integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: apache_tomcat.localhost
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/apache_tomcat/localhost
+  additional_fields: additional/apache_tomcat/localhost
+transform:
+  engine: elastic
+  variant: filebeat.apache_tomcat_localhost.default
+catalogue:
+  package: apache_tomcat
+  data_stream: localhost
+  intakes: [beats]
+  variants:
+    - filebeat.apache_tomcat_localhost.default

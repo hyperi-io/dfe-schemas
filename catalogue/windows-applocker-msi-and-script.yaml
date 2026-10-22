@@ -1,0 +1,23 @@
+# Catalogue source windows-applocker-msi-and-script: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: windows-applocker-msi-and-script
+display_name: windows.applocker_msi_and_script
+description: The applocker_msi_and_script data stream of the Elastic windows integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: windows.applocker_msi_and_script
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/windows/applocker_msi_and_script
+  additional_fields: additional/windows/applocker_msi_and_script
+transform:
+  engine: elastic
+  variant: filebeat.windows_applocker_msi_and_script.default
+catalogue:
+  package: windows
+  data_stream: applocker_msi_and_script
+  intakes: [beats]
+  variants:
+    - filebeat.windows_applocker_msi_and_script.default

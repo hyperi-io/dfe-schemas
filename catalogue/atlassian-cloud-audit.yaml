@@ -1,0 +1,23 @@
+# Catalogue source atlassian-cloud-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: atlassian-cloud-audit
+display_name: atlassian_cloud.audit
+description: The audit data stream of the Elastic atlassian_cloud integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: atlassian_cloud.audit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/atlassian_cloud/audit
+  additional_fields: additional/atlassian_cloud/audit
+transform:
+  engine: elastic
+  variant: filebeat.atlassian_cloud_audit.default
+catalogue:
+  package: atlassian_cloud
+  data_stream: audit
+  intakes: [beats]
+  variants:
+    - filebeat.atlassian_cloud_audit.default

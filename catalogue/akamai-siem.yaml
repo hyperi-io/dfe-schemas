@@ -1,0 +1,23 @@
+# Catalogue source akamai-siem: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: akamai-siem
+display_name: akamai.siem
+description: The siem data stream of the Elastic akamai integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: akamai.siem
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/akamai/siem
+  additional_fields: additional/akamai/siem
+transform:
+  engine: elastic
+  variant: filebeat.akamai_siem.default
+catalogue:
+  package: akamai
+  data_stream: siem
+  intakes: [beats]
+  variants:
+    - filebeat.akamai_siem.default

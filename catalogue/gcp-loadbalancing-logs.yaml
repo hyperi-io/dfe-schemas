@@ -1,0 +1,22 @@
+# Catalogue source gcp-loadbalancing-logs: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: gcp-loadbalancing-logs
+display_name: gcp.loadbalancing_logs
+description: The loadbalancing_logs data stream of the Elastic gcp integration.
+fetcher:
+  source_type: gcp
+  topic: own
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/gcp/loadbalancing_logs
+  additional_fields: additional/gcp/loadbalancing_logs
+transform:
+  engine: elastic
+  variant: filebeat.gcp_loadbalancing_logs.default
+catalogue:
+  package: gcp
+  data_stream: loadbalancing_logs
+  intakes: [beats, fetcher]
+  variants:
+    - filebeat.gcp_loadbalancing_logs.default

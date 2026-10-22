@@ -1,0 +1,23 @@
+# Catalogue source activemq-broker: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: activemq-broker
+display_name: activemq.broker
+description: The broker data stream of the Elastic activemq integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: activemq.broker
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/activemq/broker
+  additional_fields: additional/activemq/broker
+transform:
+  engine: elastic
+  variant: filebeat.activemq_broker.default
+catalogue:
+  package: activemq
+  data_stream: broker
+  intakes: [beats]
+  variants:
+    - filebeat.activemq_broker.default

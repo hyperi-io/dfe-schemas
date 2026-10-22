@@ -1,0 +1,23 @@
+# Catalogue source ti-rapid7-threat-command-ioc: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ti-rapid7-threat-command-ioc
+display_name: ti_rapid7_threat_command.ioc
+description: The ioc data stream of the Elastic ti_rapid7_threat_command integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ti_rapid7_threat_command.ioc
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ti_rapid7_threat_command/ioc
+  additional_fields: additional/ti_rapid7_threat_command/ioc
+transform:
+  engine: elastic
+  variant: filebeat.ti_rapid7_threat_command_ioc.default
+catalogue:
+  package: ti_rapid7_threat_command
+  data_stream: ioc
+  intakes: [beats]
+  variants:
+    - filebeat.ti_rapid7_threat_command_ioc.default

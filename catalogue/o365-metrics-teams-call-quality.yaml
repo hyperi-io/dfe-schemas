@@ -1,0 +1,23 @@
+# Catalogue source o365-metrics-teams-call-quality: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: o365-metrics-teams-call-quality
+display_name: o365_metrics.teams_call_quality
+description: The teams_call_quality data stream of the Elastic o365_metrics integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: o365_metrics.teams_call_quality
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/o365_metrics/teams_call_quality
+  additional_fields: additional/o365_metrics/teams_call_quality
+transform:
+  engine: elastic
+  variant: filebeat.o365_metrics_teams_call_quality.default
+catalogue:
+  package: o365_metrics
+  data_stream: teams_call_quality
+  intakes: [beats]
+  variants:
+    - filebeat.o365_metrics_teams_call_quality.default

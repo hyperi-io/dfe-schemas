@@ -1,0 +1,24 @@
+# Catalogue source cisco-ftd: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: cisco-ftd
+display_name: cisco_ftd.log
+description: The log data stream of the Elastic cisco_ftd integration.
+match:
+  field: _source
+  operator: equals
+  value: cisco-ftd
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/cisco_ftd/log
+  additional_fields: additional/cisco_ftd/log
+transform:
+  engine: elastic
+  variant: filebeat.cisco_ftd.default
+catalogue:
+  package: cisco_ftd
+  data_stream: log
+  intakes: [beats, receiver]
+  framing: line
+  variants:
+    - filebeat.cisco_ftd.default

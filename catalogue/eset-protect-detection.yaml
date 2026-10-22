@@ -1,0 +1,23 @@
+# Catalogue source eset-protect-detection: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: eset-protect-detection
+display_name: eset_protect.detection
+description: The detection data stream of the Elastic eset_protect integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: eset_protect.detection
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/eset_protect/detection
+  additional_fields: additional/eset_protect/detection
+transform:
+  engine: elastic
+  variant: filebeat.eset_protect_detection.default
+catalogue:
+  package: eset_protect
+  data_stream: detection
+  intakes: [beats]
+  variants:
+    - filebeat.eset_protect_detection.default

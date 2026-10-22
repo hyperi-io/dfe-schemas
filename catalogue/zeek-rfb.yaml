@@ -1,0 +1,23 @@
+# Catalogue source zeek-rfb: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zeek-rfb
+display_name: zeek.rfb
+description: The rfb data stream of the Elastic zeek integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: zeek.rfb
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zeek/rfb
+  additional_fields: additional/zeek/rfb
+transform:
+  engine: elastic
+  variant: filebeat.zeek_rfb.default
+catalogue:
+  package: zeek
+  data_stream: rfb
+  intakes: [beats]
+  variants:
+    - filebeat.zeek_rfb.default

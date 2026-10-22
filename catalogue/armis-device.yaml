@@ -1,0 +1,23 @@
+# Catalogue source armis-device: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: armis-device
+display_name: armis.device
+description: The device data stream of the Elastic armis integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: armis.device
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/armis/device
+  additional_fields: additional/armis/device
+transform:
+  engine: elastic
+  variant: filebeat.armis_device.default
+catalogue:
+  package: armis
+  data_stream: device
+  intakes: [beats]
+  variants:
+    - filebeat.armis_device.default

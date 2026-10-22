@@ -1,0 +1,23 @@
+# Catalogue source zeek-known-certs: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zeek-known-certs
+display_name: zeek.known_certs
+description: The known_certs data stream of the Elastic zeek integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: zeek.known_certs
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zeek/known_certs
+  additional_fields: additional/zeek/known_certs
+transform:
+  engine: elastic
+  variant: filebeat.zeek_known_certs.default
+catalogue:
+  package: zeek
+  data_stream: known_certs
+  intakes: [beats]
+  variants:
+    - filebeat.zeek_known_certs.default

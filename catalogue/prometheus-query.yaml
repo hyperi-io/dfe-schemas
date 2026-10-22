@@ -1,0 +1,19 @@
+# Catalogue source prometheus-query: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: prometheus-query
+display_name: prometheus.query
+description: The query data stream of the Elastic prometheus integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: prometheus.query
+transform:
+  engine: elastic
+  variant: filebeat.prometheus_query.default
+catalogue:
+  package: prometheus
+  data_stream: query
+  intakes: [beats]
+  variants:
+    - filebeat.prometheus_query.default

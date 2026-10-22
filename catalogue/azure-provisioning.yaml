@@ -1,0 +1,22 @@
+# Catalogue source azure-provisioning: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: azure-provisioning
+display_name: azure.provisioning
+description: The provisioning data stream of the Elastic azure integration.
+fetcher:
+  source_type: azure
+  topic: own
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/azure/provisioning
+  additional_fields: additional/azure/provisioning
+transform:
+  engine: elastic
+  variant: filebeat.azure_provisioning.default
+catalogue:
+  package: azure
+  data_stream: provisioning
+  intakes: [beats, fetcher]
+  variants:
+    - filebeat.azure_provisioning.default

@@ -1,0 +1,23 @@
+# Catalogue source elasticsearch-server: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: elasticsearch-server
+display_name: elasticsearch.server
+description: The server data stream of the Elastic elasticsearch integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: elasticsearch.server
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/elasticsearch/server
+  additional_fields: additional/elasticsearch/server
+transform:
+  engine: elastic
+  variant: filebeat.elasticsearch_server.default
+catalogue:
+  package: elasticsearch
+  data_stream: server
+  intakes: [beats]
+  variants:
+    - filebeat.elasticsearch_server.default

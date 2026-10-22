@@ -1,0 +1,23 @@
+# Catalogue source google-workspace-gmail: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: google-workspace-gmail
+display_name: google_workspace.gmail
+description: The gmail data stream of the Elastic google_workspace integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: google_workspace.gmail
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/google_workspace/gmail
+  additional_fields: additional/google_workspace/gmail
+transform:
+  engine: elastic
+  variant: filebeat.google_workspace_gmail.default
+catalogue:
+  package: google_workspace
+  data_stream: gmail
+  intakes: [beats]
+  variants:
+    - filebeat.google_workspace_gmail.default

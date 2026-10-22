@@ -1,0 +1,23 @@
+# Catalogue source istio-access-logs: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: istio-access-logs
+display_name: istio.access_logs
+description: The access_logs data stream of the Elastic istio integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: istio.access_logs
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/istio/access_logs
+  additional_fields: additional/istio/access_logs
+transform:
+  engine: elastic
+  variant: filebeat.istio_access_logs.default
+catalogue:
+  package: istio
+  data_stream: access_logs
+  intakes: [beats]
+  variants:
+    - filebeat.istio_access_logs.default

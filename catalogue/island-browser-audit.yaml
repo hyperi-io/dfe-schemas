@@ -1,0 +1,23 @@
+# Catalogue source island-browser-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: island-browser-audit
+display_name: island_browser.audit
+description: The audit data stream of the Elastic island_browser integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: island_browser.audit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/island_browser/audit
+  additional_fields: additional/island_browser/audit
+transform:
+  engine: elastic
+  variant: filebeat.island_browser_audit.default
+catalogue:
+  package: island_browser
+  data_stream: audit
+  intakes: [beats]
+  variants:
+    - filebeat.island_browser_audit.default

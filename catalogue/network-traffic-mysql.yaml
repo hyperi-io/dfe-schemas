@@ -1,0 +1,19 @@
+# Catalogue source network-traffic-mysql: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: network-traffic-mysql
+display_name: network_traffic.mysql
+description: The mysql data stream of the Elastic network_traffic integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: network_traffic.mysql
+transform:
+  engine: elastic
+  variant: filebeat.network_traffic_mysql.default
+catalogue:
+  package: network_traffic
+  data_stream: mysql
+  intakes: [beats]
+  variants:
+    - filebeat.network_traffic_mysql.default

@@ -1,0 +1,23 @@
+# Catalogue source macos-user-and-account-management: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: macos-user-and-account-management
+display_name: macos.user_and_account_management
+description: The user_and_account_management data stream of the Elastic macos integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: macos.user_and_account_management
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/macos/user_and_account_management
+  additional_fields: additional/macos/user_and_account_management
+transform:
+  engine: elastic
+  variant: filebeat.macos_user_and_account_management.default
+catalogue:
+  package: macos
+  data_stream: user_and_account_management
+  intakes: [beats]
+  variants:
+    - filebeat.macos_user_and_account_management.default

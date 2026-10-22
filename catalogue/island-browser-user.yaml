@@ -1,0 +1,23 @@
+# Catalogue source island-browser-user: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: island-browser-user
+display_name: island_browser.user
+description: The user data stream of the Elastic island_browser integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: island_browser.user
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/island_browser/user
+  additional_fields: additional/island_browser/user
+transform:
+  engine: elastic
+  variant: filebeat.island_browser_user.default
+catalogue:
+  package: island_browser
+  data_stream: user
+  intakes: [beats]
+  variants:
+    - filebeat.island_browser_user.default

@@ -1,0 +1,23 @@
+# Catalogue source nginx-error: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: nginx-error
+display_name: nginx.error
+description: The error data stream of the Elastic nginx integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: nginx.error
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/nginx/error
+  additional_fields: additional/nginx/error
+transform:
+  engine: elastic
+  variant: filebeat.nginx_error.default
+catalogue:
+  package: nginx
+  data_stream: error
+  intakes: [beats]
+  variants:
+    - filebeat.nginx_error.default

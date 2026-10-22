@@ -1,0 +1,23 @@
+# Catalogue source agentless-hello-world-generic: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: agentless-hello-world-generic
+display_name: agentless_hello_world.generic
+description: The generic data stream of the Elastic agentless_hello_world integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: agentless_hello_world.generic
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/agentless_hello_world/generic
+  additional_fields: additional/agentless_hello_world/generic
+transform:
+  engine: elastic
+  variant: filebeat.agentless_hello_world_generic.default
+catalogue:
+  package: agentless_hello_world
+  data_stream: generic
+  intakes: [beats]
+  variants:
+    - filebeat.agentless_hello_world_generic.default

@@ -1,0 +1,23 @@
+# Catalogue source macos-process-execution-monitoring: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: macos-process-execution-monitoring
+display_name: macos.process_execution_monitoring
+description: The process_execution_monitoring data stream of the Elastic macos integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: macos.process_execution_monitoring
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/macos/process_execution_monitoring
+  additional_fields: additional/macos/process_execution_monitoring
+transform:
+  engine: elastic
+  variant: filebeat.macos_process_execution_monitoring.default
+catalogue:
+  package: macos
+  data_stream: process_execution_monitoring
+  intakes: [beats]
+  variants:
+    - filebeat.macos_process_execution_monitoring.default

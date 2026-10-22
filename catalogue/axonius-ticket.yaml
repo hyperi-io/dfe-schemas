@@ -1,0 +1,23 @@
+# Catalogue source axonius-ticket: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: axonius-ticket
+display_name: axonius.ticket
+description: The ticket data stream of the Elastic axonius integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: axonius.ticket
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/axonius/ticket
+  additional_fields: additional/axonius/ticket
+transform:
+  engine: elastic
+  variant: filebeat.axonius_ticket.default
+catalogue:
+  package: axonius
+  data_stream: ticket
+  intakes: [beats]
+  variants:
+    - filebeat.axonius_ticket.default

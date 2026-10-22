@@ -1,0 +1,23 @@
+# Catalogue source activemq-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: activemq-audit
+display_name: activemq.audit
+description: The audit data stream of the Elastic activemq integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: activemq.audit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/activemq/audit
+  additional_fields: additional/activemq/audit
+transform:
+  engine: elastic
+  variant: filebeat.activemq_audit.default
+catalogue:
+  package: activemq
+  data_stream: audit
+  intakes: [beats]
+  variants:
+    - filebeat.activemq_audit.default

@@ -1,0 +1,23 @@
+# Catalogue source contrast-security-issue: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: contrast-security-issue
+display_name: contrast_security.issue
+description: The issue data stream of the Elastic contrast_security integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: contrast_security.issue
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/contrast_security/issue
+  additional_fields: additional/contrast_security/issue
+transform:
+  engine: elastic
+  variant: filebeat.contrast_security_issue.default
+catalogue:
+  package: contrast_security
+  data_stream: issue
+  intakes: [beats]
+  variants:
+    - filebeat.contrast_security_issue.default

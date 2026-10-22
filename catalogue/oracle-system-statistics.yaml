@@ -1,0 +1,19 @@
+# Catalogue source oracle-system-statistics: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: oracle-system-statistics
+display_name: oracle.system_statistics
+description: The system_statistics data stream of the Elastic oracle integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: oracle.system_statistics
+transform:
+  engine: elastic
+  variant: filebeat.oracle_system_statistics.default
+catalogue:
+  package: oracle
+  data_stream: system_statistics
+  intakes: [beats]
+  variants:
+    - filebeat.oracle_system_statistics.default

@@ -1,0 +1,23 @@
+# Catalogue source netskope-transaction: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: netskope-transaction
+display_name: netskope.transaction
+description: The transaction data stream of the Elastic netskope integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: netskope.transaction
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/netskope/transaction
+  additional_fields: additional/netskope/transaction
+transform:
+  engine: elastic
+  variant: filebeat.netskope_transaction.default
+catalogue:
+  package: netskope
+  data_stream: transaction
+  intakes: [beats]
+  variants:
+    - filebeat.netskope_transaction.default

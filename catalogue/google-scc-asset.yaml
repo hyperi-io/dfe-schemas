@@ -1,0 +1,23 @@
+# Catalogue source google-scc-asset: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: google-scc-asset
+display_name: google_scc.asset
+description: The asset data stream of the Elastic google_scc integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: google_scc.asset
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/google_scc/asset
+  additional_fields: additional/google_scc/asset
+transform:
+  engine: elastic
+  variant: filebeat.google_scc_asset.default
+catalogue:
+  package: google_scc
+  data_stream: asset
+  intakes: [beats]
+  variants:
+    - filebeat.google_scc_asset.default

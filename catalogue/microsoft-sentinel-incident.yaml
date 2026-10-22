@@ -1,0 +1,23 @@
+# Catalogue source microsoft-sentinel-incident: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: microsoft-sentinel-incident
+display_name: microsoft_sentinel.incident
+description: The incident data stream of the Elastic microsoft_sentinel integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: microsoft_sentinel.incident
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/microsoft_sentinel/incident
+  additional_fields: additional/microsoft_sentinel/incident
+transform:
+  engine: elastic
+  variant: filebeat.microsoft_sentinel_incident.default
+catalogue:
+  package: microsoft_sentinel
+  data_stream: incident
+  intakes: [beats]
+  variants:
+    - filebeat.microsoft_sentinel_incident.default

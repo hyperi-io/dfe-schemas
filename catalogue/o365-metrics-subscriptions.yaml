@@ -1,0 +1,23 @@
+# Catalogue source o365-metrics-subscriptions: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: o365-metrics-subscriptions
+display_name: o365_metrics.subscriptions
+description: The subscriptions data stream of the Elastic o365_metrics integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: o365_metrics.subscriptions
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/o365_metrics/subscriptions
+  additional_fields: additional/o365_metrics/subscriptions
+transform:
+  engine: elastic
+  variant: filebeat.o365_metrics_subscriptions.default
+catalogue:
+  package: o365_metrics
+  data_stream: subscriptions
+  intakes: [beats]
+  variants:
+    - filebeat.o365_metrics_subscriptions.default

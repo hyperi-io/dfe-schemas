@@ -1,0 +1,23 @@
+# Catalogue source nats-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: nats-log
+display_name: nats.log
+description: The log data stream of the Elastic nats integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: nats.log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/nats/log
+  additional_fields: additional/nats/log
+transform:
+  engine: elastic
+  variant: filebeat.nats_log.default
+catalogue:
+  package: nats
+  data_stream: log
+  intakes: [beats]
+  variants:
+    - filebeat.nats_log.default

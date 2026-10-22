@@ -1,0 +1,23 @@
+# Catalogue source zscaler-zia-sandbox-report: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zscaler-zia-sandbox-report
+display_name: zscaler_zia.sandbox_report
+description: The sandbox_report data stream of the Elastic zscaler_zia integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: zscaler_zia.sandbox_report
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zscaler_zia/sandbox_report
+  additional_fields: additional/zscaler_zia/sandbox_report
+transform:
+  engine: elastic
+  variant: filebeat.zscaler_zia_sandbox_report.default
+catalogue:
+  package: zscaler_zia
+  data_stream: sandbox_report
+  intakes: [beats]
+  variants:
+    - filebeat.zscaler_zia_sandbox_report.default

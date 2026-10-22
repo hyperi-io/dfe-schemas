@@ -1,0 +1,23 @@
+# Catalogue source ti-strider-indicator: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ti-strider-indicator
+display_name: ti_strider.indicator
+description: The indicator data stream of the Elastic ti_strider integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ti_strider.indicator
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ti_strider/indicator
+  additional_fields: additional/ti_strider/indicator
+transform:
+  engine: elastic
+  variant: filebeat.ti_strider_indicator.default
+catalogue:
+  package: ti_strider
+  data_stream: indicator
+  intakes: [beats]
+  variants:
+    - filebeat.ti_strider_indicator.default

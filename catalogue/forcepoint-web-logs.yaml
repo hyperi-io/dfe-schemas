@@ -1,0 +1,23 @@
+# Catalogue source forcepoint-web-logs: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: forcepoint-web-logs
+display_name: forcepoint_web.logs
+description: The logs data stream of the Elastic forcepoint_web integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: forcepoint_web.logs
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/forcepoint_web/logs
+  additional_fields: additional/forcepoint_web/logs
+transform:
+  engine: elastic
+  variant: filebeat.forcepoint_web_logs.default
+catalogue:
+  package: forcepoint_web
+  data_stream: logs
+  intakes: [beats]
+  variants:
+    - filebeat.forcepoint_web_logs.default

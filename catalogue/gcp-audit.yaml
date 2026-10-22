@@ -1,0 +1,22 @@
+# Catalogue source gcp-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: gcp-audit
+display_name: gcp.audit
+description: The audit data stream of the Elastic gcp integration.
+fetcher:
+  source_type: gcp
+  topic: own
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/gcp/audit
+  additional_fields: additional/gcp/audit
+transform:
+  engine: elastic
+  variant: filebeat.gcp_audit.default
+catalogue:
+  package: gcp
+  data_stream: audit
+  intakes: [beats, fetcher]
+  variants:
+    - filebeat.gcp_audit.default

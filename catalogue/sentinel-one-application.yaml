@@ -1,0 +1,23 @@
+# Catalogue source sentinel-one-application: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: sentinel-one-application
+display_name: sentinel_one.application
+description: The application data stream of the Elastic sentinel_one integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: sentinel_one.application
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/sentinel_one/application
+  additional_fields: additional/sentinel_one/application
+transform:
+  engine: elastic
+  variant: filebeat.sentinel_one_application.default
+catalogue:
+  package: sentinel_one
+  data_stream: application
+  intakes: [beats]
+  variants:
+    - filebeat.sentinel_one_application.default

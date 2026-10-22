@@ -1,0 +1,23 @@
+# Catalogue source nozomi-networks-alert: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: nozomi-networks-alert
+display_name: nozomi_networks.alert
+description: The alert data stream of the Elastic nozomi_networks integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: nozomi_networks.alert
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/nozomi_networks/alert
+  additional_fields: additional/nozomi_networks/alert
+transform:
+  engine: elastic
+  variant: filebeat.nozomi_networks_alert.default
+catalogue:
+  package: nozomi_networks
+  data_stream: alert
+  intakes: [beats]
+  variants:
+    - filebeat.nozomi_networks_alert.default

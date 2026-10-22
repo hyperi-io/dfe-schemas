@@ -1,0 +1,23 @@
+# Catalogue source sailpoint-identity-sc-events: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: sailpoint-identity-sc-events
+display_name: sailpoint_identity_sc.events
+description: The events data stream of the Elastic sailpoint_identity_sc integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: sailpoint_identity_sc.events
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/sailpoint_identity_sc/events
+  additional_fields: additional/sailpoint_identity_sc/events
+transform:
+  engine: elastic
+  variant: filebeat.sailpoint_identity_sc_events.default
+catalogue:
+  package: sailpoint_identity_sc
+  data_stream: events
+  intakes: [beats]
+  variants:
+    - filebeat.sailpoint_identity_sc_events.default

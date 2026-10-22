@@ -1,0 +1,23 @@
+# Catalogue source zeek-pe: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zeek-pe
+display_name: zeek.pe
+description: The pe data stream of the Elastic zeek integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: zeek.pe
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zeek/pe
+  additional_fields: additional/zeek/pe
+transform:
+  engine: elastic
+  variant: filebeat.zeek_pe.default
+catalogue:
+  package: zeek
+  data_stream: pe
+  intakes: [beats]
+  variants:
+    - filebeat.zeek_pe.default

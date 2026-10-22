@@ -1,0 +1,23 @@
+# Catalogue source crowdstrike-identity-protection-timeline: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: crowdstrike-identity-protection-timeline
+display_name: crowdstrike.identity_protection_timeline
+description: The identity_protection_timeline data stream of the Elastic crowdstrike integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: crowdstrike.identity_protection_timeline
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/crowdstrike/identity_protection_timeline
+  additional_fields: additional/crowdstrike/identity_protection_timeline
+transform:
+  engine: elastic
+  variant: filebeat.crowdstrike_identity_protection_timeline.default
+catalogue:
+  package: crowdstrike
+  data_stream: identity_protection_timeline
+  intakes: [beats]
+  variants:
+    - filebeat.crowdstrike_identity_protection_timeline.default

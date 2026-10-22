@@ -1,0 +1,23 @@
+# Catalogue source ti-eset-files: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ti-eset-files
+display_name: ti_eset.files
+description: The files data stream of the Elastic ti_eset integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ti_eset.files
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ti_eset/files
+  additional_fields: additional/ti_eset/files
+transform:
+  engine: elastic
+  variant: filebeat.ti_eset_files.default
+catalogue:
+  package: ti_eset
+  data_stream: files
+  intakes: [beats]
+  variants:
+    - filebeat.ti_eset_files.default

@@ -1,0 +1,19 @@
+# Catalogue source aws-s3-daily-storage: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: aws-s3-daily-storage
+display_name: aws.s3_daily_storage
+description: The s3_daily_storage data stream of the Elastic aws integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: aws.s3_daily_storage
+transform:
+  engine: elastic
+  variant: filebeat.aws_s3_daily_storage.default
+catalogue:
+  package: aws
+  data_stream: s3_daily_storage
+  intakes: [beats]
+  variants:
+    - filebeat.aws_s3_daily_storage.default

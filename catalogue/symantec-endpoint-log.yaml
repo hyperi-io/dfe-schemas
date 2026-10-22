@@ -1,0 +1,24 @@
+# Catalogue source symantec-endpoint-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: symantec-endpoint-log
+display_name: symantec_endpoint.log
+description: The log data stream of the Elastic symantec_endpoint integration.
+match:
+  field: _source
+  operator: equals
+  value: symantec-endpoint-log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/symantec_endpoint/log
+  additional_fields: additional/symantec_endpoint/log
+transform:
+  engine: elastic
+  variant: filebeat.symantec_endpoint_log.default
+catalogue:
+  package: symantec_endpoint
+  data_stream: log
+  intakes: [beats, receiver]
+  framing: line
+  variants:
+    - filebeat.symantec_endpoint_log.default

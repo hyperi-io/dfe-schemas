@@ -1,0 +1,23 @@
+# Catalogue source splunk-search: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: splunk-search
+display_name: splunk.search
+description: The search data stream of the Elastic splunk integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: splunk.search
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/splunk/search
+  additional_fields: additional/splunk/search
+transform:
+  engine: elastic
+  variant: filebeat.splunk_search.default
+catalogue:
+  package: splunk
+  data_stream: search
+  intakes: [beats]
+  variants:
+    - filebeat.splunk_search.default

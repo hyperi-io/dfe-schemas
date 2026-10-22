@@ -1,0 +1,19 @@
+# Catalogue source gcp-cloudrun-metrics: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: gcp-cloudrun-metrics
+display_name: gcp.cloudrun_metrics
+description: The cloudrun_metrics data stream of the Elastic gcp integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: gcp.cloudrun_metrics
+transform:
+  engine: elastic
+  variant: filebeat.gcp_cloudrun_metrics.default
+catalogue:
+  package: gcp
+  data_stream: cloudrun_metrics
+  intakes: [beats]
+  variants:
+    - filebeat.gcp_cloudrun_metrics.default

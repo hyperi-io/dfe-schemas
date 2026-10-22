@@ -1,0 +1,22 @@
+# Catalogue source azure-application-gateway: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: azure-application-gateway
+display_name: azure.application_gateway
+description: The application_gateway data stream of the Elastic azure integration.
+fetcher:
+  source_type: azure
+  topic: own
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/azure/application_gateway
+  additional_fields: additional/azure/application_gateway
+transform:
+  engine: elastic
+  variant: filebeat.azure_application_gateway.default
+catalogue:
+  package: azure
+  data_stream: application_gateway
+  intakes: [beats, fetcher]
+  variants:
+    - filebeat.azure_application_gateway.default

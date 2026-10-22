@@ -1,0 +1,22 @@
+# Catalogue source google-workspace-token: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: google-workspace-token
+display_name: google_workspace.token
+description: The token data stream of the Elastic google_workspace integration.
+fetcher:
+  source_type: google_workspace
+  topic: own
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/google_workspace/token
+  additional_fields: additional/google_workspace/token
+transform:
+  engine: elastic
+  variant: filebeat.google_workspace_token.default
+catalogue:
+  package: google_workspace
+  data_stream: token
+  intakes: [beats, fetcher]
+  variants:
+    - filebeat.google_workspace_token.default

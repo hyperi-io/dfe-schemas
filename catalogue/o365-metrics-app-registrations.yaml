@@ -1,0 +1,23 @@
+# Catalogue source o365-metrics-app-registrations: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: o365-metrics-app-registrations
+display_name: o365_metrics.app_registrations
+description: The app_registrations data stream of the Elastic o365_metrics integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: o365_metrics.app_registrations
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/o365_metrics/app_registrations
+  additional_fields: additional/o365_metrics/app_registrations
+transform:
+  engine: elastic
+  variant: filebeat.o365_metrics_app_registrations.default
+catalogue:
+  package: o365_metrics
+  data_stream: app_registrations
+  intakes: [beats]
+  variants:
+    - filebeat.o365_metrics_app_registrations.default

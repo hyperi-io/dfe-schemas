@@ -1,0 +1,19 @@
+# Catalogue source network-traffic-thrift: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: network-traffic-thrift
+display_name: network_traffic.thrift
+description: The thrift data stream of the Elastic network_traffic integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: network_traffic.thrift
+transform:
+  engine: elastic
+  variant: filebeat.network_traffic_thrift.default
+catalogue:
+  package: network_traffic
+  data_stream: thrift
+  intakes: [beats]
+  variants:
+    - filebeat.network_traffic_thrift.default

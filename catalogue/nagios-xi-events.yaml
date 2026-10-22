@@ -1,0 +1,23 @@
+# Catalogue source nagios-xi-events: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: nagios-xi-events
+display_name: nagios_xi.events
+description: The events data stream of the Elastic nagios_xi integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: nagios_xi.events
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/nagios_xi/events
+  additional_fields: additional/nagios_xi/events
+transform:
+  engine: elastic
+  variant: filebeat.nagios_xi_events.default
+catalogue:
+  package: nagios_xi
+  data_stream: events
+  intakes: [beats]
+  variants:
+    - filebeat.nagios_xi_events.default

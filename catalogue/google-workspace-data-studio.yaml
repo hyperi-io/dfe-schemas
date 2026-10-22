@@ -1,0 +1,22 @@
+# Catalogue source google-workspace-data-studio: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: google-workspace-data-studio
+display_name: google_workspace.data_studio
+description: The data_studio data stream of the Elastic google_workspace integration.
+fetcher:
+  source_type: google_workspace
+  topic: own
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/google_workspace/data_studio
+  additional_fields: additional/google_workspace/data_studio
+transform:
+  engine: elastic
+  variant: filebeat.google_workspace_data_studio.default
+catalogue:
+  package: google_workspace
+  data_stream: data_studio
+  intakes: [beats, fetcher]
+  variants:
+    - filebeat.google_workspace_data_studio.default

@@ -1,0 +1,23 @@
+# Catalogue source tychon-exposedservice: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: tychon-exposedservice
+display_name: tychon.exposedservice
+description: The exposedservice data stream of the Elastic tychon integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: tychon.exposedservice
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/tychon/exposedservice
+  additional_fields: additional/tychon/exposedservice
+transform:
+  engine: elastic
+  variant: filebeat.tychon_exposedservice.default
+catalogue:
+  package: tychon
+  data_stream: exposedservice
+  intakes: [beats]
+  variants:
+    - filebeat.tychon_exposedservice.default

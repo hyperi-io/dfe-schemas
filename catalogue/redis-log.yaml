@@ -1,0 +1,23 @@
+# Catalogue source redis-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: redis-log
+display_name: redis.log
+description: The log data stream of the Elastic redis integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: redis.log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/redis/log
+  additional_fields: additional/redis/log
+transform:
+  engine: elastic
+  variant: filebeat.redis_log.default
+catalogue:
+  package: redis
+  data_stream: log
+  intakes: [beats]
+  variants:
+    - filebeat.redis_log.default

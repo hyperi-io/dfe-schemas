@@ -1,0 +1,24 @@
+# Catalogue source eset-protect-event: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: eset-protect-event
+display_name: eset_protect.event
+description: The event data stream of the Elastic eset_protect integration.
+match:
+  field: _source
+  operator: equals
+  value: eset-protect-event
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/eset_protect/event
+  additional_fields: additional/eset_protect/event
+transform:
+  engine: elastic
+  variant: filebeat.eset_protect_event.default
+catalogue:
+  package: eset_protect
+  data_stream: event
+  intakes: [beats, receiver]
+  framing: body
+  variants:
+    - filebeat.eset_protect_event.default

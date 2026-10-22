@@ -1,0 +1,25 @@
+# Catalogue source azure-signinlogs: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: azure-signinlogs
+display_name: azure.signinlogs
+description: The signinlogs data stream of the Elastic azure integration.
+fetcher:
+  source_type: azure
+  topic: own
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/azure/signinlogs
+  additional_fields: additional/azure/signinlogs
+transform:
+  engine: elastic
+  variant: filebeat.azure_signinlogs.default
+catalogue:
+  package: azure
+  data_stream: signinlogs
+  intakes: [beats, fetcher]
+  beats:
+    module: azure
+    fileset: signinlogs
+  variants:
+    - filebeat.azure_signinlogs.default

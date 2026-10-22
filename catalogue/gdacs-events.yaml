@@ -1,0 +1,23 @@
+# Catalogue source gdacs-events: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: gdacs-events
+display_name: gdacs.events
+description: The events data stream of the Elastic gdacs integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: gdacs.events
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/gdacs/events
+  additional_fields: additional/gdacs/events
+transform:
+  engine: elastic
+  variant: filebeat.gdacs_events.default
+catalogue:
+  package: gdacs
+  data_stream: events
+  intakes: [beats]
+  variants:
+    - filebeat.gdacs_events.default

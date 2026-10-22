@@ -1,0 +1,23 @@
+# Catalogue source netskope-alerts-events-v2: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: netskope-alerts-events-v2
+display_name: netskope.alerts_events_v2
+description: The alerts_events_v2 data stream of the Elastic netskope integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: netskope.alerts_events_v2
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/netskope/alerts_events_v2
+  additional_fields: additional/netskope/alerts_events_v2
+transform:
+  engine: elastic
+  variant: filebeat.netskope_alerts_events_v2.default
+catalogue:
+  package: netskope
+  data_stream: alerts_events_v2
+  intakes: [beats]
+  variants:
+    - filebeat.netskope_alerts_events_v2.default

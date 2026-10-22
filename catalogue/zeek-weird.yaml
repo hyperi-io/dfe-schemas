@@ -1,0 +1,23 @@
+# Catalogue source zeek-weird: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zeek-weird
+display_name: zeek.weird
+description: The weird data stream of the Elastic zeek integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: zeek.weird
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zeek/weird
+  additional_fields: additional/zeek/weird
+transform:
+  engine: elastic
+  variant: filebeat.zeek_weird.default
+catalogue:
+  package: zeek
+  data_stream: weird
+  intakes: [beats]
+  variants:
+    - filebeat.zeek_weird.default

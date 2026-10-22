@@ -90,6 +90,7 @@ dfe-schemas/
 |-- roles/             # the ClickHouse tier, service-role and grant catalogue
 |-- topics/            # the Kafka naming rule, defaults and bootstrap set
 |-- sources/           # engine-owned source definitions (main, dfe-alerts)
+|-- catalogue/         # sources shipped ready to create, one POST /sources body each
 |-- registries/        # allow-lists: engines.yaml, types.yaml, field-maps/<standard>/
 |-- dfe_schemas/       # the package: manifest reader, renderer, engine resolver
 |-- scripts/           # render_manifest / validate_schemas / annotate + generate
@@ -106,6 +107,24 @@ revision), published versions are immutable, and consumers pin versions
 independently. Full format reference, column fields, the 13-primitive type
 system, and the `@directive` expression language:
 [docs/meta-schema.md](docs/meta-schema.md).
+
+### Catalogue
+
+`catalogue/` holds the sources DFE ships ready to create, one file per source and named for it. Each file is the `POST /sources` write body for the source's default intake, plus a `catalogue` block the write model ignores.
+
+| Key | What it holds |
+|-----|---------------|
+| `package`, `data_stream` | The integration package and data stream the source carries |
+| `intakes` | Every way the data can arrive: `beats`, `receiver`, `fetcher` |
+| `framing` | Receiver intakes only: `line` or `body` |
+| `beats` | The Beats module and fileset carrying the same source, where one does |
+| `variants` | Every compiled transform for the source, with the body's `transform.variant` first |
+
+The body's origin is the first of `fetcher`, `receiver` and `beats` the entry lists, so the body carries `fetcher` exactly when `fetcher` is an intake. The other intakes are derived at create time: `beats` matches `data_stream.dataset` equal to `<package>.<data_stream>` and `receiver` matches `_source` equal to the source name.
+
+Schema layers name no version pin. A body without `schema` is a stream with no derived schema over `meta/elastic/ecs`: dfe-engine binds no schema for those. `fetcher` is offered only with a schema, because dfe-engine refuses a fetcher source on its own topic without one, and only for a stream a dfe-fetcher family polls.
+
+`tests/test_catalogue.py` checks the format and `make validate` builds every body as dfe-engine's `SourceWriteRequest`.
 
 ## Registries
 
@@ -201,6 +220,7 @@ touches a database -- this repo supplies definitions and dfe-engine applies them
 | `tables/`, `views/`, `roles/`, `topics/` | Definitions in exact ClickHouse types, SQL, the role catalogue, the Kafka policy |
 | `common-header/`, `meta/`, `additional/`, `hunts/` | Definitions in DFE primitives, mapped through `registries/types.yaml` |
 | `compat-profiles/` | Compatibility profiles, their JSON schema, and rows in the scalo.rules format |
+| `catalogue/` | Sources shipped ready to create, one `POST /sources` body per file |
 | `registries/` | The allow-lists dfe-engine validates against |
 | `docs/architecture.md` | Why it is shaped this way, and the invariants |
 

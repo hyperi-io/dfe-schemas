@@ -1,0 +1,23 @@
+# Catalogue source ti-otx-threat: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ti-otx-threat
+display_name: ti_otx.threat
+description: The threat data stream of the Elastic ti_otx integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ti_otx.threat
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ti_otx/threat
+  additional_fields: additional/ti_otx/threat
+transform:
+  engine: elastic
+  variant: filebeat.ti_otx_threat.default
+catalogue:
+  package: ti_otx
+  data_stream: threat
+  intakes: [beats]
+  variants:
+    - filebeat.ti_otx_threat.default

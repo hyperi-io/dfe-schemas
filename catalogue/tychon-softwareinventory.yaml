@@ -1,0 +1,23 @@
+# Catalogue source tychon-softwareinventory: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: tychon-softwareinventory
+display_name: tychon.softwareinventory
+description: The softwareinventory data stream of the Elastic tychon integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: tychon.softwareinventory
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/tychon/softwareinventory
+  additional_fields: additional/tychon/softwareinventory
+transform:
+  engine: elastic
+  variant: filebeat.tychon_softwareinventory.default
+catalogue:
+  package: tychon
+  data_stream: softwareinventory
+  intakes: [beats]
+  variants:
+    - filebeat.tychon_softwareinventory.default

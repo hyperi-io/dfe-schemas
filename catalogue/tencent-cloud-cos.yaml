@@ -1,0 +1,23 @@
+# Catalogue source tencent-cloud-cos: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: tencent-cloud-cos
+display_name: tencent_cloud.cos
+description: The cos data stream of the Elastic tencent_cloud integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: tencent_cloud.cos
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/tencent_cloud/cos
+  additional_fields: additional/tencent_cloud/cos
+transform:
+  engine: elastic
+  variant: filebeat.tencent_cloud_cos.default
+catalogue:
+  package: tencent_cloud
+  data_stream: cos
+  intakes: [beats]
+  variants:
+    - filebeat.tencent_cloud_cos.default

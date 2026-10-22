@@ -1,0 +1,23 @@
+# Catalogue source claroty-ctd-asset: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: claroty-ctd-asset
+display_name: claroty_ctd.asset
+description: The asset data stream of the Elastic claroty_ctd integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: claroty_ctd.asset
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/claroty_ctd/asset
+  additional_fields: additional/claroty_ctd/asset
+transform:
+  engine: elastic
+  variant: filebeat.claroty_ctd_asset.default
+catalogue:
+  package: claroty_ctd
+  data_stream: asset
+  intakes: [beats]
+  variants:
+    - filebeat.claroty_ctd_asset.default

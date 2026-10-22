@@ -1,0 +1,23 @@
+# Catalogue source microsoft-dnsserver-analytical: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: microsoft-dnsserver-analytical
+display_name: microsoft_dnsserver.analytical
+description: The analytical data stream of the Elastic microsoft_dnsserver integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: microsoft_dnsserver.analytical
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/microsoft_dnsserver/analytical
+  additional_fields: additional/microsoft_dnsserver/analytical
+transform:
+  engine: elastic
+  variant: filebeat.microsoft_dnsserver_analytical.default
+catalogue:
+  package: microsoft_dnsserver
+  data_stream: analytical
+  intakes: [beats]
+  variants:
+    - filebeat.microsoft_dnsserver_analytical.default

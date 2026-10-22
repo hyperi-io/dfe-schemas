@@ -1,0 +1,23 @@
+# Catalogue source ti-custom-indicator: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ti-custom-indicator
+display_name: ti_custom.indicator
+description: The indicator data stream of the Elastic ti_custom integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ti_custom.indicator
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ti_custom/indicator
+  additional_fields: additional/ti_custom/indicator
+transform:
+  engine: elastic
+  variant: filebeat.ti_custom_indicator.default
+catalogue:
+  package: ti_custom
+  data_stream: indicator
+  intakes: [beats]
+  variants:
+    - filebeat.ti_custom_indicator.default

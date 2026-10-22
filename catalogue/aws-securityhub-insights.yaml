@@ -1,0 +1,23 @@
+# Catalogue source aws-securityhub-insights: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: aws-securityhub-insights
+display_name: aws.securityhub_insights
+description: The securityhub_insights data stream of the Elastic aws integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: aws.securityhub_insights
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/aws/securityhub_insights
+  additional_fields: additional/aws/securityhub_insights
+transform:
+  engine: elastic
+  variant: filebeat.aws_securityhub_insights.default
+catalogue:
+  package: aws
+  data_stream: securityhub_insights
+  intakes: [beats]
+  variants:
+    - filebeat.aws_securityhub_insights.default

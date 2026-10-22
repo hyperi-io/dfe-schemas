@@ -1,0 +1,23 @@
+# Catalogue source amazon-security-lake-event: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: amazon-security-lake-event
+display_name: amazon_security_lake.event
+description: The event data stream of the Elastic amazon_security_lake integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: amazon_security_lake.event
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/amazon_security_lake/event
+  additional_fields: additional/amazon_security_lake/event
+transform:
+  engine: elastic
+  variant: filebeat.amazon_security_lake_event.default
+catalogue:
+  package: amazon_security_lake
+  data_stream: event
+  intakes: [beats]
+  variants:
+    - filebeat.amazon_security_lake_event.default

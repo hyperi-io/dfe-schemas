@@ -1,0 +1,23 @@
+# Catalogue source vsphere-datastore: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: vsphere-datastore
+display_name: vsphere.datastore
+description: The datastore data stream of the Elastic vsphere integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: vsphere.datastore
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/vsphere/datastore
+  additional_fields: additional/vsphere/datastore
+transform:
+  engine: elastic
+  variant: filebeat.vsphere_datastore.default
+catalogue:
+  package: vsphere
+  data_stream: datastore
+  intakes: [beats]
+  variants:
+    - filebeat.vsphere_datastore.default

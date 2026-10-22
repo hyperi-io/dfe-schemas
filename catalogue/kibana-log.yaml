@@ -1,0 +1,23 @@
+# Catalogue source kibana-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: kibana-log
+display_name: kibana.log
+description: The log data stream of the Elastic kibana integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: kibana.log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/kibana/log
+  additional_fields: additional/kibana/log
+transform:
+  engine: elastic
+  variant: filebeat.kibana_log.default
+catalogue:
+  package: kibana
+  data_stream: log
+  intakes: [beats]
+  variants:
+    - filebeat.kibana_log.default

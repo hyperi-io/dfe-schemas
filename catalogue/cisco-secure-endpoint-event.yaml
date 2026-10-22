@@ -1,0 +1,23 @@
+# Catalogue source cisco-secure-endpoint-event: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: cisco-secure-endpoint-event
+display_name: cisco_secure_endpoint.event
+description: The event data stream of the Elastic cisco_secure_endpoint integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: cisco_secure_endpoint.event
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/cisco_secure_endpoint/event
+  additional_fields: additional/cisco_secure_endpoint/event
+transform:
+  engine: elastic
+  variant: filebeat.cisco_secure_endpoint_event.default
+catalogue:
+  package: cisco_secure_endpoint
+  data_stream: event
+  intakes: [beats]
+  variants:
+    - filebeat.cisco_secure_endpoint_event.default

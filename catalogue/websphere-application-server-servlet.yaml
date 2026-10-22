@@ -1,0 +1,23 @@
+# Catalogue source websphere-application-server-servlet: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: websphere-application-server-servlet
+display_name: websphere_application_server.servlet
+description: The servlet data stream of the Elastic websphere_application_server integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: websphere_application_server.servlet
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/websphere_application_server/servlet
+  additional_fields: additional/websphere_application_server/servlet
+transform:
+  engine: elastic
+  variant: filebeat.websphere_application_server_servlet.default
+catalogue:
+  package: websphere_application_server
+  data_stream: servlet
+  intakes: [beats]
+  variants:
+    - filebeat.websphere_application_server_servlet.default

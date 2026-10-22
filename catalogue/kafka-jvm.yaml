@@ -1,0 +1,19 @@
+# Catalogue source kafka-jvm: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: kafka-jvm
+display_name: kafka.jvm
+description: The jvm data stream of the Elastic kafka integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: kafka.jvm
+transform:
+  engine: elastic
+  variant: filebeat.kafka_jvm.default
+catalogue:
+  package: kafka
+  data_stream: jvm
+  intakes: [beats]
+  variants:
+    - filebeat.kafka_jvm.default

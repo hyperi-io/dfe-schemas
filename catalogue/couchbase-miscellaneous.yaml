@@ -1,0 +1,23 @@
+# Catalogue source couchbase-miscellaneous: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: couchbase-miscellaneous
+display_name: couchbase.miscellaneous
+description: The miscellaneous data stream of the Elastic couchbase integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: couchbase.miscellaneous
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/couchbase/miscellaneous
+  additional_fields: additional/couchbase/miscellaneous
+transform:
+  engine: elastic
+  variant: filebeat.couchbase_miscellaneous.default
+catalogue:
+  package: couchbase
+  data_stream: miscellaneous
+  intakes: [beats]
+  variants:
+    - filebeat.couchbase_miscellaneous.default

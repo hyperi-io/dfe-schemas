@@ -1,0 +1,19 @@
+# Catalogue source gcp-vertexai-metrics: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: gcp-vertexai-metrics
+display_name: gcp_vertexai.metrics
+description: The metrics data stream of the Elastic gcp_vertexai integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: gcp_vertexai.metrics
+transform:
+  engine: elastic
+  variant: filebeat.gcp_vertexai_metrics.default
+catalogue:
+  package: gcp_vertexai
+  data_stream: metrics
+  intakes: [beats]
+  variants:
+    - filebeat.gcp_vertexai_metrics.default

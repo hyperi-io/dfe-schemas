@@ -1,0 +1,23 @@
+# Catalogue source vsphere-cluster: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: vsphere-cluster
+display_name: vsphere.cluster
+description: The cluster data stream of the Elastic vsphere integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: vsphere.cluster
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/vsphere/cluster
+  additional_fields: additional/vsphere/cluster
+transform:
+  engine: elastic
+  variant: filebeat.vsphere_cluster.default
+catalogue:
+  package: vsphere
+  data_stream: cluster
+  intakes: [beats]
+  variants:
+    - filebeat.vsphere_cluster.default

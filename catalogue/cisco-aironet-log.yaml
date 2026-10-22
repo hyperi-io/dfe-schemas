@@ -1,0 +1,24 @@
+# Catalogue source cisco-aironet-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: cisco-aironet-log
+display_name: cisco_aironet.log
+description: The log data stream of the Elastic cisco_aironet integration.
+match:
+  field: _source
+  operator: equals
+  value: cisco-aironet-log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/cisco_aironet/log
+  additional_fields: additional/cisco_aironet/log
+transform:
+  engine: elastic
+  variant: filebeat.cisco_aironet_log.default
+catalogue:
+  package: cisco_aironet
+  data_stream: log
+  intakes: [beats, receiver]
+  framing: line
+  variants:
+    - filebeat.cisco_aironet_log.default

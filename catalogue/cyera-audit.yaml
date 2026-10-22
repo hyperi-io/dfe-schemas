@@ -1,0 +1,23 @@
+# Catalogue source cyera-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: cyera-audit
+display_name: cyera.audit
+description: The audit data stream of the Elastic cyera integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: cyera.audit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/cyera/audit
+  additional_fields: additional/cyera/audit
+transform:
+  engine: elastic
+  variant: filebeat.cyera_audit.default
+catalogue:
+  package: cyera
+  data_stream: audit
+  intakes: [beats]
+  variants:
+    - filebeat.cyera_audit.default

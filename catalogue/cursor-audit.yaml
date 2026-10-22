@@ -1,0 +1,23 @@
+# Catalogue source cursor-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: cursor-audit
+display_name: cursor.audit
+description: The audit data stream of the Elastic cursor integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: cursor.audit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/cursor/audit
+  additional_fields: additional/cursor/audit
+transform:
+  engine: elastic
+  variant: filebeat.cursor_audit.default
+catalogue:
+  package: cursor
+  data_stream: audit
+  intakes: [beats]
+  variants:
+    - filebeat.cursor_audit.default

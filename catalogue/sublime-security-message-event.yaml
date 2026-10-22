@@ -1,0 +1,23 @@
+# Catalogue source sublime-security-message-event: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: sublime-security-message-event
+display_name: sublime_security.message_event
+description: The message_event data stream of the Elastic sublime_security integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: sublime_security.message_event
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/sublime_security/message_event
+  additional_fields: additional/sublime_security/message_event
+transform:
+  engine: elastic
+  variant: filebeat.sublime_security_message_event.default
+catalogue:
+  package: sublime_security
+  data_stream: message_event
+  intakes: [beats]
+  variants:
+    - filebeat.sublime_security_message_event.default

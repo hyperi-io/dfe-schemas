@@ -1,0 +1,23 @@
+# Catalogue source ceph-cluster-health: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ceph-cluster-health
+display_name: ceph.cluster_health
+description: The cluster_health data stream of the Elastic ceph integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ceph.cluster_health
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ceph/cluster_health
+  additional_fields: additional/ceph/cluster_health
+transform:
+  engine: elastic
+  variant: filebeat.ceph_cluster_health.default
+catalogue:
+  package: ceph
+  data_stream: cluster_health
+  intakes: [beats]
+  variants:
+    - filebeat.ceph_cluster_health.default

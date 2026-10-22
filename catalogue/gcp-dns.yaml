@@ -1,0 +1,22 @@
+# Catalogue source gcp-dns: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: gcp-dns
+display_name: gcp.dns
+description: The dns data stream of the Elastic gcp integration.
+fetcher:
+  source_type: gcp
+  topic: own
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/gcp/dns
+  additional_fields: additional/gcp/dns
+transform:
+  engine: elastic
+  variant: filebeat.gcp_dns.default
+catalogue:
+  package: gcp
+  data_stream: dns
+  intakes: [beats, fetcher]
+  variants:
+    - filebeat.gcp_dns.default

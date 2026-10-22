@@ -1,0 +1,23 @@
+# Catalogue source trend-micro-vision-one-endpoint-activity: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: trend-micro-vision-one-endpoint-activity
+display_name: trend_micro_vision_one.endpoint_activity
+description: The endpoint_activity data stream of the Elastic trend_micro_vision_one integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: trend_micro_vision_one.endpoint_activity
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/trend_micro_vision_one/endpoint_activity
+  additional_fields: additional/trend_micro_vision_one/endpoint_activity
+transform:
+  engine: elastic
+  variant: filebeat.trend_micro_vision_one_endpoint_activity.default
+catalogue:
+  package: trend_micro_vision_one
+  data_stream: endpoint_activity
+  intakes: [beats]
+  variants:
+    - filebeat.trend_micro_vision_one_endpoint_activity.default

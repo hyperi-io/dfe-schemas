@@ -1,0 +1,23 @@
+# Catalogue source claroty-ctd-baseline: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: claroty-ctd-baseline
+display_name: claroty_ctd.baseline
+description: The baseline data stream of the Elastic claroty_ctd integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: claroty_ctd.baseline
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/claroty_ctd/baseline
+  additional_fields: additional/claroty_ctd/baseline
+transform:
+  engine: elastic
+  variant: filebeat.claroty_ctd_baseline.default
+catalogue:
+  package: claroty_ctd
+  data_stream: baseline
+  intakes: [beats]
+  variants:
+    - filebeat.claroty_ctd_baseline.default

@@ -1,0 +1,19 @@
+# Catalogue source influxdb-advstatus: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: influxdb-advstatus
+display_name: influxdb.advstatus
+description: The advstatus data stream of the Elastic influxdb integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: influxdb.advstatus
+transform:
+  engine: elastic
+  variant: filebeat.influxdb_advstatus.default
+catalogue:
+  package: influxdb
+  data_stream: advstatus
+  intakes: [beats]
+  variants:
+    - filebeat.influxdb_advstatus.default

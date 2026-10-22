@@ -1,0 +1,23 @@
+# Catalogue source lumos-activity-logs: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: lumos-activity-logs
+display_name: lumos.activity_logs
+description: The activity_logs data stream of the Elastic lumos integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: lumos.activity_logs
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/lumos/activity_logs
+  additional_fields: additional/lumos/activity_logs
+transform:
+  engine: elastic
+  variant: filebeat.lumos_activity_logs.default
+catalogue:
+  package: lumos
+  data_stream: activity_logs
+  intakes: [beats]
+  variants:
+    - filebeat.lumos_activity_logs.default

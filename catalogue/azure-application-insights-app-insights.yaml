@@ -1,0 +1,19 @@
+# Catalogue source azure-application-insights-app-insights: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: azure-application-insights-app-insights
+display_name: azure_application_insights.app_insights
+description: The app_insights data stream of the Elastic azure_application_insights integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: azure_application_insights.app_insights
+transform:
+  engine: elastic
+  variant: filebeat.azure_application_insights_app_insights.default
+catalogue:
+  package: azure_application_insights
+  data_stream: app_insights
+  intakes: [beats]
+  variants:
+    - filebeat.azure_application_insights_app_insights.default

@@ -1,0 +1,23 @@
+# Catalogue source airlock-digital-agent: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: airlock-digital-agent
+display_name: airlock_digital.agent
+description: The agent data stream of the Elastic airlock_digital integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: airlock_digital.agent
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/airlock_digital/agent
+  additional_fields: additional/airlock_digital/agent
+transform:
+  engine: elastic
+  variant: filebeat.airlock_digital_agent.default
+catalogue:
+  package: airlock_digital
+  data_stream: agent
+  intakes: [beats]
+  variants:
+    - filebeat.airlock_digital_agent.default

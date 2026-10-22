@@ -1,0 +1,23 @@
+# Catalogue source claroty-xdome-event: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: claroty-xdome-event
+display_name: claroty_xdome.event
+description: The event data stream of the Elastic claroty_xdome integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: claroty_xdome.event
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/claroty_xdome/event
+  additional_fields: additional/claroty_xdome/event
+transform:
+  engine: elastic
+  variant: filebeat.claroty_xdome_event.default
+catalogue:
+  package: claroty_xdome
+  data_stream: event
+  intakes: [beats]
+  variants:
+    - filebeat.claroty_xdome_event.default

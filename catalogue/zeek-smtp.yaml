@@ -1,0 +1,23 @@
+# Catalogue source zeek-smtp: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zeek-smtp
+display_name: zeek.smtp
+description: The smtp data stream of the Elastic zeek integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: zeek.smtp
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zeek/smtp
+  additional_fields: additional/zeek/smtp
+transform:
+  engine: elastic
+  variant: filebeat.zeek_smtp.default
+catalogue:
+  package: zeek
+  data_stream: smtp
+  intakes: [beats]
+  variants:
+    - filebeat.zeek_smtp.default

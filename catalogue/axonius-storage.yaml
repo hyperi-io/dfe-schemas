@@ -1,0 +1,23 @@
+# Catalogue source axonius-storage: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: axonius-storage
+display_name: axonius.storage
+description: The storage data stream of the Elastic axonius integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: axonius.storage
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/axonius/storage
+  additional_fields: additional/axonius/storage
+transform:
+  engine: elastic
+  variant: filebeat.axonius_storage.default
+catalogue:
+  package: axonius
+  data_stream: storage
+  intakes: [beats]
+  variants:
+    - filebeat.axonius_storage.default

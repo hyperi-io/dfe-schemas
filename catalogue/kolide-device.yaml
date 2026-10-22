@@ -1,0 +1,23 @@
+# Catalogue source kolide-device: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: kolide-device
+display_name: kolide.device
+description: The device data stream of the Elastic kolide integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: kolide.device
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/kolide/device
+  additional_fields: additional/kolide/device
+transform:
+  engine: elastic
+  variant: filebeat.kolide_device.default
+catalogue:
+  package: kolide
+  data_stream: device
+  intakes: [beats]
+  variants:
+    - filebeat.kolide_device.default

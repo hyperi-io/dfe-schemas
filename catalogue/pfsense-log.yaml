@@ -1,0 +1,24 @@
+# Catalogue source pfsense-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: pfsense-log
+display_name: pfsense.log
+description: The log data stream of the Elastic pfsense integration.
+match:
+  field: _source
+  operator: equals
+  value: pfsense-log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/pfsense/log
+  additional_fields: additional/pfsense/log
+transform:
+  engine: elastic
+  variant: filebeat.pfsense_log.default
+catalogue:
+  package: pfsense
+  data_stream: log
+  intakes: [beats, receiver]
+  framing: line
+  variants:
+    - filebeat.pfsense_log.default

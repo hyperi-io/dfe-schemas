@@ -1,0 +1,23 @@
+# Catalogue source o365-metrics-outlook-activity: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: o365-metrics-outlook-activity
+display_name: o365_metrics.outlook_activity
+description: The outlook_activity data stream of the Elastic o365_metrics integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: o365_metrics.outlook_activity
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/o365_metrics/outlook_activity
+  additional_fields: additional/o365_metrics/outlook_activity
+transform:
+  engine: elastic
+  variant: filebeat.o365_metrics_outlook_activity.default
+catalogue:
+  package: o365_metrics
+  data_stream: outlook_activity
+  intakes: [beats]
+  variants:
+    - filebeat.o365_metrics_outlook_activity.default

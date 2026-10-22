@@ -1,0 +1,23 @@
+# Catalogue source zeek-known-services: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zeek-known-services
+display_name: zeek.known_services
+description: The known_services data stream of the Elastic zeek integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: zeek.known_services
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zeek/known_services
+  additional_fields: additional/zeek/known_services
+transform:
+  engine: elastic
+  variant: filebeat.zeek_known_services.default
+catalogue:
+  package: zeek
+  data_stream: known_services
+  intakes: [beats]
+  variants:
+    - filebeat.zeek_known_services.default

@@ -1,0 +1,24 @@
+# Catalogue source iptables-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: iptables-log
+display_name: iptables.log
+description: The log data stream of the Elastic iptables integration.
+match:
+  field: _source
+  operator: equals
+  value: iptables-log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/iptables/log
+  additional_fields: additional/iptables/log
+transform:
+  engine: elastic
+  variant: filebeat.iptables_log.default
+catalogue:
+  package: iptables
+  data_stream: log
+  intakes: [beats, receiver]
+  framing: line
+  variants:
+    - filebeat.iptables_log.default

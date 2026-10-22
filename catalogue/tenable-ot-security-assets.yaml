@@ -1,0 +1,23 @@
+# Catalogue source tenable-ot-security-assets: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: tenable-ot-security-assets
+display_name: tenable_ot_security.assets
+description: The assets data stream of the Elastic tenable_ot_security integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: tenable_ot_security.assets
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/tenable_ot_security/assets
+  additional_fields: additional/tenable_ot_security/assets
+transform:
+  engine: elastic
+  variant: filebeat.tenable_ot_security_assets.default
+catalogue:
+  package: tenable_ot_security
+  data_stream: assets
+  intakes: [beats]
+  variants:
+    - filebeat.tenable_ot_security_assets.default

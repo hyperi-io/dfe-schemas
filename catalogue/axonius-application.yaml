@@ -1,0 +1,23 @@
+# Catalogue source axonius-application: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: axonius-application
+display_name: axonius.application
+description: The application data stream of the Elastic axonius integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: axonius.application
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/axonius/application
+  additional_fields: additional/axonius/application
+transform:
+  engine: elastic
+  variant: filebeat.axonius_application.default
+catalogue:
+  package: axonius
+  data_stream: application
+  intakes: [beats]
+  variants:
+    - filebeat.axonius_application.default

@@ -1,0 +1,23 @@
+# Catalogue source axonius-identity: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: axonius-identity
+display_name: axonius.identity
+description: The identity data stream of the Elastic axonius integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: axonius.identity
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/axonius/identity
+  additional_fields: additional/axonius/identity
+transform:
+  engine: elastic
+  variant: filebeat.axonius_identity.default
+catalogue:
+  package: axonius
+  data_stream: identity
+  intakes: [beats]
+  variants:
+    - filebeat.axonius_identity.default

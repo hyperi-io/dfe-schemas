@@ -1,0 +1,23 @@
+# Catalogue source workday-sign-on: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: workday-sign-on
+display_name: workday.sign_on
+description: The sign_on data stream of the Elastic workday integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: workday.sign_on
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/workday/sign_on
+  additional_fields: additional/workday/sign_on
+transform:
+  engine: elastic
+  variant: filebeat.workday_sign_on.default
+catalogue:
+  package: workday
+  data_stream: sign_on
+  intakes: [beats]
+  variants:
+    - filebeat.workday_sign_on.default

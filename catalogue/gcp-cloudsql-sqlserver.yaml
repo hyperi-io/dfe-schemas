@@ -1,0 +1,19 @@
+# Catalogue source gcp-cloudsql-sqlserver: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: gcp-cloudsql-sqlserver
+display_name: gcp.cloudsql_sqlserver
+description: The cloudsql_sqlserver data stream of the Elastic gcp integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: gcp.cloudsql_sqlserver
+transform:
+  engine: elastic
+  variant: filebeat.gcp_cloudsql_sqlserver.default
+catalogue:
+  package: gcp
+  data_stream: cloudsql_sqlserver
+  intakes: [beats]
+  variants:
+    - filebeat.gcp_cloudsql_sqlserver.default

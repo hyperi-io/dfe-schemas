@@ -1,0 +1,22 @@
+# Catalogue source azure-firewall-logs: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: azure-firewall-logs
+display_name: azure.firewall_logs
+description: The firewall_logs data stream of the Elastic azure integration.
+fetcher:
+  source_type: azure
+  topic: own
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/azure/firewall_logs
+  additional_fields: additional/azure/firewall_logs
+transform:
+  engine: elastic
+  variant: filebeat.azure_firewall_logs.default
+catalogue:
+  package: azure
+  data_stream: firewall_logs
+  intakes: [beats, fetcher]
+  variants:
+    - filebeat.azure_firewall_logs.default

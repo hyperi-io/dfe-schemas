@@ -1,0 +1,23 @@
+# Catalogue source aws-bedrock-invocation: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: aws-bedrock-invocation
+display_name: aws_bedrock.invocation
+description: The invocation data stream of the Elastic aws_bedrock integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: aws_bedrock.invocation
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/aws_bedrock/invocation
+  additional_fields: additional/aws_bedrock/invocation
+transform:
+  engine: elastic
+  variant: filebeat.aws_bedrock_invocation.default
+catalogue:
+  package: aws_bedrock
+  data_stream: invocation
+  intakes: [beats]
+  variants:
+    - filebeat.aws_bedrock_invocation.default

@@ -1,0 +1,23 @@
+# Catalogue source abnormal-ai-mailbox-not-analyzed: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: abnormal-ai-mailbox-not-analyzed
+display_name: abnormal_security.ai_security_mailbox_not_analyzed
+description: The ai_security_mailbox_not_analyzed data stream of the Elastic abnormal_security integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: abnormal_security.ai_security_mailbox_not_analyzed
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/abnormal_security/ai_security_mailbox_not_analyzed
+  additional_fields: additional/abnormal_security/ai_security_mailbox_not_analyzed
+transform:
+  engine: elastic
+  variant: filebeat.abnormal_security_ai_security_mailbox_not_analyzed.default
+catalogue:
+  package: abnormal_security
+  data_stream: ai_security_mailbox_not_analyzed
+  intakes: [beats]
+  variants:
+    - filebeat.abnormal_security_ai_security_mailbox_not_analyzed.default

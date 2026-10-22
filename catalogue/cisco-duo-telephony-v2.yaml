@@ -1,0 +1,23 @@
+# Catalogue source cisco-duo-telephony-v2: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: cisco-duo-telephony-v2
+display_name: cisco_duo.telephony_v2
+description: The telephony_v2 data stream of the Elastic cisco_duo integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: cisco_duo.telephony_v2
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/cisco_duo/telephony_v2
+  additional_fields: additional/cisco_duo/telephony_v2
+transform:
+  engine: elastic
+  variant: filebeat.cisco_duo_telephony_v2.default
+catalogue:
+  package: cisco_duo
+  data_stream: telephony_v2
+  intakes: [beats]
+  variants:
+    - filebeat.cisco_duo_telephony_v2.default

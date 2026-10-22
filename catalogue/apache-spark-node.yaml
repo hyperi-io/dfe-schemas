@@ -1,0 +1,19 @@
+# Catalogue source apache-spark-node: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: apache-spark-node
+display_name: apache_spark.node
+description: The node data stream of the Elastic apache_spark integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: apache_spark.node
+transform:
+  engine: elastic
+  variant: filebeat.apache_spark_node.default
+catalogue:
+  package: apache_spark
+  data_stream: node
+  intakes: [beats]
+  variants:
+    - filebeat.apache_spark_node.default

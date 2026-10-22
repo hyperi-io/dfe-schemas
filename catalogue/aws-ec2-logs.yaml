@@ -1,0 +1,22 @@
+# Catalogue source aws-ec2-logs: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: aws-ec2-logs
+display_name: aws.ec2_logs
+description: The ec2_logs data stream of the Elastic aws integration.
+fetcher:
+  source_type: aws
+  topic: own
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/aws/ec2_logs
+  additional_fields: additional/aws/ec2_logs
+transform:
+  engine: elastic
+  variant: filebeat.aws_ec2_logs.default
+catalogue:
+  package: aws
+  data_stream: ec2_logs
+  intakes: [beats, fetcher]
+  variants:
+    - filebeat.aws_ec2_logs.default

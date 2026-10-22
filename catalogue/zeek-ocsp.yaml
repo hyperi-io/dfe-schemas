@@ -1,0 +1,23 @@
+# Catalogue source zeek-ocsp: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zeek-ocsp
+display_name: zeek.ocsp
+description: The ocsp data stream of the Elastic zeek integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: zeek.ocsp
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zeek/ocsp
+  additional_fields: additional/zeek/ocsp
+transform:
+  engine: elastic
+  variant: filebeat.zeek_ocsp.default
+catalogue:
+  package: zeek
+  data_stream: ocsp
+  intakes: [beats]
+  variants:
+    - filebeat.zeek_ocsp.default

@@ -1,0 +1,23 @@
+# Catalogue source wiz-cloud-config-finding-full-posture: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: wiz-cloud-config-finding-full-posture
+display_name: wiz.cloud_configuration_finding_full_posture
+description: The cloud_configuration_finding_full_posture data stream of the Elastic wiz integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: wiz.cloud_configuration_finding_full_posture
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/wiz/cloud_configuration_finding_full_posture
+  additional_fields: additional/wiz/cloud_configuration_finding_full_posture
+transform:
+  engine: elastic
+  variant: filebeat.wiz_cloud_configuration_finding_full_posture.default
+catalogue:
+  package: wiz
+  data_stream: cloud_configuration_finding_full_posture
+  intakes: [beats]
+  variants:
+    - filebeat.wiz_cloud_configuration_finding_full_posture.default

@@ -1,0 +1,19 @@
+# Catalogue source aws-sqs: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: aws-sqs
+display_name: aws.sqs
+description: The sqs data stream of the Elastic aws integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: aws.sqs
+transform:
+  engine: elastic
+  variant: filebeat.aws_sqs.default
+catalogue:
+  package: aws
+  data_stream: sqs
+  intakes: [beats]
+  variants:
+    - filebeat.aws_sqs.default

@@ -1,0 +1,23 @@
+# Catalogue source sublime-security-email-message: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: sublime-security-email-message
+display_name: sublime_security.email_message
+description: The email_message data stream of the Elastic sublime_security integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: sublime_security.email_message
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/sublime_security/email_message
+  additional_fields: additional/sublime_security/email_message
+transform:
+  engine: elastic
+  variant: filebeat.sublime_security_email_message.default
+catalogue:
+  package: sublime_security
+  data_stream: email_message
+  intakes: [beats]
+  variants:
+    - filebeat.sublime_security_email_message.default

@@ -1,0 +1,23 @@
+# Catalogue source proofpoint-essentials-threat: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: proofpoint-essentials-threat
+display_name: proofpoint_essentials.threat
+description: The threat data stream of the Elastic proofpoint_essentials integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: proofpoint_essentials.threat
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/proofpoint_essentials/threat
+  additional_fields: additional/proofpoint_essentials/threat
+transform:
+  engine: elastic
+  variant: filebeat.proofpoint_essentials_threat.default
+catalogue:
+  package: proofpoint_essentials
+  data_stream: threat
+  intakes: [beats]
+  variants:
+    - filebeat.proofpoint_essentials_threat.default

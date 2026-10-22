@@ -1,0 +1,22 @@
+# Catalogue source aws-vpcflow: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: aws-vpcflow
+display_name: aws.vpcflow
+description: The vpcflow data stream of the Elastic aws integration.
+fetcher:
+  source_type: aws
+  topic: own
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/aws/vpcflow
+  additional_fields: additional/aws/vpcflow
+transform:
+  engine: elastic
+  variant: filebeat.aws_vpcflow.default
+catalogue:
+  package: aws
+  data_stream: vpcflow
+  intakes: [beats, fetcher]
+  variants:
+    - filebeat.aws_vpcflow.default

@@ -1,0 +1,24 @@
+# Catalogue source juniper-srx-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: juniper-srx-log
+display_name: juniper_srx.log
+description: The log data stream of the Elastic juniper_srx integration.
+match:
+  field: _source
+  operator: equals
+  value: juniper-srx-log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/juniper_srx/log
+  additional_fields: additional/juniper_srx/log
+transform:
+  engine: elastic
+  variant: filebeat.juniper_srx_log.default
+catalogue:
+  package: juniper_srx
+  data_stream: log
+  intakes: [beats, receiver]
+  framing: body
+  variants:
+    - filebeat.juniper_srx_log.default

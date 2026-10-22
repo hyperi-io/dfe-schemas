@@ -1,0 +1,24 @@
+# Catalogue source citrix-waf-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: citrix-waf-log
+display_name: citrix_waf.log
+description: The log data stream of the Elastic citrix_waf integration.
+match:
+  field: _source
+  operator: equals
+  value: citrix-waf-log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/citrix_waf/log
+  additional_fields: additional/citrix_waf/log
+transform:
+  engine: elastic
+  variant: filebeat.citrix_waf_log.default
+catalogue:
+  package: citrix_waf
+  data_stream: log
+  intakes: [beats, receiver]
+  framing: line
+  variants:
+    - filebeat.citrix_waf_log.default

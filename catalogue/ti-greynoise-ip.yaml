@@ -1,0 +1,23 @@
+# Catalogue source ti-greynoise-ip: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ti-greynoise-ip
+display_name: ti_greynoise.ip
+description: The ip data stream of the Elastic ti_greynoise integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ti_greynoise.ip
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ti_greynoise/ip
+  additional_fields: additional/ti_greynoise/ip
+transform:
+  engine: elastic
+  variant: filebeat.ti_greynoise_ip.default
+catalogue:
+  package: ti_greynoise
+  data_stream: ip
+  intakes: [beats]
+  variants:
+    - filebeat.ti_greynoise_ip.default

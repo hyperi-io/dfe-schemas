@@ -1,0 +1,23 @@
+# Catalogue source withsecure-elements-incidents: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: withsecure-elements-incidents
+display_name: withsecure_elements.incidents
+description: The incidents data stream of the Elastic withsecure_elements integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: withsecure_elements.incidents
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/withsecure_elements/incidents
+  additional_fields: additional/withsecure_elements/incidents
+transform:
+  engine: elastic
+  variant: filebeat.withsecure_elements_incidents.default
+catalogue:
+  package: withsecure_elements
+  data_stream: incidents
+  intakes: [beats]
+  variants:
+    - filebeat.withsecure_elements_incidents.default

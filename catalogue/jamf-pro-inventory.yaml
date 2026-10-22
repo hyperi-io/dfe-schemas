@@ -1,0 +1,23 @@
+# Catalogue source jamf-pro-inventory: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: jamf-pro-inventory
+display_name: jamf_pro.inventory
+description: The inventory data stream of the Elastic jamf_pro integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: jamf_pro.inventory
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/jamf_pro/inventory
+  additional_fields: additional/jamf_pro/inventory
+transform:
+  engine: elastic
+  variant: filebeat.jamf_pro_inventory.default
+catalogue:
+  package: jamf_pro
+  data_stream: inventory
+  intakes: [beats]
+  variants:
+    - filebeat.jamf_pro_inventory.default

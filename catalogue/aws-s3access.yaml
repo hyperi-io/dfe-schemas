@@ -1,0 +1,23 @@
+# Catalogue source aws-s3access: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: aws-s3access
+display_name: aws.s3access
+description: The s3access data stream of the Elastic aws integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: aws.s3access
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/aws/s3access
+  additional_fields: additional/aws/s3access
+transform:
+  engine: elastic
+  variant: filebeat.aws_s3access.default
+catalogue:
+  package: aws
+  data_stream: s3access
+  intakes: [beats]
+  variants:
+    - filebeat.aws_s3access.default

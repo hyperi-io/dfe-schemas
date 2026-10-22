@@ -1,0 +1,22 @@
+# Catalogue source google-workspace-calendar: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: google-workspace-calendar
+display_name: google_workspace.calendar
+description: The calendar data stream of the Elastic google_workspace integration.
+fetcher:
+  source_type: google_workspace
+  topic: own
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/google_workspace/calendar
+  additional_fields: additional/google_workspace/calendar
+transform:
+  engine: elastic
+  variant: filebeat.google_workspace_calendar.default
+catalogue:
+  package: google_workspace
+  data_stream: calendar
+  intakes: [beats, fetcher]
+  variants:
+    - filebeat.google_workspace_calendar.default

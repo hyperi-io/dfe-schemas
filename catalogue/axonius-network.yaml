@@ -1,0 +1,23 @@
+# Catalogue source axonius-network: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: axonius-network
+display_name: axonius.network
+description: The network data stream of the Elastic axonius integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: axonius.network
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/axonius/network
+  additional_fields: additional/axonius/network
+transform:
+  engine: elastic
+  variant: filebeat.axonius_network.default
+catalogue:
+  package: axonius
+  data_stream: network
+  intakes: [beats]
+  variants:
+    - filebeat.axonius_network.default

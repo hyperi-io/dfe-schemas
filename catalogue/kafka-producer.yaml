@@ -1,0 +1,19 @@
+# Catalogue source kafka-producer: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: kafka-producer
+display_name: kafka.producer
+description: The producer data stream of the Elastic kafka integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: kafka.producer
+transform:
+  engine: elastic
+  variant: filebeat.kafka_producer.default
+catalogue:
+  package: kafka
+  data_stream: producer
+  intakes: [beats]
+  variants:
+    - filebeat.kafka_producer.default

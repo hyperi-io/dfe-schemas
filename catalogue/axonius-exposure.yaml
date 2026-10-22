@@ -1,0 +1,23 @@
+# Catalogue source axonius-exposure: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: axonius-exposure
+display_name: axonius.exposure
+description: The exposure data stream of the Elastic axonius integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: axonius.exposure
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/axonius/exposure
+  additional_fields: additional/axonius/exposure
+transform:
+  engine: elastic
+  variant: filebeat.axonius_exposure.default
+catalogue:
+  package: axonius
+  data_stream: exposure
+  intakes: [beats]
+  variants:
+    - filebeat.axonius_exposure.default

@@ -1,0 +1,24 @@
+# Catalogue source infoblox-threat-defense-event: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: infoblox-threat-defense-event
+display_name: infoblox_threat_defense.event
+description: The event data stream of the Elastic infoblox_threat_defense integration.
+match:
+  field: _source
+  operator: equals
+  value: infoblox-threat-defense-event
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/infoblox_threat_defense/event
+  additional_fields: additional/infoblox_threat_defense/event
+transform:
+  engine: elastic
+  variant: filebeat.infoblox_threat_defense_event.default
+catalogue:
+  package: infoblox_threat_defense
+  data_stream: event
+  intakes: [beats, receiver]
+  framing: body
+  variants:
+    - filebeat.infoblox_threat_defense_event.default

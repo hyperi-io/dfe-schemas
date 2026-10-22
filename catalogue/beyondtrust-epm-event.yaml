@@ -1,0 +1,23 @@
+# Catalogue source beyondtrust-epm-event: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: beyondtrust-epm-event
+display_name: beyondtrust_epm.event
+description: The event data stream of the Elastic beyondtrust_epm integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: beyondtrust_epm.event
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/beyondtrust_epm/event
+  additional_fields: additional/beyondtrust_epm/event
+transform:
+  engine: elastic
+  variant: filebeat.beyondtrust_epm_event.default
+catalogue:
+  package: beyondtrust_epm
+  data_stream: event
+  intakes: [beats]
+  variants:
+    - filebeat.beyondtrust_epm_event.default

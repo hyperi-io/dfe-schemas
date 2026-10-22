@@ -1,0 +1,23 @@
+# Catalogue source zeek-http: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zeek-http
+display_name: zeek.http
+description: The http data stream of the Elastic zeek integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: zeek.http
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zeek/http
+  additional_fields: additional/zeek/http
+transform:
+  engine: elastic
+  variant: filebeat.zeek_http.default
+catalogue:
+  package: zeek
+  data_stream: http
+  intakes: [beats]
+  variants:
+    - filebeat.zeek_http.default

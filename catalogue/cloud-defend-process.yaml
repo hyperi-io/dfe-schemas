@@ -1,0 +1,19 @@
+# Catalogue source cloud-defend-process: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: cloud-defend-process
+display_name: cloud_defend.process
+description: The process data stream of the Elastic cloud_defend integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: cloud_defend.process
+transform:
+  engine: elastic
+  variant: filebeat.cloud_defend_process.default
+catalogue:
+  package: cloud_defend
+  data_stream: process
+  intakes: [beats]
+  variants:
+    - filebeat.cloud_defend_process.default

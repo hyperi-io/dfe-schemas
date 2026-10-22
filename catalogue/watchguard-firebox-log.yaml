@@ -1,0 +1,24 @@
+# Catalogue source watchguard-firebox-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: watchguard-firebox-log
+display_name: watchguard_firebox.log
+description: The log data stream of the Elastic watchguard_firebox integration.
+match:
+  field: _source
+  operator: equals
+  value: watchguard-firebox-log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/watchguard_firebox/log
+  additional_fields: additional/watchguard_firebox/log
+transform:
+  engine: elastic
+  variant: filebeat.watchguard_firebox_log.default
+catalogue:
+  package: watchguard_firebox
+  data_stream: log
+  intakes: [beats, receiver]
+  framing: line
+  variants:
+    - filebeat.watchguard_firebox_log.default

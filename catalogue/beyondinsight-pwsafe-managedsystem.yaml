@@ -1,0 +1,23 @@
+# Catalogue source beyondinsight-pwsafe-managedsystem: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: beyondinsight-pwsafe-managedsystem
+display_name: beyondinsight_password_safe.managedsystem
+description: The managedsystem data stream of the Elastic beyondinsight_password_safe integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: beyondinsight_password_safe.managedsystem
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/beyondinsight_password_safe/managedsystem
+  additional_fields: additional/beyondinsight_password_safe/managedsystem
+transform:
+  engine: elastic
+  variant: filebeat.beyondinsight_password_safe_managedsystem.default
+catalogue:
+  package: beyondinsight_password_safe
+  data_stream: managedsystem
+  intakes: [beats]
+  variants:
+    - filebeat.beyondinsight_password_safe_managedsystem.default

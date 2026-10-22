@@ -1,0 +1,23 @@
+# Catalogue source azure-frontdoor-waf: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: azure-frontdoor-waf
+display_name: azure_frontdoor.waf
+description: The waf data stream of the Elastic azure_frontdoor integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: azure_frontdoor.waf
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/azure_frontdoor/waf
+  additional_fields: additional/azure_frontdoor/waf
+transform:
+  engine: elastic
+  variant: filebeat.azure_frontdoor_waf.default
+catalogue:
+  package: azure_frontdoor
+  data_stream: waf
+  intakes: [beats]
+  variants:
+    - filebeat.azure_frontdoor_waf.default

@@ -1,0 +1,23 @@
+# Catalogue source ceph-osd-performance: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ceph-osd-performance
+display_name: ceph.osd_performance
+description: The osd_performance data stream of the Elastic ceph integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ceph.osd_performance
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ceph/osd_performance
+  additional_fields: additional/ceph/osd_performance
+transform:
+  engine: elastic
+  variant: filebeat.ceph_osd_performance.default
+catalogue:
+  package: ceph
+  data_stream: osd_performance
+  intakes: [beats]
+  variants:
+    - filebeat.ceph_osd_performance.default

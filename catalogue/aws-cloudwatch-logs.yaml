@@ -1,0 +1,22 @@
+# Catalogue source aws-cloudwatch-logs: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: aws-cloudwatch-logs
+display_name: aws.cloudwatch_logs
+description: The cloudwatch_logs data stream of the Elastic aws integration.
+fetcher:
+  source_type: aws
+  topic: own
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/aws/cloudwatch_logs
+  additional_fields: additional/aws/cloudwatch_logs
+transform:
+  engine: elastic
+  variant: filebeat.aws_cloudwatch_logs.default
+catalogue:
+  package: aws
+  data_stream: cloudwatch_logs
+  intakes: [beats, fetcher]
+  variants:
+    - filebeat.aws_cloudwatch_logs.default

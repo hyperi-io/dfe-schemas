@@ -1,0 +1,19 @@
+# Catalogue source openai-completions: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: openai-completions
+display_name: openai.completions
+description: The completions data stream of the Elastic openai integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: openai.completions
+transform:
+  engine: elastic
+  variant: filebeat.openai_completions.default
+catalogue:
+  package: openai
+  data_stream: completions
+  intakes: [beats]
+  variants:
+    - filebeat.openai_completions.default

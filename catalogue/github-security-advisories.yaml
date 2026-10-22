@@ -1,0 +1,23 @@
+# Catalogue source github-security-advisories: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: github-security-advisories
+display_name: github.security_advisories
+description: The security_advisories data stream of the Elastic github integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: github.security_advisories
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/github/security_advisories
+  additional_fields: additional/github/security_advisories
+transform:
+  engine: elastic
+  variant: filebeat.github_security_advisories.default
+catalogue:
+  package: github
+  data_stream: security_advisories
+  intakes: [beats]
+  variants:
+    - filebeat.github_security_advisories.default

@@ -1,0 +1,23 @@
+# Catalogue source axonius-compute: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: axonius-compute
+display_name: axonius.compute
+description: The compute data stream of the Elastic axonius integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: axonius.compute
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/axonius/compute
+  additional_fields: additional/axonius/compute
+transform:
+  engine: elastic
+  variant: filebeat.axonius_compute.default
+catalogue:
+  package: axonius
+  data_stream: compute
+  intakes: [beats]
+  variants:
+    - filebeat.axonius_compute.default

@@ -1,0 +1,23 @@
+# Catalogue source tychon-volume: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: tychon-volume
+display_name: tychon.volume
+description: The volume data stream of the Elastic tychon integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: tychon.volume
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/tychon/volume
+  additional_fields: additional/tychon/volume
+transform:
+  engine: elastic
+  variant: filebeat.tychon_volume.default
+catalogue:
+  package: tychon
+  data_stream: volume
+  intakes: [beats]
+  variants:
+    - filebeat.tychon_volume.default

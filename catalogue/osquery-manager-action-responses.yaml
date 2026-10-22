@@ -1,0 +1,19 @@
+# Catalogue source osquery-manager-action-responses: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: osquery-manager-action-responses
+display_name: osquery_manager.action_responses
+description: The action_responses data stream of the Elastic osquery_manager integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: osquery_manager.action_responses
+transform:
+  engine: elastic
+  variant: filebeat.osquery_manager_action_responses.default
+catalogue:
+  package: osquery_manager
+  data_stream: action_responses
+  intakes: [beats]
+  variants:
+    - filebeat.osquery_manager_action_responses.default

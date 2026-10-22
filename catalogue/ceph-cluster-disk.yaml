@@ -1,0 +1,23 @@
+# Catalogue source ceph-cluster-disk: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ceph-cluster-disk
+display_name: ceph.cluster_disk
+description: The cluster_disk data stream of the Elastic ceph integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ceph.cluster_disk
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ceph/cluster_disk
+  additional_fields: additional/ceph/cluster_disk
+transform:
+  engine: elastic
+  variant: filebeat.ceph_cluster_disk.default
+catalogue:
+  package: ceph
+  data_stream: cluster_disk
+  intakes: [beats]
+  variants:
+    - filebeat.ceph_cluster_disk.default

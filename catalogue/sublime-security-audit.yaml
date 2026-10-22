@@ -1,0 +1,23 @@
+# Catalogue source sublime-security-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: sublime-security-audit
+display_name: sublime_security.audit
+description: The audit data stream of the Elastic sublime_security integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: sublime_security.audit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/sublime_security/audit
+  additional_fields: additional/sublime_security/audit
+transform:
+  engine: elastic
+  variant: filebeat.sublime_security_audit.default
+catalogue:
+  package: sublime_security
+  data_stream: audit
+  intakes: [beats]
+  variants:
+    - filebeat.sublime_security_audit.default

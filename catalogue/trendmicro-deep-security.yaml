@@ -1,0 +1,24 @@
+# Catalogue source trendmicro-deep-security: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: trendmicro-deep-security
+display_name: trendmicro.deep_security
+description: The deep_security data stream of the Elastic trendmicro integration.
+match:
+  field: _source
+  operator: equals
+  value: trendmicro-deep-security
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/trendmicro/deep_security
+  additional_fields: additional/trendmicro/deep_security
+transform:
+  engine: elastic
+  variant: filebeat.trendmicro_deep_security.default
+catalogue:
+  package: trendmicro
+  data_stream: deep_security
+  intakes: [beats, receiver]
+  framing: line
+  variants:
+    - filebeat.trendmicro_deep_security.default

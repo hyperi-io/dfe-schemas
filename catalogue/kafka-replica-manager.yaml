@@ -1,0 +1,19 @@
+# Catalogue source kafka-replica-manager: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: kafka-replica-manager
+display_name: kafka.replica_manager
+description: The replica_manager data stream of the Elastic kafka integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: kafka.replica_manager
+transform:
+  engine: elastic
+  variant: filebeat.kafka_replica_manager.default
+catalogue:
+  package: kafka
+  data_stream: replica_manager
+  intakes: [beats]
+  variants:
+    - filebeat.kafka_replica_manager.default

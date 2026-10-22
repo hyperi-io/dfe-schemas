@@ -1,0 +1,23 @@
+# Catalogue source apache-tomcat-thread-pool: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: apache-tomcat-thread-pool
+display_name: apache_tomcat.thread_pool
+description: The thread_pool data stream of the Elastic apache_tomcat integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: apache_tomcat.thread_pool
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/apache_tomcat/thread_pool
+  additional_fields: additional/apache_tomcat/thread_pool
+transform:
+  engine: elastic
+  variant: filebeat.apache_tomcat_thread_pool.default
+catalogue:
+  package: apache_tomcat
+  data_stream: thread_pool
+  intakes: [beats]
+  variants:
+    - filebeat.apache_tomcat_thread_pool.default

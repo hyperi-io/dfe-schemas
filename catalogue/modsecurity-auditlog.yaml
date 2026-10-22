@@ -1,0 +1,23 @@
+# Catalogue source modsecurity-auditlog: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: modsecurity-auditlog
+display_name: modsecurity.auditlog
+description: The auditlog data stream of the Elastic modsecurity integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: modsecurity.auditlog
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/modsecurity/auditlog
+  additional_fields: additional/modsecurity/auditlog
+transform:
+  engine: elastic
+  variant: filebeat.modsecurity_auditlog.default
+catalogue:
+  package: modsecurity
+  data_stream: auditlog
+  intakes: [beats]
+  variants:
+    - filebeat.modsecurity_auditlog.default

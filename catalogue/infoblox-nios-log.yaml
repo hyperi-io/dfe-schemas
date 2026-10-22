@@ -1,0 +1,24 @@
+# Catalogue source infoblox-nios-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: infoblox-nios-log
+display_name: infoblox_nios.log
+description: The log data stream of the Elastic infoblox_nios integration.
+match:
+  field: _source
+  operator: equals
+  value: infoblox-nios-log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/infoblox_nios/log
+  additional_fields: additional/infoblox_nios/log
+transform:
+  engine: elastic
+  variant: filebeat.infoblox_nios_log.default
+catalogue:
+  package: infoblox_nios
+  data_stream: log
+  intakes: [beats, receiver]
+  framing: line
+  variants:
+    - filebeat.infoblox_nios_log.default

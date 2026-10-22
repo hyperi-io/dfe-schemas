@@ -1,0 +1,23 @@
+# Catalogue source ping-federate-admin: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ping-federate-admin
+display_name: ping_federate.admin
+description: The admin data stream of the Elastic ping_federate integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ping_federate.admin
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ping_federate/admin
+  additional_fields: additional/ping_federate/admin
+transform:
+  engine: elastic
+  variant: filebeat.ping_federate_admin.default
+catalogue:
+  package: ping_federate
+  data_stream: admin
+  intakes: [beats]
+  variants:
+    - filebeat.ping_federate_admin.default

@@ -1,0 +1,23 @@
+# Catalogue source o365-metrics-teams-activity-user-detail: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: o365-metrics-teams-activity-user-detail
+display_name: o365_metrics.teams_user_activity_user_detail
+description: The teams_user_activity_user_detail data stream of the Elastic o365_metrics integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: o365_metrics.teams_user_activity_user_detail
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/o365_metrics/teams_user_activity_user_detail
+  additional_fields: additional/o365_metrics/teams_user_activity_user_detail
+transform:
+  engine: elastic
+  variant: filebeat.o365_metrics_teams_user_activity_user_detail.default
+catalogue:
+  package: o365_metrics
+  data_stream: teams_user_activity_user_detail
+  intakes: [beats]
+  variants:
+    - filebeat.o365_metrics_teams_user_activity_user_detail.default

@@ -1,0 +1,23 @@
+# Catalogue source trend-micro-vision-one-detection: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: trend-micro-vision-one-detection
+display_name: trend_micro_vision_one.detection
+description: The detection data stream of the Elastic trend_micro_vision_one integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: trend_micro_vision_one.detection
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/trend_micro_vision_one/detection
+  additional_fields: additional/trend_micro_vision_one/detection
+transform:
+  engine: elastic
+  variant: filebeat.trend_micro_vision_one_detection.default
+catalogue:
+  package: trend_micro_vision_one
+  data_stream: detection
+  intakes: [beats]
+  variants:
+    - filebeat.trend_micro_vision_one_detection.default

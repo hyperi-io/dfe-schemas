@@ -1,0 +1,23 @@
+# Catalogue source zeek-smb-mapping: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zeek-smb-mapping
+display_name: zeek.smb_mapping
+description: The smb_mapping data stream of the Elastic zeek integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: zeek.smb_mapping
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zeek/smb_mapping
+  additional_fields: additional/zeek/smb_mapping
+transform:
+  engine: elastic
+  variant: filebeat.zeek_smb_mapping.default
+catalogue:
+  package: zeek
+  data_stream: smb_mapping
+  intakes: [beats]
+  variants:
+    - filebeat.zeek_smb_mapping.default

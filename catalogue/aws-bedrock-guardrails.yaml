@@ -1,0 +1,19 @@
+# Catalogue source aws-bedrock-guardrails: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: aws-bedrock-guardrails
+display_name: aws_bedrock.guardrails
+description: The guardrails data stream of the Elastic aws_bedrock integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: aws_bedrock.guardrails
+transform:
+  engine: elastic
+  variant: filebeat.aws_bedrock_guardrails.default
+catalogue:
+  package: aws_bedrock
+  data_stream: guardrails
+  intakes: [beats]
+  variants:
+    - filebeat.aws_bedrock_guardrails.default

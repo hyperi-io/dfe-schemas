@@ -1,0 +1,24 @@
+# Catalogue source sophos-utm: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: sophos-utm
+display_name: sophos.utm
+description: The utm data stream of the Elastic sophos integration.
+match:
+  field: _source
+  operator: equals
+  value: sophos-utm
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/sophos/utm
+  additional_fields: additional/sophos/utm
+transform:
+  engine: elastic
+  variant: filebeat.sophos_utm.default
+catalogue:
+  package: sophos
+  data_stream: utm
+  intakes: [beats, receiver]
+  framing: line
+  variants:
+    - filebeat.sophos_utm.default

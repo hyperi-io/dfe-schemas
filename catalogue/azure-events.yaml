@@ -1,0 +1,23 @@
+# Catalogue source azure-events: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: azure-events
+display_name: azure.events
+description: The events data stream of the Elastic azure integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: azure.events
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/azure/events
+  additional_fields: additional/azure/events
+transform:
+  engine: elastic
+  variant: filebeat.azure_events.default
+catalogue:
+  package: azure
+  data_stream: events
+  intakes: [beats]
+  variants:
+    - filebeat.azure_events.default

@@ -1,0 +1,23 @@
+# Catalogue source microsoft-defender-cloud-assessment: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: microsoft-defender-cloud-assessment
+display_name: microsoft_defender_cloud.assessment
+description: The assessment data stream of the Elastic microsoft_defender_cloud integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: microsoft_defender_cloud.assessment
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/microsoft_defender_cloud/assessment
+  additional_fields: additional/microsoft_defender_cloud/assessment
+transform:
+  engine: elastic
+  variant: filebeat.microsoft_defender_cloud_assessment.default
+catalogue:
+  package: microsoft_defender_cloud
+  data_stream: assessment
+  intakes: [beats]
+  variants:
+    - filebeat.microsoft_defender_cloud_assessment.default

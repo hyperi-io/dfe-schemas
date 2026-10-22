@@ -1,0 +1,23 @@
+# Catalogue source infoblox-bloxone-ddi-dhcp-lease: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: infoblox-bloxone-ddi-dhcp-lease
+display_name: infoblox_bloxone_ddi.dhcp_lease
+description: The dhcp_lease data stream of the Elastic infoblox_bloxone_ddi integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: infoblox_bloxone_ddi.dhcp_lease
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/infoblox_bloxone_ddi/dhcp_lease
+  additional_fields: additional/infoblox_bloxone_ddi/dhcp_lease
+transform:
+  engine: elastic
+  variant: filebeat.infoblox_bloxone_ddi_dhcp_lease.default
+catalogue:
+  package: infoblox_bloxone_ddi
+  data_stream: dhcp_lease
+  intakes: [beats]
+  variants:
+    - filebeat.infoblox_bloxone_ddi_dhcp_lease.default

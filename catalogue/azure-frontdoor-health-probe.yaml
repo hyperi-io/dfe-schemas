@@ -1,0 +1,23 @@
+# Catalogue source azure-frontdoor-health-probe: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: azure-frontdoor-health-probe
+display_name: azure_frontdoor.health_probe
+description: The health_probe data stream of the Elastic azure_frontdoor integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: azure_frontdoor.health_probe
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/azure_frontdoor/health_probe
+  additional_fields: additional/azure_frontdoor/health_probe
+transform:
+  engine: elastic
+  variant: filebeat.azure_frontdoor_health_probe.default
+catalogue:
+  package: azure_frontdoor
+  data_stream: health_probe
+  intakes: [beats]
+  variants:
+    - filebeat.azure_frontdoor_health_probe.default

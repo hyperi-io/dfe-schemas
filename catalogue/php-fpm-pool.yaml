@@ -1,0 +1,23 @@
+# Catalogue source php-fpm-pool: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: php-fpm-pool
+display_name: php_fpm.pool
+description: The pool data stream of the Elastic php_fpm integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: php_fpm.pool
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/php_fpm/pool
+  additional_fields: additional/php_fpm/pool
+transform:
+  engine: elastic
+  variant: filebeat.php_fpm_pool.default
+catalogue:
+  package: php_fpm
+  data_stream: pool
+  intakes: [beats]
+  variants:
+    - filebeat.php_fpm_pool.default

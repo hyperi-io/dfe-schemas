@@ -1,0 +1,23 @@
+# Catalogue source azure-frontdoor-access: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: azure-frontdoor-access
+display_name: azure_frontdoor.access
+description: The access data stream of the Elastic azure_frontdoor integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: azure_frontdoor.access
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/azure_frontdoor/access
+  additional_fields: additional/azure_frontdoor/access
+transform:
+  engine: elastic
+  variant: filebeat.azure_frontdoor_access.default
+catalogue:
+  package: azure_frontdoor
+  data_stream: access
+  intakes: [beats]
+  variants:
+    - filebeat.azure_frontdoor_access.default

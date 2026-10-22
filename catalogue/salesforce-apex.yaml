@@ -1,0 +1,23 @@
+# Catalogue source salesforce-apex: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: salesforce-apex
+display_name: salesforce.apex
+description: The apex data stream of the Elastic salesforce integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: salesforce.apex
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/salesforce/apex
+  additional_fields: additional/salesforce/apex
+transform:
+  engine: elastic
+  variant: filebeat.salesforce_apex.default
+catalogue:
+  package: salesforce
+  data_stream: apex
+  intakes: [beats]
+  variants:
+    - filebeat.salesforce_apex.default

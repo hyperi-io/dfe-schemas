@@ -1,0 +1,19 @@
+# Catalogue source aws-billing: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: aws-billing
+display_name: aws.billing
+description: The billing data stream of the Elastic aws integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: aws.billing
+transform:
+  engine: elastic
+  variant: filebeat.aws_billing.default
+catalogue:
+  package: aws
+  data_stream: billing
+  intakes: [beats]
+  variants:
+    - filebeat.aws_billing.default

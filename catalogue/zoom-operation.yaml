@@ -1,0 +1,23 @@
+# Catalogue source zoom-operation: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zoom-operation
+display_name: zoom.operation
+description: The operation data stream of the Elastic zoom integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: zoom.operation
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zoom/operation
+  additional_fields: additional/zoom/operation
+transform:
+  engine: elastic
+  variant: filebeat.zoom_operation.default
+catalogue:
+  package: zoom
+  data_stream: operation
+  intakes: [beats]
+  variants:
+    - filebeat.zoom_operation.default

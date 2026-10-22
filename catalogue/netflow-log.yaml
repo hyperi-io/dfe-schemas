@@ -1,0 +1,23 @@
+# Catalogue source netflow-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: netflow-log
+display_name: netflow.log
+description: The log data stream of the Elastic netflow integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: netflow.log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/netflow/log
+  additional_fields: additional/netflow/log
+transform:
+  engine: elastic
+  variant: filebeat.netflow_log.default
+catalogue:
+  package: netflow
+  data_stream: log
+  intakes: [beats]
+  variants:
+    - filebeat.netflow_log.default

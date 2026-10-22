@@ -1,0 +1,23 @@
+# Catalogue source tenable-ot-security-events: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: tenable-ot-security-events
+display_name: tenable_ot_security.events
+description: The events data stream of the Elastic tenable_ot_security integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: tenable_ot_security.events
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/tenable_ot_security/events
+  additional_fields: additional/tenable_ot_security/events
+transform:
+  engine: elastic
+  variant: filebeat.tenable_ot_security_events.default
+catalogue:
+  package: tenable_ot_security
+  data_stream: events
+  intakes: [beats]
+  variants:
+    - filebeat.tenable_ot_security_events.default

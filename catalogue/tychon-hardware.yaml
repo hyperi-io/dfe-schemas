@@ -1,0 +1,23 @@
+# Catalogue source tychon-hardware: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: tychon-hardware
+display_name: tychon.hardware
+description: The hardware data stream of the Elastic tychon integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: tychon.hardware
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/tychon/hardware
+  additional_fields: additional/tychon/hardware
+transform:
+  engine: elastic
+  variant: filebeat.tychon_hardware.default
+catalogue:
+  package: tychon
+  data_stream: hardware
+  intakes: [beats]
+  variants:
+    - filebeat.tychon_hardware.default

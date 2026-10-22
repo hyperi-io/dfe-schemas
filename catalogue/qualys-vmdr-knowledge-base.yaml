@@ -1,0 +1,23 @@
+# Catalogue source qualys-vmdr-knowledge-base: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: qualys-vmdr-knowledge-base
+display_name: qualys_vmdr.knowledge_base
+description: The knowledge_base data stream of the Elastic qualys_vmdr integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: qualys_vmdr.knowledge_base
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/qualys_vmdr/knowledge_base
+  additional_fields: additional/qualys_vmdr/knowledge_base
+transform:
+  engine: elastic
+  variant: filebeat.qualys_vmdr_knowledge_base.default
+catalogue:
+  package: qualys_vmdr
+  data_stream: knowledge_base
+  intakes: [beats]
+  variants:
+    - filebeat.qualys_vmdr_knowledge_base.default

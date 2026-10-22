@@ -1,0 +1,22 @@
+# Catalogue source google-workspace-group-enterprise: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: google-workspace-group-enterprise
+display_name: google_workspace.group_enterprise
+description: The group_enterprise data stream of the Elastic google_workspace integration.
+fetcher:
+  source_type: google_workspace
+  topic: own
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/google_workspace/group_enterprise
+  additional_fields: additional/google_workspace/group_enterprise
+transform:
+  engine: elastic
+  variant: filebeat.google_workspace_group_enterprise.default
+catalogue:
+  package: google_workspace
+  data_stream: group_enterprise
+  intakes: [beats, fetcher]
+  variants:
+    - filebeat.google_workspace_group_enterprise.default

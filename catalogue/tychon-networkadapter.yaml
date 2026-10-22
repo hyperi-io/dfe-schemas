@@ -1,0 +1,23 @@
+# Catalogue source tychon-networkadapter: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: tychon-networkadapter
+display_name: tychon.networkadapter
+description: The networkadapter data stream of the Elastic tychon integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: tychon.networkadapter
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/tychon/networkadapter
+  additional_fields: additional/tychon/networkadapter
+transform:
+  engine: elastic
+  variant: filebeat.tychon_networkadapter.default
+catalogue:
+  package: tychon
+  data_stream: networkadapter
+  intakes: [beats]
+  variants:
+    - filebeat.tychon_networkadapter.default

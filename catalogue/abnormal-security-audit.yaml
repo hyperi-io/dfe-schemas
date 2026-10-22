@@ -1,0 +1,23 @@
+# Catalogue source abnormal-security-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: abnormal-security-audit
+display_name: abnormal_security.audit
+description: The audit data stream of the Elastic abnormal_security integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: abnormal_security.audit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/abnormal_security/audit
+  additional_fields: additional/abnormal_security/audit
+transform:
+  engine: elastic
+  variant: filebeat.abnormal_security_audit.default
+catalogue:
+  package: abnormal_security
+  data_stream: audit
+  intakes: [beats]
+  variants:
+    - filebeat.abnormal_security_audit.default

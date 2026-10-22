@@ -1,0 +1,23 @@
+# Catalogue source netbox-ips: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: netbox-ips
+display_name: netbox.ips
+description: The ips data stream of the Elastic netbox integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: netbox.ips
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/netbox/ips
+  additional_fields: additional/netbox/ips
+transform:
+  engine: elastic
+  variant: filebeat.netbox_ips.default
+catalogue:
+  package: netbox
+  data_stream: ips
+  intakes: [beats]
+  variants:
+    - filebeat.netbox_ips.default

@@ -1,0 +1,23 @@
+# Catalogue source auditd-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: auditd-log
+display_name: auditd.log
+description: The log data stream of the Elastic auditd integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: auditd.log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/auditd/log
+  additional_fields: additional/auditd/log
+transform:
+  engine: elastic
+  variant: filebeat.auditd_log.default
+catalogue:
+  package: auditd
+  data_stream: log
+  intakes: [beats]
+  variants:
+    - filebeat.auditd_log.default

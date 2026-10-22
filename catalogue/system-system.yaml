@@ -1,0 +1,19 @@
+# Catalogue source system-system: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: system-system
+display_name: system.system
+description: The system data stream of the Elastic system integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: system.system
+transform:
+  engine: elastic
+  variant: filebeat.system_system.default
+catalogue:
+  package: system
+  data_stream: system
+  intakes: [beats]
+  variants:
+    - filebeat.system_system.default

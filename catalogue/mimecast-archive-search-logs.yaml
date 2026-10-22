@@ -1,0 +1,23 @@
+# Catalogue source mimecast-archive-search-logs: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: mimecast-archive-search-logs
+display_name: mimecast.archive_search_logs
+description: The archive_search_logs data stream of the Elastic mimecast integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: mimecast.archive_search_logs
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/mimecast/archive_search_logs
+  additional_fields: additional/mimecast/archive_search_logs
+transform:
+  engine: elastic
+  variant: filebeat.mimecast_archive_search_logs.default
+catalogue:
+  package: mimecast
+  data_stream: archive_search_logs
+  intakes: [beats]
+  variants:
+    - filebeat.mimecast_archive_search_logs.default

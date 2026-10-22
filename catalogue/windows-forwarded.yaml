@@ -1,0 +1,23 @@
+# Catalogue source windows-forwarded: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: windows-forwarded
+display_name: windows.forwarded
+description: The forwarded data stream of the Elastic windows integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: windows.forwarded
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/windows/forwarded
+  additional_fields: additional/windows/forwarded
+transform:
+  engine: elastic
+  variant: filebeat.windows_forwarded.default
+catalogue:
+  package: windows
+  data_stream: forwarded
+  intakes: [beats]
+  variants:
+    - filebeat.windows_forwarded.default

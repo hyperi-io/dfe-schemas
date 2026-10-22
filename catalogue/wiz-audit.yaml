@@ -1,0 +1,23 @@
+# Catalogue source wiz-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: wiz-audit
+display_name: wiz.audit
+description: The audit data stream of the Elastic wiz integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: wiz.audit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/wiz/audit
+  additional_fields: additional/wiz/audit
+transform:
+  engine: elastic
+  variant: filebeat.wiz_audit.default
+catalogue:
+  package: wiz
+  data_stream: audit
+  intakes: [beats]
+  variants:
+    - filebeat.wiz_audit.default

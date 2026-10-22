@@ -1,0 +1,23 @@
+# Catalogue source hid-bravura-monitor-winlog: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: hid-bravura-monitor-winlog
+display_name: hid_bravura_monitor.winlog
+description: The winlog data stream of the Elastic hid_bravura_monitor integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: hid_bravura_monitor.winlog
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/hid_bravura_monitor/winlog
+  additional_fields: additional/hid_bravura_monitor/winlog
+transform:
+  engine: elastic
+  variant: filebeat.hid_bravura_monitor_winlog.default
+catalogue:
+  package: hid_bravura_monitor
+  data_stream: winlog
+  intakes: [beats]
+  variants:
+    - filebeat.hid_bravura_monitor_winlog.default

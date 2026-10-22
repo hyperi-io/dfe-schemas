@@ -1,0 +1,24 @@
+# Catalogue source citrix-adc-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: citrix-adc-log
+display_name: citrix_adc.log
+description: The log data stream of the Elastic citrix_adc integration.
+match:
+  field: _source
+  operator: equals
+  value: citrix-adc-log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/citrix_adc/log
+  additional_fields: additional/citrix_adc/log
+transform:
+  engine: elastic
+  variant: filebeat.citrix_adc_log.default
+catalogue:
+  package: citrix_adc
+  data_stream: log
+  intakes: [beats, receiver]
+  framing: line
+  variants:
+    - filebeat.citrix_adc_log.default

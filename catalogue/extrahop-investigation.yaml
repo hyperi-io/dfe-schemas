@@ -1,0 +1,23 @@
+# Catalogue source extrahop-investigation: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: extrahop-investigation
+display_name: extrahop.investigation
+description: The investigation data stream of the Elastic extrahop integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: extrahop.investigation
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/extrahop/investigation
+  additional_fields: additional/extrahop/investigation
+transform:
+  engine: elastic
+  variant: filebeat.extrahop_investigation.default
+catalogue:
+  package: extrahop
+  data_stream: investigation
+  intakes: [beats]
+  variants:
+    - filebeat.extrahop_investigation.default

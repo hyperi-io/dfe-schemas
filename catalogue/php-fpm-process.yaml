@@ -1,0 +1,23 @@
+# Catalogue source php-fpm-process: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: php-fpm-process
+display_name: php_fpm.process
+description: The process data stream of the Elastic php_fpm integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: php_fpm.process
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/php_fpm/process
+  additional_fields: additional/php_fpm/process
+transform:
+  engine: elastic
+  variant: filebeat.php_fpm_process.default
+catalogue:
+  package: php_fpm
+  data_stream: process
+  intakes: [beats]
+  variants:
+    - filebeat.php_fpm_process.default

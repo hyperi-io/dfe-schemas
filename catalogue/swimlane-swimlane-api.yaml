@@ -1,0 +1,23 @@
+# Catalogue source swimlane-swimlane-api: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: swimlane-swimlane-api
+display_name: swimlane.swimlane_api
+description: The swimlane_api data stream of the Elastic swimlane integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: swimlane.swimlane_api
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/swimlane/swimlane_api
+  additional_fields: additional/swimlane/swimlane_api
+transform:
+  engine: elastic
+  variant: filebeat.swimlane_swimlane_api.default
+catalogue:
+  package: swimlane
+  data_stream: swimlane_api
+  intakes: [beats]
+  variants:
+    - filebeat.swimlane_swimlane_api.default

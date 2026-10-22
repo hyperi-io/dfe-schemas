@@ -1,0 +1,23 @@
+# Catalogue source hadoop-namenode: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: hadoop-namenode
+display_name: hadoop.namenode
+description: The namenode data stream of the Elastic hadoop integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: hadoop.namenode
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/hadoop/namenode
+  additional_fields: additional/hadoop/namenode
+transform:
+  engine: elastic
+  variant: filebeat.hadoop_namenode.default
+catalogue:
+  package: hadoop
+  data_stream: namenode
+  intakes: [beats]
+  variants:
+    - filebeat.hadoop_namenode.default

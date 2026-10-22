@@ -1,0 +1,23 @@
+# Catalogue source azure-metrics-container-instance: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: azure-metrics-container-instance
+display_name: azure_metrics.container_instance
+description: The container_instance data stream of the Elastic azure_metrics integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: azure_metrics.container_instance
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/azure_metrics/container_instance
+  additional_fields: additional/azure_metrics/container_instance
+transform:
+  engine: elastic
+  variant: filebeat.azure_metrics_container_instance.default
+catalogue:
+  package: azure_metrics
+  data_stream: container_instance
+  intakes: [beats]
+  variants:
+    - filebeat.azure_metrics_container_instance.default

@@ -1,0 +1,24 @@
+# Catalogue source cef-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: cef-log
+display_name: cef.log
+description: The log data stream of the Elastic cef integration.
+match:
+  field: _source
+  operator: equals
+  value: cef-log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/cef/log
+  additional_fields: additional/cef/log
+transform:
+  engine: elastic
+  variant: filebeat.cef_log.default
+catalogue:
+  package: cef
+  data_stream: log
+  intakes: [beats, receiver]
+  framing: line
+  variants:
+    - filebeat.cef_log.default

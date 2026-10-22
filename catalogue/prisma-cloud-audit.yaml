@@ -1,0 +1,23 @@
+# Catalogue source prisma-cloud-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: prisma-cloud-audit
+display_name: prisma_cloud.audit
+description: The audit data stream of the Elastic prisma_cloud integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: prisma_cloud.audit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/prisma_cloud/audit
+  additional_fields: additional/prisma_cloud/audit
+transform:
+  engine: elastic
+  variant: filebeat.prisma_cloud_audit.default
+catalogue:
+  package: prisma_cloud
+  data_stream: audit
+  intakes: [beats]
+  variants:
+    - filebeat.prisma_cloud_audit.default

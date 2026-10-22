@@ -1,0 +1,23 @@
+# Catalogue source cyberark-epm-admin-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: cyberark-epm-admin-audit
+display_name: cyberark_epm.admin_audit
+description: The admin_audit data stream of the Elastic cyberark_epm integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: cyberark_epm.admin_audit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/cyberark_epm/admin_audit
+  additional_fields: additional/cyberark_epm/admin_audit
+transform:
+  engine: elastic
+  variant: filebeat.cyberark_epm_admin_audit.default
+catalogue:
+  package: cyberark_epm
+  data_stream: admin_audit
+  intakes: [beats]
+  variants:
+    - filebeat.cyberark_epm_admin_audit.default

@@ -1,0 +1,23 @@
+# Catalogue source spycloud-breach-catalog: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: spycloud-breach-catalog
+display_name: spycloud.breach_catalog
+description: The breach_catalog data stream of the Elastic spycloud integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: spycloud.breach_catalog
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/spycloud/breach_catalog
+  additional_fields: additional/spycloud/breach_catalog
+transform:
+  engine: elastic
+  variant: filebeat.spycloud_breach_catalog.default
+catalogue:
+  package: spycloud
+  data_stream: breach_catalog
+  intakes: [beats]
+  variants:
+    - filebeat.spycloud_breach_catalog.default

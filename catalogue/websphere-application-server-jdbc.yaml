@@ -1,0 +1,23 @@
+# Catalogue source websphere-application-server-jdbc: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: websphere-application-server-jdbc
+display_name: websphere_application_server.jdbc
+description: The jdbc data stream of the Elastic websphere_application_server integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: websphere_application_server.jdbc
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/websphere_application_server/jdbc
+  additional_fields: additional/websphere_application_server/jdbc
+transform:
+  engine: elastic
+  variant: filebeat.websphere_application_server_jdbc.default
+catalogue:
+  package: websphere_application_server
+  data_stream: jdbc
+  intakes: [beats]
+  variants:
+    - filebeat.websphere_application_server_jdbc.default

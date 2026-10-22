@@ -1,0 +1,19 @@
+# Catalogue source cloud-defend-file: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: cloud-defend-file
+display_name: cloud_defend.file
+description: The file data stream of the Elastic cloud_defend integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: cloud_defend.file
+transform:
+  engine: elastic
+  variant: filebeat.cloud_defend_file.default
+catalogue:
+  package: cloud_defend
+  data_stream: file
+  intakes: [beats]
+  variants:
+    - filebeat.cloud_defend_file.default

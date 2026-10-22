@@ -15,8 +15,8 @@ order they are created; :mod:`dfe_schemas.manifest` reads and checks it, and
 ClickHouse platform :mod:`dfe_schemas.clickhouse` probes.
 
 Installed as a wheel, the schema trees (``tables/``, ``hunts/``,
-``common-header/``, ``compat-profiles/``, ``meta/``, ``additional/``,
-``sources/``, ``registries/``, ``views/``, ``roles/``, ``topics/``) ship as package data alongside
+``common-header/``, ``compat-profiles/``, ``meta/``, ``derived/``, ``additional/``,
+``sources/``, ``catalogue/``, ``registries/``, ``views/``, ``roles/``, ``topics/``) ship as package data alongside
 ``manifest.yaml``; in a git checkout the same trees sit at the repository root.
 :func:`schemas_root` resolves either.
 """

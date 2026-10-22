@@ -1,0 +1,23 @@
+# Catalogue source apache-error: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: apache-error
+display_name: apache.error
+description: The error data stream of the Elastic apache integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: apache.error
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/apache/error
+  additional_fields: additional/apache/error
+transform:
+  engine: elastic
+  variant: filebeat.apache_error.default
+catalogue:
+  package: apache
+  data_stream: error
+  intakes: [beats]
+  variants:
+    - filebeat.apache_error.default

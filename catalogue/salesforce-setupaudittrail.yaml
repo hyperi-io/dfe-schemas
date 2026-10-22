@@ -1,0 +1,23 @@
+# Catalogue source salesforce-setupaudittrail: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: salesforce-setupaudittrail
+display_name: salesforce.setupaudittrail
+description: The setupaudittrail data stream of the Elastic salesforce integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: salesforce.setupaudittrail
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/salesforce/setupaudittrail
+  additional_fields: additional/salesforce/setupaudittrail
+transform:
+  engine: elastic
+  variant: filebeat.salesforce_setupaudittrail.default
+catalogue:
+  package: salesforce
+  data_stream: setupaudittrail
+  intakes: [beats]
+  variants:
+    - filebeat.salesforce_setupaudittrail.default

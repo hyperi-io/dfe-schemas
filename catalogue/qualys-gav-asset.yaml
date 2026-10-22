@@ -1,0 +1,23 @@
+# Catalogue source qualys-gav-asset: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: qualys-gav-asset
+display_name: qualys_gav.asset
+description: The asset data stream of the Elastic qualys_gav integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: qualys_gav.asset
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/qualys_gav/asset
+  additional_fields: additional/qualys_gav/asset
+transform:
+  engine: elastic
+  variant: filebeat.qualys_gav_asset.default
+catalogue:
+  package: qualys_gav
+  data_stream: asset
+  intakes: [beats]
+  variants:
+    - filebeat.qualys_gav_asset.default

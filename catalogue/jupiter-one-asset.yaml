@@ -1,0 +1,23 @@
+# Catalogue source jupiter-one-asset: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: jupiter-one-asset
+display_name: jupiter_one.asset
+description: The asset data stream of the Elastic jupiter_one integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: jupiter_one.asset
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/jupiter_one/asset
+  additional_fields: additional/jupiter_one/asset
+transform:
+  engine: elastic
+  variant: filebeat.jupiter_one_asset.default
+catalogue:
+  package: jupiter_one
+  data_stream: asset
+  intakes: [beats]
+  variants:
+    - filebeat.jupiter_one_asset.default

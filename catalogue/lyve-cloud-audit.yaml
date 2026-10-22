@@ -1,0 +1,23 @@
+# Catalogue source lyve-cloud-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: lyve-cloud-audit
+display_name: lyve_cloud.audit
+description: The audit data stream of the Elastic lyve_cloud integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: lyve_cloud.audit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/lyve_cloud/audit
+  additional_fields: additional/lyve_cloud/audit
+transform:
+  engine: elastic
+  variant: filebeat.lyve_cloud_audit.default
+catalogue:
+  package: lyve_cloud
+  data_stream: audit
+  intakes: [beats]
+  variants:
+    - filebeat.lyve_cloud_audit.default

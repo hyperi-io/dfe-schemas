@@ -1,0 +1,23 @@
+# Catalogue source cyera-issue: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: cyera-issue
+display_name: cyera.issue
+description: The issue data stream of the Elastic cyera integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: cyera.issue
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/cyera/issue
+  additional_fields: additional/cyera/issue
+transform:
+  engine: elastic
+  variant: filebeat.cyera_issue.default
+catalogue:
+  package: cyera
+  data_stream: issue
+  intakes: [beats]
+  variants:
+    - filebeat.cyera_issue.default

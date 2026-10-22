@@ -1,0 +1,23 @@
+# Catalogue source cyera-classification: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: cyera-classification
+display_name: cyera.classification
+description: The classification data stream of the Elastic cyera integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: cyera.classification
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/cyera/classification
+  additional_fields: additional/cyera/classification
+transform:
+  engine: elastic
+  variant: filebeat.cyera_classification.default
+catalogue:
+  package: cyera
+  data_stream: classification
+  intakes: [beats]
+  variants:
+    - filebeat.cyera_classification.default

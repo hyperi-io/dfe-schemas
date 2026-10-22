@@ -1,0 +1,19 @@
+# Catalogue source kafka-connect-task: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: kafka-connect-task
+display_name: kafka_connect.task
+description: The task data stream of the Elastic kafka_connect integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: kafka_connect.task
+transform:
+  engine: elastic
+  variant: filebeat.kafka_connect_task.default
+catalogue:
+  package: kafka_connect
+  data_stream: task
+  intakes: [beats]
+  variants:
+    - filebeat.kafka_connect_task.default

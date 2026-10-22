@@ -1,0 +1,23 @@
+# Catalogue source gitlab-pages: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: gitlab-pages
+display_name: gitlab.pages
+description: The pages data stream of the Elastic gitlab integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: gitlab.pages
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/gitlab/pages
+  additional_fields: additional/gitlab/pages
+transform:
+  engine: elastic
+  variant: filebeat.gitlab_pages.default
+catalogue:
+  package: gitlab
+  data_stream: pages
+  intakes: [beats]
+  variants:
+    - filebeat.gitlab_pages.default

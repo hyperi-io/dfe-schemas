@@ -1,0 +1,23 @@
+# Catalogue source mongodb-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: mongodb-log
+display_name: mongodb.log
+description: The log data stream of the Elastic mongodb integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: mongodb.log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/mongodb/log
+  additional_fields: additional/mongodb/log
+transform:
+  engine: elastic
+  variant: filebeat.mongodb_log.default
+catalogue:
+  package: mongodb
+  data_stream: log
+  intakes: [beats]
+  variants:
+    - filebeat.mongodb_log.default

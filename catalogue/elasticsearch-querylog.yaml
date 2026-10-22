@@ -1,0 +1,23 @@
+# Catalogue source elasticsearch-querylog: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: elasticsearch-querylog
+display_name: elasticsearch.querylog
+description: The querylog data stream of the Elastic elasticsearch integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: elasticsearch.querylog
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/elasticsearch/querylog
+  additional_fields: additional/elasticsearch/querylog
+transform:
+  engine: elastic
+  variant: filebeat.elasticsearch_querylog.default
+catalogue:
+  package: elasticsearch
+  data_stream: querylog
+  intakes: [beats]
+  variants:
+    - filebeat.elasticsearch_querylog.default

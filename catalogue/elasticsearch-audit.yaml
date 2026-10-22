@@ -1,0 +1,23 @@
+# Catalogue source elasticsearch-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: elasticsearch-audit
+display_name: elasticsearch.audit
+description: The audit data stream of the Elastic elasticsearch integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: elasticsearch.audit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/elasticsearch/audit
+  additional_fields: additional/elasticsearch/audit
+transform:
+  engine: elastic
+  variant: filebeat.elasticsearch_audit.default
+catalogue:
+  package: elasticsearch
+  data_stream: audit
+  intakes: [beats]
+  variants:
+    - filebeat.elasticsearch_audit.default

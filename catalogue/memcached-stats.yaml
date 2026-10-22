@@ -1,0 +1,19 @@
+# Catalogue source memcached-stats: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: memcached-stats
+display_name: memcached.stats
+description: The stats data stream of the Elastic memcached integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: memcached.stats
+transform:
+  engine: elastic
+  variant: filebeat.memcached_stats.default
+catalogue:
+  package: memcached
+  data_stream: stats
+  intakes: [beats]
+  variants:
+    - filebeat.memcached_stats.default

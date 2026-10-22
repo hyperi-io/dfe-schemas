@@ -1,0 +1,27 @@
+# Catalogue source checkpoint: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: checkpoint
+display_name: checkpoint.firewall
+description: The firewall data stream of the Elastic checkpoint integration.
+match:
+  field: _source
+  operator: equals
+  value: checkpoint
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/checkpoint/firewall
+  additional_fields: additional/checkpoint/firewall
+transform:
+  engine: elastic
+  variant: filebeat.checkpoint.default
+catalogue:
+  package: checkpoint
+  data_stream: firewall
+  intakes: [beats, receiver]
+  framing: line
+  beats:
+    module: checkpoint
+    fileset: firewall
+  variants:
+    - filebeat.checkpoint.default

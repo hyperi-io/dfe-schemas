@@ -1,0 +1,23 @@
+# Catalogue source miniflux-feed-entry: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: miniflux-feed-entry
+display_name: miniflux.feed_entry
+description: The feed_entry data stream of the Elastic miniflux integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: miniflux.feed_entry
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/miniflux/feed_entry
+  additional_fields: additional/miniflux/feed_entry
+transform:
+  engine: elastic
+  variant: filebeat.miniflux_feed_entry.default
+catalogue:
+  package: miniflux
+  data_stream: feed_entry
+  intakes: [beats]
+  variants:
+    - filebeat.miniflux_feed_entry.default

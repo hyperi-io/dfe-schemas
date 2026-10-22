@@ -1,0 +1,23 @@
+# Catalogue source vsphere-network: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: vsphere-network
+display_name: vsphere.network
+description: The network data stream of the Elastic vsphere integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: vsphere.network
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/vsphere/network
+  additional_fields: additional/vsphere/network
+transform:
+  engine: elastic
+  variant: filebeat.vsphere_network.default
+catalogue:
+  package: vsphere
+  data_stream: network
+  intakes: [beats]
+  variants:
+    - filebeat.vsphere_network.default

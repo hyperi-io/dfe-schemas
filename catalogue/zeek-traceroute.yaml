@@ -1,0 +1,23 @@
+# Catalogue source zeek-traceroute: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zeek-traceroute
+display_name: zeek.traceroute
+description: The traceroute data stream of the Elastic zeek integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: zeek.traceroute
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zeek/traceroute
+  additional_fields: additional/zeek/traceroute
+transform:
+  engine: elastic
+  variant: filebeat.zeek_traceroute.default
+catalogue:
+  package: zeek
+  data_stream: traceroute
+  intakes: [beats]
+  variants:
+    - filebeat.zeek_traceroute.default

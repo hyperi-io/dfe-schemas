@@ -1,0 +1,23 @@
+# Catalogue source ti-recordedfuture-threat: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ti-recordedfuture-threat
+display_name: ti_recordedfuture.threat
+description: The threat data stream of the Elastic ti_recordedfuture integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ti_recordedfuture.threat
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ti_recordedfuture/threat
+  additional_fields: additional/ti_recordedfuture/threat
+transform:
+  engine: elastic
+  variant: filebeat.ti_recordedfuture_threat.default
+catalogue:
+  package: ti_recordedfuture
+  data_stream: threat
+  intakes: [beats]
+  variants:
+    - filebeat.ti_recordedfuture_threat.default

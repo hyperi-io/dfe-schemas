@@ -1,0 +1,23 @@
+# Catalogue source tychon-browser: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: tychon-browser
+display_name: tychon.browser
+description: The browser data stream of the Elastic tychon integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: tychon.browser
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/tychon/browser
+  additional_fields: additional/tychon/browser
+transform:
+  engine: elastic
+  variant: filebeat.tychon_browser.default
+catalogue:
+  package: tychon
+  data_stream: browser
+  intakes: [beats]
+  variants:
+    - filebeat.tychon_browser.default

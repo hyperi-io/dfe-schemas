@@ -28,6 +28,7 @@ def test_schemas_root_finds_the_trees():
         "common-header",
         "compat-profiles",
         "meta",
+        "catalogue",
         "views",
         "roles",
         "topics",

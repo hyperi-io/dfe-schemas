@@ -1,0 +1,23 @@
+# Catalogue source elastic-package-registry-metrics: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: elastic-package-registry-metrics
+display_name: elastic_package_registry.metrics
+description: The metrics data stream of the Elastic elastic_package_registry integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: elastic_package_registry.metrics
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/elastic_package_registry/metrics
+  additional_fields: additional/elastic_package_registry/metrics
+transform:
+  engine: elastic
+  variant: filebeat.elastic_package_registry_metrics.default
+catalogue:
+  package: elastic_package_registry
+  data_stream: metrics
+  intakes: [beats]
+  variants:
+    - filebeat.elastic_package_registry_metrics.default

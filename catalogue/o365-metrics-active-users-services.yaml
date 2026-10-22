@@ -1,0 +1,23 @@
+# Catalogue source o365-metrics-active-users-services: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: o365-metrics-active-users-services
+display_name: o365_metrics.active_users_services_user_counts
+description: The active_users_services_user_counts data stream of the Elastic o365_metrics integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: o365_metrics.active_users_services_user_counts
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/o365_metrics/active_users_services_user_counts
+  additional_fields: additional/o365_metrics/active_users_services_user_counts
+transform:
+  engine: elastic
+  variant: filebeat.o365_metrics_active_users_services_user_counts.default
+catalogue:
+  package: o365_metrics
+  data_stream: active_users_services_user_counts
+  intakes: [beats]
+  variants:
+    - filebeat.o365_metrics_active_users_services_user_counts.default

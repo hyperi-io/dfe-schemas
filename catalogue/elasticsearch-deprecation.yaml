@@ -1,0 +1,23 @@
+# Catalogue source elasticsearch-deprecation: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: elasticsearch-deprecation
+display_name: elasticsearch.deprecation
+description: The deprecation data stream of the Elastic elasticsearch integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: elasticsearch.deprecation
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/elasticsearch/deprecation
+  additional_fields: additional/elasticsearch/deprecation
+transform:
+  engine: elastic
+  variant: filebeat.elasticsearch_deprecation.default
+catalogue:
+  package: elasticsearch
+  data_stream: deprecation
+  intakes: [beats]
+  variants:
+    - filebeat.elasticsearch_deprecation.default

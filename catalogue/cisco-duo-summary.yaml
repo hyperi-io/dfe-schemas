@@ -1,0 +1,23 @@
+# Catalogue source cisco-duo-summary: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: cisco-duo-summary
+display_name: cisco_duo.summary
+description: The summary data stream of the Elastic cisco_duo integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: cisco_duo.summary
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/cisco_duo/summary
+  additional_fields: additional/cisco_duo/summary
+transform:
+  engine: elastic
+  variant: filebeat.cisco_duo_summary.default
+catalogue:
+  package: cisco_duo
+  data_stream: summary
+  intakes: [beats]
+  variants:
+    - filebeat.cisco_duo_summary.default

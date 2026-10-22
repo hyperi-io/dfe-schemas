@@ -1,0 +1,23 @@
+# Catalogue source panw-metrics-system: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: panw-metrics-system
+display_name: panw_metrics.system
+description: The system data stream of the Elastic panw_metrics integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: panw_metrics.system
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/panw_metrics/system
+  additional_fields: additional/panw_metrics/system
+transform:
+  engine: elastic
+  variant: filebeat.panw_metrics_system.default
+catalogue:
+  package: panw_metrics
+  data_stream: system
+  intakes: [beats]
+  variants:
+    - filebeat.panw_metrics_system.default

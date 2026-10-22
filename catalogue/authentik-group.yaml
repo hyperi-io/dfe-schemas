@@ -1,0 +1,23 @@
+# Catalogue source authentik-group: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: authentik-group
+display_name: authentik.group
+description: The group data stream of the Elastic authentik integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: authentik.group
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/authentik/group
+  additional_fields: additional/authentik/group
+transform:
+  engine: elastic
+  variant: filebeat.authentik_group.default
+catalogue:
+  package: authentik
+  data_stream: group
+  intakes: [beats]
+  variants:
+    - filebeat.authentik_group.default

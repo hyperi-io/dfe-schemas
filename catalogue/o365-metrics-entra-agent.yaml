@@ -1,0 +1,19 @@
+# Catalogue source o365-metrics-entra-agent: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: o365-metrics-entra-agent
+display_name: o365_metrics.entra_agent
+description: The entra_agent data stream of the Elastic o365_metrics integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: o365_metrics.entra_agent
+transform:
+  engine: elastic
+  variant: filebeat.o365_metrics_entra_agent.default
+catalogue:
+  package: o365_metrics
+  data_stream: entra_agent
+  intakes: [beats]
+  variants:
+    - filebeat.o365_metrics_entra_agent.default

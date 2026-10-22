@@ -1,0 +1,19 @@
+# Catalogue source cloud-asset-inventory-asset-inventory: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: cloud-asset-inventory-asset-inventory
+display_name: cloud_asset_inventory.asset_inventory
+description: The asset_inventory data stream of the Elastic cloud_asset_inventory integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: cloud_asset_inventory.asset_inventory
+transform:
+  engine: elastic
+  variant: filebeat.cloud_asset_inventory_asset_inventory.default
+catalogue:
+  package: cloud_asset_inventory
+  data_stream: asset_inventory
+  intakes: [beats]
+  variants:
+    - filebeat.cloud_asset_inventory_asset_inventory.default

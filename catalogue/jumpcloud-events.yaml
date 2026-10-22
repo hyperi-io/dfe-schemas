@@ -1,0 +1,23 @@
+# Catalogue source jumpcloud-events: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: jumpcloud-events
+display_name: jumpcloud.events
+description: The events data stream of the Elastic jumpcloud integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: jumpcloud.events
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/jumpcloud/events
+  additional_fields: additional/jumpcloud/events
+transform:
+  engine: elastic
+  variant: filebeat.jumpcloud_events.default
+catalogue:
+  package: jumpcloud
+  data_stream: events
+  intakes: [beats]
+  variants:
+    - filebeat.jumpcloud_events.default

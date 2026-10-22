@@ -1,0 +1,19 @@
+# Catalogue source openai-images: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: openai-images
+display_name: openai.images
+description: The images data stream of the Elastic openai integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: openai.images
+transform:
+  engine: elastic
+  variant: filebeat.openai_images.default
+catalogue:
+  package: openai
+  data_stream: images
+  intakes: [beats]
+  variants:
+    - filebeat.openai_images.default

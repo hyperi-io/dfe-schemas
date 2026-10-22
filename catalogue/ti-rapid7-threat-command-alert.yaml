@@ -1,0 +1,23 @@
+# Catalogue source ti-rapid7-threat-command-alert: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ti-rapid7-threat-command-alert
+display_name: ti_rapid7_threat_command.alert
+description: The alert data stream of the Elastic ti_rapid7_threat_command integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ti_rapid7_threat_command.alert
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ti_rapid7_threat_command/alert
+  additional_fields: additional/ti_rapid7_threat_command/alert
+transform:
+  engine: elastic
+  variant: filebeat.ti_rapid7_threat_command_alert.default
+catalogue:
+  package: ti_rapid7_threat_command
+  data_stream: alert
+  intakes: [beats]
+  variants:
+    - filebeat.ti_rapid7_threat_command_alert.default

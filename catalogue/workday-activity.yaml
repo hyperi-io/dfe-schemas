@@ -1,0 +1,23 @@
+# Catalogue source workday-activity: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: workday-activity
+display_name: workday.activity
+description: The activity data stream of the Elastic workday integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: workday.activity
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/workday/activity
+  additional_fields: additional/workday/activity
+transform:
+  engine: elastic
+  variant: filebeat.workday_activity.default
+catalogue:
+  package: workday
+  data_stream: activity
+  intakes: [beats]
+  variants:
+    - filebeat.workday_activity.default

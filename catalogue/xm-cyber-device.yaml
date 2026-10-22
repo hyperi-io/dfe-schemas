@@ -1,0 +1,23 @@
+# Catalogue source xm-cyber-device: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: xm-cyber-device
+display_name: xm_cyber.device
+description: The device data stream of the Elastic xm_cyber integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: xm_cyber.device
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/xm_cyber/device
+  additional_fields: additional/xm_cyber/device
+transform:
+  engine: elastic
+  variant: filebeat.xm_cyber_device.default
+catalogue:
+  package: xm_cyber
+  data_stream: device
+  intakes: [beats]
+  variants:
+    - filebeat.xm_cyber_device.default

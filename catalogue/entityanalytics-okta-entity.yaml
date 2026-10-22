@@ -1,0 +1,25 @@
+# Catalogue source entityanalytics-okta-entity: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: entityanalytics-okta-entity
+display_name: entityanalytics_okta.entity
+description: The entity data stream of the Elastic entityanalytics_okta integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: entityanalytics_okta.entity
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/entityanalytics_okta/entity
+  additional_fields: additional/entityanalytics_okta/entity
+transform:
+  engine: elastic
+  variant: filebeat.entityanalytics_okta_entity.default
+catalogue:
+  package: entityanalytics_okta
+  data_stream: entity
+  intakes: [beats]
+  variants:
+    - filebeat.entityanalytics_okta_entity.default
+    - filebeat.entityanalytics_okta_entity.device
+    - filebeat.entityanalytics_okta_entity.user

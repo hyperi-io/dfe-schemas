@@ -1,0 +1,23 @@
+# Catalogue source beyondtrust-epm-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: beyondtrust-epm-audit
+display_name: beyondtrust_epm.audit
+description: The audit data stream of the Elastic beyondtrust_epm integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: beyondtrust_epm.audit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/beyondtrust_epm/audit
+  additional_fields: additional/beyondtrust_epm/audit
+transform:
+  engine: elastic
+  variant: filebeat.beyondtrust_epm_audit.default
+catalogue:
+  package: beyondtrust_epm
+  data_stream: audit
+  intakes: [beats]
+  variants:
+    - filebeat.beyondtrust_epm_audit.default

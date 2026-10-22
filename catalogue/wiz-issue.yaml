@@ -1,0 +1,23 @@
+# Catalogue source wiz-issue: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: wiz-issue
+display_name: wiz.issue
+description: The issue data stream of the Elastic wiz integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: wiz.issue
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/wiz/issue
+  additional_fields: additional/wiz/issue
+transform:
+  engine: elastic
+  variant: filebeat.wiz_issue.default
+catalogue:
+  package: wiz
+  data_stream: issue
+  intakes: [beats]
+  variants:
+    - filebeat.wiz_issue.default

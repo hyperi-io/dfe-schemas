@@ -1,0 +1,24 @@
+# Catalogue source cloudflare-logpush-magic-ids: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: cloudflare-logpush-magic-ids
+display_name: cloudflare_logpush.magic_ids
+description: The magic_ids data stream of the Elastic cloudflare_logpush integration.
+match:
+  field: _source
+  operator: equals
+  value: cloudflare-logpush-magic-ids
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/cloudflare_logpush/magic_ids
+  additional_fields: additional/cloudflare_logpush/magic_ids
+transform:
+  engine: elastic
+  variant: filebeat.cloudflare_logpush_magic_ids.default
+catalogue:
+  package: cloudflare_logpush
+  data_stream: magic_ids
+  intakes: [beats, receiver]
+  framing: body
+  variants:
+    - filebeat.cloudflare_logpush_magic_ids.default

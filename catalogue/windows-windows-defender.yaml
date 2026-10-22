@@ -1,0 +1,23 @@
+# Catalogue source windows-windows-defender: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: windows-windows-defender
+display_name: windows.windows_defender
+description: The windows_defender data stream of the Elastic windows integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: windows.windows_defender
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/windows/windows_defender
+  additional_fields: additional/windows/windows_defender
+transform:
+  engine: elastic
+  variant: filebeat.windows_windows_defender.default
+catalogue:
+  package: windows
+  data_stream: windows_defender
+  intakes: [beats]
+  variants:
+    - filebeat.windows_windows_defender.default

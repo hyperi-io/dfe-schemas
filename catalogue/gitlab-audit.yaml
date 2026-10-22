@@ -1,0 +1,23 @@
+# Catalogue source gitlab-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: gitlab-audit
+display_name: gitlab.audit
+description: The audit data stream of the Elastic gitlab integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: gitlab.audit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/gitlab/audit
+  additional_fields: additional/gitlab/audit
+transform:
+  engine: elastic
+  variant: filebeat.gitlab_audit.default
+catalogue:
+  package: gitlab
+  data_stream: audit
+  intakes: [beats]
+  variants:
+    - filebeat.gitlab_audit.default

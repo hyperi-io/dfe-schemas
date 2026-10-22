@@ -1,0 +1,23 @@
+# Catalogue source mongodb-atlas-hardware: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: mongodb-atlas-hardware
+display_name: mongodb_atlas.hardware
+description: The hardware data stream of the Elastic mongodb_atlas integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: mongodb_atlas.hardware
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/mongodb_atlas/hardware
+  additional_fields: additional/mongodb_atlas/hardware
+transform:
+  engine: elastic
+  variant: filebeat.mongodb_atlas_hardware.default
+catalogue:
+  package: mongodb_atlas
+  data_stream: hardware
+  intakes: [beats]
+  variants:
+    - filebeat.mongodb_atlas_hardware.default

@@ -1,0 +1,23 @@
+# Catalogue source aws-mq-activemq-general-logs: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: aws-mq-activemq-general-logs
+display_name: aws_mq.activemq_general_logs
+description: The activemq_general_logs data stream of the Elastic aws_mq integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: aws_mq.activemq_general_logs
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/aws_mq/activemq_general_logs
+  additional_fields: additional/aws_mq/activemq_general_logs
+transform:
+  engine: elastic
+  variant: filebeat.aws_mq_activemq_general_logs.default
+catalogue:
+  package: aws_mq
+  data_stream: activemq_general_logs
+  intakes: [beats]
+  variants:
+    - filebeat.aws_mq_activemq_general_logs.default

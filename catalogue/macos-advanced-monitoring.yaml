@@ -1,0 +1,23 @@
+# Catalogue source macos-advanced-monitoring: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: macos-advanced-monitoring
+display_name: macos.advanced_monitoring
+description: The advanced_monitoring data stream of the Elastic macos integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: macos.advanced_monitoring
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/macos/advanced_monitoring
+  additional_fields: additional/macos/advanced_monitoring
+transform:
+  engine: elastic
+  variant: filebeat.macos_advanced_monitoring.default
+catalogue:
+  package: macos
+  data_stream: advanced_monitoring
+  intakes: [beats]
+  variants:
+    - filebeat.macos_advanced_monitoring.default

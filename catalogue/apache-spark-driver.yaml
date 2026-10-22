@@ -1,0 +1,19 @@
+# Catalogue source apache-spark-driver: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: apache-spark-driver
+display_name: apache_spark.driver
+description: The driver data stream of the Elastic apache_spark integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: apache_spark.driver
+transform:
+  engine: elastic
+  variant: filebeat.apache_spark_driver.default
+catalogue:
+  package: apache_spark
+  data_stream: driver
+  intakes: [beats]
+  variants:
+    - filebeat.apache_spark_driver.default

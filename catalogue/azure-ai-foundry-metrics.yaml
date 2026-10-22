@@ -1,0 +1,23 @@
+# Catalogue source azure-ai-foundry-metrics: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: azure-ai-foundry-metrics
+display_name: azure_ai_foundry.metrics
+description: The metrics data stream of the Elastic azure_ai_foundry integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: azure_ai_foundry.metrics
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/azure_ai_foundry/metrics
+  additional_fields: additional/azure_ai_foundry/metrics
+transform:
+  engine: elastic
+  variant: filebeat.azure_ai_foundry_metrics.default
+catalogue:
+  package: azure_ai_foundry
+  data_stream: metrics
+  intakes: [beats]
+  variants:
+    - filebeat.azure_ai_foundry_metrics.default

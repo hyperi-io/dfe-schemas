@@ -1,0 +1,23 @@
+# Catalogue source keycloak-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: keycloak-log
+display_name: keycloak.log
+description: The log data stream of the Elastic keycloak integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: keycloak.log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/keycloak/log
+  additional_fields: additional/keycloak/log
+transform:
+  engine: elastic
+  variant: filebeat.keycloak_log.default
+catalogue:
+  package: keycloak
+  data_stream: log
+  intakes: [beats]
+  variants:
+    - filebeat.keycloak_log.default

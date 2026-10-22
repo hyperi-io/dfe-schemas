@@ -1,0 +1,24 @@
+# Catalogue source cisco-ise-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: cisco-ise-log
+display_name: cisco_ise.log
+description: The log data stream of the Elastic cisco_ise integration.
+match:
+  field: _source
+  operator: equals
+  value: cisco-ise-log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/cisco_ise/log
+  additional_fields: additional/cisco_ise/log
+transform:
+  engine: elastic
+  variant: filebeat.cisco_ise_log.default
+catalogue:
+  package: cisco_ise
+  data_stream: log
+  intakes: [beats, receiver]
+  framing: line
+  variants:
+    - filebeat.cisco_ise_log.default

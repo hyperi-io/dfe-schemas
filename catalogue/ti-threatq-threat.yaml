@@ -1,0 +1,23 @@
+# Catalogue source ti-threatq-threat: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ti-threatq-threat
+display_name: ti_threatq.threat
+description: The threat data stream of the Elastic ti_threatq integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ti_threatq.threat
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ti_threatq/threat
+  additional_fields: additional/ti_threatq/threat
+transform:
+  engine: elastic
+  variant: filebeat.ti_threatq_threat.default
+catalogue:
+  package: ti_threatq
+  data_stream: threat
+  intakes: [beats]
+  variants:
+    - filebeat.ti_threatq_threat.default

@@ -1,0 +1,23 @@
+# Catalogue source nagios-xi-host: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: nagios-xi-host
+display_name: nagios_xi.host
+description: The host data stream of the Elastic nagios_xi integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: nagios_xi.host
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/nagios_xi/host
+  additional_fields: additional/nagios_xi/host
+transform:
+  engine: elastic
+  variant: filebeat.nagios_xi_host.default
+catalogue:
+  package: nagios_xi
+  data_stream: host
+  intakes: [beats]
+  variants:
+    - filebeat.nagios_xi_host.default

@@ -1,0 +1,23 @@
+# Catalogue source spring-boot-gc: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: spring-boot-gc
+display_name: spring_boot.gc
+description: The gc data stream of the Elastic spring_boot integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: spring_boot.gc
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/spring_boot/gc
+  additional_fields: additional/spring_boot/gc
+transform:
+  engine: elastic
+  variant: filebeat.spring_boot_gc.default
+catalogue:
+  package: spring_boot
+  data_stream: gc
+  intakes: [beats]
+  variants:
+    - filebeat.spring_boot_gc.default

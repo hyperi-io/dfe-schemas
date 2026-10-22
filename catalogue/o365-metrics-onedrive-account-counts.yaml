@@ -1,0 +1,23 @@
+# Catalogue source o365-metrics-onedrive-account-counts: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: o365-metrics-onedrive-account-counts
+display_name: o365_metrics.onedrive_usage_account_counts
+description: The onedrive_usage_account_counts data stream of the Elastic o365_metrics integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: o365_metrics.onedrive_usage_account_counts
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/o365_metrics/onedrive_usage_account_counts
+  additional_fields: additional/o365_metrics/onedrive_usage_account_counts
+transform:
+  engine: elastic
+  variant: filebeat.o365_metrics_onedrive_usage_account_counts.default
+catalogue:
+  package: o365_metrics
+  data_stream: onedrive_usage_account_counts
+  intakes: [beats]
+  variants:
+    - filebeat.o365_metrics_onedrive_usage_account_counts.default

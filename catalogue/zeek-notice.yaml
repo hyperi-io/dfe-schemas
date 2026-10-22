@@ -1,0 +1,23 @@
+# Catalogue source zeek-notice: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zeek-notice
+display_name: zeek.notice
+description: The notice data stream of the Elastic zeek integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: zeek.notice
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zeek/notice
+  additional_fields: additional/zeek/notice
+transform:
+  engine: elastic
+  variant: filebeat.zeek_notice.default
+catalogue:
+  package: zeek
+  data_stream: notice
+  intakes: [beats]
+  variants:
+    - filebeat.zeek_notice.default

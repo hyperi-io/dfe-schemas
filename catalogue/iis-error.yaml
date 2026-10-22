@@ -1,0 +1,23 @@
+# Catalogue source iis-error: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: iis-error
+display_name: iis.error
+description: The error data stream of the Elastic iis integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: iis.error
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/iis/error
+  additional_fields: additional/iis/error
+transform:
+  engine: elastic
+  variant: filebeat.iis_error.default
+catalogue:
+  package: iis
+  data_stream: error
+  intakes: [beats]
+  variants:
+    - filebeat.iis_error.default

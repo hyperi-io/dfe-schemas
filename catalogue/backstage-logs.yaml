@@ -1,0 +1,23 @@
+# Catalogue source backstage-logs: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: backstage-logs
+display_name: backstage.logs
+description: The logs data stream of the Elastic backstage integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: backstage.logs
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/backstage/logs
+  additional_fields: additional/backstage/logs
+transform:
+  engine: elastic
+  variant: filebeat.backstage_logs.default
+catalogue:
+  package: backstage
+  data_stream: logs
+  intakes: [beats]
+  variants:
+    - filebeat.backstage_logs.default

@@ -1,0 +1,23 @@
+# Catalogue source ibmmq-errorlog: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ibmmq-errorlog
+display_name: ibmmq.errorlog
+description: The errorlog data stream of the Elastic ibmmq integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ibmmq.errorlog
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ibmmq/errorlog
+  additional_fields: additional/ibmmq/errorlog
+transform:
+  engine: elastic
+  variant: filebeat.ibmmq_errorlog.default
+catalogue:
+  package: ibmmq
+  data_stream: errorlog
+  intakes: [beats]
+  variants:
+    - filebeat.ibmmq_errorlog.default

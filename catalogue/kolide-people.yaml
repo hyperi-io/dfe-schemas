@@ -1,0 +1,23 @@
+# Catalogue source kolide-people: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: kolide-people
+display_name: kolide.people
+description: The people data stream of the Elastic kolide integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: kolide.people
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/kolide/people
+  additional_fields: additional/kolide/people
+transform:
+  engine: elastic
+  variant: filebeat.kolide_people.default
+catalogue:
+  package: kolide
+  data_stream: people
+  intakes: [beats]
+  variants:
+    - filebeat.kolide_people.default

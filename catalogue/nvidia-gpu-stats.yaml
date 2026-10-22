@@ -1,0 +1,19 @@
+# Catalogue source nvidia-gpu-stats: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: nvidia-gpu-stats
+display_name: nvidia_gpu.stats
+description: The stats data stream of the Elastic nvidia_gpu integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: nvidia_gpu.stats
+transform:
+  engine: elastic
+  variant: filebeat.nvidia_gpu_stats.default
+catalogue:
+  package: nvidia_gpu
+  data_stream: stats
+  intakes: [beats]
+  variants:
+    - filebeat.nvidia_gpu_stats.default

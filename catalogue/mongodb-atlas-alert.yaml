@@ -1,0 +1,23 @@
+# Catalogue source mongodb-atlas-alert: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: mongodb-atlas-alert
+display_name: mongodb_atlas.alert
+description: The alert data stream of the Elastic mongodb_atlas integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: mongodb_atlas.alert
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/mongodb_atlas/alert
+  additional_fields: additional/mongodb_atlas/alert
+transform:
+  engine: elastic
+  variant: filebeat.mongodb_atlas_alert.default
+catalogue:
+  package: mongodb_atlas
+  data_stream: alert
+  intakes: [beats]
+  variants:
+    - filebeat.mongodb_atlas_alert.default

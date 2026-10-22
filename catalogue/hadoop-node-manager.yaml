@@ -1,0 +1,23 @@
+# Catalogue source hadoop-node-manager: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: hadoop-node-manager
+display_name: hadoop.node_manager
+description: The node_manager data stream of the Elastic hadoop integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: hadoop.node_manager
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/hadoop/node_manager
+  additional_fields: additional/hadoop/node_manager
+transform:
+  engine: elastic
+  variant: filebeat.hadoop_node_manager.default
+catalogue:
+  package: hadoop
+  data_stream: node_manager
+  intakes: [beats]
+  variants:
+    - filebeat.hadoop_node_manager.default

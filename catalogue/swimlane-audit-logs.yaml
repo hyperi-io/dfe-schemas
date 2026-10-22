@@ -1,0 +1,23 @@
+# Catalogue source swimlane-audit-logs: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: swimlane-audit-logs
+display_name: swimlane.audit_logs
+description: The audit_logs data stream of the Elastic swimlane integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: swimlane.audit_logs
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/swimlane/audit_logs
+  additional_fields: additional/swimlane/audit_logs
+transform:
+  engine: elastic
+  variant: filebeat.swimlane_audit_logs.default
+catalogue:
+  package: swimlane
+  data_stream: audit_logs
+  intakes: [beats]
+  variants:
+    - filebeat.swimlane_audit_logs.default

@@ -1,0 +1,23 @@
+# Catalogue source proofpoint-on-demand-message: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: proofpoint-on-demand-message
+display_name: proofpoint_on_demand.message
+description: The message data stream of the Elastic proofpoint_on_demand integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: proofpoint_on_demand.message
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/proofpoint_on_demand/message
+  additional_fields: additional/proofpoint_on_demand/message
+transform:
+  engine: elastic
+  variant: filebeat.proofpoint_on_demand_message.default
+catalogue:
+  package: proofpoint_on_demand
+  data_stream: message
+  intakes: [beats]
+  variants:
+    - filebeat.proofpoint_on_demand_message.default

@@ -1,0 +1,23 @@
+# Catalogue source ti-abusech-ja3-fingerprints: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ti-abusech-ja3-fingerprints
+display_name: ti_abusech.ja3_fingerprints
+description: The ja3_fingerprints data stream of the Elastic ti_abusech integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ti_abusech.ja3_fingerprints
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ti_abusech/ja3_fingerprints
+  additional_fields: additional/ti_abusech/ja3_fingerprints
+transform:
+  engine: elastic
+  variant: filebeat.ti_abusech_ja3_fingerprints.default
+catalogue:
+  package: ti_abusech
+  data_stream: ja3_fingerprints
+  intakes: [beats]
+  variants:
+    - filebeat.ti_abusech_ja3_fingerprints.default

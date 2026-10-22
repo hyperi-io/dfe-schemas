@@ -1,0 +1,19 @@
+# Catalogue source gcp-cloudsql-postgresql: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: gcp-cloudsql-postgresql
+display_name: gcp.cloudsql_postgresql
+description: The cloudsql_postgresql data stream of the Elastic gcp integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: gcp.cloudsql_postgresql
+transform:
+  engine: elastic
+  variant: filebeat.gcp_cloudsql_postgresql.default
+catalogue:
+  package: gcp
+  data_stream: cloudsql_postgresql
+  intakes: [beats]
+  variants:
+    - filebeat.gcp_cloudsql_postgresql.default

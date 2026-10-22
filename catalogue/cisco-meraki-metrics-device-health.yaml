@@ -1,0 +1,23 @@
+# Catalogue source cisco-meraki-metrics-device-health: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: cisco-meraki-metrics-device-health
+display_name: cisco_meraki_metrics.device_health
+description: The device_health data stream of the Elastic cisco_meraki_metrics integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: cisco_meraki_metrics.device_health
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/cisco_meraki_metrics/device_health
+  additional_fields: additional/cisco_meraki_metrics/device_health
+transform:
+  engine: elastic
+  variant: filebeat.cisco_meraki_metrics_device_health.default
+catalogue:
+  package: cisco_meraki_metrics
+  data_stream: device_health
+  intakes: [beats]
+  variants:
+    - filebeat.cisco_meraki_metrics_device_health.default

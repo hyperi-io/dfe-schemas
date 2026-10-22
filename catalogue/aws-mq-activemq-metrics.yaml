@@ -1,0 +1,19 @@
+# Catalogue source aws-mq-activemq-metrics: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: aws-mq-activemq-metrics
+display_name: aws_mq.activemq_metrics
+description: The activemq_metrics data stream of the Elastic aws_mq integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: aws_mq.activemq_metrics
+transform:
+  engine: elastic
+  variant: filebeat.aws_mq_activemq_metrics.default
+catalogue:
+  package: aws_mq
+  data_stream: activemq_metrics
+  intakes: [beats]
+  variants:
+    - filebeat.aws_mq_activemq_metrics.default

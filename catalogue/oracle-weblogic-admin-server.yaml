@@ -1,0 +1,23 @@
+# Catalogue source oracle-weblogic-admin-server: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: oracle-weblogic-admin-server
+display_name: oracle_weblogic.admin_server
+description: The admin_server data stream of the Elastic oracle_weblogic integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: oracle_weblogic.admin_server
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/oracle_weblogic/admin_server
+  additional_fields: additional/oracle_weblogic/admin_server
+transform:
+  engine: elastic
+  variant: filebeat.oracle_weblogic_admin_server.default
+catalogue:
+  package: oracle_weblogic
+  data_stream: admin_server
+  intakes: [beats]
+  variants:
+    - filebeat.oracle_weblogic_admin_server.default

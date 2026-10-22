@@ -1,0 +1,23 @@
+# Catalogue source o365-metrics-mailbox-usage-quota-status: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: o365-metrics-mailbox-usage-quota-status
+display_name: o365_metrics.mailbox_usage_quota_status
+description: The mailbox_usage_quota_status data stream of the Elastic o365_metrics integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: o365_metrics.mailbox_usage_quota_status
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/o365_metrics/mailbox_usage_quota_status
+  additional_fields: additional/o365_metrics/mailbox_usage_quota_status
+transform:
+  engine: elastic
+  variant: filebeat.o365_metrics_mailbox_usage_quota_status.default
+catalogue:
+  package: o365_metrics
+  data_stream: mailbox_usage_quota_status
+  intakes: [beats]
+  variants:
+    - filebeat.o365_metrics_mailbox_usage_quota_status.default

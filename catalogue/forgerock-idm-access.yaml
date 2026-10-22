@@ -1,0 +1,23 @@
+# Catalogue source forgerock-idm-access: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: forgerock-idm-access
+display_name: forgerock.idm_access
+description: The idm_access data stream of the Elastic forgerock integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: forgerock.idm_access
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/forgerock/idm_access
+  additional_fields: additional/forgerock/idm_access
+transform:
+  engine: elastic
+  variant: filebeat.forgerock_idm_access.default
+catalogue:
+  package: forgerock
+  data_stream: idm_access
+  intakes: [beats]
+  variants:
+    - filebeat.forgerock_idm_access.default

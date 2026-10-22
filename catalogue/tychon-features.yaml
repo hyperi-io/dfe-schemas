@@ -1,0 +1,23 @@
+# Catalogue source tychon-features: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: tychon-features
+display_name: tychon.features
+description: The features data stream of the Elastic tychon integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: tychon.features
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/tychon/features
+  additional_fields: additional/tychon/features
+transform:
+  engine: elastic
+  variant: filebeat.tychon_features.default
+catalogue:
+  package: tychon
+  data_stream: features
+  intakes: [beats]
+  variants:
+    - filebeat.tychon_features.default

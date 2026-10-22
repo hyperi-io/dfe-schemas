@@ -1,0 +1,23 @@
+# Catalogue source microsoft-sqlserver-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: microsoft-sqlserver-log
+display_name: microsoft_sqlserver.log
+description: The log data stream of the Elastic microsoft_sqlserver integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: microsoft_sqlserver.log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/microsoft_sqlserver/log
+  additional_fields: additional/microsoft_sqlserver/log
+transform:
+  engine: elastic
+  variant: filebeat.microsoft_sqlserver_log.default
+catalogue:
+  package: microsoft_sqlserver
+  data_stream: log
+  intakes: [beats]
+  variants:
+    - filebeat.microsoft_sqlserver_log.default

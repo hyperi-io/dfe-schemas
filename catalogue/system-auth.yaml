@@ -1,0 +1,23 @@
+# Catalogue source system-auth: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: system-auth
+display_name: system.auth
+description: The auth data stream of the Elastic system integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: system.auth
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/system/auth
+  additional_fields: additional/system/auth
+transform:
+  engine: elastic
+  variant: filebeat.system_auth.default
+catalogue:
+  package: system
+  data_stream: auth
+  intakes: [beats]
+  variants:
+    - filebeat.system_auth.default

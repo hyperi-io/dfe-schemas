@@ -1,0 +1,23 @@
+# Catalogue source proofpoint-on-demand-mail: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: proofpoint-on-demand-mail
+display_name: proofpoint_on_demand.mail
+description: The mail data stream of the Elastic proofpoint_on_demand integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: proofpoint_on_demand.mail
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/proofpoint_on_demand/mail
+  additional_fields: additional/proofpoint_on_demand/mail
+transform:
+  engine: elastic
+  variant: filebeat.proofpoint_on_demand_mail.default
+catalogue:
+  package: proofpoint_on_demand
+  data_stream: mail
+  intakes: [beats]
+  variants:
+    - filebeat.proofpoint_on_demand_mail.default

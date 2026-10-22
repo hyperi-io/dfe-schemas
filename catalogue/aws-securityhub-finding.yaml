@@ -1,0 +1,23 @@
+# Catalogue source aws-securityhub-finding: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: aws-securityhub-finding
+display_name: aws_securityhub.finding
+description: The finding data stream of the Elastic aws_securityhub integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: aws_securityhub.finding
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/aws_securityhub/finding
+  additional_fields: additional/aws_securityhub/finding
+transform:
+  engine: elastic
+  variant: filebeat.aws_securityhub_finding.default
+catalogue:
+  package: aws_securityhub
+  data_stream: finding
+  intakes: [beats]
+  variants:
+    - filebeat.aws_securityhub_finding.default

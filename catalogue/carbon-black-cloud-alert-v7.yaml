@@ -1,0 +1,23 @@
+# Catalogue source carbon-black-cloud-alert-v7: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: carbon-black-cloud-alert-v7
+display_name: carbon_black_cloud.alert_v7
+description: The alert_v7 data stream of the Elastic carbon_black_cloud integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: carbon_black_cloud.alert_v7
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/carbon_black_cloud/alert_v7
+  additional_fields: additional/carbon_black_cloud/alert_v7
+transform:
+  engine: elastic
+  variant: filebeat.carbon_black_cloud_alert_v7.default
+catalogue:
+  package: carbon_black_cloud
+  data_stream: alert_v7
+  intakes: [beats]
+  variants:
+    - filebeat.carbon_black_cloud_alert_v7.default

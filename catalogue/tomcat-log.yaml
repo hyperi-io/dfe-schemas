@@ -1,0 +1,24 @@
+# Catalogue source tomcat-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: tomcat-log
+display_name: tomcat.log
+description: The log data stream of the Elastic tomcat integration.
+match:
+  field: _source
+  operator: equals
+  value: tomcat-log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/tomcat/log
+  additional_fields: additional/tomcat/log
+transform:
+  engine: elastic
+  variant: filebeat.tomcat_log.default
+catalogue:
+  package: tomcat
+  data_stream: log
+  intakes: [beats, receiver]
+  framing: body
+  variants:
+    - filebeat.tomcat_log.default

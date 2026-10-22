@@ -1,0 +1,19 @@
+# Catalogue source gcp-dataproc: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: gcp-dataproc
+display_name: gcp.dataproc
+description: The dataproc data stream of the Elastic gcp integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: gcp.dataproc
+transform:
+  engine: elastic
+  variant: filebeat.gcp_dataproc.default
+catalogue:
+  package: gcp
+  data_stream: dataproc
+  intakes: [beats]
+  variants:
+    - filebeat.gcp_dataproc.default

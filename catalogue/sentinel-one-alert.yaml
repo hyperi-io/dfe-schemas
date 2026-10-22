@@ -1,0 +1,23 @@
+# Catalogue source sentinel-one-alert: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: sentinel-one-alert
+display_name: sentinel_one.alert
+description: The alert data stream of the Elastic sentinel_one integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: sentinel_one.alert
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/sentinel_one/alert
+  additional_fields: additional/sentinel_one/alert
+transform:
+  engine: elastic
+  variant: filebeat.sentinel_one_alert.default
+catalogue:
+  package: sentinel_one
+  data_stream: alert
+  intakes: [beats]
+  variants:
+    - filebeat.sentinel_one_alert.default

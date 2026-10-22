@@ -1,0 +1,23 @@
+# Catalogue source elastic-agent-elastic-agent-logs: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: elastic-agent-elastic-agent-logs
+display_name: elastic_agent.elastic_agent_logs
+description: The elastic_agent_logs data stream of the Elastic elastic_agent integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: elastic_agent.elastic_agent_logs
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/elastic_agent/elastic_agent_logs
+  additional_fields: additional/elastic_agent/elastic_agent_logs
+transform:
+  engine: elastic
+  variant: filebeat.elastic_agent_elastic_agent_logs.default
+catalogue:
+  package: elastic_agent
+  data_stream: elastic_agent_logs
+  intakes: [beats]
+  variants:
+    - filebeat.elastic_agent_elastic_agent_logs.default

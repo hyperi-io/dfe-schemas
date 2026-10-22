@@ -1,0 +1,22 @@
+# Catalogue source crowdstrike-alert: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: crowdstrike-alert
+display_name: crowdstrike.alert
+description: The alert data stream of the Elastic crowdstrike integration.
+fetcher:
+  source_type: crowdstrike
+  topic: own
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/crowdstrike/alert
+  additional_fields: additional/crowdstrike/alert
+transform:
+  engine: elastic
+  variant: filebeat.crowdstrike_alert.default
+catalogue:
+  package: crowdstrike
+  data_stream: alert
+  intakes: [beats, fetcher]
+  variants:
+    - filebeat.crowdstrike_alert.default

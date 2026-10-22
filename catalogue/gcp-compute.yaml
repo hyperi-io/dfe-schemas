@@ -1,0 +1,23 @@
+# Catalogue source gcp-compute: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: gcp-compute
+display_name: gcp.compute
+description: The compute data stream of the Elastic gcp integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: gcp.compute
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/gcp/compute
+  additional_fields: additional/gcp/compute
+transform:
+  engine: elastic
+  variant: filebeat.gcp_compute.default
+catalogue:
+  package: gcp
+  data_stream: compute
+  intakes: [beats]
+  variants:
+    - filebeat.gcp_compute.default

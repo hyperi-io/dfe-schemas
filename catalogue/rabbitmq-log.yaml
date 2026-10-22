@@ -1,0 +1,23 @@
+# Catalogue source rabbitmq-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: rabbitmq-log
+display_name: rabbitmq.log
+description: The log data stream of the Elastic rabbitmq integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: rabbitmq.log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/rabbitmq/log
+  additional_fields: additional/rabbitmq/log
+transform:
+  engine: elastic
+  variant: filebeat.rabbitmq_log.default
+catalogue:
+  package: rabbitmq
+  data_stream: log
+  intakes: [beats]
+  variants:
+    - filebeat.rabbitmq_log.default

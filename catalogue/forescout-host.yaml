@@ -1,0 +1,23 @@
+# Catalogue source forescout-host: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: forescout-host
+display_name: forescout.host
+description: The host data stream of the Elastic forescout integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: forescout.host
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/forescout/host
+  additional_fields: additional/forescout/host
+transform:
+  engine: elastic
+  variant: filebeat.forescout_host.default
+catalogue:
+  package: forescout
+  data_stream: host
+  intakes: [beats]
+  variants:
+    - filebeat.forescout_host.default

@@ -1,0 +1,23 @@
+# Catalogue source github-code-scanning: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: github-code-scanning
+display_name: github.code_scanning
+description: The code_scanning data stream of the Elastic github integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: github.code_scanning
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/github/code_scanning
+  additional_fields: additional/github/code_scanning
+transform:
+  engine: elastic
+  variant: filebeat.github_code_scanning.default
+catalogue:
+  package: github
+  data_stream: code_scanning
+  intakes: [beats]
+  variants:
+    - filebeat.github_code_scanning.default

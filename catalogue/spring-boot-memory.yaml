@@ -1,0 +1,19 @@
+# Catalogue source spring-boot-memory: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: spring-boot-memory
+display_name: spring_boot.memory
+description: The memory data stream of the Elastic spring_boot integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: spring_boot.memory
+transform:
+  engine: elastic
+  variant: filebeat.spring_boot_memory.default
+catalogue:
+  package: spring_boot
+  data_stream: memory
+  intakes: [beats]
+  variants:
+    - filebeat.spring_boot_memory.default

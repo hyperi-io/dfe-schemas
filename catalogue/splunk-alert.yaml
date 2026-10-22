@@ -1,0 +1,23 @@
+# Catalogue source splunk-alert: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: splunk-alert
+display_name: splunk.alert
+description: The alert data stream of the Elastic splunk integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: splunk.alert
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/splunk/alert
+  additional_fields: additional/splunk/alert
+transform:
+  engine: elastic
+  variant: filebeat.splunk_alert.default
+catalogue:
+  package: splunk
+  data_stream: alert
+  intakes: [beats]
+  variants:
+    - filebeat.splunk_alert.default

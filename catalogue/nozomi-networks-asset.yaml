@@ -1,0 +1,23 @@
+# Catalogue source nozomi-networks-asset: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: nozomi-networks-asset
+display_name: nozomi_networks.asset
+description: The asset data stream of the Elastic nozomi_networks integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: nozomi_networks.asset
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/nozomi_networks/asset
+  additional_fields: additional/nozomi_networks/asset
+transform:
+  engine: elastic
+  variant: filebeat.nozomi_networks_asset.default
+catalogue:
+  package: nozomi_networks
+  data_stream: asset
+  intakes: [beats]
+  variants:
+    - filebeat.nozomi_networks_asset.default

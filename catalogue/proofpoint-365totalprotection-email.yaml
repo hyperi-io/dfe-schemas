@@ -1,0 +1,23 @@
+# Catalogue source proofpoint-365totalprotection-email: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: proofpoint-365totalprotection-email
+display_name: proofpoint_365totalprotection.email
+description: The email data stream of the Elastic proofpoint_365totalprotection integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: proofpoint_365totalprotection.email
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/proofpoint_365totalprotection/email
+  additional_fields: additional/proofpoint_365totalprotection/email
+transform:
+  engine: elastic
+  variant: filebeat.proofpoint_365totalprotection_email.default
+catalogue:
+  package: proofpoint_365totalprotection
+  data_stream: email
+  intakes: [beats]
+  variants:
+    - filebeat.proofpoint_365totalprotection_email.default

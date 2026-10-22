@@ -1,0 +1,23 @@
+# Catalogue source gitlab-production: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: gitlab-production
+display_name: gitlab.production
+description: The production data stream of the Elastic gitlab integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: gitlab.production
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/gitlab/production
+  additional_fields: additional/gitlab/production
+transform:
+  engine: elastic
+  variant: filebeat.gitlab_production.default
+catalogue:
+  package: gitlab
+  data_stream: production
+  intakes: [beats]
+  variants:
+    - filebeat.gitlab_production.default

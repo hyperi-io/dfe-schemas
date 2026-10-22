@@ -1,0 +1,23 @@
+# Catalogue source bitwarden-collection: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: bitwarden-collection
+display_name: bitwarden.collection
+description: The collection data stream of the Elastic bitwarden integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: bitwarden.collection
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/bitwarden/collection
+  additional_fields: additional/bitwarden/collection
+transform:
+  engine: elastic
+  variant: filebeat.bitwarden_collection.default
+catalogue:
+  package: bitwarden
+  data_stream: collection
+  intakes: [beats]
+  variants:
+    - filebeat.bitwarden_collection.default

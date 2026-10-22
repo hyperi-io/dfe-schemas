@@ -1,0 +1,23 @@
+# Catalogue source envoyproxy-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: envoyproxy-log
+display_name: envoyproxy.log
+description: The log data stream of the Elastic envoyproxy integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: envoyproxy.log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/envoyproxy/log
+  additional_fields: additional/envoyproxy/log
+transform:
+  engine: elastic
+  variant: filebeat.envoyproxy_log.default
+catalogue:
+  package: envoyproxy
+  data_stream: log
+  intakes: [beats]
+  variants:
+    - filebeat.envoyproxy_log.default

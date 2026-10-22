@@ -1,0 +1,23 @@
+# Catalogue source zeek-syslog: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zeek-syslog
+display_name: zeek.syslog
+description: The syslog data stream of the Elastic zeek integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: zeek.syslog
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zeek/syslog
+  additional_fields: additional/zeek/syslog
+transform:
+  engine: elastic
+  variant: filebeat.zeek_syslog.default
+catalogue:
+  package: zeek
+  data_stream: syslog
+  intakes: [beats]
+  variants:
+    - filebeat.zeek_syslog.default

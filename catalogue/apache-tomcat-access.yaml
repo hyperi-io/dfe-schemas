@@ -1,0 +1,23 @@
+# Catalogue source apache-tomcat-access: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: apache-tomcat-access
+display_name: apache_tomcat.access
+description: The access data stream of the Elastic apache_tomcat integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: apache_tomcat.access
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/apache_tomcat/access
+  additional_fields: additional/apache_tomcat/access
+transform:
+  engine: elastic
+  variant: filebeat.apache_tomcat_access.default
+catalogue:
+  package: apache_tomcat
+  data_stream: access
+  intakes: [beats]
+  variants:
+    - filebeat.apache_tomcat_access.default

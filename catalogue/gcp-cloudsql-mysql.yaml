@@ -1,0 +1,19 @@
+# Catalogue source gcp-cloudsql-mysql: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: gcp-cloudsql-mysql
+display_name: gcp.cloudsql_mysql
+description: The cloudsql_mysql data stream of the Elastic gcp integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: gcp.cloudsql_mysql
+transform:
+  engine: elastic
+  variant: filebeat.gcp_cloudsql_mysql.default
+catalogue:
+  package: gcp
+  data_stream: cloudsql_mysql
+  intakes: [beats]
+  variants:
+    - filebeat.gcp_cloudsql_mysql.default

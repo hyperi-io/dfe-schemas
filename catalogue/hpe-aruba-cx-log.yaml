@@ -1,0 +1,24 @@
+# Catalogue source hpe-aruba-cx-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: hpe-aruba-cx-log
+display_name: hpe_aruba_cx.log
+description: The log data stream of the Elastic hpe_aruba_cx integration.
+match:
+  field: _source
+  operator: equals
+  value: hpe-aruba-cx-log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/hpe_aruba_cx/log
+  additional_fields: additional/hpe_aruba_cx/log
+transform:
+  engine: elastic
+  variant: filebeat.hpe_aruba_cx_log.default
+catalogue:
+  package: hpe_aruba_cx
+  data_stream: log
+  intakes: [beats, receiver]
+  framing: line
+  variants:
+    - filebeat.hpe_aruba_cx_log.default

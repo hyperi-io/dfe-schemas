@@ -1,0 +1,23 @@
+# Catalogue source bitdefender-push-statistics: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: bitdefender-push-statistics
+display_name: bitdefender.push_statistics
+description: The push_statistics data stream of the Elastic bitdefender integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: bitdefender.push_statistics
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/bitdefender/push_statistics
+  additional_fields: additional/bitdefender/push_statistics
+transform:
+  engine: elastic
+  variant: filebeat.bitdefender_push_statistics.default
+catalogue:
+  package: bitdefender
+  data_stream: push_statistics
+  intakes: [beats]
+  variants:
+    - filebeat.bitdefender_push_statistics.default

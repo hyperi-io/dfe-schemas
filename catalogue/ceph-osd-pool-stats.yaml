@@ -1,0 +1,23 @@
+# Catalogue source ceph-osd-pool-stats: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ceph-osd-pool-stats
+display_name: ceph.osd_pool_stats
+description: The osd_pool_stats data stream of the Elastic ceph integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ceph.osd_pool_stats
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ceph/osd_pool_stats
+  additional_fields: additional/ceph/osd_pool_stats
+transform:
+  engine: elastic
+  variant: filebeat.ceph_osd_pool_stats.default
+catalogue:
+  package: ceph
+  data_stream: osd_pool_stats
+  intakes: [beats]
+  variants:
+    - filebeat.ceph_osd_pool_stats.default

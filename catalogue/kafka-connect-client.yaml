@@ -1,0 +1,19 @@
+# Catalogue source kafka-connect-client: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: kafka-connect-client
+display_name: kafka_connect.client
+description: The client data stream of the Elastic kafka_connect integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: kafka_connect.client
+transform:
+  engine: elastic
+  variant: filebeat.kafka_connect_client.default
+catalogue:
+  package: kafka_connect
+  data_stream: client
+  intakes: [beats]
+  variants:
+    - filebeat.kafka_connect_client.default

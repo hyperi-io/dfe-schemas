@@ -1,0 +1,23 @@
+# Catalogue source awsfirehose-logs: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: awsfirehose-logs
+display_name: awsfirehose.logs
+description: The logs data stream of the Elastic awsfirehose integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: awsfirehose.logs
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/awsfirehose/logs
+  additional_fields: additional/awsfirehose/logs
+transform:
+  engine: elastic
+  variant: filebeat.awsfirehose_logs.default
+catalogue:
+  package: awsfirehose
+  data_stream: logs
+  intakes: [beats]
+  variants:
+    - filebeat.awsfirehose_logs.default

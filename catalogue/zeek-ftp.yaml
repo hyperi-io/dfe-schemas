@@ -1,0 +1,23 @@
+# Catalogue source zeek-ftp: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zeek-ftp
+display_name: zeek.ftp
+description: The ftp data stream of the Elastic zeek integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: zeek.ftp
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zeek/ftp
+  additional_fields: additional/zeek/ftp
+transform:
+  engine: elastic
+  variant: filebeat.zeek_ftp.default
+catalogue:
+  package: zeek
+  data_stream: ftp
+  intakes: [beats]
+  variants:
+    - filebeat.zeek_ftp.default

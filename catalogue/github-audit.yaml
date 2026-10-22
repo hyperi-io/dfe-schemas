@@ -1,0 +1,22 @@
+# Catalogue source github-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: github-audit
+display_name: github.audit
+description: The audit data stream of the Elastic github integration.
+fetcher:
+  source_type: github
+  topic: own
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/github/audit
+  additional_fields: additional/github/audit
+transform:
+  engine: elastic
+  variant: filebeat.github_audit.default
+catalogue:
+  package: github
+  data_stream: audit
+  intakes: [beats, fetcher]
+  variants:
+    - filebeat.github_audit.default

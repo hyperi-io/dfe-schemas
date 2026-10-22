@@ -1,0 +1,23 @@
+# Catalogue source azure-app-service-app-service-logs: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: azure-app-service-app-service-logs
+display_name: azure_app_service.app_service_logs
+description: The app_service_logs data stream of the Elastic azure_app_service integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: azure_app_service.app_service_logs
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/azure_app_service/app_service_logs
+  additional_fields: additional/azure_app_service/app_service_logs
+transform:
+  engine: elastic
+  variant: filebeat.azure_app_service_app_service_logs.default
+catalogue:
+  package: azure_app_service
+  data_stream: app_service_logs
+  intakes: [beats]
+  variants:
+    - filebeat.azure_app_service_app_service_logs.default

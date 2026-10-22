@@ -1,0 +1,23 @@
+# Catalogue source airlock-digital-execution-histories: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: airlock-digital-execution-histories
+display_name: airlock_digital.execution_histories
+description: The execution_histories data stream of the Elastic airlock_digital integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: airlock_digital.execution_histories
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/airlock_digital/execution_histories
+  additional_fields: additional/airlock_digital/execution_histories
+transform:
+  engine: elastic
+  variant: filebeat.airlock_digital_execution_histories.default
+catalogue:
+  package: airlock_digital
+  data_stream: execution_histories
+  intakes: [beats]
+  variants:
+    - filebeat.airlock_digital_execution_histories.default

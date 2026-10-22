@@ -1,0 +1,23 @@
+# Catalogue source ti-domaintools-nad-feed: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ti-domaintools-nad-feed
+display_name: ti_domaintools.nad_feed
+description: The nad_feed data stream of the Elastic ti_domaintools integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ti_domaintools.nad_feed
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ti_domaintools/nad_feed
+  additional_fields: additional/ti_domaintools/nad_feed
+transform:
+  engine: elastic
+  variant: filebeat.ti_domaintools_nad_feed.default
+catalogue:
+  package: ti_domaintools
+  data_stream: nad_feed
+  intakes: [beats]
+  variants:
+    - filebeat.ti_domaintools_nad_feed.default

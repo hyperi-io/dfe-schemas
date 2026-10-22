@@ -1,0 +1,23 @@
+# Catalogue source mongodb-atlas-project: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: mongodb-atlas-project
+display_name: mongodb_atlas.project
+description: The project data stream of the Elastic mongodb_atlas integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: mongodb_atlas.project
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/mongodb_atlas/project
+  additional_fields: additional/mongodb_atlas/project
+transform:
+  engine: elastic
+  variant: filebeat.mongodb_atlas_project.default
+catalogue:
+  package: mongodb_atlas
+  data_stream: project
+  intakes: [beats]
+  variants:
+    - filebeat.mongodb_atlas_project.default

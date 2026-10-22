@@ -1,0 +1,22 @@
+# Catalogue source azure-identity-protection: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: azure-identity-protection
+display_name: azure.identity_protection
+description: The identity_protection data stream of the Elastic azure integration.
+fetcher:
+  source_type: azure
+  topic: own
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/azure/identity_protection
+  additional_fields: additional/azure/identity_protection
+transform:
+  engine: elastic
+  variant: filebeat.azure_identity_protection.default
+catalogue:
+  package: azure
+  data_stream: identity_protection
+  intakes: [beats, fetcher]
+  variants:
+    - filebeat.azure_identity_protection.default

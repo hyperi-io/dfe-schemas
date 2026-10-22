@@ -1,0 +1,19 @@
+# Catalogue source kafka-consumer: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: kafka-consumer
+display_name: kafka.consumer
+description: The consumer data stream of the Elastic kafka integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: kafka.consumer
+transform:
+  engine: elastic
+  variant: filebeat.kafka_consumer.default
+catalogue:
+  package: kafka
+  data_stream: consumer
+  intakes: [beats]
+  variants:
+    - filebeat.kafka_consumer.default

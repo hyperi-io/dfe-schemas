@@ -1,0 +1,23 @@
+# Catalogue source mongodb-atlas-mongod-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: mongodb-atlas-mongod-audit
+display_name: mongodb_atlas.mongod_audit
+description: The mongod_audit data stream of the Elastic mongodb_atlas integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: mongodb_atlas.mongod_audit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/mongodb_atlas/mongod_audit
+  additional_fields: additional/mongodb_atlas/mongod_audit
+transform:
+  engine: elastic
+  variant: filebeat.mongodb_atlas_mongod_audit.default
+catalogue:
+  package: mongodb_atlas
+  data_stream: mongod_audit
+  intakes: [beats]
+  variants:
+    - filebeat.mongodb_atlas_mongod_audit.default

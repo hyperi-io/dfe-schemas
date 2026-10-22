@@ -1,0 +1,23 @@
+# Catalogue source rubrik-mssql-databases: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: rubrik-mssql-databases
+display_name: rubrik.mssql_databases
+description: The mssql_databases data stream of the Elastic rubrik integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: rubrik.mssql_databases
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/rubrik/mssql_databases
+  additional_fields: additional/rubrik/mssql_databases
+transform:
+  engine: elastic
+  variant: filebeat.rubrik_mssql_databases.default
+catalogue:
+  package: rubrik
+  data_stream: mssql_databases
+  intakes: [beats]
+  variants:
+    - filebeat.rubrik_mssql_databases.default

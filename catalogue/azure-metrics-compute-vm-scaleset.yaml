@@ -1,0 +1,23 @@
+# Catalogue source azure-metrics-compute-vm-scaleset: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: azure-metrics-compute-vm-scaleset
+display_name: azure_metrics.compute_vm_scaleset
+description: The compute_vm_scaleset data stream of the Elastic azure_metrics integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: azure_metrics.compute_vm_scaleset
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/azure_metrics/compute_vm_scaleset
+  additional_fields: additional/azure_metrics/compute_vm_scaleset
+transform:
+  engine: elastic
+  variant: filebeat.azure_metrics_compute_vm_scaleset.default
+catalogue:
+  package: azure_metrics
+  data_stream: compute_vm_scaleset
+  intakes: [beats]
+  variants:
+    - filebeat.azure_metrics_compute_vm_scaleset.default

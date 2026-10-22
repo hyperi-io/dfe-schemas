@@ -1,0 +1,23 @@
+# Catalogue source zeek-dhcp: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zeek-dhcp
+display_name: zeek.dhcp
+description: The dhcp data stream of the Elastic zeek integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: zeek.dhcp
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zeek/dhcp
+  additional_fields: additional/zeek/dhcp
+transform:
+  engine: elastic
+  variant: filebeat.zeek_dhcp.default
+catalogue:
+  package: zeek
+  data_stream: dhcp
+  intakes: [beats]
+  variants:
+    - filebeat.zeek_dhcp.default

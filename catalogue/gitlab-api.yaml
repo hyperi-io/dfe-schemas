@@ -1,0 +1,23 @@
+# Catalogue source gitlab-api: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: gitlab-api
+display_name: gitlab.api
+description: The api data stream of the Elastic gitlab integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: gitlab.api
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/gitlab/api
+  additional_fields: additional/gitlab/api
+transform:
+  engine: elastic
+  variant: filebeat.gitlab_api.default
+catalogue:
+  package: gitlab
+  data_stream: api
+  intakes: [beats]
+  variants:
+    - filebeat.gitlab_api.default

@@ -1,0 +1,23 @@
+# Catalogue source ti-eclecticiq-threat: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ti-eclecticiq-threat
+display_name: ti_eclecticiq.threat
+description: The threat data stream of the Elastic ti_eclecticiq integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ti_eclecticiq.threat
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ti_eclecticiq/threat
+  additional_fields: additional/ti_eclecticiq/threat
+transform:
+  engine: elastic
+  variant: filebeat.ti_eclecticiq_threat.default
+catalogue:
+  package: ti_eclecticiq
+  data_stream: threat
+  intakes: [beats]
+  variants:
+    - filebeat.ti_eclecticiq_threat.default

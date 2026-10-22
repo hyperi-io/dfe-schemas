@@ -1,0 +1,23 @@
+# Catalogue source elasticsearch-slowlog: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: elasticsearch-slowlog
+display_name: elasticsearch.slowlog
+description: The slowlog data stream of the Elastic elasticsearch integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: elasticsearch.slowlog
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/elasticsearch/slowlog
+  additional_fields: additional/elasticsearch/slowlog
+transform:
+  engine: elastic
+  variant: filebeat.elasticsearch_slowlog.default
+catalogue:
+  package: elasticsearch
+  data_stream: slowlog
+  intakes: [beats]
+  variants:
+    - filebeat.elasticsearch_slowlog.default

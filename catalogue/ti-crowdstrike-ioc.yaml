@@ -1,0 +1,23 @@
+# Catalogue source ti-crowdstrike-ioc: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ti-crowdstrike-ioc
+display_name: ti_crowdstrike.ioc
+description: The ioc data stream of the Elastic ti_crowdstrike integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ti_crowdstrike.ioc
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ti_crowdstrike/ioc
+  additional_fields: additional/ti_crowdstrike/ioc
+transform:
+  engine: elastic
+  variant: filebeat.ti_crowdstrike_ioc.default
+catalogue:
+  package: ti_crowdstrike
+  data_stream: ioc
+  intakes: [beats]
+  variants:
+    - filebeat.ti_crowdstrike_ioc.default

@@ -1,0 +1,23 @@
+# Catalogue source digital-guardian-arc: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: digital-guardian-arc
+display_name: digital_guardian.arc
+description: The arc data stream of the Elastic digital_guardian integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: digital_guardian.arc
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/digital_guardian/arc
+  additional_fields: additional/digital_guardian/arc
+transform:
+  engine: elastic
+  variant: filebeat.digital_guardian_arc.default
+catalogue:
+  package: digital_guardian
+  data_stream: arc
+  intakes: [beats]
+  variants:
+    - filebeat.digital_guardian_arc.default

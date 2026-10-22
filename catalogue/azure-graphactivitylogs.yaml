@@ -1,0 +1,22 @@
+# Catalogue source azure-graphactivitylogs: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: azure-graphactivitylogs
+display_name: azure.graphactivitylogs
+description: The graphactivitylogs data stream of the Elastic azure integration.
+fetcher:
+  source_type: azure
+  topic: own
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/azure/graphactivitylogs
+  additional_fields: additional/azure/graphactivitylogs
+transform:
+  engine: elastic
+  variant: filebeat.azure_graphactivitylogs.default
+catalogue:
+  package: azure
+  data_stream: graphactivitylogs
+  intakes: [beats, fetcher]
+  variants:
+    - filebeat.azure_graphactivitylogs.default

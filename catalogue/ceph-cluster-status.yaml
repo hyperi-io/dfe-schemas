@@ -1,0 +1,23 @@
+# Catalogue source ceph-cluster-status: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ceph-cluster-status
+display_name: ceph.cluster_status
+description: The cluster_status data stream of the Elastic ceph integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ceph.cluster_status
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ceph/cluster_status
+  additional_fields: additional/ceph/cluster_status
+transform:
+  engine: elastic
+  variant: filebeat.ceph_cluster_status.default
+catalogue:
+  package: ceph
+  data_stream: cluster_status
+  intakes: [beats]
+  variants:
+    - filebeat.ceph_cluster_status.default

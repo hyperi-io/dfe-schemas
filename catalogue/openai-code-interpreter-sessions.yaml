@@ -1,0 +1,19 @@
+# Catalogue source openai-code-interpreter-sessions: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: openai-code-interpreter-sessions
+display_name: openai.code_interpreter_sessions
+description: The code_interpreter_sessions data stream of the Elastic openai integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: openai.code_interpreter_sessions
+transform:
+  engine: elastic
+  variant: filebeat.openai_code_interpreter_sessions.default
+catalogue:
+  package: openai
+  data_stream: code_interpreter_sessions
+  intakes: [beats]
+  variants:
+    - filebeat.openai_code_interpreter_sessions.default

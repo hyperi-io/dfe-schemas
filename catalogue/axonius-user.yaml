@@ -1,0 +1,23 @@
+# Catalogue source axonius-user: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: axonius-user
+display_name: axonius.user
+description: The user data stream of the Elastic axonius integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: axonius.user
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/axonius/user
+  additional_fields: additional/axonius/user
+transform:
+  engine: elastic
+  variant: filebeat.axonius_user.default
+catalogue:
+  package: axonius
+  data_stream: user
+  intakes: [beats]
+  variants:
+    - filebeat.axonius_user.default

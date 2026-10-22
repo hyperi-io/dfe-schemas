@@ -1,0 +1,24 @@
+# Catalogue source ping-one-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ping-one-audit
+display_name: ping_one.audit
+description: The audit data stream of the Elastic ping_one integration.
+match:
+  field: _source
+  operator: equals
+  value: ping-one-audit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ping_one/audit
+  additional_fields: additional/ping_one/audit
+transform:
+  engine: elastic
+  variant: filebeat.ping_one_audit.default
+catalogue:
+  package: ping_one
+  data_stream: audit
+  intakes: [beats, receiver]
+  framing: body
+  variants:
+    - filebeat.ping_one_audit.default

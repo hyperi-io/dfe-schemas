@@ -1,0 +1,23 @@
+# Catalogue source o365-metrics-teams-device-user-counts: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: o365-metrics-teams-device-user-counts
+display_name: o365_metrics.teams_device_usage_user_counts
+description: The teams_device_usage_user_counts data stream of the Elastic o365_metrics integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: o365_metrics.teams_device_usage_user_counts
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/o365_metrics/teams_device_usage_user_counts
+  additional_fields: additional/o365_metrics/teams_device_usage_user_counts
+transform:
+  engine: elastic
+  variant: filebeat.o365_metrics_teams_device_usage_user_counts.default
+catalogue:
+  package: o365_metrics
+  data_stream: teams_device_usage_user_counts
+  intakes: [beats]
+  variants:
+    - filebeat.o365_metrics_teams_device_usage_user_counts.default

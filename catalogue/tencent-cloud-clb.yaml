@@ -1,0 +1,23 @@
+# Catalogue source tencent-cloud-clb: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: tencent-cloud-clb
+display_name: tencent_cloud.clb
+description: The clb data stream of the Elastic tencent_cloud integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: tencent_cloud.clb
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/tencent_cloud/clb
+  additional_fields: additional/tencent_cloud/clb
+transform:
+  engine: elastic
+  variant: filebeat.tencent_cloud_clb.default
+catalogue:
+  package: tencent_cloud
+  data_stream: clb
+  intakes: [beats]
+  variants:
+    - filebeat.tencent_cloud_clb.default

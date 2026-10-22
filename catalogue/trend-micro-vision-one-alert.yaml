@@ -1,0 +1,23 @@
+# Catalogue source trend-micro-vision-one-alert: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: trend-micro-vision-one-alert
+display_name: trend_micro_vision_one.alert
+description: The alert data stream of the Elastic trend_micro_vision_one integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: trend_micro_vision_one.alert
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/trend_micro_vision_one/alert
+  additional_fields: additional/trend_micro_vision_one/alert
+transform:
+  engine: elastic
+  variant: filebeat.trend_micro_vision_one_alert.default
+catalogue:
+  package: trend_micro_vision_one
+  data_stream: alert
+  intakes: [beats]
+  variants:
+    - filebeat.trend_micro_vision_one_alert.default

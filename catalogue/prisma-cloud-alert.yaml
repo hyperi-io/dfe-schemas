@@ -1,0 +1,23 @@
+# Catalogue source prisma-cloud-alert: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: prisma-cloud-alert
+display_name: prisma_cloud.alert
+description: The alert data stream of the Elastic prisma_cloud integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: prisma_cloud.alert
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/prisma_cloud/alert
+  additional_fields: additional/prisma_cloud/alert
+transform:
+  engine: elastic
+  variant: filebeat.prisma_cloud_alert.default
+catalogue:
+  package: prisma_cloud
+  data_stream: alert
+  intakes: [beats]
+  variants:
+    - filebeat.prisma_cloud_alert.default

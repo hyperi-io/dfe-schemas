@@ -1,0 +1,19 @@
+# Catalogue source oracle-weblogic-threadpool: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: oracle-weblogic-threadpool
+display_name: oracle_weblogic.threadpool
+description: The threadpool data stream of the Elastic oracle_weblogic integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: oracle_weblogic.threadpool
+transform:
+  engine: elastic
+  variant: filebeat.oracle_weblogic_threadpool.default
+catalogue:
+  package: oracle_weblogic
+  data_stream: threadpool
+  intakes: [beats]
+  variants:
+    - filebeat.oracle_weblogic_threadpool.default

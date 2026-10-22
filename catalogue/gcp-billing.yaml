@@ -1,0 +1,23 @@
+# Catalogue source gcp-billing: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: gcp-billing
+display_name: gcp.billing
+description: The billing data stream of the Elastic gcp integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: gcp.billing
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/gcp/billing
+  additional_fields: additional/gcp/billing
+transform:
+  engine: elastic
+  variant: filebeat.gcp_billing.default
+catalogue:
+  package: gcp
+  data_stream: billing
+  intakes: [beats]
+  variants:
+    - filebeat.gcp_billing.default

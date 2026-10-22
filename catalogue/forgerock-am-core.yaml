@@ -1,0 +1,23 @@
+# Catalogue source forgerock-am-core: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: forgerock-am-core
+display_name: forgerock.am_core
+description: The am_core data stream of the Elastic forgerock integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: forgerock.am_core
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/forgerock/am_core
+  additional_fields: additional/forgerock/am_core
+transform:
+  engine: elastic
+  variant: filebeat.forgerock_am_core.default
+catalogue:
+  package: forgerock
+  data_stream: am_core
+  intakes: [beats]
+  variants:
+    - filebeat.forgerock_am_core.default

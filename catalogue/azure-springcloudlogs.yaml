@@ -1,0 +1,22 @@
+# Catalogue source azure-springcloudlogs: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: azure-springcloudlogs
+display_name: azure.springcloudlogs
+description: The springcloudlogs data stream of the Elastic azure integration.
+fetcher:
+  source_type: azure
+  topic: own
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/azure/springcloudlogs
+  additional_fields: additional/azure/springcloudlogs
+transform:
+  engine: elastic
+  variant: filebeat.azure_springcloudlogs.default
+catalogue:
+  package: azure
+  data_stream: springcloudlogs
+  intakes: [beats, fetcher]
+  variants:
+    - filebeat.azure_springcloudlogs.default

@@ -1,0 +1,23 @@
+# Catalogue source golang-expvar: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: golang-expvar
+display_name: golang.expvar
+description: The expvar data stream of the Elastic golang integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: golang.expvar
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/golang/expvar
+  additional_fields: additional/golang/expvar
+transform:
+  engine: elastic
+  variant: filebeat.golang_expvar.default
+catalogue:
+  package: golang
+  data_stream: expvar
+  intakes: [beats]
+  variants:
+    - filebeat.golang_expvar.default

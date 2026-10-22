@@ -1,0 +1,23 @@
+# Catalogue source ece-adminconsole: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ece-adminconsole
+display_name: ece.adminconsole
+description: The adminconsole data stream of the Elastic ece integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ece.adminconsole
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ece/adminconsole
+  additional_fields: additional/ece/adminconsole
+transform:
+  engine: elastic
+  variant: filebeat.ece_adminconsole.default
+catalogue:
+  package: ece
+  data_stream: adminconsole
+  intakes: [beats]
+  variants:
+    - filebeat.ece_adminconsole.default

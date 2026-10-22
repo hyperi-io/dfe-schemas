@@ -1,0 +1,23 @@
+# Catalogue source withsecure-elements-security-events: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: withsecure-elements-security-events
+display_name: withsecure_elements.security_events
+description: The security_events data stream of the Elastic withsecure_elements integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: withsecure_elements.security_events
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/withsecure_elements/security_events
+  additional_fields: additional/withsecure_elements/security_events
+transform:
+  engine: elastic
+  variant: filebeat.withsecure_elements_security_events.default
+catalogue:
+  package: withsecure_elements
+  data_stream: security_events
+  intakes: [beats]
+  variants:
+    - filebeat.withsecure_elements_security_events.default

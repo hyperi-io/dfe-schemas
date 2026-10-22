@@ -1,0 +1,23 @@
+# Catalogue source windows-powershell-operational: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: windows-powershell-operational
+display_name: windows.powershell_operational
+description: The powershell_operational data stream of the Elastic windows integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: windows.powershell_operational
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/windows/powershell_operational
+  additional_fields: additional/windows/powershell_operational
+transform:
+  engine: elastic
+  variant: filebeat.windows_powershell_operational.default
+catalogue:
+  package: windows
+  data_stream: powershell_operational
+  intakes: [beats]
+  variants:
+    - filebeat.windows_powershell_operational.default

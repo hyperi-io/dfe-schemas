@@ -1,0 +1,23 @@
+# Catalogue source vsphere-virtualmachine: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: vsphere-virtualmachine
+display_name: vsphere.virtualmachine
+description: The virtualmachine data stream of the Elastic vsphere integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: vsphere.virtualmachine
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/vsphere/virtualmachine
+  additional_fields: additional/vsphere/virtualmachine
+transform:
+  engine: elastic
+  variant: filebeat.vsphere_virtualmachine.default
+catalogue:
+  package: vsphere
+  data_stream: virtualmachine
+  intakes: [beats]
+  variants:
+    - filebeat.vsphere_virtualmachine.default

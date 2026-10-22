@@ -1,0 +1,23 @@
+# Catalogue source anthropic-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: anthropic-audit
+display_name: anthropic.audit
+description: The audit data stream of the Elastic anthropic integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: anthropic.audit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/anthropic/audit
+  additional_fields: additional/anthropic/audit
+transform:
+  engine: elastic
+  variant: filebeat.anthropic_audit.default
+catalogue:
+  package: anthropic
+  data_stream: audit
+  intakes: [beats]
+  variants:
+    - filebeat.anthropic_audit.default

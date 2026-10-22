@@ -1,0 +1,23 @@
+# Catalogue source zeek-ssh: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zeek-ssh
+display_name: zeek.ssh
+description: The ssh data stream of the Elastic zeek integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: zeek.ssh
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zeek/ssh
+  additional_fields: additional/zeek/ssh
+transform:
+  engine: elastic
+  variant: filebeat.zeek_ssh.default
+catalogue:
+  package: zeek
+  data_stream: ssh
+  intakes: [beats]
+  variants:
+    - filebeat.zeek_ssh.default

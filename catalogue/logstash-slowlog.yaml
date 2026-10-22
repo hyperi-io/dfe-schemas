@@ -1,0 +1,23 @@
+# Catalogue source logstash-slowlog: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: logstash-slowlog
+display_name: logstash.slowlog
+description: The slowlog data stream of the Elastic logstash integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: logstash.slowlog
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/logstash/slowlog
+  additional_fields: additional/logstash/slowlog
+transform:
+  engine: elastic
+  variant: filebeat.logstash_slowlog.default
+catalogue:
+  package: logstash
+  data_stream: slowlog
+  intakes: [beats]
+  variants:
+    - filebeat.logstash_slowlog.default

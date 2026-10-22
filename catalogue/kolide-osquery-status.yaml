@@ -1,0 +1,23 @@
+# Catalogue source kolide-osquery-status: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: kolide-osquery-status
+display_name: kolide.osquery_status
+description: The osquery_status data stream of the Elastic kolide integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: kolide.osquery_status
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/kolide/osquery_status
+  additional_fields: additional/kolide/osquery_status
+transform:
+  engine: elastic
+  variant: filebeat.kolide_osquery_status.default
+catalogue:
+  package: kolide
+  data_stream: osquery_status
+  intakes: [beats]
+  variants:
+    - filebeat.kolide_osquery_status.default

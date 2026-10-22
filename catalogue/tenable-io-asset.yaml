@@ -1,0 +1,23 @@
+# Catalogue source tenable-io-asset: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: tenable-io-asset
+display_name: tenable_io.asset
+description: The asset data stream of the Elastic tenable_io integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: tenable_io.asset
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/tenable_io/asset
+  additional_fields: additional/tenable_io/asset
+transform:
+  engine: elastic
+  variant: filebeat.tenable_io_asset.default
+catalogue:
+  package: tenable_io
+  data_stream: asset
+  intakes: [beats]
+  variants:
+    - filebeat.tenable_io_asset.default

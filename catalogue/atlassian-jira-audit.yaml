@@ -1,0 +1,23 @@
+# Catalogue source atlassian-jira-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: atlassian-jira-audit
+display_name: atlassian_jira.audit
+description: The audit data stream of the Elastic atlassian_jira integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: atlassian_jira.audit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/atlassian_jira/audit
+  additional_fields: additional/atlassian_jira/audit
+transform:
+  engine: elastic
+  variant: filebeat.atlassian_jira_audit.default
+catalogue:
+  package: atlassian_jira
+  data_stream: audit
+  intakes: [beats]
+  variants:
+    - filebeat.atlassian_jira_audit.default

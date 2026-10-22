@@ -1,0 +1,23 @@
+# Catalogue source microsoft-sentinel-event: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: microsoft-sentinel-event
+display_name: microsoft_sentinel.event
+description: The event data stream of the Elastic microsoft_sentinel integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: microsoft_sentinel.event
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/microsoft_sentinel/event
+  additional_fields: additional/microsoft_sentinel/event
+transform:
+  engine: elastic
+  variant: filebeat.microsoft_sentinel_event.default
+catalogue:
+  package: microsoft_sentinel
+  data_stream: event
+  intakes: [beats]
+  variants:
+    - filebeat.microsoft_sentinel_event.default

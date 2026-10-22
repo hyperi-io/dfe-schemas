@@ -1,0 +1,23 @@
+# Catalogue source spycloud-breach-record: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: spycloud-breach-record
+display_name: spycloud.breach_record
+description: The breach_record data stream of the Elastic spycloud integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: spycloud.breach_record
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/spycloud/breach_record
+  additional_fields: additional/spycloud/breach_record
+transform:
+  engine: elastic
+  variant: filebeat.spycloud_breach_record.default
+catalogue:
+  package: spycloud
+  data_stream: breach_record
+  intakes: [beats]
+  variants:
+    - filebeat.spycloud_breach_record.default

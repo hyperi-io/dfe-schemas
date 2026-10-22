@@ -1,0 +1,23 @@
+# Catalogue source stan-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: stan-log
+display_name: stan.log
+description: The log data stream of the Elastic stan integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: stan.log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/stan/log
+  additional_fields: additional/stan/log
+transform:
+  engine: elastic
+  variant: filebeat.stan_log.default
+catalogue:
+  package: stan
+  data_stream: log
+  intakes: [beats]
+  variants:
+    - filebeat.stan_log.default

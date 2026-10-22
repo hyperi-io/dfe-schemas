@@ -1,0 +1,19 @@
+# Catalogue source kafka-network: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: kafka-network
+display_name: kafka.network
+description: The network data stream of the Elastic kafka integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: kafka.network
+transform:
+  engine: elastic
+  variant: filebeat.kafka_network.default
+catalogue:
+  package: kafka
+  data_stream: network
+  intakes: [beats]
+  variants:
+    - filebeat.kafka_network.default

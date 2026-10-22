@@ -1,0 +1,23 @@
+# Catalogue source prisma-cloud-misconfiguration: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: prisma-cloud-misconfiguration
+display_name: prisma_cloud.misconfiguration
+description: The misconfiguration data stream of the Elastic prisma_cloud integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: prisma_cloud.misconfiguration
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/prisma_cloud/misconfiguration
+  additional_fields: additional/prisma_cloud/misconfiguration
+transform:
+  engine: elastic
+  variant: filebeat.prisma_cloud_misconfiguration.default
+catalogue:
+  package: prisma_cloud
+  data_stream: misconfiguration
+  intakes: [beats]
+  variants:
+    - filebeat.prisma_cloud_misconfiguration.default

@@ -1,0 +1,23 @@
+# Catalogue source mimecast-audit-events: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: mimecast-audit-events
+display_name: mimecast.audit_events
+description: The audit_events data stream of the Elastic mimecast integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: mimecast.audit_events
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/mimecast/audit_events
+  additional_fields: additional/mimecast/audit_events
+transform:
+  engine: elastic
+  variant: filebeat.mimecast_audit_events.default
+catalogue:
+  package: mimecast
+  data_stream: audit_events
+  intakes: [beats]
+  variants:
+    - filebeat.mimecast_audit_events.default

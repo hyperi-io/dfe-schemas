@@ -1,0 +1,19 @@
+# Catalogue source aws-kinesis: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: aws-kinesis
+display_name: aws.kinesis
+description: The kinesis data stream of the Elastic aws integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: aws.kinesis
+transform:
+  engine: elastic
+  variant: filebeat.aws_kinesis.default
+catalogue:
+  package: aws
+  data_stream: kinesis
+  intakes: [beats]
+  variants:
+    - filebeat.aws_kinesis.default

@@ -1,0 +1,23 @@
+# Catalogue source vectra-rux-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: vectra-rux-audit
+display_name: vectra_rux.audit
+description: The audit data stream of the Elastic vectra_rux integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: vectra_rux.audit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/vectra_rux/audit
+  additional_fields: additional/vectra_rux/audit
+transform:
+  engine: elastic
+  variant: filebeat.vectra_rux_audit.default
+catalogue:
+  package: vectra_rux
+  data_stream: audit
+  intakes: [beats]
+  variants:
+    - filebeat.vectra_rux_audit.default

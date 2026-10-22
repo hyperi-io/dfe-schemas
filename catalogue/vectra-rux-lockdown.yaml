@@ -1,0 +1,23 @@
+# Catalogue source vectra-rux-lockdown: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: vectra-rux-lockdown
+display_name: vectra_rux.lockdown
+description: The lockdown data stream of the Elastic vectra_rux integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: vectra_rux.lockdown
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/vectra_rux/lockdown
+  additional_fields: additional/vectra_rux/lockdown
+transform:
+  engine: elastic
+  variant: filebeat.vectra_rux_lockdown.default
+catalogue:
+  package: vectra_rux
+  data_stream: lockdown
+  intakes: [beats]
+  variants:
+    - filebeat.vectra_rux_lockdown.default

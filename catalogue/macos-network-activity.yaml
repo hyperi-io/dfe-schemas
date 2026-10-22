@@ -1,0 +1,23 @@
+# Catalogue source macos-network-activity: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: macos-network-activity
+display_name: macos.network_activity
+description: The network_activity data stream of the Elastic macos integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: macos.network_activity
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/macos/network_activity
+  additional_fields: additional/macos/network_activity
+transform:
+  engine: elastic
+  variant: filebeat.macos_network_activity.default
+catalogue:
+  package: macos
+  data_stream: network_activity
+  intakes: [beats]
+  variants:
+    - filebeat.macos_network_activity.default

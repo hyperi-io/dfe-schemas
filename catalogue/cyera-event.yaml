@@ -1,0 +1,23 @@
+# Catalogue source cyera-event: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: cyera-event
+display_name: cyera.event
+description: The event data stream of the Elastic cyera integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: cyera.event
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/cyera/event
+  additional_fields: additional/cyera/event
+transform:
+  engine: elastic
+  variant: filebeat.cyera_event.default
+catalogue:
+  package: cyera
+  data_stream: event
+  intakes: [beats]
+  variants:
+    - filebeat.cyera_event.default

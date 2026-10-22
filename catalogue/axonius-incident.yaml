@@ -1,0 +1,23 @@
+# Catalogue source axonius-incident: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: axonius-incident
+display_name: axonius.incident
+description: The incident data stream of the Elastic axonius integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: axonius.incident
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/axonius/incident
+  additional_fields: additional/axonius/incident
+transform:
+  engine: elastic
+  variant: filebeat.axonius_incident.default
+catalogue:
+  package: axonius
+  data_stream: incident
+  intakes: [beats]
+  variants:
+    - filebeat.axonius_incident.default

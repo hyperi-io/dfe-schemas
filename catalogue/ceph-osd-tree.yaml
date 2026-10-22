@@ -1,0 +1,23 @@
+# Catalogue source ceph-osd-tree: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ceph-osd-tree
+display_name: ceph.osd_tree
+description: The osd_tree data stream of the Elastic ceph integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ceph.osd_tree
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ceph/osd_tree
+  additional_fields: additional/ceph/osd_tree
+transform:
+  engine: elastic
+  variant: filebeat.ceph_osd_tree.default
+catalogue:
+  package: ceph
+  data_stream: osd_tree
+  intakes: [beats]
+  variants:
+    - filebeat.ceph_osd_tree.default

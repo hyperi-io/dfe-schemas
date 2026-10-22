@@ -1,0 +1,23 @@
+# Catalogue source microsoft-intune-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: microsoft-intune-audit
+display_name: microsoft_intune.audit
+description: The audit data stream of the Elastic microsoft_intune integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: microsoft_intune.audit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/microsoft_intune/audit
+  additional_fields: additional/microsoft_intune/audit
+transform:
+  engine: elastic
+  variant: filebeat.microsoft_intune_audit.default
+catalogue:
+  package: microsoft_intune
+  data_stream: audit
+  intakes: [beats]
+  variants:
+    - filebeat.microsoft_intune_audit.default

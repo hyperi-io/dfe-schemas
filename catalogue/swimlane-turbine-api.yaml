@@ -1,0 +1,23 @@
+# Catalogue source swimlane-turbine-api: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: swimlane-turbine-api
+display_name: swimlane.turbine_api
+description: The turbine_api data stream of the Elastic swimlane integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: swimlane.turbine_api
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/swimlane/turbine_api
+  additional_fields: additional/swimlane/turbine_api
+transform:
+  engine: elastic
+  variant: filebeat.swimlane_turbine_api.default
+catalogue:
+  package: swimlane
+  data_stream: turbine_api
+  intakes: [beats]
+  variants:
+    - filebeat.swimlane_turbine_api.default

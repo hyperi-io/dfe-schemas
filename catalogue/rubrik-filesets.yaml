@@ -1,0 +1,23 @@
+# Catalogue source rubrik-filesets: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: rubrik-filesets
+display_name: rubrik.filesets
+description: The filesets data stream of the Elastic rubrik integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: rubrik.filesets
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/rubrik/filesets
+  additional_fields: additional/rubrik/filesets
+transform:
+  engine: elastic
+  variant: filebeat.rubrik_filesets.default
+catalogue:
+  package: rubrik
+  data_stream: filesets
+  intakes: [beats]
+  variants:
+    - filebeat.rubrik_filesets.default

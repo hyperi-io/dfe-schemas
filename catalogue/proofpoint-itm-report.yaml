@@ -1,0 +1,23 @@
+# Catalogue source proofpoint-itm-report: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: proofpoint-itm-report
+display_name: proofpoint_itm.report
+description: The report data stream of the Elastic proofpoint_itm integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: proofpoint_itm.report
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/proofpoint_itm/report
+  additional_fields: additional/proofpoint_itm/report
+transform:
+  engine: elastic
+  variant: filebeat.proofpoint_itm_report.default
+catalogue:
+  package: proofpoint_itm
+  data_stream: report
+  intakes: [beats]
+  variants:
+    - filebeat.proofpoint_itm_report.default

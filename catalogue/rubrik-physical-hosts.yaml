@@ -1,0 +1,23 @@
+# Catalogue source rubrik-physical-hosts: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: rubrik-physical-hosts
+display_name: rubrik.physical_hosts
+description: The physical_hosts data stream of the Elastic rubrik integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: rubrik.physical_hosts
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/rubrik/physical_hosts
+  additional_fields: additional/rubrik/physical_hosts
+transform:
+  engine: elastic
+  variant: filebeat.rubrik_physical_hosts.default
+catalogue:
+  package: rubrik
+  data_stream: physical_hosts
+  intakes: [beats]
+  variants:
+    - filebeat.rubrik_physical_hosts.default

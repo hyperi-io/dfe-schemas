@@ -1,0 +1,19 @@
+# Catalogue source aws-bedrock-runtime: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: aws-bedrock-runtime
+display_name: aws_bedrock.runtime
+description: The runtime data stream of the Elastic aws_bedrock integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: aws_bedrock.runtime
+transform:
+  engine: elastic
+  variant: filebeat.aws_bedrock_runtime.default
+catalogue:
+  package: aws_bedrock
+  data_stream: runtime
+  intakes: [beats]
+  variants:
+    - filebeat.aws_bedrock_runtime.default

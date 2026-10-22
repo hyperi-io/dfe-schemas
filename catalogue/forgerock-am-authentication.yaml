@@ -1,0 +1,23 @@
+# Catalogue source forgerock-am-authentication: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: forgerock-am-authentication
+display_name: forgerock.am_authentication
+description: The am_authentication data stream of the Elastic forgerock integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: forgerock.am_authentication
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/forgerock/am_authentication
+  additional_fields: additional/forgerock/am_authentication
+transform:
+  engine: elastic
+  variant: filebeat.forgerock_am_authentication.default
+catalogue:
+  package: forgerock
+  data_stream: am_authentication
+  intakes: [beats]
+  variants:
+    - filebeat.forgerock_am_authentication.default

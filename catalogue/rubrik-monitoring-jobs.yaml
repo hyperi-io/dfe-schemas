@@ -1,0 +1,23 @@
+# Catalogue source rubrik-monitoring-jobs: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: rubrik-monitoring-jobs
+display_name: rubrik.monitoring_jobs
+description: The monitoring_jobs data stream of the Elastic rubrik integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: rubrik.monitoring_jobs
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/rubrik/monitoring_jobs
+  additional_fields: additional/rubrik/monitoring_jobs
+transform:
+  engine: elastic
+  variant: filebeat.rubrik_monitoring_jobs.default
+catalogue:
+  package: rubrik
+  data_stream: monitoring_jobs
+  intakes: [beats]
+  variants:
+    - filebeat.rubrik_monitoring_jobs.default

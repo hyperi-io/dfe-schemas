@@ -1,0 +1,19 @@
+# Catalogue source azure-metrics-database-account: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: azure-metrics-database-account
+display_name: azure_metrics.database_account
+description: The database_account data stream of the Elastic azure_metrics integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: azure_metrics.database_account
+transform:
+  engine: elastic
+  variant: filebeat.azure_metrics_database_account.default
+catalogue:
+  package: azure_metrics
+  data_stream: database_account
+  intakes: [beats]
+  variants:
+    - filebeat.azure_metrics_database_account.default

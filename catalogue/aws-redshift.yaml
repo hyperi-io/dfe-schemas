@@ -1,0 +1,19 @@
+# Catalogue source aws-redshift: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: aws-redshift
+display_name: aws.redshift
+description: The redshift data stream of the Elastic aws integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: aws.redshift
+transform:
+  engine: elastic
+  variant: filebeat.aws_redshift.default
+catalogue:
+  package: aws
+  data_stream: redshift
+  intakes: [beats]
+  variants:
+    - filebeat.aws_redshift.default

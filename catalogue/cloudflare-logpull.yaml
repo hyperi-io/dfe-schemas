@@ -1,0 +1,23 @@
+# Catalogue source cloudflare-logpull: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: cloudflare-logpull
+display_name: cloudflare.logpull
+description: The logpull data stream of the Elastic cloudflare integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: cloudflare.logpull
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/cloudflare/logpull
+  additional_fields: additional/cloudflare/logpull
+transform:
+  engine: elastic
+  variant: filebeat.cloudflare_logpull.default
+catalogue:
+  package: cloudflare
+  data_stream: logpull
+  intakes: [beats]
+  variants:
+    - filebeat.cloudflare_logpull.default

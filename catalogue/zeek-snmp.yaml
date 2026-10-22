@@ -1,0 +1,23 @@
+# Catalogue source zeek-snmp: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zeek-snmp
+display_name: zeek.snmp
+description: The snmp data stream of the Elastic zeek integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: zeek.snmp
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zeek/snmp
+  additional_fields: additional/zeek/snmp
+transform:
+  engine: elastic
+  variant: filebeat.zeek_snmp.default
+catalogue:
+  package: zeek
+  data_stream: snmp
+  intakes: [beats]
+  variants:
+    - filebeat.zeek_snmp.default

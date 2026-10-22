@@ -1,0 +1,23 @@
+# Catalogue source ti-threatconnect-indicator: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ti-threatconnect-indicator
+display_name: ti_threatconnect.indicator
+description: The indicator data stream of the Elastic ti_threatconnect integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ti_threatconnect.indicator
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ti_threatconnect/indicator
+  additional_fields: additional/ti_threatconnect/indicator
+transform:
+  engine: elastic
+  variant: filebeat.ti_threatconnect_indicator.default
+catalogue:
+  package: ti_threatconnect
+  data_stream: indicator
+  intakes: [beats]
+  variants:
+    - filebeat.ti_threatconnect_indicator.default

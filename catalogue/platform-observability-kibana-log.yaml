@@ -1,0 +1,22 @@
+# Catalogue source platform-observability-kibana-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: platform-observability-kibana-log
+display_name: platform_observability.kibana_log
+description: The kibana_log data stream of the Elastic platform_observability integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: platform_observability.kibana_log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/platform_observability/kibana_log
+transform:
+  engine: elastic
+  variant: filebeat.platform_observability_kibana_log.default
+catalogue:
+  package: platform_observability
+  data_stream: kibana_log
+  intakes: [beats]
+  variants:
+    - filebeat.platform_observability_kibana_log.default

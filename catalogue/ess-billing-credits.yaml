@@ -1,0 +1,19 @@
+# Catalogue source ess-billing-credits: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ess-billing-credits
+display_name: ess_billing.credits
+description: The credits data stream of the Elastic ess_billing integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ess_billing.credits
+transform:
+  engine: elastic
+  variant: filebeat.ess_billing_credits.default
+catalogue:
+  package: ess_billing
+  data_stream: credits
+  intakes: [beats]
+  variants:
+    - filebeat.ess_billing_credits.default

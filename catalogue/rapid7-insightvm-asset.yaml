@@ -1,0 +1,23 @@
+# Catalogue source rapid7-insightvm-asset: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: rapid7-insightvm-asset
+display_name: rapid7_insightvm.asset
+description: The asset data stream of the Elastic rapid7_insightvm integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: rapid7_insightvm.asset
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/rapid7_insightvm/asset
+  additional_fields: additional/rapid7_insightvm/asset
+transform:
+  engine: elastic
+  variant: filebeat.rapid7_insightvm_asset.default
+catalogue:
+  package: rapid7_insightvm
+  data_stream: asset
+  intakes: [beats]
+  variants:
+    - filebeat.rapid7_insightvm_asset.default

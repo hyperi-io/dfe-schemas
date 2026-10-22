@@ -1,0 +1,19 @@
+# Catalogue source aws-mq-rabbitmq-metrics: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: aws-mq-rabbitmq-metrics
+display_name: aws_mq.rabbitmq_metrics
+description: The rabbitmq_metrics data stream of the Elastic aws_mq integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: aws_mq.rabbitmq_metrics
+transform:
+  engine: elastic
+  variant: filebeat.aws_mq_rabbitmq_metrics.default
+catalogue:
+  package: aws_mq
+  data_stream: rabbitmq_metrics
+  intakes: [beats]
+  variants:
+    - filebeat.aws_mq_rabbitmq_metrics.default

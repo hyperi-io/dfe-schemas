@@ -1,0 +1,24 @@
+# Catalogue source fortinet-fortiproxy-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: fortinet-fortiproxy-log
+display_name: fortinet_fortiproxy.log
+description: The log data stream of the Elastic fortinet_fortiproxy integration.
+match:
+  field: _source
+  operator: equals
+  value: fortinet-fortiproxy-log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/fortinet_fortiproxy/log
+  additional_fields: additional/fortinet_fortiproxy/log
+transform:
+  engine: elastic
+  variant: filebeat.fortinet_fortiproxy_log.default
+catalogue:
+  package: fortinet_fortiproxy
+  data_stream: log
+  intakes: [beats, receiver]
+  framing: line
+  variants:
+    - filebeat.fortinet_fortiproxy_log.default

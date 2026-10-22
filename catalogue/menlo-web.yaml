@@ -1,0 +1,23 @@
+# Catalogue source menlo-web: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: menlo-web
+display_name: menlo.web
+description: The web data stream of the Elastic menlo integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: menlo.web
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/menlo/web
+  additional_fields: additional/menlo/web
+transform:
+  engine: elastic
+  variant: filebeat.menlo_web.default
+catalogue:
+  package: menlo
+  data_stream: web
+  intakes: [beats]
+  variants:
+    - filebeat.menlo_web.default

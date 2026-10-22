@@ -1,0 +1,23 @@
+# Catalogue source apache-tomcat-request: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: apache-tomcat-request
+display_name: apache_tomcat.request
+description: The request data stream of the Elastic apache_tomcat integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: apache_tomcat.request
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/apache_tomcat/request
+  additional_fields: additional/apache_tomcat/request
+transform:
+  engine: elastic
+  variant: filebeat.apache_tomcat_request.default
+catalogue:
+  package: apache_tomcat
+  data_stream: request
+  intakes: [beats]
+  variants:
+    - filebeat.apache_tomcat_request.default

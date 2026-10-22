@@ -1,0 +1,23 @@
+# Catalogue source cassandra-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: cassandra-log
+display_name: cassandra.log
+description: The log data stream of the Elastic cassandra integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: cassandra.log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/cassandra/log
+  additional_fields: additional/cassandra/log
+transform:
+  engine: elastic
+  variant: filebeat.cassandra_log.default
+catalogue:
+  package: cassandra
+  data_stream: log
+  intakes: [beats]
+  variants:
+    - filebeat.cassandra_log.default

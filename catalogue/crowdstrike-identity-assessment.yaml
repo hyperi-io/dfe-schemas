@@ -1,0 +1,23 @@
+# Catalogue source crowdstrike-identity-assessment: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: crowdstrike-identity-assessment
+display_name: crowdstrike.identity_protection_assessment
+description: The identity_protection_assessment data stream of the Elastic crowdstrike integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: crowdstrike.identity_protection_assessment
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/crowdstrike/identity_protection_assessment
+  additional_fields: additional/crowdstrike/identity_protection_assessment
+transform:
+  engine: elastic
+  variant: filebeat.crowdstrike_identity_protection_assessment.default
+catalogue:
+  package: crowdstrike
+  data_stream: identity_protection_assessment
+  intakes: [beats]
+  variants:
+    - filebeat.crowdstrike_identity_protection_assessment.default

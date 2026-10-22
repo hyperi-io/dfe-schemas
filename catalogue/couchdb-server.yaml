@@ -1,0 +1,23 @@
+# Catalogue source couchdb-server: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: couchdb-server
+display_name: couchdb.server
+description: The server data stream of the Elastic couchdb integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: couchdb.server
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/couchdb/server
+  additional_fields: additional/couchdb/server
+transform:
+  engine: elastic
+  variant: filebeat.couchdb_server.default
+catalogue:
+  package: couchdb
+  data_stream: server
+  intakes: [beats]
+  variants:
+    - filebeat.couchdb_server.default

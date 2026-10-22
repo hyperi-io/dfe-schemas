@@ -1,0 +1,23 @@
+# Catalogue source sysdig-event: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: sysdig-event
+display_name: sysdig.event
+description: The event data stream of the Elastic sysdig integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: sysdig.event
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/sysdig/event
+  additional_fields: additional/sysdig/event
+transform:
+  engine: elastic
+  variant: filebeat.sysdig_event.default
+catalogue:
+  package: sysdig
+  data_stream: event
+  intakes: [beats]
+  variants:
+    - filebeat.sysdig_event.default

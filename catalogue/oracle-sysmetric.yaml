@@ -1,0 +1,19 @@
+# Catalogue source oracle-sysmetric: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: oracle-sysmetric
+display_name: oracle.sysmetric
+description: The sysmetric data stream of the Elastic oracle integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: oracle.sysmetric
+transform:
+  engine: elastic
+  variant: filebeat.oracle_sysmetric.default
+catalogue:
+  package: oracle
+  data_stream: sysmetric
+  intakes: [beats]
+  variants:
+    - filebeat.oracle_sysmetric.default

@@ -1,0 +1,23 @@
+# Catalogue source apache-tomcat-memory: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: apache-tomcat-memory
+display_name: apache_tomcat.memory
+description: The memory data stream of the Elastic apache_tomcat integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: apache_tomcat.memory
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/apache_tomcat/memory
+  additional_fields: additional/apache_tomcat/memory
+transform:
+  engine: elastic
+  variant: filebeat.apache_tomcat_memory.default
+catalogue:
+  package: apache_tomcat
+  data_stream: memory
+  intakes: [beats]
+  variants:
+    - filebeat.apache_tomcat_memory.default

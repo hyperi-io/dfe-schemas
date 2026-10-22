@@ -1,0 +1,23 @@
+# Catalogue source box-events-events: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: box-events-events
+display_name: box_events.events
+description: The events data stream of the Elastic box_events integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: box_events.events
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/box_events/events
+  additional_fields: additional/box_events/events
+transform:
+  engine: elastic
+  variant: filebeat.box_events_events.default
+catalogue:
+  package: box_events
+  data_stream: events
+  intakes: [beats]
+  variants:
+    - filebeat.box_events_events.default

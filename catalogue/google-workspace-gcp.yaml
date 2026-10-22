@@ -1,0 +1,22 @@
+# Catalogue source google-workspace-gcp: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: google-workspace-gcp
+display_name: google_workspace.gcp
+description: The gcp data stream of the Elastic google_workspace integration.
+fetcher:
+  source_type: google_workspace
+  topic: own
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/google_workspace/gcp
+  additional_fields: additional/google_workspace/gcp
+transform:
+  engine: elastic
+  variant: filebeat.google_workspace_gcp.default
+catalogue:
+  package: google_workspace
+  data_stream: gcp
+  intakes: [beats, fetcher]
+  variants:
+    - filebeat.google_workspace_gcp.default

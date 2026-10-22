@@ -1,0 +1,23 @@
+# Catalogue source sentinel-one-activity: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: sentinel-one-activity
+display_name: sentinel_one.activity
+description: The activity data stream of the Elastic sentinel_one integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: sentinel_one.activity
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/sentinel_one/activity
+  additional_fields: additional/sentinel_one/activity
+transform:
+  engine: elastic
+  variant: filebeat.sentinel_one_activity.default
+catalogue:
+  package: sentinel_one
+  data_stream: activity
+  intakes: [beats]
+  variants:
+    - filebeat.sentinel_one_activity.default

@@ -1,0 +1,23 @@
+# Catalogue source gitlab-application: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: gitlab-application
+display_name: gitlab.application
+description: The application data stream of the Elastic gitlab integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: gitlab.application
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/gitlab/application
+  additional_fields: additional/gitlab/application
+transform:
+  engine: elastic
+  variant: filebeat.gitlab_application.default
+catalogue:
+  package: gitlab
+  data_stream: application
+  intakes: [beats]
+  variants:
+    - filebeat.gitlab_application.default

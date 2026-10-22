@@ -1,0 +1,23 @@
+# Catalogue source endace-flow: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: endace-flow
+display_name: endace.flow
+description: The flow data stream of the Elastic endace integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: endace.flow
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/endace/flow
+  additional_fields: additional/endace/flow
+transform:
+  engine: elastic
+  variant: filebeat.endace_flow.default
+catalogue:
+  package: endace
+  data_stream: flow
+  intakes: [beats]
+  variants:
+    - filebeat.endace_flow.default

@@ -1,0 +1,23 @@
+# Catalogue source azure-network-watcher-nsg-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: azure-network-watcher-nsg-log
+display_name: azure_network_watcher_nsg.log
+description: The log data stream of the Elastic azure_network_watcher_nsg integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: azure_network_watcher_nsg.log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/azure_network_watcher_nsg/log
+  additional_fields: additional/azure_network_watcher_nsg/log
+transform:
+  engine: elastic
+  variant: filebeat.azure_network_watcher_nsg_log.default
+catalogue:
+  package: azure_network_watcher_nsg
+  data_stream: log
+  intakes: [beats]
+  variants:
+    - filebeat.azure_network_watcher_nsg_log.default

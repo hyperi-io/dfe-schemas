@@ -1,0 +1,23 @@
+# Catalogue source neon-cyber-detections: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: neon-cyber-detections
+display_name: neon_cyber.detections
+description: The detections data stream of the Elastic neon_cyber integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: neon_cyber.detections
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/neon_cyber/detections
+  additional_fields: additional/neon_cyber/detections
+transform:
+  engine: elastic
+  variant: filebeat.neon_cyber_detections.default
+catalogue:
+  package: neon_cyber
+  data_stream: detections
+  intakes: [beats]
+  variants:
+    - filebeat.neon_cyber_detections.default

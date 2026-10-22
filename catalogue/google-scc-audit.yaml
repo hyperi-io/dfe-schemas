@@ -1,0 +1,23 @@
+# Catalogue source google-scc-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: google-scc-audit
+display_name: google_scc.audit
+description: The audit data stream of the Elastic google_scc integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: google_scc.audit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/google_scc/audit
+  additional_fields: additional/google_scc/audit
+transform:
+  engine: elastic
+  variant: filebeat.google_scc_audit.default
+catalogue:
+  package: google_scc
+  data_stream: audit
+  intakes: [beats]
+  variants:
+    - filebeat.google_scc_audit.default

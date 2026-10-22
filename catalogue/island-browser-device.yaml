@@ -1,0 +1,23 @@
+# Catalogue source island-browser-device: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: island-browser-device
+display_name: island_browser.device
+description: The device data stream of the Elastic island_browser integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: island_browser.device
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/island_browser/device
+  additional_fields: additional/island_browser/device
+transform:
+  engine: elastic
+  variant: filebeat.island_browser_device.default
+catalogue:
+  package: island_browser
+  data_stream: device
+  intakes: [beats]
+  variants:
+    - filebeat.island_browser_device.default

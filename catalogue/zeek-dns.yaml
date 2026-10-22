@@ -1,0 +1,23 @@
+# Catalogue source zeek-dns: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zeek-dns
+display_name: zeek.dns
+description: The dns data stream of the Elastic zeek integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: zeek.dns
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zeek/dns
+  additional_fields: additional/zeek/dns
+transform:
+  engine: elastic
+  variant: filebeat.zeek_dns.default
+catalogue:
+  package: zeek
+  data_stream: dns
+  intakes: [beats]
+  variants:
+    - filebeat.zeek_dns.default

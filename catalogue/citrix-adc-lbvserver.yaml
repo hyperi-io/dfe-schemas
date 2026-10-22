@@ -1,0 +1,23 @@
+# Catalogue source citrix-adc-lbvserver: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: citrix-adc-lbvserver
+display_name: citrix_adc.lbvserver
+description: The lbvserver data stream of the Elastic citrix_adc integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: citrix_adc.lbvserver
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/citrix_adc/lbvserver
+  additional_fields: additional/citrix_adc/lbvserver
+transform:
+  engine: elastic
+  variant: filebeat.citrix_adc_lbvserver.default
+catalogue:
+  package: citrix_adc
+  data_stream: lbvserver
+  intakes: [beats]
+  variants:
+    - filebeat.citrix_adc_lbvserver.default

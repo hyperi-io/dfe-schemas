@@ -1,0 +1,19 @@
+# Catalogue source etcd-store: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: etcd-store
+display_name: etcd.store
+description: The store data stream of the Elastic etcd integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: etcd.store
+transform:
+  engine: elastic
+  variant: filebeat.etcd_store.default
+catalogue:
+  package: etcd
+  data_stream: store
+  intakes: [beats]
+  variants:
+    - filebeat.etcd_store.default

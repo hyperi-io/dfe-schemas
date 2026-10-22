@@ -1,0 +1,23 @@
+# Catalogue source neon-cyber-events: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: neon-cyber-events
+display_name: neon_cyber.events
+description: The events data stream of the Elastic neon_cyber integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: neon_cyber.events
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/neon_cyber/events
+  additional_fields: additional/neon_cyber/events
+transform:
+  engine: elastic
+  variant: filebeat.neon_cyber_events.default
+catalogue:
+  package: neon_cyber
+  data_stream: events
+  intakes: [beats]
+  variants:
+    - filebeat.neon_cyber_events.default

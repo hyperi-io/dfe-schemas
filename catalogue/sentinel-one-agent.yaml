@@ -1,0 +1,23 @@
+# Catalogue source sentinel-one-agent: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: sentinel-one-agent
+display_name: sentinel_one.agent
+description: The agent data stream of the Elastic sentinel_one integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: sentinel_one.agent
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/sentinel_one/agent
+  additional_fields: additional/sentinel_one/agent
+transform:
+  engine: elastic
+  variant: filebeat.sentinel_one_agent.default
+catalogue:
+  package: sentinel_one
+  data_stream: agent
+  intakes: [beats]
+  variants:
+    - filebeat.sentinel_one_agent.default

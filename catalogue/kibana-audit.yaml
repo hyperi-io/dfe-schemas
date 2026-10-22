@@ -1,0 +1,23 @@
+# Catalogue source kibana-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: kibana-audit
+display_name: kibana.audit
+description: The audit data stream of the Elastic kibana integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: kibana.audit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/kibana/audit
+  additional_fields: additional/kibana/audit
+transform:
+  engine: elastic
+  variant: filebeat.kibana_audit.default
+catalogue:
+  package: kibana
+  data_stream: audit
+  intakes: [beats]
+  variants:
+    - filebeat.kibana_audit.default

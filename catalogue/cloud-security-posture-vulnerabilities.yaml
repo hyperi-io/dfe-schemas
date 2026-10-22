@@ -1,0 +1,23 @@
+# Catalogue source cloud-security-posture-vulnerabilities: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: cloud-security-posture-vulnerabilities
+display_name: cloud_security_posture.vulnerabilities
+description: The vulnerabilities data stream of the Elastic cloud_security_posture integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: cloud_security_posture.vulnerabilities
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/cloud_security_posture/vulnerabilities
+  additional_fields: additional/cloud_security_posture/vulnerabilities
+transform:
+  engine: elastic
+  variant: filebeat.cloud_security_posture_vulnerabilities.default
+catalogue:
+  package: cloud_security_posture
+  data_stream: vulnerabilities
+  intakes: [beats]
+  variants:
+    - filebeat.cloud_security_posture_vulnerabilities.default

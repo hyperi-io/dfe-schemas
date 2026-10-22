@@ -1,0 +1,19 @@
+# Catalogue source aws-cloudwatch-metrics: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: aws-cloudwatch-metrics
+display_name: aws.cloudwatch_metrics
+description: The cloudwatch_metrics data stream of the Elastic aws integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: aws.cloudwatch_metrics
+transform:
+  engine: elastic
+  variant: filebeat.aws_cloudwatch_metrics.default
+catalogue:
+  package: aws
+  data_stream: cloudwatch_metrics
+  intakes: [beats]
+  variants:
+    - filebeat.aws_cloudwatch_metrics.default

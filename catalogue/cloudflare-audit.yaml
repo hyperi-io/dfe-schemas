@@ -1,0 +1,22 @@
+# Catalogue source cloudflare-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: cloudflare-audit
+display_name: cloudflare.audit
+description: The audit data stream of the Elastic cloudflare integration.
+fetcher:
+  source_type: cloudflare
+  topic: own
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/cloudflare/audit
+  additional_fields: additional/cloudflare/audit
+transform:
+  engine: elastic
+  variant: filebeat.cloudflare_audit.default
+catalogue:
+  package: cloudflare
+  data_stream: audit
+  intakes: [beats, fetcher]
+  variants:
+    - filebeat.cloudflare_audit.default

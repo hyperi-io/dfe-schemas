@@ -1,0 +1,23 @@
+# Catalogue source couchbase-bucket: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: couchbase-bucket
+display_name: couchbase.bucket
+description: The bucket data stream of the Elastic couchbase integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: couchbase.bucket
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/couchbase/bucket
+  additional_fields: additional/couchbase/bucket
+transform:
+  engine: elastic
+  variant: filebeat.couchbase_bucket.default
+catalogue:
+  package: couchbase
+  data_stream: bucket
+  intakes: [beats]
+  variants:
+    - filebeat.couchbase_bucket.default

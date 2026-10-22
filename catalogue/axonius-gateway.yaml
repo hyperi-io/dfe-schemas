@@ -1,0 +1,23 @@
+# Catalogue source axonius-gateway: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: axonius-gateway
+display_name: axonius.gateway
+description: The gateway data stream of the Elastic axonius integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: axonius.gateway
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/axonius/gateway
+  additional_fields: additional/axonius/gateway
+transform:
+  engine: elastic
+  variant: filebeat.axonius_gateway.default
+catalogue:
+  package: axonius
+  data_stream: gateway
+  intakes: [beats]
+  variants:
+    - filebeat.axonius_gateway.default

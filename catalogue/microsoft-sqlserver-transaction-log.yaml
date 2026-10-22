@@ -1,0 +1,19 @@
+# Catalogue source microsoft-sqlserver-transaction-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: microsoft-sqlserver-transaction-log
+display_name: microsoft_sqlserver.transaction_log
+description: The transaction_log data stream of the Elastic microsoft_sqlserver integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: microsoft_sqlserver.transaction_log
+transform:
+  engine: elastic
+  variant: filebeat.microsoft_sqlserver_transaction_log.default
+catalogue:
+  package: microsoft_sqlserver
+  data_stream: transaction_log
+  intakes: [beats]
+  variants:
+    - filebeat.microsoft_sqlserver_transaction_log.default

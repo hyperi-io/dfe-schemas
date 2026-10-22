@@ -1,0 +1,40 @@
+# Catalogue source panw: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: panw
+display_name: panw.panos
+description: The panos data stream of the Elastic panw integration.
+match:
+  field: _source
+  operator: equals
+  value: panw
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/panw/panos
+  additional_fields: additional/panw/panos
+transform:
+  engine: elastic
+  variant: filebeat.panw.default
+catalogue:
+  package: panw
+  data_stream: panos
+  intakes: [beats, receiver]
+  framing: body
+  beats:
+    module: panw
+    fileset: panos
+  variants:
+    - filebeat.panw.default
+    - filebeat.panw.audit
+    - filebeat.panw.authentication
+    - filebeat.panw.correlated_event
+    - filebeat.panw.decryption
+    - filebeat.panw.globalprotect
+    - filebeat.panw.gtp
+    - filebeat.panw.hipmatch
+    - filebeat.panw.ip_tag
+    - filebeat.panw.sctp
+    - filebeat.panw.system
+    - filebeat.panw.traffic
+    - filebeat.panw.tunnel_inspection
+    - filebeat.panw.userid

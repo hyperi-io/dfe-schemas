@@ -1,0 +1,23 @@
+# Catalogue source forgerock-am-activity: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: forgerock-am-activity
+display_name: forgerock.am_activity
+description: The am_activity data stream of the Elastic forgerock integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: forgerock.am_activity
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/forgerock/am_activity
+  additional_fields: additional/forgerock/am_activity
+transform:
+  engine: elastic
+  variant: filebeat.forgerock_am_activity.default
+catalogue:
+  package: forgerock
+  data_stream: am_activity
+  intakes: [beats]
+  variants:
+    - filebeat.forgerock_am_activity.default

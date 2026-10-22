@@ -1,0 +1,23 @@
+# Catalogue source mysql-error: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: mysql-error
+display_name: mysql.error
+description: The error data stream of the Elastic mysql integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: mysql.error
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/mysql/error
+  additional_fields: additional/mysql/error
+transform:
+  engine: elastic
+  variant: filebeat.mysql_error.default
+catalogue:
+  package: mysql
+  data_stream: error
+  intakes: [beats]
+  variants:
+    - filebeat.mysql_error.default

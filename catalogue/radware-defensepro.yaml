@@ -1,0 +1,20 @@
+# Catalogue source radware-defensepro: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: radware-defensepro
+display_name: radware.defensepro
+description: The defensepro data stream of the Elastic radware integration.
+match:
+  field: _source
+  operator: equals
+  value: radware-defensepro
+transform:
+  engine: elastic
+  variant: filebeat.radware_defensepro.default
+catalogue:
+  package: radware
+  data_stream: defensepro
+  intakes: [beats, receiver]
+  framing: body
+  variants:
+    - filebeat.radware_defensepro.default

@@ -1,0 +1,23 @@
+# Catalogue source awsfirehose-metrics: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: awsfirehose-metrics
+display_name: awsfirehose.metrics
+description: The metrics data stream of the Elastic awsfirehose integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: awsfirehose.metrics
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/awsfirehose/metrics
+  additional_fields: additional/awsfirehose/metrics
+transform:
+  engine: elastic
+  variant: filebeat.awsfirehose_metrics.default
+catalogue:
+  package: awsfirehose
+  data_stream: metrics
+  intakes: [beats]
+  variants:
+    - filebeat.awsfirehose_metrics.default

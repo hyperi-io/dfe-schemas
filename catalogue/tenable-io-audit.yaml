@@ -1,0 +1,23 @@
+# Catalogue source tenable-io-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: tenable-io-audit
+display_name: tenable_io.audit
+description: The audit data stream of the Elastic tenable_io integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: tenable_io.audit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/tenable_io/audit
+  additional_fields: additional/tenable_io/audit
+transform:
+  engine: elastic
+  variant: filebeat.tenable_io_audit.default
+catalogue:
+  package: tenable_io
+  data_stream: audit
+  intakes: [beats]
+  variants:
+    - filebeat.tenable_io_audit.default

@@ -1,0 +1,23 @@
+# Catalogue source ibm-qradar-offense: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ibm-qradar-offense
+display_name: ibm_qradar.offense
+description: The offense data stream of the Elastic ibm_qradar integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ibm_qradar.offense
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ibm_qradar/offense
+  additional_fields: additional/ibm_qradar/offense
+transform:
+  engine: elastic
+  variant: filebeat.ibm_qradar_offense.default
+catalogue:
+  package: ibm_qradar
+  data_stream: offense
+  intakes: [beats]
+  variants:
+    - filebeat.ibm_qradar_offense.default

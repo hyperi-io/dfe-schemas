@@ -1,0 +1,23 @@
+# Catalogue source ms-exchange-online-message-trace-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ms-exchange-online-message-trace-log
+display_name: microsoft_exchange_online_message_trace.log
+description: The log data stream of the Elastic microsoft_exchange_online_message_trace integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: microsoft_exchange_online_message_trace.log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/microsoft_exchange_online_message_trace/log
+  additional_fields: additional/microsoft_exchange_online_message_trace/log
+transform:
+  engine: elastic
+  variant: filebeat.microsoft_exchange_online_message_trace_log.default
+catalogue:
+  package: microsoft_exchange_online_message_trace
+  data_stream: log
+  intakes: [beats]
+  variants:
+    - filebeat.microsoft_exchange_online_message_trace_log.default

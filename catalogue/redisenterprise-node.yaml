@@ -1,0 +1,19 @@
+# Catalogue source redisenterprise-node: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: redisenterprise-node
+display_name: redisenterprise.node
+description: The node data stream of the Elastic redisenterprise integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: redisenterprise.node
+transform:
+  engine: elastic
+  variant: filebeat.redisenterprise_node.default
+catalogue:
+  package: redisenterprise
+  data_stream: node
+  intakes: [beats]
+  variants:
+    - filebeat.redisenterprise_node.default

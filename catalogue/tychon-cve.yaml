@@ -1,0 +1,23 @@
+# Catalogue source tychon-cve: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: tychon-cve
+display_name: tychon.cve
+description: The cve data stream of the Elastic tychon integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: tychon.cve
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/tychon/cve
+  additional_fields: additional/tychon/cve
+transform:
+  engine: elastic
+  variant: filebeat.tychon_cve.default
+catalogue:
+  package: tychon
+  data_stream: cve
+  intakes: [beats]
+  variants:
+    - filebeat.tychon_cve.default

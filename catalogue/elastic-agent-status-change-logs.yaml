@@ -1,0 +1,23 @@
+# Catalogue source elastic-agent-status-change-logs: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: elastic-agent-status-change-logs
+display_name: elastic_agent.status_change_logs
+description: The status_change_logs data stream of the Elastic elastic_agent integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: elastic_agent.status_change_logs
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/elastic_agent/status_change_logs
+  additional_fields: additional/elastic_agent/status_change_logs
+transform:
+  engine: elastic
+  variant: filebeat.elastic_agent_status_change_logs.default
+catalogue:
+  package: elastic_agent
+  data_stream: status_change_logs
+  intakes: [beats]
+  variants:
+    - filebeat.elastic_agent_status_change_logs.default

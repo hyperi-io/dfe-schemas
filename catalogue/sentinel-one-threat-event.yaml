@@ -1,0 +1,23 @@
+# Catalogue source sentinel-one-threat-event: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: sentinel-one-threat-event
+display_name: sentinel_one.threat_event
+description: The threat_event data stream of the Elastic sentinel_one integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: sentinel_one.threat_event
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/sentinel_one/threat_event
+  additional_fields: additional/sentinel_one/threat_event
+transform:
+  engine: elastic
+  variant: filebeat.sentinel_one_threat_event.default
+catalogue:
+  package: sentinel_one
+  data_stream: threat_event
+  intakes: [beats]
+  variants:
+    - filebeat.sentinel_one_threat_event.default

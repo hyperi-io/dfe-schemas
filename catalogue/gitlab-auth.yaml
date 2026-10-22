@@ -1,0 +1,23 @@
+# Catalogue source gitlab-auth: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: gitlab-auth
+display_name: gitlab.auth
+description: The auth data stream of the Elastic gitlab integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: gitlab.auth
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/gitlab/auth
+  additional_fields: additional/gitlab/auth
+transform:
+  engine: elastic
+  variant: filebeat.gitlab_auth.default
+catalogue:
+  package: gitlab
+  data_stream: auth
+  intakes: [beats]
+  variants:
+    - filebeat.gitlab_auth.default

@@ -1,0 +1,23 @@
+# Catalogue source couchbase-resource: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: couchbase-resource
+display_name: couchbase.resource
+description: The resource data stream of the Elastic couchbase integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: couchbase.resource
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/couchbase/resource
+  additional_fields: additional/couchbase/resource
+transform:
+  engine: elastic
+  variant: filebeat.couchbase_resource.default
+catalogue:
+  package: couchbase
+  data_stream: resource
+  intakes: [beats]
+  variants:
+    - filebeat.couchbase_resource.default

@@ -1,0 +1,23 @@
+# Catalogue source osquery-result: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: osquery-result
+display_name: osquery.result
+description: The result data stream of the Elastic osquery integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: osquery.result
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/osquery/result
+  additional_fields: additional/osquery/result
+transform:
+  engine: elastic
+  variant: filebeat.osquery_result.default
+catalogue:
+  package: osquery
+  data_stream: result
+  intakes: [beats]
+  variants:
+    - filebeat.osquery_result.default

@@ -1,0 +1,19 @@
+# Catalogue source airflow-statsd: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: airflow-statsd
+display_name: airflow.statsd
+description: The statsd data stream of the Elastic airflow integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: airflow.statsd
+transform:
+  engine: elastic
+  variant: filebeat.airflow_statsd.default
+catalogue:
+  package: airflow
+  data_stream: statsd
+  intakes: [beats]
+  variants:
+    - filebeat.airflow_statsd.default

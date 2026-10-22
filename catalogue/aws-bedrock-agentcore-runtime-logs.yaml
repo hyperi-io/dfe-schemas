@@ -1,0 +1,23 @@
+# Catalogue source aws-bedrock-agentcore-runtime-logs: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: aws-bedrock-agentcore-runtime-logs
+display_name: aws_bedrock_agentcore.runtime_application_logs
+description: The runtime_application_logs data stream of the Elastic aws_bedrock_agentcore integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: aws_bedrock_agentcore.runtime_application_logs
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/aws_bedrock_agentcore/runtime_application_logs
+  additional_fields: additional/aws_bedrock_agentcore/runtime_application_logs
+transform:
+  engine: elastic
+  variant: filebeat.aws_bedrock_agentcore_runtime_application_logs.default
+catalogue:
+  package: aws_bedrock_agentcore
+  data_stream: runtime_application_logs
+  intakes: [beats]
+  variants:
+    - filebeat.aws_bedrock_agentcore_runtime_application_logs.default

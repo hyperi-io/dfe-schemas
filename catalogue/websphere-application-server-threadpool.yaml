@@ -1,0 +1,23 @@
+# Catalogue source websphere-application-server-threadpool: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: websphere-application-server-threadpool
+display_name: websphere_application_server.threadpool
+description: The threadpool data stream of the Elastic websphere_application_server integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: websphere_application_server.threadpool
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/websphere_application_server/threadpool
+  additional_fields: additional/websphere_application_server/threadpool
+transform:
+  engine: elastic
+  variant: filebeat.websphere_application_server_threadpool.default
+catalogue:
+  package: websphere_application_server
+  data_stream: threadpool
+  intakes: [beats]
+  variants:
+    - filebeat.websphere_application_server_threadpool.default

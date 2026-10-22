@@ -1,0 +1,25 @@
+# Catalogue source mimecast-siem-logs: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: mimecast-siem-logs
+display_name: mimecast.siem_logs
+description: The siem_logs data stream of the Elastic mimecast integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: mimecast.siem_logs
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/mimecast/siem_logs
+  additional_fields: additional/mimecast/siem_logs
+transform:
+  engine: elastic
+  variant: filebeat.mimecast_siem_logs.default
+catalogue:
+  package: mimecast
+  data_stream: siem_logs
+  intakes: [beats]
+  variants:
+    - filebeat.mimecast_siem_logs.default
+    - filebeat.mimecast_siem_logs.v1_pipeline
+    - filebeat.mimecast_siem_logs.v2_pipeline

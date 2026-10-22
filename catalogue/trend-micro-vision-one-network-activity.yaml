@@ -1,0 +1,23 @@
+# Catalogue source trend-micro-vision-one-network-activity: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: trend-micro-vision-one-network-activity
+display_name: trend_micro_vision_one.network_activity
+description: The network_activity data stream of the Elastic trend_micro_vision_one integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: trend_micro_vision_one.network_activity
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/trend_micro_vision_one/network_activity
+  additional_fields: additional/trend_micro_vision_one/network_activity
+transform:
+  engine: elastic
+  variant: filebeat.trend_micro_vision_one_network_activity.default
+catalogue:
+  package: trend_micro_vision_one
+  data_stream: network_activity
+  intakes: [beats]
+  variants:
+    - filebeat.trend_micro_vision_one_network_activity.default

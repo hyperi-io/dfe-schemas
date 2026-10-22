@@ -1,0 +1,26 @@
+# Catalogue source crowdstrike: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: crowdstrike
+display_name: crowdstrike.falcon
+description: The falcon data stream of the Elastic crowdstrike integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: crowdstrike.falcon
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/crowdstrike/falcon
+  additional_fields: additional/crowdstrike/falcon
+transform:
+  engine: elastic
+  variant: filebeat.crowdstrike.default
+catalogue:
+  package: crowdstrike
+  data_stream: falcon
+  intakes: [beats]
+  beats:
+    module: crowdstrike
+    fileset: falcon
+  variants:
+    - filebeat.crowdstrike.default

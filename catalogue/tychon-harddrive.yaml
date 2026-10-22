@@ -1,0 +1,23 @@
+# Catalogue source tychon-harddrive: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: tychon-harddrive
+display_name: tychon.harddrive
+description: The harddrive data stream of the Elastic tychon integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: tychon.harddrive
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/tychon/harddrive
+  additional_fields: additional/tychon/harddrive
+transform:
+  engine: elastic
+  variant: filebeat.tychon_harddrive.default
+catalogue:
+  package: tychon
+  data_stream: harddrive
+  intakes: [beats]
+  variants:
+    - filebeat.tychon_harddrive.default

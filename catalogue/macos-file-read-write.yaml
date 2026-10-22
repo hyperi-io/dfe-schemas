@@ -1,0 +1,23 @@
+# Catalogue source macos-file-read-write: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: macos-file-read-write
+display_name: macos.file_read_write
+description: The file_read_write data stream of the Elastic macos integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: macos.file_read_write
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/macos/file_read_write
+  additional_fields: additional/macos/file_read_write
+transform:
+  engine: elastic
+  variant: filebeat.macos_file_read_write.default
+catalogue:
+  package: macos
+  data_stream: file_read_write
+  intakes: [beats]
+  variants:
+    - filebeat.macos_file_read_write.default

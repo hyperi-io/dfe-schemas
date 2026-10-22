@@ -1,0 +1,19 @@
+# Catalogue source kafka-log-manager: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: kafka-log-manager
+display_name: kafka.log_manager
+description: The log_manager data stream of the Elastic kafka integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: kafka.log_manager
+transform:
+  engine: elastic
+  variant: filebeat.kafka_log_manager.default
+catalogue:
+  package: kafka
+  data_stream: log_manager
+  intakes: [beats]
+  variants:
+    - filebeat.kafka_log_manager.default

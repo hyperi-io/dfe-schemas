@@ -1,0 +1,23 @@
+# Catalogue source panw-cortex-xdr-incidents: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: panw-cortex-xdr-incidents
+display_name: panw_cortex_xdr.incidents
+description: The incidents data stream of the Elastic panw_cortex_xdr integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: panw_cortex_xdr.incidents
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/panw_cortex_xdr/incidents
+  additional_fields: additional/panw_cortex_xdr/incidents
+transform:
+  engine: elastic
+  variant: filebeat.panw_cortex_xdr_incidents.default
+catalogue:
+  package: panw_cortex_xdr
+  data_stream: incidents
+  intakes: [beats]
+  variants:
+    - filebeat.panw_cortex_xdr_incidents.default

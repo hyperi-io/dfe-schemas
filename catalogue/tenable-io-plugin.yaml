@@ -1,0 +1,23 @@
+# Catalogue source tenable-io-plugin: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: tenable-io-plugin
+display_name: tenable_io.plugin
+description: The plugin data stream of the Elastic tenable_io integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: tenable_io.plugin
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/tenable_io/plugin
+  additional_fields: additional/tenable_io/plugin
+transform:
+  engine: elastic
+  variant: filebeat.tenable_io_plugin.default
+catalogue:
+  package: tenable_io
+  data_stream: plugin
+  intakes: [beats]
+  variants:
+    - filebeat.tenable_io_plugin.default

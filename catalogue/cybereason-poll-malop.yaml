@@ -1,0 +1,23 @@
+# Catalogue source cybereason-poll-malop: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: cybereason-poll-malop
+display_name: cybereason.poll_malop
+description: The poll_malop data stream of the Elastic cybereason integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: cybereason.poll_malop
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/cybereason/poll_malop
+  additional_fields: additional/cybereason/poll_malop
+transform:
+  engine: elastic
+  variant: filebeat.cybereason_poll_malop.default
+catalogue:
+  package: cybereason
+  data_stream: poll_malop
+  intakes: [beats]
+  variants:
+    - filebeat.cybereason_poll_malop.default

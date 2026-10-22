@@ -1,0 +1,23 @@
+# Catalogue source o365-metrics-service-health: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: o365-metrics-service-health
+display_name: o365_metrics.service_health
+description: The service_health data stream of the Elastic o365_metrics integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: o365_metrics.service_health
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/o365_metrics/service_health
+  additional_fields: additional/o365_metrics/service_health
+transform:
+  engine: elastic
+  variant: filebeat.o365_metrics_service_health.default
+catalogue:
+  package: o365_metrics
+  data_stream: service_health
+  intakes: [beats]
+  variants:
+    - filebeat.o365_metrics_service_health.default

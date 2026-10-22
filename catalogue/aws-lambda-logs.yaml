@@ -1,0 +1,22 @@
+# Catalogue source aws-lambda-logs: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: aws-lambda-logs
+display_name: aws.lambda_logs
+description: The lambda_logs data stream of the Elastic aws integration.
+fetcher:
+  source_type: aws
+  topic: own
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/aws/lambda_logs
+  additional_fields: additional/aws/lambda_logs
+transform:
+  engine: elastic
+  variant: filebeat.aws_lambda_logs.default
+catalogue:
+  package: aws
+  data_stream: lambda_logs
+  intakes: [beats, fetcher]
+  variants:
+    - filebeat.aws_lambda_logs.default

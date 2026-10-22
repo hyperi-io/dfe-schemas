@@ -1,0 +1,19 @@
+# Catalogue source istio-istiod-metrics: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: istio-istiod-metrics
+display_name: istio.istiod_metrics
+description: The istiod_metrics data stream of the Elastic istio integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: istio.istiod_metrics
+transform:
+  engine: elastic
+  variant: filebeat.istio_istiod_metrics.default
+catalogue:
+  package: istio
+  data_stream: istiod_metrics
+  intakes: [beats]
+  variants:
+    - filebeat.istio_istiod_metrics.default

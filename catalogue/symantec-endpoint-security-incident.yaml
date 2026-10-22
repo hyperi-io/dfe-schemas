@@ -1,0 +1,23 @@
+# Catalogue source symantec-endpoint-security-incident: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: symantec-endpoint-security-incident
+display_name: symantec_endpoint_security.incident
+description: The incident data stream of the Elastic symantec_endpoint_security integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: symantec_endpoint_security.incident
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/symantec_endpoint_security/incident
+  additional_fields: additional/symantec_endpoint_security/incident
+transform:
+  engine: elastic
+  variant: filebeat.symantec_endpoint_security_incident.default
+catalogue:
+  package: symantec_endpoint_security
+  data_stream: incident
+  intakes: [beats]
+  variants:
+    - filebeat.symantec_endpoint_security_incident.default

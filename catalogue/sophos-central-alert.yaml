@@ -1,0 +1,23 @@
+# Catalogue source sophos-central-alert: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: sophos-central-alert
+display_name: sophos_central.alert
+description: The alert data stream of the Elastic sophos_central integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: sophos_central.alert
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/sophos_central/alert
+  additional_fields: additional/sophos_central/alert
+transform:
+  engine: elastic
+  variant: filebeat.sophos_central_alert.default
+catalogue:
+  package: sophos_central
+  data_stream: alert
+  intakes: [beats]
+  variants:
+    - filebeat.sophos_central_alert.default

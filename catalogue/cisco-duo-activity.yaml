@@ -1,0 +1,23 @@
+# Catalogue source cisco-duo-activity: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: cisco-duo-activity
+display_name: cisco_duo.activity
+description: The activity data stream of the Elastic cisco_duo integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: cisco_duo.activity
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/cisco_duo/activity
+  additional_fields: additional/cisco_duo/activity
+transform:
+  engine: elastic
+  variant: filebeat.cisco_duo_activity.default
+catalogue:
+  package: cisco_duo
+  data_stream: activity
+  intakes: [beats]
+  variants:
+    - filebeat.cisco_duo_activity.default

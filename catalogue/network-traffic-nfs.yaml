@@ -1,0 +1,19 @@
+# Catalogue source network-traffic-nfs: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: network-traffic-nfs
+display_name: network_traffic.nfs
+description: The nfs data stream of the Elastic network_traffic integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: network_traffic.nfs
+transform:
+  engine: elastic
+  variant: filebeat.network_traffic_nfs.default
+catalogue:
+  package: network_traffic
+  data_stream: nfs
+  intakes: [beats]
+  variants:
+    - filebeat.network_traffic_nfs.default

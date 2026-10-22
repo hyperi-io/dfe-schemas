@@ -1,0 +1,19 @@
+# Catalogue source spring-boot-threading: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: spring-boot-threading
+display_name: spring_boot.threading
+description: The threading data stream of the Elastic spring_boot integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: spring_boot.threading
+transform:
+  engine: elastic
+  variant: filebeat.spring_boot_threading.default
+catalogue:
+  package: spring_boot
+  data_stream: threading
+  intakes: [beats]
+  variants:
+    - filebeat.spring_boot_threading.default

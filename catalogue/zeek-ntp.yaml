@@ -1,0 +1,23 @@
+# Catalogue source zeek-ntp: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zeek-ntp
+display_name: zeek.ntp
+description: The ntp data stream of the Elastic zeek integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: zeek.ntp
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zeek/ntp
+  additional_fields: additional/zeek/ntp
+transform:
+  engine: elastic
+  variant: filebeat.zeek_ntp.default
+catalogue:
+  package: zeek
+  data_stream: ntp
+  intakes: [beats]
+  variants:
+    - filebeat.zeek_ntp.default

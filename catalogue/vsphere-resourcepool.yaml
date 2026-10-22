@@ -1,0 +1,23 @@
+# Catalogue source vsphere-resourcepool: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: vsphere-resourcepool
+display_name: vsphere.resourcepool
+description: The resourcepool data stream of the Elastic vsphere integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: vsphere.resourcepool
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/vsphere/resourcepool
+  additional_fields: additional/vsphere/resourcepool
+transform:
+  engine: elastic
+  variant: filebeat.vsphere_resourcepool.default
+catalogue:
+  package: vsphere
+  data_stream: resourcepool
+  intakes: [beats]
+  variants:
+    - filebeat.vsphere_resourcepool.default

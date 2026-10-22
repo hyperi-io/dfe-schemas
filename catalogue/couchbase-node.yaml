@@ -1,0 +1,23 @@
+# Catalogue source couchbase-node: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: couchbase-node
+display_name: couchbase.node
+description: The node data stream of the Elastic couchbase integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: couchbase.node
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/couchbase/node
+  additional_fields: additional/couchbase/node
+transform:
+  engine: elastic
+  variant: filebeat.couchbase_node.default
+catalogue:
+  package: couchbase
+  data_stream: node
+  intakes: [beats]
+  variants:
+    - filebeat.couchbase_node.default

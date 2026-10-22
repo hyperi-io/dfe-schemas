@@ -1,0 +1,23 @@
+# Catalogue source m365-defender-alert: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: m365-defender-alert
+display_name: m365_defender.alert
+description: The alert data stream of the Elastic m365_defender integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: m365_defender.alert
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/m365_defender/alert
+  additional_fields: additional/m365_defender/alert
+transform:
+  engine: elastic
+  variant: filebeat.m365_defender_alert.default
+catalogue:
+  package: m365_defender
+  data_stream: alert
+  intakes: [beats]
+  variants:
+    - filebeat.m365_defender_alert.default

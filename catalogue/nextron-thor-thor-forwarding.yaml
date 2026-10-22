@@ -1,0 +1,23 @@
+# Catalogue source nextron-thor-thor-forwarding: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: nextron-thor-thor-forwarding
+display_name: nextron_thor.thor_forwarding
+description: The thor_forwarding data stream of the Elastic nextron_thor integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: nextron_thor.thor_forwarding
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/nextron_thor/thor_forwarding
+  additional_fields: additional/nextron_thor/thor_forwarding
+transform:
+  engine: elastic
+  variant: filebeat.nextron_thor_thor_forwarding.default
+catalogue:
+  package: nextron_thor
+  data_stream: thor_forwarding
+  intakes: [beats]
+  variants:
+    - filebeat.nextron_thor_thor_forwarding.default

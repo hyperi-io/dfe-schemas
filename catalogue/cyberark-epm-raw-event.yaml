@@ -1,0 +1,23 @@
+# Catalogue source cyberark-epm-raw-event: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: cyberark-epm-raw-event
+display_name: cyberark_epm.raw_event
+description: The raw_event data stream of the Elastic cyberark_epm integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: cyberark_epm.raw_event
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/cyberark_epm/raw_event
+  additional_fields: additional/cyberark_epm/raw_event
+transform:
+  engine: elastic
+  variant: filebeat.cyberark_epm_raw_event.default
+catalogue:
+  package: cyberark_epm
+  data_stream: raw_event
+  intakes: [beats]
+  variants:
+    - filebeat.cyberark_epm_raw_event.default

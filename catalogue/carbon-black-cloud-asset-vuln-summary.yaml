@@ -1,0 +1,23 @@
+# Catalogue source carbon-black-cloud-asset-vuln-summary: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: carbon-black-cloud-asset-vuln-summary
+display_name: carbon_black_cloud.asset_vulnerability_summary
+description: The asset_vulnerability_summary data stream of the Elastic carbon_black_cloud integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: carbon_black_cloud.asset_vulnerability_summary
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/carbon_black_cloud/asset_vulnerability_summary
+  additional_fields: additional/carbon_black_cloud/asset_vulnerability_summary
+transform:
+  engine: elastic
+  variant: filebeat.carbon_black_cloud_asset_vulnerability_summary.default
+catalogue:
+  package: carbon_black_cloud
+  data_stream: asset_vulnerability_summary
+  intakes: [beats]
+  variants:
+    - filebeat.carbon_black_cloud_asset_vulnerability_summary.default

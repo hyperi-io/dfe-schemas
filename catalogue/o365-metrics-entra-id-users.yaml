@@ -1,0 +1,19 @@
+# Catalogue source o365-metrics-entra-id-users: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: o365-metrics-entra-id-users
+display_name: o365_metrics.entra_id_users
+description: The entra_id_users data stream of the Elastic o365_metrics integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: o365_metrics.entra_id_users
+transform:
+  engine: elastic
+  variant: filebeat.o365_metrics_entra_id_users.default
+catalogue:
+  package: o365_metrics
+  data_stream: entra_id_users
+  intakes: [beats]
+  variants:
+    - filebeat.o365_metrics_entra_id_users.default

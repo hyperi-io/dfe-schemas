@@ -1,0 +1,23 @@
+# Catalogue source tychon-epp: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: tychon-epp
+display_name: tychon.epp
+description: The epp data stream of the Elastic tychon integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: tychon.epp
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/tychon/epp
+  additional_fields: additional/tychon/epp
+transform:
+  engine: elastic
+  variant: filebeat.tychon_epp.default
+catalogue:
+  package: tychon
+  data_stream: epp
+  intakes: [beats]
+  variants:
+    - filebeat.tychon_epp.default

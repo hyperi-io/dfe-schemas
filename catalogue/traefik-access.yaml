@@ -1,0 +1,23 @@
+# Catalogue source traefik-access: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: traefik-access
+display_name: traefik.access
+description: The access data stream of the Elastic traefik integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: traefik.access
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/traefik/access
+  additional_fields: additional/traefik/access
+transform:
+  engine: elastic
+  variant: filebeat.traefik_access.default
+catalogue:
+  package: traefik
+  data_stream: access
+  intakes: [beats]
+  variants:
+    - filebeat.traefik_access.default

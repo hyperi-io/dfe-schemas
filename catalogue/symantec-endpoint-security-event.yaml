@@ -1,0 +1,23 @@
+# Catalogue source symantec-endpoint-security-event: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: symantec-endpoint-security-event
+display_name: symantec_endpoint_security.event
+description: The event data stream of the Elastic symantec_endpoint_security integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: symantec_endpoint_security.event
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/symantec_endpoint_security/event
+  additional_fields: additional/symantec_endpoint_security/event
+transform:
+  engine: elastic
+  variant: filebeat.symantec_endpoint_security_event.default
+catalogue:
+  package: symantec_endpoint_security
+  data_stream: event
+  intakes: [beats]
+  variants:
+    - filebeat.symantec_endpoint_security_event.default

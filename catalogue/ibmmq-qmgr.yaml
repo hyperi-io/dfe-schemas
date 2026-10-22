@@ -1,0 +1,23 @@
+# Catalogue source ibmmq-qmgr: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ibmmq-qmgr
+display_name: ibmmq.qmgr
+description: The qmgr data stream of the Elastic ibmmq integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ibmmq.qmgr
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ibmmq/qmgr
+  additional_fields: additional/ibmmq/qmgr
+transform:
+  engine: elastic
+  variant: filebeat.ibmmq_qmgr.default
+catalogue:
+  package: ibmmq
+  data_stream: qmgr
+  intakes: [beats]
+  variants:
+    - filebeat.ibmmq_qmgr.default

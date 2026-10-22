@@ -1,0 +1,23 @@
+# Catalogue source rubrik-sla-domains: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: rubrik-sla-domains
+display_name: rubrik.sla_domains
+description: The sla_domains data stream of the Elastic rubrik integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: rubrik.sla_domains
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/rubrik/sla_domains
+  additional_fields: additional/rubrik/sla_domains
+transform:
+  engine: elastic
+  variant: filebeat.rubrik_sla_domains.default
+catalogue:
+  package: rubrik
+  data_stream: sla_domains
+  intakes: [beats]
+  variants:
+    - filebeat.rubrik_sla_domains.default

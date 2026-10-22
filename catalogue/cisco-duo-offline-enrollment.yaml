@@ -1,0 +1,23 @@
+# Catalogue source cisco-duo-offline-enrollment: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: cisco-duo-offline-enrollment
+display_name: cisco_duo.offline_enrollment
+description: The offline_enrollment data stream of the Elastic cisco_duo integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: cisco_duo.offline_enrollment
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/cisco_duo/offline_enrollment
+  additional_fields: additional/cisco_duo/offline_enrollment
+transform:
+  engine: elastic
+  variant: filebeat.cisco_duo_offline_enrollment.default
+catalogue:
+  package: cisco_duo
+  data_stream: offline_enrollment
+  intakes: [beats]
+  variants:
+    - filebeat.cisco_duo_offline_enrollment.default

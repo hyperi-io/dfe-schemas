@@ -1,0 +1,23 @@
+# Catalogue source ti-recordedfuture-identity-detection: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ti-recordedfuture-identity-detection
+display_name: ti_recordedfuture.identity_detection
+description: The identity_detection data stream of the Elastic ti_recordedfuture integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ti_recordedfuture.identity_detection
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ti_recordedfuture/identity_detection
+  additional_fields: additional/ti_recordedfuture/identity_detection
+transform:
+  engine: elastic
+  variant: filebeat.ti_recordedfuture_identity_detection.default
+catalogue:
+  package: ti_recordedfuture
+  data_stream: identity_detection
+  intakes: [beats]
+  variants:
+    - filebeat.ti_recordedfuture_identity_detection.default

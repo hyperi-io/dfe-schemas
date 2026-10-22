@@ -1,0 +1,19 @@
+# Catalogue source network-traffic-dhcpv4: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: network-traffic-dhcpv4
+display_name: network_traffic.dhcpv4
+description: The dhcpv4 data stream of the Elastic network_traffic integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: network_traffic.dhcpv4
+transform:
+  engine: elastic
+  variant: filebeat.network_traffic_dhcpv4.default
+catalogue:
+  package: network_traffic
+  data_stream: dhcpv4
+  intakes: [beats]
+  variants:
+    - filebeat.network_traffic_dhcpv4.default

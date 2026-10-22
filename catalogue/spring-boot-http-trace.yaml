@@ -1,0 +1,23 @@
+# Catalogue source spring-boot-http-trace: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: spring-boot-http-trace
+display_name: spring_boot.http_trace
+description: The http_trace data stream of the Elastic spring_boot integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: spring_boot.http_trace
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/spring_boot/http_trace
+  additional_fields: additional/spring_boot/http_trace
+transform:
+  engine: elastic
+  variant: filebeat.spring_boot_http_trace.default
+catalogue:
+  package: spring_boot
+  data_stream: http_trace
+  intakes: [beats]
+  variants:
+    - filebeat.spring_boot_http_trace.default

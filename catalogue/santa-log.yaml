@@ -1,0 +1,23 @@
+# Catalogue source santa-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: santa-log
+display_name: santa.log
+description: The log data stream of the Elastic santa integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: santa.log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/santa/log
+  additional_fields: additional/santa/log
+transform:
+  engine: elastic
+  variant: filebeat.santa_log.default
+catalogue:
+  package: santa
+  data_stream: log
+  intakes: [beats]
+  variants:
+    - filebeat.santa_log.default

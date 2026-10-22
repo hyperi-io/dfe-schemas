@@ -1,0 +1,23 @@
+# Catalogue source ms-defender-endpoint-machine-action: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ms-defender-endpoint-machine-action
+display_name: microsoft_defender_endpoint.machine_action
+description: The machine_action data stream of the Elastic microsoft_defender_endpoint integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: microsoft_defender_endpoint.machine_action
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/microsoft_defender_endpoint/machine_action
+  additional_fields: additional/microsoft_defender_endpoint/machine_action
+transform:
+  engine: elastic
+  variant: filebeat.microsoft_defender_endpoint_machine_action.default
+catalogue:
+  package: microsoft_defender_endpoint
+  data_stream: machine_action
+  intakes: [beats]
+  variants:
+    - filebeat.microsoft_defender_endpoint_machine_action.default

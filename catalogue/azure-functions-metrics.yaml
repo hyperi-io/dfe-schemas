@@ -1,0 +1,19 @@
+# Catalogue source azure-functions-metrics: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: azure-functions-metrics
+display_name: azure_functions.metrics
+description: The metrics data stream of the Elastic azure_functions integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: azure_functions.metrics
+transform:
+  engine: elastic
+  variant: filebeat.azure_functions_metrics.default
+catalogue:
+  package: azure_functions
+  data_stream: metrics
+  intakes: [beats]
+  variants:
+    - filebeat.azure_functions_metrics.default

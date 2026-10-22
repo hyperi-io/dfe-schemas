@@ -1,0 +1,23 @@
+# Catalogue source agentless-hello-world-mock-counter: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: agentless-hello-world-mock-counter
+display_name: agentless_hello_world.mock_counter
+description: The mock_counter data stream of the Elastic agentless_hello_world integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: agentless_hello_world.mock_counter
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/agentless_hello_world/mock_counter
+  additional_fields: additional/agentless_hello_world/mock_counter
+transform:
+  engine: elastic
+  variant: filebeat.agentless_hello_world_mock_counter.default
+catalogue:
+  package: agentless_hello_world
+  data_stream: mock_counter
+  intakes: [beats]
+  variants:
+    - filebeat.agentless_hello_world_mock_counter.default

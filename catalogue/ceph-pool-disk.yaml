@@ -1,0 +1,23 @@
+# Catalogue source ceph-pool-disk: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ceph-pool-disk
+display_name: ceph.pool_disk
+description: The pool_disk data stream of the Elastic ceph integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ceph.pool_disk
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ceph/pool_disk
+  additional_fields: additional/ceph/pool_disk
+transform:
+  engine: elastic
+  variant: filebeat.ceph_pool_disk.default
+catalogue:
+  package: ceph
+  data_stream: pool_disk
+  intakes: [beats]
+  variants:
+    - filebeat.ceph_pool_disk.default

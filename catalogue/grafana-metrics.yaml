@@ -1,0 +1,23 @@
+# Catalogue source grafana-metrics: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: grafana-metrics
+display_name: grafana.metrics
+description: The metrics data stream of the Elastic grafana integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: grafana.metrics
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/grafana/metrics
+  additional_fields: additional/grafana/metrics
+transform:
+  engine: elastic
+  variant: filebeat.grafana_metrics.default
+catalogue:
+  package: grafana
+  data_stream: metrics
+  intakes: [beats]
+  variants:
+    - filebeat.grafana_metrics.default

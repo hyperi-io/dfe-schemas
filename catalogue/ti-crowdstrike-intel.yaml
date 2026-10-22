@@ -1,0 +1,23 @@
+# Catalogue source ti-crowdstrike-intel: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ti-crowdstrike-intel
+display_name: ti_crowdstrike.intel
+description: The intel data stream of the Elastic ti_crowdstrike integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ti_crowdstrike.intel
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ti_crowdstrike/intel
+  additional_fields: additional/ti_crowdstrike/intel
+transform:
+  engine: elastic
+  variant: filebeat.ti_crowdstrike_intel.default
+catalogue:
+  package: ti_crowdstrike
+  data_stream: intel
+  intakes: [beats]
+  variants:
+    - filebeat.ti_crowdstrike_intel.default

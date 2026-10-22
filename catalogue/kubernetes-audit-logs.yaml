@@ -1,0 +1,23 @@
+# Catalogue source kubernetes-audit-logs: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: kubernetes-audit-logs
+display_name: kubernetes.audit_logs
+description: The audit_logs data stream of the Elastic kubernetes integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: kubernetes.audit_logs
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/kubernetes/audit_logs
+  additional_fields: additional/kubernetes/audit_logs
+transform:
+  engine: elastic
+  variant: filebeat.kubernetes_audit_logs.default
+catalogue:
+  package: kubernetes
+  data_stream: audit_logs
+  intakes: [beats]
+  variants:
+    - filebeat.kubernetes_audit_logs.default

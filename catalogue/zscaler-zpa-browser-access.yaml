@@ -1,0 +1,24 @@
+# Catalogue source zscaler-zpa-browser-access: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zscaler-zpa-browser-access
+display_name: zscaler_zpa.browser_access
+description: The browser_access data stream of the Elastic zscaler_zpa integration.
+match:
+  field: _source
+  operator: equals
+  value: zscaler-zpa-browser-access
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zscaler_zpa/browser_access
+  additional_fields: additional/zscaler_zpa/browser_access
+transform:
+  engine: elastic
+  variant: filebeat.zscaler_zpa_browser_access.default
+catalogue:
+  package: zscaler_zpa
+  data_stream: browser_access
+  intakes: [beats, receiver]
+  framing: body
+  variants:
+    - filebeat.zscaler_zpa_browser_access.default

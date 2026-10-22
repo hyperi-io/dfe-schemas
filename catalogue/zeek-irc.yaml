@@ -1,0 +1,23 @@
+# Catalogue source zeek-irc: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zeek-irc
+display_name: zeek.irc
+description: The irc data stream of the Elastic zeek integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: zeek.irc
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zeek/irc
+  additional_fields: additional/zeek/irc
+transform:
+  engine: elastic
+  variant: filebeat.zeek_irc.default
+catalogue:
+  package: zeek
+  data_stream: irc
+  intakes: [beats]
+  variants:
+    - filebeat.zeek_irc.default

@@ -1,0 +1,23 @@
+# Catalogue source ironscales-incident: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ironscales-incident
+display_name: ironscales.incident
+description: The incident data stream of the Elastic ironscales integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ironscales.incident
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ironscales/incident
+  additional_fields: additional/ironscales/incident
+transform:
+  engine: elastic
+  variant: filebeat.ironscales_incident.default
+catalogue:
+  package: ironscales
+  data_stream: incident
+  intakes: [beats]
+  variants:
+    - filebeat.ironscales_incident.default

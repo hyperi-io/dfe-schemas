@@ -1,0 +1,22 @@
+# Catalogue source google-workspace-login: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: google-workspace-login
+display_name: google_workspace.login
+description: The login data stream of the Elastic google_workspace integration.
+fetcher:
+  source_type: google_workspace
+  topic: own
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/google_workspace/login
+  additional_fields: additional/google_workspace/login
+transform:
+  engine: elastic
+  variant: filebeat.google_workspace_login.default
+catalogue:
+  package: google_workspace
+  data_stream: login
+  intakes: [beats, fetcher]
+  variants:
+    - filebeat.google_workspace_login.default

@@ -1,0 +1,19 @@
+# Catalogue source elasticsearch-ingest-pipeline: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: elasticsearch-ingest-pipeline
+display_name: elasticsearch.ingest_pipeline
+description: The ingest_pipeline data stream of the Elastic elasticsearch integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: elasticsearch.ingest_pipeline
+transform:
+  engine: elastic
+  variant: filebeat.elasticsearch_ingest_pipeline.default
+catalogue:
+  package: elasticsearch
+  data_stream: ingest_pipeline
+  intakes: [beats]
+  variants:
+    - filebeat.elasticsearch_ingest_pipeline.default

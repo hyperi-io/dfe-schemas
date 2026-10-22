@@ -1,0 +1,23 @@
+# Catalogue source vectra-rux-entity-event: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: vectra-rux-entity-event
+display_name: vectra_rux.entity_event
+description: The entity_event data stream of the Elastic vectra_rux integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: vectra_rux.entity_event
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/vectra_rux/entity_event
+  additional_fields: additional/vectra_rux/entity_event
+transform:
+  engine: elastic
+  variant: filebeat.vectra_rux_entity_event.default
+catalogue:
+  package: vectra_rux
+  data_stream: entity_event
+  intakes: [beats]
+  variants:
+    - filebeat.vectra_rux_entity_event.default

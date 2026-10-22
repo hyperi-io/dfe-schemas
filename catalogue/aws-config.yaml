@@ -1,0 +1,22 @@
+# Catalogue source aws-config: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: aws-config
+display_name: aws.config
+description: The config data stream of the Elastic aws integration.
+fetcher:
+  source_type: aws
+  topic: own
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/aws/config
+  additional_fields: additional/aws/config
+transform:
+  engine: elastic
+  variant: filebeat.aws_config.default
+catalogue:
+  package: aws
+  data_stream: config
+  intakes: [beats, fetcher]
+  variants:
+    - filebeat.aws_config.default

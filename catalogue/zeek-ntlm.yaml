@@ -1,0 +1,23 @@
+# Catalogue source zeek-ntlm: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zeek-ntlm
+display_name: zeek.ntlm
+description: The ntlm data stream of the Elastic zeek integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: zeek.ntlm
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zeek/ntlm
+  additional_fields: additional/zeek/ntlm
+transform:
+  engine: elastic
+  variant: filebeat.zeek_ntlm.default
+catalogue:
+  package: zeek
+  data_stream: ntlm
+  intakes: [beats]
+  variants:
+    - filebeat.zeek_ntlm.default

@@ -1,0 +1,22 @@
+# Catalogue source aws-securityhub-findings-full-posture: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: aws-securityhub-findings-full-posture
+display_name: aws.securityhub_findings_full_posture
+description: The securityhub_findings_full_posture data stream of the Elastic aws integration.
+fetcher:
+  source_type: aws
+  topic: own
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/aws/securityhub_findings_full_posture
+  additional_fields: additional/aws/securityhub_findings_full_posture
+transform:
+  engine: elastic
+  variant: filebeat.aws_securityhub_findings_full_posture.default
+catalogue:
+  package: aws
+  data_stream: securityhub_findings_full_posture
+  intakes: [beats, fetcher]
+  variants:
+    - filebeat.aws_securityhub_findings_full_posture.default

@@ -1,0 +1,19 @@
+# Catalogue source envoyproxy-stats: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: envoyproxy-stats
+display_name: envoyproxy.stats
+description: The stats data stream of the Elastic envoyproxy integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: envoyproxy.stats
+transform:
+  engine: elastic
+  variant: filebeat.envoyproxy_stats.default
+catalogue:
+  package: envoyproxy
+  data_stream: stats
+  intakes: [beats]
+  variants:
+    - filebeat.envoyproxy_stats.default

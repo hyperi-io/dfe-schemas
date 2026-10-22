@@ -1,0 +1,23 @@
+# Catalogue source kolide-issues: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: kolide-issues
+display_name: kolide.issues
+description: The issues data stream of the Elastic kolide integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: kolide.issues
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/kolide/issues
+  additional_fields: additional/kolide/issues
+transform:
+  engine: elastic
+  variant: filebeat.kolide_issues.default
+catalogue:
+  package: kolide
+  data_stream: issues
+  intakes: [beats]
+  variants:
+    - filebeat.kolide_issues.default

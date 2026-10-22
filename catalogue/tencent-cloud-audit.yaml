@@ -1,0 +1,23 @@
+# Catalogue source tencent-cloud-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: tencent-cloud-audit
+display_name: tencent_cloud.audit
+description: The audit data stream of the Elastic tencent_cloud integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: tencent_cloud.audit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/tencent_cloud/audit
+  additional_fields: additional/tencent_cloud/audit
+transform:
+  engine: elastic
+  variant: filebeat.tencent_cloud_audit.default
+catalogue:
+  package: tencent_cloud
+  data_stream: audit
+  intakes: [beats]
+  variants:
+    - filebeat.tencent_cloud_audit.default

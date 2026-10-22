@@ -1,0 +1,19 @@
+# Catalogue source aws-awshealth: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: aws-awshealth
+display_name: aws.awshealth
+description: The awshealth data stream of the Elastic aws integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: aws.awshealth
+transform:
+  engine: elastic
+  variant: filebeat.aws_awshealth.default
+catalogue:
+  package: aws
+  data_stream: awshealth
+  intakes: [beats]
+  variants:
+    - filebeat.aws_awshealth.default

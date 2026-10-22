@@ -1,0 +1,23 @@
+# Catalogue source zeek-known-hosts: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zeek-known-hosts
+display_name: zeek.known_hosts
+description: The known_hosts data stream of the Elastic zeek integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: zeek.known_hosts
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zeek/known_hosts
+  additional_fields: additional/zeek/known_hosts
+transform:
+  engine: elastic
+  variant: filebeat.zeek_known_hosts.default
+catalogue:
+  package: zeek
+  data_stream: known_hosts
+  intakes: [beats]
+  variants:
+    - filebeat.zeek_known_hosts.default

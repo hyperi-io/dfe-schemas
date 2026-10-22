@@ -1,0 +1,23 @@
+# Catalogue source cybereason-suspicions-process: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: cybereason-suspicions-process
+display_name: cybereason.suspicions_process
+description: The suspicions_process data stream of the Elastic cybereason integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: cybereason.suspicions_process
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/cybereason/suspicions_process
+  additional_fields: additional/cybereason/suspicions_process
+transform:
+  engine: elastic
+  variant: filebeat.cybereason_suspicions_process.default
+catalogue:
+  package: cybereason
+  data_stream: suspicions_process
+  intakes: [beats]
+  variants:
+    - filebeat.cybereason_suspicions_process.default

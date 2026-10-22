@@ -1,0 +1,23 @@
+# Catalogue source forgerock-am-config: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: forgerock-am-config
+display_name: forgerock.am_config
+description: The am_config data stream of the Elastic forgerock integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: forgerock.am_config
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/forgerock/am_config
+  additional_fields: additional/forgerock/am_config
+transform:
+  engine: elastic
+  variant: filebeat.forgerock_am_config.default
+catalogue:
+  package: forgerock
+  data_stream: am_config
+  intakes: [beats]
+  variants:
+    - filebeat.forgerock_am_config.default

@@ -1,0 +1,23 @@
+# Catalogue source checkpoint-harmony-endpoint-zerophishing: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: checkpoint-harmony-endpoint-zerophishing
+display_name: checkpoint_harmony_endpoint.zerophishing
+description: The zerophishing data stream of the Elastic checkpoint_harmony_endpoint integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: checkpoint_harmony_endpoint.zerophishing
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/checkpoint_harmony_endpoint/zerophishing
+  additional_fields: additional/checkpoint_harmony_endpoint/zerophishing
+transform:
+  engine: elastic
+  variant: filebeat.checkpoint_harmony_endpoint_zerophishing.default
+catalogue:
+  package: checkpoint_harmony_endpoint
+  data_stream: zerophishing
+  intakes: [beats]
+  variants:
+    - filebeat.checkpoint_harmony_endpoint_zerophishing.default

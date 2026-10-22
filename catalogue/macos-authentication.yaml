@@ -1,0 +1,23 @@
+# Catalogue source macos-authentication: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: macos-authentication
+display_name: macos.authentication
+description: The authentication data stream of the Elastic macos integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: macos.authentication
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/macos/authentication
+  additional_fields: additional/macos/authentication
+transform:
+  engine: elastic
+  variant: filebeat.macos_authentication.default
+catalogue:
+  package: macos
+  data_stream: authentication
+  intakes: [beats]
+  variants:
+    - filebeat.macos_authentication.default

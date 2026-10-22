@@ -1,0 +1,23 @@
+# Catalogue source tetragon-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: tetragon-log
+display_name: tetragon.log
+description: The log data stream of the Elastic tetragon integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: tetragon.log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/tetragon/log
+  additional_fields: additional/tetragon/log
+transform:
+  engine: elastic
+  variant: filebeat.tetragon_log.default
+catalogue:
+  package: tetragon
+  data_stream: log
+  intakes: [beats]
+  variants:
+    - filebeat.tetragon_log.default

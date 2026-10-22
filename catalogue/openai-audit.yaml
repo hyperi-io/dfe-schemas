@@ -1,0 +1,23 @@
+# Catalogue source openai-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: openai-audit
+display_name: openai.audit
+description: The audit data stream of the Elastic openai integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: openai.audit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/openai/audit
+  additional_fields: additional/openai/audit
+transform:
+  engine: elastic
+  variant: filebeat.openai_audit.default
+catalogue:
+  package: openai
+  data_stream: audit
+  intakes: [beats]
+  variants:
+    - filebeat.openai_audit.default

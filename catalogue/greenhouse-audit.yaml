@@ -1,0 +1,23 @@
+# Catalogue source greenhouse-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: greenhouse-audit
+display_name: greenhouse.audit
+description: The audit data stream of the Elastic greenhouse integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: greenhouse.audit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/greenhouse/audit
+  additional_fields: additional/greenhouse/audit
+transform:
+  engine: elastic
+  variant: filebeat.greenhouse_audit.default
+catalogue:
+  package: greenhouse
+  data_stream: audit
+  intakes: [beats]
+  variants:
+    - filebeat.greenhouse_audit.default

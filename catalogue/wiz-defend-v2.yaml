@@ -1,0 +1,23 @@
+# Catalogue source wiz-defend-v2: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: wiz-defend-v2
+display_name: wiz.defend_v2
+description: The defend_v2 data stream of the Elastic wiz integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: wiz.defend_v2
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/wiz/defend_v2
+  additional_fields: additional/wiz/defend_v2
+transform:
+  engine: elastic
+  variant: filebeat.wiz_defend_v2.default
+catalogue:
+  package: wiz
+  data_stream: defend_v2
+  intakes: [beats]
+  variants:
+    - filebeat.wiz_defend_v2.default

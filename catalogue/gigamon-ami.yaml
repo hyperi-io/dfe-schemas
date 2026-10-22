@@ -1,0 +1,24 @@
+# Catalogue source gigamon-ami: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: gigamon-ami
+display_name: gigamon.ami
+description: The ami data stream of the Elastic gigamon integration.
+match:
+  field: _source
+  operator: equals
+  value: gigamon-ami
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/gigamon/ami
+  additional_fields: additional/gigamon/ami
+transform:
+  engine: elastic
+  variant: filebeat.gigamon_ami.default
+catalogue:
+  package: gigamon
+  data_stream: ami
+  intakes: [beats, receiver]
+  framing: body
+  variants:
+    - filebeat.gigamon_ami.default

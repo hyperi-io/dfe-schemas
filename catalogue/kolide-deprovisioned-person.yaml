@@ -1,0 +1,23 @@
+# Catalogue source kolide-deprovisioned-person: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: kolide-deprovisioned-person
+display_name: kolide.deprovisioned_person
+description: The deprovisioned_person data stream of the Elastic kolide integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: kolide.deprovisioned_person
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/kolide/deprovisioned_person
+  additional_fields: additional/kolide/deprovisioned_person
+transform:
+  engine: elastic
+  variant: filebeat.kolide_deprovisioned_person.default
+catalogue:
+  package: kolide
+  data_stream: deprovisioned_person
+  intakes: [beats]
+  variants:
+    - filebeat.kolide_deprovisioned_person.default

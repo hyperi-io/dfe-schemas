@@ -1,0 +1,23 @@
+# Catalogue source cybereason-logon-session: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: cybereason-logon-session
+display_name: cybereason.logon_session
+description: The logon_session data stream of the Elastic cybereason integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: cybereason.logon_session
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/cybereason/logon_session
+  additional_fields: additional/cybereason/logon_session
+transform:
+  engine: elastic
+  variant: filebeat.cybereason_logon_session.default
+catalogue:
+  package: cybereason
+  data_stream: logon_session
+  intakes: [beats]
+  variants:
+    - filebeat.cybereason_logon_session.default

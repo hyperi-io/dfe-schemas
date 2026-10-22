@@ -1,0 +1,19 @@
+# Catalogue source microsoft-sqlserver-availability-groups: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: microsoft-sqlserver-availability-groups
+display_name: microsoft_sqlserver.availability_groups
+description: The availability_groups data stream of the Elastic microsoft_sqlserver integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: microsoft_sqlserver.availability_groups
+transform:
+  engine: elastic
+  variant: filebeat.microsoft_sqlserver_availability_groups.default
+catalogue:
+  package: microsoft_sqlserver
+  data_stream: availability_groups
+  intakes: [beats]
+  variants:
+    - filebeat.microsoft_sqlserver_availability_groups.default

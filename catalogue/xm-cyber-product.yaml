@@ -1,0 +1,23 @@
+# Catalogue source xm-cyber-product: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: xm-cyber-product
+display_name: xm_cyber.product
+description: The product data stream of the Elastic xm_cyber integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: xm_cyber.product
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/xm_cyber/product
+  additional_fields: additional/xm_cyber/product
+transform:
+  engine: elastic
+  variant: filebeat.xm_cyber_product.default
+catalogue:
+  package: xm_cyber
+  data_stream: product
+  intakes: [beats]
+  variants:
+    - filebeat.xm_cyber_product.default

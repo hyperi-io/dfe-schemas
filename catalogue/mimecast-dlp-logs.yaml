@@ -1,0 +1,23 @@
+# Catalogue source mimecast-dlp-logs: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: mimecast-dlp-logs
+display_name: mimecast.dlp_logs
+description: The dlp_logs data stream of the Elastic mimecast integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: mimecast.dlp_logs
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/mimecast/dlp_logs
+  additional_fields: additional/mimecast/dlp_logs
+transform:
+  engine: elastic
+  variant: filebeat.mimecast_dlp_logs.default
+catalogue:
+  package: mimecast
+  data_stream: dlp_logs
+  intakes: [beats]
+  variants:
+    - filebeat.mimecast_dlp_logs.default

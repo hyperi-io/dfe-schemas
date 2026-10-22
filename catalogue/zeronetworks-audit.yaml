@@ -1,0 +1,23 @@
+# Catalogue source zeronetworks-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zeronetworks-audit
+display_name: zeronetworks.audit
+description: The audit data stream of the Elastic zeronetworks integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: zeronetworks.audit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zeronetworks/audit
+  additional_fields: additional/zeronetworks/audit
+transform:
+  engine: elastic
+  variant: filebeat.zeronetworks_audit.default
+catalogue:
+  package: zeronetworks
+  data_stream: audit
+  intakes: [beats]
+  variants:
+    - filebeat.zeronetworks_audit.default

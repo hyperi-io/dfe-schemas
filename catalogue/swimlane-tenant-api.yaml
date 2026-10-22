@@ -1,0 +1,23 @@
+# Catalogue source swimlane-tenant-api: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: swimlane-tenant-api
+display_name: swimlane.tenant_api
+description: The tenant_api data stream of the Elastic swimlane integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: swimlane.tenant_api
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/swimlane/tenant_api
+  additional_fields: additional/swimlane/tenant_api
+transform:
+  engine: elastic
+  variant: filebeat.swimlane_tenant_api.default
+catalogue:
+  package: swimlane
+  data_stream: tenant_api
+  intakes: [beats]
+  variants:
+    - filebeat.swimlane_tenant_api.default

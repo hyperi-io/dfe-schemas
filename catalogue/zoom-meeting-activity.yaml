@@ -1,0 +1,23 @@
+# Catalogue source zoom-meeting-activity: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zoom-meeting-activity
+display_name: zoom.meeting_activity
+description: The meeting_activity data stream of the Elastic zoom integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: zoom.meeting_activity
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zoom/meeting_activity
+  additional_fields: additional/zoom/meeting_activity
+transform:
+  engine: elastic
+  variant: filebeat.zoom_meeting_activity.default
+catalogue:
+  package: zoom
+  data_stream: meeting_activity
+  intakes: [beats]
+  variants:
+    - filebeat.zoom_meeting_activity.default

@@ -1,0 +1,23 @@
+# Catalogue source couchbase-cluster: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: couchbase-cluster
+display_name: couchbase.cluster
+description: The cluster data stream of the Elastic couchbase integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: couchbase.cluster
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/couchbase/cluster
+  additional_fields: additional/couchbase/cluster
+transform:
+  engine: elastic
+  variant: filebeat.couchbase_cluster.default
+catalogue:
+  package: couchbase
+  data_stream: cluster
+  intakes: [beats]
+  variants:
+    - filebeat.couchbase_cluster.default

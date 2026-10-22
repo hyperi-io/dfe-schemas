@@ -1,0 +1,23 @@
+# Catalogue source ti-anomali-intelligence: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ti-anomali-intelligence
+display_name: ti_anomali.intelligence
+description: The intelligence data stream of the Elastic ti_anomali integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ti_anomali.intelligence
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ti_anomali/intelligence
+  additional_fields: additional/ti_anomali/intelligence
+transform:
+  engine: elastic
+  variant: filebeat.ti_anomali_intelligence.default
+catalogue:
+  package: ti_anomali
+  data_stream: intelligence
+  intakes: [beats]
+  variants:
+    - filebeat.ti_anomali_intelligence.default

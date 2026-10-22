@@ -1,0 +1,23 @@
+# Catalogue source kolide-request: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: kolide-request
+display_name: kolide.request
+description: The request data stream of the Elastic kolide integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: kolide.request
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/kolide/request
+  additional_fields: additional/kolide/request
+transform:
+  engine: elastic
+  variant: filebeat.kolide_request.default
+catalogue:
+  package: kolide
+  data_stream: request
+  intakes: [beats]
+  variants:
+    - filebeat.kolide_request.default

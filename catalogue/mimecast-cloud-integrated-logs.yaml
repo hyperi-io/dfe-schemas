@@ -1,0 +1,23 @@
+# Catalogue source mimecast-cloud-integrated-logs: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: mimecast-cloud-integrated-logs
+display_name: mimecast.cloud_integrated_logs
+description: The cloud_integrated_logs data stream of the Elastic mimecast integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: mimecast.cloud_integrated_logs
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/mimecast/cloud_integrated_logs
+  additional_fields: additional/mimecast/cloud_integrated_logs
+transform:
+  engine: elastic
+  variant: filebeat.mimecast_cloud_integrated_logs.default
+catalogue:
+  package: mimecast
+  data_stream: cloud_integrated_logs
+  intakes: [beats]
+  variants:
+    - filebeat.mimecast_cloud_integrated_logs.default

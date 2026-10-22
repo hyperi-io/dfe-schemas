@@ -1,0 +1,19 @@
+# Catalogue source azure-metrics-storage-account: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: azure-metrics-storage-account
+display_name: azure_metrics.storage_account
+description: The storage_account data stream of the Elastic azure_metrics integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: azure_metrics.storage_account
+transform:
+  engine: elastic
+  variant: filebeat.azure_metrics_storage_account.default
+catalogue:
+  package: azure_metrics
+  data_stream: storage_account
+  intakes: [beats]
+  variants:
+    - filebeat.azure_metrics_storage_account.default

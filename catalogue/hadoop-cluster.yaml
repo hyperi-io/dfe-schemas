@@ -1,0 +1,23 @@
+# Catalogue source hadoop-cluster: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: hadoop-cluster
+display_name: hadoop.cluster
+description: The cluster data stream of the Elastic hadoop integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: hadoop.cluster
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/hadoop/cluster
+  additional_fields: additional/hadoop/cluster
+transform:
+  engine: elastic
+  variant: filebeat.hadoop_cluster.default
+catalogue:
+  package: hadoop
+  data_stream: cluster
+  intakes: [beats]
+  variants:
+    - filebeat.hadoop_cluster.default

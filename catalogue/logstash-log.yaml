@@ -1,0 +1,23 @@
+# Catalogue source logstash-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: logstash-log
+display_name: logstash.log
+description: The log data stream of the Elastic logstash integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: logstash.log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/logstash/log
+  additional_fields: additional/logstash/log
+transform:
+  engine: elastic
+  variant: filebeat.logstash_log.default
+catalogue:
+  package: logstash
+  data_stream: log
+  intakes: [beats]
+  variants:
+    - filebeat.logstash_log.default

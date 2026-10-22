@@ -1,0 +1,23 @@
+# Catalogue source tychon-cpu: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: tychon-cpu
+display_name: tychon.cpu
+description: The cpu data stream of the Elastic tychon integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: tychon.cpu
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/tychon/cpu
+  additional_fields: additional/tychon/cpu
+transform:
+  engine: elastic
+  variant: filebeat.tychon_cpu.default
+catalogue:
+  package: tychon
+  data_stream: cpu
+  intakes: [beats]
+  variants:
+    - filebeat.tychon_cpu.default

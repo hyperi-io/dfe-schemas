@@ -1,0 +1,23 @@
+# Catalogue source kolide-osquery-result: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: kolide-osquery-result
+display_name: kolide.osquery_result
+description: The osquery_result data stream of the Elastic kolide integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: kolide.osquery_result
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/kolide/osquery_result
+  additional_fields: additional/kolide/osquery_result
+transform:
+  engine: elastic
+  variant: filebeat.kolide_osquery_result.default
+catalogue:
+  package: kolide
+  data_stream: osquery_result
+  intakes: [beats]
+  variants:
+    - filebeat.kolide_osquery_result.default

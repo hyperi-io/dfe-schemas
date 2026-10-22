@@ -1,0 +1,24 @@
+# Catalogue source zscaler-zpa-user-activity: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zscaler-zpa-user-activity
+display_name: zscaler_zpa.user_activity
+description: The user_activity data stream of the Elastic zscaler_zpa integration.
+match:
+  field: _source
+  operator: equals
+  value: zscaler-zpa-user-activity
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zscaler_zpa/user_activity
+  additional_fields: additional/zscaler_zpa/user_activity
+transform:
+  engine: elastic
+  variant: filebeat.zscaler_zpa_user_activity.default
+catalogue:
+  package: zscaler_zpa
+  data_stream: user_activity
+  intakes: [beats, receiver]
+  framing: body
+  variants:
+    - filebeat.zscaler_zpa_user_activity.default

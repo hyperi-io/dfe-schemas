@@ -1,0 +1,24 @@
+# Catalogue source prisma-access-event: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: prisma-access-event
+display_name: prisma_access.event
+description: The event data stream of the Elastic prisma_access integration.
+match:
+  field: _source
+  operator: equals
+  value: prisma-access-event
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/prisma_access/event
+  additional_fields: additional/prisma_access/event
+transform:
+  engine: elastic
+  variant: filebeat.prisma_access_event.default
+catalogue:
+  package: prisma_access
+  data_stream: event
+  intakes: [beats, receiver]
+  framing: body
+  variants:
+    - filebeat.prisma_access_event.default

@@ -1,0 +1,23 @@
+# Catalogue source bitwarden-policy: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: bitwarden-policy
+display_name: bitwarden.policy
+description: The policy data stream of the Elastic bitwarden integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: bitwarden.policy
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/bitwarden/policy
+  additional_fields: additional/bitwarden/policy
+transform:
+  engine: elastic
+  variant: filebeat.bitwarden_policy.default
+catalogue:
+  package: bitwarden
+  data_stream: policy
+  intakes: [beats]
+  variants:
+    - filebeat.bitwarden_policy.default

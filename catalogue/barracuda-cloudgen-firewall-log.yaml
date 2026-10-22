@@ -1,0 +1,23 @@
+# Catalogue source barracuda-cloudgen-firewall-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: barracuda-cloudgen-firewall-log
+display_name: barracuda_cloudgen_firewall.log
+description: The log data stream of the Elastic barracuda_cloudgen_firewall integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: barracuda_cloudgen_firewall.log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/barracuda_cloudgen_firewall/log
+  additional_fields: additional/barracuda_cloudgen_firewall/log
+transform:
+  engine: elastic
+  variant: filebeat.barracuda_cloudgen_firewall_log.default
+catalogue:
+  package: barracuda_cloudgen_firewall
+  data_stream: log
+  intakes: [beats]
+  variants:
+    - filebeat.barracuda_cloudgen_firewall_log.default

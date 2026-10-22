@@ -1,0 +1,23 @@
+# Catalogue source infoblox-bloxone-ddi-dns-config: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: infoblox-bloxone-ddi-dns-config
+display_name: infoblox_bloxone_ddi.dns_config
+description: The dns_config data stream of the Elastic infoblox_bloxone_ddi integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: infoblox_bloxone_ddi.dns_config
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/infoblox_bloxone_ddi/dns_config
+  additional_fields: additional/infoblox_bloxone_ddi/dns_config
+transform:
+  engine: elastic
+  variant: filebeat.infoblox_bloxone_ddi_dns_config.default
+catalogue:
+  package: infoblox_bloxone_ddi
+  data_stream: dns_config
+  intakes: [beats]
+  variants:
+    - filebeat.infoblox_bloxone_ddi_dns_config.default

@@ -1,0 +1,23 @@
+# Catalogue source spycloud-compass: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: spycloud-compass
+display_name: spycloud.compass
+description: The compass data stream of the Elastic spycloud integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: spycloud.compass
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/spycloud/compass
+  additional_fields: additional/spycloud/compass
+transform:
+  engine: elastic
+  variant: filebeat.spycloud_compass.default
+catalogue:
+  package: spycloud
+  data_stream: compass
+  intakes: [beats]
+  variants:
+    - filebeat.spycloud_compass.default

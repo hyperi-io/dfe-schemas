@@ -1,0 +1,23 @@
+# Catalogue source zeek-sip: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zeek-sip
+display_name: zeek.sip
+description: The sip data stream of the Elastic zeek integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: zeek.sip
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zeek/sip
+  additional_fields: additional/zeek/sip
+transform:
+  engine: elastic
+  variant: filebeat.zeek_sip.default
+catalogue:
+  package: zeek
+  data_stream: sip
+  intakes: [beats]
+  variants:
+    - filebeat.zeek_sip.default

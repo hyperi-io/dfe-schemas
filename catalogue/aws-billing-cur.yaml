@@ -1,0 +1,23 @@
+# Catalogue source aws-billing-cur: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: aws-billing-cur
+display_name: aws_billing.cur
+description: The cur data stream of the Elastic aws_billing integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: aws_billing.cur
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/aws_billing/cur
+  additional_fields: additional/aws_billing/cur
+transform:
+  engine: elastic
+  variant: filebeat.aws_billing_cur.default
+catalogue:
+  package: aws_billing
+  data_stream: cur
+  intakes: [beats]
+  variants:
+    - filebeat.aws_billing_cur.default

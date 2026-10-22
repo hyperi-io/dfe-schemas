@@ -1,0 +1,24 @@
+# Catalogue source beelzebub-logs: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: beelzebub-logs
+display_name: beelzebub.logs
+description: The logs data stream of the Elastic beelzebub integration.
+match:
+  field: _source
+  operator: equals
+  value: beelzebub-logs
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/beelzebub/logs
+  additional_fields: additional/beelzebub/logs
+transform:
+  engine: elastic
+  variant: filebeat.beelzebub_logs.default
+catalogue:
+  package: beelzebub
+  data_stream: logs
+  intakes: [beats, receiver]
+  framing: body
+  variants:
+    - filebeat.beelzebub_logs.default

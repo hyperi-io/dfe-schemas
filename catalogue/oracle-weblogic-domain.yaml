@@ -1,0 +1,23 @@
+# Catalogue source oracle-weblogic-domain: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: oracle-weblogic-domain
+display_name: oracle_weblogic.domain
+description: The domain data stream of the Elastic oracle_weblogic integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: oracle_weblogic.domain
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/oracle_weblogic/domain
+  additional_fields: additional/oracle_weblogic/domain
+transform:
+  engine: elastic
+  variant: filebeat.oracle_weblogic_domain.default
+catalogue:
+  package: oracle_weblogic
+  data_stream: domain
+  intakes: [beats]
+  variants:
+    - filebeat.oracle_weblogic_domain.default

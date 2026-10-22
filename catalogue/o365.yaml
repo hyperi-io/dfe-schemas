@@ -1,0 +1,25 @@
+# Catalogue source o365: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: o365
+display_name: o365.audit
+description: The audit data stream of the Elastic o365 integration.
+fetcher:
+  source_type: m365
+  topic: own
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/o365/audit
+  additional_fields: additional/o365/audit
+transform:
+  engine: elastic
+  variant: filebeat.o365.default
+catalogue:
+  package: o365
+  data_stream: audit
+  intakes: [beats, fetcher]
+  beats:
+    module: o365
+    fileset: audit
+  variants:
+    - filebeat.o365.default

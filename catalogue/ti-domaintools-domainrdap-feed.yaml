@@ -1,0 +1,23 @@
+# Catalogue source ti-domaintools-domainrdap-feed: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ti-domaintools-domainrdap-feed
+display_name: ti_domaintools.domainrdap_feed
+description: The domainrdap_feed data stream of the Elastic ti_domaintools integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ti_domaintools.domainrdap_feed
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ti_domaintools/domainrdap_feed
+  additional_fields: additional/ti_domaintools/domainrdap_feed
+transform:
+  engine: elastic
+  variant: filebeat.ti_domaintools_domainrdap_feed.default
+catalogue:
+  package: ti_domaintools
+  data_stream: domainrdap_feed
+  intakes: [beats]
+  variants:
+    - filebeat.ti_domaintools_domainrdap_feed.default

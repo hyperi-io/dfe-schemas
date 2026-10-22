@@ -1,0 +1,23 @@
+# Catalogue source activemq-queue: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: activemq-queue
+display_name: activemq.queue
+description: The queue data stream of the Elastic activemq integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: activemq.queue
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/activemq/queue
+  additional_fields: additional/activemq/queue
+transform:
+  engine: elastic
+  variant: filebeat.activemq_queue.default
+catalogue:
+  package: activemq
+  data_stream: queue
+  intakes: [beats]
+  variants:
+    - filebeat.activemq_queue.default

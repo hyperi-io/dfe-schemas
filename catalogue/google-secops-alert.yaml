@@ -1,0 +1,23 @@
+# Catalogue source google-secops-alert: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: google-secops-alert
+display_name: google_secops.alert
+description: The alert data stream of the Elastic google_secops integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: google_secops.alert
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/google_secops/alert
+  additional_fields: additional/google_secops/alert
+transform:
+  engine: elastic
+  variant: filebeat.google_secops_alert.default
+catalogue:
+  package: google_secops
+  data_stream: alert
+  intakes: [beats]
+  variants:
+    - filebeat.google_secops_alert.default

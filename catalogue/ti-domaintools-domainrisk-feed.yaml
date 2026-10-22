@@ -1,0 +1,23 @@
+# Catalogue source ti-domaintools-domainrisk-feed: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ti-domaintools-domainrisk-feed
+display_name: ti_domaintools.domainrisk_feed
+description: The domainrisk_feed data stream of the Elastic ti_domaintools integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ti_domaintools.domainrisk_feed
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ti_domaintools/domainrisk_feed
+  additional_fields: additional/ti_domaintools/domainrisk_feed
+transform:
+  engine: elastic
+  variant: filebeat.ti_domaintools_domainrisk_feed.default
+catalogue:
+  package: ti_domaintools
+  data_stream: domainrisk_feed
+  intakes: [beats]
+  variants:
+    - filebeat.ti_domaintools_domainrisk_feed.default

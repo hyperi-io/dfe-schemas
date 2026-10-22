@@ -1,0 +1,23 @@
+# Catalogue source checkpoint-harmony-threatextraction: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: checkpoint-harmony-threatextraction
+display_name: checkpoint_harmony_endpoint.threatextraction
+description: The threatextraction data stream of the Elastic checkpoint_harmony_endpoint integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: checkpoint_harmony_endpoint.threatextraction
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/checkpoint_harmony_endpoint/threatextraction
+  additional_fields: additional/checkpoint_harmony_endpoint/threatextraction
+transform:
+  engine: elastic
+  variant: filebeat.checkpoint_harmony_endpoint_threatextraction.default
+catalogue:
+  package: checkpoint_harmony_endpoint
+  data_stream: threatextraction
+  intakes: [beats]
+  variants:
+    - filebeat.checkpoint_harmony_endpoint_threatextraction.default

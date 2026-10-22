@@ -1,0 +1,23 @@
+# Catalogue source wiz-cloud-configuration-finding: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: wiz-cloud-configuration-finding
+display_name: wiz.cloud_configuration_finding
+description: The cloud_configuration_finding data stream of the Elastic wiz integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: wiz.cloud_configuration_finding
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/wiz/cloud_configuration_finding
+  additional_fields: additional/wiz/cloud_configuration_finding
+transform:
+  engine: elastic
+  variant: filebeat.wiz_cloud_configuration_finding.default
+catalogue:
+  package: wiz
+  data_stream: cloud_configuration_finding
+  intakes: [beats]
+  variants:
+    - filebeat.wiz_cloud_configuration_finding.default

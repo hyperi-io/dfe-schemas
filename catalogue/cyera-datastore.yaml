@@ -1,0 +1,23 @@
+# Catalogue source cyera-datastore: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: cyera-datastore
+display_name: cyera.datastore
+description: The datastore data stream of the Elastic cyera integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: cyera.datastore
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/cyera/datastore
+  additional_fields: additional/cyera/datastore
+transform:
+  engine: elastic
+  variant: filebeat.cyera_datastore.default
+catalogue:
+  package: cyera
+  data_stream: datastore
+  intakes: [beats]
+  variants:
+    - filebeat.cyera_datastore.default

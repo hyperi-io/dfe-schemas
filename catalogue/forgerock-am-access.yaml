@@ -1,0 +1,23 @@
+# Catalogue source forgerock-am-access: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: forgerock-am-access
+display_name: forgerock.am_access
+description: The am_access data stream of the Elastic forgerock integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: forgerock.am_access
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/forgerock/am_access
+  additional_fields: additional/forgerock/am_access
+transform:
+  engine: elastic
+  variant: filebeat.forgerock_am_access.default
+catalogue:
+  package: forgerock
+  data_stream: am_access
+  intakes: [beats]
+  variants:
+    - filebeat.forgerock_am_access.default

@@ -1,0 +1,23 @@
+# Catalogue source extrahop-detection: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: extrahop-detection
+display_name: extrahop.detection
+description: The detection data stream of the Elastic extrahop integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: extrahop.detection
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/extrahop/detection
+  additional_fields: additional/extrahop/detection
+transform:
+  engine: elastic
+  variant: filebeat.extrahop_detection.default
+catalogue:
+  package: extrahop
+  data_stream: detection
+  intakes: [beats]
+  variants:
+    - filebeat.extrahop_detection.default

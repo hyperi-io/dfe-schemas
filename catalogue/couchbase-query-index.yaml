@@ -1,0 +1,23 @@
+# Catalogue source couchbase-query-index: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: couchbase-query-index
+display_name: couchbase.query_index
+description: The query_index data stream of the Elastic couchbase integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: couchbase.query_index
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/couchbase/query_index
+  additional_fields: additional/couchbase/query_index
+transform:
+  engine: elastic
+  variant: filebeat.couchbase_query_index.default
+catalogue:
+  package: couchbase
+  data_stream: query_index
+  intakes: [beats]
+  variants:
+    - filebeat.couchbase_query_index.default

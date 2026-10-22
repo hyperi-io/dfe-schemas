@@ -1,0 +1,23 @@
+# Catalogue source rubrik-unmanaged-objects: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: rubrik-unmanaged-objects
+display_name: rubrik.unmanaged_objects
+description: The unmanaged_objects data stream of the Elastic rubrik integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: rubrik.unmanaged_objects
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/rubrik/unmanaged_objects
+  additional_fields: additional/rubrik/unmanaged_objects
+transform:
+  engine: elastic
+  variant: filebeat.rubrik_unmanaged_objects.default
+catalogue:
+  package: rubrik
+  data_stream: unmanaged_objects
+  intakes: [beats]
+  variants:
+    - filebeat.rubrik_unmanaged_objects.default

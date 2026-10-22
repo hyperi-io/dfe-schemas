@@ -1,0 +1,23 @@
+# Catalogue source ti-cybersixgill-threat: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ti-cybersixgill-threat
+display_name: ti_cybersixgill.threat
+description: The threat data stream of the Elastic ti_cybersixgill integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ti_cybersixgill.threat
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ti_cybersixgill/threat
+  additional_fields: additional/ti_cybersixgill/threat
+transform:
+  engine: elastic
+  variant: filebeat.ti_cybersixgill_threat.default
+catalogue:
+  package: ti_cybersixgill
+  data_stream: threat
+  intakes: [beats]
+  variants:
+    - filebeat.ti_cybersixgill_threat.default

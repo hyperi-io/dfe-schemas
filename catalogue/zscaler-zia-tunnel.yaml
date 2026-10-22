@@ -1,0 +1,24 @@
+# Catalogue source zscaler-zia-tunnel: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zscaler-zia-tunnel
+display_name: zscaler_zia.tunnel
+description: The tunnel data stream of the Elastic zscaler_zia integration.
+match:
+  field: _source
+  operator: equals
+  value: zscaler-zia-tunnel
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zscaler_zia/tunnel
+  additional_fields: additional/zscaler_zia/tunnel
+transform:
+  engine: elastic
+  variant: filebeat.zscaler_zia_tunnel.default
+catalogue:
+  package: zscaler_zia
+  data_stream: tunnel
+  intakes: [beats, receiver]
+  framing: body
+  variants:
+    - filebeat.zscaler_zia_tunnel.default

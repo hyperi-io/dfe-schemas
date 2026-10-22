@@ -1,0 +1,24 @@
+# Catalogue source arista-ngfw-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: arista-ngfw-log
+display_name: arista_ngfw.log
+description: The log data stream of the Elastic arista_ngfw integration.
+match:
+  field: _source
+  operator: equals
+  value: arista-ngfw-log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/arista_ngfw/log
+  additional_fields: additional/arista_ngfw/log
+transform:
+  engine: elastic
+  variant: filebeat.arista_ngfw_log.default
+catalogue:
+  package: arista_ngfw
+  data_stream: log
+  intakes: [beats, receiver]
+  framing: line
+  variants:
+    - filebeat.arista_ngfw_log.default

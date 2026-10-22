@@ -1,0 +1,19 @@
+# Catalogue source influxdb-status: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: influxdb-status
+display_name: influxdb.status
+description: The status data stream of the Elastic influxdb integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: influxdb.status
+transform:
+  engine: elastic
+  variant: filebeat.influxdb_status.default
+catalogue:
+  package: influxdb
+  data_stream: status
+  intakes: [beats]
+  variants:
+    - filebeat.influxdb_status.default

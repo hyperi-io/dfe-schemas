@@ -1,0 +1,23 @@
+# Catalogue source citrix-adc-interface: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: citrix-adc-interface
+display_name: citrix_adc.interface
+description: The interface data stream of the Elastic citrix_adc integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: citrix_adc.interface
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/citrix_adc/interface
+  additional_fields: additional/citrix_adc/interface
+transform:
+  engine: elastic
+  variant: filebeat.citrix_adc_interface.default
+catalogue:
+  package: citrix_adc
+  data_stream: interface
+  intakes: [beats]
+  variants:
+    - filebeat.citrix_adc_interface.default

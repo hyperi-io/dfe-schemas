@@ -1,0 +1,23 @@
+# Catalogue source zeek-kerberos: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zeek-kerberos
+display_name: zeek.kerberos
+description: The kerberos data stream of the Elastic zeek integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: zeek.kerberos
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zeek/kerberos
+  additional_fields: additional/zeek/kerberos
+transform:
+  engine: elastic
+  variant: filebeat.zeek_kerberos.default
+catalogue:
+  package: zeek
+  data_stream: kerberos
+  intakes: [beats]
+  variants:
+    - filebeat.zeek_kerberos.default

@@ -1,0 +1,19 @@
+# Catalogue source network-traffic-flow: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: network-traffic-flow
+display_name: network_traffic.flow
+description: The flow data stream of the Elastic network_traffic integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: network_traffic.flow
+transform:
+  engine: elastic
+  variant: filebeat.network_traffic_flow.default
+catalogue:
+  package: network_traffic
+  data_stream: flow
+  intakes: [beats]
+  variants:
+    - filebeat.network_traffic_flow.default

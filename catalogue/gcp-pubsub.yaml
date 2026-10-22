@@ -1,0 +1,19 @@
+# Catalogue source gcp-pubsub: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: gcp-pubsub
+display_name: gcp.pubsub
+description: The pubsub data stream of the Elastic gcp integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: gcp.pubsub
+transform:
+  engine: elastic
+  variant: filebeat.gcp_pubsub.default
+catalogue:
+  package: gcp
+  data_stream: pubsub
+  intakes: [beats]
+  variants:
+    - filebeat.gcp_pubsub.default

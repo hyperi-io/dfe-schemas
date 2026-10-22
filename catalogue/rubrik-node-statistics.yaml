@@ -1,0 +1,23 @@
+# Catalogue source rubrik-node-statistics: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: rubrik-node-statistics
+display_name: rubrik.node_statistics
+description: The node_statistics data stream of the Elastic rubrik integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: rubrik.node_statistics
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/rubrik/node_statistics
+  additional_fields: additional/rubrik/node_statistics
+transform:
+  engine: elastic
+  variant: filebeat.rubrik_node_statistics.default
+catalogue:
+  package: rubrik
+  data_stream: node_statistics
+  intakes: [beats]
+  variants:
+    - filebeat.rubrik_node_statistics.default

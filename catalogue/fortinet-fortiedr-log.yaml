@@ -1,0 +1,24 @@
+# Catalogue source fortinet-fortiedr-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: fortinet-fortiedr-log
+display_name: fortinet_fortiedr.log
+description: The log data stream of the Elastic fortinet_fortiedr integration.
+match:
+  field: _source
+  operator: equals
+  value: fortinet-fortiedr-log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/fortinet_fortiedr/log
+  additional_fields: additional/fortinet_fortiedr/log
+transform:
+  engine: elastic
+  variant: filebeat.fortinet_fortiedr_log.default
+catalogue:
+  package: fortinet_fortiedr
+  data_stream: log
+  intakes: [beats, receiver]
+  framing: line
+  variants:
+    - filebeat.fortinet_fortiedr_log.default

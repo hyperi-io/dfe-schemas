@@ -1,0 +1,19 @@
+# Catalogue source openai-embeddings: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: openai-embeddings
+display_name: openai.embeddings
+description: The embeddings data stream of the Elastic openai integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: openai.embeddings
+transform:
+  engine: elastic
+  variant: filebeat.openai_embeddings.default
+catalogue:
+  package: openai
+  data_stream: embeddings
+  intakes: [beats]
+  variants:
+    - filebeat.openai_embeddings.default

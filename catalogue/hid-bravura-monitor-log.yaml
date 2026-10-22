@@ -1,0 +1,23 @@
+# Catalogue source hid-bravura-monitor-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: hid-bravura-monitor-log
+display_name: hid_bravura_monitor.log
+description: The log data stream of the Elastic hid_bravura_monitor integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: hid_bravura_monitor.log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/hid_bravura_monitor/log
+  additional_fields: additional/hid_bravura_monitor/log
+transform:
+  engine: elastic
+  variant: filebeat.hid_bravura_monitor_log.default
+catalogue:
+  package: hid_bravura_monitor
+  data_stream: log
+  intakes: [beats]
+  variants:
+    - filebeat.hid_bravura_monitor_log.default

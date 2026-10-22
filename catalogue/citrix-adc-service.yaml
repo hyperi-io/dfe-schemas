@@ -1,0 +1,23 @@
+# Catalogue source citrix-adc-service: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: citrix-adc-service
+display_name: citrix_adc.service
+description: The service data stream of the Elastic citrix_adc integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: citrix_adc.service
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/citrix_adc/service
+  additional_fields: additional/citrix_adc/service
+transform:
+  engine: elastic
+  variant: filebeat.citrix_adc_service.default
+catalogue:
+  package: citrix_adc
+  data_stream: service
+  intakes: [beats]
+  variants:
+    - filebeat.citrix_adc_service.default

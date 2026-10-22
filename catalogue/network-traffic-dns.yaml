@@ -1,0 +1,19 @@
+# Catalogue source network-traffic-dns: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: network-traffic-dns
+display_name: network_traffic.dns
+description: The dns data stream of the Elastic network_traffic integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: network_traffic.dns
+transform:
+  engine: elastic
+  variant: filebeat.network_traffic_dns.default
+catalogue:
+  package: network_traffic
+  data_stream: dns
+  intakes: [beats]
+  variants:
+    - filebeat.network_traffic_dns.default

@@ -1,0 +1,23 @@
+# Catalogue source beyondtrust-pra-access-session: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: beyondtrust-pra-access-session
+display_name: beyondtrust_pra.access_session
+description: The access_session data stream of the Elastic beyondtrust_pra integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: beyondtrust_pra.access_session
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/beyondtrust_pra/access_session
+  additional_fields: additional/beyondtrust_pra/access_session
+transform:
+  engine: elastic
+  variant: filebeat.beyondtrust_pra_access_session.default
+catalogue:
+  package: beyondtrust_pra
+  data_stream: access_session
+  intakes: [beats]
+  variants:
+    - filebeat.beyondtrust_pra_access_session.default

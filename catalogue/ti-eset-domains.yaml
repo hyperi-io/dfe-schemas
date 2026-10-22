@@ -1,0 +1,23 @@
+# Catalogue source ti-eset-domains: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ti-eset-domains
+display_name: ti_eset.domains
+description: The domains data stream of the Elastic ti_eset integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ti_eset.domains
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ti_eset/domains
+  additional_fields: additional/ti_eset/domains
+transform:
+  engine: elastic
+  variant: filebeat.ti_eset_domains.default
+catalogue:
+  package: ti_eset
+  data_stream: domains
+  intakes: [beats]
+  variants:
+    - filebeat.ti_eset_domains.default

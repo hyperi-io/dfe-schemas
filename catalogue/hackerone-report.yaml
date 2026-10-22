@@ -1,0 +1,23 @@
+# Catalogue source hackerone-report: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: hackerone-report
+display_name: hackerone.report
+description: The report data stream of the Elastic hackerone integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: hackerone.report
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/hackerone/report
+  additional_fields: additional/hackerone/report
+transform:
+  engine: elastic
+  variant: filebeat.hackerone_report.default
+catalogue:
+  package: hackerone
+  data_stream: report
+  intakes: [beats]
+  variants:
+    - filebeat.hackerone_report.default

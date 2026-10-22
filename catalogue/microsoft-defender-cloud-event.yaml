@@ -1,0 +1,23 @@
+# Catalogue source microsoft-defender-cloud-event: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: microsoft-defender-cloud-event
+display_name: microsoft_defender_cloud.event
+description: The event data stream of the Elastic microsoft_defender_cloud integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: microsoft_defender_cloud.event
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/microsoft_defender_cloud/event
+  additional_fields: additional/microsoft_defender_cloud/event
+transform:
+  engine: elastic
+  variant: filebeat.microsoft_defender_cloud_event.default
+catalogue:
+  package: microsoft_defender_cloud
+  data_stream: event
+  intakes: [beats]
+  variants:
+    - filebeat.microsoft_defender_cloud_event.default

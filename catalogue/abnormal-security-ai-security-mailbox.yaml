@@ -1,0 +1,23 @@
+# Catalogue source abnormal-security-ai-security-mailbox: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: abnormal-security-ai-security-mailbox
+display_name: abnormal_security.ai_security_mailbox
+description: The ai_security_mailbox data stream of the Elastic abnormal_security integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: abnormal_security.ai_security_mailbox
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/abnormal_security/ai_security_mailbox
+  additional_fields: additional/abnormal_security/ai_security_mailbox
+transform:
+  engine: elastic
+  variant: filebeat.abnormal_security_ai_security_mailbox.default
+catalogue:
+  package: abnormal_security
+  data_stream: ai_security_mailbox
+  intakes: [beats]
+  variants:
+    - filebeat.abnormal_security_ai_security_mailbox.default

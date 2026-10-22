@@ -1,0 +1,23 @@
+# Catalogue source tenable-sc-plugin: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: tenable-sc-plugin
+display_name: tenable_sc.plugin
+description: The plugin data stream of the Elastic tenable_sc integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: tenable_sc.plugin
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/tenable_sc/plugin
+  additional_fields: additional/tenable_sc/plugin
+transform:
+  engine: elastic
+  variant: filebeat.tenable_sc_plugin.default
+catalogue:
+  package: tenable_sc
+  data_stream: plugin
+  intakes: [beats]
+  variants:
+    - filebeat.tenable_sc_plugin.default

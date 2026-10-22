@@ -1,0 +1,23 @@
+# Catalogue source sysdig-cspm: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: sysdig-cspm
+display_name: sysdig.cspm
+description: The cspm data stream of the Elastic sysdig integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: sysdig.cspm
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/sysdig/cspm
+  additional_fields: additional/sysdig/cspm
+transform:
+  engine: elastic
+  variant: filebeat.sysdig_cspm.default
+catalogue:
+  package: sysdig
+  data_stream: cspm
+  intakes: [beats]
+  variants:
+    - filebeat.sysdig_cspm.default

@@ -1,0 +1,23 @@
+# Catalogue source fim-event: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: fim-event
+display_name: fim.event
+description: The event data stream of the Elastic fim integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: fim.event
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/fim/event
+  additional_fields: additional/fim/event
+transform:
+  engine: elastic
+  variant: filebeat.fim_event.default
+catalogue:
+  package: fim
+  data_stream: event
+  intakes: [beats]
+  variants:
+    - filebeat.fim_event.default

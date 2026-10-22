@@ -1,0 +1,23 @@
+# Catalogue source qualys-vmdr-asset-host-detection: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: qualys-vmdr-asset-host-detection
+display_name: qualys_vmdr.asset_host_detection
+description: The asset_host_detection data stream of the Elastic qualys_vmdr integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: qualys_vmdr.asset_host_detection
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/qualys_vmdr/asset_host_detection
+  additional_fields: additional/qualys_vmdr/asset_host_detection
+transform:
+  engine: elastic
+  variant: filebeat.qualys_vmdr_asset_host_detection.default
+catalogue:
+  package: qualys_vmdr
+  data_stream: asset_host_detection
+  intakes: [beats]
+  variants:
+    - filebeat.qualys_vmdr_asset_host_detection.default

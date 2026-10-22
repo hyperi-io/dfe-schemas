@@ -1,0 +1,19 @@
+# Catalogue source prometheus-collector: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: prometheus-collector
+display_name: prometheus.collector
+description: The collector data stream of the Elastic prometheus integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: prometheus.collector
+transform:
+  engine: elastic
+  variant: filebeat.prometheus_collector.default
+catalogue:
+  package: prometheus
+  data_stream: collector
+  intakes: [beats]
+  variants:
+    - filebeat.prometheus_collector.default

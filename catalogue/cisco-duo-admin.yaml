@@ -1,0 +1,23 @@
+# Catalogue source cisco-duo-admin: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: cisco-duo-admin
+display_name: cisco_duo.admin
+description: The admin data stream of the Elastic cisco_duo integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: cisco_duo.admin
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/cisco_duo/admin
+  additional_fields: additional/cisco_duo/admin
+transform:
+  engine: elastic
+  variant: filebeat.cisco_duo_admin.default
+catalogue:
+  package: cisco_duo
+  data_stream: admin
+  intakes: [beats]
+  variants:
+    - filebeat.cisco_duo_admin.default

@@ -1,0 +1,23 @@
+# Catalogue source mattermost-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: mattermost-audit
+display_name: mattermost.audit
+description: The audit data stream of the Elastic mattermost integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: mattermost.audit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/mattermost/audit
+  additional_fields: additional/mattermost/audit
+transform:
+  engine: elastic
+  variant: filebeat.mattermost_audit.default
+catalogue:
+  package: mattermost
+  data_stream: audit
+  intakes: [beats]
+  variants:
+    - filebeat.mattermost_audit.default

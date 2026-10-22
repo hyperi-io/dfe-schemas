@@ -1,0 +1,19 @@
+# Catalogue source openai-audio-speeches: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: openai-audio-speeches
+display_name: openai.audio_speeches
+description: The audio_speeches data stream of the Elastic openai integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: openai.audio_speeches
+transform:
+  engine: elastic
+  variant: filebeat.openai_audio_speeches.default
+catalogue:
+  package: openai
+  data_stream: audio_speeches
+  intakes: [beats]
+  variants:
+    - filebeat.openai_audio_speeches.default

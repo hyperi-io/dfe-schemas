@@ -1,0 +1,23 @@
+# Catalogue source activemq-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: activemq-log
+display_name: activemq.log
+description: The log data stream of the Elastic activemq integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: activemq.log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/activemq/log
+  additional_fields: additional/activemq/log
+transform:
+  engine: elastic
+  variant: filebeat.activemq_log.default
+catalogue:
+  package: activemq
+  data_stream: log
+  intakes: [beats]
+  variants:
+    - filebeat.activemq_log.default

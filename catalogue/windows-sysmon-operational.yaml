@@ -1,0 +1,23 @@
+# Catalogue source windows-sysmon-operational: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: windows-sysmon-operational
+display_name: windows.sysmon_operational
+description: The sysmon_operational data stream of the Elastic windows integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: windows.sysmon_operational
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/windows/sysmon_operational
+  additional_fields: additional/windows/sysmon_operational
+transform:
+  engine: elastic
+  variant: filebeat.windows_sysmon_operational.default
+catalogue:
+  package: windows
+  data_stream: sysmon_operational
+  intakes: [beats]
+  variants:
+    - filebeat.windows_sysmon_operational.default

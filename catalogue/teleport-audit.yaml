@@ -1,0 +1,23 @@
+# Catalogue source teleport-audit: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: teleport-audit
+display_name: teleport.audit
+description: The audit data stream of the Elastic teleport integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: teleport.audit
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/teleport/audit
+  additional_fields: additional/teleport/audit
+transform:
+  engine: elastic
+  variant: filebeat.teleport_audit.default
+catalogue:
+  package: teleport
+  data_stream: audit
+  intakes: [beats]
+  variants:
+    - filebeat.teleport_audit.default

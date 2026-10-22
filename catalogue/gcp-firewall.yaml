@@ -1,0 +1,22 @@
+# Catalogue source gcp-firewall: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: gcp-firewall
+display_name: gcp.firewall
+description: The firewall data stream of the Elastic gcp integration.
+fetcher:
+  source_type: gcp
+  topic: own
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/gcp/firewall
+  additional_fields: additional/gcp/firewall
+transform:
+  engine: elastic
+  variant: filebeat.gcp_firewall.default
+catalogue:
+  package: gcp
+  data_stream: firewall
+  intakes: [beats, fetcher]
+  variants:
+    - filebeat.gcp_firewall.default

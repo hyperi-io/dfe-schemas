@@ -1,0 +1,24 @@
+# Catalogue source tanium-discover: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: tanium-discover
+display_name: tanium.discover
+description: The discover data stream of the Elastic tanium integration.
+match:
+  field: _source
+  operator: equals
+  value: tanium-discover
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/tanium/discover
+  additional_fields: additional/tanium/discover
+transform:
+  engine: elastic
+  variant: filebeat.tanium_discover.default
+catalogue:
+  package: tanium
+  data_stream: discover
+  intakes: [beats, receiver]
+  framing: body
+  variants:
+    - filebeat.tanium_discover.default

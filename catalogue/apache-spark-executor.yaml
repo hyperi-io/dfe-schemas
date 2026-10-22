@@ -1,0 +1,19 @@
+# Catalogue source apache-spark-executor: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: apache-spark-executor
+display_name: apache_spark.executor
+description: The executor data stream of the Elastic apache_spark integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: apache_spark.executor
+transform:
+  engine: elastic
+  variant: filebeat.apache_spark_executor.default
+catalogue:
+  package: apache_spark
+  data_stream: executor
+  intakes: [beats]
+  variants:
+    - filebeat.apache_spark_executor.default

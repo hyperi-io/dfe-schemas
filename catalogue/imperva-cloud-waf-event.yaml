@@ -1,0 +1,23 @@
+# Catalogue source imperva-cloud-waf-event: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: imperva-cloud-waf-event
+display_name: imperva_cloud_waf.event
+description: The event data stream of the Elastic imperva_cloud_waf integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: imperva_cloud_waf.event
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/imperva_cloud_waf/event
+  additional_fields: additional/imperva_cloud_waf/event
+transform:
+  engine: elastic
+  variant: filebeat.imperva_cloud_waf_event.default
+catalogue:
+  package: imperva_cloud_waf
+  data_stream: event
+  intakes: [beats]
+  variants:
+    - filebeat.imperva_cloud_waf_event.default

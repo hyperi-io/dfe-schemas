@@ -1,0 +1,23 @@
+# Catalogue source rubrik-tasks: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: rubrik-tasks
+display_name: rubrik.tasks
+description: The tasks data stream of the Elastic rubrik integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: rubrik.tasks
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/rubrik/tasks
+  additional_fields: additional/rubrik/tasks
+transform:
+  engine: elastic
+  variant: filebeat.rubrik_tasks.default
+catalogue:
+  package: rubrik
+  data_stream: tasks
+  intakes: [beats]
+  variants:
+    - filebeat.rubrik_tasks.default

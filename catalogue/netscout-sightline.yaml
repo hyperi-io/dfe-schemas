@@ -1,0 +1,24 @@
+# Catalogue source netscout-sightline: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: netscout-sightline
+display_name: netscout.sightline
+description: The sightline data stream of the Elastic netscout integration.
+match:
+  field: _source
+  operator: equals
+  value: netscout-sightline
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/netscout/sightline
+  additional_fields: additional/netscout/sightline
+transform:
+  engine: elastic
+  variant: filebeat.netscout_sightline.default
+catalogue:
+  package: netscout
+  data_stream: sightline
+  intakes: [beats, receiver]
+  framing: body
+  variants:
+    - filebeat.netscout_sightline.default

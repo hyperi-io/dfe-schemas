@@ -1,0 +1,23 @@
+# Catalogue source crowdstrike-host: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: crowdstrike-host
+display_name: crowdstrike.host
+description: The host data stream of the Elastic crowdstrike integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: crowdstrike.host
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/crowdstrike/host
+  additional_fields: additional/crowdstrike/host
+transform:
+  engine: elastic
+  variant: filebeat.crowdstrike_host.default
+catalogue:
+  package: crowdstrike
+  data_stream: host
+  intakes: [beats]
+  variants:
+    - filebeat.crowdstrike_host.default

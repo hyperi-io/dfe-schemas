@@ -1,0 +1,23 @@
+# Catalogue source elastic-security-alert: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: elastic-security-alert
+display_name: elastic_security.alert
+description: The alert data stream of the Elastic elastic_security integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: elastic_security.alert
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/elastic_security/alert
+  additional_fields: additional/elastic_security/alert
+transform:
+  engine: elastic
+  variant: filebeat.elastic_security_alert.default
+catalogue:
+  package: elastic_security
+  data_stream: alert
+  intakes: [beats]
+  variants:
+    - filebeat.elastic_security_alert.default

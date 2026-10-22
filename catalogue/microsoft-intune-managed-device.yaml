@@ -1,0 +1,23 @@
+# Catalogue source microsoft-intune-managed-device: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: microsoft-intune-managed-device
+display_name: microsoft_intune.managed_device
+description: The managed_device data stream of the Elastic microsoft_intune integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: microsoft_intune.managed_device
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/microsoft_intune/managed_device
+  additional_fields: additional/microsoft_intune/managed_device
+transform:
+  engine: elastic
+  variant: filebeat.microsoft_intune_managed_device.default
+catalogue:
+  package: microsoft_intune
+  data_stream: managed_device
+  intakes: [beats]
+  variants:
+    - filebeat.microsoft_intune_managed_device.default

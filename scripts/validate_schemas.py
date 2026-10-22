@@ -16,6 +16,7 @@ Exits non-zero on the first batch of errors. Requires dfe-engine importable.
 ``tables/`` is validated separately: those files are written in exact
 ClickHouse types, so the check is that each one builds a TableSpec.
 ``sources/`` likewise: each file must build a Source.
+``catalogue/`` files must each build a SourceWriteRequest under a valid source name.
 """
 
 import os
@@ -24,7 +25,7 @@ from collections.abc import Callable
 from pathlib import Path
 from typing import Any
 
-from ruamel.yaml import YAML
+from ruamel.yaml import YAML, YAMLError
 
 # Directories that contain column-bearing schema YAML.
 SCHEMA_DIRS = ("common-header", "meta", "hunts", "additional")
@@ -36,6 +37,8 @@ DERIVED_DIR = "derived"
 TABLES_DIR = "tables"
 
 SOURCES_DIR = "sources"
+
+CATALOGUE_DIR = "catalogue"
 
 REGISTRIES_DIR = "registries"
 
@@ -210,6 +213,29 @@ def main() -> int:
             except Exception as exc:
                 errors.append(f"{rel}: {exc}")
 
+    catalogue_files = sorted((repo_root / CATALOGUE_DIR).glob("*.yaml"))
+    checked_catalogue = 0
+    try:
+        from dfe_engine.source.models import (  # ty: ignore[unresolved-import]
+            SourceWriteRequest,
+            validate_source_name,
+        )
+    except ImportError:
+        errors.append(
+            f"{CATALOGUE_DIR}/: {len(catalogue_files)} files not validated, "
+            "the installed dfe-engine has no source write model"
+        )
+    else:
+        for path in catalogue_files:
+            rel = path.relative_to(repo_root)
+            try:
+                # The write model ignores the catalogue block, as POST /sources does.
+                write = SourceWriteRequest.model_validate(_read_yaml(path=path) or {})
+                validate_source_name(name=write.source or "")
+                checked_catalogue += 1
+            except (ValueError, YAMLError) as exc:
+                errors.append(f"{rel}: {exc}")
+
     derived_files = sorted((repo_root / DERIVED_DIR).rglob("*.yaml"))
     checked_derived = 0
     if not hasattr(SchemaLoader, "apply_derived_schema"):
@@ -255,7 +281,8 @@ def main() -> int:
 
     print(
         f"Validated {len(files)} schema files, {checked_tables} table definitions, "
-        f"{checked_sources} source definitions and {checked_derived} derived schemas: OK"
+        f"{checked_sources} source definitions, {checked_catalogue} catalogue sources and "
+        f"{checked_derived} derived schemas: OK"
     )
     return 0
 

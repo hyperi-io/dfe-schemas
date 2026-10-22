@@ -1,0 +1,23 @@
+# Catalogue source ti-misp-threat-attributes: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ti-misp-threat-attributes
+display_name: ti_misp.threat_attributes
+description: The threat_attributes data stream of the Elastic ti_misp integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ti_misp.threat_attributes
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ti_misp/threat_attributes
+  additional_fields: additional/ti_misp/threat_attributes
+transform:
+  engine: elastic
+  variant: filebeat.ti_misp_threat_attributes.default
+catalogue:
+  package: ti_misp
+  data_stream: threat_attributes
+  intakes: [beats]
+  variants:
+    - filebeat.ti_misp_threat_attributes.default

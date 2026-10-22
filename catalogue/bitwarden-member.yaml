@@ -1,0 +1,23 @@
+# Catalogue source bitwarden-member: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: bitwarden-member
+display_name: bitwarden.member
+description: The member data stream of the Elastic bitwarden integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: bitwarden.member
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/bitwarden/member
+  additional_fields: additional/bitwarden/member
+transform:
+  engine: elastic
+  variant: filebeat.bitwarden_member.default
+catalogue:
+  package: bitwarden
+  data_stream: member
+  intakes: [beats]
+  variants:
+    - filebeat.bitwarden_member.default

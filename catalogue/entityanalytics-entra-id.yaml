@@ -1,0 +1,25 @@
+# Catalogue source entityanalytics-entra-id: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: entityanalytics-entra-id
+display_name: entityanalytics_entra_id.entity
+description: The entity data stream of the Elastic entityanalytics_entra_id integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: entityanalytics_entra_id.entity
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/entityanalytics_entra_id/entity
+  additional_fields: additional/entityanalytics_entra_id/entity
+transform:
+  engine: elastic
+  variant: filebeat.entityanalytics_entra_id.default
+catalogue:
+  package: entityanalytics_entra_id
+  data_stream: entity
+  intakes: [beats]
+  variants:
+    - filebeat.entityanalytics_entra_id.default
+    - filebeat.entityanalytics_entra_id.device
+    - filebeat.entityanalytics_entra_id.user

@@ -1,0 +1,23 @@
+# Catalogue source checkpoint-harmony-threatemulation: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: checkpoint-harmony-threatemulation
+display_name: checkpoint_harmony_endpoint.threatemulation
+description: The threatemulation data stream of the Elastic checkpoint_harmony_endpoint integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: checkpoint_harmony_endpoint.threatemulation
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/checkpoint_harmony_endpoint/threatemulation
+  additional_fields: additional/checkpoint_harmony_endpoint/threatemulation
+transform:
+  engine: elastic
+  variant: filebeat.checkpoint_harmony_endpoint_threatemulation.default
+catalogue:
+  package: checkpoint_harmony_endpoint
+  data_stream: threatemulation
+  intakes: [beats]
+  variants:
+    - filebeat.checkpoint_harmony_endpoint_threatemulation.default

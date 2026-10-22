@@ -1,0 +1,24 @@
+# Catalogue source auth0-logs: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: auth0-logs
+display_name: auth0.logs
+description: The logs data stream of the Elastic auth0 integration.
+match:
+  field: _source
+  operator: equals
+  value: auth0-logs
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/auth0/logs
+  additional_fields: additional/auth0/logs
+transform:
+  engine: elastic
+  variant: filebeat.auth0_logs.default
+catalogue:
+  package: auth0
+  data_stream: logs
+  intakes: [beats, receiver]
+  framing: body
+  variants:
+    - filebeat.auth0_logs.default

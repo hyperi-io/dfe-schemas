@@ -1,0 +1,22 @@
+# Catalogue source bitwarden-event: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: bitwarden-event
+display_name: bitwarden.event
+description: The event data stream of the Elastic bitwarden integration.
+fetcher:
+  source_type: bitwarden
+  topic: own
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/bitwarden/event
+  additional_fields: additional/bitwarden/event
+transform:
+  engine: elastic
+  variant: filebeat.bitwarden_event.default
+catalogue:
+  package: bitwarden
+  data_stream: event
+  intakes: [beats, fetcher]
+  variants:
+    - filebeat.bitwarden_event.default

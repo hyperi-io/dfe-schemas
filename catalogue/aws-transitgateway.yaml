@@ -1,0 +1,19 @@
+# Catalogue source aws-transitgateway: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: aws-transitgateway
+display_name: aws.transitgateway
+description: The transitgateway data stream of the Elastic aws integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: aws.transitgateway
+transform:
+  engine: elastic
+  variant: filebeat.aws_transitgateway.default
+catalogue:
+  package: aws
+  data_stream: transitgateway
+  intakes: [beats]
+  variants:
+    - filebeat.aws_transitgateway.default

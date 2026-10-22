@@ -1,0 +1,19 @@
+# Catalogue source network-traffic-cassandra: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: network-traffic-cassandra
+display_name: network_traffic.cassandra
+description: The cassandra data stream of the Elastic network_traffic integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: network_traffic.cassandra
+transform:
+  engine: elastic
+  variant: filebeat.network_traffic_cassandra.default
+catalogue:
+  package: network_traffic
+  data_stream: cassandra
+  intakes: [beats]
+  variants:
+    - filebeat.network_traffic_cassandra.default

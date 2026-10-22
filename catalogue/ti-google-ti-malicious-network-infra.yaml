@@ -1,0 +1,23 @@
+# Catalogue source ti-google-ti-malicious-network-infra: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ti-google-ti-malicious-network-infra
+display_name: ti_google_threat_intelligence.malicious_network_infrastructure
+description: The malicious_network_infrastructure data stream of the Elastic ti_google_threat_intelligence integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: ti_google_threat_intelligence.malicious_network_infrastructure
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/ti_google_threat_intelligence/malicious_network_infrastructure
+  additional_fields: additional/ti_google_threat_intelligence/malicious_network_infrastructure
+transform:
+  engine: elastic
+  variant: filebeat.ti_google_threat_intelligence_malicious_network_infrastructure.default
+catalogue:
+  package: ti_google_threat_intelligence
+  data_stream: malicious_network_infrastructure
+  intakes: [beats]
+  variants:
+    - filebeat.ti_google_threat_intelligence_malicious_network_infrastructure.default

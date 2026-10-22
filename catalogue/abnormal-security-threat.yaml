@@ -1,0 +1,23 @@
+# Catalogue source abnormal-security-threat: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: abnormal-security-threat
+display_name: abnormal_security.threat
+description: The threat data stream of the Elastic abnormal_security integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: abnormal_security.threat
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/abnormal_security/threat
+  additional_fields: additional/abnormal_security/threat
+transform:
+  engine: elastic
+  variant: filebeat.abnormal_security_threat.default
+catalogue:
+  package: abnormal_security
+  data_stream: threat
+  intakes: [beats]
+  variants:
+    - filebeat.abnormal_security_threat.default

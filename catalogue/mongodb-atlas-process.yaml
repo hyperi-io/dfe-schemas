@@ -1,0 +1,23 @@
+# Catalogue source mongodb-atlas-process: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: mongodb-atlas-process
+display_name: mongodb_atlas.process
+description: The process data stream of the Elastic mongodb_atlas integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: mongodb_atlas.process
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/mongodb_atlas/process
+  additional_fields: additional/mongodb_atlas/process
+transform:
+  engine: elastic
+  variant: filebeat.mongodb_atlas_process.default
+catalogue:
+  package: mongodb_atlas
+  data_stream: process
+  intakes: [beats]
+  variants:
+    - filebeat.mongodb_atlas_process.default

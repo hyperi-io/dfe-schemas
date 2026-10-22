@@ -1,0 +1,23 @@
+# Catalogue source auditd-manager-auditd: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: auditd-manager-auditd
+display_name: auditd_manager.auditd
+description: The auditd data stream of the Elastic auditd_manager integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: auditd_manager.auditd
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/auditd_manager/auditd
+  additional_fields: additional/auditd_manager/auditd
+transform:
+  engine: elastic
+  variant: filebeat.auditd_manager_auditd.default
+catalogue:
+  package: auditd_manager
+  data_stream: auditd
+  intakes: [beats]
+  variants:
+    - filebeat.auditd_manager_auditd.default

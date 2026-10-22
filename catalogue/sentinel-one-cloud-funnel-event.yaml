@@ -1,0 +1,23 @@
+# Catalogue source sentinel-one-cloud-funnel-event: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: sentinel-one-cloud-funnel-event
+display_name: sentinel_one_cloud_funnel.event
+description: The event data stream of the Elastic sentinel_one_cloud_funnel integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: sentinel_one_cloud_funnel.event
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/sentinel_one_cloud_funnel/event
+  additional_fields: additional/sentinel_one_cloud_funnel/event
+transform:
+  engine: elastic
+  variant: filebeat.sentinel_one_cloud_funnel_event.default
+catalogue:
+  package: sentinel_one_cloud_funnel
+  data_stream: event
+  intakes: [beats]
+  variants:
+    - filebeat.sentinel_one_cloud_funnel_event.default

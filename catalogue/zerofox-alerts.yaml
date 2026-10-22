@@ -1,0 +1,23 @@
+# Catalogue source zerofox-alerts: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zerofox-alerts
+display_name: zerofox.alerts
+description: The alerts data stream of the Elastic zerofox integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: zerofox.alerts
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zerofox/alerts
+  additional_fields: additional/zerofox/alerts
+transform:
+  engine: elastic
+  variant: filebeat.zerofox_alerts.default
+catalogue:
+  package: zerofox
+  data_stream: alerts
+  intakes: [beats]
+  variants:
+    - filebeat.zerofox_alerts.default

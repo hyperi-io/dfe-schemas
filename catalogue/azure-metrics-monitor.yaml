@@ -1,0 +1,19 @@
+# Catalogue source azure-metrics-monitor: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: azure-metrics-monitor
+display_name: azure_metrics.monitor
+description: The monitor data stream of the Elastic azure_metrics integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: azure_metrics.monitor
+transform:
+  engine: elastic
+  variant: filebeat.azure_metrics_monitor.default
+catalogue:
+  package: azure_metrics
+  data_stream: monitor
+  intakes: [beats]
+  variants:
+    - filebeat.azure_metrics_monitor.default

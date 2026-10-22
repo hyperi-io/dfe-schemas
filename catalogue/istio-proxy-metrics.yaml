@@ -1,0 +1,19 @@
+# Catalogue source istio-proxy-metrics: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: istio-proxy-metrics
+display_name: istio.proxy_metrics
+description: The proxy_metrics data stream of the Elastic istio integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: istio.proxy_metrics
+transform:
+  engine: elastic
+  variant: filebeat.istio_proxy_metrics.default
+catalogue:
+  package: istio
+  data_stream: proxy_metrics
+  intakes: [beats]
+  variants:
+    - filebeat.istio_proxy_metrics.default

@@ -1,0 +1,23 @@
+# Catalogue source hashicorp-vault-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: hashicorp-vault-log
+display_name: hashicorp_vault.log
+description: The log data stream of the Elastic hashicorp_vault integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: hashicorp_vault.log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/hashicorp_vault/log
+  additional_fields: additional/hashicorp_vault/log
+transform:
+  engine: elastic
+  variant: filebeat.hashicorp_vault_log.default
+catalogue:
+  package: hashicorp_vault
+  data_stream: log
+  intakes: [beats]
+  variants:
+    - filebeat.hashicorp_vault_log.default

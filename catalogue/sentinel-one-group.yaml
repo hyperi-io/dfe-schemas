@@ -1,0 +1,23 @@
+# Catalogue source sentinel-one-group: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: sentinel-one-group
+display_name: sentinel_one.group
+description: The group data stream of the Elastic sentinel_one integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: sentinel_one.group
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/sentinel_one/group
+  additional_fields: additional/sentinel_one/group
+transform:
+  engine: elastic
+  variant: filebeat.sentinel_one_group.default
+catalogue:
+  package: sentinel_one
+  data_stream: group
+  intakes: [beats]
+  variants:
+    - filebeat.sentinel_one_group.default

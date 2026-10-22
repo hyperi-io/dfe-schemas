@@ -1,0 +1,24 @@
+# Catalogue source qnap-nas-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: qnap-nas-log
+display_name: qnap_nas.log
+description: The log data stream of the Elastic qnap_nas integration.
+match:
+  field: _source
+  operator: equals
+  value: qnap-nas-log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/qnap_nas/log
+  additional_fields: additional/qnap_nas/log
+transform:
+  engine: elastic
+  variant: filebeat.qnap_nas_log.default
+catalogue:
+  package: qnap_nas
+  data_stream: log
+  intakes: [beats, receiver]
+  framing: line
+  variants:
+    - filebeat.qnap_nas_log.default

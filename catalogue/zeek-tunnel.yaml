@@ -1,0 +1,23 @@
+# Catalogue source zeek-tunnel: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zeek-tunnel
+display_name: zeek.tunnel
+description: The tunnel data stream of the Elastic zeek integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: zeek.tunnel
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zeek/tunnel
+  additional_fields: additional/zeek/tunnel
+transform:
+  engine: elastic
+  variant: filebeat.zeek_tunnel.default
+catalogue:
+  package: zeek
+  data_stream: tunnel
+  intakes: [beats]
+  variants:
+    - filebeat.zeek_tunnel.default

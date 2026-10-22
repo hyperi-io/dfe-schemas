@@ -1,0 +1,23 @@
+# Catalogue source salesforce-login: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: salesforce-login
+display_name: salesforce.login
+description: The login data stream of the Elastic salesforce integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: salesforce.login
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/salesforce/login
+  additional_fields: additional/salesforce/login
+transform:
+  engine: elastic
+  variant: filebeat.salesforce_login.default
+catalogue:
+  package: salesforce
+  data_stream: login
+  intakes: [beats]
+  variants:
+    - filebeat.salesforce_login.default

@@ -1,0 +1,23 @@
+# Catalogue source xm-cyber-entity-inventory: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: xm-cyber-entity-inventory
+display_name: xm_cyber.entity_inventory
+description: The entity_inventory data stream of the Elastic xm_cyber integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: xm_cyber.entity_inventory
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/xm_cyber/entity_inventory
+  additional_fields: additional/xm_cyber/entity_inventory
+transform:
+  engine: elastic
+  variant: filebeat.xm_cyber_entity_inventory.default
+catalogue:
+  package: xm_cyber
+  data_stream: entity_inventory
+  intakes: [beats]
+  variants:
+    - filebeat.xm_cyber_entity_inventory.default

@@ -1,0 +1,23 @@
+# Catalogue source mongodb-atlas-disk: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: mongodb-atlas-disk
+display_name: mongodb_atlas.disk
+description: The disk data stream of the Elastic mongodb_atlas integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: mongodb_atlas.disk
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/mongodb_atlas/disk
+  additional_fields: additional/mongodb_atlas/disk
+transform:
+  engine: elastic
+  variant: filebeat.mongodb_atlas_disk.default
+catalogue:
+  package: mongodb_atlas
+  data_stream: disk
+  intakes: [beats]
+  variants:
+    - filebeat.mongodb_atlas_disk.default

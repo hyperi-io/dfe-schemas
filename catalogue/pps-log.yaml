@@ -1,0 +1,24 @@
+# Catalogue source pps-log: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: pps-log
+display_name: pps.log
+description: The log data stream of the Elastic pps integration.
+match:
+  field: _source
+  operator: equals
+  value: pps-log
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/pps/log
+  additional_fields: additional/pps/log
+transform:
+  engine: elastic
+  variant: filebeat.pps_log.default
+catalogue:
+  package: pps
+  data_stream: log
+  intakes: [beats, receiver]
+  framing: line
+  variants:
+    - filebeat.pps_log.default

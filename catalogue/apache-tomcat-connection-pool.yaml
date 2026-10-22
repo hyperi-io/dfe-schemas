@@ -1,0 +1,23 @@
+# Catalogue source apache-tomcat-connection-pool: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: apache-tomcat-connection-pool
+display_name: apache_tomcat.connection_pool
+description: The connection_pool data stream of the Elastic apache_tomcat integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: apache_tomcat.connection_pool
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/apache_tomcat/connection_pool
+  additional_fields: additional/apache_tomcat/connection_pool
+transform:
+  engine: elastic
+  variant: filebeat.apache_tomcat_connection_pool.default
+catalogue:
+  package: apache_tomcat
+  data_stream: connection_pool
+  intakes: [beats]
+  variants:
+    - filebeat.apache_tomcat_connection_pool.default

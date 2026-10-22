@@ -1,0 +1,23 @@
+# Catalogue source couchbase-database-stats: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: couchbase-database-stats
+display_name: couchbase.database_stats
+description: The database_stats data stream of the Elastic couchbase integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: couchbase.database_stats
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/couchbase/database_stats
+  additional_fields: additional/couchbase/database_stats
+transform:
+  engine: elastic
+  variant: filebeat.couchbase_database_stats.default
+catalogue:
+  package: couchbase
+  data_stream: database_stats
+  intakes: [beats]
+  variants:
+    - filebeat.couchbase_database_stats.default

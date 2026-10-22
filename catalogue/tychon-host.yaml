@@ -1,0 +1,23 @@
+# Catalogue source tychon-host: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: tychon-host
+display_name: tychon.host
+description: The host data stream of the Elastic tychon integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: tychon.host
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/tychon/host
+  additional_fields: additional/tychon/host
+transform:
+  engine: elastic
+  variant: filebeat.tychon_host.default
+catalogue:
+  package: tychon
+  data_stream: host
+  intakes: [beats]
+  variants:
+    - filebeat.tychon_host.default

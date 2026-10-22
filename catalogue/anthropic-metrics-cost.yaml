@@ -1,0 +1,23 @@
+# Catalogue source anthropic-metrics-cost: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: anthropic-metrics-cost
+display_name: anthropic_metrics.cost
+description: The cost data stream of the Elastic anthropic_metrics integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: anthropic_metrics.cost
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/anthropic_metrics/cost
+  additional_fields: additional/anthropic_metrics/cost
+transform:
+  engine: elastic
+  variant: filebeat.anthropic_metrics_cost.default
+catalogue:
+  package: anthropic_metrics
+  data_stream: cost
+  intakes: [beats]
+  variants:
+    - filebeat.anthropic_metrics_cost.default

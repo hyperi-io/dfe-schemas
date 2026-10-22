@@ -1,0 +1,23 @@
+# Catalogue source zeek-rdp: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: zeek-rdp
+display_name: zeek.rdp
+description: The rdp data stream of the Elastic zeek integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: zeek.rdp
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/zeek/rdp
+  additional_fields: additional/zeek/rdp
+transform:
+  engine: elastic
+  variant: filebeat.zeek_rdp.default
+catalogue:
+  package: zeek
+  data_stream: rdp
+  intakes: [beats]
+  variants:
+    - filebeat.zeek_rdp.default

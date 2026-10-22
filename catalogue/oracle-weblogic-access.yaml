@@ -1,0 +1,23 @@
+# Catalogue source oracle-weblogic-access: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: oracle-weblogic-access
+display_name: oracle_weblogic.access
+description: The access data stream of the Elastic oracle_weblogic integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: oracle_weblogic.access
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/oracle_weblogic/access
+  additional_fields: additional/oracle_weblogic/access
+transform:
+  engine: elastic
+  variant: filebeat.oracle_weblogic_access.default
+catalogue:
+  package: oracle_weblogic
+  data_stream: access
+  intakes: [beats]
+  variants:
+    - filebeat.oracle_weblogic_access.default

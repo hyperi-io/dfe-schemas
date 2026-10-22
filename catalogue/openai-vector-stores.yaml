@@ -1,0 +1,19 @@
+# Catalogue source openai-vector-stores: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: openai-vector-stores
+display_name: openai.vector_stores
+description: The vector_stores data stream of the Elastic openai integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: openai.vector_stores
+transform:
+  engine: elastic
+  variant: filebeat.openai_vector_stores.default
+catalogue:
+  package: openai
+  data_stream: vector_stores
+  intakes: [beats]
+  variants:
+    - filebeat.openai_vector_stores.default

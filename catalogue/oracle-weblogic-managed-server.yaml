@@ -1,0 +1,23 @@
+# Catalogue source oracle-weblogic-managed-server: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: oracle-weblogic-managed-server
+display_name: oracle_weblogic.managed_server
+description: The managed_server data stream of the Elastic oracle_weblogic integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: oracle_weblogic.managed_server
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/oracle_weblogic/managed_server
+  additional_fields: additional/oracle_weblogic/managed_server
+transform:
+  engine: elastic
+  variant: filebeat.oracle_weblogic_managed_server.default
+catalogue:
+  package: oracle_weblogic
+  data_stream: managed_server
+  intakes: [beats]
+  variants:
+    - filebeat.oracle_weblogic_managed_server.default

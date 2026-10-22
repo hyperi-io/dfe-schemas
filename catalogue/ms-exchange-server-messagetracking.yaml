@@ -1,0 +1,23 @@
+# Catalogue source ms-exchange-server-messagetracking: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: ms-exchange-server-messagetracking
+display_name: microsoft_exchange_server.messagetracking
+description: The messagetracking data stream of the Elastic microsoft_exchange_server integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: microsoft_exchange_server.messagetracking
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/microsoft_exchange_server/messagetracking
+  additional_fields: additional/microsoft_exchange_server/messagetracking
+transform:
+  engine: elastic
+  variant: filebeat.microsoft_exchange_server_messagetracking.default
+catalogue:
+  package: microsoft_exchange_server
+  data_stream: messagetracking
+  intakes: [beats]
+  variants:
+    - filebeat.microsoft_exchange_server_messagetracking.default

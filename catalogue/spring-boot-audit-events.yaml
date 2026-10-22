@@ -1,0 +1,23 @@
+# Catalogue source spring-boot-audit-events: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: spring-boot-audit-events
+display_name: spring_boot.audit_events
+description: The audit_events data stream of the Elastic spring_boot integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: spring_boot.audit_events
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/spring_boot/audit_events
+  additional_fields: additional/spring_boot/audit_events
+transform:
+  engine: elastic
+  variant: filebeat.spring_boot_audit_events.default
+catalogue:
+  package: spring_boot
+  data_stream: audit_events
+  intakes: [beats]
+  variants:
+    - filebeat.spring_boot_audit_events.default

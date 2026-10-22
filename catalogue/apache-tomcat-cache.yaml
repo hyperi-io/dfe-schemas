@@ -1,0 +1,23 @@
+# Catalogue source apache-tomcat-cache: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: apache-tomcat-cache
+display_name: apache_tomcat.cache
+description: The cache data stream of the Elastic apache_tomcat integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: apache_tomcat.cache
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/apache_tomcat/cache
+  additional_fields: additional/apache_tomcat/cache
+transform:
+  engine: elastic
+  variant: filebeat.apache_tomcat_cache.default
+catalogue:
+  package: apache_tomcat
+  data_stream: cache
+  intakes: [beats]
+  variants:
+    - filebeat.apache_tomcat_cache.default

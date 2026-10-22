@@ -1,0 +1,23 @@
+# Catalogue source mongodb-atlas-organization: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: mongodb-atlas-organization
+display_name: mongodb_atlas.organization
+description: The organization data stream of the Elastic mongodb_atlas integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: mongodb_atlas.organization
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/mongodb_atlas/organization
+  additional_fields: additional/mongodb_atlas/organization
+transform:
+  engine: elastic
+  variant: filebeat.mongodb_atlas_organization.default
+catalogue:
+  package: mongodb_atlas
+  data_stream: organization
+  intakes: [beats]
+  variants:
+    - filebeat.mongodb_atlas_organization.default

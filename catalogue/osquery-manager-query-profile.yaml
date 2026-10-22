@@ -1,0 +1,19 @@
+# Catalogue source osquery-manager-query-profile: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: osquery-manager-query-profile
+display_name: osquery_manager.query_profile
+description: The query_profile data stream of the Elastic osquery_manager integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: osquery_manager.query_profile
+transform:
+  engine: elastic
+  variant: filebeat.osquery_manager_query_profile.default
+catalogue:
+  package: osquery_manager
+  data_stream: query_profile
+  intakes: [beats]
+  variants:
+    - filebeat.osquery_manager_query_profile.default

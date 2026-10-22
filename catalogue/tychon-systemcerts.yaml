@@ -1,0 +1,23 @@
+# Catalogue source tychon-systemcerts: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: tychon-systemcerts
+display_name: tychon.systemcerts
+description: The systemcerts data stream of the Elastic tychon integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: tychon.systemcerts
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/tychon/systemcerts
+  additional_fields: additional/tychon/systemcerts
+transform:
+  engine: elastic
+  variant: filebeat.tychon_systemcerts.default
+catalogue:
+  package: tychon
+  data_stream: systemcerts
+  intakes: [beats]
+  variants:
+    - filebeat.tychon_systemcerts.default

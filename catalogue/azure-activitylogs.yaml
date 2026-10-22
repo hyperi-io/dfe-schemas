@@ -1,0 +1,25 @@
+# Catalogue source azure-activitylogs: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: azure-activitylogs
+display_name: azure.activitylogs
+description: The activitylogs data stream of the Elastic azure integration.
+fetcher:
+  source_type: azure
+  topic: own
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/azure/activitylogs
+  additional_fields: additional/azure/activitylogs
+transform:
+  engine: elastic
+  variant: filebeat.azure_activitylogs.default
+catalogue:
+  package: azure
+  data_stream: activitylogs
+  intakes: [beats, fetcher]
+  beats:
+    module: azure
+    fileset: activitylogs
+  variants:
+    - filebeat.azure_activitylogs.default

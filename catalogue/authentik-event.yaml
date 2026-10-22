@@ -1,0 +1,23 @@
+# Catalogue source authentik-event: the POST /sources write body that creates it.
+# See the Catalogue section of README.md.
+
+source: authentik-event
+display_name: authentik.event
+description: The event data stream of the Elastic authentik integration.
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: authentik.event
+schema:
+  meta_schema: meta/elastic/ecs
+  derived_schema: derived/authentik/event
+  additional_fields: additional/authentik/event
+transform:
+  engine: elastic
+  variant: filebeat.authentik_event.default
+catalogue:
+  package: authentik
+  data_stream: event
+  intakes: [beats]
+  variants:
+    - filebeat.authentik_event.default

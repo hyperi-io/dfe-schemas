@@ -62,7 +62,6 @@ versions:
       - name: _raw
         type: text
         use_case: substring_search
-        index: "text(tokenizer = 'splitByNonAlpha') GRANULARITY 64"
         comment: "Raw payload text, when the loader's capture mode writes one. A JSON payload lands in _json instead, so _raw is often empty. (full-text indexed)"
         _field_type: base
 
@@ -134,7 +133,6 @@ versions:
       - name: _raw
         type: text
         use_case: substring_search
-        index: "text(tokenizer = 'splitByNonAlpha') GRANULARITY 64"
         comment: "Raw payload text, when the loader's capture mode writes one. A JSON payload lands in _json instead, so _raw is often empty. (full-text indexed)"
         _field_type: base
 
@@ -206,7 +204,6 @@ versions:
       - name: _raw
         type: text
         use_case: substring_search
-        index: "text(tokenizer = 'splitByNonAlpha') GRANULARITY 64"
         comment: "Raw payload text, when the loader's capture mode writes one. A JSON payload lands in _json instead, so _raw is often empty. (full-text indexed)"
         _field_type: base
 
@@ -278,7 +275,6 @@ versions:
       - name: _raw
         type: text
         use_case: substring_search
-        index: "text(tokenizer = 'splitByNonAlpha') GRANULARITY 64"
         expr: "@captured: raw_payload"
         comment: "Original event payload as text (full-text indexed)"
         _field_type: base

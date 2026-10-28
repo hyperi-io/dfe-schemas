@@ -91,7 +91,7 @@ dfe-schemas/
 |-- topics/            # the Kafka naming rule, defaults and bootstrap set
 |-- sources/           # engine-owned source definitions (main, dfe-alerts)
 |-- catalogue/         # sources shipped ready to create, one POST /sources body each
-|-- registries/        # allow-lists: engines.yaml, types.yaml, field-maps/<standard>/
+|-- registries/        # allow-lists: engines.yaml, types.yaml, catalogue-tags.yaml, field-maps/<standard>/
 |-- dfe_schemas/       # the package: manifest reader, renderer, engine resolver
 |-- scripts/           # render_manifest / validate_schemas / annotate + generate
 |-- docs/manifest.md     # the manifest format, and how to add an object

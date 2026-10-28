@@ -1,12 +1,12 @@
 # Meta schema: Azure Entra ID directory audits
 #
 # Microsoft Graph `auditLogs/directoryAudits`, one row per element of `value`,
-# as dfe-fetcher's `azure` profile lands it (unit `entra_directory_audits`). The
-# columns are the fields dfe-fetcher's own fixture for the unit asserts
-# (crates/fetcher/tests/integration/source_azure.rs); widen this schema only
-# with a field that fixture lands.
+# as dfe-fetcher's `azure` profile lands it (unit `entra_directory_audits`), the
+# directoryAudit resource at the top level. Time lives in `event_time`: the
+# common header owns `_timestamp` and reads `timestamp` or `@timestamp`, which
+# a Graph record carries neither of.
 
-current: "1.0.0"
+current: "1.1.0"
 resource_type: core
 
 versions:
@@ -20,4 +20,139 @@ versions:
         use_case: exact_match
         expr: "@source: id"
         comment: "Directory audit record identifier"
+        _field_type: base
+
+  "1.1.0":
+    date: "2026-10-28"
+    type: addition
+    summary: "Add the directoryAudit resource fields: time, activity, category, result, initiator and target resources"
+    columns:
+      - name: event_id
+        type: string
+        use_case: exact_match
+        expr: "@source: id"
+        comment: "Directory audit record identifier"
+        _field_type: base
+
+      - name: event_time
+        type: datetime
+        use_case: range
+        expr: "@source: activityDateTime"
+        comment: "When the activity was performed (UTC)"
+        _field_type: base
+
+      - name: activity_display_name
+        type: string
+        cardinality: low
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: activityDisplayName"
+        comment: "Activity or operation name, e.g. Add member to group"
+        _field_type: base
+
+      - name: category
+        type: string
+        cardinality: low
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: category"
+        comment: "Resource category the activity targets, e.g. UserManagement, GroupManagement"
+        _field_type: base
+
+      - name: operation_type
+        type: string
+        cardinality: low
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: operationType"
+        comment: "Operation performed: Add, Assign, Update, Unassign, Delete"
+        _field_type: base
+
+      - name: result
+        type: string
+        cardinality: low
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: result"
+        comment: "Outcome: success, failure, timeout"
+        _field_type: base
+
+      - name: result_reason
+        type: string
+        attribute: [nullable]
+        expr: "@source: resultReason"
+        comment: "Reason for a failure or timeout"
+        _field_type: base
+
+      - name: logged_by_service
+        type: string
+        cardinality: low
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: loggedByService"
+        comment: "Service that logged the activity, e.g. Core Directory"
+        _field_type: base
+
+      - name: correlation_id
+        type: string
+        attribute: [nullable]
+        use_case: exact_match
+        expr: "@source: correlationId"
+        comment: "Identifier that correlates activities across services"
+        _field_type: base
+
+      - name: initiated_by_user_id
+        type: string
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: initiatedBy.user.id"
+        comment: "Object identifier of the user that initiated the activity"
+        _field_type: base
+
+      - name: initiated_by_user_principal_name
+        type: string
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: initiatedBy.user.userPrincipalName"
+        comment: "User principal name of the initiating user"
+        _field_type: base
+
+      - name: initiated_by_ip_address
+        type: ip
+        attribute: [nullable]
+        use_case: range
+        expr: "@source: initiatedBy.user.ipAddress"
+        comment: "IP address the initiating user acted from"
+        _field_type: base
+
+      - name: initiated_by_app_id
+        type: string
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: initiatedBy.app.appId"
+        comment: "Application identifier of the initiating app"
+        _field_type: base
+
+      - name: initiated_by_app_display_name
+        type: string
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: initiatedBy.app.displayName"
+        comment: "Display name of the initiating app"
+        _field_type: base
+
+      - name: target_resources
+        type: json
+        ch_override: "Array(JSON)"
+        codec: "ZSTD(3)"
+        expr: "@source: targetResources"
+        comment: "Resources the activity changed, with their modified properties"
+        _field_type: base
+
+      - name: additional_details
+        type: json
+        ch_override: "Array(JSON)"
+        codec: "ZSTD(3)"
+        expr: "@source: additionalDetails"
+        comment: "Key/value pairs the logging service attached"
         _field_type: base

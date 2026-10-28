@@ -123,6 +123,14 @@ def test_no_schema_declares_a_retired_use_case():
             )
 
 
+def test_the_ecs_meta_schema_indexes_nothing_and_keeps_its_mapping_comments():
+    """A meta schema is the full column set. Each derived schema picks its own indexes."""
+    columns = load_columns(ROOT / "meta" / "elastic" / "ecs.yaml")
+    assert len(columns) > 1000
+    assert [c.name for c in columns if c.use_case] == []
+    assert all(c.comment and c.comment.startswith("Elasticsearch mapping type:") for c in columns)
+
+
 @pytest.mark.parametrize(
     ("column", "refused"),
     [

@@ -213,7 +213,7 @@ def main() -> int:
             except Exception as exc:
                 errors.append(f"{rel}: {exc}")
 
-    catalogue_files = sorted((repo_root / CATALOGUE_DIR).glob("*.yaml"))
+    catalogue_files = sorted((repo_root / CATALOGUE_DIR).rglob("*.yaml"))
     checked_catalogue = 0
     try:
         from dfe_engine.source.models import (  # ty: ignore[unresolved-import]

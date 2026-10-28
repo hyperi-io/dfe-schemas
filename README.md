@@ -112,6 +112,8 @@ system, and the `@directive` expression language:
 
 `catalogue/` holds the sources DFE ships ready to create, one file per source and named for it. Each file is the `POST /sources` write body for the source's default intake, plus a `catalogue` block the write model ignores.
 
+Each file sits in the folder named for the quick-add tag the console offers it under, `uncategorised` for a source with none. `registries/catalogue-tags.yaml` lists the folders with the name the console shows for each. dfe-engine serves them at `GET /sources/catalogue-tags`. `tests/test_catalogue.py` refuses a file outside a listed folder, a listed folder with no file and a source name in two folders.
+
 | Key | What it holds |
 |-----|---------------|
 | `package`, `data_stream` | The integration package and data stream the source carries |

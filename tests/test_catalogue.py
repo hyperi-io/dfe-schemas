@@ -1,6 +1,6 @@
 #  Project:      dfe-schemas
 #  File:         tests/test_catalogue.py
-#  Purpose:      Every catalogue file is a source write body with a consistent catalogue block
+#  Purpose:      Every catalogue file is a source write body with a consistent catalogue block, in one vendor folder
 #  Language:     Python
 #
 #  License:      BUSL-1.1
@@ -9,6 +9,7 @@
 """The catalogue format, checked without dfe-engine (validate_schemas.py builds each body)."""
 
 import copy
+from collections import defaultdict
 from pathlib import Path
 
 import pytest
@@ -18,6 +19,12 @@ from dfe_schemas.loader import SchemaError, read_yaml, resolve
 
 ROOT = dfe_schemas.schemas_root()
 CATALOGUE = ROOT / "catalogue"
+
+# The quick-add tags the console offers, by folder name, plus uncategorised for the sources with none.
+TAGS = read_yaml(path=ROOT / "registries" / "catalogue-tags.yaml")
+
+# The folders a file sits in, one per tag.
+VENDORS = tuple(TAGS)
 
 TOP_LEVEL_KEYS = (
     "source",
@@ -163,6 +170,48 @@ MALFORMED_CASES = [
     ),
 ]
 
+MISPLACED_CASES = [
+    pytest.param(["acme-log.yaml"], "sits in no vendor folder", id="top-level-file"),
+    pytest.param(["aws/acme/acme-log.yaml"], "more than one folder deep", id="two-folders-deep"),
+    pytest.param(["acme/acme-log.yaml"], "is not a vendor folder", id="unknown-folder"),
+    pytest.param(
+        ["aws/acme-log.yaml", "gcp/acme-log.yaml"],
+        "is in more than one folder",
+        id="source-in-two-folders",
+    ),
+]
+
+MALFORMED_TAG_CASES = [
+    pytest.param({"aws": "Amazon Web Services"}, "must be a mapping", id="entry-not-a-mapping"),
+    pytest.param({"aws": {"description": "Logs."}}, "name None", id="no-name"),
+    pytest.param(
+        {"aws": {"description": "", "name": "Amazon Web Services"}},
+        "description ''",
+        id="empty-description",
+    ),
+    pytest.param({"aws": {"description": "Logs.", "name": 7}}, "name 7", id="name-not-a-string"),
+]
+
+
+def _layout_violations(*, paths: list[Path]) -> list[str]:
+    """Every file, given relative to the catalogue root, outside exactly one vendor folder, plus every source name in two."""
+    found = []
+    folders = defaultdict(list)
+    for path in paths:
+        if len(path.parts) == 1:
+            found.append(f"{str(path)!r} sits in no vendor folder")
+            continue
+        if len(path.parts) > 2:
+            found.append(f"{str(path)!r} is more than one folder deep")
+            continue
+        if path.parts[0] not in VENDORS:
+            found.append(f"{path.parts[0]!r} is not a vendor folder, allowed {VENDORS!r}")
+        folders[path.stem].append(path.parts[0])
+    for stem, used in sorted(folders.items()):
+        if len(used) > 1:
+            found.append(f"source {stem!r} is in more than one folder: {', '.join(sorted(used))}")
+    return found
+
 
 def _mutated(*, changes: dict[str, object], doc: dict) -> dict:
     """A deep copy of *doc* with each dotted key set to its value, or removed where the value is None."""
@@ -250,6 +299,20 @@ def _shape_violations(*, block: dict, doc: dict) -> list[str]:
     return found
 
 
+def _tag_violations(*, tags: dict) -> list[str]:
+    """Every catalogue tag entry without a non-empty string name and description."""
+    found = []
+    for tag, entry in tags.items():
+        if not (isinstance(entry, dict)):
+            found.append(f"tag {tag!r} {entry!r} must be a mapping")
+            continue
+        for key in ("description", "name"):
+            value = entry.get(key)
+            if not (isinstance(value, str)) or not (value):
+                found.append(f"tag {tag!r}: {key} {value!r} must be a non-empty string")
+    return found
+
+
 def _variant_violations(*, block: dict, doc: dict) -> list[str]:
     """Why the body's transform variant is not the first of the entry's variants."""
     variants = block.get("variants") or []
@@ -280,9 +343,15 @@ def _violations(*, doc: dict, root: Path, stem: str) -> list[str]:
 
 
 @pytest.fixture(scope="module")
-def catalogue() -> dict[str, dict]:
-    """Every shipped catalogue file, parsed, by file name stem."""
-    return {path.stem: read_yaml(path=path) for path in sorted(CATALOGUE.glob("*.yaml"))}
+def catalogue(catalogue_files) -> dict[Path, dict]:
+    """Every shipped catalogue file, parsed, by its path relative to the catalogue root."""
+    return {path: read_yaml(path=CATALOGUE / path) for path in catalogue_files}
+
+
+@pytest.fixture(scope="module")
+def catalogue_files() -> list[Path]:
+    """Every shipped catalogue file, relative to the catalogue root."""
+    return sorted(path.relative_to(CATALOGUE) for path in CATALOGUE.rglob("*.yaml"))
 
 
 @pytest.fixture
@@ -301,10 +370,42 @@ def test_the_catalogue_ships_files(catalogue):
 
 def test_every_file_follows_the_catalogue_format(catalogue):
     found = []
-    for stem, doc in catalogue.items():
-        violations = _violations(doc=doc, root=ROOT, stem=stem)
-        found.extend(f"catalogue/{stem}.yaml: {violation}" for violation in violations)
+    for path, doc in catalogue.items():
+        violations = _violations(doc=doc, root=ROOT, stem=path.stem)
+        found.extend(f"catalogue/{path}: {violation}" for violation in violations)
     assert not (found), "\n".join(found)
+
+
+def test_every_file_sits_in_one_vendor_folder(catalogue_files):
+    found = _layout_violations(paths=catalogue_files)
+    assert not (found), "\n".join(found)
+
+
+def test_every_vendor_folder_holds_a_file(catalogue_files):
+    empty = sorted(set(VENDORS) - {path.parts[0] for path in catalogue_files})
+    assert not (empty), f"vendor folders with no file: {empty!r}"
+
+
+def test_files_in_vendor_folders_have_no_violations():
+    paths = [Path("aws/acme-log.yaml"), Path("uncategorised/acme-other.yaml")]
+    assert _layout_violations(paths=paths) == []
+
+
+@pytest.mark.parametrize(("paths", "expected"), MISPLACED_CASES)
+def test_a_misplaced_file_is_refused(paths, expected):
+    violations = _layout_violations(paths=[Path(path) for path in paths])
+    assert any(expected in violation for violation in violations), violations
+
+
+def test_every_tag_has_a_name_and_description():
+    found = _tag_violations(tags=TAGS)
+    assert not (found), "\n".join(found)
+
+
+@pytest.mark.parametrize(("tags", "expected"), MALFORMED_TAG_CASES)
+def test_a_malformed_tag_is_refused(tags, expected):
+    violations = _tag_violations(tags=tags)
+    assert any(expected in violation for violation in violations), violations
 
 
 @pytest.mark.parametrize("changes", WELL_FORMED_CASES)

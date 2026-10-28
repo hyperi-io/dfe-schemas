@@ -21,7 +21,7 @@ from __future__ import annotations
 import pytest
 
 import dfe_schemas
-from dfe_schemas.loader import Column, SchemaError, TypeRegistry
+from dfe_schemas.loader import Column, SchemaError, TypeRegistry, load_columns
 from dfe_schemas.manifest import load_manifest
 from dfe_schemas.render import Renderer, split_use_case
 from tests.conftest import schema_yaml
@@ -121,3 +121,43 @@ def test_no_schema_declares_a_retired_use_case():
             assert value not in retired, (
                 f"{path.relative_to(ROOT)}:{number} declares the retired use case {value!r}"
             )
+
+
+@pytest.mark.parametrize(
+    ("column", "refused"),
+    [
+        pytest.param(
+            "- {name: _raw, type: text, use_case: substring_search}", False, id="use_case"
+        ),
+        pytest.param("- {name: _raw, type: text}", False, id="no_index"),
+        pytest.param("- {name: _raw, type: text, index: exact_match}", True, id="index_word"),
+        pytest.param(
+            '- {name: _raw, type: text, use_case: substring_search, index: "text() GRANULARITY 64"}',
+            True,
+            id="index_beside_use_case",
+        ),
+    ],
+)
+def test_a_per_column_index_key_is_refused_by_name(tmp_path, column, refused):
+    """Nothing reads `index:` on a column, so keeping it silently reads as config and behaves as a comment."""
+    path = tmp_path / "header.yaml"
+    path.write_text(
+        'current: "1.0.0"\nversions:\n  "1.0.0":\n    columns:\n      ' + column + "\n",
+        encoding="utf-8",
+    )
+
+    if refused:
+        with pytest.raises(SchemaError, match=r"column '_raw'.*'index'"):
+            load_columns(path)
+    else:
+        assert [c.name for c in load_columns(path)] == ["_raw"]
+
+
+def test_the_common_header_raw_column_asks_for_the_substring_index(renderer):
+    """The `_raw` column states its question, and the registry's template answers it."""
+    raw = [c for c in load_columns(ROOT / "common-header" / "timeseries.yaml") if c.name == "_raw"]
+
+    assert [c.use_case for c in raw] == ["substring_search"]
+    assert renderer._index_defs(raw[0]) == [
+        "INDEX `idx__raw` `_raw` TYPE text(tokenizer=ngrams(3)) GRANULARITY 1"
+    ]

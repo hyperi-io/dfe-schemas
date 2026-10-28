@@ -4,9 +4,10 @@
 source: azure-identity-protection
 display_name: azure.identity_protection
 description: The identity_protection data stream of the Elastic azure integration.
-fetcher:
-  source_type: azure
-  topic: own
+match:
+  field: data_stream.dataset
+  operator: equals
+  value: azure.identity_protection
 schema:
   meta_schema: meta/elastic/ecs
   derived_schema: derived/azure/identity_protection
@@ -17,6 +18,6 @@ transform:
 catalogue:
   package: azure
   data_stream: identity_protection
-  intakes: [beats, fetcher]
+  intakes: [beats]
   variants:
     - filebeat.azure_identity_protection.default

@@ -22,8 +22,9 @@
 # lookup and Auditbeat itself never sends.
 #
 # The ECS-spine columns are copied from meta/elastic/ecs.yaml unchanged --
-# same name, type, ch_override, codec, cardinality, use_case, expr and
-# comment -- so the two vocabularies cannot disagree about a field they share.
+# same name, type, ch_override, codec, cardinality, expr and comment -- so the
+# two vocabularies cannot disagree about a field they share. use_case is the
+# exception: ecs.yaml carries none, because indexes belong on derived schemas.
 # That file carries only the ECS fields the Elastic integrations reference,
 # so process.hash.sha512, and host.containerized from add_host_metadata, are
 # built from libbeat's own declarations at the same tag by the same type

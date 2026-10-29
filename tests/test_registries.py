@@ -21,6 +21,7 @@ _REGISTRIES = dfe_schemas.schemas_root() / "registries"
     "relative",
     [
         "catalogue-tags.yaml",
+        "elastic-variants.yaml",
         "engines.yaml",
         "types.yaml",
         "field-maps/cim/_default.yaml",

@@ -3,6 +3,15 @@
 Rendered by CI and committed back at the end of a release -- do not edit by
 hand. Release notes also appear on the GitHub Releases page, one per tag.
 
+## [0.2.19](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.18...v0.2.19) (2026-10-28)
+
+### Bug Fixes
+
+* list azure-identity-protection as a beats-only source ([#89](https://github.com/hyperi-io/dfe-schemas/issues/89)) ([8313739](https://github.com/hyperi-io/dfe-schemas/commit/8313739cba1fb17910d8d0e593ec2cc0aaa2d59e))
+* read OTLP service name and host name from the resource attributes ([#88](https://github.com/hyperi-io/dfe-schemas/issues/88)) ([6b5640e](https://github.com/hyperi-io/dfe-schemas/commit/6b5640e5b27a5e815d58d832e06af7219ba719d0))
+* read the OTLP keys dfe-receiver writes, and map the Entra directory audit fields ([#86](https://github.com/hyperi-io/dfe-schemas/issues/86)) ([a274c76](https://github.com/hyperi-io/dfe-schemas/commit/a274c761e2cade282f658b4c77c88ac4f04ad127))
+* run the tests in parallel ([#87](https://github.com/hyperi-io/dfe-schemas/issues/87)) ([7369012](https://github.com/hyperi-io/dfe-schemas/commit/736901291902e3d35507289543a66f3cfc09d728))
+
 ## [0.2.18](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.17...v0.2.18) (2026-10-22)
 
 ### Bug Fixes

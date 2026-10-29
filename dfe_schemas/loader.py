@@ -200,6 +200,11 @@ def _primitive_column(raw: dict[str, Any], source: Path) -> Column:
     primitive = raw.get("type")
     if not name or not primitive:
         raise SchemaError(f"column needs both 'name' and 'type' in {source}: {raw!r}")
+    if "index" in raw:
+        raise SchemaError(
+            f"column {name!r} in {source} sets 'index', which nothing reads: "
+            "pick the index with 'use_case'"
+        )
     declared = _attributes(raw)
     return Column(
         name=name,

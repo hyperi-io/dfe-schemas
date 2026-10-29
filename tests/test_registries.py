@@ -20,6 +20,7 @@ _REGISTRIES = dfe_schemas.schemas_root() / "registries"
 @pytest.mark.parametrize(
     "relative",
     [
+        "catalogue-tags.yaml",
         "engines.yaml",
         "types.yaml",
         "field-maps/cim/_default.yaml",

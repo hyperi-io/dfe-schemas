@@ -91,7 +91,7 @@ dfe-schemas/
 |-- topics/            # the Kafka naming rule, defaults and bootstrap set
 |-- sources/           # engine-owned source definitions (main, dfe-alerts)
 |-- catalogue/         # sources shipped ready to create, one POST /sources body each
-|-- registries/        # allow-lists: engines.yaml, types.yaml, field-maps/<standard>/
+|-- registries/        # allow-lists: engines.yaml, types.yaml, catalogue-tags.yaml, field-maps/<standard>/
 |-- dfe_schemas/       # the package: manifest reader, renderer, engine resolver
 |-- scripts/           # render_manifest / validate_schemas / annotate + generate
 |-- docs/manifest.md     # the manifest format, and how to add an object
@@ -111,6 +111,8 @@ system, and the `@directive` expression language:
 ### Catalogue
 
 `catalogue/` holds the sources DFE ships ready to create, one file per source and named for it. Each file is the `POST /sources` write body for the source's default intake, plus a `catalogue` block the write model ignores.
+
+Each file sits in the folder named for the quick-add tag the console offers it under, `uncategorised` for a source with none. `registries/catalogue-tags.yaml` lists the folders with the name the console shows for each. dfe-engine serves them at `GET /sources/catalogue-tags`. `tests/test_catalogue.py` refuses a file outside a listed folder, a listed folder with no file and a source name in two folders.
 
 | Key | What it holds |
 |-----|---------------|

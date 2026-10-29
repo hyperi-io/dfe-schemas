@@ -91,7 +91,7 @@ dfe-schemas/
 |-- topics/            # the Kafka naming rule, defaults and bootstrap set
 |-- sources/           # engine-owned source definitions (main, dfe-alerts)
 |-- catalogue/         # sources shipped ready to create, one POST /sources body each
-|-- registries/        # allow-lists: engines.yaml, types.yaml, catalogue-tags.yaml, field-maps/<standard>/
+|-- registries/        # allow-lists: engines.yaml, types.yaml, catalogue-tags.yaml, elastic-variants.yaml, field-maps/<standard>/
 |-- dfe_schemas/       # the package: manifest reader, renderer, engine resolver
 |-- scripts/           # render_manifest / validate_schemas / annotate + generate
 |-- docs/manifest.md     # the manifest format, and how to add an object
@@ -127,6 +127,8 @@ The body's origin is the first of `fetcher`, `receiver` and `beats` the entry li
 Schema layers name no version pin. A body without `schema` is a stream with no derived schema over `meta/elastic/ecs`: dfe-engine binds no schema for those. `fetcher` is offered only with a schema, because dfe-engine refuses a fetcher source on its own topic without one, and only for a stream a dfe-fetcher family polls.
 
 `tests/test_catalogue.py` checks the format and `make validate` builds every body as dfe-engine's `SourceWriteRequest`.
+
+`registries/elastic-variants.yaml` lists every variant dfe-transform-elastic registers with the intakes it accepts. That repo's CI generates it and opens a `chore(elastic-variants)` PR here when it changes. `tests/test_catalogue.py` refuses an elastic entry whose variants are not listed there or refuse one of its intakes.
 
 ## Registries
 

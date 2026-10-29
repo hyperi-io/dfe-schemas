@@ -10,8 +10,9 @@
 # `winlog.*` sits OUTSIDE core ECS, so meta/elastic/ecs.yaml cannot be the
 # base for a Windows hunt: its 1,018 columns carry no winlog field at all.
 # The ECS-spine columns below are copied from that file unchanged -- same
-# name, type, ch_override, codec, cardinality, use_case, expr and comment --
-# so the two vocabularies cannot disagree about a field they share.
+# name, type, ch_override, codec, cardinality, expr and comment -- so the two
+# vocabularies cannot disagree about a field they share. use_case is the
+# exception: ecs.yaml carries none, because indexes belong on derived schemas.
 #
 # Two collection realities this file holds at once. Winlogbeat's collection
 # stage emits `winlog.*` and the raw `winlog.event_data.*` map and nothing

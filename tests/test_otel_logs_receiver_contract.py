@@ -64,16 +64,26 @@ def _candidates(expr: str) -> list[str]:
     return wrapped.group(1).split("/") if wrapped else [directive]
 
 
+def _lookup(node: dict, path: str):
+    """Find ``path`` in ``node``: the whole path as one key, else each dot as the split
+    between an object key and the rest, left to right (dfe-loader's source lookup)."""
+    if path in node:
+        return node[path]
+    for index, char in enumerate(path):
+        child = node.get(path[:index]) if char == "." else None
+        if isinstance(child, dict):
+            found = _lookup(child, path[index + 1 :])
+            if found is not None:
+                return found
+    return None
+
+
 def resolve(expr: str, record: dict):
     """Return the value a loader would take for ``expr`` from ``record``, or None."""
     for path in _candidates(expr):
-        if path in record:
-            return record[path]
-        node = record
-        for part in path.split("."):
-            node = node.get(part) if isinstance(node, dict) else None
-        if node is not None:
-            return node
+        found = _lookup(record, path)
+        if found is not None:
+            return found
     return None
 
 
@@ -83,6 +93,24 @@ def test_a_column_takes_its_value_from_the_receiver_output(mode, column, key):
     for record in _records(mode):
         assert key in record, f"the {mode} fixture has no {key}"
         assert resolve(expr, record) == record[key]
+
+
+# (receiver mode, column, the attribute map that mode writes, the dotted key in it)
+RESOURCE_KEYS = [
+    ("hyperdx", "service_name", "ResourceAttributes", "service.name"),
+    ("hyperdx", "host_name", "ResourceAttributes", "host.name"),
+    ("generic", "service_name", "resource", "service.name"),
+    ("generic", "host_name", "resource", "host.name"),
+]
+
+
+@pytest.mark.parametrize(("mode", "column", "attributes", "key"), RESOURCE_KEYS)
+def test_a_column_takes_its_value_from_a_resource_attribute(mode, column, attributes, key):
+    """The attribute maps are objects keyed by literal dotted names, such as "service.name"."""
+    expr = _columns()[column]
+    for record in _records(mode):
+        assert key in record[attributes], f"the {mode} fixture has no {attributes}[{key!r}]"
+        assert resolve(expr, record) == record[attributes][key]
 
 
 @pytest.mark.parametrize("mode", ["hyperdx", "generic"])

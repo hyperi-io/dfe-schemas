@@ -801,6 +801,8 @@ docstring; the provider's arguments live in an `@` file beside it
 
 `meta/elastic/ecs.yaml` is the ECS vocabulary shared by every Beat and the Elastic Agent, generated rather than written: at 1018 columns nobody maintains it by hand. The generator is the `dfe-schemagen` crate in `dfe-transform-elastic-dev`, which takes column types from the ECS spec and the set of referenced names from an `elastic/integrations` clone. A field's column falls out of its whole spec entry, not its `type` alone: `normalize: [array]` makes an array column, `object_type` a searchable map, and `index: false` drops the index Elasticsearch itself never uses.
 
+The file carries no `use_case`: a meta schema is the full column set, and the index on a column is chosen by each derived schema that selects it. Every column keeps its `Elasticsearch mapping type` comment, which is the evidence those index choices rest on.
+
 Both inputs are pinned by commit. `--ecs-version` has no default, so the version on the output is always one somebody chose:
 
 | Input | Pin |

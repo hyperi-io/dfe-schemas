@@ -29,8 +29,9 @@
 # an enrichment step, and belong to that step's overlay.
 #
 # The ECS-spine columns are copied from meta/elastic/ecs.yaml unchanged --
-# same name, type, ch_override, codec, cardinality, use_case, expr and
-# comment -- so the two vocabularies cannot disagree about a field they share.
+# same name, type, ch_override, codec, cardinality, expr and comment -- so the
+# two vocabularies cannot disagree about a field they share. use_case is the
+# exception: ecs.yaml carries none, because indexes belong on derived schemas.
 # That file carries only the ECS fields the Elastic integrations reference,
 # so tls.next_protocol, tls.client.hash.sha1, tls.server.hash.md5,
 # tls.server.x509.signature_algorithm, and host.containerized from

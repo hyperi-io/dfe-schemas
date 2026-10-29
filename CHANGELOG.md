@@ -3,6 +3,14 @@
 Rendered by CI and committed back at the end of a release -- do not edit by
 hand. Release notes also appear on the GitHub Releases page, one per tag.
 
+## [0.2.20](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.19...v0.2.20) (2026-10-29)
+
+### Bug Fixes
+
+* drop the mechanical use_case from the ECS meta schema ([#91](https://github.com/hyperi-io/dfe-schemas/issues/91)) ([e154ba1](https://github.com/hyperi-io/dfe-schemas/commit/e154ba16c916d7e2917dfb78853a2ea235d09454))
+* file the catalogue under tag folders ([#93](https://github.com/hyperi-io/dfe-schemas/issues/93)) ([5a47023](https://github.com/hyperi-io/dfe-schemas/commit/5a4702340e2315dce7bf4ac22726c6482caf5b02))
+* refuse a per-column index key and drop the ignored one from _raw ([#90](https://github.com/hyperi-io/dfe-schemas/issues/90)) ([3b2570c](https://github.com/hyperi-io/dfe-schemas/commit/3b2570c0d4d3844d6ec07c6ded9d9a0a9039e924))
+
 ## [0.2.19](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.18...v0.2.19) (2026-10-28)
 
 ### Bug Fixes

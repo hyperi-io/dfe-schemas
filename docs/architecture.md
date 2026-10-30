@@ -45,8 +45,9 @@ DEPLOYED schema out of `system.columns` at runtime. They never read this YAML.
 The schema trees sit at the repository root so a checkout reads as itself. The
 wheel carries the same trees as package data under `dfe_schemas/data/`, copied
 there by hatch `force-include` at build time. `schemas_root()` resolves whichever
-applies: package data when one exists, the repository root otherwise, and
-`DFE_SCHEMAS_DIR` overrides both.
+applies: package data when one exists, the repository root otherwise. It does not
+read `DFE_SCHEMAS_DIR`. dfe-engine reads that variable and hands the tree it names
+to this package as `root=`, the way it calls `load_manifest`.
 
 This is the fact most readers get wrong, because it used to be a git submodule
 and the later sections of `docs/meta-schema.md` still describe one. Code that
@@ -141,17 +142,17 @@ deployment's next apply.
 These are checks, not conventions. Each one exists because its absence produces
 something that looks like success.
 
-- **A duplicate object id** is refused: two definitions claiming one name means
+- A duplicate object id is refused: two definitions claiming one name means
   whichever applies second silently wins.
-- **A dependency that is unknown or declared later** is refused: a view over a
+- A dependency that is unknown or declared later is refused: a view over a
   table that does not exist yet fails on a fresh cluster and succeeds on every
   re-run, which is the worst shape a bootstrap can have.
-- **A Nullable `ORDER BY` key** is refused rather than dropped. ClickHouse
+- A Nullable `ORDER BY` key is refused rather than dropped. ClickHouse
   rejects one unless `allow_nullable_key` is on, and even then a null in the sort
   key cripples the index and doubles storage.
-- **A TTL over an absent column** is refused, because the table would silently
+- A TTL over an absent column is refused, because the table would silently
   keep every row forever.
-- **`ttl_only_drop_parts`** is set only when every TTL column appears in the
+- `ttl_only_drop_parts` is set only when every TTL column appears in the
   partition expression. It waits for every row in a part to expire, so an
   unaligned TTL would retain data indefinitely -- those tables get the row-level
   delete instead.

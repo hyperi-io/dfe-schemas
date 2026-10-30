@@ -1,8 +1,11 @@
 # Meta schema: AWS CloudWatch Logs
 #
 # CloudWatch Logs FilterLogEvents -- log entries from CloudWatch log groups.
+# The event carries eventId, logStreamName, timestamp, ingestionTime and
+# message. dfe-fetcher stamps logGroupName, awsAccountId and awsRegion, which
+# belong to the call rather than the event.
 
-current: "1.0.1"
+current: "1.1.0"
 resource_type: core
 
 versions:
@@ -102,4 +105,69 @@ versions:
         use_case: word_search
         expr: "@source: message"
         comment: "Log event message content"
+        _field_type: base
+
+  "1.1.0":
+    date: "2026-10-31"
+    type: addition
+    summary: "Add aws_account_id and aws_region, which dfe-fetcher stamps on each event"
+    columns:
+      - name: event_id
+        type: string
+        use_case: exact_match
+        expr: "@source: eventId"
+        comment: "Unique log event identifier"
+        _field_type: base
+
+      - name: log_group_name
+        type: string
+        cardinality: low
+        use_case: dimension
+        expr: "@source: logGroupName"
+        comment: "CloudWatch log group name"
+        _field_type: base
+
+      - name: log_stream_name
+        type: string
+        use_case: dimension
+        expr: "@source: logStreamName"
+        comment: "CloudWatch log stream name"
+        _field_type: base
+
+      - name: timestamp
+        type: datetime
+        use_case: range
+        expr: "@source: timestamp"
+        comment: "Event timestamp (epoch milliseconds)"
+        _field_type: base
+
+      - name: ingestion_time
+        type: datetime
+        attribute: [nullable]
+        use_case: range
+        expr: "@source: ingestionTime"
+        comment: "When CloudWatch ingested the event"
+        _field_type: base
+
+      - name: message
+        type: text
+        use_case: word_search
+        expr: "@source: message"
+        comment: "Log event message content"
+        _field_type: base
+
+      - name: aws_account_id
+        type: string
+        cardinality: low
+        use_case: dimension
+        expr: "@source: awsAccountId"
+        comment: "AWS account the log group belongs to"
+        _field_type: base
+
+      - name: aws_region
+        type: string
+        cardinality: low
+        use_case: dimension
+        expr: "@source: awsRegion"
+        comment: "AWS region the log group lives in"
         _field_type: base

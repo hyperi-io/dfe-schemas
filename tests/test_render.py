@@ -23,7 +23,7 @@ import pytest
 import dfe_schemas
 from dfe_schemas.clickhouse import Platform
 from dfe_schemas.deploy_defaults import JSON_TABLE_SETTINGS
-from dfe_schemas.loader import SchemaError
+from dfe_schemas.loader import Column, SchemaError
 from dfe_schemas.manifest import load_manifest
 from dfe_schemas.render import (
     Renderer,
@@ -211,6 +211,23 @@ def test_the_checksum_moves_when_the_schema_does():
 
 def test_the_checksum_ignores_whitespace():
     assert checksum(["CREATE  TABLE a\n(x String)"]) == checksum(["CREATE TABLE a (x String)"])
+
+
+# Each rendered literal was applied to ClickHouse 26.3.42.3 and read back from
+# system.columns equal to the comment. The trailing and quote rows were refused
+# with code 62, and the escape row stored a tab, before backslashes were doubled.
+@pytest.mark.parametrize(
+    ("comment", "literal"),
+    [
+        pytest.param("tenant's id", r"'tenant\'s id'", id="quote"),
+        pytest.param("path C:\\temp\\", r"'path C:\\temp\\'", id="trailing_backslash"),
+        pytest.param("regex \\d+ and \\t", r"'regex \\d+ and \\t'", id="escape_sequence"),
+        pytest.param("it's a \\' quote", r"'it\'s a \\\' quote'", id="escaped_quote"),
+    ],
+)
+def test_a_comment_reaches_clickhouse_as_written(manifest, comment, literal):
+    column = Column(name="c", ch_override="String", comment=comment)
+    assert Renderer(manifest)._column_def(column) == f"`c` String COMMENT {literal}"
 
 
 def test_the_landing_table_is_named_main(rendered):

@@ -217,6 +217,16 @@ def ddl_violations(statement: str) -> list[str]:
     return problems
 
 
+def _string_literal(text: str) -> str:
+    """Single-quote *text* for ClickHouse: backslashes doubled before quotes are escaped.
+
+    ClickHouse reads C-style escapes in a literal, so a lone backslash rewrites
+    the comment the loader reads its directive from, and a trailing one ends
+    the statement in a syntax error.
+    """
+    return "'" + text.replace("\\", "\\\\").replace("'", "\\'") + "'"
+
+
 def one_ddl_violations(rendered: RenderedObject) -> list[str]:
     """Every :func:`ddl_violations` finding across one rendered object's statements."""
     return [problem for statement in rendered.statements for problem in ddl_violations(statement)]
@@ -601,7 +611,7 @@ class Renderer:
         lines.append("SETTINGS\n    " + ",\n    ".join(settings))
 
         if table_comment:
-            lines.append(f"COMMENT '{table_comment.replace(chr(39), chr(92) + chr(39))}'")
+            lines.append(f"COMMENT {_string_literal(table_comment)}")
 
         return "\n".join(lines)
 
@@ -636,7 +646,7 @@ class Renderer:
         else:
             comment = column.expr or column.comment
         if comment:
-            parts.append("COMMENT '" + comment.replace("'", "\\'") + "'")
+            parts.append(f"COMMENT {_string_literal(comment)}")
 
         if resolved.codec:
             parts.append(f"CODEC({resolved.codec})")

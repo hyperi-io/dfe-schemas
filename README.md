@@ -1,13 +1,18 @@
 # DFE Schemas
 
-The **only** place a DFE table, view, TTL, ClickHouse role, grant or Kafka
-bootstrap topic is defined. Every component that used to carry one of those in
-code or in a chart reads it from here instead: dfe-engine applies it, and
-dfe-infra, dfe-docker and dfe-deploy create none of it.
+[![PyPI](https://img.shields.io/pypi/v/dfe-schemas?logo=pypi)](https://pypi.org/project/dfe-schemas/)
+[![Python Version](https://img.shields.io/badge/python-3.14%2B-blue)](https://www.python.org/)
+[![License](https://img.shields.io/badge/license-BUSL--1.1-blue)](LICENSE)
 
-`manifest.yaml` is the list of every object a deployment creates, in the order
-it creates them. Adding a table is an entry there plus its definition file --
-never an engine release, never a Job, never an init container.
+The one place a DFE deployment's ClickHouse databases, tables, views, TTLs, roles and grants and its Kafka bootstrap topics are defined. dfe-engine reads this package at boot and applies what is missing, and dfe-infra, dfe-docker and dfe-deploy create none of it.
+
+## What it gives you
+
+- `manifest.yaml`, every object a deployment creates in the order it creates them. Adding a table is an entry there plus its definition file, never an engine release, a Job or an init container.
+- One table shape on every ClickHouse: the argumentless `Replicated<variant>` engine with no `ON CLUSTER`, which ClickHouse Cloud rewrites to `SharedMergeTree`.
+- A renderer that turns each object into checksummed output: ClickHouse DDL for the platform a connection reaches, Cloud or self-hosted, and a topic spec for a Kafka topic.
+- The ClickHouse role and grant catalogue, and Kafka topics with replication clamped to the broker count.
+- The registries of table engines, column types and field maps dfe-engine validates sources against.
 
 ## Usage
 
@@ -38,7 +43,7 @@ for obj in manifest.objects:
         print(statement)
 ```
 
-Point `DFE_SCHEMAS_DIR` at your own directory to override the shipped trees:
+The package reads its shipped trees unless a caller passes `load_manifest(root=...)`. `DFE_SCHEMAS_DIR` is a dfe-engine setting, not one the package reads. The engine reads the trees from the directory it names:
 
 ```bash
 export DFE_SCHEMAS_DIR=/opt/dfe/schemas
@@ -283,4 +288,4 @@ schema, never this YAML.
 
 ## Issues
 
-Open bugs: [this repo](https://github.com/hyperi-io/dfe-schemas/issues?q=is%3Aopen+is%3Aissue+type%3ABug+-label%3Abacklog+-label%3Anext-minor) | [whole DFE suite](https://github.com/search?type=issues&q=is%3Aopen+is%3Aissue+type%3ABug+-label%3Abacklog+-label%3Anext-minor+repo%3Ahyperi-io%2Fdfe-infra+repo%3Ahyperi-io%2Fdfe-docker+repo%3Ahyperi-io%2Fdfe-deploy+repo%3Ahyperi-io%2Fdfe-engine+repo%3Ahyperi-io%2Fdfe-loader+repo%3Ahyperi-io%2Fdfe-receiver+repo%3Ahyperi-io%2Fdfe-fetcher+repo%3Ahyperi-io%2Fdfe-archiver+repo%3Ahyperi-io%2Fdfe-transform-vrl+repo%3Ahyperi-io%2Fdfe-transform-vector+repo%3Ahyperi-io%2Fdfe-transform-elastic+repo%3Ahyperi-io%2Fdfe-ui+repo%3Ahyperi-io%2Fdfe-hyperdx+repo%3Ahyperi-io%2Fscalo-rs+repo%3Ahyperi-io%2Fscalo-py+repo%3Ahyperi-io%2Flogreducer+repo%3Ahyperi-io%2Fdfe-schemas+repo%3Ahyperi-io%2Fvector-vrl+repo%3Ahyperi-io%2Fculvert+repo%3Ahyperi-io%2Fclickhouse-dfe+repo%3Ahyperi-io%2Ffactbook-rs)
+Open bugs: [this repo](https://github.com/hyperi-io/dfe-schemas/issues?q=is%3Aopen+is%3Aissue+type%3ABug+-label%3Abacklog+-label%3Anext-minor) | [whole DFE suite](https://github.com/search?type=issues&q=is%3Aopen+is%3Aissue+type%3ABug+-label%3Abacklog+-label%3Anext-minor+repo%3Ahyperi-io%2Fdfe-infra+repo%3Ahyperi-io%2Fdfe-docker+repo%3Ahyperi-io%2Fdfe-deploy+repo%3Ahyperi-io%2Fdfe-engine+repo%3Ahyperi-io%2Fdfe-loader+repo%3Ahyperi-io%2Fdfe-receiver+repo%3Ahyperi-io%2Fdfe-fetcher+repo%3Ahyperi-io%2Fdfe-archiver+repo%3Ahyperi-io%2Fdfe-transform-vrl+repo%3Ahyperi-io%2Fdfe-transform-vector+repo%3Ahyperi-io%2Fdfe-transform-elastic+repo%3Ahyperi-io%2Fdfe-ui+repo%3Ahyperi-io%2Fdfe-hyperdx+repo%3Ahyperi-io%2Fscalo-rs+repo%3Ahyperi-io%2Fscalo-py+repo%3Ahyperi-io%2Flogreducer+repo%3Ahyperi-io%2Fdfe-schemas+repo%3Ahyperi-io%2Fvector-vrl+repo%3Ahyperi-io%2Fculvert+repo%3Ahyperi-io%2Fdfe-clickhouse-rs+repo%3Ahyperi-io%2Ffactbook-rs)

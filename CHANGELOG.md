@@ -3,6 +3,12 @@
 Rendered by CI and committed back at the end of a release -- do not edit by
 hand. Release notes also appear on the GitHub Releases page, one per tag.
 
+## [0.2.21](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.20...v0.2.21) (2026-10-31)
+
+### Bug Fixes
+
+* map CloudWatch account, escape DDL comments ([#94](https://github.com/hyperi-io/dfe-schemas/issues/94)) ([fde37b4](https://github.com/hyperi-io/dfe-schemas/commit/fde37b47f7031374d338e35dc4c6a9fe545e87d8)), closes [hyperi-io/dfe-fetcher#88](https://github.com/hyperi-io/dfe-fetcher/issues/88)
+
 ## [0.2.20](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.19...v0.2.20) (2026-10-29)
 
 ### Bug Fixes

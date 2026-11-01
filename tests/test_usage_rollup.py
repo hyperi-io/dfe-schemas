@@ -122,12 +122,18 @@ def _insert_gauges(server: ClickHouse, rows: list[tuple[str, str, str, float]]) 
 
 
 def _insert_sums(
-    server: ClickHouse, rows: list[tuple[str, str, str, str, str, str, float]]
+    server: ClickHouse,
+    rows: list[tuple[str, str, str, str, str, str, float]],
+    *,
+    temporality: int = 2,
 ) -> None:
-    """``(service, metric, resource map, attributes map, StartTimeUnix, TimeUnix, value)`` rows."""
+    """``(service, metric, resource map, attributes map, StartTimeUnix, TimeUnix, value)`` rows.
+
+    One INSERT is one block, so a repeated row survives Replicated block deduplication.
+    """
     values = ",\n".join(
         f"({resource}, '{service}', '{metric}', {attributes}, toDateTime('{start}', 'UTC'), "
-        f"toDateTime('{at}', 'UTC'), {value}, 2, true)"
+        f"toDateTime('{at}', 'UTC'), {value}, {temporality}, true)"
         for service, metric, resource, attributes, start, at, value in rows
     )
     server.run(
@@ -463,3 +469,56 @@ def test_the_materialised_views_roll_up_the_current_minutes(deployed):
     assert daily[(usage.CORES_DEPLOYED, "")] >= 1.5
     assert daily[(usage.INGESTED_BYTES, "z")] == 160
     assert daily[(usage.EVENTS_PER_SECOND, "z")] == 1.5
+
+
+# -- one series at a time, through the ingest view, on a day no refresh reaches --
+
+
+@pytest.fixture(scope="module")
+def old_day(deployed: ClickHouse) -> str:
+    """A UTC day twenty back: inside the otel retention, outside every refresh window."""
+    return deployed.scalar("SELECT toString(toDate(now(), 'UTC') - 20)")
+
+
+def _ingest_minutes(server: ClickHouse, org: str, day: str) -> dict[str, float]:
+    rows = server.rows(
+        f"SELECT toString(minute) AS minute, value FROM {DB}.usage_minute_ingest("
+        f"from = '{day} 00:00:00', to = '{day} 23:59:00') WHERE _org_id = '{org}'"
+    )
+    return {row["minute"]: row["value"] for row in rows}
+
+
+def _receiver_sample(org: str, start: str, at: str, value: float) -> tuple:
+    resource = _map({"service.instance.id": f"r-{org}"})
+    attributes = _map({usage.ORG_ID_ATTRIBUTE: org})
+    return ("dfe-receiver", usage.INGESTED_BYTES_METRIC, resource, attributes, start, at, value)
+
+
+def test_a_restart_that_climbs_past_the_last_value_counts_from_zero(deployed, old_day):
+    """StartTimeUnix moved, so 150 is 150 bytes since the restart rather than 50 more."""
+    restart = f"{old_day} 03:00:30"
+    _insert_sums(
+        deployed,
+        [
+            _receiver_sample("restarted", f"{old_day} 02:00:00", f"{old_day} 03:00:00", 100),
+            _receiver_sample("restarted", restart, f"{old_day} 03:01:00", 150),
+            _receiver_sample("restarted", restart, f"{old_day} 03:02:00", 180),
+        ],
+    )
+    assert _ingest_minutes(deployed, "restarted", old_day) == {
+        f"{old_day} 03:00:00": 100,
+        f"{old_day} 03:01:00": 150,
+        f"{old_day} 03:02:00": 30,
+    }
+
+
+def test_a_replayed_sample_counts_once(deployed, old_day):
+    """A retried export repeats a point: the same series, start, time and value."""
+    first = _receiver_sample("replayed", f"{old_day} 05:00:00", f"{old_day} 05:00:30", 100)
+    second = _receiver_sample("replayed", f"{old_day} 05:00:30", f"{old_day} 05:01:00", 40)
+    _insert_sums(deployed, [first, first, second, second], temporality=1)
+    assert _ingest_minutes(deployed, "replayed", old_day) == {
+        f"{old_day} 05:00:00": 100,
+        f"{old_day} 05:01:00": 40,
+    }
+

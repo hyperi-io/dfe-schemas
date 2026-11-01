@@ -2,9 +2,11 @@
 --
 -- The counter is read per series (service, scope, resource and attributes), and
 -- each sample adds its increase over the sample before it to the minute it falls
--- in. A cumulative sample lower than the one before is a counter reset, and adds
--- its whole value. A delta-temporality sample (OTLP AggregationTemporality 1) is
--- its own increase.
+-- in. A point is its series, StartTimeUnix and TimeUnix, so a retried export
+-- that wrote one twice counts it once. A cumulative sample whose StartTimeUnix
+-- is later than the one before, or whose value is lower, is a counter reset and
+-- adds its whole value. A delta-temporality sample (OTLP AggregationTemporality
+-- 1) is its own increase.
 --
 -- The read starts six hours before the window, so a series' first sample inside
 -- the window has the one before it. A series with no earlier sample in the read
@@ -25,26 +27,42 @@ FROM
         multiIf(
             temporality = 1, v,
             prev_t = toDateTime(0), if(started >= {from:DateTime} - INTERVAL 6 HOUR, v, 0),
+            started > prev_started, v,
             v >= prev_v, v - prev_v,
             v
         ) AS increase
     FROM
     (
         SELECT
-            Attributes['${org_id_attribute}'] AS org,
-            TimeUnix AS t,
-            StartTimeUnix AS started,
-            Value AS v,
-            AggregationTemporality AS temporality,
-            lagInFrame(Value, 1, 0) OVER series AS prev_v,
-            lagInFrame(TimeUnix, 1, toDateTime(0)) OVER series AS prev_t
-        FROM {db}.otel_metrics_sum
-        WHERE MetricName = '${ingested_bytes_metric}'
-          AND TimeUnix >= {from:DateTime} - INTERVAL 6 HOUR
-          AND TimeUnix < {to:DateTime}
+            org,
+            t,
+            started,
+            v,
+            temporality,
+            lagInFrame(v, 1, 0) OVER series AS prev_v,
+            lagInFrame(t, 1, toDateTime(0)) OVER series AS prev_t,
+            lagInFrame(started, 1, toDateTime(0)) OVER series AS prev_started
+        FROM
+        (
+            SELECT
+                ServiceName,
+                ScopeName,
+                ResourceAttributes,
+                Attributes,
+                Attributes['${org_id_attribute}'] AS org,
+                TimeUnix AS t,
+                StartTimeUnix AS started,
+                Value AS v,
+                AggregationTemporality AS temporality
+            FROM {db}.otel_metrics_sum
+            WHERE MetricName = '${ingested_bytes_metric}'
+              AND TimeUnix >= {from:DateTime} - INTERVAL 6 HOUR
+              AND TimeUnix < {to:DateTime}
+            LIMIT 1 BY ServiceName, ScopeName, ResourceAttributes, Attributes, StartTimeUnix, TimeUnix
+        )
         WINDOW series AS (
             PARTITION BY ServiceName, ScopeName, ResourceAttributes, Attributes
-            ORDER BY TimeUnix
+            ORDER BY t
             ROWS BETWEEN 1 PRECEDING AND CURRENT ROW
         )
     )

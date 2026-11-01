@@ -1,18 +1,14 @@
--- Event counts per day and type.
---
--- The FROM names an unqualified `events` table, which no DFE object declares
--- and no bootstrap creates; it resolves against whatever database the
--- connection is on. The body is carried across unchanged rather than guessed
--- at -- see docs/manifest.md, "dfe_v_analytics_event_counts".
+-- One org's events per day and source, over the landing table. `{db}` is
+-- substituted with the deployment's data database at apply time.
 CREATE OR REPLACE VIEW {db}.dfe_v_analytics_event_counts AS
 SELECT
-    toDate(timestamp) AS event_date,
-    event_type,
+    toDate(_timestamp, 'UTC') AS event_date,
+    ifNull(_source, 'unknown') AS source,
     count() AS event_count
-FROM events
-WHERE org_id = {org_id:String}
-  AND timestamp >= {time_from:DateTime64(3)}
-  AND timestamp < {time_to:DateTime64(3)}
-GROUP BY event_date, event_type
+FROM {db}.main
+WHERE _org_id = {org_id:String}
+  AND _timestamp >= {time_from:DateTime64(3)}
+  AND _timestamp < {time_to:DateTime64(3)}
+GROUP BY event_date, source
 ORDER BY event_date DESC, event_count DESC
 LIMIT {limit:UInt32}

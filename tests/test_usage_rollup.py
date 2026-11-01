@@ -611,3 +611,17 @@ def test_a_stalled_daily_rollup_recomputes_a_day_the_minute_rollups_rewrote(stal
     )
     assert rows == [{"day": day, "value": 500}]
 
+
+# -- the rest of the manifest on the same server ---------------------------------
+
+
+def test_the_analytics_view_counts_an_orgs_events_per_day_and_source(rolled_up, days):
+    """Org b landed 40 events at 23:59 and 30 at noon on D1, with no source label."""
+    d1, d2 = days
+    rows = rolled_up.rows(
+        f"SELECT toString(event_date) AS day, source, event_count "
+        f"FROM {DB}.dfe_v_analytics_event_counts(org_id = 'b', "
+        f"time_from = '{d1} 00:00:00', time_to = '{d2} 00:00:00', limit = 10)"
+    )
+    assert rows == [{"day": d1, "source": "unknown", "event_count": 70}]
+

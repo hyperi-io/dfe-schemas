@@ -927,13 +927,26 @@ class Renderer:
                 f"SELECT ON system.{table}" for table in catalogue["system_introspection_tables"]
             ]
         placeholder = catalogue["database_placeholder"]
-        statements += [
-            f"GRANT {grant.replace(placeholder, database)} TO {role}" for grant in grants
-        ]
+        statements.append(
+            self._replace_grants([grant.replace(placeholder, database) for grant in grants], role)
+        )
 
         if settings:
             statements.append(f"ALTER ROLE {role} SETTINGS PROFILE {profile}")
         return name, statements
+
+    @staticmethod
+    def _replace_grants(grants: list[str], role: str) -> str:
+        """One statement leaving *role* holding *grants* and nothing else.
+
+        ``WITH REPLACE OPTION`` revokes whatever privilege the list does not name
+        in the same statement, so a grant dropped from the catalogue leaves the
+        role and the role never holds less than the list. Roles granted to the
+        role are not privileges and stay.
+        """
+        if not grants:
+            return f"REVOKE ALL ON *.* FROM {role}"
+        return f"GRANT {', '.join(grants)} TO {role} WITH REPLACE OPTION"
 
     def _render_tenant(self, catalogue: dict[str, Any]) -> tuple[str, list[str]]:
         """The shared tenant role and the system grants a fenced org still needs.
@@ -946,10 +959,8 @@ class Renderer:
         """
         tenant = catalogue["tenant"]
         role = f"`{tenant['role']}`"
-        statements = [f"CREATE ROLE IF NOT EXISTS {role}"]
-        statements += [
-            f"GRANT SELECT ON system.{table} TO {role}" for table in tenant["system_tables"]
-        ]
+        grants = [f"SELECT ON system.{table}" for table in tenant["system_tables"]]
+        statements = [f"CREATE ROLE IF NOT EXISTS {role}", self._replace_grants(grants, role)]
         return tenant["role"], statements
 
     # -- topics --------------------------------------------------------------

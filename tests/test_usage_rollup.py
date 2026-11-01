@@ -14,8 +14,10 @@ not, a pod that goes Pending, a second collector reporting a container twice,
 a counter that resets, two orgs and a new pod, and events either side of UTC
 midnight. Two fixed days, five and four days back, keep clear of every
 refresh window, and the rollup views write them the way the materialised views
-do. One last test drives the materialised views themselves over the current
-minutes.
+do. One test drives the materialised views themselves over the current
+minutes, and a second deployment on the same server holds rollup state the
+stalled-refresh tests write for themselves. The analytics view and a role
+re-apply are checked on the same server.
 """
 
 import time
@@ -625,3 +627,18 @@ def test_the_analytics_view_counts_an_orgs_events_per_day_and_source(rolled_up, 
     )
     assert rows == [{"day": d1, "source": "unknown", "event_count": 70}]
 
+
+def test_a_reapplied_role_holds_only_what_the_catalogue_declares(deployed):
+    """A grant the catalogue no longer names is revoked, and the declared ones stay."""
+    manifest = load_manifest(root=ROOT)
+    renderer = Renderer(manifest, platform=Platform.SELF_HOSTED, data_database=DB)
+    role = next(obj for obj in manifest.objects if obj.id == "role.query_reader")
+    deployed.run(f"GRANT SELECT ON system.users TO {READER}")
+    deployed.run(f"GRANT INSERT ON {DB}.* TO {READER}")
+    for statement in renderer.render(role).statements:
+        deployed.run(statement)
+    grants = deployed.run(f"SHOW GRANTS FOR {READER}")
+    assert "system.users" not in grants
+    assert "INSERT" not in grants
+    assert f"GRANT SELECT ON {DB}.* TO {READER}" in grants
+    assert f"GRANT SELECT ON system.query_log TO {READER}" in grants

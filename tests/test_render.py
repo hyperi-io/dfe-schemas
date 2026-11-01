@@ -383,13 +383,26 @@ def test_a_role_grant_names_the_deployment_database(manifest):
         .render(next(obj for obj in manifest.objects if obj.id == "role.loader"))
         .statements
     )
-    assert "GRANT INSERT ON warehouse.* TO `dfe_loader_role`" in statements
+    assert (
+        "GRANT INSERT ON warehouse.*, SELECT ON system.columns, SELECT ON system.tables "
+        "TO `dfe_loader_role` WITH REPLACE OPTION"
+    ) in statements
 
 
 def test_the_tenant_role_grants_only_the_four_system_tables(rendered):
     statements = rendered[Platform.SELF_HOSTED]["role.tenant"].statements
-    granted = {s.split("system.")[1].split(" ")[0] for s in statements if "system." in s}
+    (grant,) = [s for s in statements if s.startswith("GRANT")]
+    granted = {target.split(" ")[0].rstrip(",") for target in grant.split("system.")[1:]}
     assert granted == {"columns", "settings", "table_engines", "tables"}
+    assert grant.endswith("WITH REPLACE OPTION")
+
+
+@pytest.mark.parametrize("role", ["role.analyst_tier_2", "role.query_reader", "role.otel_writer"])
+def test_a_role_carries_its_whole_grant_list_in_one_replacing_statement(rendered, role):
+    """Several GRANTs each WITH REPLACE OPTION would leave only the last one."""
+    grants = [s for s in rendered[Platform.SELF_HOSTED][role].statements if "GRANT" in s]
+    assert len(grants) == 1
+    assert grants[0].endswith("WITH REPLACE OPTION")
 
 
 def test_a_topic_renders_its_admin_spec(rendered):

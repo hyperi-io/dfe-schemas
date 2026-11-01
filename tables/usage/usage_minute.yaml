@@ -13,11 +13,12 @@
 # changed materialised view is refused as drift.
 #
 # Kept 7 days. usage_daily_mv recomputes today and the two days before it from
-# this table on every refresh, so a day must outlive that window or a recompute
-# reads a partly expired day and replaces a complete row with a short one.
-# Partitions are whole days and drop whole, so the oldest day the daily view
-# reads is never closer than four days to its drop. The rest of the week is
-# room to recompute a missed day by hand:
+# this table on every refresh, and up to five days back once a stalled minute
+# rollup resumes, so a day must outlive that window or a recompute reads a
+# partly expired day and replaces a complete row with a short one. Partitions
+# are whole days and drop whole, so the oldest day the daily view reads is
+# never closer than three days to its drop. The rest of the week is room to
+# recompute a missed day by hand:
 #
 #   INSERT INTO <db>.usage_daily (day, metric, _org_id, value)
 #   SELECT day, metric, _org_id, value FROM (

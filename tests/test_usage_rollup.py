@@ -37,6 +37,7 @@ from tests.clickhouse_server import (
 )
 
 DB = "usage_test"
+STALLED = "usage_stalled"
 ROOT = dfe_schemas.schemas_root()
 READER = "dfe_query_reader_role"
 REFRESH_SECONDS = 90
@@ -59,13 +60,12 @@ def server() -> Iterator[ClickHouse]:
         stop_clickhouse(name)
 
 
-@pytest.fixture(scope="module")
-def deployed(server: ClickHouse) -> ClickHouse:
-    """The whole manifest applied in order, then all_sources the way dfe-engine builds it."""
+def _deploy(server: ClickHouse, database: str, *, skip: tuple[str, ...] = ("topic",)) -> None:
+    """The manifest applied in order, then all_sources the way dfe-engine builds it."""
     manifest = load_manifest(root=ROOT)
-    renderer = Renderer(manifest, platform=Platform.SELF_HOSTED, data_database=DB)
+    renderer = Renderer(manifest, platform=Platform.SELF_HOSTED, data_database=database)
     for obj in manifest.objects:
-        if obj.kind == "topic":
+        if obj.kind in skip:
             continue
         try:
             for statement in renderer.render(obj).statements:
@@ -74,13 +74,29 @@ def deployed(server: ClickHouse) -> ClickHouse:
             # The engine skips an optional object the server will not take, so this does too.
             if not obj.optional:
                 raise
-    server.run(f"CREATE TABLE {DB}.syslog AS {DB}.main")
+    server.run(f"CREATE TABLE {database}.syslog AS {database}.main")
     server.run(
-        f"CREATE OR REPLACE TABLE {DB}.all_sources (_timestamp_load DateTime64(3,'UTC'), "
+        f"CREATE OR REPLACE TABLE {database}.all_sources (_timestamp_load DateTime64(3,'UTC'), "
         f"_timestamp DateTime64(3,'UTC'), _org_id LowCardinality(String)) "
-        f"ENGINE = Merge({DB}, '^(main|syslog)$')"
+        f"ENGINE = Merge({database}, '^(main|syslog)$')"
     )
+
+
+@pytest.fixture(scope="module")
+def deployed(server: ClickHouse) -> ClickHouse:
+    """The whole manifest in DB."""
+    _deploy(server, DB)
     return server
+
+
+@pytest.fixture(scope="module")
+def stalled(deployed: ClickHouse) -> ClickHouse:
+    """A second deployment's usage objects, roles excluded, whose rollup state a test owns.
+
+    Roles are server-wide, so a second apply would re-grant them onto this database.
+    """
+    _deploy(deployed, STALLED, skip=("topic", "role"))
+    return deployed
 
 
 @pytest.fixture(scope="module")
@@ -126,6 +142,7 @@ def _insert_sums(
     rows: list[tuple[str, str, str, str, str, str, float]],
     *,
     temporality: int = 2,
+    database: str = DB,
 ) -> None:
     """``(service, metric, resource map, attributes map, StartTimeUnix, TimeUnix, value)`` rows.
 
@@ -137,18 +154,25 @@ def _insert_sums(
         for service, metric, resource, attributes, start, at, value in rows
     )
     server.run(
-        f"INSERT INTO {DB}.otel_metrics_sum (ResourceAttributes, ServiceName, MetricName, "
+        f"INSERT INTO {database}.otel_metrics_sum (ResourceAttributes, ServiceName, MetricName, "
         "Attributes, StartTimeUnix, TimeUnix, Value, AggregationTemporality, IsMonotonic) "
         f"VALUES\n{values}"
     )
 
 
 def _insert_events(
-    server: ClickHouse, table: str, start: str, step_ms: int, orgs: str, n: int
+    server: ClickHouse,
+    table: str,
+    start: str,
+    step_ms: int,
+    orgs: str,
+    n: int,
+    *,
+    database: str = DB,
 ) -> None:
     """*n* rows loaded *step_ms* apart from *start*, the org an expression of ``number``."""
     server.run(
-        f"INSERT INTO {DB}.{table} (_timestamp_load, _timestamp, _org_id) "
+        f"INSERT INTO {database}.{table} (_timestamp_load, _timestamp, _org_id) "
         f"SELECT addMilliseconds(toDateTime64('{start}', 3, 'UTC'), number * {step_ms}) AS t, t, "
         f"{orgs} FROM numbers({n})"
     )
@@ -521,4 +545,69 @@ def test_a_replayed_sample_counts_once(deployed, old_day):
         f"{old_day} 05:00:00": 100,
         f"{old_day} 05:01:00": 40,
     }
+
+
+# -- a rollup that stopped refreshing, in a deployment whose state the test owns --
+
+
+def _minute_ago(server: ClickHouse, hours: int) -> str:
+    return server.scalar(f"SELECT toString(toStartOfMinute(now()) - INTERVAL {hours} HOUR)")
+
+
+def _write_minute(server: ClickHouse, minute: str, metric: str, org: str, value: float) -> None:
+    server.run(
+        f"INSERT INTO {STALLED}.usage_minute (minute, metric, _org_id, value) "
+        f"VALUES ('{minute}', '{metric}', '{org}', {value})"
+    )
+
+
+def _recent(server: ClickHouse, view: str, org: str) -> dict[tuple[str, str], float]:
+    rows = server.rows(
+        f"SELECT toString(minute) AS minute, _org_id, value FROM {STALLED}.{view} "
+        f"WHERE _org_id IN ('{org}', '')"
+    )
+    return {(row["minute"], row["_org_id"]): row["value"] for row in rows}
+
+
+def test_a_stalled_events_rollup_resumes_from_the_last_minute_it_wrote(stalled):
+    """Its last row is four hours back, so events three hours back are still to count."""
+    _write_minute(stalled, _minute_ago(stalled, 4), usage.EVENTS_PER_SECOND, "", 1)
+    missed = _minute_ago(stalled, 3)
+    _insert_events(stalled, "main", missed, 1000, "'w'", 60, database=STALLED)
+    assert _recent(stalled, "usage_minute_events_recent", "w") == {
+        (missed, "w"): 1,
+        (missed, ""): 1,
+    }
+
+
+def test_a_stalled_ingest_rollup_resumes_from_the_last_minute_it_wrote(stalled):
+    """Its last row is six hours back, so samples four and three hours back are still to count."""
+    _write_minute(stalled, _minute_ago(stalled, 6), usage.INGESTED_BYTES, "", 1)
+    first, second = _minute_ago(stalled, 4), _minute_ago(stalled, 3)
+    _insert_sums(
+        stalled,
+        [_receiver_sample("w", first, first, 10), _receiver_sample("w", first, second, 70)],
+        database=STALLED,
+    )
+    assert _recent(stalled, "usage_minute_ingest_recent", "w") == {
+        (first, "w"): 10,
+        (first, ""): 10,
+        (second, "w"): 60,
+        (second, ""): 60,
+    }
+
+
+def test_a_stalled_daily_rollup_recomputes_a_day_the_minute_rollups_rewrote(stalled):
+    """The minute rollups caught up a day four back after the daily view last wrote."""
+    day = stalled.scalar("SELECT toString(toDate(now(), 'UTC') - 4)")
+    stalled.run(
+        f"INSERT INTO {STALLED}.usage_daily (day, metric, _org_id, value, computed_at) "
+        f"VALUES ('{day}', '{usage.INGESTED_BYTES}', 'v', 1, now64(3) - INTERVAL 1 HOUR)"
+    )
+    _write_minute(stalled, f"{day} 12:00:00", usage.INGESTED_BYTES, "v", 500)
+    rows = stalled.rows(
+        f"SELECT toString(day) AS day, value FROM {STALLED}.usage_daily_recent "
+        f"WHERE _org_id = 'v' AND metric = '{usage.INGESTED_BYTES}'"
+    )
+    assert rows == [{"day": day, "value": 500}]
 

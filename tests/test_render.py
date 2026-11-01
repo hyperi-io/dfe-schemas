@@ -215,6 +215,37 @@ def test_the_checksum_ignores_whitespace():
     assert checksum(["CREATE  TABLE a\n(x String)"]) == checksum(["CREATE TABLE a (x String)"])
 
 
+@pytest.mark.parametrize(
+    ("one", "two"),
+    [
+        pytest.param("WHERE x = 'a  b'", "WHERE x = 'a b'", id="string_literal"),
+        pytest.param("WHERE x = 'a\nb'", "WHERE x = 'a b'", id="newline_in_literal"),
+        pytest.param("SELECT 1 AS `a  b`", "SELECT 1 AS `a b`", id="backtick_identifier"),
+        pytest.param('SELECT 1 AS "a  b"', 'SELECT 1 AS "a b"', id="quoted_identifier"),
+        pytest.param("WHERE x = 'it''s  a'", "WHERE x = 'it''s a'", id="doubled_quote"),
+        pytest.param(r"WHERE x = 'it\'s  a'", r"WHERE x = 'it\'s a'", id="escaped_quote"),
+    ],
+)
+def test_the_checksum_moves_when_whitespace_inside_quotes_does(one, two):
+    assert checksum([one]) != checksum([two])
+
+
+@pytest.mark.parametrize(
+    ("one", "two"),
+    [
+        pytest.param("SELECT 'a'  ,\n'b'", "SELECT 'a' , 'b'", id="between_literals"),
+        pytest.param(
+            "SELECT 1 -- the view's  window\nFROM t",
+            "SELECT 1 -- the view's window FROM t",
+            id="apostrophe_in_a_line_comment",
+        ),
+        pytest.param("SELECT /* it's */  1", "SELECT /* it's */ 1", id="block_comment"),
+    ],
+)
+def test_whitespace_outside_quotes_still_collapses(one, two):
+    assert checksum([one]) == checksum([two])
+
+
 # Each rendered literal was applied to ClickHouse 26.3.42.3 and read back from
 # system.columns equal to the comment. The trailing and quote rows were refused
 # with code 62, and the escape row stored a tab, before backslashes were doubled.

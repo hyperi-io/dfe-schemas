@@ -148,6 +148,16 @@ def _platform_settings_re() -> re.Pattern[str]:
 
 
 _QUOTED_LITERAL_RE = re.compile(r"'(?:[^'\\]|\\.)*'")
+# The spans whose whitespace is content: a string literal and a quoted name. A
+# comment is matched first so an apostrophe inside one opens no literal.
+_VERBATIM_RE = re.compile(
+    r"--[^\n]*|/\*.*?\*/"
+    r"|'(?:[^'\\]|\\.|'')*'"
+    r'|"(?:[^"\\]|\\.|"")*"'
+    r"|`(?:[^`\\]|\\.|``)*`",
+    re.DOTALL,
+)
+_WHITESPACE_RE = re.compile(r"\s+")
 _ON_CLUSTER_WORDS_RE = re.compile(r"\bON\s+CLUSTER\b", re.IGNORECASE)
 _ENGINE_NAME_RE = re.compile(r"\bENGINE\s*=\s*([A-Za-z_][A-Za-z0-9_]*)", re.IGNORECASE)
 # Two literal leading arguments are a Keeper path and a replica name, which a
@@ -233,7 +243,11 @@ def one_ddl_violations(rendered: RenderedObject) -> list[str]:
 
 
 def checksum(statements: tuple[str, ...] | list[str]) -> str:
-    """sha256 over the statements with the platform token out and space collapsed."""
+    """sha256 over the statements with the platform token out and space collapsed.
+
+    Whitespace inside a string literal or a quoted name is kept, because it
+    changes what the statement does.
+    """
     platform_settings = _platform_settings_re()
     normalised = []
     for statement in statements:
@@ -242,8 +256,22 @@ def checksum(statements: tuple[str, ...] | list[str]) -> str:
             text = _DATABASE_ENGINE_RE.sub("", text)
         text = _ENGINE_RE.sub(r"ENGINE = \1", text)
         text = platform_settings.sub("", text)
-        normalised.append(" ".join(text.split()))
+        normalised.append(_collapse_whitespace(text))
     return hashlib.sha256("\n".join(normalised).encode("utf-8")).hexdigest()
+
+
+def _collapse_whitespace(text: str) -> str:
+    """Collapse each whitespace run to one space, except inside a literal or a quoted name."""
+    pieces: list[str] = []
+    end = 0
+    for span in _VERBATIM_RE.finditer(text):
+        verbatim = span.group()
+        is_comment = verbatim.startswith(("--", "/*"))
+        pieces.append(_WHITESPACE_RE.sub(" ", text[end : span.start()]))
+        pieces.append(_WHITESPACE_RE.sub(" ", verbatim) if is_comment else verbatim)
+        end = span.end()
+    pieces.append(_WHITESPACE_RE.sub(" ", text[end:]))
+    return "".join(pieces).strip()
 
 
 @dataclass(frozen=True)

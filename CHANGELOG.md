@@ -3,6 +3,12 @@
 Rendered by CI and committed back at the end of a release -- do not edit by
 hand. Release notes also appear on the GitHub Releases page, one per tag.
 
+## [0.2.22](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.21...v0.2.22) (2026-11-01)
+
+### Bug Fixes
+
+* manual remediation of LLM auto fixes -- count usage right, revoke stale role grants ([#97](https://github.com/hyperi-io/dfe-schemas/issues/97)) ([87fe57b](https://github.com/hyperi-io/dfe-schemas/commit/87fe57b3336feec687aa2f4bf4548da769d31c1d))
+
 ## [0.2.21](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.20...v0.2.21) (2026-10-31)
 
 ### Bug Fixes

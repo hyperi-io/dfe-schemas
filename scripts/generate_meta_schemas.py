@@ -49,9 +49,10 @@ the rows are distinct and ``dimension`` otherwise. Every expression reads
 snapshot envelope, where the provider's record sits under ``record``; pass an
 empty ``--record-path`` for rows that land at the top level.
 
-A target file that already holds other versions is refused: published versions
-are immutable. To add a version, generate the new entry with ``--version`` into
-a scratch ``--out-root`` and splice it into the file by hand.
+A target file that already holds other versions is refused, and so is a changed
+export of the version it holds: published versions are immutable. To add a
+version, generate the new entry with ``--version`` into a scratch ``--out-root``
+and splice it into the file by hand.
 
 A provider's arguments (stores, row keys, descriptions) live in an ``@`` file
 beside this script, one argument per line, so a regeneration is one command.
@@ -645,6 +646,13 @@ def main() -> int:
                 date=date,
                 record_path=args.record_path,
             )
+            current = path.read_text(encoding="utf-8") if path.exists() else None
+            if current is not None and current != text and args.version in held:
+                raise GenerateError(
+                    f"already holds version {args.version} and the export changed it; "
+                    "add a version entry by hand, published versions are immutable "
+                    "(delete the file first to regenerate a version never released)"
+                )
         except GenerateError as exc:
             print(f"{rel}: {exc}", file=sys.stderr)
             failed += 1
@@ -652,7 +660,6 @@ def main() -> int:
 
         for note in schema.notes:
             print(f"{rel}: note: {note}")
-        current = path.read_text(encoding="utf-8") if path.exists() else None
         if current == text:
             print(
                 f"{rel}: unchanged ({len(schema.columns)} columns, {schema.nullable_count} nullable)"

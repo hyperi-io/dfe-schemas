@@ -75,13 +75,6 @@ deploy that changed nothing.
 
 ## Known gaps
 
-**`dfe_v_analytics_event_counts`** selects `FROM events`, an unqualified table
-no DFE object declares and no bootstrap creates. It resolves against whichever
-database the connection is on, so the reference check above does not see it.
-The body was carried across from dfe-engine unchanged rather than guessed at;
-the view needs either a declared `events` table or a rewrite onto one that
-exists.
-
 **Row policies** are not manifest objects. They are written per table against
 the ones that actually carry `_org_id`, which is read off the live server;
 `roles/clickhouse.yaml` declares the predicate they use and the name they get,

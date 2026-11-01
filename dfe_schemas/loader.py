@@ -260,24 +260,38 @@ def load_version_entry(
     raise SchemaError(f"{path} carries neither 'versions' nor 'columns'")
 
 
-def _header_json_paths() -> int:
+def _header_json_paths(root: Path | None) -> int:
     """Typed sub-paths a JSON column holds before the rest spill to a map.
 
     Read from the common header's ``_json`` rather than restated, so the JSON
     columns in the stack cannot drift apart.
     """
-    for column in load_profile(_HEADER_PROFILE):
+    for column in load_profile(_HEADER_PROFILE, root=root):
         if column.name == _HEADER_JSON_COLUMN and column.max_dynamic_paths:
             return int(column.max_dynamic_paths)
     raise SchemaError(f"the {_HEADER_PROFILE} header declares no max_dynamic_paths on _json")
 
 
-def load_columns(path: Path, *, version: str | None = None) -> list[Column]:
+def load_columns(
+    path: Path, *, version: str | None = None, root: Path | None = None
+) -> list[Column]:
     """Every column a definition declares, in file order.
 
     The shape is taken from the columns themselves: a ``ch_type`` is the exact
     form, a ``type`` is a primitive. A file mixing the two is rejected rather
     than half-read.
+
+    Args:
+        path: The definition file.
+        version: The version entry to read, else the file's ``current``.
+        root: The schemas root whose common header an ``inherit`` JSON limit
+            reads, else the package's own.
+
+    Returns:
+        The columns, in file order.
+
+    Raises:
+        SchemaError: The file mixes the two column shapes, or a column is malformed.
     """
     raw_columns = load_version_entry(path, version=version)["columns"]
     exact = [raw for raw in raw_columns if "ch_type" in raw]
@@ -285,7 +299,8 @@ def load_columns(path: Path, *, version: str | None = None) -> list[Column]:
         mixed = sorted({raw.get("name", "?") for raw in raw_columns if "ch_type" not in raw})
         raise SchemaError(f"{path} mixes ch_type and primitive columns; primitives: {mixed}")
     if exact:
-        json_paths = _header_json_paths() if any("max_dynamic_paths" in c for c in exact) else 0
+        inherits = any("max_dynamic_paths" in c for c in exact)
+        json_paths = _header_json_paths(root) if inherits else 0
         return [_exact_column(raw, path, json_paths) for raw in raw_columns]
     return [_primitive_column(raw, path) for raw in raw_columns]
 
@@ -295,7 +310,7 @@ def load_profile(
 ) -> list[Column]:
     """One common-header profile's columns."""
     base = root or schemas_root()
-    return load_columns(base / COMMON_HEADER_DIR / f"{name}.yaml", version=version)
+    return load_columns(base / COMMON_HEADER_DIR / f"{name}.yaml", version=version, root=base)
 
 
 def load_profile_exclude(path: Path, *, version: str | None = None) -> list[str]:

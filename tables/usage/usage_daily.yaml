@@ -6,8 +6,9 @@
 # deployment. These are the numbers a deployment is licensed on.
 #
 # usage_daily_mv recomputes today and the two UTC days before it on every
-# refresh, a minute after the minute rollups run, and ReplacingMergeTree keeps
-# the latest computation of each day. A read takes FINAL or argMax(value,
+# refresh, a minute after the minute rollups run, plus any older day a minute
+# rollup rewrote since, and ReplacingMergeTree keeps the latest computation of
+# each day. A read takes FINAL or argMax(value,
 # computed_at).
 #
 # Kept 400 days, past the year an audit asks for. The otel tables keep 90, so

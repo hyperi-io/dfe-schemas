@@ -148,6 +148,16 @@ def _platform_settings_re() -> re.Pattern[str]:
 
 
 _QUOTED_LITERAL_RE = re.compile(r"'(?:[^'\\]|\\.)*'")
+# The spans whose whitespace is content: a string literal and a quoted name. A
+# comment is matched first so an apostrophe inside one opens no literal.
+_VERBATIM_RE = re.compile(
+    r"--[^\n]*|/\*.*?\*/"
+    r"|'(?:[^'\\]|\\.|'')*'"
+    r'|"(?:[^"\\]|\\.|"")*"'
+    r"|`(?:[^`\\]|\\.|``)*`",
+    re.DOTALL,
+)
+_WHITESPACE_RE = re.compile(r"\s+")
 _ON_CLUSTER_WORDS_RE = re.compile(r"\bON\s+CLUSTER\b", re.IGNORECASE)
 _ENGINE_NAME_RE = re.compile(r"\bENGINE\s*=\s*([A-Za-z_][A-Za-z0-9_]*)", re.IGNORECASE)
 # Two literal leading arguments are a Keeper path and a replica name, which a
@@ -233,7 +243,11 @@ def one_ddl_violations(rendered: RenderedObject) -> list[str]:
 
 
 def checksum(statements: tuple[str, ...] | list[str]) -> str:
-    """sha256 over the statements with the platform token out and space collapsed."""
+    """sha256 over the statements with the platform token out and space collapsed.
+
+    Whitespace inside a string literal or a quoted name is kept, because it
+    changes what the statement does.
+    """
     platform_settings = _platform_settings_re()
     normalised = []
     for statement in statements:
@@ -242,8 +256,22 @@ def checksum(statements: tuple[str, ...] | list[str]) -> str:
             text = _DATABASE_ENGINE_RE.sub("", text)
         text = _ENGINE_RE.sub(r"ENGINE = \1", text)
         text = platform_settings.sub("", text)
-        normalised.append(" ".join(text.split()))
+        normalised.append(_collapse_whitespace(text))
     return hashlib.sha256("\n".join(normalised).encode("utf-8")).hexdigest()
+
+
+def _collapse_whitespace(text: str) -> str:
+    """Collapse each whitespace run to one space, except inside a literal or a quoted name."""
+    pieces: list[str] = []
+    end = 0
+    for span in _VERBATIM_RE.finditer(text):
+        verbatim = span.group()
+        is_comment = verbatim.startswith(("--", "/*"))
+        pieces.append(_WHITESPACE_RE.sub(" ", text[end : span.start()]))
+        pieces.append(_WHITESPACE_RE.sub(" ", verbatim) if is_comment else verbatim)
+        end = span.end()
+    pieces.append(_WHITESPACE_RE.sub(" ", text[end:]))
+    return "".join(pieces).strip()
 
 
 @dataclass(frozen=True)
@@ -480,16 +508,16 @@ class Renderer:
             extra_path = resolve(obj.compose, root=self._root)
             return compose(
                 header,
-                load_columns(extra_path),
+                load_columns(extra_path, root=self._root),
                 exclude=load_profile_exclude(extra_path),
             )
         if obj.compose:
-            return load_columns(resolve(obj.compose, root=self._root))
+            return load_columns(resolve(obj.compose, root=self._root), root=self._root)
         if "columns" not in entry:
             raise SchemaError(
                 f"{obj.id}: {path} declares no columns and the manifest names no header or compose"
             )
-        return load_columns(path)
+        return load_columns(path, root=self._root)
 
     def _profile_comment(self, obj: ManifestObject) -> str | None:
         """``@profile`` tags for a header-composed table, so the DDL records its version."""
@@ -899,13 +927,26 @@ class Renderer:
                 f"SELECT ON system.{table}" for table in catalogue["system_introspection_tables"]
             ]
         placeholder = catalogue["database_placeholder"]
-        statements += [
-            f"GRANT {grant.replace(placeholder, database)} TO {role}" for grant in grants
-        ]
+        statements.append(
+            self._replace_grants([grant.replace(placeholder, database) for grant in grants], role)
+        )
 
         if settings:
             statements.append(f"ALTER ROLE {role} SETTINGS PROFILE {profile}")
         return name, statements
+
+    @staticmethod
+    def _replace_grants(grants: list[str], role: str) -> str:
+        """One statement leaving *role* holding *grants* and nothing else.
+
+        ``WITH REPLACE OPTION`` revokes whatever privilege the list does not name
+        in the same statement, so a grant dropped from the catalogue leaves the
+        role and the role never holds less than the list. Roles granted to the
+        role are not privileges and stay.
+        """
+        if not grants:
+            return f"REVOKE ALL ON *.* FROM {role}"
+        return f"GRANT {', '.join(grants)} TO {role} WITH REPLACE OPTION"
 
     def _render_tenant(self, catalogue: dict[str, Any]) -> tuple[str, list[str]]:
         """The shared tenant role and the system grants a fenced org still needs.
@@ -918,10 +959,8 @@ class Renderer:
         """
         tenant = catalogue["tenant"]
         role = f"`{tenant['role']}`"
-        statements = [f"CREATE ROLE IF NOT EXISTS {role}"]
-        statements += [
-            f"GRANT SELECT ON system.{table} TO {role}" for table in tenant["system_tables"]
-        ]
+        grants = [f"SELECT ON system.{table}" for table in tenant["system_tables"]]
+        statements = [f"CREATE ROLE IF NOT EXISTS {role}", self._replace_grants(grants, role)]
         return tenant["role"], statements
 
     # -- topics --------------------------------------------------------------

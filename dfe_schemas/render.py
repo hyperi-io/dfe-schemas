@@ -480,16 +480,16 @@ class Renderer:
             extra_path = resolve(obj.compose, root=self._root)
             return compose(
                 header,
-                load_columns(extra_path),
+                load_columns(extra_path, root=self._root),
                 exclude=load_profile_exclude(extra_path),
             )
         if obj.compose:
-            return load_columns(resolve(obj.compose, root=self._root))
+            return load_columns(resolve(obj.compose, root=self._root), root=self._root)
         if "columns" not in entry:
             raise SchemaError(
                 f"{obj.id}: {path} declares no columns and the manifest names no header or compose"
             )
-        return load_columns(path)
+        return load_columns(path, root=self._root)
 
     def _profile_comment(self, obj: ManifestObject) -> str | None:
         """``@profile`` tags for a header-composed table, so the DDL records its version."""

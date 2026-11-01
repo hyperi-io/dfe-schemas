@@ -18,6 +18,8 @@ swap between Cloud and self-hosted would read as drift on every object, and the
 migration ledger would say the schema changed on a deploy that changed nothing.
 """
 
+import shutil
+
 import pytest
 
 import dfe_schemas
@@ -277,6 +279,23 @@ def test_a_json_table_takes_write_marks_off_on_self_hosted_only(rendered):
         cloud = _settings_clause(rendered[Platform.CLOUD][object_id].statements[0])
         assert f"{WRITE_MARKS} = 0" in self_hosted, f"{object_id}: {self_hosted}"
         assert WRITE_MARKS not in cloud, f"{object_id}: {cloud}"
+
+
+def test_an_inherited_json_limit_reads_the_header_of_the_root_rendered(tmp_path):
+    """otel_logs' BodyJson inherits _json's limit from the root's header, not the package's."""
+    root = tmp_path / "schemas"
+    shutil.copytree(ROOT, root, ignore=shutil.ignore_patterns(".*", "tests", "*.py", "*.lock"))
+    header = root / "common-header" / "timeseries.yaml"
+    text = header.read_text(encoding="utf-8")
+    header.write_text(
+        text.replace("max_dynamic_paths: 2048", "max_dynamic_paths: 7"),
+        encoding="utf-8",
+        newline="\n",
+    )
+    custom = load_manifest(root=root)
+    logs = next(obj for obj in custom.objects if obj.id == "data.otel_logs")
+    (statement,) = Renderer(custom).render(logs).statements[:1]
+    assert "`BodyJson` JSON(max_dynamic_paths=7)" in statement
 
 
 def test_a_table_without_a_json_column_carries_no_json_setting(rendered, manifest):

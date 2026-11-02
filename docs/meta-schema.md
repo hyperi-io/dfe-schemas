@@ -944,9 +944,9 @@ bumping the version pin above is the whole update.
 dfe-engine resolves the common-header profiles in this order, first match wins. dfe-loader reads no schema files at runtime: it takes the same directives from the ClickHouse column comments the engine wrote.
 
 1. An explicit `profiles_dir` argument to `SchemaLoader.load_profile`, which skips the rest of the chain
-2. `DFE_SCHEMAS_DIR` env var -> `{dir}/common-header/`
+2. `DFE_ENGINE_SCHEMAS_DIR` env var -> `{dir}/common-header/`
 3. `common-header/` under the installed `dfe-schemas` package (via `importlib.resources`)
-4. `common-header/` under the image's schema seed directory (`DFE_SCHEMAS_SEED_DIR`, default `/app/schemas-seed`)
+4. `common-header/` under the image's schema seed directory (`DFE_ENGINE_SCHEMAS_SEED_DIR`, default `/app/schemas-seed`)
 
 ---
 

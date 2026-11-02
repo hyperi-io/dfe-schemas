@@ -143,7 +143,7 @@ def main() -> int:
 
     # The loader resolves refs against the schemas root, and the root being
     # validated is this checkout.
-    os.environ.setdefault("DFE_SCHEMAS_DIR", str(repo_root))
+    os.environ.setdefault("DFE_ENGINE_SCHEMAS_DIR", str(repo_root))
     table_files = sorted((repo_root / TABLES_DIR).rglob("*.yaml"))
     checked_tables = 0
     try:

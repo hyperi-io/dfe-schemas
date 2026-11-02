@@ -43,10 +43,10 @@ for obj in manifest.objects:
         print(statement)
 ```
 
-The package reads its shipped trees unless a caller passes `load_manifest(root=...)`. `DFE_SCHEMAS_DIR` is a dfe-engine setting, not one the package reads. The engine reads the trees from the directory it names:
+The package reads its shipped trees unless a caller passes `load_manifest(root=...)`. `DFE_ENGINE_SCHEMAS_DIR` is a dfe-engine setting, not one the package reads. The engine reads the trees from the directory it names:
 
 ```bash
-export DFE_SCHEMAS_DIR=/opt/dfe/schemas
+export DFE_ENGINE_SCHEMAS_DIR=/opt/dfe/schemas
 ```
 
 ## Checking it
@@ -206,7 +206,7 @@ The wheel's own semver is the only version this package has. dfe-infra's
 it as a lockstep stack tag (`2.2.0`), which is dfe-deploy's own numbering and
 not a version of anything here.
 
-Shipped files are read-only defaults - customise by pointing `DFE_SCHEMAS_DIR`
+Shipped files are read-only defaults - customise by pointing `DFE_ENGINE_SCHEMAS_DIR`
 at your own directory with only the profiles you override.
 
 ## Context
@@ -217,7 +217,7 @@ The schema and DDL source of truth for the DFE suite -- every table, view, TTL,
 ClickHouse role, grant and Kafka bootstrap topic, plus the renderer. It ships as
 the PyPI package `dfe-schemas`, NOT a git submodule: it was one, and the older
 half of `docs/meta-schema.md` still describes one. dfe-engine reads the trees out
-of the installed wheel unless `DFE_SCHEMAS_DIR` points elsewhere. Nothing here
+of the installed wheel unless `DFE_ENGINE_SCHEMAS_DIR` points elsewhere. Nothing here
 touches a database -- this repo supplies definitions and dfe-engine applies them.
 
 ### Where things live

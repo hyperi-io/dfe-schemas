@@ -33,11 +33,11 @@ manifest_version: 1
 parameters:
   data_database:
     description: The one database every DFE table lands in, telemetry included
-    setting: DFE_CLICKHOUSE_DATA_DATABASE
+    setting: DFE_ENGINE_CLICKHOUSE_DATA_DATABASE
     default: dfe
   default_ttl_days:
     description: Retention for a time-series table that declares none
-    setting: DFE_CLICKHOUSE_DEFAULT_TTL_DAYS
+    setting: DFE_ENGINE_CLICKHOUSE_DEFAULT_TTL_DAYS
     default: 90
   kafka_tiered_storage:
     description: >-
@@ -46,7 +46,7 @@ parameters:
       broker-wide switch on and the topic key absent every segment stays on
       local disk. Off renders no key at all rather than "false", which would
       fight a broker-level setting on a cluster that does tier.
-    setting: DFE_KAFKA_TIERED_STORAGE
+    setting: DFE_ENGINE_KAFKA_TIERED_STORAGE
     default: false
 
 databases:

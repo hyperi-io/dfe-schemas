@@ -26,6 +26,9 @@ TAGS = read_yaml(path=ROOT / "registries" / "catalogue-tags.yaml")
 # The folders a file sits in, one per tag.
 VENDORS = tuple(TAGS)
 
+# Every variant dfe-transform-elastic registers and the intakes it accepts, synced from that repo by its CI.
+ELASTIC_VARIANTS = read_yaml(path=ROOT / "registries" / "elastic-variants.yaml")
+
 TOP_LEVEL_KEYS = (
     "source",
     "display_name",
@@ -170,6 +173,32 @@ MALFORMED_CASES = [
     ),
 ]
 
+WELL_FORMED_VARIANTS = {
+    "filebeat.acme_log.default": ["beats"],
+    "filebeat.acme_log.json": ["beats", "receiver"],
+}
+
+RUNNABLE_CASES = [
+    pytest.param({}, id="registered"),
+    pytest.param(
+        {"catalogue.variants": ["vector.acme_log"], "transform.engine": "vector"},
+        id="another-engine",
+    ),
+]
+
+UNRUNNABLE_CASES = [
+    pytest.param(
+        {"catalogue.intakes": ["beats", "receiver"]},
+        "'filebeat.acme_log.default' does not accept intakes ['receiver']",
+        id="intake-the-variant-refuses",
+    ),
+    pytest.param(
+        {"catalogue.variants": ["filebeat.acme_log.default", "filebeat.acme_log.nosuch"]},
+        "'filebeat.acme_log.nosuch' is not registered",
+        id="unregistered-variant",
+    ),
+]
+
 MISPLACED_CASES = [
     pytest.param(["acme-log.yaml"], "sits in no vendor folder", id="top-level-file"),
     pytest.param(["aws/acme/acme-log.yaml"], "more than one folder deep", id="two-folders-deep"),
@@ -191,6 +220,27 @@ MALFORMED_TAG_CASES = [
     ),
     pytest.param({"aws": {"description": "Logs.", "name": 7}}, "name 7", id="name-not-a-string"),
 ]
+
+
+def _elastic_violations(*, block: dict, doc: dict, registry: dict) -> list[str]:
+    """Every variant of an elastic entry that *registry* does not list, or that refuses one of the entry's intakes."""
+    engine = (doc.get("transform") or {}).get("engine")
+    variants = block.get("variants")
+    if (engine != "elastic") or not (isinstance(variants, list)):
+        return []
+    found = []
+    intakes = block.get("intakes") or []
+    for variant in variants:
+        accepted = registry.get(variant)
+        if accepted is None:
+            found.append(f"variant {variant!r} is not registered in dfe-transform-elastic")
+            continue
+        refused = [intake for intake in intakes if intake not in accepted]
+        if refused:
+            found.append(
+                f"variant {variant!r} does not accept intakes {refused!r}, only {accepted!r}"
+            )
+    return found
 
 
 def _layout_violations(*, paths: list[Path]) -> list[str]:
@@ -418,4 +468,37 @@ def test_a_well_formed_file_has_no_violations(schema_tree, changes):
 def test_a_malformed_file_is_refused(schema_tree, changes, expected):
     doc = _mutated(changes=changes, doc=WELL_FORMED)
     violations = _violations(doc=doc, root=schema_tree, stem="acme-log")
+    assert any(expected in violation for violation in violations), violations
+
+
+def test_every_elastic_entry_runs_on_its_variants(catalogue):
+    found = []
+    for path, doc in catalogue.items():
+        block = doc.get("catalogue") or {}
+        violations = _elastic_violations(block=block, doc=doc, registry=ELASTIC_VARIANTS)
+        found.extend(f"catalogue/{path}: {violation}" for violation in violations)
+    assert not (found), "\n".join(found)
+
+
+def test_every_elastic_variant_accepts_known_intakes():
+    found = []
+    for variant, intakes in ELASTIC_VARIANTS.items():
+        if not (isinstance(intakes, list)) or not (intakes) or not (set(intakes) <= set(INTAKES)):
+            found.append(
+                f"variant {variant!r}: intakes {intakes!r} must be a non-empty subset of {INTAKES!r}"
+            )
+    assert not (found), "\n".join(found)
+
+
+@pytest.mark.parametrize("changes", RUNNABLE_CASES)
+def test_a_runnable_elastic_entry_has_no_violations(changes):
+    doc = _mutated(changes=changes, doc=WELL_FORMED)
+    violations = _elastic_violations(block=doc["catalogue"], doc=doc, registry=WELL_FORMED_VARIANTS)
+    assert violations == []
+
+
+@pytest.mark.parametrize(("changes", "expected"), UNRUNNABLE_CASES)
+def test_an_unrunnable_elastic_entry_is_refused(changes, expected):
+    doc = _mutated(changes=changes, doc=WELL_FORMED)
+    violations = _elastic_violations(block=doc["catalogue"], doc=doc, registry=WELL_FORMED_VARIANTS)
     assert any(expected in violation for violation in violations), violations

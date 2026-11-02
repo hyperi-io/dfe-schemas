@@ -98,7 +98,7 @@ def test_the_settings_handed_out_are_a_copy():
 
 
 def test_the_platform_sql_ships_inside_the_package():
-    """Read by import path, so a DFE_SCHEMAS_DIR pointing at an older tree cannot lose it."""
+    """Read by import path, so a DFE_ENGINE_SCHEMAS_DIR pointing at an older tree cannot lose it."""
     from importlib import resources
 
     assert (resources.files("dfe_schemas") / "sql" / "platform.sql").is_file()

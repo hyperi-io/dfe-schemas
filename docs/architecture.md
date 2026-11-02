@@ -46,7 +46,7 @@ The schema trees sit at the repository root so a checkout reads as itself. The
 wheel carries the same trees as package data under `dfe_schemas/data/`, copied
 there by hatch `force-include` at build time. `schemas_root()` resolves whichever
 applies: package data when one exists, the repository root otherwise. It does not
-read `DFE_SCHEMAS_DIR`. dfe-engine reads that variable and hands the tree it names
+read `DFE_ENGINE_SCHEMAS_DIR`. dfe-engine reads that variable and hands the tree it names
 to this package as `root=`, the way it calls `load_manifest`.
 
 This is the fact most readers get wrong, because it used to be a git submodule
@@ -191,7 +191,7 @@ dfe-schemas wheel.
 
 That job installs dfe-schemas from PyPI as a dfe-engine dependency, but what it
 validates is still THIS checkout: `validate_schemas.py` passes explicit paths and
-points `DFE_SCHEMAS_DIR` at the repository root.
+points `DFE_ENGINE_SCHEMAS_DIR` at the repository root.
 
 ## How a change reaches a deployment
 

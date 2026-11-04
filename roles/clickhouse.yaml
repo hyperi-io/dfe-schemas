@@ -234,7 +234,11 @@ versions:
       # or remote(), and no DDL.
       - name: hunt_runner
         mint_user: true
-        grants: ["SELECT ON {db}.*", "INSERT ON {db}.*"]
+        grants:
+          - "SELECT ON {db}.*"
+          - "INSERT ON {db}.*"
+          # The safe horizon: how far behind each replica of a hunted table is.
+          - "SELECT ON system.replicas"
 
       # The OTel collector's own user: it writes the otel tables and scrapes the
       # server's health.
@@ -469,7 +473,11 @@ versions:
       # or remote(), and no DDL.
       - name: hunt_runner
         mint_user: true
-        grants: ["SELECT ON {db}.*", "INSERT ON {db}.*"]
+        grants:
+          - "SELECT ON {db}.*"
+          - "INSERT ON {db}.*"
+          # The safe horizon: how far behind each replica of a hunted table is.
+          - "SELECT ON system.replicas"
 
       # Observability telemetry is platform-internal: composed onto admin and
       # infra-admin group users at bind time, never part of an analyst tier.
@@ -687,7 +695,11 @@ versions:
       # global rather than per-org, so not a minted user of its own.
       - name: hunt_runner
         mint_user: false
-        grants: ["SELECT ON {db}.*", "INSERT ON {db}.*"]
+        grants:
+          - "SELECT ON {db}.*"
+          - "INSERT ON {db}.*"
+          # The safe horizon: how far behind each replica of a hunted table is.
+          - "SELECT ON system.replicas"
 
       # Observability telemetry is platform-internal: composed onto admin and
       # infra-admin group users at bind time, never part of an analyst tier.

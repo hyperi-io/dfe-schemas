@@ -778,7 +778,7 @@ dfe-schemas/
 |   |-- results.yaml
 |   '-- detection_checkpoint.yaml
 |-- meta/                   # Source meta schemas, grouped by provider
-|   |-- aws/  azure/  beats/  elastic/  gcp/  m365/  otel/  runzero/
+|   |-- aws/  azure/  beats/  elastic/  gcp/  m365/  otel/  runzero/  spamhaus/  abusech/
 |-- additional/             # Extra-field overlays (<package>/<data_stream>, snapshot/)
 |-- derived/                # Derived schemas: a select list over a base
 '-- README.md

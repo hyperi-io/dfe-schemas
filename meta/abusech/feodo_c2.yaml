@@ -1,0 +1,91 @@
+# Meta schema: abuse.ch Feodo Tracker
+#
+# Feodo Tracker: botnet command-and-control servers (Emotet, QakBot and similar), one row per IP and port from ipblocklist.json.
+#
+# Columns are the union of keys across the rows of a live export, typed from
+# the values observed, then reviewed by hand. The record sits under `record`,
+# which is where every expression reads from. The feed is CC0.
+# A changed export becomes a new version entry, never an edit of a published one.
+
+current: "1.0.0"
+resource_type: core
+
+versions:
+  "1.0.0":
+    date: "2026-11-04"
+    type: model
+    summary: "Initial Feodo Tracker schema, from the live blocklist"
+    columns:
+      - name: ip_address
+        type: ip
+        use_case: range
+        expr: "@source: record.ip_address"
+        comment: "Command-and-control server address, the key a firewall destination is matched on"
+        _field_type: base
+
+      - name: port
+        type: integer
+        use_case: dimension
+        expr: "@source: record.port"
+        comment: "TCP port the server listens on"
+        _field_type: base
+
+      - name: status
+        type: string
+        cardinality: low
+        use_case: dimension
+        expr: "@source: record.status"
+        comment: "online or offline when the tracker last probed it"
+        _field_type: base
+
+      - name: hostname
+        type: string
+        attribute: [nullable]
+        use_case: exact_match
+        expr: "@source: record.hostname"
+        comment: "Reverse DNS name of the address, null when it has none"
+        _field_type: base
+
+      - name: as_number
+        type: integer
+        use_case: dimension
+        expr: "@source: record.as_number"
+        comment: "Autonomous system number hosting the server"
+        _field_type: base
+
+      - name: as_name
+        type: string
+        use_case: dimension
+        expr: "@source: record.as_name"
+        comment: "Name of the autonomous system hosting the server"
+        _field_type: base
+
+      - name: country
+        type: string
+        cardinality: low
+        use_case: dimension
+        expr: "@source: record.country"
+        comment: "Two-letter country code of the address"
+        _field_type: base
+
+      - name: first_seen
+        type: datetime
+        use_case: range
+        expr: "@source: record.first_seen"
+        comment: "When the tracker first listed the server, UTC, sent as 'YYYY-MM-DD HH:MM:SS'"
+        _field_type: base
+
+      - name: last_online
+        type: date
+        use_case: range
+        expr: "@source: record.last_online"
+        comment: "Last day the server was seen online, sent as 'YYYY-MM-DD'"
+        _field_type: base
+
+      - name: malware
+        type: string
+        cardinality: low
+        use_case: dimension
+        expr: "@source: record.malware"
+        comment: "Malware family the server controls (Emotet, QakBot and similar)"
+        _field_type: base

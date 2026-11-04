@@ -3,6 +3,14 @@
 Rendered by CI and committed back at the end of a release -- do not edit by
 hand. Release notes also appear on the GitHub Releases page, one per tag.
 
+## [0.2.23](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.22...v0.2.23) (2026-11-04)
+
+### Bug Fixes
+
+* check catalogue intakes against the elastic variants ([#92](https://github.com/hyperi-io/dfe-schemas/issues/92)) ([1b5ca3d](https://github.com/hyperi-io/dfe-schemas/commit/1b5ca3d09227da677056bbe5e511cd699dc2bc8f))
+* **roles:** let the hunt runner read system.replicas ([#100](https://github.com/hyperi-io/dfe-schemas/issues/100)) ([c72547b](https://github.com/hyperi-io/dfe-schemas/commit/c72547b7cdcc1fa569e6c6fb474355b6cddd5642))
+* **schemas:** use the engine's DFE_ENGINE_ prefix ([#98](https://github.com/hyperi-io/dfe-schemas/issues/98)) ([416d865](https://github.com/hyperi-io/dfe-schemas/commit/416d8650918da26519267a3b784e2a1a28a7087f))
+
 ## [0.2.22](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.21...v0.2.22) (2026-11-01)
 
 ### Bug Fixes

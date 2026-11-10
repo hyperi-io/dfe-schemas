@@ -40,7 +40,7 @@ ROOT = dfe_schemas.schemas_root()
 PLATFORMS = tuple(Platform)
 
 # The manifest tables that carry a JSON column; every other table carries none.
-JSON_TABLES = {"data.main", "data.detection", "data.otel_logs"}
+JSON_TABLES = {"data.main", "data.detection", "data.dlq", "data.otel_logs"}
 # A Merge table stores no rows, so it takes no MergeTree SETTINGS at all.
 DATALESS_TABLES = {"data.usage_events"}
 MERGE_CAP = "merge_max_dynamic_subcolumns_in_wide_part"
@@ -504,3 +504,20 @@ def test_an_unknown_kind_does_not_render(manifest):
     obj = replace(manifest.objects[0], kind="sequence")
     with pytest.raises(SchemaError, match="nothing renders"):
         Renderer(manifest).render(obj)
+
+
+@pytest.mark.parametrize("platform", PLATFORMS)
+def test_the_dlq_table_is_replicated_with_thirty_day_retention(rendered, platform):
+    sql = rendered[platform]["data.dlq"].statements[0]
+    assert "ENGINE = ReplicatedMergeTree\n" in sql
+    assert "PARTITION BY toYYYYMMDD(_timestamp_load)" in sql
+    assert "INTERVAL 30 DAY" in sql
+    for column in (
+        "`service` LowCardinality(String)",
+        "`attempts` UInt32",
+        "`original_bytes` UInt64 DEFAULT 0",
+        "`raw_encoding` LowCardinality(Nullable(String))",
+        "COMMENT '@source: _json - ",
+        "COMMENT '@source: source.topic - ",
+    ):
+        assert column in sql, column

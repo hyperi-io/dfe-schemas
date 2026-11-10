@@ -104,6 +104,16 @@ objects:
     additive: true
     depends_on: [db.data]
 
+  - id: data.dlq
+    kind: table
+    database: data
+    defines: tables/core/dlq
+    header: timeseries
+    compose: dlq/entry
+    topology: resolved
+    additive: true
+    depends_on: [db.data]
+
   - id: data.detection_checkpoint
     kind: table
     database: data

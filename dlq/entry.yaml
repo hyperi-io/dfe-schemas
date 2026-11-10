@@ -1,0 +1,74 @@
+# Dead-letter entry columns
+#
+# Appended after the common header columns in the dlq table. `_json` holds the
+# original payload, read from the envelope's own `_json` key.
+
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-11-10"
+    type: model
+    summary: "Initial dead-letter entry columns"
+    profile_exclude: [_json]
+    columns:
+      - name: _json
+        type: json
+        attribute: [not_null]
+        max_dynamic_paths: 2048
+        expr: "@source: _json"
+        comment: "The original payload as structured JSON, empty for a raw entry"
+
+      - name: service
+        type: string
+        attribute: [lowcardinality, not_null]
+        comment: "Service that dead-lettered the record"
+
+      - name: reason
+        type: string
+        attribute: [not_null]
+        comment: "Why the record was rejected"
+
+      - name: attempts
+        type: integer
+        ch_override: UInt32
+        attribute: [not_null]
+        comment: "Delivery attempts made before the record was dead-lettered"
+
+      - name: truncated
+        type: boolean
+        comment: "True when the original payload was cut to fit the envelope"
+
+      - name: original_bytes
+        type: integer
+        ch_override: UInt64
+        attribute: [not_null]
+        default: "0"
+        comment: "Size of the original payload in bytes"
+
+      - name: destination
+        type: string
+        attribute: [lowcardinality, not_null]
+        comment: "Table or topic the record was headed for"
+
+      - name: source_topic
+        type: string
+        expr: "@source: source.topic"
+        comment: "Topic the record was read from"
+
+      - name: source_partition
+        type: integer
+        ch_override: Int32
+        expr: "@source: source.partition"
+        comment: "Partition the record was read from"
+
+      - name: source_offset
+        type: integer
+        expr: "@source: source.offset"
+        comment: "Offset the record was read at"
+
+      - name: raw_encoding
+        type: string
+        attribute: [lowcardinality, nullable]
+        expr: "@source: _raw_encoding"
+        comment: "Encoding of a raw entry, such as base64"

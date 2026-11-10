@@ -2,7 +2,7 @@
 
 `tables/` holds tables written directly in ClickHouse types, as opposed to the
 `meta/` schemas that map DFE's 13 primitives onto ClickHouse. Five sets live
-here: `core/` (the landing table and the detection pair, whose columns come
+here: `core/` (the landing table, the dead-letter table and the detection pair, whose columns come
 from a common-header profile), `otel/` (the telemetry tables the collector
 writes into and HyperDX reads), `internal/` (the engine's own working state,
 including the applier's migration ledger and its lock), `usage/` (the usage

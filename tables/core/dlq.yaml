@@ -1,0 +1,19 @@
+# dlq -- dead-letter entries from the DFE services
+#
+# Columns come from the common-header profile composed with dlq/entry.yaml.
+# TTL names the partition column because ttl_only_drop_parts drops a part only
+# once every row in it has expired.
+
+current: "1.0.0"
+
+versions:
+  "1.0.0":
+    date: "2026-11-10"
+    type: model
+    summary: "Dead-letter table with thirty-day retention on the load-time partition"
+    table:
+      name: "dlq"
+      partition_column: "_timestamp_load"
+      partition_granularity: "day"
+      ttl_days: 30
+      ttl_columns: ["_timestamp_load"]

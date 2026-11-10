@@ -3,6 +3,13 @@
 Rendered by CI and committed back at the end of a release -- do not edit by
 hand. Release notes also appear on the GitHub Releases page, one per tag.
 
+## [0.2.24](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.23...v0.2.24) (2026-11-10)
+
+### Bug Fixes
+
+* **deps:** update astral-sh/setup-uv action to v10.3.3 ([#101](https://github.com/hyperi-io/dfe-schemas/issues/101)) ([5b4b4dd](https://github.com/hyperi-io/dfe-schemas/commit/5b4b4dd73d78e6186817cd675847b1a3a4a0e8b0))
+* **schema_lock:** drop the TTL that wedges the schema lease ([4da52ce](https://github.com/hyperi-io/dfe-schemas/commit/4da52ce17d64b1c3faf2247782e404dfb5de6c34))
+
 ## [0.2.23](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.22...v0.2.23) (2026-11-04)
 
 ### Bug Fixes

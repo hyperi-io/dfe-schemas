@@ -4,7 +4,7 @@
 `meta/` schemas that map DFE's 13 primitives onto ClickHouse. Five sets live
 here: `core/` (the landing table, the dead-letter table and the detection pair, whose columns come
 from a common-header profile), `otel/` (the telemetry tables the collector
-writes into and HyperDX reads), `internal/` (the engine's own working state,
+writes into and dfe-hyperdx reads), `internal/` (the engine's own working state,
 including the applier's migration ledger and its lock), `usage/` (the usage
 rollup a deployment is licensed on, and the views that refresh it) and `meta/`
 (the governance projection, which lands in `dfe_meta` rather than the data

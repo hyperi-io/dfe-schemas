@@ -3,6 +3,12 @@
 Rendered by CI and committed back at the end of a release -- do not edit by
 hand. Release notes also appear on the GitHub Releases page, one per tag.
 
+## [0.2.25](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.24...v0.2.25) (2026-11-10)
+
+### Bug Fixes
+
+* **schema:** add the dlq table for dead-letter entries ([#104](https://github.com/hyperi-io/dfe-schemas/issues/104)) ([586cc2c](https://github.com/hyperi-io/dfe-schemas/commit/586cc2c71899b9ef5e2cf5085a0f06823d7600bb))
+
 ## [0.2.24](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.23...v0.2.24) (2026-11-10)
 
 ### Bug Fixes

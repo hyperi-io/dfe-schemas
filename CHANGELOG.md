@@ -3,6 +3,12 @@
 Rendered by CI and committed back at the end of a release -- do not edit by
 hand. Release notes also appear on the GitHub Releases page, one per tag.
 
+## [0.2.26](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.25...v0.2.26) (2026-11-10)
+
+### Bug Fixes
+
+* **cloudtrail:** keep service hostnames in events ([#103](https://github.com/hyperi-io/dfe-schemas/issues/103)) ([611870a](https://github.com/hyperi-io/dfe-schemas/commit/611870accbb47858a0bb7706a53aae68a3d8560e))
+
 ## [0.2.25](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.24...v0.2.25) (2026-11-10)
 
 ### Bug Fixes

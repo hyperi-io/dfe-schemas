@@ -87,7 +87,7 @@ dfe-schemas/
 |-- tables/            # tables in exact ClickHouse types:
 |                      #   core/ (main, detection, detection_checkpoint)
 |                      #   internal/ (engine state, the migration ledger, the lock)
-|                      #   otel/ (the telemetry tables HyperDX reads)
+|                      #   otel/ (the telemetry tables dfe-hyperdx reads)
 |                      #   usage/ (usage per minute and per day, the licence numbers)
 |                      #   meta/ (the dfe_meta governance projection)
 |-- views/             # the built-in dfe_v_* parameterised views and the usage_*

@@ -11,9 +11,9 @@
 # `CREATE TABLE IF NOT EXISTS` races benignly; concurrent ALTER TABLE ADD
 # COLUMN against one table does not, which is what this exists to stop.
 #
-# TTL on `expires_at` is a floor, not the lock: an expired lease is released by
-# the applier reading its expiry, and the TTL only stops the table growing a
-# row per stale holder forever.
+# No TTL. Lease reads require the replica to hold the last quorum-written part,
+# and a TTL that empties an idle table deletes that part, which refuses every
+# read until the next quorum write. The table grows about one row per claim.
 
 current: "1.0.0"
 
@@ -26,8 +26,6 @@ versions:
       name: "schema_lock"
       engine: "ReplacingMergeTree(acquired_at)"
       index_granularity: 2048
-      ttl_days: 7
-      ttl_columns: ["expires_at"]
     columns:
       - name: "lock_name"
         ch_type: "String"

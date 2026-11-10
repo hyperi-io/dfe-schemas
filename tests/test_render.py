@@ -341,9 +341,20 @@ def test_a_table_without_a_json_column_carries_no_json_setting(rendered, manifes
         assert (WRITE_MARKS in clause) is (object_id in JSON_TABLES), f"{object_id}: {clause}"
 
 
-def test_the_ledger_carries_no_ttl(rendered):
-    """A ledger that expires cannot answer which version an object came from."""
-    assert "TTL " not in rendered[Platform.SELF_HOSTED]["data.schema_migrations"].statements[0]
+@pytest.mark.parametrize(
+    "object_id",
+    [
+        # A ledger that expires cannot answer which version an object came from.
+        "data.schema_migrations",
+        # A TTL that empties an idle lease table drops the last quorum part every
+        # sequential lease read requires, so no applier can take the lease again.
+        "data.schema_lock",
+        "data.hunt_lease",
+    ],
+)
+def test_ledgers_and_leases_carry_no_ttl(rendered, object_id):
+    for platform in (Platform.SELF_HOSTED, Platform.CLOUD):
+        assert "TTL " not in rendered[platform][object_id].statements[0], object_id
 
 
 def test_the_data_database_is_a_parameter(manifest):

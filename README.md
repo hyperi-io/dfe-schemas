@@ -147,7 +147,7 @@ The fixed lists dfe-engine validates and renders against live in `registries/`, 
 | File | What it lists | Read by the engine for |
 |------|---------------|------------------------|
 | `engines.yaml` | Table engine variants a source may select. `arguments` is `none`, `optional` or `required`; `argument_hint` is what goes inside the parentheses | Source save validation and the UI engine dropdown |
-| `types.yaml` | Column primitives and their ClickHouse type, codec and nullability, plus use-case, attribute and `ch_override` rules | Column validation and DDL rendering |
+| `types.yaml` | Column primitives and their ClickHouse type, codec and nullability, plus use-case, attribute and `ch_override` rules, and the labels and override options a schema form offers | Column validation, DDL rendering and the schema form vocabulary dfe-engine serves |
 | `field-maps/<standard>/_default.yaml` | Default field map for each view standard (cim, ecs, ocsf, sigma) | Seeding the field-map store |
 
 `make validate` checks every entry.

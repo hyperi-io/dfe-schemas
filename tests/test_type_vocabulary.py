@@ -72,3 +72,10 @@ def test_every_parameter_is_named_in_the_template_and_typed(option: dict[str, An
         assert param["label"]
         assert param["kind"] in {"integer", "text"}
         assert "{" + param["name"] + "}" in option["template"]
+
+
+def test_every_cardinality_value_has_a_label_and_the_default_is_one_of_them():
+    cardinality = _TYPES["cardinality"]
+
+    assert set(cardinality["labels"]) == set(cardinality["values"])
+    assert cardinality["default"] in cardinality["values"]

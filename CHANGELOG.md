@@ -3,6 +3,13 @@
 Rendered by CI and committed back at the end of a release -- do not edit by
 hand. Release notes also appear on the GitHub Releases page, one per tag.
 
+## [0.2.29](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.28...v0.2.29) (2026-11-11)
+
+### Bug Fixes
+
+* **meta:** derive generator types from the registry ([68b6173](https://github.com/hyperi-io/dfe-schemas/commit/68b6173ad6a92ea1e127e98c98baacb31574d5bf))
+* **schemas:** render tables and indexes from one DDL catalogue ([46c09ff](https://github.com/hyperi-io/dfe-schemas/commit/46c09ff90470451de1bff2dfbeaec63fad2d8cb1))
+
 ## [0.2.28](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.27...v0.2.28) (2026-11-11)
 
 ### Bug Fixes

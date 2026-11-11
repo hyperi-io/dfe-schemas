@@ -1,0 +1,59 @@
+# Meta schema: Spamhaus DROP
+#
+# Spamhaus DROP: networks hijacked or leased to spam and malware operators, IPv4 and IPv6 rows of drop_v4.json and drop_v6.json in one store.
+#
+# Columns are the union of keys across the rows of a live export, typed from
+# the values observed, then reviewed by hand. The record sits under `record`,
+# which is where every expression reads from. The feeds end with a
+# {"type":"metadata",...} line that carries no cidr and is not a record.
+# Spamhaus data is free to use with credit to The Spamhaus Project SLU and its
+# copyright text kept with the data, fetched at most once an hour.
+# A changed export becomes a new version entry, never an edit of a published one.
+
+current: "1.0.0"
+resource_type: core
+
+versions:
+  "1.0.0":
+    date: "2026-11-04"
+    type: model
+    summary: "Initial Spamhaus DROP schema, from the live IPv4 and IPv6 feeds"
+    columns:
+      - name: cidr
+        type: string
+        use_case: exact_match
+        expr: "@source: record.cidr"
+        comment: "Listed network in CIDR notation, IPv4 or IPv6, and the row key"
+        _field_type: base
+
+      - name: cidr_start
+        type: ip
+        attribute: [materialized]
+        default: "IPv6CIDRToRange(toIPv6(splitByChar('/', cidr)[1]), toUInt8(toUInt8(splitByChar('/', cidr)[2]) + if(position(cidr, ':') = 0, 96, 0))).1"
+        use_case: range
+        comment: "First address of cidr, computed on insert (IPv4 as IPv4-mapped IPv6), so an address is tested with cidr_start <= ip AND ip <= cidr_end"
+        _field_type: base
+
+      - name: cidr_end
+        type: ip
+        attribute: [materialized]
+        default: "IPv6CIDRToRange(toIPv6(splitByChar('/', cidr)[1]), toUInt8(toUInt8(splitByChar('/', cidr)[2]) + if(position(cidr, ':') = 0, 96, 0))).2"
+        use_case: range
+        comment: "Last address of cidr, computed on insert"
+        _field_type: base
+
+      - name: rir
+        type: string
+        attribute: [nullable]
+        cardinality: low
+        use_case: dimension
+        expr: "@source: record.rir"
+        comment: "Regional internet registry that allocated the network (arin, ripencc, apnic, afrinic, lacnic), null on a few rows"
+        _field_type: base
+
+      - name: sblid
+        type: string
+        use_case: exact_match
+        expr: "@source: record.sblid"
+        comment: "Spamhaus Block List entry the network is listed under, shared by several networks"
+        _field_type: base

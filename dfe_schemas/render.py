@@ -881,6 +881,52 @@ class Renderer:
         """``k = v`` pairs, sorted, so a diff is stable."""
         return ", ".join(f"{key} = {value}" for key, value in sorted(settings.items()))
 
+    @staticmethod
+    def profile_settings(settings: dict[str, Any]) -> str:
+        """A SETTINGS PROFILE's settings list, sorted, each with its constraint.
+
+        A setting is a plain value, or a mapping of ``value`` plus ``min`` and
+        ``max``, or ``value`` plus ``const: true``. The engine's reconciler
+        renders profiles through this too, so both write the same text.
+
+        Raises:
+            SchemaError: A mapping has an unknown key, a non-numeric bound, a
+                bound beside ``const``, or a value outside its bounds.
+        """
+        return ", ".join(
+            f"{key} = {Renderer._profile_setting(key, setting)}"
+            for key, setting in sorted(settings.items())
+        )
+
+    @staticmethod
+    def _profile_setting(name: str, setting: Any) -> str:
+        """One setting's ``value [MIN a] [MAX b] [CONST]`` text."""
+        if not isinstance(setting, dict):
+            return str(setting)
+        unknown = set(setting) - {"value", "min", "max", "const"}
+        if unknown:
+            raise SchemaError(f"setting {name}: unknown keys {sorted(unknown)}")
+        bounds = {key: setting[key] for key in ("value", "min", "max") if key in setting}
+        if "value" not in bounds:
+            raise SchemaError(f"setting {name}: a constrained setting needs a value")
+        for key, number in bounds.items():
+            if isinstance(number, bool) or not isinstance(number, int | float):
+                raise SchemaError(f"setting {name}: {key} must be a number, not {number!r}")
+        const = setting.get("const", False)
+        if not isinstance(const, bool):
+            raise SchemaError(f"setting {name}: const must be true or false")
+        if const and ("min" in bounds or "max" in bounds):
+            raise SchemaError(f"setting {name}: a const setting takes no min or max")
+        value = bounds["value"]
+        low, high = bounds.get("min", value), bounds.get("max", value)
+        if not low <= value <= high:
+            raise SchemaError(f"setting {name}: value {value} is outside min {low}, max {high}")
+        parts = [str(value)]
+        parts += [f"{key.upper()} {bounds[key]}" for key in ("min", "max") if key in bounds]
+        if const:
+            parts.append("CONST")
+        return " ".join(parts)
+
     def _render_role_entry(
         self, catalogue: dict[str, Any], entry: dict[str, Any], database: str
     ) -> tuple[str, list[str]]:
@@ -904,7 +950,7 @@ class Renderer:
         if settings:
             statements.append(f"CREATE SETTINGS PROFILE IF NOT EXISTS {profile}")
             statements.append(
-                f"ALTER SETTINGS PROFILE {profile} SETTINGS {self._settings_kv(settings)}"
+                f"ALTER SETTINGS PROFILE {profile} SETTINGS {self.profile_settings(settings)}"
             )
         if not entry.get("quota"):
             statements.append(f"CREATE ROLE IF NOT EXISTS {role}")

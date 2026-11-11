@@ -3,6 +3,14 @@
 Rendered by CI and committed back at the end of a release -- do not edit by
 hand. Release notes also appear on the GitHub Releases page, one per tag.
 
+## [0.2.28](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.27...v0.2.28) (2026-11-11)
+
+### Bug Fixes
+
+* **catalogue:** carry elastic detection markers as catalogue data ([ab35988](https://github.com/hyperi-io/dfe-schemas/commit/ab35988c93133b40dd30cf3b9152ea83cb261aff))
+* **registries:** label the type vocabulary ([a95ddaf](https://github.com/hyperi-io/dfe-schemas/commit/a95ddaf91fd476e945b5805fe1b5a88a823f3808))
+* **security:** enforce query caps with profile constraints ([dfb0ea4](https://github.com/hyperi-io/dfe-schemas/commit/dfb0ea40ca9c85cc16f3b9e10bf924d7677989cb))
+
 ## [0.2.27](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.26...v0.2.27) (2026-11-11)
 
 ### Bug Fixes

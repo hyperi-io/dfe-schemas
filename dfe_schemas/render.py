@@ -78,7 +78,18 @@ def _index_name(column: str, suffix: str | None = None) -> str:
     then choked on the rest.
     """
     stem = f"idx_{column}" if suffix is None else f"idx_{column}_{suffix}"
-    return f"`{stem}`"
+    return quote_ident(stem, what="index name")
+
+
+_BARE_IDENT = re.compile(r"[A-Za-z_][A-Za-z0-9_]*")
+
+
+def _bare_or_quoted(name: str, *, what: str) -> str:
+    """*name* bare where ClickHouse reads it as one identifier, else backtick-quoted.
+
+    A dotted column such as ``event.time`` is one identifier only once quoted.
+    """
+    return name if _BARE_IDENT.fullmatch(name) else quote_ident(name, what=what)
 
 
 _USE_CASE_RE = re.compile(r"^(?P<name>[a-z_]+)(?:\((?P<arg>\d+)\))?$")
@@ -525,9 +536,11 @@ class TableDDL:
         body.extend(f"    {index}" for index in spec.extra_indexes)
         names = {c.name for c in spec.columns}
         if spec.projection_order_by and spec.projection_order_by in names:
+            projection = _bare_or_quoted(
+                f"{spec.projection_order_by}_optimized", what="projection name"
+            )
             body.append(
-                f"    PROJECTION {spec.projection_order_by}_optimized "
-                f"(SELECT * ORDER BY `{spec.projection_order_by}`)"
+                f"    PROJECTION {projection} (SELECT * ORDER BY `{spec.projection_order_by}`)"
             )
         return body
 
@@ -608,10 +621,11 @@ class TableDDL:
         """
         positioned = [(column.order, column) for column in columns if column.order is not None]
         ordered = [column for _, column in sorted(positioned, key=lambda pair: pair[0])]
+        nullable = set(self.nullable_key_columns(ordered))
         key: list[str] = []
         for column in ordered:
-            ch_type = self._registry.resolve(column).ch_type
-            if "Nullable" in ch_type:
+            if column.name in nullable:
+                ch_type = self._registry.resolve(column).ch_type
                 raise SchemaError(
                     f"{table}.{column.name} resolves to {ch_type} and is an ORDER BY key; "
                     "add the 'not_null' attribute or a DEFAULT"
@@ -643,9 +657,10 @@ class TableDDL:
 
 def _ttl_expression(column: str, ch_type: str, days: int) -> str:
     """One column's TTL. A Date takes no ``>= 0`` guard: 26.3 refuses Date >= UInt8 (code 43)."""
+    name = _bare_or_quoted(column, what="TTL column")
     if ch_type in _DATE_TYPES:
-        return f"{column} + INTERVAL {days} DAY DELETE"
-    return f"{column} + INTERVAL {days} DAY DELETE WHERE {column} >= 0"
+        return f"{name} + INTERVAL {days} DAY DELETE"
+    return f"{name} + INTERVAL {days} DAY DELETE WHERE {name} >= 0"
 
 
 def _target(database: str, name: str) -> str:

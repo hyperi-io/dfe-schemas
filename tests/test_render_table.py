@@ -152,3 +152,18 @@ def test_a_verbatim_index_wins_over_the_use_case():
     assert TableDDL.load().index_defs(column) == [
         "INDEX `idx__raw` `_raw` TYPE text(tokenizer = 'splitByNonAlpha') GRANULARITY 64"
     ]
+
+
+def test_a_dotted_ttl_or_projection_column_is_quoted():
+    """`event.time` is one identifier only once quoted, so a bare one breaks the statement."""
+    columns = (*_COLUMNS, Column(name="event.time", primitive="timestamp"))
+    rendered = render_table(
+        _spec(columns=columns, ttl_columns=("event.time",), projection_order_by="event.time")
+    )
+    assert "TTL `event.time` + INTERVAL 90 DAY DELETE WHERE `event.time` >= 0" in rendered
+    assert "PROJECTION `event.time_optimized` (SELECT * ORDER BY `event.time`)" in rendered
+
+
+def test_an_index_name_unsafe_in_ddl_is_refused():
+    with pytest.raises(SchemaError, match="index name"):
+        TableDDL.load().index_defs(Column(name="a`b", use_case="dimension"))

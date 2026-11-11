@@ -22,3 +22,21 @@ catalogue:
   framing: body
   variants:
     - filebeat.juniper_srx_log.default
+  detect:
+    order: 390
+    markers:
+      - priority: 50
+        any:
+          - "junos@"
+          - "RT_FLOW"
+          - "RT_IDP"
+          - "RT_UTM"
+          - "RT_SCREEN"
+          - "RT_IDS"
+          - "RT_AAMW"
+          - "RT_ATP"
+          - "APPTRACK_SESSION"
+          - "PFE_FW_SYSLOG"
+          - "IKE negotiation "
+          - "IPSec negotiation "
+        note: "SRX app-names and the junos@ SD id"

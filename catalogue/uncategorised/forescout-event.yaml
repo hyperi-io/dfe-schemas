@@ -22,3 +22,9 @@ catalogue:
   framing: body
   variants:
     - filebeat.forescout_event.default
+  detect:
+    order: 240
+    markers:
+      - priority: 50
+        any: ["_fsservice : TTY="]
+        note: "appliance sudo line"

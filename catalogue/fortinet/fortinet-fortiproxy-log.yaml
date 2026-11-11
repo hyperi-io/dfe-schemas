@@ -22,3 +22,9 @@ catalogue:
   framing: line
   variants:
     - filebeat.fortinet_fortiproxy_log.default
+  detect:
+    order: 260
+    markers:
+      - priority: 60
+        any: ["devid=\"FPX"]
+        note: "FPX serial prefix"

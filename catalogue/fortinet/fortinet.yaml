@@ -22,3 +22,9 @@ catalogue:
   framing: line
   variants:
     - filebeat.fortinet.default
+  detect:
+    order: 250
+    markers:
+      - priority: 30
+        all: ["logid=", " type="]
+        note: "FortiOS logid beside type, FortiProxy and FortiManager outrank it"

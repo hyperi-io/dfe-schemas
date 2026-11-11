@@ -22,3 +22,11 @@ catalogue:
   framing: line
   variants:
     - filebeat.citrix_adc_log.default
+  detect:
+    order: 150
+    markers:
+      - priority: 50
+        any: ["-PPE-"]
+        note: "NetScaler packet-engine tag, also owns identical Citrix CEF"
+      - priority: 57
+        cef: {vendor: "Citrix", product: "NetScaler"}

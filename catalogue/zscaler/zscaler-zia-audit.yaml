@@ -22,3 +22,9 @@ catalogue:
   framing: body
   variants:
     - filebeat.zscaler_zia_audit.default
+  detect:
+    order: 550
+    markers:
+      - priority: 55
+        any: ["zscalernss-audit\""]
+        note: "NSS feed name in the SIEM template"

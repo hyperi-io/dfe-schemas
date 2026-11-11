@@ -22,3 +22,11 @@ catalogue:
   framing: body
   variants:
     - filebeat.tanium_client_status.default
+  detect:
+    order: 670
+    markers:
+      - priority: 50
+        all:
+          - "\"RegisteredWithTLS\""
+          - "\"LastRegistration\""
+          - "\"ServerNetworkLocation\""

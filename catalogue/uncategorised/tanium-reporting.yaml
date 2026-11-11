@@ -22,3 +22,12 @@ catalogue:
   framing: body
   variants:
     - filebeat.tanium_reporting.default
+  detect:
+    order: 700
+    markers:
+      - priority: 50
+        all:
+          - "\"Computer Name\""
+          - "\"OS Platform\""
+          - "\"Virtual Platform\""
+          - "\"Is Virtual\""

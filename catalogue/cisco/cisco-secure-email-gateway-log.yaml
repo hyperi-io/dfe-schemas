@@ -22,3 +22,26 @@ catalogue:
   framing: line
   variants:
     - filebeat.cisco_secure_email_gateway_log.default
+  detect:
+    order: 140
+    markers:
+      - priority: 55
+        any:
+          - "|ESA_CONSOLIDATED_LOG_EVENT|"
+          - " amp: "
+          - " antispam: "
+          - " antivirus: "
+          - " consolidated_event: "
+          - " content_scanner: "
+          - " error_logs: "
+          - " gui_logs: "
+          - " mail_logs: "
+          - " status: Info"
+          - " status: Warning"
+          - " status: Critical"
+          - " status: Error"
+          - " system: Info"
+          - " system: Warning"
+          - " system: Critical"
+          - " system: Error"
+        note: "AsyncOS log name as the syslog tag, level word after"

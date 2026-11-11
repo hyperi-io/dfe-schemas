@@ -22,3 +22,9 @@ catalogue:
   framing: body
   variants:
     - filebeat.falco_alerts.default
+  detect:
+    order: 220
+    markers:
+      - priority: 40
+        all: ["\",\"priority\":\"", "\"rule\":\""]
+        note: "Falco output keys"

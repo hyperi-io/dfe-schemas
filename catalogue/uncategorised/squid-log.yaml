@@ -22,3 +22,10 @@ catalogue:
   framing: body
   variants:
     - filebeat.squid_log.default
+  detect:
+    order: 530
+    markers:
+      - priority: 40
+        any: ["TCP_", "UDP_", "NONE/", "TAG_NONE/"]
+        verify: squid_status
+        note: "TCP_MISS/200 style action and status, which ProxySG spells with a space"

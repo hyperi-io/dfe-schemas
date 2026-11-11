@@ -22,3 +22,8 @@ catalogue:
   framing: body
   variants:
     - filebeat.tanium_action_history.default
+  detect:
+    order: 660
+    markers:
+      - priority: 50
+        all: ["\"ActionName\"", "\"PackageName\"", "\"DistributeOver\""]

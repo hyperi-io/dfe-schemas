@@ -22,3 +22,9 @@ catalogue:
   framing: line
   variants:
     - filebeat.cisco_ise_log.default
+  detect:
+    order: 110
+    markers:
+      - priority: 60
+        any: ["CISE_"]
+        note: "CISE_<category> token"

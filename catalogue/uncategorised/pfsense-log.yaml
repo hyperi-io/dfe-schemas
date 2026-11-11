@@ -22,3 +22,15 @@ catalogue:
   framing: line
   variants:
     - filebeat.pfsense_log.default
+  detect:
+    order: 440
+    markers:
+      - priority: 50
+        any:
+          - "filterlog"
+          - ",match,block,"
+          - ",match,pass,"
+          - ",match,reject,"
+          - ",match,rdr,"
+          - ",match,nat,"
+        note: "filterlog, or the match action columns"

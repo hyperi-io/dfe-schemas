@@ -22,3 +22,9 @@ catalogue:
   framing: body
   variants:
     - filebeat.hashicorp_vault_audit.default
+  detect:
+    order: 320
+    markers:
+      - priority: 50
+        all: ["{\"time\":\"", "\",\"type\":\"re"]
+        note: "audit line opens with time then request or response"

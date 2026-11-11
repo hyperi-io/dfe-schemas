@@ -22,3 +22,19 @@ catalogue:
   framing: line
   variants:
     - filebeat.infoblox_nios_log.default
+  detect:
+    order: 340
+    markers:
+      - priority: 50
+        all: ["Z [", "]: "]
+        note: "audit log: Z [user]: action"
+      - priority: 50
+        any:
+          - "UDP: query: "
+          - "TCP: query: "
+          - "lease-duration "
+          - " TransID "
+          - " apparently_via="
+        note: "DNS and DHCP extensions"
+      - priority: 60
+        cef: {vendor: "Infoblox", product: "NIOS"}

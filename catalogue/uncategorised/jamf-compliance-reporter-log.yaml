@@ -22,3 +22,9 @@ catalogue:
   framing: body
   variants:
     - filebeat.jamf_compliance_reporter_log.default
+  detect:
+    order: 360
+    markers:
+      - priority: 50
+        any: ["{\"_event_score\":"]
+        note: "_event_score key"

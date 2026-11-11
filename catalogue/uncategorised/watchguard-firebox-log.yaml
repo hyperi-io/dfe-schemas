@@ -22,3 +22,9 @@ catalogue:
   framing: line
   variants:
     - filebeat.watchguard_firebox_log.default
+  detect:
+    order: 510
+    markers:
+      - priority: 50
+        any: ["msg_id=\""]
+        note: "msg_id key"

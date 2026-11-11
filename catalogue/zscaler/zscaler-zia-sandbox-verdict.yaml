@@ -22,3 +22,8 @@ catalogue:
   framing: body
   variants:
     - filebeat.zscaler_zia_sandbox_verdict.default
+  detect:
+    order: 620
+    markers:
+      - priority: 55
+        any: ["zscalernss-sandbox_verdict\""]

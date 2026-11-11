@@ -40,7 +40,17 @@ TOP_LEVEL_KEYS = (
     "catalogue",
 )
 
-CATALOGUE_KEYS = ("package", "data_stream", "intakes", "framing", "beats", "variants")
+CATALOGUE_KEYS = ("package", "data_stream", "intakes", "framing", "beats", "variants", "detect")
+
+DETECT_KEYS = ("order", "markers")
+
+# One marker is a literal list (any or all of it on the line) or a CEF vendor and product.
+MARKER_KINDS = ("any", "all", "cef")
+
+MARKER_KEYS = ("priority", "verify", "note", *MARKER_KINDS)
+
+# dfe-transform-elastic holds a line's all-of matches in one byte of bits.
+MAX_ALL_LITERALS = 8
 
 INTAKES = ("beats", "receiver", "fetcher")
 
@@ -80,6 +90,24 @@ _FETCHER = {"source_type": "acme", "topic": "own"}
 
 _FETCHER_ORIGIN = {"match": None, "fetcher": _FETCHER}
 
+_CEF = {"priority": 60, "cef": {"vendor": "Acme", "product": "Widget"}}
+
+_LINE = {"priority": 50, "any": ["acme: "]}
+
+
+def _detect(*markers: dict, order: int | None = 10) -> dict:
+    """Changes giving the well-formed body the receiver intake and a detect block of *markers*."""
+    block: dict = {"markers": list(markers)}
+    if order is not None:
+        block["order"] = order
+    return {
+        "catalogue.intakes": ["beats", "receiver"],
+        "match.field": SOURCE_LABEL_FIELD,
+        "match.value": "acme-log",
+        "catalogue.detect": block,
+    }
+
+
 WELL_FORMED_CASES = [
     pytest.param({}, id="beats"),
     pytest.param(
@@ -95,6 +123,16 @@ WELL_FORMED_CASES = [
         {"catalogue.beats": {"module": "acme", "fileset": "log"}, "catalogue.framing": "line"},
         id="with-beats-and-framing",
     ),
+    pytest.param(
+        _detect(
+            {"priority": 50, "any": ["acme: "], "note": "the syslog tag"},
+            {"priority": 40, "all": ["acme_id=", " acme_type="]},
+            {"priority": 30, "any": ["%ACME"], "verify": "acme_mnemonic"},
+            _CEF,
+        ),
+        id="with-detect",
+    ),
+    pytest.param(_detect(_CEF, order=None), id="cef-only-detect-needs-no-order"),
 ]
 
 MALFORMED_CASES = [
@@ -171,6 +209,59 @@ MALFORMED_CASES = [
         "catalogue.variants",
         id="variant-not-a-string",
     ),
+    pytest.param(
+        {"catalogue.detect": {"order": 10, "markers": [_LINE]}},
+        "only with the receiver intake",
+        id="detect-without-receiver",
+    ),
+    pytest.param(
+        {**_detect(_LINE), "transform.engine": "vector"},
+        "only on an elastic entry",
+        id="detect-on-another-engine",
+    ),
+    pytest.param(_detect(), "non-empty list", id="detect-no-markers"),
+    pytest.param(_detect(_LINE, order=None), "needs an order", id="line-marker-without-order"),
+    pytest.param(_detect(_LINE, order=0), "positive integer", id="order-not-positive"),
+    pytest.param(
+        {**_detect(_LINE), "catalogue.detect.rank": 1},
+        "unknown detect keys",
+        id="unknown-detect-key",
+    ),
+    pytest.param(
+        _detect({"priority": 50, "any": ["a"], "all": ["b"]}),
+        "exactly one of",
+        id="marker-two-kinds",
+    ),
+    pytest.param(_detect({"priority": 50}), "exactly one of", id="marker-no-kind"),
+    pytest.param(
+        _detect({"priority": 256, "any": ["a"]}), "priority 256", id="priority-over-a-byte"
+    ),
+    pytest.param(_detect({"priority": 50, "any": [""]}), "non-empty strings", id="empty-literal"),
+    pytest.param(
+        _detect({"priority": 50, "all": [f"k{i}=" for i in range(9)]}),
+        "at most 8",
+        id="too-many-all-literals",
+    ),
+    pytest.param(
+        _detect({"priority": 50, "all": ["a", "b"], "verify": "check"}),
+        "verify only on an any marker",
+        id="verify-on-all",
+    ),
+    pytest.param(
+        _detect({"priority": 50, "any": ["a"], "verify": "Not-An-Ident"}),
+        "verify",
+        id="verify-not-an-identifier",
+    ),
+    pytest.param(
+        _detect({"priority": 60, "cef": {"vendor": "Acme"}}),
+        "vendor and product",
+        id="cef-without-product",
+    ),
+    pytest.param(
+        _detect({"priority": 50, "any": ["a"], "colour": "red"}),
+        "unknown marker keys",
+        id="unknown-marker-key",
+    ),
 ]
 
 WELL_FORMED_VARIANTS = {
@@ -220,6 +311,79 @@ MALFORMED_TAG_CASES = [
     ),
     pytest.param({"aws": {"description": "Logs.", "name": 7}}, "name 7", id="name-not-a-string"),
 ]
+
+
+def _marker_violations(*, marker: object) -> list[str]:
+    """Every way one detect marker breaks the marker format."""
+    if not (isinstance(marker, dict)):
+        return [f"detect marker {marker!r} must be a mapping"]
+    found = []
+    unknown = sorted(set(marker) - set(MARKER_KEYS))
+    if unknown:
+        found.append(f"unknown marker keys {unknown!r}, allowed {MARKER_KEYS!r}")
+    priority = marker.get("priority")
+    if isinstance(priority, bool) or not (isinstance(priority, int)) or not (0 <= priority <= 255):
+        found.append(f"detect marker priority {priority!r} must be an integer from 0 to 255")
+    kinds = [kind for kind in MARKER_KINDS if kind in marker]
+    if len(kinds) != 1:
+        found.append(f"detect marker {marker!r} must carry exactly one of {MARKER_KINDS!r}")
+        return found
+    kind = kinds[0]
+    value = marker[kind]
+    if kind == "cef":
+        if not (isinstance(value, dict)) or sorted(value) != ["product", "vendor"]:
+            found.append(f"detect cef {value!r} must carry exactly vendor and product")
+        elif not (all(isinstance(text, str) and text for text in value.values())):
+            found.append(f"detect cef {value!r}: vendor and product must be non-empty strings")
+    elif (
+        not (isinstance(value, list))
+        or not (value)
+        or not (all(isinstance(text, str) and text for text in value))
+    ):
+        found.append(f"detect {kind} {value!r} must be a non-empty list of non-empty strings")
+    elif kind == "all" and len(value) > MAX_ALL_LITERALS:
+        found.append(f"detect all holds {len(value)} literals, at most {MAX_ALL_LITERALS}")
+    verify = marker.get("verify")
+    if verify is not None:
+        if kind != "any":
+            found.append("detect marker carries verify only on an any marker")
+        if not (isinstance(verify, str)) or not (verify.isidentifier()) or not (verify.islower()):
+            found.append(f"detect verify {verify!r} must name a lower-case check function")
+    note = marker.get("note")
+    if note is not None and (not (isinstance(note, str)) or not (note)):
+        found.append(f"detect note {note!r} must be a non-empty string")
+    return found
+
+
+def _detect_violations(*, block: dict, doc: dict) -> list[str]:
+    """Every way the entry's detect block breaks the detect format, empty when it has none."""
+    detect = block.get("detect")
+    if detect is None:
+        return []
+    if not (isinstance(detect, dict)):
+        return [f"catalogue.detect {detect!r} must be a mapping"]
+    found = []
+    if (doc.get("transform") or {}).get("engine") != "elastic":
+        found.append("catalogue.detect is allowed only on an elastic entry")
+    if "receiver" not in (block.get("intakes") or []):
+        found.append("catalogue.detect is allowed only with the receiver intake")
+    unknown = sorted(set(detect) - set(DETECT_KEYS))
+    if unknown:
+        found.append(f"unknown detect keys {unknown!r}, allowed {DETECT_KEYS!r}")
+    markers = detect.get("markers")
+    if not (isinstance(markers, list)) or not (markers):
+        found.append(f"catalogue.detect.markers {markers!r} must be a non-empty list")
+        markers = []
+    for marker in markers:
+        found.extend(_marker_violations(marker=marker))
+    order = detect.get("order")
+    has_line = any(isinstance(marker, dict) and "cef" not in marker for marker in markers)
+    if order is None:
+        if has_line:
+            found.append("catalogue.detect needs an order when it holds an any or all marker")
+    elif isinstance(order, bool) or not (isinstance(order, int)) or order < 1:
+        found.append(f"catalogue.detect.order {order!r} must be a positive integer")
+    return found
 
 
 def _elastic_violations(*, block: dict, doc: dict, registry: dict) -> list[str]:
@@ -389,6 +553,7 @@ def _violations(*, doc: dict, root: Path, stem: str) -> list[str]:
         found.append(f"intakes {intakes!r} must be a non-empty subset of {INTAKES!r}")
     found.extend(_schema_violations(doc=doc, root=root))
     found.extend(_variant_violations(block=block, doc=doc))
+    found.extend(_detect_violations(block=block, doc=doc))
     return found
 
 
@@ -424,6 +589,16 @@ def test_every_file_follows_the_catalogue_format(catalogue):
         violations = _violations(doc=doc, root=ROOT, stem=path.stem)
         found.extend(f"catalogue/{path}: {violation}" for violation in violations)
     assert not (found), "\n".join(found)
+
+
+def test_no_two_entries_share_a_detect_order(catalogue):
+    owners = defaultdict(list)
+    for path, doc in catalogue.items():
+        detect = (doc.get("catalogue") or {}).get("detect") or {}
+        if "order" in detect:
+            owners[detect["order"]].append(str(path))
+    shared = {order: paths for order, paths in sorted(owners.items()) if len(paths) > 1}
+    assert not (shared), f"detect orders held by more than one entry: {shared!r}"
 
 
 def test_every_file_sits_in_one_vendor_folder(catalogue_files):

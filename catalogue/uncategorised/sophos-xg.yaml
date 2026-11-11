@@ -22,3 +22,12 @@ catalogue:
   framing: line
   variants:
     - filebeat.sophos_xg.default
+  detect:
+    order: 460
+    markers:
+      - priority: 50
+        any: ["device=\"SFW\"", "device_name=\"SFW\""]
+        note: "device=SFW (older and 18.5+)"
+      - priority: 45
+        all: ["log_type=\"", " log_component=\""]
+        note: "log_type beside log_component"

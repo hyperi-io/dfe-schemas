@@ -22,3 +22,9 @@ catalogue:
   framing: body
   variants:
     - filebeat.eset_protect_event.default
+  detect:
+    order: 210
+    markers:
+      - priority: 50
+        any: ["\"occured\":\"", "\"source_uuid\":\""]
+        note: "ESET's misspelt `occured` key"

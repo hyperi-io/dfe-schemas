@@ -22,3 +22,9 @@ catalogue:
   framing: line
   variants:
     - filebeat.pulse_connect_secure_log.default
+  detect:
+    order: 820
+    markers:
+      - priority: 55
+        any: ["PulseSecure:"]
+        note: "PulseSecure tag"

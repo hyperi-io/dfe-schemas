@@ -22,3 +22,26 @@ catalogue:
   framing: body
   variants:
     - filebeat.cisco_meraki.default
+  detect:
+    order: 120
+    markers:
+      - priority: 50
+        any:
+          - " airmarshal_events "
+          - " events type="
+          - " flows allow src="
+          - " flows deny src="
+          - " ip_flow_start src="
+          - " ip_flow_end src="
+          - " urls src="
+          - " ids-alerts "
+          - " security_event "
+          - " firewall src="
+          - "_firewall src="
+          - " flows src="
+          - " events Site-to-Site VPN:"
+          - " events dhcp "
+          - " events client_vpn_connect "
+          - " events carrier_change "
+          - " events Blocked ARP Packet "
+        note: "Meraki event types after the epoch.nanos header"

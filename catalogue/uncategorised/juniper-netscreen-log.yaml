@@ -22,3 +22,9 @@ catalogue:
   framing: body
   variants:
     - filebeat.juniper_netscreen_log.default
+  detect:
+    order: 380
+    markers:
+      - priority: 50
+        any: ["NetScreen device_id="]
+        note: "ScreenOS device_id"

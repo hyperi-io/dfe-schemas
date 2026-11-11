@@ -22,3 +22,9 @@ catalogue:
   framing: line
   variants:
     - filebeat.fortinet_fortiedr_log.default
+  detect:
+    order: 300
+    markers:
+      - priority: 50
+        any: ["Raw Data ID:", "Organization ID:"]
+        note: "FortiEDR organisation fields"

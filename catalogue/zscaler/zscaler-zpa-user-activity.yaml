@@ -22,3 +22,8 @@ catalogue:
   framing: body
   variants:
     - filebeat.zscaler_zpa_user_activity.default
+  detect:
+    order: 750
+    markers:
+      - priority: 50
+        all: ["\"ConnectionSetupTime\"", "\"IPProtocol\"", "\"DoubleEncryption\""]

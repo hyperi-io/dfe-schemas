@@ -22,3 +22,10 @@ catalogue:
   framing: line
   variants:
     - filebeat.cisco_ios.default
+  detect:
+    order: 100
+    markers:
+      - priority: 10
+        any: ["%"]
+        verify: ios_mnemonic
+        note: "%FAC-n-MNEM: catch-all, below every other %-style source"

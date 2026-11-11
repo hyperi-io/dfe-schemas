@@ -22,3 +22,9 @@ catalogue:
   framing: line
   variants:
     - filebeat.cyberarkpas_audit.default
+  detect:
+    order: 160
+    markers:
+      - priority: 60
+        any: ["audit_record\"", "audit_record>"]
+        note: "Vault audit_record XML or JSON"

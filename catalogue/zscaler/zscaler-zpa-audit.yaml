@@ -22,3 +22,8 @@ catalogue:
   framing: body
   variants:
     - filebeat.zscaler_zpa_audit.default
+  detect:
+    order: 730
+    markers:
+      - priority: 50
+        all: ["\"AuditOperationType\"", "\"AuditNewValue\"", "\"ObjectType\""]

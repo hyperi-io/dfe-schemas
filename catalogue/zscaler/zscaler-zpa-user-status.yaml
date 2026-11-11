@@ -22,3 +22,8 @@ catalogue:
   framing: body
   variants:
     - filebeat.zscaler_zpa_user_status.default
+  detect:
+    order: 760
+    markers:
+      - priority: 50
+        all: ["\"CertificateCN\"", "\"TrustedNetworks\""]

@@ -22,3 +22,31 @@ catalogue:
   framing: line
   variants:
     - filebeat.cisco_aironet_log.default
+  detect:
+    order: 70
+    markers:
+      - priority: 52
+        all: [": *", ": %"]
+        note: "AireOS `*Task:` prefix beside a %FACILITY"
+      - priority: 52
+        any:
+          - "Chassis 1 "
+          - "Chassis 2 "
+          - "%APMGR"
+          - "%CAPWAPAC"
+          - "%CLIENT_"
+          - "%RADIUS_AUDIT"
+          - "%MM_LOG"
+          - "%MM_INFRA_LOG"
+          - "%WPS-"
+          - "%LWAPP-"
+          - "%RRM-"
+          - "%RRM_"
+          - "%DTL-"
+          - "%APF-"
+          - "%LOADBALANCE"
+          - "%CW_LIC"
+          - "%SESSION_MGR"
+          - "%WIDS"
+          - "%DOT11-"
+        note: "9800 chassis stamp and WLC-only facilities"

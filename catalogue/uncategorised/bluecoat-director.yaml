@@ -22,3 +22,9 @@ catalogue:
   framing: body
   variants:
     - filebeat.bluecoat_director.default
+  detect:
+    order: 30
+    markers:
+      - priority: 40
+        any: [".very-high> ", ".high> ", ".medium> ", ".low> "]
+        note: "Director's <<name.severity> marker"

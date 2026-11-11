@@ -22,3 +22,9 @@ catalogue:
   framing: line
   variants:
     - filebeat.cisco_asa.default
+  detect:
+    order: 80
+    markers:
+      - priority: 50
+        any: ["%ASA-"]
+        note: "six-digit %ASA ids, byte-identical FTD lines stay here by design"

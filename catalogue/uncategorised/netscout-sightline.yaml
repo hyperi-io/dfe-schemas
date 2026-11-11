@@ -22,3 +22,16 @@ catalogue:
   framing: body
   variants:
     - filebeat.netscout_sightline.default
+  detect:
+    order: 400
+    markers:
+      - priority: 50
+        any:
+          - " pfsp:"
+          - "Change Log: Username:"
+          - "Changed protection mode to active for protection group"
+          - "Blocked Host: Blocked host"
+          - "anomaly: anomaly "
+          - "instability router"
+          - "Test: Test syslog message"
+        note: "pfsp tag and fixed message texts"

@@ -426,13 +426,13 @@ dfe-schemas release, not a code change.
 
 | Use Case | Index Type | Granularity | Notes |
 |----------|-----------|-------------|-------|
-| `dimension` | `set(0)` | 4 | Exact distinct values per granule |
-| `exact_match` | `set(0)` on `cardinality: low`, else `bloom_filter` | 4 | The bloom filter is probabilistic -- false positives, no false negatives. It takes `IPv6`, and on an `Array` column it answers `has()`, `hasAny()` and `hasAll()` |
+| `dimension` | `set(0)`, or `bloom_filter` on a Nullable column | 4 | `set(0)` holds the exact distinct values per granule, but prunes nothing on a Nullable column on 26.3 |
+| `exact_match` | `set(0)` on `cardinality: low` when not Nullable, else `bloom_filter` | 4 | The bloom filter is probabilistic -- false positives, no false negatives. It takes `IPv6`, and on an `Array` column it answers `has()`, `hasAny()` and `hasAll()` |
 | `range` | `minmax` | 4 | Stores min/max per granule |
 | `word_search` | `text(tokenizer=splitByNonAlpha)` | 1 | GA text index (v26.2+). Deterministic, row-level filtering. |
 | `substring_search` | `text(tokenizer=ngrams(3))` | 1 | Character n-gram text index for substring matching. |
 | `key_search` | two indexes, `text(tokenizer=array)` over `mapKeys(col)` and `mapValues(col)` | 1 | A text index refuses a `Map` column itself, so the keys and the values are indexed apart |
-| `similarity_search(<dims>)` | `vector_similarity('hnsw', 'cosineDistance', <dims>)` | 1 | `hnsw` is the only method 26.3 implements |
+| `similarity_search(<dims>)` | `vector_similarity('hnsw', 'cosineDistance', <dims>)` | 100000000 | One index per part: at granularity 1 each granule gets its own graph and the top-k comes back wrong. `hnsw` is the only method 26.3 implements |
 
 The catalogue carries no pre-25.10 variant. DFE ships ClickHouse 26.3, where
 `tokenbf_v1` and `ngrambf_v1` are deprecated in favour of the text index.
@@ -451,6 +451,8 @@ The catalogue carries no pre-25.10 variant. DFE ships ClickHouse 26.3, where
 | A fragment of at least 3 characters | `substring_search` | `col LIKE '%efuse%'` |
 | A key or value in a map | `key_search` | `mapContainsKey(col, 'k')`, `has(mapValues(col), 'v')` |
 | The nearest embeddings | `similarity_search(<dims>)` | `ORDER BY cosineDistance(col, [...]) LIMIT 10` |
+
+A vector search with a narrow `WHERE` can return fewer than the `LIMIT`: ClickHouse takes the index's k nearest, then filters them.
 
 An address range is a `BETWEEN` on the two ends: `isIPAddressInRange()` reads
 every row, because no index can prune it.

@@ -45,6 +45,15 @@ _CASES = [
         50_000,
     ),
     (
+        "dimension_nullable",
+        "dimension",
+        "low",
+        "LowCardinality(Nullable(String))",
+        "concat('s', toString(intDiv(number, 50000)))",
+        "c = 's7'",
+        50_000,
+    ),
+    (
         "exact_match_string",
         "exact_match",
         "unknown",
@@ -171,6 +180,7 @@ def test_the_catalogue_index_prunes_for_the_documented_query(
         dims=None,
         cardinality=cardinality,
         name=lambda suffix: "`idx_c`" if suffix is None else f"`idx_c_{suffix}`",
+        nullable="Nullable(" in ch_type,
     )
     clickhouse.run(
         f"CREATE TABLE {table} (`k` UInt64, `c` {ch_type}, {', '.join(indexes)}) "
@@ -185,3 +195,32 @@ def test_the_catalogue_index_prunes_for_the_documented_query(
     assert initial >= 400
     assert selected < initial // 10, f"{use_case} kept {selected} of {initial} granules"
     assert clickhouse.scalar(f"SELECT count() FROM {table} WHERE {where}") == expected
+
+
+def test_the_vector_index_returns_the_same_top_k_as_brute_force(clickhouse):
+    """One index per part. At GRANULARITY 1 each granule gets its own graph and the top-k is wrong."""
+    catalogue = DDLCatalogue.load()
+    (index,) = catalogue.index_defs(
+        column="c",
+        use_case="similarity_search",
+        dims=4,
+        cardinality="unknown",
+        name=lambda _: "`idx_c`",
+    )
+    table = f"{_DATABASE}.t_similarity"
+    clickhouse.run(
+        f"CREATE TABLE {table} (`k` UInt32, `c` Array(Float32), {index}) "
+        f"ENGINE = MergeTree ORDER BY k SETTINGS index_granularity = 256"
+    )
+    vector = ", ".join(f"toFloat32(sipHash64(number, {seed}) % 1000)" for seed in range(1, 5))
+    clickhouse.run(f"INSERT INTO {table} SELECT number, [{vector}] FROM numbers(5000)")
+    query = (
+        f"SELECT groupArray(k) FROM (SELECT k FROM {table} "
+        "ORDER BY cosineDistance(c, [toFloat32(100), toFloat32(900), toFloat32(300), toFloat32(700)]) "
+        "LIMIT 3{settings})"
+    )
+
+    indexed = clickhouse.scalar(query.format(settings=""))
+    brute = clickhouse.scalar(query.format(settings=" SETTINGS use_skip_indexes = 0"))
+
+    assert indexed == brute

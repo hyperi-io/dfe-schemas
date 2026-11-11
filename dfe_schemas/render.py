@@ -589,6 +589,7 @@ class TableDDL:
                 dims=dims,
                 cardinality=column.cardinality,
                 name=lambda suffix: _index_name(column.name, suffix),
+                nullable="Nullable(" in self._registry.resolve(column).ch_type,
             )
         except SchemaError as exc:
             raise SchemaError(f"column {column.name!r}: {exc}") from exc

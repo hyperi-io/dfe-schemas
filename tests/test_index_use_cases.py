@@ -41,7 +41,7 @@ EXPECTED = {
         "INDEX `idx_c_value` mapValues(`c`) TYPE text(tokenizer=array) GRANULARITY 1",
     ],
     "similarity_search(768)": [
-        "INDEX `idx_c` `c` TYPE vector_similarity('hnsw', 'cosineDistance', 768) GRANULARITY 1"
+        "INDEX `idx_c` `c` TYPE vector_similarity('hnsw', 'cosineDistance', 768) GRANULARITY 100000000"
     ],
 }
 
@@ -53,7 +53,7 @@ def renderer():
 
 @pytest.mark.parametrize(("use_case", "expected"), sorted(EXPECTED.items()))
 def test_a_use_case_renders_the_index_that_answers_it(renderer, use_case, expected):
-    column = Column(name="c", use_case=use_case)
+    column = Column(name="c", use_case=use_case, attribute=("not_null",))
     assert renderer.tables.index_defs(column) == expected
 
 
@@ -70,17 +70,31 @@ def test_every_registry_use_case_renders_something(renderer):
         assert renderer.tables.index_defs(column), f"{use_case} renders no index"
 
 
+_SET = "INDEX `idx_c` `c` TYPE set(0) GRANULARITY 4"
+_BLOOM = "INDEX `idx_c` `c` TYPE bloom_filter GRANULARITY 4"
+
+
 @pytest.mark.parametrize(
-    ("cardinality", "expected"),
+    ("use_case", "cardinality", "attribute", "expected"),
     [
-        ("low", "INDEX `idx_c` `c` TYPE set(0) GRANULARITY 4"),
-        ("high", "INDEX `idx_c` `c` TYPE bloom_filter GRANULARITY 4"),
-        ("unknown", "INDEX `idx_c` `c` TYPE bloom_filter GRANULARITY 4"),
+        ("exact_match", "low", ("not_null",), _SET),
+        ("exact_match", "low", (), _BLOOM),
+        ("exact_match", "high", ("not_null",), _BLOOM),
+        ("exact_match", "unknown", (), _BLOOM),
+        ("dimension", "low", ("not_null",), _SET),
+        ("dimension", "low", (), _BLOOM),
+        ("dimension", "unknown", (), _BLOOM),
     ],
 )
-def test_exact_match_reads_the_declared_cardinality(renderer, cardinality, expected):
-    """set(0) is exact where the column is bounded; the bloom filter is not."""
-    column = Column(name="c", use_case="exact_match", cardinality=cardinality)
+def test_set_0_answers_only_a_bounded_column_that_is_not_nullable(
+    renderer, use_case, cardinality, attribute, expected
+):
+    """set(0) is exact on a bounded column, but on 26.3 it prunes nothing on a Nullable one.
+
+    LowCardinality(Nullable(String)) kept 977 of 977 granules under set(0) and
+    4 under bloom_filter, so a Nullable column takes the bloom filter.
+    """
+    column = Column(name="c", use_case=use_case, cardinality=cardinality, attribute=attribute)
     assert renderer.tables.index_defs(column) == [expected]
 
 
@@ -149,6 +163,16 @@ _ONE = "use_cases: {a: {indexes: [{type: minmax, granularity: 1}]}}"
             id="legacy_key",
         ),
         pytest.param(
+            f"version: 1\n{_TABLE}\nuse_cases: {{a: {{indexes: [{{type: minmax, granularity: 1, when_nullable: {{type: bloom_filter}}}}]}}}}",
+            "granularity",
+            id="when_nullable_without_granularity",
+        ),
+        pytest.param(
+            f"version: 1\n{_TABLE}\nuse_cases: {{a: {{indexes: [{{type: minmax, granularity: 1, when_nullable: {{type: bloom_filter, granularity: 4, suffix: x}}}}]}}}}",
+            "unknown keys",
+            id="when_nullable_with_a_suffix",
+        ),
+        pytest.param(
             f"version: 1\ntable: {{index_granularity: 2048}}\n{_ONE}",
             "exactly",
             id="table_incomplete",
@@ -200,7 +224,7 @@ def test_an_index_name_survives_a_column_name_sql_would_choke_on(renderer, name)
     `fortinet_firewall_app-type` parsed as `idx_fortinet_firewall_app` and then
     choked on the rest, so 22 of the fleet's tables would not create.
     """
-    column = Column(name=name, use_case="dimension")
+    column = Column(name=name, use_case="dimension", attribute=("not_null",))
     assert renderer.tables.index_defs(column) == [
         f"INDEX `idx_{name}` `{name}` TYPE set(0) GRANULARITY 4"
     ]

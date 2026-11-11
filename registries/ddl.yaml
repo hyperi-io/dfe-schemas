@@ -27,14 +27,18 @@ table:
 #   {dims}      in `type` is the use case's argument, as in `similarity_search(768)`
 #
 # `indexes` is a list, or `by_cardinality` with one list each for low, high
-# and unknown.
+# and unknown. An entry's `when_nullable` (type and granularity) replaces it on
+# a column whose type is Nullable.
+#
+# set(0) prunes nothing on a Nullable column on 26.3: LowCardinality(Nullable(String))
+# kept 977 of 977 granules where LowCardinality(String) kept 4. bloom_filter kept 4.
 #
 # ClickHouse rewrites a text index's GRANULARITY to 100000000 whatever is asked
 # for, so a read-back that disagrees with the 1 below is the server, not drift.
 use_cases:
   dimension:
     indexes:
-      - {type: "set(0)", granularity: 4}
+      - {type: "set(0)", granularity: 4, when_nullable: {type: bloom_filter, granularity: 4}}
 
   # set(0) holds every distinct value of a `low` column exactly. bloom_filter
   # stays bounded on `high` and `unknown`, the safe way to be wrong. It also
@@ -43,7 +47,7 @@ use_cases:
     indexes:
       by_cardinality:
         low:
-          - {type: "set(0)", granularity: 4}
+          - {type: "set(0)", granularity: 4, when_nullable: {type: bloom_filter, granularity: 4}}
         high:
           - {type: bloom_filter, granularity: 4}
         unknown:
@@ -69,7 +73,9 @@ use_cases:
       - {suffix: value, expression: "mapValues({col})", type: "text(tokenizer=array)", granularity: 1}
 
   # hnsw is the only method 26.3 implements, and the index will not build
-  # without the dimension count.
+  # without the dimension count. One index per part: at GRANULARITY 1 each
+  # granule gets its own graph and the top-k comes back wrong. ClickHouse
+  # keeps a vector index's granularity as declared.
   similarity_search:
     indexes:
-      - {type: "vector_similarity('hnsw', 'cosineDistance', {dims})", granularity: 1}
+      - {type: "vector_similarity('hnsw', 'cosineDistance', {dims})", granularity: 100000000}

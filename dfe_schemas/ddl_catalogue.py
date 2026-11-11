@@ -44,20 +44,28 @@ class IndexSpec:
         granularity: The index GRANULARITY.
         expression: What the index covers, with ``{col}`` for the column.
         suffix: Appended to the index name when one use case needs two indexes.
+        when_nullable: The TYPE and GRANULARITY to render instead on a column
+            whose type is Nullable.
     """
 
     type: str
     granularity: int
     expression: str = _COLUMN
     suffix: str | None = None
+    when_nullable: IndexSpec | None = None
 
     @property
     def needs_dims(self) -> bool:
         """Return True when the TYPE carries the use case's dimension argument."""
         return _DIMS in self.type
 
-    def render(self, *, name: str, column: str, dims: int | None = None) -> str:
+    def render(
+        self, *, name: str, column: str, dims: int | None = None, nullable: bool = False
+    ) -> str:
         """Render the INDEX line for an already quoted index *name* and *column*."""
+        if nullable and self.when_nullable is not None:
+            chosen = self.when_nullable
+            return f"INDEX {name} {self.expression.replace(_COLUMN, column)} TYPE {chosen.type} GRANULARITY {chosen.granularity}"
         index_type = self.type.replace(_DIMS, str(dims)) if self.needs_dims else self.type
         expression = self.expression.replace(_COLUMN, column)
         return f"INDEX {name} {expression} TYPE {index_type} GRANULARITY {self.granularity}"
@@ -133,10 +141,15 @@ def _table_defaults(raw: Any, where: str) -> TableDefaults:
     )
 
 
-def _spec(raw: Any, where: str) -> IndexSpec:
+def _spec(raw: Any, where: str, *, override: bool = False) -> IndexSpec:
     if not isinstance(raw, dict):
         raise SchemaError(f"{where}: an index entry must be a mapping")
-    unknown = set(raw) - {"type", "granularity", "expression", "suffix"}
+    allowed = (
+        {"type", "granularity"}
+        if override
+        else {"type", "granularity", "expression", "suffix", "when_nullable"}
+    )
+    unknown = set(raw) - allowed
     if unknown:
         raise SchemaError(f"{where}: unknown keys {sorted(unknown)}")
     index_type = raw.get("type")
@@ -151,7 +164,10 @@ def _spec(raw: Any, where: str) -> IndexSpec:
     suffix = raw.get("suffix")
     if suffix is not None:
         _identifier(suffix, f"{where}.suffix")
-    return IndexSpec(index_type, granularity, expression, suffix)
+    when_nullable = None
+    if "when_nullable" in raw:
+        when_nullable = _spec(raw["when_nullable"], f"{where}.when_nullable", override=True)
+    return IndexSpec(index_type, granularity, expression, suffix, when_nullable)
 
 
 def _spec_list(raw: Any, where: str) -> tuple[IndexSpec, ...]:
@@ -253,6 +269,7 @@ class DDLCatalogue:
         dims: int | None,
         cardinality: str,
         name: Callable[[str | None], str],
+        nullable: bool = False,
     ) -> list[str]:
         """Render the INDEX lines for one column.
 
@@ -262,6 +279,7 @@ class DDLCatalogue:
             dims: The use case's argument, if it has one.
             cardinality: The column's declared cardinality.
             name: Turns an index suffix (or None) into the quoted index name.
+            nullable: Whether the column's rendered type is Nullable.
 
         Returns:
             One INDEX line per catalogue entry.
@@ -274,4 +292,7 @@ class DDLCatalogue:
         if dims is None and any(spec.needs_dims for spec in specs):
             raise SchemaError(f"{use_case} needs the vector dimension count, as {use_case}(<dims>)")
         quoted = f"`{column}`"
-        return [spec.render(name=name(spec.suffix), column=quoted, dims=dims) for spec in specs]
+        return [
+            spec.render(name=name(spec.suffix), column=quoted, dims=dims, nullable=nullable)
+            for spec in specs
+        ]

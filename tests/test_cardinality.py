@@ -170,7 +170,7 @@ def test_not_null_drops_the_nullable_under_the_wrapper(registry):
     ],
 )
 def test_exact_match_reads_the_same_declaration(renderer, declared, expected):
-    column = Column(name="c", use_case="exact_match", cardinality=declared)
+    column = Column(name="c", use_case="exact_match", cardinality=declared, attribute=("not_null",))
     assert renderer.tables.index_defs(column) == [expected]
 
 
@@ -198,12 +198,15 @@ def _index_line(statement: str, name: str) -> str:
 
 @pytest.fixture(scope="module")
 def rendered_fixture(renderer, tmp_path_factory):
-    """One CREATE TABLE carrying a low, a high and an undeclared column."""
+    """One CREATE TABLE carrying a low column, nullable and not, a high and an undeclared one."""
     path = tmp_path_factory.mktemp("cardinality") / "fixture.yaml"
     path.write_text(
         _DEFINITION.format(
             columns=(
                 "      - name: bounded\n        type: string\n"
+                "        cardinality: low\n        use_case: exact_match\n"
+                "        attribute: [not_null]\n"
+                "      - name: bounded_nullable\n        type: string\n"
                 "        cardinality: low\n        use_case: exact_match\n"
                 "      - name: unbounded\n        type: string\n"
                 "        cardinality: high\n        use_case: exact_match\n"
@@ -220,13 +223,16 @@ def rendered_fixture(renderer, tmp_path_factory):
 
 
 def test_the_rendered_ddl_wraps_only_the_low_column(rendered_fixture):
-    assert "LowCardinality(Nullable(String))" in _column_line(rendered_fixture, "bounded")
+    assert "LowCardinality(String)" in _column_line(rendered_fixture, "bounded")
+    assert "LowCardinality(Nullable(String))" in _column_line(rendered_fixture, "bounded_nullable")
     assert "LowCardinality" not in _column_line(rendered_fixture, "unbounded")
     assert "LowCardinality" not in _column_line(rendered_fixture, "unmeasured")
 
 
 def test_the_rendered_ddl_indexes_only_the_low_column_exactly(rendered_fixture):
+    """set(0) prunes nothing on a Nullable column on 26.3, so that one takes the bloom filter."""
     assert "TYPE set(0)" in _index_line(rendered_fixture, "bounded")
+    assert "TYPE bloom_filter" in _index_line(rendered_fixture, "bounded_nullable")
     assert "TYPE bloom_filter" in _index_line(rendered_fixture, "unbounded")
     assert "TYPE bloom_filter" in _index_line(rendered_fixture, "unmeasured")
 

@@ -6,77 +6,92 @@
 
 primitives:
   string:
+    label: String
     ch_type: String
     codec: "ZSTD(1)"
     nullable: true
 
   text:
+    label: Text
     ch_type: String
     codec: "ZSTD(3)"
     nullable: true
 
   integer:
+    label: Integer
     ch_type: Int64
     codec: "ZSTD(1)"
     nullable: true
 
   float:
+    label: Float
     ch_type: Float64
     codec: "ZSTD(1)"
     nullable: true
 
   boolean:
+    label: Boolean
     ch_type: Bool
     codec: LZ4
     nullable: false
 
   datetime:
+    label: Date Time
     ch_type: "DateTime64(3,'UTC')"
     codec: "Delta, ZSTD(1)"
     nullable: true
 
   timestamp:
+    label: Timestamp
     ch_type: "DateTime64(3,'UTC')"
     codec: "Delta, LZ4"
     nullable: false
 
   date:
+    label: Date
     ch_type: Date
     codec: "Delta, ZSTD(1)"
     nullable: true
 
   ip:
+    label: IP
     ch_type: IPv6
     codec: LZ4
     nullable: true
 
   uuid:
+    label: UUID
     ch_type: UUID
     codec: ~
     nullable: true
 
   json:
+    label: JSON
     ch_type: JSON
     codec: "ZSTD(3)"
     nullable: true
 
   geo_point:
+    label: Geo Point
     ch_type: Point
     codec: "ZSTD(1)"
     nullable: true
 
   enum:
+    label: Enum
     ch_type: "Enum8(...)"
     codec: "ZSTD(1)"
     nullable: false
 
   # ClickHouse refuses Map and Array inside Nullable, so neither can be null.
   map:
+    label: Map
     ch_type: "Map(LowCardinality(String), String)"
     codec: "ZSTD(1)"
     nullable: false
 
   vector:
+    label: Vector
     ch_type: "Array(Float32)"
     codec: "ZSTD(1)"
     nullable: false
@@ -86,22 +101,36 @@ primitives:
 # answers it -- the engine picks that, and may change it without a rename.
 use_cases:
   dimension:
+    label: Dimension
+    description: I filter and group by this
     valid_primitives: [string, integer, boolean, enum, ip, uuid]
   exact_match:
+    label: Exact match
+    description: I look up specific values
     valid_primitives: [string, uuid]
   range:
+    label: Range
+    description: I query ranges, between, time windows
     valid_primitives: [integer, float, datetime, timestamp, date, ip]
   word_search:
+    label: Word search
+    description: I search for whole words
     valid_primitives: [string, text]
   substring_search:
+    label: Substring search
+    description: I search for fragments inside words
     valid_primitives: [string, text]
   key_search:
+    label: Key search
+    description: I search the keys and values of a map column
     valid_primitives: [map]
   # The only use case that takes an argument: ClickHouse needs the vector
   # dimension count up front and cannot infer it from the column. The user
   # supplies a fact about their own data (`similarity_search(768)`); the engine
   # still picks the method and the distance metric.
   similarity_search:
+    label: Similarity search
+    description: I find the rows closest to a vector
     valid_primitives: [vector]
     parameters: [dims]
 
@@ -121,14 +150,19 @@ attributes:
   # The retired spelling of `cardinality: low`; a column declaring it still
   # reads as low. Declare cardinality on a new column.
   lowcardinality:
+    label: Low cardinality
     valid_primitives: [string, text, integer, float, date, ip]
   nullable:
+    label: Nullable
     valid_primitives: all
   not_null:
+    label: Not null
     valid_primitives: all
   materialized:
+    label: Materialized
     valid_primitives: all
   alias:
+    label: Alias
     valid_primitives: all
 
 # Supported ClickHouse types for ch_override validation.
@@ -179,3 +213,59 @@ ch_overrides:
     - "Variant\\(.+\\)"
     - "AggregateFunction\\(.+\\)"
     - "SimpleAggregateFunction\\(.+\\)"
+
+  # The types a schema form offers as an override, each under the primitive it
+  # refines. A type that takes arguments lists them in `parameters`, each with the
+  # label to show and its kind (integer or text), and gives the override text as a
+  # `template` with each parameter name in braces. Every option
+  # must be accepted by the lists above once its parameters are filled in.
+  options:
+    - {value: Int8, label: Int8, primitive: integer}
+    - {value: Int16, label: Int16, primitive: integer}
+    - {value: Int32, label: Int32, primitive: integer}
+    - {value: Int64, label: Int64, primitive: integer}
+    - {value: Int128, label: Int128, primitive: integer}
+    - {value: Int256, label: Int256, primitive: integer}
+    - {value: UInt8, label: UInt8, primitive: integer}
+    - {value: UInt16, label: UInt16, primitive: integer}
+    - {value: UInt32, label: UInt32, primitive: integer}
+    - {value: UInt64, label: UInt64, primitive: integer}
+    - {value: UInt128, label: UInt128, primitive: integer}
+    - {value: UInt256, label: UInt256, primitive: integer}
+    - {value: Float32, label: Float32, primitive: float}
+    - {value: Float64, label: Float64, primitive: float}
+    - value: Decimal
+      label: Decimal (fixed)
+      primitive: float
+      parameters: [{name: precision, label: Precision, kind: integer}, {name: scale, label: Scale, kind: integer}]
+      template: "Decimal({precision},{scale})"
+    - value: Decimal64
+      label: Decimal64
+      primitive: float
+      parameters: [{name: scale, label: Scale, kind: integer}]
+      template: "Decimal64({scale})"
+    - value: FixedString
+      label: FixedString
+      primitive: string
+      parameters: [{name: length, label: Length, kind: integer}]
+      template: "FixedString({length})"
+    - {value: DateTime, label: DateTime (legacy), primitive: datetime}
+    - value: DateTime64
+      label: DateTime64 (UTC)
+      primitive: datetime
+      parameters: [{name: precision, label: Precision, kind: integer}]
+      template: "DateTime64({precision},'UTC')"
+    - {value: Date32, label: Date32, primitive: date}
+    - {value: IPv4, label: IPv4, primitive: ip}
+    - {value: Ring, label: Geo ring, primitive: json}
+    - {value: Polygon, label: Geo polygon, primitive: json}
+    - {value: MultiPolygon, label: Geo multipolygon, primitive: json}
+    - {value: Dynamic, label: Dynamic, primitive: json, hint: "Experimental. A semi-structured ClickHouse JSON column."}
+    - {value: "Array(String)", label: Array of String, primitive: json, hint: Limited indexing.}
+    - {value: "Map(String,String)", label: "Map (String to String)", primitive: map}
+    - {value: "Tuple(String,Int64)", label: "Tuple (String, Int64)", primitive: json, hint: Limited indexing.}
+    - value: Enum16
+      label: Enum16
+      primitive: enum
+      parameters: [{name: values, label: "Values (comma separated)", kind: text}]
+      template: "Enum16({values})"

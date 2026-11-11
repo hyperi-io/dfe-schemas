@@ -35,10 +35,11 @@ from dfe_schemas.clickhouse import (
     parse_engine,
     platform_only_setting_names,
 )
-from dfe_schemas.ddl_catalogue import DDLCatalogue, TableDefaults
+from dfe_schemas.ddl_catalogue import DDLCatalogue
 from dfe_schemas.deploy_defaults import json_table_settings
 from dfe_schemas.loader import (
     Column,
+    ResolvedType,
     SchemaError,
     TypeRegistry,
     compose,
@@ -57,11 +58,14 @@ from dfe_schemas.usage import SQL_VALUES
 __all__ = [
     "RenderedObject",
     "Renderer",
+    "TableDDL",
+    "TableSpec",
     "checksum",
     "ddl_violations",
     "one_ddl_violations",
     "qualified_name",
     "referenced_objects",
+    "render_table",
     "split_use_case",
 ]
 
@@ -317,42 +321,349 @@ def referenced_objects(rendered: RenderedObject) -> set[str]:
 
 
 @dataclass(frozen=True)
-class _TableConfig:
-    """The DDL clauses a definition declares, with nothing defaulted silently."""
+class TableSpec:
+    """One table to render: its columns and every clause it declares.
 
-    partition_column: str
-    partition_granularity: str
-    index_granularity: int
+    A clause left as None takes the DDL catalogue's default, so nothing is
+    defaulted in code. TTL and the projection are off unless declared.
+
+    Attributes:
+        database: The database the table lands in, or the ``{db}`` placeholder.
+        name: The table name.
+        columns: The columns, in order.
+        engine: The MergeTree-family variant, with its arguments if it takes any.
+        ttl_days: Retention in days. None or 0 renders no TTL.
+        ttl_columns: The columns the TTL reads.
+        ttl_only_drop_parts: Emit the setting on a table with a TTL.
+        partition_by: A raw PARTITION BY, which wins over the partition column.
+        partition_column: The column PARTITION BY wraps, else the catalogue's.
+        partition_granularity: The key into the catalogue's partition functions.
+        order_by: A raw ORDER BY, which wins over the columns' ``order``.
+        primary_key: A raw PRIMARY KEY, used only with *order_by*.
+        sample_by: A SAMPLE BY expression.
+        extra_indexes: Raw INDEX definitions, after the column indexes.
+        index_granularity: The table's index_granularity, else the catalogue's.
+        projection_order_by: A column for a ``SELECT * ORDER BY`` projection.
+        comment: The table COMMENT.
+    """
+
+    database: str
+    name: str
+    columns: tuple[Column, ...]
     engine: str = "MergeTree"
     ttl_days: int | None = None
     ttl_columns: tuple[str, ...] = ()
-    projection_order_by: str | None = None
+    ttl_only_drop_parts: bool = True
     partition_by: str | None = None
+    partition_column: str | None = None
+    partition_granularity: str | None = None
     order_by: str | None = None
+    primary_key: str | None = None
+    sample_by: str | None = None
     extra_indexes: tuple[str, ...] = ()
-    reader_grant: bool = False
+    index_granularity: int | None = None
+    projection_order_by: str | None = None
+    comment: str | None = None
 
 
-def _table_config(block: dict[str, Any], defaults: TableDefaults) -> _TableConfig:
-    """Read a definition's ``table`` block, filling what it leaves out from *defaults*.
+def _table_spec(
+    block: dict[str, Any], *, database: str, columns: list[Column], comment: str | None
+) -> TableSpec:
+    """Read a definition's ``table`` block into a spec.
 
     TTL and the projection default to OFF rather than to the landing table's
     defaults: an engine-state table has none of the columns those clauses name,
     and a default nobody can see is how a table ends up keeping everything.
     """
-    return _TableConfig(
+    granularity = block.get("index_granularity")
+    return TableSpec(
+        database=database,
+        name=block["name"],
+        columns=tuple(columns),
         engine=block.get("engine", "MergeTree"),
         ttl_days=block.get("ttl_days"),
         ttl_columns=tuple(block.get("ttl_columns") or ()),
         projection_order_by=block.get("projection_order_by"),
         partition_by=block.get("partition_by"),
-        partition_column=block.get("partition_column", defaults.partition_column),
-        partition_granularity=block.get("partition_granularity", defaults.partition_granularity),
+        partition_column=block.get("partition_column"),
+        partition_granularity=block.get("partition_granularity"),
         order_by=block.get("order_by"),
         extra_indexes=tuple(block.get("indexes") or ()),
-        index_granularity=int(block.get("index_granularity", defaults.index_granularity)),
-        reader_grant=bool(block.get("reader_grant", False)),
+        index_granularity=None if granularity is None else int(granularity),
+        comment=comment,
     )
+
+
+class TableDDL:
+    """Renders tables, columns and indexes from the type registry and the DDL catalogue.
+
+    The manifest :class:`Renderer` and dfe-engine's source tables both render
+    through it.
+    """
+
+    def __init__(
+        self,
+        *,
+        registry: TypeRegistry,
+        catalogue: DDLCatalogue,
+        platform: Platform = Platform.SELF_HOSTED,
+    ) -> None:
+        """Bind the registry, the catalogue and the platform a JSON table's settings follow."""
+        self._registry = registry
+        self._ddl = catalogue
+        self._platform = platform
+
+    @classmethod
+    def load(
+        cls, *, platform: Platform = Platform.SELF_HOSTED, root: Path | None = None
+    ) -> TableDDL:
+        """Read the registry and the catalogue under *root*, or the ones the package ships."""
+        return cls(
+            registry=TypeRegistry.load(root=root),
+            catalogue=DDLCatalogue.load(root=root),
+            platform=platform,
+        )
+
+    @property
+    def catalogue(self) -> DDLCatalogue:
+        """The DDL catalogue the tables render from."""
+        return self._ddl
+
+    def resolve(self, column: Column) -> ResolvedType:
+        """The full ClickHouse type and codec for one column."""
+        return self._registry.resolve(column)
+
+    def create_table(self, spec: TableSpec) -> str:
+        """The CREATE TABLE IF NOT EXISTS for *spec*, with no trailing semicolon.
+
+        Raises:
+            SchemaError: A clause or column cannot render.
+        """
+        if parse_engine(spec.engine).variant in _DATALESS_ENGINES:
+            return self._create_dataless_table(spec)
+        columns = list(spec.columns)
+        lines = [f"CREATE TABLE IF NOT EXISTS {_target(spec.database, spec.name)}\n("]
+        lines.append(",\n".join(self._body(spec)))
+        lines.append(f")\nENGINE = {engine_clause(parse_engine(spec.engine))}")
+
+        partition = self.partition(spec)
+        if partition:
+            lines.append(f"PARTITION BY {partition}")
+
+        # A raw ORDER BY sets no PRIMARY KEY of its own: ClickHouse then takes
+        # the sorting key as the primary key, which is what such a table wants.
+        if spec.order_by:
+            if spec.primary_key:
+                lines.append(f"PRIMARY KEY ({spec.primary_key})")
+            lines.append(f"ORDER BY ({spec.order_by})")
+        else:
+            key = self._sorting_key(columns, spec.name)
+            if key:
+                joined = ", ".join(key)
+                lines.append(f"PRIMARY KEY ({joined})")
+                lines.append(f"ORDER BY ({joined})")
+            else:
+                lines.append("ORDER BY tuple()")
+
+        if spec.sample_by:
+            lines.append(f"SAMPLE BY {spec.sample_by}")
+
+        ttl = self.ttl_clause(spec)
+        if ttl:
+            lines.append(ttl)
+
+        granularity = spec.index_granularity or self._ddl.table.index_granularity
+        settings = [f"index_granularity = {granularity}"]
+        if ttl and spec.ttl_only_drop_parts:
+            # ttl_only_drop_parts waits for EVERY row in a part to expire, so a
+            # table whose TTL is not aligned to its partition would keep data
+            # forever. Those take the row-level delete instead.
+            aligned = bool(partition) and all(col in partition for col in spec.ttl_columns)
+            settings.append(f"ttl_only_drop_parts = {int(aligned)}")
+        settings.extend(f"{key} = {value}" for key, value in self.json_settings(columns).items())
+        lines.append("SETTINGS\n    " + ",\n    ".join(settings))
+
+        if spec.comment:
+            lines.append(f"COMMENT {_string_literal(spec.comment)}")
+
+        return "\n".join(lines)
+
+    def json_settings(self, columns: list[Column]) -> dict[str, int]:
+        """The table SETTINGS a JSON column needs on this platform, empty without one."""
+        column_types = [self._registry.resolve(column).ch_type for column in columns]
+        return json_table_settings(column_types, platform=self._platform)
+
+    def _create_dataless_table(self, spec: TableSpec) -> str:
+        """A table whose engine stores no rows: columns and the engine, nothing else.
+
+        ``{db}`` in the engine arguments is the deployment's data database, so a
+        Merge table reads the database it lands in. A clause only a MergeTree
+        takes is refused rather than dropped.
+        """
+        declared = {
+            "ttl_days": spec.ttl_days,
+            "ttl_columns": spec.ttl_columns,
+            "partition_by": spec.partition_by,
+            "order_by": spec.order_by,
+            "indexes": spec.extra_indexes,
+            "projection_order_by": spec.projection_order_by,
+        }
+        stray = sorted(key for key, value in declared.items() if value)
+        if stray:
+            raise SchemaError(
+                f"{spec.name}: engine {spec.engine!r} stores no rows and takes none of {stray}"
+            )
+        engine = spec.engine.replace("{db}", quote_ident(spec.database, what="database"))
+        body = ",\n".join(self._body(spec))
+        target = _target(spec.database, spec.name)
+        return f"CREATE TABLE IF NOT EXISTS {target}\n(\n{body}\n)\nENGINE = {engine}"
+
+    def _body(self, spec: TableSpec) -> list[str]:
+        body = [f"    {self.column_def(column)}" for column in spec.columns]
+        for column in spec.columns:
+            body.extend(f"    {index}" for index in self.index_defs(column))
+        body.extend(f"    {index}" for index in spec.extra_indexes)
+        names = {c.name for c in spec.columns}
+        if spec.projection_order_by and spec.projection_order_by in names:
+            body.append(
+                f"    PROJECTION {spec.projection_order_by}_optimized "
+                f"(SELECT * ORDER BY `{spec.projection_order_by}`)"
+            )
+        return body
+
+    def column_def(self, column: Column) -> str:
+        """One column's definition: name, type, default, comment and codec."""
+        resolved = self._registry.resolve(column)
+        parts = [quote_ident(column.name, what="column name"), resolved.ch_type]
+
+        if column.default:
+            if "materialized" in column.attribute:
+                parts.append(f"MATERIALIZED {column.default}")
+            elif "alias" in column.attribute:
+                parts.append(f"ALIAS {column.default}")
+            else:
+                parts.append(f"DEFAULT {column.default}")
+
+        # The expr comes first when both are present: the loader parses the
+        # directive off the front of the comment.
+        if column.expr and column.comment:
+            comment = f"{column.expr} - {column.comment}"
+        else:
+            comment = column.expr or column.comment
+        if comment:
+            parts.append(f"COMMENT {_string_literal(comment)}")
+
+        if resolved.codec:
+            parts.append(f"CODEC({resolved.codec})")
+        return " ".join(parts)
+
+    def index_defs(self, column: Column) -> list[str]:
+        """The INDEX lines a column asks for, from the catalogue.
+
+        A column carrying its own ``index`` TYPE renders that verbatim. An
+        unknown use case is refused rather than rendered with no index, so a
+        retired or misspelled name never reads as a column that wants none.
+        """
+        if column.index:
+            return [f"INDEX {_index_name(column.name)} `{column.name}` TYPE {column.index}"]
+        use_case, dims = split_use_case(column.use_case)
+        if use_case is None:
+            return []
+        try:
+            return self._ddl.index_defs(
+                column=column.name,
+                use_case=use_case,
+                dims=dims,
+                cardinality=column.cardinality,
+                name=lambda suffix: _index_name(column.name, suffix),
+            )
+        except SchemaError as exc:
+            raise SchemaError(f"column {column.name!r}: {exc}") from exc
+
+    def partition(self, spec: TableSpec) -> str | None:
+        """PARTITION BY: a raw expression wins over the column plus granularity."""
+        if spec.partition_by:
+            return spec.partition_by
+        column = spec.partition_column or self._ddl.table.partition_column
+        if not any(c.name == column for c in spec.columns):
+            return None
+        granularity = spec.partition_granularity or self._ddl.table.partition_granularity
+        return self._ddl.table.partition_expr(column, granularity)
+
+    def nullable_key_columns(self, columns: list[Column]) -> list[str]:
+        """The columns given an ORDER BY position that resolve to a Nullable type."""
+        return [
+            column.name
+            for column in columns
+            if column.order is not None and "Nullable" in self._registry.resolve(column).ch_type
+        ]
+
+    def _sorting_key(self, columns: list[Column], table: str) -> list[str]:
+        """The ORDER BY built from the columns' own ``order`` positions.
+
+        A Nullable key is refused rather than dropped: ClickHouse rejects one
+        unless allow_nullable_key is on, and even then a null in the sort key
+        cripples the index and doubles storage. Mark the column ``not_null`` or
+        give it a DEFAULT.
+        """
+        positioned = [(column.order, column) for column in columns if column.order is not None]
+        ordered = [column for _, column in sorted(positioned, key=lambda pair: pair[0])]
+        key: list[str] = []
+        for column in ordered:
+            ch_type = self._registry.resolve(column).ch_type
+            if "Nullable" in ch_type:
+                raise SchemaError(
+                    f"{table}.{column.name} resolves to {ch_type} and is an ORDER BY key; "
+                    "add the 'not_null' attribute or a DEFAULT"
+                )
+            key.append(quote_ident(column.name, what="column name"))
+        return key
+
+    def ttl_clause(self, spec: TableSpec) -> str | None:
+        """The TTL clause, or None when *spec* declares no retention.
+
+        Raises:
+            SchemaError: Retention is declared over no column, or over a column
+                the table lacks, which would keep every row forever.
+        """
+        if not spec.ttl_days:
+            return None
+        if not spec.ttl_columns:
+            raise SchemaError(f"{spec.name}: ttl_days={spec.ttl_days} declared with no ttl_columns")
+        types = {column.name: self._registry.resolve(column).ch_type for column in spec.columns}
+        missing = [col for col in spec.ttl_columns if col not in types]
+        if missing:
+            raise SchemaError(
+                f"{spec.name}: ttl_days={spec.ttl_days} declared over absent column(s) "
+                f"{', '.join(missing)}; the table would keep every row forever"
+            )
+        parts = [_ttl_expression(col, types[col], spec.ttl_days) for col in spec.ttl_columns]
+        return "TTL " + ",\n    ".join(parts)
+
+
+def _ttl_expression(column: str, ch_type: str, days: int) -> str:
+    """One column's TTL. A Date takes no ``>= 0`` guard: 26.3 refuses Date >= UInt8 (code 43)."""
+    if ch_type in _DATE_TYPES:
+        return f"{column} + INTERVAL {days} DAY DELETE"
+    return f"{column} + INTERVAL {days} DAY DELETE WHERE {column} >= 0"
+
+
+def _target(database: str, name: str) -> str:
+    return f"{quote_ident(database, what='database')}.{quote_ident(name, what='table name')}"
+
+
+def render_table(
+    spec: TableSpec, *, platform: Platform = Platform.SELF_HOSTED, root: Path | None = None
+) -> str:
+    """Render one table's CREATE TABLE IF NOT EXISTS, without a trailing semicolon.
+
+    For a table that is not a manifest object, such as a dfe-engine source
+    table. It renders through the same :class:`TableDDL` the manifest uses.
+
+    Raises:
+        SchemaError: A clause or column cannot render.
+    """
+    return TableDDL.load(platform=platform, root=root).create_table(spec)
 
 
 class Renderer:
@@ -392,8 +703,11 @@ class Renderer:
         self._broker_count = broker_count
         self._kafka_tiered_storage = kafka_tiered_storage
         self._root = manifest.root
-        self._registry = TypeRegistry.load(root=self._root)
-        self._ddl = DDLCatalogue.load(root=self._root)
+        self.tables = TableDDL(
+            registry=TypeRegistry.load(root=self._root),
+            catalogue=DDLCatalogue.load(root=self._root),
+            platform=platform,
+        )
         self._topics: TopicPolicy | None = None
 
     # -- entry points --------------------------------------------------------
@@ -502,221 +816,31 @@ class Renderer:
         block = entry.get("table") or {}
         if "name" not in block:
             raise SchemaError(f"{obj.id}: {path} does not name its table")
-        name = block["name"]
-        columns = self._columns(obj, entry, path)
-        config = _table_config(block, self._ddl.table)
-        if parse_engine(config.engine).variant in _DATALESS_ENGINES:
-            statement = self._create_dataless_table(database, name, columns, config)
-        else:
-            config = self._with_default_ttl(config)
-            statement = self._create_table(
-                database, name, columns, config, self._profile_comment(obj)
-            )
-        statements = [statement]
+        spec = _table_spec(
+            block,
+            database=database,
+            columns=self._columns(obj, entry, path),
+            comment=self._profile_comment(obj),
+        )
+        if parse_engine(spec.engine).variant not in _DATALESS_ENGINES:
+            spec = self._with_default_ttl(spec)
+        statements = [self.tables.create_table(spec)]
         # As a view does. ClickHouse folds it into the role's SELECT ON <db>.* where that exists.
-        if config.reader_grant:
-            statements.append(f"GRANT SELECT ON {database}.{name} TO {self._view_reader_role()}")
-        return self._finish(obj, name, statements, database=database)
-
-    def _create_dataless_table(
-        self, database: str, name: str, columns: list[Column], config: _TableConfig
-    ) -> str:
-        """A table whose engine stores no rows: columns and the engine, nothing else.
-
-        ``{db}`` in the engine arguments is the deployment's data database, so a
-        Merge table reads the database it lands in. A clause only a MergeTree
-        takes is refused rather than dropped.
-        """
-        declared = {
-            "ttl_days": config.ttl_days,
-            "ttl_columns": config.ttl_columns,
-            "partition_by": config.partition_by,
-            "order_by": config.order_by,
-            "indexes": config.extra_indexes,
-            "projection_order_by": config.projection_order_by,
-        }
-        stray = sorted(key for key, value in declared.items() if value)
-        if stray:
-            raise SchemaError(
-                f"{name}: engine {config.engine!r} stores no rows and takes none of {stray}"
+        if block.get("reader_grant", False):
+            statements.append(
+                f"GRANT SELECT ON {database}.{spec.name} TO {self._view_reader_role()}"
             )
-        target = f"{quote_ident(database, what='database')}.{quote_ident(name, what='table name')}"
-        engine = config.engine.replace("{db}", quote_ident(database, what="database"))
-        body = ",\n".join(self._body(columns, config))
-        return f"CREATE TABLE IF NOT EXISTS {target}\n(\n{body}\n)\nENGINE = {engine}"
+        return self._finish(obj, spec.name, statements, database=database)
 
-    def _with_default_ttl(self, config: _TableConfig) -> _TableConfig:
+    def _with_default_ttl(self, spec: TableSpec) -> TableSpec:
         """Give a time-series table the deployment's retention when it declares none.
 
         A declared ``ttl_days`` always wins, and a table with no ``ttl_columns``
         cannot carry a TTL at all -- a default over none fails the CREATE.
         """
-        if self._default_ttl_days is None or config.ttl_days is not None or not config.ttl_columns:
-            return config
-        return replace(config, ttl_days=self._default_ttl_days)
-
-    def _create_table(
-        self,
-        database: str,
-        name: str,
-        columns: list[Column],
-        config: _TableConfig,
-        table_comment: str | None,
-    ) -> str:
-        target = f"{quote_ident(database, what='database')}.{quote_ident(name, what='table name')}"
-        lines = [f"CREATE TABLE IF NOT EXISTS {target}\n("]
-        lines.append(",\n".join(self._body(columns, config)))
-        lines.append(f")\nENGINE = {engine_clause(parse_engine(config.engine))}")
-
-        partition = self._partition(columns, config)
-        if partition:
-            lines.append(f"PARTITION BY {partition}")
-
-        # A raw ORDER BY sets no PRIMARY KEY of its own: ClickHouse then takes
-        # the sorting key as the primary key, which is what such a table wants.
-        if config.order_by:
-            lines.append(f"ORDER BY ({config.order_by})")
-        else:
-            key = self._sorting_key(columns, name)
-            if key:
-                joined = ", ".join(key)
-                lines.append(f"PRIMARY KEY ({joined})")
-                lines.append(f"ORDER BY ({joined})")
-            else:
-                lines.append("ORDER BY tuple()")
-
-        ttl = self._ttl(columns, config, name)
-        if ttl:
-            lines.append(ttl)
-
-        settings = [f"index_granularity = {config.index_granularity}"]
-        if ttl:
-            # ttl_only_drop_parts waits for EVERY row in a part to expire, so a
-            # table whose TTL is not aligned to its partition would silently
-            # retain data forever; those need the row-level delete instead.
-            aligned = bool(partition) and all(col in partition for col in config.ttl_columns)
-            settings.append(f"ttl_only_drop_parts = {int(aligned)}")
-        column_types = [self._registry.resolve(column).ch_type for column in columns]
-        settings.extend(
-            f"{key} = {value}"
-            for key, value in json_table_settings(column_types, platform=self._platform).items()
-        )
-        lines.append("SETTINGS\n    " + ",\n    ".join(settings))
-
-        if table_comment:
-            lines.append(f"COMMENT {_string_literal(table_comment)}")
-
-        return "\n".join(lines)
-
-    def _body(self, columns: list[Column], config: _TableConfig) -> list[str]:
-        body = [f"    {self._column_def(column)}" for column in columns]
-        for column in columns:
-            body.extend(f"    {index}" for index in self._index_defs(column))
-        body.extend(f"    {index}" for index in config.extra_indexes)
-        if config.projection_order_by and config.projection_order_by in {c.name for c in columns}:
-            body.append(
-                f"    PROJECTION {config.projection_order_by}_optimized "
-                f"(SELECT * ORDER BY `{config.projection_order_by}`)"
-            )
-        return body
-
-    def _column_def(self, column: Column) -> str:
-        resolved = self._registry.resolve(column)
-        parts = [quote_ident(column.name, what="column name"), resolved.ch_type]
-
-        if column.default:
-            if "materialized" in column.attribute:
-                parts.append(f"MATERIALIZED {column.default}")
-            elif "alias" in column.attribute:
-                parts.append(f"ALIAS {column.default}")
-            else:
-                parts.append(f"DEFAULT {column.default}")
-
-        # The expr comes first when both are present: the loader parses the
-        # directive off the front of the comment.
-        if column.expr and column.comment:
-            comment = f"{column.expr} - {column.comment}"
-        else:
-            comment = column.expr or column.comment
-        if comment:
-            parts.append(f"COMMENT {_string_literal(comment)}")
-
-        if resolved.codec:
-            parts.append(f"CODEC({resolved.codec})")
-        return " ".join(parts)
-
-    def _index_defs(self, column: Column) -> list[str]:
-        """The INDEX lines a column's use case asks for, from the index catalogue.
-
-        An unknown use case is refused rather than rendered with no index, so a
-        retired or misspelled name never reads as a column that wants none.
-        """
-        use_case, dims = split_use_case(column.use_case)
-        if use_case is None:
-            return []
-        try:
-            return self._ddl.index_defs(
-                column=column.name,
-                use_case=use_case,
-                dims=dims,
-                cardinality=column.cardinality,
-                name=lambda suffix: _index_name(column.name, suffix),
-            )
-        except SchemaError as exc:
-            raise SchemaError(f"column {column.name!r}: {exc}") from exc
-
-    def _partition(self, columns: list[Column], config: _TableConfig) -> str | None:
-        """PARTITION BY: a raw expression wins over the column plus granularity."""
-        if config.partition_by:
-            return config.partition_by
-        if not any(column.name == config.partition_column for column in columns):
-            return None
-        return self._ddl.table.partition_expr(config.partition_column, config.partition_granularity)
-
-    def _sorting_key(self, columns: list[Column], table: str) -> list[str]:
-        """The ORDER BY built from the columns' own ``order`` positions.
-
-        A Nullable key is refused rather than dropped: ClickHouse rejects one
-        unless allow_nullable_key is on, and even then a null in the sort key
-        cripples the index and doubles storage. Mark the column ``not_null`` or
-        give it a DEFAULT.
-        """
-        positioned = [(column.order, column) for column in columns if column.order is not None]
-        ordered = [column for _, column in sorted(positioned, key=lambda pair: pair[0])]
-        key: list[str] = []
-        for column in ordered:
-            ch_type = self._registry.resolve(column).ch_type
-            if "Nullable" in ch_type:
-                raise SchemaError(
-                    f"{table}.{column.name} resolves to {ch_type} and is an ORDER BY key; "
-                    "add the 'not_null' attribute or a DEFAULT"
-                )
-            key.append(quote_ident(column.name, what="column name"))
-        return key
-
-    def _ttl(self, columns: list[Column], config: _TableConfig, table: str) -> str | None:
-        if not config.ttl_days:
-            return None
-        if not config.ttl_columns:
-            raise SchemaError(f"{table}: ttl_days={config.ttl_days} declared with no ttl_columns")
-        types = {column.name: self._registry.resolve(column).ch_type for column in columns}
-        missing = [col for col in config.ttl_columns if col not in types]
-        if missing:
-            raise SchemaError(
-                f"{table}: ttl_days={config.ttl_days} declared over absent column(s) "
-                f"{', '.join(missing)}; the table would keep every row forever"
-            )
-        parts = [
-            self._ttl_expression(col, types[col], config.ttl_days) for col in config.ttl_columns
-        ]
-        return "TTL " + ",\n    ".join(parts)
-
-    @staticmethod
-    def _ttl_expression(column: str, ch_type: str, days: int) -> str:
-        """One column's TTL. A Date takes no ``>= 0`` guard: 26.3 refuses Date >= UInt8 (code 43)."""
-        if ch_type in _DATE_TYPES:
-            return f"{column} + INTERVAL {days} DAY DELETE"
-        return f"{column} + INTERVAL {days} DAY DELETE WHERE {column} >= 0"
+        if self._default_ttl_days is None or spec.ttl_days is not None or not spec.ttl_columns:
+            return spec
+        return replace(spec, ttl_days=self._default_ttl_days)
 
     # -- views ---------------------------------------------------------------
 

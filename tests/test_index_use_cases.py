@@ -54,7 +54,7 @@ def renderer():
 @pytest.mark.parametrize(("use_case", "expected"), sorted(EXPECTED.items()))
 def test_a_use_case_renders_the_index_that_answers_it(renderer, use_case, expected):
     column = Column(name="c", use_case=use_case)
-    assert renderer._index_defs(column) == expected
+    assert renderer.tables.index_defs(column) == expected
 
 
 def test_the_catalogue_answers_exactly_the_registry_vocabulary():
@@ -67,7 +67,7 @@ def test_every_registry_use_case_renders_something(renderer):
     for use_case in TypeRegistry.load(root=ROOT).use_cases:
         declared = "similarity_search(768)" if use_case == "similarity_search" else use_case
         column = Column(name="c", use_case=declared)
-        assert renderer._index_defs(column), f"{use_case} renders no index"
+        assert renderer.tables.index_defs(column), f"{use_case} renders no index"
 
 
 @pytest.mark.parametrize(
@@ -81,7 +81,7 @@ def test_every_registry_use_case_renders_something(renderer):
 def test_exact_match_reads_the_declared_cardinality(renderer, cardinality, expected):
     """set(0) is exact where the column is bounded; the bloom filter is not."""
     column = Column(name="c", use_case="exact_match", cardinality=cardinality)
-    assert renderer._index_defs(column) == [expected]
+    assert renderer.tables.index_defs(column) == [expected]
 
 
 @pytest.mark.parametrize("primitive", ["string", "uuid", "integer", "ip"])
@@ -93,7 +93,7 @@ def test_exact_match_answers_ids_numbers_and_addresses(primitive):
 
 def test_an_unknown_use_case_is_refused_with_the_column_named(renderer):
     with pytest.raises(SchemaError, match=r"column 'c': unknown index use case 'fulltext'"):
-        renderer._index_defs(Column(name="c", use_case="fulltext"))
+        renderer.tables.index_defs(Column(name="c", use_case="fulltext"))
 
 
 _TABLE = (
@@ -186,11 +186,11 @@ def test_the_shipped_table_defaults_partition_by_day_on_the_load_timestamp():
 def test_similarity_search_without_a_dimension_count_is_refused(renderer):
     """ClickHouse cannot infer the dimension count, so neither can we."""
     with pytest.raises(SchemaError, match="dimension count"):
-        renderer._index_defs(Column(name="c", use_case="similarity_search"))
+        renderer.tables.index_defs(Column(name="c", use_case="similarity_search"))
 
 
 def test_a_column_with_no_use_case_gets_no_index(renderer):
-    assert renderer._index_defs(Column(name="c")) == []
+    assert renderer.tables.index_defs(Column(name="c")) == []
 
 
 @pytest.mark.parametrize("name", ["app-type", "a/b", "1st", "select"])
@@ -201,7 +201,7 @@ def test_an_index_name_survives_a_column_name_sql_would_choke_on(renderer, name)
     choked on the rest, so 22 of the fleet's tables would not create.
     """
     column = Column(name=name, use_case="dimension")
-    assert renderer._index_defs(column) == [
+    assert renderer.tables.index_defs(column) == [
         f"INDEX `idx_{name}` `{name}` TYPE set(0) GRANULARITY 4"
     ]
 
@@ -280,6 +280,6 @@ def test_the_common_header_raw_column_asks_for_the_substring_index(renderer):
     raw = [c for c in load_columns(ROOT / "common-header" / "timeseries.yaml") if c.name == "_raw"]
 
     assert [c.use_case for c in raw] == ["substring_search"]
-    assert renderer._index_defs(raw[0]) == [
+    assert renderer.tables.index_defs(raw[0]) == [
         "INDEX `idx__raw` `_raw` TYPE text(tokenizer=ngrams(3)) GRANULARITY 1"
     ]

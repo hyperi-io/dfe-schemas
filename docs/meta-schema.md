@@ -595,6 +595,10 @@ Schema file paths are resolved relative to `schemas_base_dir` (the schemas direc
 
 ## DDL Generation
 
+`dfe_schemas.render.render_table(spec)` renders a table that is not a manifest
+object, such as a source table, from a `TableSpec`. It runs the same `TableDDL`
+code the manifest renderer does, so the two cannot drift.
+
 The engine generates complete ClickHouse DDL from composed columns. Here is what
 a generated `CREATE TABLE` statement looks like for the `timeseries` profile plus
 the three source columns from the example above, with `ttl_days: 90`:

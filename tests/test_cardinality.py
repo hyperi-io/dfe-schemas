@@ -35,7 +35,7 @@ from dfe_schemas.loader import (
     read_yaml,
 )
 from dfe_schemas.manifest import load_manifest
-from dfe_schemas.render import Renderer, _table_config
+from dfe_schemas.render import Renderer, TableSpec
 
 ROOT = dfe_schemas.schemas_root()
 
@@ -171,14 +171,16 @@ def test_not_null_drops_the_nullable_under_the_wrapper(registry):
 )
 def test_exact_match_reads_the_same_declaration(renderer, declared, expected):
     column = Column(name="c", use_case="exact_match", cardinality=declared)
-    assert renderer._index_defs(column) == [expected]
+    assert renderer.tables.index_defs(column) == [expected]
 
 
 def test_an_unknown_column_falls_to_the_bloom_filter(renderer, registry):
     """The safe way to be wrong: no dictionary, and a probabilistic index."""
     column = Column(name="c", primitive="string", use_case="exact_match")
     assert "LowCardinality" not in registry.resolve(column).ch_type
-    assert renderer._index_defs(column) == ["INDEX `idx_c` `c` TYPE bloom_filter GRANULARITY 4"]
+    assert renderer.tables.index_defs(column) == [
+        "INDEX `idx_c` `c` TYPE bloom_filter GRANULARITY 4"
+    ]
 
 
 # -- the two decisions, rendered together -----------------------------------
@@ -212,12 +214,8 @@ def rendered_fixture(renderer, tmp_path_factory):
         encoding="utf-8",
         newline="\n",
     )
-    return renderer._create_table(
-        "dfe",
-        "cardinality_fixture",
-        load_columns(path),
-        _table_config({}, renderer._ddl.table),
-        None,
+    return renderer.tables.create_table(
+        TableSpec(database="dfe", name="cardinality_fixture", columns=tuple(load_columns(path)))
     )
 
 

@@ -260,7 +260,7 @@ def test_whitespace_outside_quotes_still_collapses(one, two):
 )
 def test_a_comment_reaches_clickhouse_as_written(manifest, comment, literal):
     column = Column(name="c", ch_override="String", comment=comment)
-    assert Renderer(manifest)._column_def(column) == f"`c` String COMMENT {literal}"
+    assert Renderer(manifest).tables.column_def(column) == f"`c` String COMMENT {literal}"
 
 
 def test_the_landing_table_is_named_main(rendered):

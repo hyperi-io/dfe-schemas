@@ -11,9 +11,10 @@ Each ``<store>.jsonl`` in the dump directory is one store: one JSON object per
 line, as a provider's export or a fetcher dump wrote it. The columns of the
 generated schema are the UNION of top-level keys across every row, typed from
 the values observed, so the schema describes what the provider actually sends
-rather than what its documentation says. Stdlib only, and deterministic: the
-same dump and the same arguments write byte-identical files, so a re-run is a
-no-op and ``--check`` can gate it.
+rather than what its documentation says. The types, codecs and header column
+names come from the dfe_schemas package, so run it where that is importable
+(``uv run``). It is deterministic: the same dump and the same arguments write
+byte-identical files, so a re-run is a no-op and ``--check`` can gate it.
 
 Typing rules, from the observed JSON kinds of a key across all rows:
 
@@ -22,13 +23,13 @@ Typing rules, from the observed JSON kinds of a key across all rows:
 - ``str``: every non-empty value a UUID -> ``uuid``; every one an IP address
   -> ``ip`` (range); every one RFC 3339 -> ``datetime`` (range); any value
   multi-line or longer than ``--text-min-length`` -> ``text`` (no index);
-  otherwise ``string`` (dimension, ``lowcardinality`` when fewer than half the
+  otherwise ``string`` (dimension, ``cardinality: low`` when fewer than half the
   rows are distinct). A shape mixed with empty strings falls back to
   ``string``, because an empty string is not a valid UUID, IP or timestamp.
 - ``dict`` -> ``json``, always ``not_null``: ClickHouse writes ``{}`` for an
   absent object, and the shipped header profiles keep JSON out of Nullable.
 - ``list`` -> the element primitive with ``ch_override: Array(...)``, which is
-  the documented escape hatch since the 13 primitives have no array; an
+  the documented escape hatch, since the one array primitive is a float32 ``vector``; an
   absent list lands as ``[]``. Element kinds decide the inner type: all
   objects -> ``Array(JSON)``, all ints -> ``Array(Int64)``, floats ->
   ``Array(Float64)``, bools -> ``Array(Bool)``, anything else ->
@@ -68,7 +69,11 @@ import json
 import re
 import sys
 from dataclasses import dataclass, field
+from functools import cache
 from pathlib import Path
+
+from dfe_schemas import schemas_root
+from dfe_schemas.loader import TypeRegistry, load_columns, load_profile
 
 DEFAULT_OUT_ROOT = "meta"
 DEFAULT_VERSION = "1.0.0"
@@ -79,13 +84,29 @@ DEFAULT_TEXT_MIN_LENGTH = 256
 RESOURCE_TYPE = "core"
 FIELD_TYPE = "base"
 
-# Column names a record key may not take: the common header (the profile wins
-# on a duplicate, silently dropping the record's column) and the snapshot
-# envelope (the overlay would override the record's column).
-DEFAULT_RESERVED = (
-    "_timestamp_load,_timestamp,_timestamp_received,_uuid,_org_id,_source,_raw,_json,_tags,"
-    "kind,snapshot_id,snapshot_at,timestamp,store,seq,total,row_count,completed_at,bytes,row_key"
-)
+# The profile whose columns every generated schema composes onto, and the envelope
+# whose columns each snapshot frame carries beside the provider's record.
+HEADER_PROFILE = "timeseries"
+ENVELOPE_FILE = Path("additional") / "snapshot" / "envelope.yaml"
+
+# The envelope's own `timestamp` repeats `snapshot_at` and feeds the header's
+# `_timestamp`, so the envelope declares no column for it.
+ENVELOPE_TIMESTAMP = "timestamp"
+
+
+def _reserved_names() -> str:
+    """Column names a record key may not take.
+
+    The common header (the profile wins on a duplicate, silently dropping the
+    record's column) and the snapshot envelope (the overlay would override the
+    record's column).
+    """
+    header = [column.name for column in load_profile(HEADER_PROFILE)]
+    envelope = [column.name for column in load_columns(schemas_root() / ENVELOPE_FILE)]
+    return ",".join([*header, *envelope, ENVELOPE_TIMESTAMP])
+
+
+DEFAULT_RESERVED = _reserved_names()
 
 # A column name ClickHouse and the loader take without quoting games.
 _COLUMN_NAME = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
@@ -99,23 +120,11 @@ _RFC3339 = re.compile(r"^\d{4}-\d{2}-\d{2}[Tt ]\d{2}:\d{2}:\d{2}(\.\d+)?([Zz]|[+
 _EPOCH_MIN = 946_684_800
 _EPOCH_MAX = 4_102_444_800
 
-# Primitive -> the codec the type registry would have applied, restated on a
-# column whose ch_override switches the automatic codec off.
-_CODEC = {
-    "string": "ZSTD(1)",
-    "integer": "ZSTD(1)",
-    "float": "ZSTD(1)",
-    "boolean": "LZ4",
-    "json": "ZSTD(3)",
-}
 
-_ARRAY_INNER = {
-    "string": "String",
-    "integer": "Int64",
-    "float": "Float64",
-    "boolean": "Bool",
-    "json": "JSON",
-}
+@cache
+def _primitives() -> dict:
+    """Each primitive's ClickHouse type and codec, as ``registries/types.yaml`` has them."""
+    return TypeRegistry.load().primitives
 
 
 class GenerateError(Exception):
@@ -146,6 +155,7 @@ class Column:
     name: str
     type: str
     attribute: tuple[str, ...]
+    cardinality: str | None
     use_case: str | None
     ch_override: str | None
     codec: str | None
@@ -323,6 +333,7 @@ def derive_column(
     optional = stats.present < rows or stats.nulls > 0
     kinds = stats.kinds
     attribute: list[str] = []
+    cardinality: str | None = None
     use_case: str | None = None
     ch_override: str | None = None
     codec: str | None = None
@@ -348,13 +359,14 @@ def derive_column(
         elif primitive == "string":
             use_case = "dimension"
             if _low_cardinality(stats, rows):
-                attribute.append("lowcardinality")
+                cardinality = "low"
     elif kinds == {"dict"}:
         primitive, observation = "json", None
     elif kinds == {"list"}:
         primitive, observation = _array_type(stats)
-        ch_override = f"Array({_ARRAY_INNER[primitive]})"
-        codec = _CODEC[primitive]
+        # The override switches the registry's automatic codec off, so the column restates it.
+        ch_override = f"Array({_primitives()[primitive]['ch_type']})"
+        codec = _primitives()[primitive]["codec"]
     else:
         primitive = "string"
         seen = ", ".join(sorted(kinds))
@@ -368,7 +380,7 @@ def derive_column(
                 f"row key {key!r} resolved to {primitive!r}; a row key must be a string or UUID"
             )
         use_case = "exact_match"
-        attribute = [a for a in attribute if a != "lowcardinality"]
+        cardinality = None
         parts.append("Row key of the export")
     if observation:
         parts.append(observation)
@@ -387,6 +399,7 @@ def derive_column(
         name=key,
         type=primitive,
         attribute=tuple(attribute),
+        cardinality=cardinality,
         use_case=use_case,
         ch_override=ch_override,
         codec=codec,
@@ -484,6 +497,8 @@ def render(
             lines.append(f"        ch_override: {_yaml_string(col.ch_override)}")
         if col.attribute:
             lines.append(f"        attribute: [{', '.join(col.attribute)}]")
+        if col.cardinality:
+            lines.append(f"        cardinality: {col.cardinality}")
         if col.use_case:
             lines.append(f"        use_case: {col.use_case}")
         lines.append(f"        expr: {_yaml_string(col.expr)}")

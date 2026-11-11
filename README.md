@@ -96,7 +96,7 @@ dfe-schemas/
 |-- topics/            # the Kafka naming rule, defaults and bootstrap set
 |-- sources/           # engine-owned source definitions (main, dfe-alerts)
 |-- catalogue/         # sources shipped ready to create, one POST /sources body each
-|-- registries/        # allow-lists: engines.yaml, types.yaml, catalogue-tags.yaml, elastic-variants.yaml, field-maps/<standard>/
+|-- registries/        # allow-lists: engines.yaml, types.yaml, ddl.yaml, catalogue-tags.yaml, elastic-variants.yaml, field-maps/<standard>/
 |-- dfe_schemas/       # the package: manifest reader, renderer, engine resolver
 |-- scripts/           # render_manifest / validate_schemas / annotate + generate
 |-- docs/manifest.md     # the manifest format, and how to add an object
@@ -148,6 +148,7 @@ The fixed lists dfe-engine validates and renders against live in `registries/`, 
 |------|---------------|------------------------|
 | `engines.yaml` | Table engine variants a source may select. `arguments` is `none`, `optional` or `required`; `argument_hint` is what goes inside the parentheses | Source save validation and the UI engine dropdown |
 | `types.yaml` | Column primitives and their ClickHouse type, codec and nullability, plus use-case, attribute and `ch_override` rules, and the labels and override options a schema form offers | Column validation, DDL rendering and the schema form vocabulary dfe-engine serves |
+| `ddl.yaml` | The DDL catalogue: table defaults (index granularity, partition column and functions) and the index each use case renders | DDL rendering |
 | `field-maps/<standard>/_default.yaml` | Default field map for each view standard (cim, ecs, ocsf, sigma) | Seeding the field-map store |
 
 `make validate` checks every entry.

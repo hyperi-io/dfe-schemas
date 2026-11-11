@@ -407,7 +407,7 @@ the vector's dimension count up front and cannot read it off the column.
 | Use Case | Valid Primitives |
 |----------|-----------------|
 | `dimension` | `string`, `integer`, `boolean`, `enum`, `ip`, `uuid` |
-| `exact_match` | `string`, `uuid` |
+| `exact_match` | `string`, `uuid`, `integer`, `ip` |
 | `range` | `integer`, `float`, `datetime`, `timestamp`, `date`, `ip` |
 | `word_search` | `string`, `text` |
 | `substring_search` | `string`, `text` |
@@ -418,22 +418,48 @@ Invalid combinations are rejected at validation time (e.g. `word_search` on an `
 
 ### Generated ClickHouse Indexes
 
-What the engine emits today, on ClickHouse 26.3. These are the engine's answers,
-not part of the vocabulary -- read them to size the cost, not to name a column.
+What a use case renders today, on ClickHouse 26.3. These are the answers, not
+part of the vocabulary -- read them to size the cost, not to name a column. They
+live as data in `registries/ddl.yaml`, the DDL catalogue, read through
+`dfe_schemas.ddl_catalogue`. A changed answer is a catalogue edit and a
+dfe-schemas release, not a code change.
 
 | Use Case | Index Type | Granularity | Notes |
 |----------|-----------|-------------|-------|
-| `dimension` | `set(0)` | 4 | Exact distinct values per granule |
-| `exact_match` | `set(0)` on `cardinality: low`, else `bloom_filter` | 4 | The bloom filter is probabilistic -- false positives, no false negatives |
+| `dimension` | `set(0)`, or `bloom_filter` on a Nullable column | 4 | `set(0)` holds the exact distinct values per granule, but prunes nothing on a Nullable column on 26.3 |
+| `exact_match` | `set(0)` on `cardinality: low` when not Nullable, else `bloom_filter` | 4 | The bloom filter is probabilistic -- false positives, no false negatives. It takes `IPv6`, and on an `Array` column it answers `has()`, `hasAny()` and `hasAll()` |
 | `range` | `minmax` | 4 | Stores min/max per granule |
 | `word_search` | `text(tokenizer=splitByNonAlpha)` | 1 | GA text index (v26.2+). Deterministic, row-level filtering. |
 | `substring_search` | `text(tokenizer=ngrams(3))` | 1 | Character n-gram text index for substring matching. |
 | `key_search` | two indexes, `text(tokenizer=array)` over `mapKeys(col)` and `mapValues(col)` | 1 | A text index refuses a `Map` column itself, so the keys and the values are indexed apart |
-| `similarity_search(<dims>)` | `vector_similarity('hnsw', 'cosineDistance', <dims>)` | 1 | `hnsw` is the only method 26.3 implements |
+| `similarity_search(<dims>)` | `vector_similarity('hnsw', 'cosineDistance', <dims>)` | 100000000 | One index per part: at granularity 1 each granule gets its own graph and the top-k comes back wrong. `hnsw` is the only method 26.3 implements |
 
-For ClickHouse < v25.10, `word_search` and `substring_search` fall back to the
-legacy `tokenbf_v1` and `ngrambf_v1` indexes automatically via
-`use_legacy_indexes=True`.
+The catalogue carries no pre-25.10 variant. DFE ships ClickHouse 26.3, where
+`tokenbf_v1` and `ngrambf_v1` are deprecated in favour of the text index.
+
+### Which use case for which question
+
+| You look for | Declare | Query it as |
+|--------------|---------|-------------|
+| One id, hash or user among millions | `exact_match` on a `string` or `uuid` | `col = 'x'`, `col IN (...)` |
+| One IP address | `exact_match` on an `ip` | `src_ip = toIPv6('10.1.2.3')` |
+| A value inside an array column | `exact_match` on the element's primitive, with `ch_override: Array(...)` | `has(col, 'x')`, `hasAny`, `hasAll` |
+| A numeric id or event code with many values | `exact_match` on an `integer` | `col = 4624` |
+| A handful of values, filtered and grouped | `dimension`, with `cardinality: low` | `col = 'error'`, `GROUP BY col` |
+| A time window, a numeric range, an address range | `range` | `col > 100`, `ip BETWEEN toIPv6('10.0.0.0') AND toIPv6('10.255.255.255')` |
+| A whole word in free text | `word_search` | `hasToken(col, 'refused')`, `hasAnyTokens`, `hasAllTokens` |
+| A fragment of at least 3 characters | `substring_search` | `col LIKE '%efuse%'` |
+| A key or value in a map | `key_search` | `mapContainsKey(col, 'k')`, `has(mapValues(col), 'v')` |
+| The nearest embeddings | `similarity_search(<dims>)` | `ORDER BY cosineDistance(col, [...]) LIMIT 10` |
+
+A vector search with a narrow `WHERE` can return fewer than the `LIMIT`: ClickHouse takes the index's k nearest, then filters them.
+
+An address range is a `BETWEEN` on the two ends: `isIPAddressInRange()` reads
+every row, because no index can prune it.
+
+`exact_match` on an `integer` or an `ip` is a bloom filter. `range` stores
+min and max per granule, which prunes only when the values arrive roughly in
+order. A lookup on one address in unsorted traffic needs `exact_match`.
 
 ---
 
@@ -571,6 +597,10 @@ Schema file paths are resolved relative to `schemas_base_dir` (the schemas direc
 
 ## DDL Generation
 
+`dfe_schemas.render.render_table(spec)` renders a table that is not a manifest
+object, such as a source table, from a `TableSpec`. It runs the same `TableDDL`
+code the manifest renderer does, so the two cannot drift.
+
 The engine generates complete ClickHouse DDL from composed columns. Here is what
 a generated `CREATE TABLE` statement looks like for the `timeseries` profile plus
 the three source columns from the example above, with `ttl_days: 90`:
@@ -669,6 +699,9 @@ The manifest tables under `tables/` are rendered by `dfe_schemas/render.py`, who
 `table:` block defaults differ: `ttl_columns` is empty and `projection_order_by` is
 unset, so a table declares its TTL columns itself or keeps every row. Its
 `ttl_days` falls back to the deployment default only when `ttl_columns` is set.
+Its `partition_column`, `partition_granularity` and `index_granularity` defaults,
+and the granularity -> function map behind `PARTITION BY`, come from the `table`
+block of `registries/ddl.yaml`.
 `docs/tables.md` has the block.
 
 ### Table Comment Metadata

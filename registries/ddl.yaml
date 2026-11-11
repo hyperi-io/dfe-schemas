@@ -1,0 +1,81 @@
+# DDL catalogue - the table defaults and the index for each use case, as data.
+#
+# dfe_schemas.ddl_catalogue reads it, and every renderer takes these values
+# from there. Every value was accepted by a live ClickHouse 26.3 server.
+
+version: 1
+
+# What a table gets when its definition does not say. A source table's TTL
+# rides the partition column, so ttl_only_drop_parts can drop whole parts.
+table:
+  index_granularity: 2048
+  partition_column: _timestamp_load
+  partition_granularity: day
+  # partition_granularity -> the function PARTITION BY wraps the column in.
+  # A low-volume audit table wants month, else it collects a part per day.
+  partition_functions:
+    day: toYYYYMMDD
+    month: toYYYYMM
+
+# The ClickHouse index that answers each use case in types.yaml. A use case
+# names the question and this is the answer, so the answer can change without
+# the vocabulary changing.
+#
+# An entry renders as `INDEX <name> <expression> TYPE <type> GRANULARITY <n>`.
+#   expression  defaults to `{col}`, the backticked column
+#   suffix      appended to the index name, for a use case that needs two indexes
+#   {dims}      in `type` is the use case's argument, as in `similarity_search(768)`
+#
+# `indexes` is a list, or `by_cardinality` with one list each for low, high
+# and unknown. An entry's `when_nullable` (type and granularity) replaces it on
+# a column whose type is Nullable.
+#
+# set(0) prunes nothing on a Nullable column on 26.3: LowCardinality(Nullable(String))
+# kept 977 of 977 granules where LowCardinality(String) kept 4. bloom_filter kept 4.
+#
+# ClickHouse rewrites a text index's GRANULARITY to 100000000 whatever is asked
+# for, so a read-back that disagrees with the 1 below is the server, not drift.
+use_cases:
+  dimension:
+    indexes:
+      - {type: "set(0)", granularity: 4, when_nullable: {type: bloom_filter, granularity: 4}}
+
+  # set(0) holds every distinct value of a `low` column exactly. bloom_filter
+  # stays bounded on `high` and `unknown`, the safe way to be wrong. It also
+  # answers has(), hasAny() and hasAll() on an Array column, and takes IPv6.
+  exact_match:
+    indexes:
+      by_cardinality:
+        low:
+          - {type: "set(0)", granularity: 4, when_nullable: {type: bloom_filter, granularity: 4}}
+        high:
+          - {type: bloom_filter, granularity: 4}
+        unknown:
+          - {type: bloom_filter, granularity: 4}
+
+  range:
+    indexes:
+      - {type: minmax, granularity: 4}
+
+  word_search:
+    indexes:
+      - {type: "text(tokenizer=splitByNonAlpha)", granularity: 1}
+
+  substring_search:
+    indexes:
+      - {type: "text(tokenizer=ngrams(3))", granularity: 1}
+
+  # A text index refuses a Map column itself, so the keys and the values are
+  # indexed apart.
+  key_search:
+    indexes:
+      - {suffix: key, expression: "mapKeys({col})", type: "text(tokenizer=array)", granularity: 1}
+      - {suffix: value, expression: "mapValues({col})", type: "text(tokenizer=array)", granularity: 1}
+
+  # hnsw is the only method 26.3 implements, and the index will not build
+  # without the dimension count. One index per part: at GRANULARITY 1 each
+  # granule gets its own graph and the top-k comes back wrong. ClickHouse
+  # keeps a vector index's granularity as declared.
+  similarity_search:
+    indexes:
+      - {type: "vector_similarity('hnsw', 'cosineDistance', {dims})", granularity: 100000000}

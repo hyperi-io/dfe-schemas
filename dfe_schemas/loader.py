@@ -113,6 +113,9 @@ class Column:
     ``cardinality`` is the single home for how many distinct values the column
     holds: ``low`` is what wraps the type in ``LowCardinality`` and what lets
     ``exact_match`` render ``set(0)`` instead of a bloom filter.
+
+    ``index`` is an exact index TYPE and GRANULARITY a caller hands in, rendered
+    verbatim in place of the use case's. A definition file cannot declare one.
     """
 
     name: str
@@ -127,6 +130,7 @@ class Column:
     comment: str | None = None
     expr: str | None = None
     max_dynamic_paths: int | None = None
+    index: str | None = None
 
 
 def _attributes(raw: dict[str, Any]) -> tuple[str, ...]:

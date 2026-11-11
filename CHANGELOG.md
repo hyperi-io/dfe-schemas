@@ -3,6 +3,13 @@
 Rendered by CI and committed back at the end of a release -- do not edit by
 hand. Release notes also appear on the GitHub Releases page, one per tag.
 
+## [0.2.27](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.26...v0.2.27) (2026-11-11)
+
+### Bug Fixes
+
+* **docs:** call the search component dfe-hyperdx ([b287331](https://github.com/hyperi-io/dfe-schemas/commit/b287331d816a9be6fe62410034ed3c730b2e2cdb))
+* **meta:** add Spamhaus DROP and Feodo Tracker meta schemas ([ec5234a](https://github.com/hyperi-io/dfe-schemas/commit/ec5234a0382073c04a2381858e4942848e2cef9b))
+
 ## [0.2.26](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.25...v0.2.26) (2026-11-10)
 
 ### Bug Fixes

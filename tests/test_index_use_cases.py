@@ -8,12 +8,13 @@
 
 """A column declares the question it is asked, never the ClickHouse index.
 
-The vocabulary and the templates are two halves of one contract: a use case the
-registry accepts but no template renders is a column that silently gets no
-index, and a template keyed on a name the registry rejects can never fire. Both
-directions are pinned here.
+The vocabulary (``registries/types.yaml``) and the index catalogue
+(``registries/ddl.yaml``) are two halves of one contract: a use case the
+registry accepts but the catalogue does not answer is a column that silently
+gets no index, and a catalogue entry keyed on a name the registry rejects can
+never fire. Both directions are pinned here.
 
-Every index string below was accepted by a live ClickHouse 26.3.32.14 server.
+Every index string below was accepted by a live ClickHouse 26.3.42.3 server.
 """
 
 from __future__ import annotations
@@ -21,6 +22,7 @@ from __future__ import annotations
 import pytest
 
 import dfe_schemas
+from dfe_schemas.ddl_catalogue import DDLCatalogue
 from dfe_schemas.loader import Column, SchemaError, TypeRegistry, load_columns
 from dfe_schemas.manifest import load_manifest
 from dfe_schemas.render import Renderer, split_use_case
@@ -55,18 +57,130 @@ def test_a_use_case_renders_the_index_that_answers_it(renderer, use_case, expect
     assert renderer._index_defs(column) == expected
 
 
+def test_the_catalogue_answers_exactly_the_registry_vocabulary():
+    """A name in one file and not the other is either an unindexed column or a dead entry."""
+    assert DDLCatalogue.load(root=ROOT).use_cases == sorted(TypeRegistry.load(root=ROOT).use_cases)
+
+
 def test_every_registry_use_case_renders_something(renderer):
-    """A name the registry accepts and no template answers gets no index at all."""
+    """A name the registry accepts and no catalogue entry answers gets no index at all."""
     for use_case in TypeRegistry.load(root=ROOT).use_cases:
         declared = "similarity_search(768)" if use_case == "similarity_search" else use_case
         column = Column(name="c", use_case=declared)
         assert renderer._index_defs(column), f"{use_case} renders no index"
 
 
-def test_exact_match_on_a_low_cardinality_column_holds_every_value(renderer):
+@pytest.mark.parametrize(
+    ("cardinality", "expected"),
+    [
+        ("low", "INDEX `idx_c` `c` TYPE set(0) GRANULARITY 4"),
+        ("high", "INDEX `idx_c` `c` TYPE bloom_filter GRANULARITY 4"),
+        ("unknown", "INDEX `idx_c` `c` TYPE bloom_filter GRANULARITY 4"),
+    ],
+)
+def test_exact_match_reads_the_declared_cardinality(renderer, cardinality, expected):
     """set(0) is exact where the column is bounded; the bloom filter is not."""
-    column = Column(name="c", use_case="exact_match", cardinality="low")
-    assert renderer._index_defs(column) == ["INDEX `idx_c` `c` TYPE set(0) GRANULARITY 4"]
+    column = Column(name="c", use_case="exact_match", cardinality=cardinality)
+    assert renderer._index_defs(column) == [expected]
+
+
+@pytest.mark.parametrize("primitive", ["string", "uuid", "integer", "ip"])
+def test_exact_match_answers_ids_numbers_and_addresses(primitive):
+    """An IP or a numeric id is looked up one value at a time, like a string id."""
+    registry = TypeRegistry.load(root=ROOT)
+    assert primitive in registry.use_cases["exact_match"]["valid_primitives"]
+
+
+def test_an_unknown_use_case_is_refused_with_the_column_named(renderer):
+    with pytest.raises(SchemaError, match=r"column 'c': unknown index use case 'fulltext'"):
+        renderer._index_defs(Column(name="c", use_case="fulltext"))
+
+
+_TABLE = (
+    "table: {index_granularity: 2048, partition_column: t, partition_granularity: day,"
+    " partition_functions: {day: toYYYYMMDD}}"
+)
+_ONE = "use_cases: {a: {indexes: [{type: minmax, granularity: 1}]}}"
+
+
+@pytest.mark.parametrize(
+    ("body", "refusal"),
+    [
+        pytest.param(f"{_TABLE}\n{_ONE}", "version", id="no_version"),
+        pytest.param(f"version: 1\n{_ONE}", "table", id="no_table"),
+        pytest.param(f"version: 1\n{_TABLE}\nuse_cases: {{}}", "use_cases", id="no_use_cases"),
+        pytest.param(f"version: 1\n{_TABLE}\nuse_cases: {{a: {{}}}}", "indexes", id="no_indexes"),
+        pytest.param(
+            f"version: 1\n{_TABLE}\nuse_cases: {{a: {{indexes: []}}}}", "non-empty", id="empty_list"
+        ),
+        pytest.param(
+            f"version: 1\n{_TABLE}\nuse_cases: {{a: {{indexes: [{{granularity: 1}}]}}}}",
+            "type",
+            id="no_type",
+        ),
+        pytest.param(
+            f"version: 1\n{_TABLE}\nuse_cases: {{a: {{indexes: [{{type: minmax, granularity: 0}}]}}}}",
+            "granularity",
+            id="zero_granularity",
+        ),
+        pytest.param(
+            f"version: 1\n{_TABLE}\nuse_cases: {{a: {{indexes: [{{type: minmax, granularity: 1, expression: lower(x)}}]}}}}",
+            "expression",
+            id="expression_without_col",
+        ),
+        pytest.param(
+            f"version: 1\n{_TABLE}\nuse_cases: {{a: {{indexes: [{{type: minmax, granularity: 1, tokenizer: x}}]}}}}",
+            "unknown keys",
+            id="unknown_key",
+        ),
+        pytest.param(
+            f"version: 1\n{_TABLE}\nuse_cases: {{a: {{indexes: [{{type: minmax, granularity: 1}}, {{type: minmax, granularity: 1}}]}}}}",
+            "suffix",
+            id="two_without_suffix",
+        ),
+        pytest.param(
+            f"version: 1\n{_TABLE}\nuse_cases: {{a: {{indexes: {{by_cardinality: {{low: [{{type: minmax, granularity: 1}}]}}}}}}}}",
+            "exactly",
+            id="cardinality_missing",
+        ),
+        pytest.param(
+            f"version: 1\n{_TABLE}\nuse_cases: {{a: {{indexes: [{{type: minmax, granularity: 1}}], legacy: []}}}}",
+            "nothing else",
+            id="legacy_key",
+        ),
+        pytest.param(
+            f"version: 1\ntable: {{index_granularity: 2048}}\n{_ONE}",
+            "exactly",
+            id="table_incomplete",
+        ),
+        pytest.param(
+            f"version: 1\ntable: {{index_granularity: 2048, partition_column: t, partition_granularity: hour, partition_functions: {{day: toYYYYMMDD}}}}\n{_ONE}",
+            "hour",
+            id="default_granularity_unmapped",
+        ),
+        pytest.param(
+            f"version: 1\ntable: {{index_granularity: 2048, partition_column: t, partition_granularity: day, partition_functions: {{day: toYYYYMMDD(x)}}}}\n{_ONE}",
+            "identifier",
+            id="function_not_a_name",
+        ),
+    ],
+)
+def test_a_malformed_catalogue_is_refused(tmp_path, body, refusal):
+    """Every table's defaults and indexes come from the catalogue, so a typo fails the load."""
+    path = tmp_path / "ddl.yaml"
+    path.write_text(body + "\n", encoding="utf-8")
+    with pytest.raises(SchemaError, match=refusal):
+        DDLCatalogue.from_file(path)
+
+
+def test_the_shipped_table_defaults_partition_by_day_on_the_load_timestamp():
+    table = DDLCatalogue.load(root=ROOT).table
+    assert table.partition_expr(table.partition_column, table.partition_granularity) == (
+        "toYYYYMMDD(_timestamp_load)"
+    )
+    assert table.partition_expr("x", "month") == "toYYYYMM(x)"
+    with pytest.raises(SchemaError, match="unknown partition_granularity 'hour'"):
+        table.partition_expr("x", "hour")
 
 
 def test_similarity_search_without_a_dimension_count_is_refused(renderer):

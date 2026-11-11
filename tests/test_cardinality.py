@@ -35,7 +35,7 @@ from dfe_schemas.loader import (
     read_yaml,
 )
 from dfe_schemas.manifest import load_manifest
-from dfe_schemas.render import Renderer, _TableConfig
+from dfe_schemas.render import Renderer, _table_config
 
 ROOT = dfe_schemas.schemas_root()
 
@@ -213,7 +213,11 @@ def rendered_fixture(renderer, tmp_path_factory):
         newline="\n",
     )
     return renderer._create_table(
-        "dfe", "cardinality_fixture", load_columns(path), _TableConfig(), None
+        "dfe",
+        "cardinality_fixture",
+        load_columns(path),
+        _table_config({}, renderer._ddl.table),
+        None,
     )
 
 

@@ -35,9 +35,9 @@ from dfe_schemas.clickhouse import (
     parse_engine,
     platform_only_setting_names,
 )
+from dfe_schemas.ddl_catalogue import DDLCatalogue, TableDefaults
 from dfe_schemas.deploy_defaults import json_table_settings
 from dfe_schemas.loader import (
-    LOW_CARDINALITY,
     Column,
     SchemaError,
     TypeRegistry,
@@ -66,46 +66,16 @@ __all__ = [
 ]
 
 
-# A use case names the question a column is asked; the template is the engine's
-# answer, and changes without the vocabulary changing. A shape no template
-# expresses is written out in the definition's own `indexes` list instead.
 def _index_name(column: str, suffix: str | None = None) -> str:
     """Quote an index name.
 
-    The templates backtick the column and left the index NAME bare, so a column
-    carrying a hyphen or a slash -- `fortinet_firewall_app-type` -- parsed as
-    `idx_fortinet_firewall_app` and then choked on the rest.
+    A bare name on a column carrying a hyphen or a slash --
+    `fortinet_firewall_app-type` -- parsed as `idx_fortinet_firewall_app` and
+    then choked on the rest.
     """
     stem = f"idx_{column}" if suffix is None else f"idx_{column}_{suffix}"
     return f"`{stem}`"
 
-
-_INDEX_TEMPLATES: dict[str, str] = {
-    "dimension": "INDEX {name} {col} TYPE set(0) GRANULARITY 4",
-    "range": "INDEX {name} {col} TYPE minmax GRANULARITY 4",
-    "word_search": "INDEX {name} {col} TYPE text(tokenizer=splitByNonAlpha) GRANULARITY 1",
-    "substring_search": "INDEX {name} {col} TYPE text(tokenizer=ngrams(3)) GRANULARITY 1",
-}
-
-# exact_match reads the column's declared cardinality: set(0) holds every
-# distinct value of a `low` column exactly, and bloom_filter stays bounded on
-# `high` and on `unknown`, which is the safe way to be wrong.
-_EXACT_MATCH_LOW_CARDINALITY = "INDEX {name} {col} TYPE set(0) GRANULARITY 4"
-_EXACT_MATCH_HIGH_CARDINALITY = "INDEX {name} {col} TYPE bloom_filter GRANULARITY 4"
-
-# A text index refuses a Map column outright ("Text index must be created on
-# columns of type with base type of String or FixedString"), so key_search
-# indexes the keys and the values apart -- the shape the shipped otel tables use.
-_KEY_SEARCH_TEMPLATES: tuple[tuple[str, str], ...] = (
-    ("key", "INDEX {name} mapKeys({col}) TYPE text(tokenizer=array) GRANULARITY 1"),
-    ("value", "INDEX {name} mapValues({col}) TYPE text(tokenizer=array) GRANULARITY 1"),
-)
-
-# hnsw is the only method ClickHouse 26.3 implements and the index will not
-# build without a dimension count, which is the one thing only the user knows.
-_SIMILARITY_SEARCH_TEMPLATE = (
-    "INDEX {name} {col} TYPE vector_similarity('hnsw', 'cosineDistance', {dims}) GRANULARITY 1"
-)
 
 _USE_CASE_RE = re.compile(r"^(?P<name>[a-z_]+)(?:\((?P<arg>\d+)\))?$")
 
@@ -127,12 +97,6 @@ def split_use_case(declared: str | None) -> tuple[str | None, int | None]:
     arg = match.group("arg")
     return match.group("name"), int(arg) if arg else None
 
-
-_PARTITION_FUNCS = {"day": "toYYYYMMDD", "month": "toYYYYMM"}
-
-_DEFAULT_INDEX_GRANULARITY = 2048
-_DEFAULT_PARTITION_COLUMN = "_timestamp_load"
-_DEFAULT_PARTITION_GRANULARITY = "day"
 
 _ON_CLUSTER_RE = re.compile(r"\s+ON CLUSTER\s+\S+")
 # A database's engine: the Replicated database a self-hosted server gets.
@@ -356,21 +320,21 @@ def referenced_objects(rendered: RenderedObject) -> set[str]:
 class _TableConfig:
     """The DDL clauses a definition declares, with nothing defaulted silently."""
 
+    partition_column: str
+    partition_granularity: str
+    index_granularity: int
     engine: str = "MergeTree"
     ttl_days: int | None = None
     ttl_columns: tuple[str, ...] = ()
     projection_order_by: str | None = None
     partition_by: str | None = None
-    partition_column: str = _DEFAULT_PARTITION_COLUMN
-    partition_granularity: str = _DEFAULT_PARTITION_GRANULARITY
     order_by: str | None = None
     extra_indexes: tuple[str, ...] = ()
-    index_granularity: int = _DEFAULT_INDEX_GRANULARITY
     reader_grant: bool = False
 
 
-def _table_config(block: dict[str, Any]) -> _TableConfig:
-    """Read a definition's ``table`` block.
+def _table_config(block: dict[str, Any], defaults: TableDefaults) -> _TableConfig:
+    """Read a definition's ``table`` block, filling what it leaves out from *defaults*.
 
     TTL and the projection default to OFF rather than to the landing table's
     defaults: an engine-state table has none of the columns those clauses name,
@@ -382,11 +346,11 @@ def _table_config(block: dict[str, Any]) -> _TableConfig:
         ttl_columns=tuple(block.get("ttl_columns") or ()),
         projection_order_by=block.get("projection_order_by"),
         partition_by=block.get("partition_by"),
-        partition_column=block.get("partition_column", _DEFAULT_PARTITION_COLUMN),
-        partition_granularity=block.get("partition_granularity", _DEFAULT_PARTITION_GRANULARITY),
+        partition_column=block.get("partition_column", defaults.partition_column),
+        partition_granularity=block.get("partition_granularity", defaults.partition_granularity),
         order_by=block.get("order_by"),
         extra_indexes=tuple(block.get("indexes") or ()),
-        index_granularity=int(block.get("index_granularity", _DEFAULT_INDEX_GRANULARITY)),
+        index_granularity=int(block.get("index_granularity", defaults.index_granularity)),
         reader_grant=bool(block.get("reader_grant", False)),
     )
 
@@ -429,6 +393,7 @@ class Renderer:
         self._kafka_tiered_storage = kafka_tiered_storage
         self._root = manifest.root
         self._registry = TypeRegistry.load(root=self._root)
+        self._ddl = DDLCatalogue.load(root=self._root)
         self._topics: TopicPolicy | None = None
 
     # -- entry points --------------------------------------------------------
@@ -539,7 +504,7 @@ class Renderer:
             raise SchemaError(f"{obj.id}: {path} does not name its table")
         name = block["name"]
         columns = self._columns(obj, entry, path)
-        config = _table_config(block)
+        config = _table_config(block, self._ddl.table)
         if parse_engine(config.engine).variant in _DATALESS_ENGINES:
             statement = self._create_dataless_table(database, name, columns, config)
         else:
@@ -681,50 +646,24 @@ class Renderer:
         return " ".join(parts)
 
     def _index_defs(self, column: Column) -> list[str]:
-        """The INDEX lines a column's use case asks for -- none, one, or two."""
+        """The INDEX lines a column's use case asks for, from the index catalogue.
+
+        An unknown use case is refused rather than rendered with no index, so a
+        retired or misspelled name never reads as a column that wants none.
+        """
         use_case, dims = split_use_case(column.use_case)
         if use_case is None:
             return []
-
-        quoted = f"`{column.name}`"
-
-        if use_case == "key_search":
-            return [
-                template.format(name=_index_name(column.name, suffix), col=quoted)
-                for suffix, template in _KEY_SEARCH_TEMPLATES
-            ]
-
-        if use_case == "similarity_search":
-            if dims is None:
-                raise SchemaError(
-                    f"column {column.name!r}: similarity_search needs the vector "
-                    f"dimension count, as similarity_search(<dims>)"
-                )
-            return [
-                _SIMILARITY_SEARCH_TEMPLATE.format(
-                    name=_index_name(column.name), col=quoted, dims=dims
-                )
-            ]
-
-        if use_case == "exact_match":
-            template = (
-                _EXACT_MATCH_LOW_CARDINALITY
-                if column.cardinality == LOW_CARDINALITY
-                else _EXACT_MATCH_HIGH_CARDINALITY
+        try:
+            return self._ddl.index_defs(
+                column=column.name,
+                use_case=use_case,
+                dims=dims,
+                cardinality=column.cardinality,
+                name=lambda suffix: _index_name(column.name, suffix),
             )
-            return [template.format(name=_index_name(column.name), col=quoted)]
-
-        template = _INDEX_TEMPLATES.get(use_case)
-        if template is None:
-            # Returning [] here rendered a valid table with no index and no
-            # error, so a retired or misspelled use case looked like a column
-            # that simply wanted none.
-            known = sorted({*_INDEX_TEMPLATES, "exact_match", "key_search", "similarity_search"})
-            raise SchemaError(
-                f"column {column.name!r}: unknown index use case {use_case!r}. "
-                f"Valid: {', '.join(known)}"
-            )
-        return [template.format(name=_index_name(column.name), col=quoted)]
+        except SchemaError as exc:
+            raise SchemaError(f"column {column.name!r}: {exc}") from exc
 
     def _partition(self, columns: list[Column], config: _TableConfig) -> str | None:
         """PARTITION BY: a raw expression wins over the column plus granularity."""
@@ -732,13 +671,7 @@ class Renderer:
             return config.partition_by
         if not any(column.name == config.partition_column for column in columns):
             return None
-        func = _PARTITION_FUNCS.get(config.partition_granularity)
-        if func is None:
-            raise SchemaError(
-                f"unknown partition_granularity {config.partition_granularity!r}; "
-                f"valid: {', '.join(sorted(_PARTITION_FUNCS))}"
-            )
-        return f"{func}({config.partition_column})"
+        return self._ddl.table.partition_expr(config.partition_column, config.partition_granularity)
 
     def _sorting_key(self, columns: list[Column], table: str) -> list[str]:
         """The ORDER BY built from the columns' own ``order`` positions.

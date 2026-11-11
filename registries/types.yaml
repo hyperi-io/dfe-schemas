@@ -98,16 +98,19 @@ primitives:
 
 # Use case -> valid primitive constraints (1:M).
 # A use case names the QUESTION the user asks, never the ClickHouse index that
-# answers it -- the engine picks that, and may change it without a rename.
+# answers it. registries/ddl.yaml holds the answers, and every name here
+# must have one there.
 use_cases:
   dimension:
     label: Dimension
     description: I filter and group by this
     valid_primitives: [string, integer, boolean, enum, ip, uuid]
+  # Looking up one value among many: an id, an address, a hash. On an Array
+  # column the same index answers has(), hasAny() and hasAll().
   exact_match:
     label: Exact match
     description: I look up specific values
-    valid_primitives: [string, uuid]
+    valid_primitives: [string, uuid, integer, ip]
   range:
     label: Range
     description: I query ranges, between, time windows

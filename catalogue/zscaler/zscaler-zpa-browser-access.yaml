@@ -22,3 +22,8 @@ catalogue:
   framing: body
   variants:
     - filebeat.zscaler_zpa_browser_access.default
+  detect:
+    order: 740
+    markers:
+      - priority: 50
+        all: ["\"Exporter\"", "\"TimestampRequestReceiveStart\""]

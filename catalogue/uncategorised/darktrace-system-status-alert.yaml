@@ -22,3 +22,9 @@ catalogue:
   framing: body
   variants:
     - filebeat.darktrace_system_status_alert.default
+  detect:
+    order: 200
+    markers:
+      - priority: 45
+        any: ["\"priority_level\":\"", "\"child_id\":"]
+        note: "system-status JSON keys"

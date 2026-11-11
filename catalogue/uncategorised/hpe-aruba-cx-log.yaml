@@ -22,3 +22,12 @@ catalogue:
   framing: line
   variants:
     - filebeat.hpe_aruba_cx_log.default
+  detect:
+    order: 330
+    markers:
+      - priority: 50
+        any: ["Event|System "]
+        note: "Event|System, or Event|id|LOG_level|"
+      - priority: 50
+        all: ["Event|", "|LOG_"]
+        note: "Event| beside |LOG_"

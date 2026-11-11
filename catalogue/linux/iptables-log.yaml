@@ -22,3 +22,9 @@ catalogue:
   framing: line
   variants:
     - filebeat.iptables_log.default
+  detect:
+    order: 350
+    markers:
+      - priority: 50
+        all: ["IN=", " OUT=", " SRC="]
+        note: "netfilter LOG fields"

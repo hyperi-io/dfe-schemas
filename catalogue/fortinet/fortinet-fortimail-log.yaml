@@ -22,3 +22,9 @@ catalogue:
   framing: body
   variants:
     - filebeat.fortinet_fortimail_log.default
+  detect:
+    order: 280
+    markers:
+      - priority: 55
+        all: [",device_id=F", ",log_id="]
+        note: "comma-separated device_id=F.. and log_id="

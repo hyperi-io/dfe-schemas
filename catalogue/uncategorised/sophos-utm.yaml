@@ -22,3 +22,23 @@ catalogue:
   framing: line
   variants:
     - filebeat.sophos_utm.default
+  detect:
+    order: 810
+    markers:
+      - priority: 50
+        any:
+          - "2018:"
+          - "2019:"
+          - "2020:"
+          - "2021:"
+          - "2022:"
+          - "2023:"
+          - "2024:"
+          - "2025:"
+          - "2026:"
+          - "2027:"
+          - "2028:"
+          - "2029:"
+          - "2030:"
+        verify: utm_stamp
+        note: "YYYY:MM:DD-HH:MM:SS stamp"

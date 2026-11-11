@@ -38,3 +38,28 @@ catalogue:
     - filebeat.panw.traffic
     - filebeat.panw.tunnel_inspection
     - filebeat.panw.userid
+  detect:
+    order: 430
+    markers:
+      - priority: 50
+        any:
+          - ",TRAFFIC,"
+          - ",THREAT,"
+          - ",SYSTEM,"
+          - ",CONFIG,"
+          - ",GLOBALPROTECT,"
+          - ",HIPMATCH,"
+          - ",HIP-MATCH,"
+          - ",USERID,"
+          - ",DECRYPTION,"
+          - ",AUTHENTICATION,"
+          - ",AUTH,"
+          - ",CORRELATION,"
+          - ",GTP,"
+          - ",IPTAG,"
+          - ",SCTP,"
+          - ",START,"
+          - ",END,"
+          - ",AUDIT,"
+        verify: panos_date
+        note: "PAN-OS log type, confirmed by the date field that follows"

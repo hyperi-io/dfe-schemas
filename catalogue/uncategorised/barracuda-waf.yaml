@@ -22,3 +22,9 @@ catalogue:
   framing: body
   variants:
     - filebeat.barracuda_waf.default
+  detect:
+    order: 20
+    markers:
+      - priority: 50
+        any: [" TR ", " NF ", " SYS ", " WF ", " AUDIT "]
+        note: "unit name then a log-type token (TR, NF, SYS, WF, AUDIT)"

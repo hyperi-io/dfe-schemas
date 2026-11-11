@@ -22,3 +22,8 @@ catalogue:
   framing: body
   variants:
     - filebeat.zscaler_zpa_app_connector_status.default
+  detect:
+    order: 720
+    markers:
+      - priority: 50
+        all: ["\"ConnectorGroup\"", "\"CPUUtilization\"", "\"SessionType\""]

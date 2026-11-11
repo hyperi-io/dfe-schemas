@@ -126,6 +126,11 @@ Each file sits in the folder named for the quick-add tag the console offers it u
 | `framing` | Receiver intakes only: `line` or `body` |
 | `beats` | The Beats module and fileset carrying the same source, where one does |
 | `variants` | Every compiled transform for the source, with the body's `transform.variant` first |
+| `detect` | Elastic receiver entries only: the line markers dfe-transform-elastic's agentless mode names the source by |
+
+`detect.markers` is a list. Each marker carries a `priority` (0 to 255, highest wins) and one of `any` (a list of literals, any one on the line fires it), `all` (up to 8 literals that must all appear) or `cef` (a CEF or LEEF header `vendor` and `product`, compared without regard to case). An `any` marker can name a `verify` check that dfe-transform-elastic runs on the bytes around the hit. `note` says why the marker is there.
+
+A priority tie between two sources goes to the lower `detect.order`, which every entry with an `any` or `all` marker carries and no two entries share. A CEF marker loses a tie to any literal marker, and CEF ties go by source name. dfe-transform-elastic generates its marker table from these blocks in the dfe-schemas release it pins.
 
 The body's origin is the first of `fetcher`, `receiver` and `beats` the entry lists, so the body carries `fetcher` exactly when `fetcher` is an intake. The other intakes are derived at create time: `beats` matches `data_stream.dataset` equal to `<package>.<data_stream>` and `receiver` matches `_source` equal to the source name.
 

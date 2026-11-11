@@ -22,3 +22,8 @@ catalogue:
   framing: body
   variants:
     - filebeat.prisma_cloud_host.default
+  detect:
+    order: 770
+    markers:
+      - priority: 50
+        all: ["\"binaries\"", "\"startupBinaries\"", "\"cloudMetadata\""]

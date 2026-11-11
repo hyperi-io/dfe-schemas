@@ -22,3 +22,12 @@ catalogue:
   framing: body
   variants:
     - filebeat.tanium_threat_response.default
+  detect:
+    order: 710
+    markers:
+      - priority: 50
+        all: ["\"Alert Id\"", "\"Intel Id\"", "\"Intel Type\""]
+      - priority: 50
+        all: ["\"Event Id\"", "\"Event Name\"", "\"Computer IP\""]
+      - priority: 50
+        all: ["\"rowId\"", "\"revision\"", "\"userName\""]

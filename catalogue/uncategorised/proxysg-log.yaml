@@ -22,3 +22,12 @@ catalogue:
   framing: body
   variants:
     - filebeat.proxysg_log.default
+  detect:
+    order: 800
+    markers:
+      - priority: 35
+        any: [" TCP_"]
+        note: "access-log action, below squid whose slash form it shares"
+      - priority: 45
+        any: ["TUNNELED "]
+        note: "CONNECT rows with no action"

@@ -22,3 +22,25 @@ catalogue:
   framing: line
   variants:
     - filebeat.snort_log.default
+  detect:
+    order: 540
+    markers:
+      - priority: 40
+        any: ["[**] ["]
+        note: "alert_fast [**] [gid:sid:rev]"
+      - priority: 40
+        any: [" ,"]
+        verify: snort_csv
+        note: "alert_csv"
+      - priority: 40
+        all: ["{\"seconds\":", ",\"action\":\""]
+        note: "alert_json leading fields"
+      - priority: 40
+        all: ["\"pkt_gen\"", "\"pkt_num\""]
+        note: "alert_json key pair"
+      - priority: 40
+        any: [" snort: ["]
+        note: "syslog form with the rule triple"
+      - priority: 40
+        all: ["snort[", "]: ["]
+        note: "syslog form with a pid"

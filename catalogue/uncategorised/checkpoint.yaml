@@ -25,3 +25,9 @@ catalogue:
     fileset: firewall
   variants:
     - filebeat.checkpoint.default
+  detect:
+    order: 60
+    markers:
+      - priority: 55
+        any: [" CheckPoint ", "Fields@1.3.6.1.4.1.2620", "[flags:\""]
+        note: "Log Exporter app-name, or its SD id under Check Point's enterprise number"

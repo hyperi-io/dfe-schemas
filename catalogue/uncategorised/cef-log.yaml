@@ -22,3 +22,9 @@ catalogue:
   framing: line
   variants:
     - filebeat.cef_log.default
+  detect:
+    order: 50
+    markers:
+      - priority: 5
+        any: ["CEF:0|", "CEF:1|"]
+        note: "any CEF header no vendor entry claims"

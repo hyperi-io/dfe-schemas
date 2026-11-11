@@ -22,3 +22,13 @@ catalogue:
   framing: body
   variants:
     - filebeat.carbonblack_edr_log.default
+  detect:
+    order: 40
+    markers:
+      - priority: 50
+        any: ["\"cb_server\":\"", "\"cb_version\":\"", "{\"docs\":[{"]
+        note: "cb-event-forwarder keys"
+      - priority: 50
+        any: ["{\"event_timestamp\":"]
+        verify: cb_timestamp
+        note: "event-forwarder JSON opens with a 10-digit epoch and a fraction"

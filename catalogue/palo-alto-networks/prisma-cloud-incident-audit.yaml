@@ -22,3 +22,8 @@ catalogue:
   framing: body
   variants:
     - filebeat.prisma_cloud_incident_audit.default
+  detect:
+    order: 790
+    markers:
+      - priority: 50
+        all: ["\"acknowledged\"", "\"appID\"", "\"audits\"", "\"attackTechniques\""]

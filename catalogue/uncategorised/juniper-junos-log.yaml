@@ -22,3 +22,31 @@ catalogue:
   framing: body
   variants:
     - filebeat.juniper_junos_log.default
+  detect:
+    order: 370
+    markers:
+      - priority: 40
+        any:
+          - " UI_"
+          - " LOGIN_FAILED:"
+          - " LOGIN_PAM_"
+          - " LOGIN_INFORMATION"
+          - " SSHD_"
+          - " SNMP_TRAP_"
+          - " RPD_"
+          - " CHASSISD_"
+          - " SNMPD_"
+          - " NASD_"
+          - " PWC_"
+          - " SERVICED_"
+          - " FSAD_"
+          - " BOOTPD_"
+          - " TFTPD_"
+          - " RMOPD_"
+          - " MIB2D_"
+          - " ECCD_"
+          - " DCD_"
+          - " LIBJNX_"
+          - " LIBSERVICED_"
+          - " DFWD_"
+        note: "Junos message-id families"

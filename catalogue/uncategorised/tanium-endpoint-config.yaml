@@ -22,3 +22,8 @@ catalogue:
   framing: body
   variants:
     - filebeat.tanium_endpoint_config.default
+  detect:
+    order: 690
+    markers:
+      - priority: 50
+        all: ["\"config_item\"", "\"manifest\""]

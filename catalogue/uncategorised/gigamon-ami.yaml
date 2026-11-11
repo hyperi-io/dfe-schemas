@@ -22,3 +22,9 @@ catalogue:
   framing: body
   variants:
     - filebeat.gigamon_ami.default
+  detect:
+    order: 310
+    markers:
+      - priority: 50
+        any: ["\"vendor\":\"Gigamon\"", "\"vendor\": \"Gigamon\""]
+        note: "vendor key"

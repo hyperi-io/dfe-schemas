@@ -22,3 +22,9 @@ catalogue:
   framing: body
   variants:
     - filebeat.stormshield_log.default
+  detect:
+    order: 470
+    markers:
+      - priority: 50
+        any: ["id=firewall time=\""]
+        note: "id=firewall time="

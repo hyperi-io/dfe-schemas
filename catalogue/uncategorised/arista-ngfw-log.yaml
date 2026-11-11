@@ -22,3 +22,9 @@ catalogue:
   framing: line
   variants:
     - filebeat.arista_ngfw_log.default
+  detect:
+    order: 10
+    markers:
+      - priority: 60
+        any: ["uvm[0]:  {", "uvm[0]: {"]
+        note: "Untangle's uvm logger tag followed by a JSON object"

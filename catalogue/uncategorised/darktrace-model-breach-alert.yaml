@@ -22,3 +22,13 @@ catalogue:
   framing: body
   variants:
     - filebeat.darktrace_model_breach_alert.default
+  detect:
+    order: 190
+    markers:
+      - priority: 44
+        any:
+          - "{\"model\":{\"name\":\""
+          - "\"breachUrl\":\""
+          - "\"triggeredComponents\":["
+          - "{\"commentCount\":"
+        note: "model-breach JSON keys"

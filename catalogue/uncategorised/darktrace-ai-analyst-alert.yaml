@@ -22,3 +22,9 @@ catalogue:
   framing: body
   variants:
     - filebeat.darktrace_ai_analyst_alert.default
+  detect:
+    order: 180
+    markers:
+      - priority: 45
+        any: ["{\"summariser\":\"", "\"attackPhases\":[", "\"groupCategory\":\""]
+        note: "AI Analyst JSON keys"

@@ -22,3 +22,9 @@ catalogue:
   framing: body
   variants:
     - filebeat.netskope_events.default
+  detect:
+    order: 420
+    markers:
+      - priority: 50
+        any: ["\"netskope\":{\"events\":", "\"netskope\": {\"events\":"]
+        note: "templated events object"

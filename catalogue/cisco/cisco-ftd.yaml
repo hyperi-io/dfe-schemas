@@ -22,3 +22,25 @@ catalogue:
   framing: line
   variants:
     - filebeat.cisco_ftd.default
+  detect:
+    order: 90
+    markers:
+      - priority: 55
+        any:
+          - "%FTD-"
+          - "%NGIPS-"
+          - "%ASA-4-4300"
+          - "%ASA-6-4300"
+          - "%ASA-3-4300"
+          - "%ASA-1-4300"
+          - "%ASA-2-4300"
+          - "%ASA-5-4300"
+          - "%ASA-7-4300"
+          - "ftd["
+          - "mojo_server.pl: "
+          - "sfdccsm: "
+          - "ActionQueueScrape.pl: "
+          - "platformSettingEdit.cgi: "
+          - "ChangeReconciliation.cgi: "
+          - "lights_out_mgmt.cgi: "
+        note: "%FTD/%NGIPS ids, ASA ids 4300xx and the FMC process names"

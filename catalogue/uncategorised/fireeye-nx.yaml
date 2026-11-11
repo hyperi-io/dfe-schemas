@@ -22,3 +22,9 @@ catalogue:
   framing: body
   variants:
     - filebeat.fireeye_nx.default
+  detect:
+    order: 230
+    markers:
+      - priority: 60
+        any: ["{\"rawmsg\":\""]
+        note: "rawmsg envelope"

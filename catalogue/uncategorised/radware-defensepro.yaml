@@ -18,3 +18,9 @@ catalogue:
   framing: body
   variants:
     - filebeat.radware_defensepro.default
+  detect:
+    order: 850
+    markers:
+      - priority: 55
+        any: ["DefensePro: ", "%DefensePro "]
+        note: "DefensePro tag in both header forms"

@@ -22,3 +22,9 @@ catalogue:
   framing: body
   variants:
     - filebeat.netskope_alerts.default
+  detect:
+    order: 410
+    markers:
+      - priority: 50
+        any: ["\"netskope\":{\"alerts\":", "\"netskope\": {\"alerts\":"]
+        note: "templated alerts object"

@@ -22,3 +22,8 @@ catalogue:
   framing: body
   variants:
     - filebeat.tanium_discover.default
+  detect:
+    order: 680
+    markers:
+      - priority: 50
+        all: ["\"MacAddress\"", "\"TaniumComputerId\"", "\"MacOrganization\""]

@@ -22,3 +22,8 @@ catalogue:
   framing: body
   variants:
     - filebeat.prisma_cloud_host_profile.default
+  detect:
+    order: 780
+    markers:
+      - priority: 50
+        all: ["\"startupProcess\"", "\"sshEvents\"", "\"hash\""]

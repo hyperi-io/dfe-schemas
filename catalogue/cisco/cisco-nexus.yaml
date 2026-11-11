@@ -22,3 +22,33 @@ catalogue:
   framing: line
   variants:
     - filebeat.cisco_nexus.default
+  detect:
+    order: 130
+    markers:
+      - priority: 53
+        any:
+          - "%ETHPORT-"
+          - "%L2FM-"
+          - "%VPC-"
+          - "%SYSMGR-"
+          - "%VSHD-"
+          - "%HMM-"
+          - "SYSTEM_MSG:"
+          - "AAA_ACCOUNTING_MESSAGE"
+        note: "NX-OS-only facilities"
+      - priority: 53
+        any:
+          - " Jan "
+          - " Feb "
+          - " Mar "
+          - " Apr "
+          - " May "
+          - " Jun "
+          - " Jul "
+          - " Aug "
+          - " Sep "
+          - " Oct "
+          - " Nov "
+          - " Dec "
+        verify: nexus_stamp
+        note: "year-first stamp, which IOS does not write"

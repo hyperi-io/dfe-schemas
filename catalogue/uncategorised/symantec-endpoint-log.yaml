@@ -22,3 +22,28 @@ catalogue:
   framing: line
   variants:
     - filebeat.symantec_endpoint_log.default
+  detect:
+    order: 830
+    markers:
+      - priority: 55
+        any: ["SymantecServer"]
+        note: "SymantecServer tag"
+      - priority: 40
+        any:
+          - ",Event Description: "
+          - ",Local Host IP: "
+          - ",Computer name: "
+          - ",Local Host: "
+        note: "client log columns"
+      - priority: 40
+        all: ["Site: ", ",Server"]
+        note: "server log columns"
+      - priority: 40
+        all: ["Scan ID: ", ",Begin: "]
+        note: "scan log columns"
+      - priority: 40
+        any: [",[AC"]
+        note: "behaviour rows"
+      - priority: 40
+        any: [",Category: "]
+        note: "system and policy rows"

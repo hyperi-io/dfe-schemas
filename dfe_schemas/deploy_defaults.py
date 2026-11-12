@@ -29,7 +29,7 @@ from dfe_schemas.clickhouse import Platform, platform_json_settings
 
 # Applied to the DEFAULT settings profile -- the base every identity
 # inherits -- because async_insert is user/query scope with no table-level
-# form: one seam covers every table any writer touches. Identities with
+# form: one setting covers every table any writer touches. Identities with
 # tuned profiles (the loader's minted governance profile) override on top.
 # wait=1 keeps insert errors visible to the client; the flush cadence stays
 # on ClickHouse's adaptive defaults (24.2+). INSERT..SELECT is always

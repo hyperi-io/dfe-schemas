@@ -36,7 +36,7 @@ query it in a database that deployment does not have.
 | `optional` | The apply may skip this object without failing the pass. |
 | `depends_on` | Ids declared EARLIER in the list. |
 
-`depends_on` is checked against what precedes it, not merely against what
+`depends_on` is checked against what precedes it, not against everything that
 exists. A view over a table declared after it is an apply that fails on a fresh
 cluster and succeeds on every re-run afterwards -- it only breaks for whoever
 stands one up.

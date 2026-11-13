@@ -221,13 +221,10 @@ platforms. Coverage is gated at 80% and measures 94.64%.
 applies the whole manifest to it and checks the usage numbers. Without docker
 those tests skip, and in CI they fail instead.
 
-Two ways green lies. `make test` fails on a dirty repo root: the tokenizer guard
-rglobs `schemas_root()`, which in a checkout IS the repo root, and excludes
-nothing, so a `git worktree` under `.worktrees/` or a nested non-editable venv
-gets read as this repo's content, and the count of parametrised cases moves with
-it. This checkout had four worktrees under `.worktrees/`, collected 185 cases and
-failed 8 of them against `timeseries.yaml` files belonging to other branches. CI
-is green because a fresh runner has no worktree and no non-editable install.
+Two ways green lies. `make test` scans `schemas_root()`, which in a checkout is
+the repo root with nothing excluded, so a `git worktree` under `.worktrees/` or a
+nested venv is read as this repo's content and the tokenizer cases change with it.
+Run it from a clean root. CI is clean because a fresh runner has neither.
 
 And `make validate` is the only step needing
 another repo, which is why it runs from `validate-schemas.yml` and not `ci.yml`

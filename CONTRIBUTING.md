@@ -237,11 +237,11 @@ another repo, which is why it runs from `validate-schemas.yml` and not `ci.yml`
 
 | Don't | Do | Why |
 |-------|----|-----|
-| Trust `make render` to mean an index string is valid | Check `tests/test_tokenizers.py` | The renderer dropped a declared `index` and rendered the `use_case` template instead, so two header strings kept ClickHouse's retired `default` tokenizer. Engine v1.20.20 honoured the string and every new source failed with `Unknown tokenizer` (`8934979`) |
+| Trust `make render` to mean an index string is valid | Run `tests/test_tokenizers.py` | It checks every declared index tokenizer against the ones ClickHouse still accepts, which the renderer does not (`8934979`) |
 | Edit a published version entry | Add a new entry, as a complete snapshot | Consumers pin versions independently, so an in-place edit changes what an already-pinned consumer resolves. `generate_meta_schemas.py` refuses it |
 | Merge a table and expect a deployment to get it | Release the wheel, raise the floor in dfe-engine, relock | Nothing reads this repo directly. The floor bump is the only step that puts an object in front of a deployment |
 | Wrap an `ORDER BY` key in `Nullable` | Leave it bare, or mark it `not_null` | `_sorting_key` refuses a Nullable key rather than dropping it. JSON inside Nullable is a different case: ClickHouse 24.8 refused it, code 43 (`2f28227`), but 26.3.32.14 creates and fills a `Nullable(JSON)` column |
-| Point `PY` at a bare `python` | Leave it at `uv run python` | A bare `python` is absent on a stock Linux box, so `make validate` died before validating anything (`6c79570`) |
+| Point `PY` at a bare `python` | Leave it at `uv run python`, or name an interpreter with dfe-engine installed | A bare `python` is absent on a stock Linux box (`6c79570`) |
 
 ### Where this sits
 

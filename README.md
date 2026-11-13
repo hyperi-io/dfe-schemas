@@ -62,7 +62,7 @@ Changing an existing table is a new version entry, never an edit. Each version i
 - [docs/clickhouse-platform.md](docs/clickhouse-platform.md): how the platform is probed and what differs on Cloud.
 - [docs/architecture.md](docs/architecture.md): why it is shaped this way, and the invariants.
 
-The suite's published docs are at https://dfe.docs.hyperi.io.
+The suite's published docs are at <https://dfe.docs.hyperi.io>.
 
 ## Help and contributing
 

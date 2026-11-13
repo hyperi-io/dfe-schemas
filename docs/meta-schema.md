@@ -418,7 +418,7 @@ Invalid combinations are rejected at validation time (e.g. `word_search` on an `
 
 ### Generated ClickHouse Indexes
 
-What a use case renders today, on ClickHouse 26.3. These are the answers, not
+What a use case renders today, on the ClickHouse the stack pins. These are the answers, not
 part of the vocabulary -- read them to size the cost, not to name a column. They
 live as data in `registries/ddl.yaml`, the DDL catalogue, read through
 `dfe_schemas.ddl_catalogue`. A changed answer is a catalogue edit and a
@@ -434,7 +434,7 @@ dfe-schemas release, not a code change.
 | `key_search` | two indexes, `text(tokenizer=array)` over `mapKeys(col)` and `mapValues(col)` | 1 | A text index refuses a `Map` column itself, so the keys and the values are indexed apart |
 | `similarity_search(<dims>)` | `vector_similarity('hnsw', 'cosineDistance', <dims>)` | 100000000 | One index per part: at granularity 1 each granule gets its own graph and the top-k comes back wrong. `hnsw` is the only method 26.3 implements |
 
-The catalogue carries no pre-25.10 variant. DFE ships ClickHouse 26.3, where
+The catalogue carries no pre-25.10 variant. DFE ships a ClickHouse where
 `tokenbf_v1` and `ngrambf_v1` are deprecated in favour of the text index.
 
 ### Which use case for which question
@@ -847,7 +847,7 @@ Both inputs are pinned by commit. `--ecs-version` has no default, so the version
 env DFE_ECS_SPEC=<ecs checkout>/generated/ecs/ecs_flat.yml \
     DFE_ELASTIC_SOURCES=<clone root> \
   cargo run -p dfe-schemagen --release -- \
-    --out <tree> --date <YYYY-MM-DD> --ecs-version 9.5.0
+    --out <tree> --date <YYYY-MM-DD> --ecs-version <ecs version>
 ```
 
 `--date` is passed rather than read from the clock, so the same inputs render the same bytes on any day.
@@ -960,7 +960,7 @@ floor in the consumer's `pyproject.toml` and relock:
 
 ```bash
 # In dfe-engine (or any consumer):
-# bump the dfe-schemas floor in pyproject.toml, e.g. "dfe-schemas>=0.2.9"
+# bump the dfe-schemas floor in pyproject.toml to the new release
 uv lock
 git add pyproject.toml uv.lock
 git commit -m "fix: bump dfe-schemas pin"

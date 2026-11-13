@@ -3,7 +3,7 @@
 Defines the core ClickHouse objects and Kafka bootstrap topics a DFE deployment creates.
 
 [![PyPI](https://img.shields.io/pypi/v/dfe-schemas?logo=pypi)](https://pypi.org/project/dfe-schemas/)
-[![Python Version](https://img.shields.io/badge/python-3.14%2B-blue)](https://www.python.org/)
+[![Python Version](https://img.shields.io/python/required-version-toml?tomlFilePath=https://raw.githubusercontent.com/hyperi-io/dfe-schemas/main/pyproject.toml)](pyproject.toml)
 [![License](https://img.shields.io/badge/license-BUSL--1.1-blue)](LICENSE)
 
 ## What it does

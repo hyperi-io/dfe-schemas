@@ -165,7 +165,7 @@ something that looks like success.
 - A role is created before its quota, because ClickHouse rejects a quota
   naming a role that does not exist yet, and that only shows up against a
   cluster where the role was not already present.
-- Database, table, column, index and TTL column names go through
+- In a CREATE TABLE the database, table, column and index names go through
   `quote_ident`, which refuses a backtick, quote, parenthesis, semicolon,
   backslash or whitespace. Everything shipped here is committed, so this catches
   an edit rather than an attack, but such a name would end the statement early

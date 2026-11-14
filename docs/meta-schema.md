@@ -320,9 +320,10 @@ decided, so a column with nothing measured says so, and gets the safe way to be
 wrong: no dictionary, and an index whose cost does not grow with the column.
 
 Measure it rather than guess it. An Elasticsearch index template does not carry
-cardinality, so dfe-engine's template importer and `dfe-schemagen` leave an
-imported column `unknown`. The one exception is a `constant_keyword`, which the
-importer reads as `low` because it holds one value.
+cardinality, so dfe-engine's template importer leaves an imported column
+`unknown`, and so is every column of `meta/elastic/ecs.yaml`. The importer's
+one exception is a `constant_keyword`, which it reads as `low` because it holds
+one value.
 
 `low` needs a type ClickHouse can dictionary-encode, so it is refused (code 43)
 on any primitive but `string`, `text`, `integer`, `float`, `date` and `enum`. A
@@ -374,8 +375,9 @@ The `default` field produces different DDL clauses depending on attributes:
 
 Each primitive has a default nullability. Override with `nullable` or `not_null`:
 
-- **Nullable by default:** `string`, `text`, `integer`, `float`, `datetime`, `date`, `ip`, `uuid`, `json`, `geo_point`
-- **NOT null by default:** `timestamp`, `boolean`, `enum`, `map`, `vector`
+`string`, `text`, `integer`, `float`, `datetime`, `date`, `ip`, `uuid`, `json`
+and `geo_point` are Nullable by default. `timestamp`, `boolean`, `enum`, `map`
+and `vector` are NOT NULL by default.
 
 A `Nullable(T)` column stores a separate null map beside its data, which costs
 storage and read speed. A Nullable sort key needs `allow_nullable_key`, so the
@@ -469,18 +471,21 @@ order. A lookup on one address in unsorted traffic needs `exact_match`.
 ## DFE Expressions
 
 The `expr` field carries directives, emitted as ClickHouse column comments. The
-Rust loader reads them back from `system.columns` at runtime, but of the five
-distinct directives below it only acts on three -- `@source`, `@renamed`,
-`@computed`. `@generated` and `@config` are dropped as unknown directives
-(`DIRECTIVE_NAMES` in dfe-loader's `src/column_meta/mod.rs`).
+Rust loader reads them back from `system.columns` at runtime and parses the six
+names in `DIRECTIVE_NAMES` (dfe-loader `src/column_meta/mod.rs`): `@skip`,
+`@default`, `@source`, `@renamed`, `@computed` and `@coerce`. `@generated` and
+`@config` are not among them, so the loader drops both as unknown directives.
 
 | Directive | Purpose | Example | Loader-parsed |
 |-----------|---------|---------|----------------|
 | `@source: field` | Copy from source data | `@source: timestamp \| now()` | Yes |
 | `@source: first(a/b/c)` | First non-null from list | `@source: first(user_id/uid/id)` | Yes |
-| `@generated: expr` | Descriptive: ClickHouse generates via DEFAULT | `@generated: now64(3)` | No -- see below |
 | `@renamed: field` | Zero-copy field rename | `@renamed: logoriginal` | Yes |
 | `@computed: expr` | Derived/enriched value | `@computed: geoip(ip).country_code` | Yes |
+| `@default: value` | Substitute when the column is null or absent | `@default: unknown` | Yes |
+| `@skip` | Leave the column out of the insert | `@skip` | Yes |
+| `@coerce: category` | Override the type category for coercion | `@coerce: IPv4` | Parsed, then ignored with a warning: no encoder reads it |
+| `@generated: expr` | Descriptive: ClickHouse generates via DEFAULT | `@generated: now64(3)` | No -- see below |
 | `@config: path` | Descriptive: mapping is configurable | `@config: routing.org_id_field` | No -- see below |
 
 `@generated` describes a DEFAULT/MATERIALIZED/ALIAS clause that already lives
@@ -692,14 +697,14 @@ source redeploy. Any other setting the table carries is left alone.
 | `db` | `"{db}"` | Database placeholder (replaced at deploy time) |
 | `engine` | `"MergeTree"` | Engine variant, with its arguments if it takes any (`ReplacingMergeTree(ver)`). The renderer adds the `Replicated` prefix, never this field. |
 | `ttl_days` | `None` | Data retention in days. `None` is undeclared and adds no TTL. `0` declares none. |
-| `ttl_columns` | `["_timestamp_load"]` | Columns used in TTL expressions. The partition column alone, so `ttl_only_drop_parts` can drop whole parts. `ttl_days` over an empty list, or over a column the table lacks, is refused. |
-| `partition_column` | `"_timestamp_load"` | Column `PARTITION BY` is built from. No `PARTITION BY` when the table lacks it. |
-| `partition_granularity` | `"day"` | `day` gives `toYYYYMMDD(column)`, `month` gives `toYYYYMM(column)`. |
+| `ttl_columns` | `partition_column` from the `table` block of `registries/ddl.yaml`, as a one-item list | Columns used in TTL expressions. The partition column alone, so `ttl_only_drop_parts` can drop whole parts. `ttl_days` over an empty list, or over a column the table lacks, is refused. |
+| `partition_column` | The `table` block of `registries/ddl.yaml` | Column `PARTITION BY` is built from. No `PARTITION BY` when the table lacks it. |
+| `partition_granularity` | The `table` block of `registries/ddl.yaml` | `day` gives `toYYYYMMDD(column)`, `month` gives `toYYYYMM(column)`. |
 | `partition_by` | `None` | A raw `PARTITION BY` expression, emitted verbatim. Wins over `partition_column` and `partition_granularity`. |
 | `order_by` | `None` | A raw `ORDER BY` expression. Wins over the columns' own `order` positions, and sets no `PRIMARY KEY` unless `primary_key` is also set. |
 | `primary_key` | `None` | A raw `PRIMARY KEY` expression. Used only with `order_by`. |
 | `extra_indexes` | `[]` | Raw `INDEX` definitions appended to the column list. |
-| `index_granularity` | `2048` | ClickHouse granule size |
+| `index_granularity` | The `table` block of `registries/ddl.yaml` | ClickHouse granule size |
 | `ttl_only_drop_parts` | `True` | Emit the `ttl_only_drop_parts` setting on a table with a TTL. See Table SETTINGS. |
 | `sample_by` | `None` | Optional `SAMPLE BY` expression |
 | `projection_order_by` | `None` | Column for a `SELECT * ORDER BY` projection named `<column>_optimized`. Off unless set: on a JSON-heavy table the projection copies every column and doubles the substream metadata ClickHouse holds in memory. |
@@ -707,10 +712,6 @@ source redeploy. Any other setting the table carries is left alone.
 | `profile_name` | `None` | Profile name for the table comment and header. |
 | `profile_version` | `None` | Profile version for the table comment |
 | `description` | `None` | A line in the header comment |
-
-The `ttl_columns`, `partition_column`, `partition_granularity` and
-`index_granularity` defaults above are read from the `table` block of
-`registries/ddl.yaml`.
 
 The manifest tables under `tables/` are rendered by `dfe_schemas/render.py`, whose
 `table:` block defaults differ: `ttl_columns` is empty and `projection_order_by` is
@@ -816,8 +817,6 @@ The deployed ClickHouse table is always authoritative at runtime.
 
 ## Using Meta Schemas in the dfe-schemas Repo
 
-[Where Meta Schemas Live](#where-meta-schemas-live) has the directory layout.
-
 ### Generating a Meta Schema from Live Rows
 
 A provider whose export is wider than its documentation (runZero's is) gets
@@ -831,29 +830,9 @@ docstring. The provider's arguments live in an `@` file beside it
 (`scripts/meta-runzero.args`), so a regeneration is one command and
 `--check` proves the checked-in files still match the dump.
 
-### Generating the Elastic ECS Meta Schema
+### The Elastic ECS Meta Schema
 
-`meta/elastic/ecs.yaml` is the ECS vocabulary shared by every Beat and the Elastic Agent, generated rather than written, because it is too large to maintain by hand. The generator is the `dfe-schemagen` crate in `dfe-transform-elastic-dev`, which takes column types from the ECS spec and the set of referenced names from an `elastic/integrations` clone. A field's column falls out of its whole spec entry, not its `type` alone: `normalize: [array]` makes an array column, `object_type` a searchable map, and `index: false` drops the index Elasticsearch itself never uses.
-
-The file carries no `use_case`: a meta schema is the full column set, and the index on a column is chosen by each derived schema that selects it. Every column keeps its `Elasticsearch mapping type` comment, which is the evidence those index choices rest on.
-
-Both inputs are pinned by commit. `--ecs-version` has no default, so the version on the output is always one somebody chose:
-
-| Input | Pin |
-|-------|-----|
-| `elastic/ecs` | v9.5.0, released 2026-08-04, commit `401807e0547301525acd28c4fb667203fec66d59` |
-| `elastic/integrations` | commit `2c934eb5223bdfcf0ea0db9e3230154933352bda` |
-
-```bash
-env DFE_ECS_SPEC=<ecs checkout>/generated/ecs/ecs_flat.yml \
-    DFE_ELASTIC_SOURCES=<clone root> \
-  cargo run -p dfe-schemagen --release -- \
-    --out <tree> --date <YYYY-MM-DD> --ecs-version <ecs version>
-```
-
-`--date` is passed rather than read from the clock, so the same inputs render the same bytes on any day.
-
-Every column declares `cardinality: unknown`. An Elasticsearch index template carries no cardinality and the generator cannot measure one, so it says so instead of guessing: `exact_match` on an undeclared column renders a bounded `bloom_filter` rather than a dictionary the column may never earn.
+`meta/elastic/ecs.yaml` is the ECS vocabulary shared by every Beat and the Elastic Agent, generated rather than written by hand, and its `summary` names the ECS version it carries. It declares no `use_case`, because the derived schema that selects a column picks its index. Every column is `cardinality: unknown`, so `exact_match` on one renders a bounded `bloom_filter`.
 
 ### Store-Snapshot Stores
 

@@ -430,10 +430,10 @@ def _wrap(base_type: str, attribute: tuple[str, ...], *, nullable: bool, cardina
         nullable = False
     ch_type = f"Nullable({base_type})" if nullable else base_type
     if cardinality == LOW_CARDINALITY:
-        if not _DICTIONARY_ENCODABLE.match(base_type):
+        if not _LOW_CARDINALITY_TYPES.match(base_type):
             raise SchemaError(
-                f"{base_type} cannot be declared 'cardinality: low': ClickHouse "
-                f"dictionary-encodes numbers, strings, Date and DateTime only (code 43)"
+                f"{base_type} cannot be declared 'cardinality: low': ClickHouse refuses "
+                f"LowCardinality over anything but String, FixedString and UUID (code 455)"
             )
         ch_type = f"LowCardinality({ch_type})"
     return ch_type
@@ -451,13 +451,10 @@ def _with_max_dynamic_paths(ch_type: str, max_dynamic_paths: int | None) -> str:
     return f"JSON(max_dynamic_paths={max_dynamic_paths})"
 
 
-# What ClickHouse will put inside LowCardinality. The registry's own rule is
-# per PRIMITIVE, so `type: string` plus `ch_override: Array(String)` passes it
-# and then fails the CREATE -- this is the check on the type that is emitted.
-_DICTIONARY_ENCODABLE = re.compile(
-    r"^(String|FixedString\(\d+\)|Date|Date32|DateTime(\(.*\))?|"
-    r"U?Int(8|16|32|64|128|256)|Float(32|64)|Decimal.*|Enum.*)$"
-)
+# What ClickHouse puts inside LowCardinality without allow_suspicious_low_cardinality_types,
+# which DFE never sets. The registry's own rule is per PRIMITIVE, so `type: string`
+# plus `ch_override: Array(String)` passes it -- this checks the type that is emitted.
+_LOW_CARDINALITY_TYPES = re.compile(r"^(String|FixedString\(\d+\)|UUID)$")
 
 # Identifier charset for anything spliced into a DDL position. Everything the
 # package ships is committed here, so this catches an edit rather than an

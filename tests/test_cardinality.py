@@ -140,9 +140,62 @@ def test_only_low_wraps_the_column_in_lowcardinality(registry, declared, expecte
     assert resolved.ch_type == expected
 
 
-def test_low_wraps_an_exact_clickhouse_type_too(registry):
-    column = Column(name="c", ch_override="String", cardinality="low")
-    assert registry.resolve(column).ch_type == "LowCardinality(String)"
+# What `cardinality: low` renders on each primitive, None where it is refused. A default
+# ClickHouse 26.3 creates LowCardinality over String, FixedString and UUID, and refuses
+# Int64, Float64, Date, Enum8 and IPv6 with code 455.
+_LOW_BY_PRIMITIVE = {
+    "boolean": None,
+    "date": None,
+    "datetime": None,
+    "enum": None,
+    "float": None,
+    "geo_point": None,
+    "integer": None,
+    "ip": None,
+    "json": None,
+    "map": None,
+    "string": "LowCardinality(Nullable(String))",
+    "text": "LowCardinality(Nullable(String))",
+    "timestamp": None,
+    "uuid": "LowCardinality(Nullable(UUID))",
+    "vector": None,
+}
+
+
+def test_the_low_table_names_every_primitive(registry):
+    assert set(_LOW_BY_PRIMITIVE) == set(registry.primitives)
+
+
+_LOW_CASES = [
+    *(
+        pytest.param({"primitive": primitive}, expected, id=primitive)
+        for primitive, expected in sorted(_LOW_BY_PRIMITIVE.items())
+    ),
+    pytest.param({"ch_override": "String"}, "LowCardinality(String)", id="String"),
+    pytest.param(
+        {"ch_override": "FixedString(16)"}, "LowCardinality(FixedString(16))", id="FixedString"
+    ),
+    pytest.param({"ch_override": "UUID"}, "LowCardinality(UUID)", id="UUID"),
+    pytest.param({"ch_override": "Int64"}, None, id="Int64"),
+    pytest.param({"ch_override": "DateTime64(3,'UTC')"}, None, id="DateTime64"),
+    pytest.param({"ch_override": "Enum8('a' = 1)"}, None, id="Enum8"),
+    pytest.param({"ch_override": "Array(String)"}, None, id="Array"),
+]
+
+
+@pytest.mark.parametrize(("declared", "expected"), _LOW_CASES)
+def test_low_renders_only_where_clickhouse_takes_it(registry, declared, expected):
+    column = Column(name="c", cardinality="low", **declared)
+    if expected is None:
+        with pytest.raises(SchemaError, match="cannot be declared 'cardinality: low'"):
+            registry.resolve(column)
+    else:
+        assert registry.resolve(column).ch_type == expected
+
+
+def test_every_primitive_the_registry_offers_the_attribute_on_renders(registry):
+    offered = registry.attributes["lowcardinality"]["valid_primitives"]
+    assert [primitive for primitive in offered if _LOW_BY_PRIMITIVE[primitive] is None] == []
 
 
 def test_nullable_stays_inside_the_lowcardinality_wrapper(registry):

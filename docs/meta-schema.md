@@ -337,11 +337,14 @@ Attributes modify how the type is stored. Specified as a list in YAML.
 
 | Attribute | What It Does | Valid Primitives |
 |-----------|-------------|-----------------|
-| `lowcardinality` | Retired -- the old spelling of `cardinality: low` | `string`, `text`, `integer`, `float`, `date`, `ip` |
+| `lowcardinality` | Retired -- the old spelling of `cardinality: low` | `string`, `text` |
 | `nullable` | Force NULL allowed (overrides primitive default) | all |
 | `not_null` | Force NOT NULL (overrides primitive default) | all |
 | `materialized` | Column computed on INSERT, not stored in source data | all |
 | `alias` | Virtual column computed at query time | all |
+
+The list is `attributes.<name>.valid_primitives` in `registries/types.yaml`, which
+dfe-engine validates a column against.
 
 ### How Attributes Interact with `default`
 

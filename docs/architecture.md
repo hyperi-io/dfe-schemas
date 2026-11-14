@@ -49,8 +49,7 @@ applies: package data when one exists, the repository root otherwise. It does no
 read `DFE_ENGINE_SCHEMAS_DIR`. dfe-engine reads that variable and hands the tree it names
 to this package as `root=`, the way it calls `load_manifest`.
 
-This is the fact most readers get wrong, because it used to be a git submodule
-and the later sections of `docs/meta-schema.md` still describe one. Code that
+Code that
 needs a definition file goes through `schemas_root()` rather than a relative
 path, or it works in a checkout and fails in a wheel.
 

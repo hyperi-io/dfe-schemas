@@ -1,10 +1,10 @@
 # The Kafka bootstrap topic set, the naming rule and the derivation rule
 #
-# One definition, because four things used to name topics: the Strimzi
-# KafkaTopic CRs, the single-tier broker-CLI Job, compose's kafka-init, and the
-# engine's own topic CLI. Where two of them disagreed, one tier silently
-# shipped without a topic its apps were configured to write to, and the failure
-# surfaced as produce errors at the worst possible moment -- a DLQ write IS the
+# One definition for everything that names topics: the Strimzi KafkaTopic
+# CRs, the single-tier broker-CLI Job, compose's kafka-init, and the engine's
+# own topic CLI. Where two of them disagree, a tier silently ships without a
+# topic its apps are configured to write to, and the failure surfaces as
+# produce errors at the worst possible moment -- a DLQ write IS the
 # failure path.
 #
 # The BOOTSTRAP set below is what a deploy guarantees exists before the apps

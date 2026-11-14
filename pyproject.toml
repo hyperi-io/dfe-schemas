@@ -4,9 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "dfe-schemas"
-# Seed for the first hyperi-ci release only: with no v* tag in the repo,
-# predict-version ships this value verbatim, then CI stamps every release after
-# it. 0.2.0 because PyPI already holds 0.1.0 and refuses a re-upload.
+# CI stamps the version at release.
 version = "0.2.0"
 description = "Defines the core ClickHouse objects and Kafka bootstrap topics a DFE deployment creates."
 # The PyPI page. README.md stays the GitHub front page.
@@ -19,9 +17,7 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent",
 ]
-# ruamel.yaml, not PyYAML, and the same floor dfe-engine carries: YAML 1.1
-# resolves `on`, `off`, `yes` and `no` as booleans and 1.2 does not, so two
-# parsers over one schema tree is two answers.
+# ruamel.yaml (YAML 1.2), the same parser and floor as dfe-engine.
 dependencies = ["ruamel.yaml>=0.19.1"]
 
 [project.urls]
@@ -53,8 +49,7 @@ include = [
 
 [tool.hatch.build.targets.wheel]
 packages = ["dfe_schemas"]
-# The schema trees stay at the repo root so this checkout reads as itself; the
-# wheel carries the same trees as package data, which is how consumers get them.
+# docs/architecture.md, "A package, not a submodule".
 [tool.hatch.build.targets.wheel.force-include]
 "manifest.yaml" = "dfe_schemas/data/manifest.yaml"
 "tables" = "dfe_schemas/data/tables"
@@ -73,8 +68,7 @@ packages = ["dfe_schemas"]
 "topics" = "dfe_schemas/data/topics"
 
 [tool.uv]
-# Supply-chain cooldown (standards/universal/ci.md): never resolve a package
-# version published in the last 7 days.
+# Supply-chain cooldown.
 exclude-newer = "7 days"
 # scalo is same-org, so it adopts a release on its first day.
 exclude-newer-package = { scalo = false }
@@ -104,8 +98,7 @@ source = ["dfe_schemas"]
 [tool.ruff]
 line-length = 100
 target-version = "py314"
-# Schema content, not code -- and the wheel build copies these trees verbatim.
-# .worktrees holds other checkouts of this repo, not code in this one.
+# Schema trees and other checkouts, not code.
 extend-exclude = [
     ".worktrees",
     "additional",

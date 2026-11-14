@@ -4,14 +4,9 @@
 #
 # License:   BUSL-1.1
 # Copyright: (c) 2026 HYPERI PTY LIMITED
-#
-# Override defaults with HYPERCI_* env vars.
 
 license: BUSL-1.1
 
-# Declared, never inferred (standards/universal/repo-classification.md).
-# Category 2 (product): part of the DFE suite, BUSL-1.1, already public, and
-# the wheel is on PyPI so other orgs deploying the suite can consume it.
 classification: product
 
 test:
@@ -25,6 +20,4 @@ test:
 
 release:
   enabled: true
-  # Wheel + sdist to PyPI. No container and no chart here -- this repo ships
-  # schema content and the ClickHouse DDL mechanics that render it, nothing
-  # that runs. `destinations` is left at its default (python: pypi).
+  # Wheel and sdist to PyPI only.

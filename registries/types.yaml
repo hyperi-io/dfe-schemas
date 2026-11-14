@@ -138,8 +138,8 @@ use_cases:
     parameters: [dims]
 
 # How many distinct values a column holds, measured from real rows rather than
-# guessed from the source type. ONE declaration decides two things that used to
-# be set apart and never kept in agreement: `low` wraps the column in
+# guessed from the source type. ONE declaration decides two things that must
+# agree: `low` wraps the column in
 # LowCardinality, and `low` is what lets exact_match hold every value in a
 # set(0) instead of falling back to a bloom filter. `unknown` is the default and
 # the honest answer where nothing has been measured -- no LowCardinality, and

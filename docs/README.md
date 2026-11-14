@@ -8,3 +8,5 @@ How the DFE schemas are defined, applied and kept compatible across ClickHouse p
 - [The apply manifest (`manifest.yaml`)](manifest.md)
 - [Meta Schema System](meta-schema.md)
 - [Table definitions (`tables/`)](tables.md)
+- [The source catalogue (`catalogue/`)](catalogue.md)
+- [Registries (`registries/`)](registries.md)

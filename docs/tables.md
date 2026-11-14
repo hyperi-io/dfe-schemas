@@ -17,7 +17,7 @@ senses no topology, so the same table ended up plain on one replica and
 Replicated on the others, and a row written to the plain copy never
 replicated.
 
-## File shape
+## File format
 
 Same version tree as the rest of the repo -- `current` names the default
 version, each version entry is a complete snapshot. A version entry carries

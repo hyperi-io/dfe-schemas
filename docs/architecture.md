@@ -9,7 +9,7 @@ would create meant reading all five, and the definitions themselves were spread
 between engine code and charts. Two components could each be right and still
 disagree.
 
-So the shape is one list and one applier. `manifest.yaml` names every object a
+So there is one list and one applier. `manifest.yaml` names every object a
 deployment creates, in the order it creates them, and dfe-engine is the only
 thing that applies it. Adding a table is an entry in that file plus a definition
 -- never an engine release, never a Job, never an init container.
@@ -66,7 +66,7 @@ not, so two parsers over one schema tree gives two answers.
 |--------|--------------|
 | `__init__.py` | `schemas_root()` and `manifest_path()` -- the only path resolution |
 | `manifest.py` | Reads the manifest and refuses a bad one |
-| `loader.py` | Version trees, the two column shapes, composition, the type registry, `quote_ident` |
+| `loader.py` | Version trees, the two ways to declare a column, composition, the type registry, `quote_ident` |
 | `compat.py` | The compatibility profiles, each version handed out as a scalo.rules rule set |
 | `clickhouse.py` | The platform probe, the Keeper refusal and the one `ENGINE` form |
 | `variants.py` | Picks one platform's block out of `sql/platform.sql`, knowing nothing of ClickHouse |
@@ -76,14 +76,14 @@ not, so two parsers over one schema tree gives two answers.
 
 ## Definitions
 
-### Two column shapes
+### Two ways to declare a column
 
 `tables/**` is written in exact ClickHouse types, because those columns are
 engine state and telemetry with nothing to map from. `common-header/**`,
 `hunts/**`, `meta/**` and `additional/**` use DFE primitives and map through
 `registries/types.yaml`.
 
-The shape is taken from the columns themselves -- a `ch_type` is the exact form,
+Which way applies is read from the columns themselves -- a `ch_type` is the exact form,
 a `type` is a primitive -- and a file mixing the two is rejected rather than
 half-read. Exactly one of the two carries the type. An exact `ch_type` bypasses
 the primitive mapping and resolves NON-nullable, which is what a sorting key
@@ -146,7 +146,7 @@ something that looks like success.
   whichever applies second silently wins.
 - A dependency that is unknown or declared later is refused: a view over a
   table that does not exist yet fails on a fresh cluster and succeeds on every
-  re-run, which is the worst shape a bootstrap can have.
+  re-run, which is the worst failure a bootstrap can have.
 - A Nullable `ORDER BY` key is refused rather than dropped. ClickHouse
   rejects one unless `allow_nullable_key` is on, and even then a null in the sort
   key cripples the index and doubles storage.

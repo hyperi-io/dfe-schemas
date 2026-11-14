@@ -170,9 +170,11 @@ and reports what to fix. It does not run `validate-schemas.yml`: run
 
 Two workflows run on every push and pull request. `ci.yml` is the standard
 hyperi-ci pipeline: quality, tests, and the build and publish on a release.
-`validate-schemas.yml` renders the manifest for every platform and validates
-every schema YAML with dfe-engine's loader, which needs a cross-repo checkout
-hyperi-ci has no stage for.
+`validate-schemas.yml` renders the manifest for every platform and runs
+`scripts/validate_schemas.py`. That checks the `current` version of each schema,
+derived and table file with dfe-engine's loader, and builds each source and
+catalogue file as an engine model, so it needs a cross-repo checkout hyperi-ci
+has no stage for. It does not walk `dlq/`.
 
 A push to main publishes only when the head commit's message carries a
 `Release: true` trailer. To release without one, run the CI workflow by hand

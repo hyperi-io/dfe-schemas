@@ -71,10 +71,12 @@ deploy that changed nothing.
 
 ## Row policies and source tables are not in it
 
-Row policies are not manifest objects. dfe-engine's reconciler writes one per
-table that carries `_org_id`, read off the live server. `roles/clickhouse.yaml`
-declares the predicate they use and the name they get, so the reconciler writes
-no policy of its own invention.
+Row policies are not manifest objects. dfe-engine's reconciler writes a
+RESTRICTIVE policy on every table that carries `_org_id`, read off the live
+server, and a `USING 0` one on each tenant-reachable table that does not. It
+takes the policy name from `naming.row_policy` and the tenant setting from
+`tenant.setting` in `roles/clickhouse.yaml`. The predicate is the engine's own:
+nothing reads the catalogue's `tenant.predicate`.
 
 Per-source tables are not manifest objects either. The manifest is the set a
 deployment creates before anything streams. A source's own table is created when

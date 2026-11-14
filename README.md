@@ -8,12 +8,12 @@ Defines the core ClickHouse objects and Kafka bootstrap topics a DFE deployment 
 
 ## What it does
 
-- `manifest.yaml` lists every object a deployment creates, in the order it creates them: databases, tables, views, TTLs, roles and grants, and the Kafka bootstrap topics. Adding a table is an entry there plus its definition file, never an engine release, a Job or an init container.
+- `manifest.yaml` lists every object a deployment creates, in the order it creates them: databases, tables, views, TTLs, roles and grants, and the Kafka bootstrap topics. Adding a table is an entry there plus its definition file, never engine code, a Job or an init container.
 - A renderer turns each object into checksummed output: ClickHouse DDL for the platform a connection reaches, Cloud or self-hosted, and a topic spec for a Kafka topic.
 - One table layout on every ClickHouse: the argumentless `Replicated<variant>` engine with no `ON CLUSTER`, which ClickHouse Cloud rewrites to `SharedMergeTree`.
 - The source meta schemas, the compatibility profiles, the shipped source catalogue, and the registries of table engines, column types and field maps dfe-engine validates sources against.
 
-dfe-engine reads this package at boot, takes the schema lock, renders the manifest, compares it with `dfe.schema_migrations` and the live server, and applies what is absent or additively changed. Nothing else creates a ClickHouse object or a Kafka topic: not an Argo CD Job, not a compose init container, not an app at runtime. The Rust apps read the deployed schema from `system.columns` and never read this YAML.
+dfe-engine reads this package at boot, takes the schema lock, renders the manifest, compares it with `dfe.schema_migrations` and the live server, and applies what is absent or additively changed. Nothing else creates a ClickHouse object or a bootstrap topic: not an Argo CD Job, not a compose init container, not an app at runtime. dfe-loader reads the deployed schema from `system.columns` and never reads this YAML.
 
 ## Quick start
 
@@ -49,7 +49,7 @@ The package reads its shipped trees unless a caller passes `load_manifest(root=.
 1. Write the definition: a table in exact ClickHouse types under `tables/<area>/<name>.yaml`, or a view under `views/<name>.sql`.
 2. Add it to `manifest.yaml`, after whatever it depends on, with its `kind`, `database`, `topology` and whether additive changes may be applied automatically.
 3. `make render` and `make test`.
-4. Merge, cut a release so the wheel reaches PyPI, then raise the `dfe-schemas` floor in dfe-engine.
+4. Merge, cut a release so the wheel reaches PyPI, then raise the `dfe-schemas` floor in dfe-engine and release it. The engine image ships the wheel its `uv.lock` pins.
 
 Changing an existing table is a new version entry, never an edit. Each version is a complete column snapshot and a published one is immutable.
 

@@ -2,25 +2,24 @@
 
 A **meta schema** is a YAML file that defines the columns for a ClickHouse
 table - the single source of intent for what a table should look like. The
-engine reads it, generates DDL, and applies it to ClickHouse. There is no
-schema registry, no intermediate store, no sync state. This page is the
-FORMAT reference; the engine classes that consume it are documented in the
+engine reads it, generates DDL, and applies it to ClickHouse. This page is the
+FORMAT reference. The engine classes that consume it are documented in the
 dfe-engine repo (`docs/data-plane/schema-classes.md`).
 
 ```mermaid
 flowchart TB
     YAML[Meta schema YAML - intent] --> B["dfe-engine SchemaBuilderV2<br/>load profile + meta + derived + additional<br/>compose - validate - generate DDL"]
     B --> DDL[(ClickHouse DDL - deployed truth)]
-    DDL --> RUST[Rust services read system.columns at runtime]
+    DDL --> RUST[dfe-loader reads system.columns at runtime]
 ```
 
 Two sources of truth exist:
 
-1. **Meta schema YAML** -- what the schema should be
-2. **ClickHouse table** -- what the schema actually is
+1. Meta schema YAML -- what the schema should be
+2. ClickHouse table -- what the schema actually is
 
-The engine bridges the gap. Rust services (loader, receiver, archiver) slave from the
-deployed ClickHouse schema only -- they read `system.columns` at runtime, never YAML.
+The engine bridges the gap. dfe-loader reads the deployed ClickHouse schema only,
+from `system.columns` at runtime, never YAML.
 
 ## Where Meta Schemas Live
 
@@ -32,18 +31,17 @@ hunt result schemas, and source-specific schemas all use the same format.
 ```text
 dfe-schemas/                      <- repo root, shipped as a PyPI wheel
 |-- common-header/
-|   |-- timeseries.yaml           <- 9-column default profile
-|   |-- minimal.yaml              <- 5-column high-volume profile
-|   '-- passthrough.yaml          <- 4-column transparent bridge
+|   |-- timeseries.yaml           <- the default profile
+|   |-- minimal.yaml              <- the high-volume profile
+|   '-- passthrough.yaml          <- the transparent bridge
 |-- compat-profiles/              <- rule rows that read another platform's header (compat-profiles.md)
-|-- meta/                         <- source meta schemas (aws/ azure/ gcp/ m365/ runzero/)
+|-- meta/                         <- source meta schemas, one directory per provider, plus syslog.yaml
 |-- additional/                   <- extra-field overlays (<package>/<data_stream>, snapshot/)
 |-- derived/                      <- derived schemas: a select list over a base
-|-- hunts/
-|   |-- results.yaml              <- hunt detection output columns
-|   '-- detection_checkpoint.yaml <- runner checkpoint table
-|-- scripts/                      <- validate / render / annotate
-'-- README.md
+|-- dlq/entry.yaml                <- the dead-letter columns composed onto the header
+'-- hunts/
+    |-- results.yaml              <- hunt detection output columns
+    '-- detection_checkpoint.yaml <- runner checkpoint table
 ```
 
 ---
@@ -143,7 +141,7 @@ columns:
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
 | `name` | `str` | *(required)* | Column name. System fields use `_` prefix to avoid collision with source data. |
-| `type` | `str` | *(required)* | Primitive type -- one of 15 values (see [Type System](#type-system)). |
+| `type` | `str` | *(required)* | Primitive type -- one of the primitives in `registries/types.yaml` (see [Type System](#type-system)). |
 | `cardinality` | `str` | `unknown` | How many distinct values the column holds: `low`, `high` or `unknown` (see [Cardinality](#cardinality)). |
 | `attribute` | `list[str]` | `[]` | Storage attributes: `nullable`, `not_null`, `materialized`, `alias`, and the retired `lowcardinality`. Accepts a single string or list. |
 | `use_case` | `str \| null` | `null` | The question the column is asked, which determines index generation: `dimension`, `exact_match`, `range`, `word_search`, `substring_search`, `key_search`, `similarity_search(<dims>)`. |
@@ -152,6 +150,7 @@ columns:
 | `expr` | `str \| null` | `null` | DFE directive that tells the loader how to populate this column (see [DFE Expressions](#dfe-expressions)). |
 | `comment` | `str \| null` | `null` | Human-readable description. |
 | `ch_override` | `str \| null` | `null` | Exact ClickHouse type string -- bypasses primitive mapping entirely. No auto-Nullable, no auto-codec. |
+| `codec` | `str \| null` | `null` | CODEC arguments, emitted verbatim in place of the primitive's codec. The only way to give a `ch_override` column one. |
 | `_field_type` | `str \| null` | `null` | Column classification annotation (`base` = shipped by DFE). Maps to the engine model's `field_type`. |
 | `max_dynamic_paths` | `int \| null` | `null` | JSON-column dynamic-path budget. Rendered as `JSON(max_dynamic_paths=N)` on a bare `JSON` column, and ignored on any other type. |
 | `synthetic` | `map \| null` | `null` | Synthetic data generation hints (see [Synthetic Data Hints](#synthetic-data-hints)). Ignored by the schema loader and DDL generation. |
@@ -211,7 +210,7 @@ correlated columns and hints for the rest.
 
 In the generated DDL, `expr` and `comment` are combined into a single ClickHouse COMMENT
 clause. The loader parses the `@` directives it acts on from the COMMENT at runtime
-(see "DFE Expressions" above for which ones):
+(see [DFE Expressions](#dfe-expressions) for which ones):
 
 ```sql
 -- Both expr and comment:
@@ -228,11 +227,11 @@ clause. The loader parses the `@` directives it acts on from the COMMENT at runt
 
 ## Type System
 
-### 15 Primitives
+### Primitives
 
 Primitives are human-readable type names that map to ClickHouse types with sensible
 defaults. You don't need to know ClickHouse storage internals -- pick the primitive
-that describes your data.
+that describes your data. `registries/types.yaml` holds the mapping below.
 
 | Primitive | What It Is | ClickHouse Type | Codec | Nullable Default |
 |-----------|-----------|-----------------|-------|-----------------|
@@ -292,13 +291,15 @@ When a primitive isn't sufficient, specify the exact ClickHouse type:
 
 When `ch_override` is set:
 
-- No automatic Nullable wrapping
-- No automatic codec selection
-- The type string is used verbatim in DDL
-- Attributes are still validated but don't affect type resolution
+- The column is NOT NULL whatever the primitive's default, unless it carries the
+  `nullable` attribute
+- It takes no codec but one it declares in `codec`
+- `cardinality: low` still wraps it in `LowCardinality(...)`, and `max_dynamic_paths`
+  still applies to a bare `JSON`
 
-The engine validates `ch_override` against a catalogue of supported ClickHouse types
-(integers, floats, decimals, strings, dates, geo, complex, enums, specials).
+The engine validates `ch_override` against the `ch_overrides` list in
+`registries/types.yaml`: integers, floats, decimals, strings, dates, geo, complex
+types, enums and the specials.
 
 ---
 
@@ -319,15 +320,17 @@ decided, so a column with nothing measured says so, and gets the safe way to be
 wrong: no dictionary, and an index whose cost does not grow with the column.
 
 Measure it rather than guess it. An Elasticsearch index template does not carry
-cardinality, so the converter and the Rust `dfe-schemagen` port both leave it
-`unknown` -- correctly. `dfe-engine`'s data-shape service reads it from the rows
-that have already landed (`dfe_engine.services.schema.data_shape_service`) and
-returns a reading carrying the distinct count, the rows it covers and the date
-it was taken.
+cardinality, so dfe-engine's template importer and `dfe-schemagen` leave an
+imported column `unknown`. The one exception is a `constant_keyword`, which the
+importer reads as `low` because it holds one value.
+
+`low` needs a type ClickHouse can dictionary-encode, so it is refused (code 43)
+on any primitive but `string`, `text`, `integer`, `float`, `date` and `enum`. A
+`ch_override` takes it only on `String`, `FixedString`, a number, `Date`,
+`Date32`, `DateTime` or an enum, so never on `DateTime64`.
 
 `attribute: [lowcardinality]` is the retired spelling and still reads as
-`cardinality: low`. Declaring the two against each other is an error, not
-something the loader resolves quietly.
+`cardinality: low`. Declaring the two against each other is refused.
 
 ---
 
@@ -337,7 +340,7 @@ Attributes modify how the type is stored. Specified as a list in YAML.
 
 | Attribute | What It Does | Valid Primitives |
 |-----------|-------------|-----------------|
-| `lowcardinality` | Retired -- the old spelling of `cardinality: low` | `string`, `text`, `integer`, `float`, `date`, `ip` |
+| `lowcardinality` | Retired -- the old spelling of `cardinality: low` | `string`, `text`, `integer`, `float`, `date` |
 | `nullable` | Force NULL allowed (overrides primitive default) | all |
 | `not_null` | Force NOT NULL (overrides primitive default) | all |
 | `materialized` | Column computed on INSERT, not stored in source data | all |
@@ -374,17 +377,18 @@ Each primitive has a default nullability. Override with `nullable` or `not_null`
 - **Nullable by default:** `string`, `text`, `integer`, `float`, `datetime`, `date`, `ip`, `uuid`, `json`, `geo_point`
 - **NOT null by default:** `timestamp`, `boolean`, `enum`, `map`, `vector`
 
-**Why?** `Nullable(T)` stores two columns (data + null bitmap), doubling storage and
-halving query speed. ORDER BY columns and booleans default to NOT NULL because null
-in these positions destroys index effectiveness.
+A `Nullable(T)` column stores a separate null map beside its data, which costs
+storage and read speed. A Nullable sort key needs `allow_nullable_key`, so the
+manifest renderer refuses one and dfe-engine drops it from a source table's key
+with a warning. `timestamp`, the primitive meant for a sort key, is never null.
 
 ---
 
 ## Use Cases
 
 A use case names **the question you ask the column** -- never the ClickHouse index
-that answers it. You declare the question, the engine picks the primitive, and it
-can pick a different one on a later ClickHouse without your schema changing.
+that answers it. You declare the question, the DDL catalogue picks the index, and
+it can pick a different one on a later ClickHouse without your schema changing.
 
 | Use Case | The question | Example Columns |
 |----------|------------|-----------------|
@@ -432,8 +436,9 @@ dfe-schemas release, not a code change.
 | `key_search` | two indexes, `text(tokenizer=array)` over `mapKeys(col)` and `mapValues(col)` | 1 | A text index refuses a `Map` column itself, so the keys and the values are indexed apart |
 | `similarity_search(<dims>)` | `vector_similarity('hnsw', 'cosineDistance', <dims>)` | 100000000 | One index per part: at granularity 1 each granule gets its own graph and the top-k comes back wrong. `hnsw` is the only method 26.3 implements |
 
-The catalogue carries no pre-25.10 variant. DFE ships a ClickHouse where
-`tokenbf_v1` and `ngrambf_v1` are deprecated in favour of the text index.
+The catalogue holds one answer per use case. `tokenbf_v1` and `ngrambf_v1` are
+not among them: the ClickHouse DFE ships deprecates both in favour of the text
+index.
 
 ### Which use case for which question
 
@@ -479,26 +484,31 @@ distinct directives below it only acts on three -- `@source`, `@renamed`,
 | `@config: path` | Descriptive: mapping is configurable | `@config: routing.org_id_field` | No -- see below |
 
 `@generated` describes a DEFAULT/MATERIALIZED/ALIAS clause that already lives
-in the column's own `default:`/`attribute:` fields; the loader omits the field
+in the column's own `default:`/`attribute:` fields. The loader omits the field
 because it reads that clause's kind straight from `system.columns`
 (`default_kind`), not because it parsed the `@generated:` text. `@config`
 documents that some other field's value is driven by loader config (for
 example `routing.org_id_field`) rather than hardcoded -- the loader never
-reads the comment's path to resolve it. See dfe-loader
-`docs/clickhouse/DDL-DIRECTIVES.md` for the full mechanism.
+reads the comment's path to resolve it. dfe-loader's `docs/clickhouse/ddl-directives.md`
+has the full mechanism:
+<https://github.com/hyperi-io/dfe-loader/blob/main/docs/clickhouse/ddl-directives.md>.
 
-`_raw` and `_json` carry no directive. What they hold depends on the loader's
-capture mode, not on an `expr`.
+In the header profiles `_raw` and `_json` carry no directive: what they hold
+depends on the loader's capture mode. A `@source` on `_json` makes the loader
+read that field instead, as the dead-letter table's does.
 
-Column comments have **highest precedence** in the loader -- above built-in presets
-and external remap files. The schema definition IS the authoritative field mapping.
+dfe-loader's own config beats a column comment. A `column_directives` entry
+overrides the directive on that column, and `_org_id` is filled from
+`routing.org_id_field` alone, never from a directive.
 
 ---
 
 ## Common Header Profiles
 
-Every DFE table starts with a standard header of underscore-prefixed system fields.
-The profile determines which header columns are included.
+A source table starts with a standard header of underscore-prefixed system
+fields, the deployment's default profile when it names none, and so do the
+landing, dead-letter and detection tables. The profile determines which header
+columns are included.
 
 ### Profile Summary
 
@@ -522,7 +532,7 @@ The profile determines which header columns are included.
 | `_json` | `json` | | | | capture mode |
 | `_tags` | `json` | | | | `@source: first(_tags/tags/meta/metadata.tags)` |
 
-Each header field reads its `_`-prefixed wire name first, except the event timestamp. The header expects the first hop, dfe-receiver or dfe-fetcher, to stamp `_org_id` and `_timestamp_received` on every record. dfe-loader takes a column's directive ahead of its own `routing.org_id_field`, so the `_org_id` directive decides which field every row's tenant comes from. A sender's own spelling of the tenant, such as a DFE 2.x `org_id`, reaches `_org_id` only through a [compatibility profile](compat-profiles.md) at the first hop.
+Each header field reads its `_`-prefixed wire name first, except the event timestamp. The header expects the first hop, dfe-receiver or dfe-fetcher, to stamp `_org_id` and `_timestamp_received` on every record. dfe-loader fills `_org_id` from its `routing.org_id_field`, `_org_id` by default, and never from the column's directive, which records the field rather than choosing it. A sender's own spelling of the tenant, such as a DFE 2.x `org_id`, reaches `_org_id` only through a [compatibility profile](compat-profiles.md) at the first hop.
 
 ### minimal -- 5 columns
 
@@ -575,7 +585,7 @@ schema:
   meta_schema: meta/windows_audit.yaml        # Layer 2: base columns
   meta_schema_version: "2.1.0"                # Pin meta schema version
   derived_schema: derived/windows_custom.yaml  # Layer 3: narrows to a select list
-  additional_fields: add/windows_extra.yaml    # Layer 4: extra columns
+  additional_fields: additional/windows_extra.yaml  # Layer 4: extra columns
   ttl_days: 90
   engine: MergeTree
 ```
@@ -588,7 +598,7 @@ Schema file paths are resolved relative to `schemas_base_dir` (the schemas direc
 |-------|----------------|
 | **Profile** | Always comes first. Profile columns cannot be overridden by source columns. |
 | **Meta schema** | Base source-specific columns. |
-| **Derived schema** | Narrows the source columns to its `select` list, in that order. A selected column may override `index` and nothing else; a name the base lacks is an error. |
+| **Derived schema** | Narrows the source columns to its `select` list, in that order. A selected column may override `index` and nothing else, and a name the base lacks is an error. |
 | **Additional fields** | New columns are appended. Existing names override with warning. |
 
 ---
@@ -599,16 +609,16 @@ Schema file paths are resolved relative to `schemas_base_dir` (the schemas direc
 object, such as a source table, from a `TableSpec`. It runs the same `TableDDL`
 code the manifest renderer does, so the two cannot drift.
 
-The engine generates complete ClickHouse DDL from composed columns. Here is what
-a generated `CREATE TABLE` statement looks like for the `timeseries` profile plus
-the three source columns from the example above, with `ttl_days: 90`:
+The engine generates complete ClickHouse DDL from composed columns. Here is the
+`CREATE TABLE` statement for the `timeseries` profile plus the three source
+columns from the example above, with `ttl_days: 90`, rendered for self-hosted
+ClickHouse:
 
 ```sql
 -- =============================================================================
 -- DFE Schema DDL: windows_audit
 -- Profile: timeseries
 -- Generated by: dfe-engine DDLFileWriter
--- Generated at: 2026-03-03 12:00:00 UTC
 --
 -- This file was auto-generated. Use {db} as database placeholder.
 -- =============================================================================
@@ -620,21 +630,21 @@ CREATE TABLE IF NOT EXISTS `{db}`.`windows_audit`
     `_uuid` Nullable(UUID) DEFAULT generateUUIDv7() COMMENT '@generated: generateUUIDv7() - Time-ordered unique event identifier',
     `_org_id` LowCardinality(String) COMMENT '@source: _org_id - Tenant/organisation identifier' CODEC(ZSTD(1)),
     `_source` LowCardinality(Nullable(String)) COMMENT '@source: first(_source) | topic_name - Data source label (e.g. beats, syslog, crowdstrike-edr)' CODEC(ZSTD(1)),
-    `_raw` Nullable(String) COMMENT 'Raw payload text, when the loader''s capture mode writes one. A JSON payload lands in _json instead, so _raw is often empty. (full-text indexed)' CODEC(ZSTD(3)),
-    `_json` JSON(max_dynamic_paths=2048) COMMENT 'The payload as structured JSON, when the loader''s capture mode writes one' CODEC(ZSTD(3)),
+    `_raw` Nullable(String) COMMENT 'Raw payload text, when the loader\'s capture mode writes one. A JSON payload lands in _json instead, so _raw is often empty. (full-text indexed)' CODEC(ZSTD(3)),
+    `_json` JSON(max_dynamic_paths=2048) COMMENT 'The payload as structured JSON, when the loader\'s capture mode writes one' CODEC(ZSTD(3)),
     `_tags` JSON COMMENT '@source: first(_tags/tags/meta/metadata.tags) - Event metadata tags' CODEC(ZSTD(3)),
     `user_name` Nullable(String) COMMENT '@source: first(user_id/uid/id) - User identifier' CODEC(ZSTD(1)),
     `source_ip` Nullable(IPv6) COMMENT '@source: src_ip - Source IP address' CODEC(LZ4),
     `message` Nullable(String) COMMENT 'Log message body' CODEC(ZSTD(3)),
-    INDEX idx__timestamp `_timestamp` TYPE minmax GRANULARITY 4,
-    INDEX idx__org_id `_org_id` TYPE set(0) GRANULARITY 4,
-    INDEX idx__source `_source` TYPE set(0) GRANULARITY 4,
-    INDEX idx__raw `_raw` TYPE text(tokenizer = 'splitByNonAlpha') GRANULARITY 64,
-    INDEX idx_user_name `user_name` TYPE set(0) GRANULARITY 4,
-    INDEX idx_source_ip `source_ip` TYPE minmax GRANULARITY 4,
-    INDEX idx_message `message` TYPE text(tokenizer=splitByNonAlpha) GRANULARITY 1
+    INDEX `idx__timestamp` `_timestamp` TYPE minmax GRANULARITY 4,
+    INDEX `idx__org_id` `_org_id` TYPE set(0) GRANULARITY 4,
+    INDEX `idx__source` `_source` TYPE bloom_filter GRANULARITY 4,
+    INDEX `idx__raw` `_raw` TYPE text(tokenizer=ngrams(3)) GRANULARITY 1,
+    INDEX `idx_user_name` `user_name` TYPE bloom_filter GRANULARITY 4,
+    INDEX `idx_source_ip` `source_ip` TYPE minmax GRANULARITY 4,
+    INDEX `idx_message` `message` TYPE text(tokenizer=splitByNonAlpha) GRANULARITY 1
 )
-ENGINE = MergeTree()
+ENGINE = ReplicatedMergeTree
 PARTITION BY toYYYYMMDD(_timestamp_load)
 PRIMARY KEY (`_timestamp_load`, `_timestamp`, `_org_id`)
 ORDER BY (`_timestamp_load`, `_timestamp`, `_org_id`)
@@ -642,9 +652,14 @@ TTL _timestamp_load + INTERVAL 90 DAY DELETE WHERE _timestamp_load >= 0
 SETTINGS
     index_granularity = 2048,
     ttl_only_drop_parts = 1,
-    merge_max_dynamic_subcolumns_in_wide_part = 64
+    merge_max_dynamic_subcolumns_in_wide_part = 64,
+    write_marks_for_substreams_in_compact_parts = 0
 COMMENT '@profile: timeseries | @profile_version: 1.0.3 | @windows_audit_version: 2';
 ```
+
+`_source` and `user_name` are Nullable dimensions, so they take `bloom_filter`
+where `_org_id`, which is not, takes `set(0)`. On ClickHouse Cloud the last
+setting is left out.
 
 Clauses follow ClickHouse's order: `ENGINE`, `PARTITION BY`, `PRIMARY KEY` and
 `ORDER BY`, `SAMPLE BY`, `TTL`, `SETTINGS`, then `COMMENT`. There is no projection
@@ -656,7 +671,7 @@ unless `projection_order_by` is set.
 |---------|--------------|-------|
 | `index_granularity` | Always | `DDLConfig.index_granularity` |
 | `ttl_only_drop_parts` | The table has a TTL and `ttl_only_drop_parts` is true | `1` when every TTL column appears in the `PARTITION BY` expression, else `0`. An unaligned TTL then deletes rows instead of dropping parts, because a part is dropped only once every row in it has expired. |
-| `merge_max_dynamic_subcolumns_in_wide_part` | Any column resolves to `JSON` or a type wrapping it | `64`, from `JSON_TABLE_SETTINGS` in `dfe_schemas/deploy_defaults.py` |
+| `merge_max_dynamic_subcolumns_in_wide_part` | Any column resolves to `JSON` or a type wrapping it | `JSON_TABLE_SETTINGS` in `dfe_schemas/deploy_defaults.py` |
 
 Uncapped, a merge over a JSON column with free-form keys writes one stream per
 dynamic subcolumn and runs ClickHouse out of memory. `json_table_settings()` in
@@ -693,6 +708,10 @@ source redeploy. Any other setting the table carries is left alone.
 | `profile_version` | `None` | Profile version for the table comment |
 | `description` | `None` | A line in the header comment |
 
+The `ttl_columns`, `partition_column`, `partition_granularity` and
+`index_granularity` defaults above are read from the `table` block of
+`registries/ddl.yaml`.
+
 The manifest tables under `tables/` are rendered by `dfe_schemas/render.py`, whose
 `table:` block defaults differ: `ttl_columns` is empty and `projection_order_by` is
 unset, so a table declares its TTL columns itself or keeps every row. Its
@@ -717,17 +736,18 @@ migration tooling detect a table's schema version and profile at runtime.
 
 ### Views
 
-The engine generates `CREATE OR REPLACE VIEW` statements for field mapping standards
-(Sigma, ECS, CIM). Views alias source column names to standard field names:
+The engine generates `CREATE OR REPLACE VIEW` statements for the field mapping
+standards under `registries/field-maps/` (CIM, ECS, OCSF, Sigma). A view aliases
+source column names to standard field names, sorted by standard field:
 
 ```sql
-CREATE OR REPLACE VIEW {db}.windows_audit_sigma AS
+CREATE OR REPLACE VIEW `{db}`.`windows_audit_sigma` AS
 SELECT
+    `event_id` AS `EventID`,
     `source_ip` AS `SourceIP`,
     `user_name` AS `User`,
-    `event_id` AS `EventID`,
     *
-FROM {db}.windows_audit;
+FROM `{db}`.`windows_audit`;
 ```
 
 Zero storage overhead -- views are computed at query time.
@@ -786,7 +806,7 @@ No pin (`meta_schema_version: null`) uses the file's `current` marker.
 |-------|-----------|
 | Source created | `CREATE TABLE IF NOT EXISTS` from profile + source schema |
 | Schema field added | `ALTER TABLE ADD COLUMN IF NOT EXISTS` |
-| Schema field modified | `ALTER TABLE MODIFY COLUMN` (type/codec/comment) |
+| Schema field modified | No column is retyped. Its index moves to the one it declares, and the table's TTL to its version's |
 | Source disabled | No DDL change -- table stays, no new data |
 | Source deleted | Table preserved -- manual `DROP TABLE` if needed |
 
@@ -796,24 +816,7 @@ The deployed ClickHouse table is always authoritative at runtime.
 
 ## Using Meta Schemas in the dfe-schemas Repo
 
-### Directory Structure
-
-```text
-dfe-schemas/
-|-- common-header/          # Common header profiles (shipped, read-only)
-|   |-- timeseries.yaml
-|   |-- minimal.yaml
-|   '-- passthrough.yaml
-|-- compat-profiles/        # Compatibility profiles and their JSON schema (shipped)
-|-- hunts/                  # Hunt output + checkpoint schemas (shipped)
-|   |-- results.yaml
-|   '-- detection_checkpoint.yaml
-|-- meta/                   # Source meta schemas, grouped by provider
-|   |-- aws/  azure/  beats/  elastic/  gcp/  m365/  otel/  runzero/  spamhaus/  abusech/
-|-- additional/             # Extra-field overlays (<package>/<data_stream>, snapshot/)
-|-- derived/                # Derived schemas: a select list over a base
-'-- README.md
-```
+[Where Meta Schemas Live](#where-meta-schemas-live) has the directory layout.
 
 ### Generating a Meta Schema from Live Rows
 
@@ -824,7 +827,7 @@ its meta schema from a dump of real rows, not from the docs:
 each column from the values it saw, and writes `meta/<provider>/<store>.yaml`
 in the version-tree layout. The typing rules, the row-key handling and the
 `ch_override: Array(...)` escape for list values are in the script's
-docstring; the provider's arguments live in an `@` file beside it
+docstring. The provider's arguments live in an `@` file beside it
 (`scripts/meta-runzero.args`), so a regeneration is one command and
 `--check` proves the checked-in files still match the dump.
 
@@ -856,10 +859,11 @@ Every column declares `cardinality: unknown`. An Elasticsearch index template ca
 
 A store that arrives as a periodic full dump (dfe-fetcher's dump units) lands
 every frame inside a snapshot envelope: `kind`, `snapshot_id`, `snapshot_at`,
-`store`, `seq`, the `end` marker's `row_count` and `completed_at`, with the
-provider's record under `record`. The envelope columns are declared once in
-`additional/snapshot/envelope.yaml` and composed onto each store through
-`schema.additional_fields`; the per-store meta schema reads
+`store` and `seq` on every frame, the `begin` marker's `total`, the `end`
+marker's `row_count` and `completed_at`, and an oversize frame's `bytes` and
+`row_key`, with the provider's record under `record`. The envelope columns are
+declared once in `additional/snapshot/envelope.yaml` and composed onto each
+store through `schema.additional_fields`. The per-store meta schema reads
 `@source: record.<key>`. The envelope's `timestamp` repeats `snapshot_at`, so
 the header's `_timestamp` groups a whole dump with no extra wiring.
 

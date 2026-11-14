@@ -58,9 +58,9 @@ The `<identity>` is `dfe:<password>` from a generated secret, fixed for the life
 
 ## Inserts deduplicate
 
-The Replicated engines drop an insert whose data is byte-identical to a recent one, and so a single node now deduplicates too, where plain `MergeTree`'s window was 0. That absorbs only a resend of the same data. An async insert is hashed per insert, so a resend is caught even when `async_insert` coalesces it with other rows (measured on 26.3). A retry that re-batches its rows with new ones is different data and lands again, so at-least-once delivery can still store a duplicate, and that is accepted.
+The Replicated engines drop an insert whose data is byte-identical to a recent one, so a single node deduplicates too, where a plain `MergeTree` keeps no deduplication window by default. That absorbs only a resend of the same data. An async insert is hashed per insert, so a resend is caught even when `async_insert` coalesces it with other rows (measured on 26.3). A retry that re-batches its rows with new ones is different data and lands again, so at-least-once delivery can still store a duplicate, and that is accepted.
 
-On 26.3 `deduplicate_insert` (default `enable`) overrides `insert_deduplicate` and `async_insert_deduplicate`, so `insert_deduplicate = 0` alone no longer turns it off. A writer whose identical rows must all land, such as a ledger, sends `deduplicate_insert = 'disable'`.
+On 26.3 `deduplicate_insert` (default `enable`) overrides `insert_deduplicate` and `async_insert_deduplicate`, so `insert_deduplicate = 0` alone does not turn it off. A writer whose identical rows must all land, such as a ledger, sends `deduplicate_insert = 'disable'`.
 
 ## The probe, and the SQL it picks from
 
@@ -68,7 +68,7 @@ On 26.3 `deduplicate_insert` (default `enable`) overrides `insert_deduplicate` a
 
 1. an override: `cloud` or `self_hosted` from a deployment setting (dfe-engine's `clickhouse.platform`), a test or a call site. `auto` is no override
 2. `SELECT count() FROM system.table_engines WHERE name = 'SharedMergeTree'`, where more than 0 is Cloud
-3. the hostname when there is no client: `*.clickhouse.cloud` or `*.clickhouse-byoc.com` is Cloud
+3. the hostname, when there is no client or the probe fails: `*.clickhouse.cloud` or `*.clickhouse-byoc.com` is Cloud
 4. self-hosted
 
 `cloud_mode` is not the signal, because any server can set it (ClickHouse #76545).

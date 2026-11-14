@@ -27,7 +27,7 @@ query it in a database that deployment does not have.
 | `section` / `key` | Where inside `defines` the entry is, for the files that carry several: a role's section in `roles/clickhouse.yaml`, a topic's section in `topics/kafka.yaml`, a materialised view's name in a table file's `materialized_views`. |
 | `header` | The common-header profile to compose, for a table whose columns come from one. |
 | `compose` | A second definition composed over the header (or used alone), e.g. `hunts/results` for the detection table. |
-| `topology` | `resolved` renders per ClickHouse platform, and `fixed` renders the same everywhere. ClickHouse access objects and Kafka topics are `fixed`. |
+| `topology` | `resolved` for an object whose DDL differs by ClickHouse platform, `fixed` for one that is the same everywhere. ClickHouse access objects and Kafka topics are `fixed`. The reader checks the value, and nothing renders by it: the platform comes from the renderer's caller. |
 | `additive` | Whether an additive change may be applied automatically. A changed type, ORDER BY, PARTITION BY, TTL or codec is drift either way and is refused. |
 | `optional` | The apply may skip this object without failing the pass. |
 | `depends_on` | Ids declared EARLIER in the list. |
@@ -69,13 +69,13 @@ deploy that changed nothing.
 * a statement naming a `<database>.<object>` the manifest does not declare
 * a checksum that differs between platforms
 
-## Known gaps
+## Row policies and source tables are not in it
 
-**Row policies** are not manifest objects. They are written per table against
-the ones that actually carry `_org_id`, which is read off the live server;
-`roles/clickhouse.yaml` declares the predicate they use and the name they get,
-so the reconciler writes no policy of its own invention.
+Row policies are not manifest objects. dfe-engine's reconciler writes one per
+table that carries `_org_id`, read off the live server. `roles/clickhouse.yaml`
+declares the predicate they use and the name they get, so the reconciler writes
+no policy of its own invention.
 
-**Per-source tables** are not manifest objects either. The manifest is the set
-a deployment creates before anything streams; a source's own table is created
-when that source is deployed, from the same renderer.
+Per-source tables are not manifest objects either. The manifest is the set a
+deployment creates before anything streams. A source's own table is created when
+that source is deployed, through the same table renderer.

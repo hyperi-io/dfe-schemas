@@ -12,7 +12,7 @@ disagree.
 So there is one list and one applier. `manifest.yaml` names every object a
 deployment creates, in the order it creates them, and dfe-engine is the only
 thing that applies it. Adding a table is an entry in that file plus a definition
--- never an engine release, never a Job, never an init container.
+-- never engine code, never a Job, never an init container.
 
 ## One applier, one caller
 
@@ -23,7 +23,7 @@ flowchart LR
     R -->|checksummed statements| E[dfe-engine]
     E -->|holds the schema lock| CH[(ClickHouse)]
     E --> K[(Kafka)]
-    CH -.->|system.columns at runtime| RS[dfe-loader, dfe-receiver, dfe-archiver]
+    CH -.->|system.columns at runtime| RS[dfe-loader]
 ```
 
 dfe-engine reads the pinned wheel at boot, takes the schema lock, renders every
@@ -32,13 +32,13 @@ what is absent or additively changed, and records each object with the
 dfe-schemas version and checksum it came from.
 
 Nothing else creates a ClickHouse database, table, view, TTL, user, role or
-grant, or a Kafka topic. Not an ArgoCD Job, not a compose init container, not an
-app at runtime, and not the OTel collector -- its exporter runs with
-`create_schema: false` precisely because it senses no topology and would create
-the same table plain on one replica and `Replicated` on the others.
+grant, or a bootstrap topic. Not an Argo CD Job, not a compose init container,
+not an app at runtime, and not the OTel collector -- its exporter runs with
+`create_schema: false` because it senses no topology and would create the same
+table plain on one replica and `Replicated` on the others.
 
-The Rust services take their columns from the common header, but they read the
-DEPLOYED schema out of `system.columns` at runtime. They never read this YAML.
+dfe-loader reads the DEPLOYED schema out of `system.columns` at runtime and never
+reads this YAML.
 
 ## A package, not a submodule
 
@@ -69,8 +69,10 @@ not, so two parsers over one schema tree gives two answers.
 | `compat.py` | The compatibility profiles, each version handed out as a scalo.rules rule set |
 | `clickhouse.py` | The platform probe, the Keeper refusal and the one `ENGINE` form |
 | `variants.py` | Picks one platform's block out of `sql/platform.sql`, knowing nothing of ClickHouse |
+| `ddl_catalogue.py` | Reads `registries/ddl.yaml`: the table defaults and the index each use case renders |
 | `render.py` | One object to statements, for one platform, with a checksum, and the one-DDL gate |
 | `topics.py` | The Kafka naming rule, defaults and bootstrap set |
+| `usage.py` | The names the usage views read and write, filled into their SQL |
 | `deploy_defaults.py` | The declared deployment defaults |
 
 ## Definitions
@@ -79,8 +81,8 @@ not, so two parsers over one schema tree gives two answers.
 
 `tables/**` is written in exact ClickHouse types, because those columns are
 engine state and telemetry with nothing to map from. `common-header/**`,
-`hunts/**`, `meta/**` and `additional/**` use DFE primitives and map through
-`registries/types.yaml`.
+`hunts/**`, `dlq/**`, `meta/**` and `additional/**` use DFE primitives and map
+through `registries/types.yaml`.
 
 Which way applies is read from the columns themselves -- a `ch_type` is the exact form,
 a `type` is a primitive -- and a file mixing the two is rejected rather than
@@ -117,7 +119,7 @@ platform-only settings are the only difference, written once per platform in
 
 This is the reason rendering happens here rather than in a definition. A literal
 plain engine is accepted on a cluster and lands on ONE replica, where every
-query succeeds and the answer depends which node answered.
+query succeeds and the answer depends on which node answered.
 
 A table whose engine stores no rows is the one exception. `usage_events` is a
 `Merge` table over dfe-engine's `all_sources`, so it takes the engine it names
@@ -147,14 +149,11 @@ something that looks like success.
   table that does not exist yet fails on a fresh cluster and succeeds on every
   re-run, which is the worst failure a bootstrap can have.
 - A Nullable `ORDER BY` key is refused rather than dropped. ClickHouse
-  rejects one unless `allow_nullable_key` is on, and even then a null in the sort
-  key cripples the index and doubles storage.
+  rejects one unless `allow_nullable_key` is on.
 - A TTL over an absent column is refused, because the table would silently
-  keep every row forever.
-- `ttl_only_drop_parts` is set only when every TTL column appears in the
-  partition expression. It waits for every row in a part to expire, so an
-  unaligned TTL would retain data indefinitely -- those tables get the row-level
-  delete instead.
+  keep every row forever. `ttl_only_drop_parts` is 1 only when every TTL column
+  appears in the partition expression: it waits for every row in a part to
+  expire, so an unaligned table takes the row-level delete instead.
 - A refreshable materialised view renders `APPEND` and an `EVERY` or `AFTER`
   schedule, and nothing else. Without `APPEND` each refresh swaps the target for
   its own result and drops every day the source no longer holds. A `SETTINGS
@@ -163,13 +162,14 @@ something that looks like success.
 - A `${name}` placeholder in a view with no value in
   `dfe_schemas.usage.SQL_VALUES` is refused, so the names the usage views read
   cannot drift from the ones the engine imports.
-- **A role is created before its quota**, because ClickHouse rejects a quota
+- A role is created before its quota, because ClickHouse rejects a quota
   naming a role that does not exist yet, and that only shows up against a
   cluster where the role was not already present.
-- **Identifiers spliced into a DDL position** go through `quote_ident`.
-  Everything shipped here is committed, so this catches an edit rather than an
-  attack, but a name carrying a backtick or a semicolon still ends the statement
-  early and starts another one.
+- Database, table, column, index and TTL column names go through
+  `quote_ident`, which refuses a backtick, quote, parenthesis, semicolon,
+  backslash or whitespace. Everything shipped here is committed, so this catches
+  an edit rather than an attack, but such a name would end the statement early
+  and start another one.
 
 Every rendered statement converges. An `IF NOT EXISTS` creates and an `ALTER`
 re-asserts mutable state, so an edit reaches an object that already exists.
@@ -179,8 +179,8 @@ re-asserts mutable state, so an edit reaches an object that already exists.
 `make render` needs nothing but this package, which is how the source of truth
 checks its own content. `make validate` is different: it borrows dfe-engine's
 loader for the `meta/` models, so the source of truth could not validate itself
-without its consumer. `dfe_schemas/loader.py` is that reader vendored back in,
-which is why it exists at all.
+without its consumer. `dfe_schemas/loader.py` is that reader, copied into this
+package, which is why it exists at all.
 
 The remaining cross-repo step lives in `.github/workflows/validate-schemas.yml`
 rather than `ci.yml`, for two reasons. hyperi-ci has no stage for a cross-repo
@@ -198,7 +198,8 @@ points `DFE_ENGINE_SCHEMAS_DIR` at the repository root.
 2. Add it to `manifest.yaml`, after whatever it depends on.
 3. `make render` and `make test`.
 4. PR to main, then cut a release so the wheel reaches PyPI.
-5. Raise the `dfe-schemas` floor in dfe-engine and relock.
+5. Raise the `dfe-schemas` floor in dfe-engine, relock and release the engine.
 
-Step 5 is the only one that puts a new object in front of a deployment. Nothing
-reads this repository directly.
+Step 5 is the only one that puts a new object in front of a deployment: the
+engine image ships the wheel its `uv.lock` pins. Nothing reads this repository
+directly.

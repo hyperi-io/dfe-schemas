@@ -8,9 +8,7 @@
 
 """The apply manifest: every object a deployment creates, in the order it is.
 
-One list, read by one applier. Before this, the order lived in three Python
-tuples in dfe-engine, a Helm helper in dfe-infra and a resolver in dfe-docker,
-and the only way to know what a deployment would create was to read all five.
+One list, read by one applier.
 
 Two checks earn the file its keep, and both fail loudly rather than rendering
 something half-right:

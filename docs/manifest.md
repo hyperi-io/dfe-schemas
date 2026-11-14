@@ -3,10 +3,6 @@
 One list of every object a DFE deployment creates, in the order it creates
 them. dfe-engine iterates it at boot and applies nothing that is not in it.
 
-Before it, the order lived in three Python tuples in dfe-engine, a Helm helper
-in dfe-infra and a resolver in dfe-docker, and the only way to know what a
-deployment would create was to read all five.
-
 ## Top level
 
 | Key | Meaning |

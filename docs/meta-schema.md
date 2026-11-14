@@ -305,10 +305,8 @@ The engine validates `ch_override` against a catalogue of supported ClickHouse t
 ## Cardinality
 
 How many distinct values the column holds. One declaration, because it decides
-two things that used to be set apart with nothing keeping them in agreement:
-`attribute: [lowcardinality]` was the storage decision, hand-set, and
-`exact_match` choosing `set(0)` over `bloom_filter` was the index decision,
-derived separately.
+two things that must agree: the storage wrapper, and whether `exact_match`
+chooses `set(0)` or `bloom_filter`.
 
 | Value | Storage | `exact_match` index |
 |-------|---------|---------------------|
@@ -418,7 +416,7 @@ Invalid combinations are rejected at validation time (e.g. `word_search` on an `
 
 ### Generated ClickHouse Indexes
 
-What a use case renders today, on the ClickHouse the stack pins. These are the answers, not
+What each use case renders on the ClickHouse the stack pins. These are the answers, not
 part of the vocabulary -- read them to size the cost, not to name a column. They
 live as data in `registries/ddl.yaml`, the DDL catalogue, read through
 `dfe_schemas.ddl_catalogue`. A changed answer is a catalogue edit and a
@@ -832,7 +830,7 @@ docstring; the provider's arguments live in an `@` file beside it
 
 ### Generating the Elastic ECS Meta Schema
 
-`meta/elastic/ecs.yaml` is the ECS vocabulary shared by every Beat and the Elastic Agent, generated rather than written: at 1018 columns nobody maintains it by hand. The generator is the `dfe-schemagen` crate in `dfe-transform-elastic-dev`, which takes column types from the ECS spec and the set of referenced names from an `elastic/integrations` clone. A field's column falls out of its whole spec entry, not its `type` alone: `normalize: [array]` makes an array column, `object_type` a searchable map, and `index: false` drops the index Elasticsearch itself never uses.
+`meta/elastic/ecs.yaml` is the ECS vocabulary shared by every Beat and the Elastic Agent, generated rather than written, because it is too large to maintain by hand. The generator is the `dfe-schemagen` crate in `dfe-transform-elastic-dev`, which takes column types from the ECS spec and the set of referenced names from an `elastic/integrations` clone. A field's column falls out of its whole spec entry, not its `type` alone: `normalize: [array]` makes an array column, `object_type` a searchable map, and `index: false` drops the index Elasticsearch itself never uses.
 
 The file carries no `use_case`: a meta schema is the full column set, and the index on a column is chosen by each derived schema that selects it. Every column keeps its `Elasticsearch mapping type` comment, which is the evidence those index choices rest on.
 

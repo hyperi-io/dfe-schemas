@@ -5,23 +5,7 @@
 # License:   BUSL-1.1
 # Copyright: (c) 2026 HYPERI PTY LIMITED
 #
-# Two jobs, and the split is the point.
-#
-# `render` needs NOTHING but this package: it loads the apply manifest and
-# renders every object for every ClickHouse platform, so the source of truth checks its
-# own content. That is the half that matters most now that a table is defined
-# here and nowhere else.
-#
-# `validate` still borrows dfe-engine's loader for the meta-schema models,
-# which is why it checks out a private repo. Kept OUT of ci.yml (the hyperi-ci
-# caller) because hyperi-ci has no stage for a cross-repo checkout, and folding
-# it into this repo's pytest suite would put dfe-engine in dfe-schemas'
-# dependency graph -- a cycle, since dfe-engine depends on the dfe-schemas
-# wheel.
-#
-# The dfe-engine venv installs dfe-schemas from PyPI as a dependency; what gets
-# validated is still THIS checkout, because validate_schemas.py passes explicit
-# paths and points DFE_ENGINE_SCHEMAS_DIR at the repo root.
+# `validate` borrows dfe-engine's loader, so it runs here rather than in the hyperi-ci caller.
 
 name: Validate schemas
 

@@ -8,9 +8,7 @@
 
 """Cardinality has one home, and both decisions read it.
 
-It used to have two: ``attribute: [lowcardinality]`` set the storage wrapper by
-hand, and ``exact_match`` derived its index separately. Nothing kept them
-agreeing. These tests pin the single answer -- ``low`` puts
+The storage wrapper and the ``exact_match`` index must agree. These tests pin the single answer -- ``low`` puts
 ``LowCardinality(...)`` on the column and ``set(0)`` under ``exact_match``,
 ``high`` and ``unknown`` get neither -- and pin the refusal when a column
 declares the two against each other.

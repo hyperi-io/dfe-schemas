@@ -42,4 +42,4 @@ ENGINE = Replicated('/clickhouse/databases/dfe', '{shard}', '{replica}')
 
 `Platform.CLOUD` renders the same object for ClickHouse Cloud. Against a live server, `PlatformProbe(client).platform` names it for you.
 
-Docs and source are at <https://github.com/hyperi-io/dfe-schemas>. Requires Python 3.14 or later. Licensed BUSL-1.1: <https://github.com/hyperi-io/dfe-schemas/blob/main/LICENSE>.
+Docs and source are at <https://github.com/hyperi-io/dfe-schemas>. Requires the Python version `requires-python` names in `pyproject.toml`. Licensed BUSL-1.1: <https://github.com/hyperi-io/dfe-schemas/blob/main/LICENSE>.

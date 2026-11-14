@@ -5,13 +5,7 @@
 # License:   BUSL-1.1
 # Copyright: (c) 2026 HYPERI PTY LIMITED
 #
-# Thin caller of the shared hyperi-ci reusable workflow, the same shape every
-# other HyperI Python repo uses. A push validates and never publishes; a
-# workflow_dispatch with from-head=true mints the release (semantic-release
-# picks the version, tags it, and the release tail publishes the wheel to
-# PyPI). The repo-specific meta-schema validation lives in its own workflow
-# (validate-schemas.yml) because it needs a cross-repo dfe-engine checkout
-# that hyperi-ci has no stage for.
+# Meta-schema validation is in validate-schemas.yml.
 
 name: CI
 
@@ -31,7 +25,7 @@ name: CI
         type: string
         required: false
         default: ""
-        description: "'true' to release/retry the current HEAD -- the CI creates the tag (issue #35)."
+        description: "'true' to release/retry the current HEAD -- the CI creates the tag."
       bump:
         type: string
         required: false

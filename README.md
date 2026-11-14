@@ -10,7 +10,7 @@ Defines the core ClickHouse objects and Kafka bootstrap topics a DFE deployment 
 
 - `manifest.yaml` lists every object a deployment creates, in the order it creates them: databases, tables, views, TTLs, roles and grants, and the Kafka bootstrap topics. Adding a table is an entry there plus its definition file, never an engine release, a Job or an init container.
 - A renderer turns each object into checksummed output: ClickHouse DDL for the platform a connection reaches, Cloud or self-hosted, and a topic spec for a Kafka topic.
-- One table shape on every ClickHouse: the argumentless `Replicated<variant>` engine with no `ON CLUSTER`, which ClickHouse Cloud rewrites to `SharedMergeTree`.
+- One table layout on every ClickHouse: the argumentless `Replicated<variant>` engine with no `ON CLUSTER`, which ClickHouse Cloud rewrites to `SharedMergeTree`.
 - The source meta schemas, the compatibility profiles, the shipped source catalogue, and the registries of table engines, column types and field maps dfe-engine validates sources against.
 
 dfe-engine reads this package at boot, takes the schema lock, renders the manifest, compares it with `dfe.schema_migrations` and the live server, and applies what is absent or additively changed. Nothing else creates a ClickHouse object or a Kafka topic: not an Argo CD Job, not a compose init container, not an app at runtime. The Rust apps read the deployed schema from `system.columns` and never read this YAML.
@@ -60,7 +60,7 @@ Changing an existing table is a new version entry, never an edit. Each version i
 - [docs/meta-schema.md](docs/meta-schema.md): the YAML format for source schemas, the version tree, the type system and the `@directive` language.
 - [docs/compat-profiles.md](docs/compat-profiles.md): the compatibility profile format.
 - [docs/clickhouse-platform.md](docs/clickhouse-platform.md): how the platform is probed and what differs on Cloud.
-- [docs/architecture.md](docs/architecture.md): why it is shaped this way, and the invariants.
+- [docs/architecture.md](docs/architecture.md): why it is built this way, and the invariants.
 
 The suite's published docs are at <https://dfe.docs.hyperi.io>, and this repository's pages at <https://dfe.docs.hyperi.io/dfe-schemas/>.
 

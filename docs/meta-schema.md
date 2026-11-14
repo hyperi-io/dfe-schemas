@@ -181,8 +181,8 @@ the engine's semantic heuristics (name/type based).
 
 Correlated columns must not draw independently (an sshd message under
 `appname: cron` reads as fake). A version entry may carry a `synthetic:`
-mapping BESIDE `columns:` whose `scenarios:` list defines coherent event
-shapes - one weighted scenario is drawn per event, and its
+mapping BESIDE `columns:` whose `scenarios:` list defines coherent
+events - one weighted scenario is drawn per event, and its
 `values`/`templates` override per-column hints for the columns it names:
 
 ```yaml
@@ -660,7 +660,7 @@ unless `projection_order_by` is set.
 | `ttl_only_drop_parts` | The table has a TTL and `ttl_only_drop_parts` is true | `1` when every TTL column appears in the `PARTITION BY` expression, else `0`. An unaligned TTL then deletes rows instead of dropping parts, because a part is dropped only once every row in it has expired. |
 | `merge_max_dynamic_subcolumns_in_wide_part` | Any column resolves to `JSON` or a type wrapping it | `64`, from `JSON_TABLE_SETTINGS` in `dfe_schemas/deploy_defaults.py` |
 
-Uncapped, a merge over a JSON column with map-shaped keys writes one stream per
+Uncapped, a merge over a JSON column with free-form keys writes one stream per
 dynamic subcolumn and runs ClickHouse out of memory. `json_table_settings()` in
 `deploy_defaults.py` decides whether a table carries the cap, after dropping quoted
 literals so an `Enum8('JSON' = 1)` label does not count, and adds the platform's own
@@ -856,7 +856,7 @@ Every column declares `cardinality: unknown`. An Elasticsearch index template ca
 
 ### Store-Snapshot Stores
 
-A store that arrives as a periodic full dump (dfe-fetcher's dump shape) lands
+A store that arrives as a periodic full dump (dfe-fetcher's dump units) lands
 every frame inside a snapshot envelope: `kind`, `snapshot_id`, `snapshot_at`,
 `store`, `seq`, the `end` marker's `row_count` and `completed_at`, with the
 provider's record under `record`. The envelope columns are declared once in

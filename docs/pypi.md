@@ -7,7 +7,7 @@ It ships the schema trees as package data, with the renderer that turns them int
 ## What it gives you
 
 - `manifest.yaml`: every object a deployment creates, in dependency order. A new table is an entry there plus its definition file, with no engine release.
-- One table shape on every ClickHouse: the argumentless `Replicated<variant>` engine with no `ON CLUSTER`, which ClickHouse Cloud rewrites to `SharedMergeTree`.
+- One table layout on every ClickHouse: the argumentless `Replicated<variant>` engine with no `ON CLUSTER`, which ClickHouse Cloud rewrites to `SharedMergeTree`.
 - `PlatformProbe`, which tells ClickHouse Cloud from self-hosted on a live connection, and whose `require_replication()` refuses a self-hosted server with no Keeper.
 - A per-object checksum, the same on every platform, so an applier can tell what changed.
 - Kafka bootstrap topics with their replication clamped to the deployment's broker count.

@@ -203,7 +203,7 @@ touches a database -- this repo supplies definitions and dfe-engine applies them
 | `compat-profiles/` | Compatibility profiles, their JSON schema, and rows in the scalo.rules format |
 | `catalogue/` | Sources shipped ready to create, one `POST /sources` body per file |
 | `registries/` | The allow-lists dfe-engine validates against |
-| `docs/architecture.md` | Why it is shaped this way, and the invariants |
+| `docs/architecture.md` | Why it is built this way, and the invariants |
 
 ### Commands that prove a change
 

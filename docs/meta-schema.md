@@ -325,10 +325,9 @@ cardinality, so dfe-engine's template importer leaves an imported column
 one exception is a `constant_keyword`, which it reads as `low` because it holds
 one value.
 
-`low` needs a type ClickHouse can dictionary-encode, so it is refused (code 43)
-on any primitive but `string`, `text`, `integer`, `float`, `date` and `enum`. A
-`ch_override` takes it only on `String`, `FixedString`, a number, `Date`,
-`Date32`, `DateTime` or an enum, so never on `DateTime64`.
+A default ClickHouse creates `LowCardinality` over `String`, `FixedString` and
+`UUID` only, and refuses the rest with code 455. So `cardinality: low` belongs on
+a `string` or `text` column.
 
 `attribute: [lowcardinality]` is the retired spelling and still reads as
 `cardinality: low`. Declaring the two against each other is refused.
@@ -341,7 +340,7 @@ Attributes modify how the type is stored. Specified as a list in YAML.
 
 | Attribute | What It Does | Valid Primitives |
 |-----------|-------------|-----------------|
-| `lowcardinality` | Retired -- the old spelling of `cardinality: low` | `string`, `text`, `integer`, `float`, `date` |
+| `lowcardinality` | Retired -- the old spelling of `cardinality: low` | `string`, `text` |
 | `nullable` | Force NULL allowed (overrides primitive default) | all |
 | `not_null` | Force NOT NULL (overrides primitive default) | all |
 | `materialized` | Column computed on INSERT, not stored in source data | all |

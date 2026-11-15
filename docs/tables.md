@@ -1,9 +1,11 @@
 # Table definitions (`tables/`)
 
 `tables/` holds tables written directly in ClickHouse types, as opposed to the
-`meta/` schemas that map DFE's 13 primitives onto ClickHouse. Five sets live
-here: `core/` (the landing table, the dead-letter table and the detection pair, whose columns come
-from a common-header profile), `otel/` (the telemetry tables the collector
+`meta/` schemas that map the primitives in `registries/types.yaml` onto
+ClickHouse. Five sets live here: `core/` (the landing, dead-letter and detection
+tables, whose columns the manifest composes from a common-header profile, and
+the detection checkpoint, whose columns come from
+`hunts/detection_checkpoint.yaml`), `otel/` (the telemetry tables the collector
 writes into and dfe-hyperdx reads), `internal/` (the engine's own working state,
 including the applier's migration ledger and its lock), `usage/` (the usage
 rollup a deployment is licensed on, and the views that refresh it) and `meta/`
@@ -32,9 +34,11 @@ versions:
     type: model
     summary: "One row per gauge reading"
     table:
+      name: "otel_metrics_gauge"
       engine: "MergeTree"
       partition_by: "toDate(_timestamp_load)"
-      order_by: "ServiceName, MetricName, TimeUnix"
+      ttl_columns: ["_timestamp_load"]
+      order_by: "ServiceName, MetricName, toStartOfHour(TimeUnix), cityHash64(Attributes), TimeUnix"
       index_granularity: 8192
       indexes:
         - "INDEX idx_time_minmax TimeUnix TYPE minmax GRANULARITY 1"
@@ -48,11 +52,14 @@ versions:
 
 | Key | Meaning |
 |---|---|
+| `name` | The table name. Required: the renderer refuses a file that does not name its table. |
 | `engine` | The engine INTENT (`MergeTree`, `ReplacingMergeTree(updated_at)`). The renderer adds the `Replicated` prefix every DFE table takes, on every platform. |
-| `partition_by` | Raw PARTITION BY expression. |
+| `partition_by` | Raw PARTITION BY expression. Wins over `partition_column`. |
+| `partition_column` / `partition_granularity` | The column PARTITION BY wraps, and `day` (`toYYYYMMDD`) or `month` (`toYYYYMM`). Either one left out takes the `table` block of `registries/ddl.yaml`, and a table without the column gets no PARTITION BY. |
 | `order_by` | Raw ORDER BY expression. Used when the sorting key is expressions rather than bare columns. |
-| `index_granularity` | Rows per granule. 8192 for range scans, 2048 for point lookups. |
-| `ttl_days` / `ttl_columns` | Retention. `ttl_columns` alone takes the deployment default (`DFE_ENGINE_CLICKHOUSE_DEFAULT_TTL_DAYS`, 90 days unless the deploy sets otherwise); `ttl_days` overrides it for this table. Omit both for a table that keeps everything. The default applies to time-series tables (`core/`, `otel/`); the engine's state tables under `internal/` and `detection_checkpoint` declare their own. |
+| `index_granularity` | Rows per granule. 8192 for range scans, 2048 for point lookups. Left out, it takes the `table` block of `registries/ddl.yaml`. |
+| `ttl_days` / `ttl_columns` | Retention. `ttl_columns` alone takes the deployment default, the `default_ttl_days` parameter `DFE_ENGINE_CLICKHOUSE_DEFAULT_TTL_DAYS` sets, and `ttl_days` overrides it for this table. Omit both for a table that keeps everything. The landing and detection tables and every `otel/` table take the default. |
+| `projection_order_by` | A column for a `SELECT * ORDER BY` projection. Off unless set. |
 | `indexes` | Data-skipping indexes, emitted verbatim. |
 | `reader_grant` | `true` renders `GRANT SELECT` on the table to the reader role after the CREATE, as every view does. |
 
@@ -87,7 +94,7 @@ each key column an `order` and leave `order_by` out.
 | `max_dynamic_paths` | Typed sub-paths a `JSON` column holds before the rest spill to a shared map. `inherit` reads the value from the common header's `_json`. |
 
 A nested `LowCardinality` is part of the type and stays in `ch_type`
-(`Map(LowCardinality(String), String)`); only a top-level wrapper is declared as
+(`Map(LowCardinality(String), String)`). Only a top-level wrapper is declared as
 `cardinality: low`.
 
 ## `materialized_view`

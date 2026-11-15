@@ -1,6 +1,6 @@
 # Compatibility profiles
 
-A compatibility profile reads the header fields another platform, or an older DFE, writes, and sets the DFE header from them. It is data: versioned rule rows that dfe-engine compiles into the first hop's ordinary rules, so dfe-receiver and dfe-fetcher never learn that profiles exist. Profiles live in `compat-profiles/`, one file per profile, and ship in the wheel under `dfe_schemas/data/compat-profiles/`. Two ship:
+A compatibility profile reads the header fields another platform, or an older DFE, writes, and sets the DFE header from them. It is data: versioned rule rows that dfe-engine compiles into the first hop's ordinary rules, so dfe-receiver and dfe-fetcher never learn that profiles exist. Profiles live in `compat-profiles/`, one file per profile, and ship in the wheel under `dfe_schemas/data/compat-profiles/`. These ship:
 
 | Profile | Reads | Sets | Off until a source opts in |
 |---------|-------|------|----------------------------|
@@ -41,7 +41,7 @@ versions:
     opt_in: [org-namespace]
 ```
 
-Two checks own a profile between them. `compat-profiles/profile.schema.json` (JSON Schema 2020-12) owns the document: the version tree, the fields a row may set, ids and the `opt_in` list. scalo.rules owns what a row means, so `targets`, `lookups` and `rules` are exactly a scalo.rules rule set, and the tests compile every version with scalo's own checker. The row format, its tests and its actions are in scalo-py's `docs/api/RULES.md`.
+Two checks own a profile between them. `compat-profiles/profile.schema.json` (JSON Schema 2020-12) owns the document: the version tree, the fields a row may set, ids and the `opt_in` list. scalo.rules owns what a row means, so `targets`, `lookups` and `rules` are exactly a scalo.rules rule set, and the tests compile every version with scalo's own checker. The row format, its tests and its actions are in scalo-py's `docs/api/rules.md`: <https://github.com/hyperi-io/scalo-py/blob/main/docs/api/rules.md>.
 
 A profile sets scalar header fields only: `_source`, `_org_id` and `_timestamp`. Moving a subtree or reshaping a payload is a transform's job. Each version is a complete snapshot and a published one never changes, so a fix is a new version entry.
 

@@ -59,6 +59,8 @@ Changing an existing table is a new version entry, never an edit. Each version i
 - [docs/tables.md](docs/tables.md): the `tables/` format in exact ClickHouse columns.
 - [docs/meta-schema.md](docs/meta-schema.md): the YAML format for source schemas, the version tree, the type system and the `@directive` language.
 - [docs/compat-profiles.md](docs/compat-profiles.md): the compatibility profile format.
+- [docs/catalogue.md](docs/catalogue.md): the source catalogue, one ready-to-create source body per file.
+- [docs/registries.md](docs/registries.md): the engine, type, DDL, field-map and catalogue registries.
 - [docs/clickhouse-platform.md](docs/clickhouse-platform.md): how the platform is probed and what differs on Cloud.
 - [docs/architecture.md](docs/architecture.md): why it is built this way, and the invariants.
 

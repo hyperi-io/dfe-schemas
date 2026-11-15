@@ -41,22 +41,11 @@ jobs:
       - name: Checkout dfe-schemas
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      - name: Mint a read token for dfe-engine
-        id: engine-token
-        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
-        with:
-          client-id: ${{ vars.GH_APP_CLIENT_ID }}
-          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
-          owner: ${{ github.repository_owner }}
-          repositories: dfe-engine
-          permission-contents: read
-
       - name: Checkout dfe-engine (schema loader)
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: hyperi-io/dfe-engine
           ref: main
-          token: ${{ steps.engine-token.outputs.token }}
           path: .dfe-engine
 
       - name: Install uv

@@ -1,14 +1,7 @@
 # main -- the landing table every source writes into
 #
-# The file name matches the table name: this is the one authority for the
-# landing table, and a file called default.yaml declaring a table called main
-# is how the engine ended up creating dfe.default while both e2e suites
-# asserted dfe.main.
-#
-# Columns come from the deployment's common-header profile; this file carries
-# only the DDL config. TTL names the partition column because
-# ttl_only_drop_parts drops a part only once every row in it has expired. The
-# retention period is the deployment default; no ttl_days here on purpose.
+# The file name must match the table name. Columns come from the common-header
+# profile, and retention is the deployment default (docs/tables.md).
 
 current: "1.0.0"
 

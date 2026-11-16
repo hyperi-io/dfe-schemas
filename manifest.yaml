@@ -1,35 +1,8 @@
-# The apply manifest -- every object a DFE deployment creates, in the order it
-# is created.
-#
-# This is the ONE list the applier iterates. Adding a table is an entry here
-# plus its definition file; it is never a code change in dfe-engine, and it is
-# never a Job, an init container or a chart template anywhere else.
-#
-# Every object carries:
-#   id          unique across the manifest, so two definitions can never claim
-#               one name
-#   kind        database | table | materialized_view | view | role | topic
-#   database    which declared database it lands in, by KEY. The real name
-#               comes from the deployment parameter below -- a literal here
-#               would grant, create and query against a database a deployment
-#               that renamed its own does not have
-#   defines     the definition file, relative to the schemas root, without a
-#               suffix. Absent where the object needs none
-#   topology    `resolved` renders per ClickHouse platform (cloud,
-#               self_hosted); `fixed` renders the same everywhere
-#   additive    whether an additive change to this object may be applied
-#               automatically. A changed type, ORDER BY, PARTITION BY, TTL or
-#               codec is drift either way and is refused
-#   depends_on  ids declared EARLIER in this list. The renderer fails on a
-#               forward or unknown reference, which is what makes the order
-#               above a dependency order rather than a preference
-#
-# schema_migrations is first after the database because the applier records
-# every other object into it, its own row included.
+# The apply manifest: every object a DFE deployment creates, in the order it is
+# created. Format: docs/manifest.md
 
 manifest_version: 1
 
-# The deployment supplies these; nothing here is a literal.
 parameters:
   data_database:
     description: The one database every DFE table lands in, telemetry included
@@ -53,8 +26,7 @@ databases:
   - key: data
     parameter: data_database
   - key: meta
-    # Fixed: the governance projection is the deployment's own metadata, and it
-    # is kept out of the data database on purpose.
+    # Fixed: governance metadata stays out of the data database.
     name: dfe_meta
 
 objects:
@@ -189,15 +161,8 @@ objects:
     additive: true
     depends_on: [db.data]
 
-  # -- OTel telemetry -------------------------------------------------------
-  #
-  # DFE owns these rather than letting the exporter create them. The exporter
-  # creates over whichever connection the Service resolved and senses no
-  # topology, so the same table ended up plain on one replica and Replicated on
-  # the others. It runs with create_schema: false.
-  #
-  # Logs first: an operator watching an apply wants the table carrying the
-  # telemetry they are reading confirmed before the metric shapes.
+  # -- OTel telemetry (docs/tables.md) -------------------------------------
+  # Logs first, so the table holding the apply's own log lines is confirmed first.
 
   - id: data.otel_logs
     kind: table
@@ -228,8 +193,7 @@ objects:
     database: data
     defines: tables/otel/traces_trace_id_ts
     topology: resolved
-    # A materialised view holds aggregated state, so a changed SELECT is a
-    # deliberate migration rather than an apply.
+    # Aggregated state: a changed SELECT is a migration, not an apply.
     additive: false
     depends_on: [data.otel_traces, data.otel_traces_trace_id_ts]
 
@@ -274,10 +238,7 @@ objects:
     depends_on: [db.data]
 
   # -- the query-cost archive ----------------------------------------------
-  #
-  # Non-fatal at apply: a server with query logging disabled never
-  # materialises system.query_log, and no part of DFE fails without the cost
-  # leaderboard.
+  # Optional: a server with query logging off has no system.query_log.
 
   - id: data.query_log_archive
     kind: table
@@ -323,10 +284,7 @@ objects:
     depends_on: [db.meta]
 
   # -- roles, profiles, quotas and grants ----------------------------------
-  #
-  # ClickHouse access objects are cluster-wide state, not per-database, so they
-  # render the same on every platform. They come after the tables the
-  # tenant row policies are written against.
+  # After the tables the tenant row policies are written against.
 
   - id: role.tenant
     kind: role
@@ -448,10 +406,7 @@ objects:
     depends_on: [db.data]
 
   # -- the built-in views ---------------------------------------------------
-  #
-  # A plain view holds no state, so a changed SELECT is applied with CREATE OR
-  # REPLACE. Each grants SELECT to the query_reader role as part of its own
-  # apply, which is why every one depends on that role.
+  # Each grants SELECT to the query_reader role, so each depends on it.
 
   - id: view.dfe_v_analytics_event_counts
     kind: view
@@ -525,16 +480,7 @@ objects:
     additive: true
     depends_on: [role.query_reader]
 
-  # -- usage metrics --------------------------------------------------------
-  #
-  # The numbers a deployment is licensed on: cores deployed, worker-node cores,
-  # bytes ingested and events per second, per UTC minute and per UTC day.
-  # Parameterised views hold the arithmetic and the sources, so a fix to either
-  # is a view replaced on the next apply. Each refreshable materialised view
-  # only names the plain view that sets its window and the table it appends to.
-  # The two tables grant SELECT to the reader role as part of their own apply,
-  # as the views do. dfe_schemas.usage names every metric the views read and
-  # write.
+  # -- usage metrics, the numbers a deployment is licensed on ----------------
 
   - id: data.usage_minute
     kind: table
@@ -676,10 +622,7 @@ objects:
     depends_on: [data.usage_daily, view.usage_daily_recent]
 
   # -- the Kafka bootstrap topic set ---------------------------------------
-  #
-  # Topics are not a ClickHouse object and carry no topology. A deployment with
-  # no bus skips them and still converges: the brokerless tiers run the
-  # receiver straight into the loader over gRPC.
+  # A brokerless deployment skips them and still converges.
 
   - id: topic.main_land
     kind: topic

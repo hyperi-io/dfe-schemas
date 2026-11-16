@@ -6,9 +6,8 @@
 # Elastic's own field declarations at elastic/beats tag v9.5.4 (released
 # 2026-09-15): auditbeat/_meta/fields.common.yml, the auditd and
 # file_integrity module fields.yml, and x-pack/auditbeat/module/system.
-# Checked against the auditd testdata goldens and the modules' data.json
-# events, which is where system.audit.host.ip and .mac turned out to be
-# lists.
+# Arrays such as system.audit.host.ip and .mac were read off the auditd
+# testdata goldens and the modules' data.json events.
 #
 # auditd.data holds every key Elastic declares for an audit record, one
 # column each; a record fills only the keys its type carries.

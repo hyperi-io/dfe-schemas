@@ -8,20 +8,15 @@
 # audit and saved identities and file_integrity's hashes sit outside core
 # ECS, so the ECS vocabulary cannot satisfy this selection.
 #
-# Index choices measured against two rule corpora: Elastic's 190 prebuilt
-# detection rules whose index list names auditbeat-* (detection-rules commit
-# 2e6bdc0) and SigmaHQ's 53 auditd rules under rules/linux/auditd (commit
-# 272daf8). Each count is the number of rules whose query or detection
-# references that field. The heaviest are event.type 74.7%, process.name
-# 74.2%, event.action 68.9%, host.os.type 66.3% and process.args 54.2% of the
-# Elastic rules, and the audit record type, 51 of the 53 Sigma rules.
+# Index choices follow how often Elastic's prebuilt auditbeat rules and
+# SigmaHQ's auditd rules reference each field.
 #
 # Sigma's auditd rules use the raw record keys, so the counts below map them:
 # type is auditd.message_type, SYSCALL is auditd.data.syscall, a0-a3 are
 # auditd.data.a0-a3, exe is process.executable, name is the path the record
 # names. A column whose comment below quotes no count -- agent_type, the
 # session, the hashes, the auditd summary, the audit identity, package_name,
-# message and labels -- is reasoned from what the hunt needs, not measured.
+# message and labels -- is reasoned from what the hunt needs.
 
 base: meta/beats/auditbeat
 base_version: "1.0.0"

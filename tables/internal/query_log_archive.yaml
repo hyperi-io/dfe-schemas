@@ -17,9 +17,96 @@
 # Attribution pattern and the archive idea are from PostHog (MIT); see the
 # consumer's THIRD-PARTY-NOTICES.
 
-current: "1.0.0"
+current: "1.1.0"
 
 versions:
+  "1.1.0":
+    date: "2026-11-16"
+    type: model
+    summary: "CPU time and CPU wait per query, so the hunt cost model has a true CPU axis instead of duration"
+    table:
+      name: "query_log_archive"
+      engine: "MergeTree"
+      index_granularity: 8192
+      ttl_days: 30
+      ttl_columns: ["event_time"]
+    materialized_view:
+      name: query_log_archive_mv
+      to: query_log_archive
+      # Only finished, DFE-tagged, valid-JSON rows: untagged CH-internal
+      # queries are skipped, which keeps the archive small and relevant.
+      # OSCPUVirtualTime, not UserTime + SystemTime: the rusage pair misreports on
+      # an INSERT that fires a materialized view (ClickHouse #70063).
+      select: |-
+        SELECT
+            event_time,
+            query_id,
+            query_duration_ms,
+            read_rows,
+            read_bytes,
+            result_rows,
+            memory_usage,
+            ProfileEvents['OSCPUVirtualTimeMicroseconds'] AS cpu_us,
+            ProfileEvents['OSCPUWaitMicroseconds'] AS cpu_wait_us,
+            query_kind,
+            user AS ch_user,
+            JSONExtractString(log_comment, 'service') AS service,
+            JSONExtractString(log_comment, 'tenant_id') AS tenant_id,
+            JSONExtractString(log_comment, 'feature') AS feature,
+            JSONExtractString(log_comment, 'kind') AS kind,
+            JSONExtractString(log_comment, 'id') AS dfe_id,
+            JSONExtractString(log_comment, 'trace_id') AS trace_id,
+            log_comment
+        FROM system.query_log
+        WHERE type = 'QueryFinish' AND log_comment != '' AND isValidJSON(log_comment)
+    columns:
+      - name: "event_time"
+        ch_type: "DateTime"
+        order: 0
+      - name: "query_id"
+        ch_type: "String"
+        order: 1
+      - name: "query_duration_ms"
+        ch_type: "UInt64"
+      - name: "read_rows"
+        ch_type: "UInt64"
+      - name: "read_bytes"
+        ch_type: "UInt64"
+      - name: "result_rows"
+        ch_type: "UInt64"
+      - name: "memory_usage"
+        ch_type: "UInt64"
+      - name: "cpu_us"
+        ch_type: "UInt64"
+        default: "0"
+        comment: "CPU time over every thread of the query, microseconds"
+      - name: "cpu_wait_us"
+        ch_type: "UInt64"
+        default: "0"
+        comment: "time the query's threads were runnable but waiting for a CPU, microseconds"
+      - name: "query_kind"
+        ch_type: "String"
+        lowcardinality: true
+      - name: "ch_user"
+        ch_type: "String"
+        lowcardinality: true
+      - name: "service"
+        ch_type: "String"
+        lowcardinality: true
+      - name: "tenant_id"
+        ch_type: "String"
+      - name: "feature"
+        ch_type: "String"
+        lowcardinality: true
+      - name: "kind"
+        ch_type: "String"
+        lowcardinality: true
+      - name: "dfe_id"
+        ch_type: "String"
+      - name: "trace_id"
+        ch_type: "String"
+      - name: "log_comment"
+        ch_type: "String"
   "1.0.0":
     date: "2026-09-16"
     type: model

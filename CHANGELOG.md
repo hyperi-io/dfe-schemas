@@ -3,6 +3,13 @@
 Rendered by CI and committed back at the end of a release -- do not edit by
 hand. Release notes also appear on the GitHub Releases page, one per tag.
 
+## [0.2.32](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.31...v0.2.32) (2026-11-16)
+
+### Bug Fixes
+
+* **manifest:** clarify changed view SELECT handling ([#130](https://github.com/hyperi-io/dfe-schemas/issues/130)) ([c14ceea](https://github.com/hyperi-io/dfe-schemas/commit/c14ceea436f77ff8d1185e2fc9ca956ebfe855fe))
+* **roles:** grant the MergeTree settings tables HyperDX reads ([#131](https://github.com/hyperi-io/dfe-schemas/issues/131)) ([39ce638](https://github.com/hyperi-io/dfe-schemas/commit/39ce638f109d8a2f60ede2f354fdbe2aa9f084f5))
+
 ## [0.2.31](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.30...v0.2.31) (2026-11-16)
 
 ### Bug Fixes

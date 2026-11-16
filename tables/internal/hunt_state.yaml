@@ -7,9 +7,35 @@
 # correct on a single node and lands on one replica of a cluster, where a
 # restart that reconnects elsewhere finds no table.
 
-current: "1.0.0"
+current: "1.1.0"
 
 versions:
+  "1.1.0":
+    date: "2026-11-16"
+    type: model
+    summary: "Auto-disable: when the runner stopped a hunt that kept tripping a ClickHouse resource limit, and why"
+    table:
+      name: "hunt_state"
+      engine: "ReplacingMergeTree(updated)"
+      index_granularity: 2048
+    columns:
+      - name: "hunt_id"
+        ch_type: "String"
+        order: 0
+      - name: "overrun_count"
+        ch_type: "Int64"
+      - name: "too_aggressive"
+        ch_type: "UInt8"
+      - name: "auto_disabled_at"
+        ch_type: "Nullable(DateTime64(3))"
+        comment: "when the runner disabled the hunt, NULL while it runs"
+      - name: "auto_disabled_reason"
+        ch_type: "String"
+        default: "''"
+        comment: "the ClickHouse error category and code that tripped it"
+      - name: "updated"
+        ch_type: "DateTime64(3)"
+        default: "now64(3)"
   "1.0.0":
     date: "2026-08-26"
     type: model

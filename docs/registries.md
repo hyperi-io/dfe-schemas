@@ -11,4 +11,6 @@ The fixed lists dfe-engine validates and renders against live in `registries/`, 
 | `catalogue-tags.yaml` | The [catalogue](catalogue.md)'s folders, with the name and description the console shows | `GET /api/v1/sources/catalogue-tags` |
 | `elastic-variants.yaml` | Every variant dfe-transform-elastic registers, with the intakes each accepts | `tests/test_catalogue.py`, which checks the catalogue's elastic entries against it |
 
-`make validate` checks every `engines.yaml` entry and loads `types.yaml` through dfe-engine's own registry. `make test` checks the rest.
+`make validate` checks every `engines.yaml` entry and loads `types.yaml` through dfe-engine's registry. `make test` checks the rest.
+
+An entry in `ddl.yaml` renders as `INDEX <name> <expression> TYPE <type> GRANULARITY <n>`. `expression` defaults to `{col}`, the backticked column, `suffix` is appended to the index name for a use case that needs two indexes, and `{dims}` in `type` is the use case's argument, as in `similarity_search(768)`. `indexes` is a list, or `by_cardinality` with a list each for `low`, `high` and `unknown`. An entry's `when_nullable` replaces it on a column with a Nullable type, because `set(0)` prunes nothing on a Nullable column on ClickHouse 26.3.

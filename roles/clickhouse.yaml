@@ -1,23 +1,4 @@
-# The ClickHouse role, tier and grant catalogue
-#
-# Seed values an operator edits through governed-ops. The engine reconciles
-# whatever tiers exist in config; nothing here is a list the engine hardcodes.
-#
-# `{db}` is the placeholder for THE DFE data database, substituted at reconcile
-# time from the deployment's clickhouse.data_database. The name is never
-# written here: a literal would silently grant on a database a deployment that
-# renamed its own does not have.
-#
-# A TIER is how much you can consume plus what you can do: grants, a settings
-# profile and a quota. A SERVICE ROLE is a fixed identity. The TENANT axis is
-# one shared role plus a per-user pinned setting, and it is the whole of
-# per-org isolation -- there is no per-org database. Row policies fence an org
-# to its own `_org_id` rows, and the deny policy hides the tables that carry no
-# `_org_id` at all.
-#
-# RESTRICTIVE-only is what keeps this safe: a user not holding the tenant role
-# is targeted by no policy and reads everything, a holder reads only its pinned
-# ids. A PERMISSIVE policy here would flip the table to default-deny.
+# The ClickHouse role, tier and grant catalogue. docs/roles.md explains it.
 
 current: "1.3.0"
 resource_type: core
@@ -28,16 +9,7 @@ versions:
     type: revision
     summary: "Each reader and hunt profile's memory and time caps become constraints, so a query's own SETTINGS can no longer lift them"
 
-    # A profile setting is a plain value, or a mapping of `value` plus `min`
-    # and `max` bounds, or `value` plus `const: true`. ClickHouse refuses a
-    # query that sets a constrained setting outside its bounds with code 452.
-    # readonly=2 lets a query change any unconstrained setting, so a cap that
-    # is a plain value is a default the query can lift to 0 (unlimited).
-    #
-    # Time caps allow up to 60 seconds whatever the default: HyperDX sends
-    # its team queryTimeout (60 unless the team sets one) on every query.
-    # max_rows_to_read stays a plain value because HyperDX's filter and key
-    # queries send max_rows_to_read=0.
+    # Setting forms, and why the caps are constraints: docs/roles.md
 
     database_placeholder: "{db}"
 
@@ -53,32 +25,17 @@ versions:
 
     tenant:
       role: "dfe_tenant_role"
-      # Pinned READONLY on each org user, which is the enforcement: a READONLY
-      # user setting rejects any override, a SETTINGS clause inside
-      # attacker-authored query text included, with code 452. The server must
-      # allow the SQL_ custom-settings prefix.
+      # Pinned READONLY on each org user, so no query can override it.
       setting: "SQL_current_tenant_id"
       predicate: "has(splitByChar(',', getSetting('SQL_current_tenant_id')), _org_id)"
-      # The only system tables a tenant reaches. HyperDX builds its field list
-      # from system.columns and detects server capabilities from the other
-      # three, so a tenant without these renders an empty source rather than
-      # its data. Deliberately a fraction of the introspection list below:
-      # nothing here describes the deployment, the cluster, other tenants or
-      # query history.
+      # What HyperDX needs, and nothing that describes the deployment.
       system_tables:
         - columns
         - settings
         - table_engines
         - tables
 
-    # ClickHouse's own introspection tables, granted to the platform reader so
-    # the pre-canned ClickHouse dashboards and an operator writing ad-hoc SQL
-    # can ask the server about itself. Named one by one rather than system.*:
-    # a tenant must never reach these.
-    #
-    # merge('system', '^metric_log') SKIPS a table the user cannot read, so a
-    # ClickHouse upgrade that rotates metric_log to metric_log_0 drops the
-    # older history out of the charts until that name is added here.
+    # Named one by one so a tenant never reaches them (docs/roles.md).
     system_introspection_tables:
       - asynchronous_metric_log
       - asynchronous_metrics
@@ -107,20 +64,14 @@ versions:
       - tables
       - text_log
 
-    # A whole org shares ONE pinned CH user and a BI page fires several queries
-    # per view, so the hourly caps are sized for that rather than for one
-    # human. The analyst tier grants the WHOLE data database to every user, org
-    # and platform alike, so a new source table is readable with no admin
-    # action; isolation is the row policy, not grant scope.
+    # Caps sized for an org sharing one user (docs/roles.md).
     tiers:
       - name: analyst_tier_1
         kind: analyst
         default: false
         grants: ["SELECT ON {db}.*"]
         settings:
-          # readonly=2, not 1: queries only, but per-query output settings stay
-          # changeable, which BI clients send with every query. Pinned settings
-          # keep their own READONLY constraint regardless.
+          # readonly=2: clients send output settings with every query.
           readonly: 2
           max_memory_usage: {value: 17179869184, min: 1, max: 17179869184}
           max_execution_time: {value: 600, min: 1, max: 600}
@@ -128,8 +79,7 @@ versions:
         quota:
           interval: "1 hour"
           queries: 50000
-          # BI clients probe speculatively and bad user SQL is routine; a tight
-          # errors cap locks the whole org out for the interval.
+          # A tight errors cap locks the whole org out for the interval.
           errors: 1000
           result_rows: 1000000000
 
@@ -203,13 +153,9 @@ versions:
           result_rows: 10000000000
           errors: 500
 
-    # Fixed identities, not tiered. `mint_user` creates a CH user and its
-    # secret through the secrets provider; the others are granted to an existing
-    # identity at bind time.
+    # Fixed identities, not tiered (docs/roles.md).
     service_roles:
-      # dfe-loader's own user. It inserts, and reads its target tables' schema
-      # from system.columns and system.tables. ClickHouse lets any user read
-      # those two today, so the grants keep the loader working if that changes.
+      # ClickHouse lets any user read these two, and the grants hold if that changes.
       - name: loader
         mint_user: true
         grants:
@@ -223,26 +169,20 @@ versions:
           async_insert_busy_timeout_max_ms: 1000
           async_insert_max_data_size: 134217728
 
-      # The restricted engine reader, the identity the platform team's HyperDX
-      # connection uses, and the keda shim's -- the ClickHouse dashboards are
-      # raw SQL over `system`, so it also holds the introspection grants.
+      # HyperDX's platform connection and the KEDA shim.
       - name: query_reader
         mint_user: true
         grants: ["SELECT ON {db}.*"]
         system_introspection: true
         settings:
-          # readonly=2, not 1: hyperdx sends date_time_output_format with every
-          # query and readonly=1 rejects the whole request. allow_ddl=0 still
-          # bars DDL.
+          # readonly=2: clients send output settings with every query.
           readonly: 2
           allow_ddl: 0
           max_execution_time: {value: 30, min: 1, max: 60}
           max_rows_to_read: 10000000
           max_memory_usage: {value: 2147483648, min: 1, max: 2147483648}
 
-      # The hunt runner's own user. Its worker runs INSERT ... SELECT built from
-      # rule text, so it holds the data grants and nothing else: no url(), s3()
-      # or remote(), and no DDL.
+      # INSERT ... SELECT from rule text: the data grants and nothing else.
       - name: hunt_runner
         mint_user: true
         grants:
@@ -251,32 +191,26 @@ versions:
           # The safe horizon: how far behind each replica of a hunted table is.
           - "SELECT ON system.replicas"
 
-      # The OTel collector's own user: it writes the otel tables and scrapes the
-      # server's health.
       - name: otel_writer
         mint_user: true
         grants:
           - "INSERT ON {db}.otel_*"
-          # ClickHouse runs a materialised view's SELECT as the user whose
-          # insert fired it, and otel_traces_trace_id_ts_mv reads otel_traces.
+          # otel_traces_trace_id_ts_mv runs its SELECT as the inserting user.
           - "SELECT ON {db}.otel_traces"
           # The collector's health scrape.
           - "SELECT ON system.metrics"
           - "SELECT ON system.events"
           - "SELECT ON system.parts"
-          # system.parts lists only the tables a user can see, and the scrape
-          # reports every table's size. SHOW TABLES reads no rows.
+          # system.parts lists the tables a user can see, and SHOW TABLES reads no rows.
           - "SHOW TABLES ON {db}.*"
           - "SHOW TABLES ON system.*"
 
-      # Observability telemetry is platform-internal: composed onto admin and
-      # infra-admin group users at bind time, never part of an analyst tier.
+      # Bound to admin and infra-admin group users, never an analyst tier.
       - name: otel_reader
         mint_user: false
         grants: ["SELECT ON {db}.*"]
 
-    # Views are read through the query_reader role, so each one grants SELECT
-    # to it as part of its own apply.
+    # Each view grants SELECT to this role on apply.
     view_reader_role: "dfe_query_reader_role"
 
   "1.2.0":
@@ -298,32 +232,17 @@ versions:
 
     tenant:
       role: "dfe_tenant_role"
-      # Pinned READONLY on each org user, which is the enforcement: a READONLY
-      # user setting rejects any override, a SETTINGS clause inside
-      # attacker-authored query text included, with code 452. The server must
-      # allow the SQL_ custom-settings prefix.
+      # Pinned READONLY on each org user, so no query can override it.
       setting: "SQL_current_tenant_id"
       predicate: "has(splitByChar(',', getSetting('SQL_current_tenant_id')), _org_id)"
-      # The only system tables a tenant reaches. HyperDX builds its field list
-      # from system.columns and detects server capabilities from the other
-      # three, so a tenant without these renders an empty source rather than
-      # its data. Deliberately a fraction of the introspection list below:
-      # nothing here describes the deployment, the cluster, other tenants or
-      # query history.
+      # What HyperDX needs, and nothing that describes the deployment.
       system_tables:
         - columns
         - settings
         - table_engines
         - tables
 
-    # ClickHouse's own introspection tables, granted to the platform reader so
-    # the pre-canned ClickHouse dashboards and an operator writing ad-hoc SQL
-    # can ask the server about itself. Named one by one rather than system.*:
-    # a tenant must never reach these.
-    #
-    # merge('system', '^metric_log') SKIPS a table the user cannot read, so a
-    # ClickHouse upgrade that rotates metric_log to metric_log_0 drops the
-    # older history out of the charts until that name is added here.
+    # Named one by one so a tenant never reaches them (docs/roles.md).
     system_introspection_tables:
       - asynchronous_metric_log
       - asynchronous_metrics
@@ -352,20 +271,14 @@ versions:
       - tables
       - text_log
 
-    # A whole org shares ONE pinned CH user and a BI page fires several queries
-    # per view, so the hourly caps are sized for that rather than for one
-    # human. The analyst tier grants the WHOLE data database to every user, org
-    # and platform alike, so a new source table is readable with no admin
-    # action; isolation is the row policy, not grant scope.
+    # Caps sized for an org sharing one user (docs/roles.md).
     tiers:
       - name: analyst_tier_1
         kind: analyst
         default: false
         grants: ["SELECT ON {db}.*"]
         settings:
-          # readonly=2, not 1: queries only, but per-query output settings stay
-          # changeable, which BI clients send with every query. Pinned settings
-          # keep their own READONLY constraint regardless.
+          # readonly=2: clients send output settings with every query.
           readonly: 2
           max_memory_usage: 17179869184
           max_execution_time: 600
@@ -373,8 +286,7 @@ versions:
         quota:
           interval: "1 hour"
           queries: 50000
-          # BI clients probe speculatively and bad user SQL is routine; a tight
-          # errors cap locks the whole org out for the interval.
+          # A tight errors cap locks the whole org out for the interval.
           errors: 1000
           result_rows: 1000000000
 
@@ -448,13 +360,9 @@ versions:
           result_rows: 10000000000
           errors: 500
 
-    # Fixed identities, not tiered. `mint_user` creates a CH user and its
-    # secret through the secrets provider; the others are granted to an existing
-    # identity at bind time.
+    # Fixed identities, not tiered (docs/roles.md).
     service_roles:
-      # dfe-loader's own user. It inserts, and reads its target tables' schema
-      # from system.columns and system.tables. ClickHouse lets any user read
-      # those two today, so the grants keep the loader working if that changes.
+      # ClickHouse lets any user read these two, and the grants hold if that changes.
       - name: loader
         mint_user: true
         grants:
@@ -468,26 +376,20 @@ versions:
           async_insert_busy_timeout_max_ms: 1000
           async_insert_max_data_size: 134217728
 
-      # The restricted engine reader, the identity the platform team's HyperDX
-      # connection uses, and the keda shim's -- the ClickHouse dashboards are
-      # raw SQL over `system`, so it also holds the introspection grants.
+      # HyperDX's platform connection and the KEDA shim.
       - name: query_reader
         mint_user: true
         grants: ["SELECT ON {db}.*"]
         system_introspection: true
         settings:
-          # readonly=2, not 1: hyperdx sends date_time_output_format with every
-          # query and readonly=1 rejects the whole request. allow_ddl=0 still
-          # bars DDL.
+          # readonly=2: clients send output settings with every query.
           readonly: 2
           allow_ddl: 0
           max_execution_time: 30
           max_rows_to_read: 10000000
           max_memory_usage: 2147483648
 
-      # The hunt runner's own user. Its worker runs INSERT ... SELECT built from
-      # rule text, so it holds the data grants and nothing else: no url(), s3()
-      # or remote(), and no DDL.
+      # INSERT ... SELECT from rule text: the data grants and nothing else.
       - name: hunt_runner
         mint_user: true
         grants:
@@ -496,32 +398,26 @@ versions:
           # The safe horizon: how far behind each replica of a hunted table is.
           - "SELECT ON system.replicas"
 
-      # The OTel collector's own user: it writes the otel tables and scrapes the
-      # server's health.
       - name: otel_writer
         mint_user: true
         grants:
           - "INSERT ON {db}.otel_*"
-          # ClickHouse runs a materialised view's SELECT as the user whose
-          # insert fired it, and otel_traces_trace_id_ts_mv reads otel_traces.
+          # otel_traces_trace_id_ts_mv runs its SELECT as the inserting user.
           - "SELECT ON {db}.otel_traces"
           # The collector's health scrape.
           - "SELECT ON system.metrics"
           - "SELECT ON system.events"
           - "SELECT ON system.parts"
-          # system.parts lists only the tables a user can see, and the scrape
-          # reports every table's size. SHOW TABLES reads no rows.
+          # system.parts lists the tables a user can see, and SHOW TABLES reads no rows.
           - "SHOW TABLES ON {db}.*"
           - "SHOW TABLES ON system.*"
 
-      # Observability telemetry is platform-internal: composed onto admin and
-      # infra-admin group users at bind time, never part of an analyst tier.
+      # Bound to admin and infra-admin group users, never an analyst tier.
       - name: otel_reader
         mint_user: false
         grants: ["SELECT ON {db}.*"]
 
-    # Views are read through the query_reader role, so each one grants SELECT
-    # to it as part of its own apply.
+    # Each view grants SELECT to this role on apply.
     view_reader_role: "dfe_query_reader_role"
 
   "1.1.0":
@@ -543,32 +439,17 @@ versions:
 
     tenant:
       role: "dfe_tenant_role"
-      # Pinned READONLY on each org user, which is the enforcement: a READONLY
-      # user setting rejects any override, a SETTINGS clause inside
-      # attacker-authored query text included, with code 452. The server must
-      # allow the SQL_ custom-settings prefix.
+      # Pinned READONLY on each org user, so no query can override it.
       setting: "SQL_current_tenant_id"
       predicate: "has(splitByChar(',', getSetting('SQL_current_tenant_id')), _org_id)"
-      # The only system tables a tenant reaches. HyperDX builds its field list
-      # from system.columns and detects server capabilities from the other
-      # three, so a tenant without these renders an empty source rather than
-      # its data. Deliberately a fraction of the introspection list below:
-      # nothing here describes the deployment, the cluster, other tenants or
-      # query history.
+      # What HyperDX needs, and nothing that describes the deployment.
       system_tables:
         - columns
         - settings
         - table_engines
         - tables
 
-    # ClickHouse's own introspection tables, granted to the platform reader so
-    # the pre-canned ClickHouse dashboards and an operator writing ad-hoc SQL
-    # can ask the server about itself. Named one by one rather than system.*:
-    # a tenant must never reach these.
-    #
-    # merge('system', '^metric_log') SKIPS a table the user cannot read, so a
-    # ClickHouse upgrade that rotates metric_log to metric_log_0 drops the
-    # older history out of the charts until that name is added here.
+    # Named one by one so a tenant never reaches them (docs/roles.md).
     system_introspection_tables:
       - asynchronous_metric_log
       - asynchronous_metrics
@@ -597,20 +478,14 @@ versions:
       - tables
       - text_log
 
-    # A whole org shares ONE pinned CH user and a BI page fires several queries
-    # per view, so the hourly caps are sized for that rather than for one
-    # human. The analyst tier grants the WHOLE data database to every user, org
-    # and platform alike, so a new source table is readable with no admin
-    # action; isolation is the row policy, not grant scope.
+    # Caps sized for an org sharing one user (docs/roles.md).
     tiers:
       - name: analyst_tier_1
         kind: analyst
         default: false
         grants: ["SELECT ON {db}.*"]
         settings:
-          # readonly=2, not 1: queries only, but per-query output settings stay
-          # changeable, which BI clients send with every query. Pinned settings
-          # keep their own READONLY constraint regardless.
+          # readonly=2: clients send output settings with every query.
           readonly: 2
           max_memory_usage: 17179869184
           max_execution_time: 600
@@ -618,8 +493,7 @@ versions:
         quota:
           interval: "1 hour"
           queries: 50000
-          # BI clients probe speculatively and bad user SQL is routine; a tight
-          # errors cap locks the whole org out for the interval.
+          # A tight errors cap locks the whole org out for the interval.
           errors: 1000
           result_rows: 1000000000
 
@@ -693,9 +567,7 @@ versions:
           result_rows: 10000000000
           errors: 500
 
-    # Fixed identities, not tiered. `mint_user` creates a CH user and its
-    # secret through the secrets provider; the others are granted to an existing
-    # identity at bind time.
+    # Fixed identities, not tiered (docs/roles.md).
     service_roles:
       - name: loader
         mint_user: true
@@ -707,26 +579,20 @@ versions:
           async_insert_busy_timeout_max_ms: 1000
           async_insert_max_data_size: 134217728
 
-      # The restricted engine reader, and the identity the platform team's
-      # HyperDX connection uses -- the ClickHouse dashboards are raw SQL over
-      # `system`, so it also holds the introspection grants.
+      # HyperDX's platform connection and the KEDA shim.
       - name: query_reader
         mint_user: true
         grants: ["SELECT ON {db}.*"]
         system_introspection: true
         settings:
-          # readonly=2, not 1: hyperdx sends date_time_output_format with every
-          # query and readonly=1 rejects the whole request. allow_ddl=0 still
-          # bars DDL.
+          # readonly=2: clients send output settings with every query.
           readonly: 2
           allow_ddl: 0
           max_execution_time: 30
           max_rows_to_read: 10000000
           max_memory_usage: 2147483648
 
-      # The hunt runner's own user. Its worker runs INSERT ... SELECT built from
-      # rule text, so it holds the data grants and nothing else: no url(), s3()
-      # or remote(), and no DDL.
+      # INSERT ... SELECT from rule text: the data grants and nothing else.
       - name: hunt_runner
         mint_user: true
         grants:
@@ -735,16 +601,12 @@ versions:
           # The safe horizon: how far behind each replica of a hunted table is.
           - "SELECT ON system.replicas"
 
-      # Observability telemetry is platform-internal: composed onto admin and
-      # infra-admin group users at bind time, never part of an analyst tier.
-      # ClickHouse GRANT has no table-name wildcard, so the read is db-wide
-      # rather than a dfe.otel_* prefix.
+      # Bound to admin and infra-admin group users, never an analyst tier.
       - name: otel_reader
         mint_user: false
         grants: ["SELECT ON {db}.*"]
 
-    # Views are read through the query_reader role, so each one grants SELECT
-    # to it as part of its own apply.
+    # Each view grants SELECT to this role on apply.
     view_reader_role: "dfe_query_reader_role"
 
   "1.0.0":
@@ -766,32 +628,17 @@ versions:
 
     tenant:
       role: "dfe_tenant_role"
-      # Pinned READONLY on each org user, which is the enforcement: a READONLY
-      # user setting rejects any override, a SETTINGS clause inside
-      # attacker-authored query text included, with code 452. The server must
-      # allow the SQL_ custom-settings prefix.
+      # Pinned READONLY on each org user, so no query can override it.
       setting: "SQL_current_tenant_id"
       predicate: "has(splitByChar(',', getSetting('SQL_current_tenant_id')), _org_id)"
-      # The only system tables a tenant reaches. HyperDX builds its field list
-      # from system.columns and detects server capabilities from the other
-      # three, so a tenant without these renders an empty source rather than
-      # its data. Deliberately a fraction of the introspection list below:
-      # nothing here describes the deployment, the cluster, other tenants or
-      # query history.
+      # What HyperDX needs, and nothing that describes the deployment.
       system_tables:
         - columns
         - settings
         - table_engines
         - tables
 
-    # ClickHouse's own introspection tables, granted to the platform reader so
-    # the pre-canned ClickHouse dashboards and an operator writing ad-hoc SQL
-    # can ask the server about itself. Named one by one rather than system.*:
-    # a tenant must never reach these.
-    #
-    # merge('system', '^metric_log') SKIPS a table the user cannot read, so a
-    # ClickHouse upgrade that rotates metric_log to metric_log_0 drops the
-    # older history out of the charts until that name is added here.
+    # Named one by one so a tenant never reaches them (docs/roles.md).
     system_introspection_tables:
       - asynchronous_metric_log
       - asynchronous_metrics
@@ -820,20 +667,14 @@ versions:
       - tables
       - text_log
 
-    # A whole org shares ONE pinned CH user and a BI page fires several queries
-    # per view, so the hourly caps are sized for that rather than for one
-    # human. The analyst tier grants the WHOLE data database to every user, org
-    # and platform alike, so a new source table is readable with no admin
-    # action; isolation is the row policy, not grant scope.
+    # Caps sized for an org sharing one user (docs/roles.md).
     tiers:
       - name: analyst_tier_1
         kind: analyst
         default: false
         grants: ["SELECT ON {db}.*"]
         settings:
-          # readonly=2, not 1: queries only, but per-query output settings stay
-          # changeable, which BI clients send with every query. Pinned settings
-          # keep their own READONLY constraint regardless.
+          # readonly=2: clients send output settings with every query.
           readonly: 2
           max_memory_usage: 17179869184
           max_execution_time: 600
@@ -841,8 +682,7 @@ versions:
         quota:
           interval: "1 hour"
           queries: 50000
-          # BI clients probe speculatively and bad user SQL is routine; a tight
-          # errors cap locks the whole org out for the interval.
+          # A tight errors cap locks the whole org out for the interval.
           errors: 1000
           result_rows: 1000000000
 
@@ -916,9 +756,7 @@ versions:
           result_rows: 10000000000
           errors: 500
 
-    # Fixed identities, not tiered. `mint_user` creates a CH user and its
-    # secret through the secrets provider; the others are granted to an existing
-    # identity at bind time.
+    # Fixed identities, not tiered (docs/roles.md).
     service_roles:
       - name: loader
         mint_user: true
@@ -930,25 +768,20 @@ versions:
           async_insert_busy_timeout_max_ms: 1000
           async_insert_max_data_size: 134217728
 
-      # The restricted engine reader, and the identity the platform team's
-      # HyperDX connection uses -- the ClickHouse dashboards are raw SQL over
-      # `system`, so it also holds the introspection grants.
+      # HyperDX's platform connection and the KEDA shim.
       - name: query_reader
         mint_user: true
         grants: ["SELECT ON {db}.*"]
         system_introspection: true
         settings:
-          # readonly=2, not 1: hyperdx sends date_time_output_format with every
-          # query and readonly=1 rejects the whole request. allow_ddl=0 still
-          # bars DDL.
+          # readonly=2: clients send output settings with every query.
           readonly: 2
           allow_ddl: 0
           max_execution_time: 30
           max_rows_to_read: 10000000
           max_memory_usage: 2147483648
 
-      # Hunt-runner coordination. Granted alongside a hunt tier at bind time,
-      # global rather than per-org, so not a minted user of its own.
+      # Granted alongside a hunt tier at bind time, not a minted user.
       - name: hunt_runner
         mint_user: false
         grants:
@@ -957,14 +790,10 @@ versions:
           # The safe horizon: how far behind each replica of a hunted table is.
           - "SELECT ON system.replicas"
 
-      # Observability telemetry is platform-internal: composed onto admin and
-      # infra-admin group users at bind time, never part of an analyst tier.
-      # ClickHouse GRANT has no table-name wildcard, so the read is db-wide
-      # rather than a dfe.otel_* prefix.
+      # Bound to admin and infra-admin group users, never an analyst tier.
       - name: otel_reader
         mint_user: false
         grants: ["SELECT ON {db}.*"]
 
-    # Views are read through the query_reader role, so each one grants SELECT
-    # to it as part of its own apply.
+    # Each view grants SELECT to this role on apply.
     view_reader_role: "dfe_query_reader_role"

@@ -8,18 +8,14 @@
 # outside core ECS, so the ECS vocabulary defines none of the 11 winlog and
 # powershell columns below and cannot satisfy this selection.
 #
-# Index choices measured against two rule corpora: SigmaHQ's 2,410 Windows
-# rules under rules/windows (commit 16eb587) and Elastic's 493 prebuilt
-# Windows detection rules under rules/windows (commit c3e4e4e). Each count
-# is the number of rules whose detection references that field. The heaviest
-# are host.os.type 96.1% and event.type 63.9% of the Elastic rules, and
-# Image 50.6% and CommandLine 39.1% of the Sigma rules.
+# Index choices follow how often SigmaHQ's and Elastic's Windows rules
+# reference each field.
 #
 # Sigma expresses the channel through `logsource`, not as a detection field,
 # so the Sigma counts understate winlog_channel. Columns carrying no rule
 # count at all -- agent_type, log_level, message, the related_* sweeps, tags,
 # labels, powershell_file_script_block_id -- are reasoned from what the hunt
-# needs, not measured.
+# needs.
 
 base: meta/beats/winlogbeat
 base_version: "1.0.0"

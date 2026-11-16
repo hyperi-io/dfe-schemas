@@ -7,19 +7,12 @@
 # the transaction envelope and the DHCP fields sit outside core ECS, so the
 # ECS vocabulary cannot satisfy this selection.
 #
-# Index choices measured against two rule corpora: Elastic's 43 prebuilt
-# detection rules whose index list names packetbeat-* or
-# logs-network_traffic.*, the Elastic Agent integration that runs Packetbeat
-# (detection-rules commit 2e6bdc0), and SigmaHQ's 53 rules under
-# rules/network (commit 272daf8). Each count is the number of rules whose
-# query or detection references that field. The heaviest are destination.ip
-# 67.4%, source.ip and destination.port 65.1%, event.category 62.8% and
-# network.transport 44.2% of the Elastic rules; Sigma's DNS query field is in
-# 11 of its rules.
+# Index choices follow how often Elastic's network rules and SigmaHQ's
+# rules/network reference each field.
 #
 # A column whose comment below quotes no count -- among them the flow id,
 # the DHCP lease, the TLS fingerprints and certificate names, related_*,
-# tags and labels -- is reasoned from what the hunt needs, not measured.
+# tags and labels -- is reasoned from what the hunt needs.
 
 base: meta/beats/packetbeat
 base_version: "1.0.0"

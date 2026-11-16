@@ -9,11 +9,9 @@
 # The base is the full ECS vocabulary, not meta/beats/filebeat: that file is too
 # narrow to express this selection.
 #
-# Measured against Elastic's 1,354 prebuilt non-Windows rules: event.action
-# 69.4%, data_stream.dataset 46.5%, host.os.type 40.4%, event.type 36.4%,
-# process.name 36.0%, event.outcome 29.5%. The module-specific namespaces
-# (aws.cloudtrail.*, kubernetes.audit.*, azure.signinlogs.*) are each a 1-4%
-# tail, which is why the spine is the default and per-module is an overlay.
+# The module namespaces (aws.cloudtrail.*, kubernetes.audit.*,
+# azure.signinlogs.*) are each a small tail of Elastic's rules, so the spine is
+# the default and per-module is an overlay.
 
 base: meta/elastic/ecs
 base_version: "1.0.0"
@@ -102,10 +100,7 @@ versions:
         index: exact_match
       - name: process_executable
         index: word_search
-      # The ngram index to drop first if the cost is refused: this field is
-      # 7.4% of Elastic's non-Windows rules against 39.1% of Sigma's Windows
-      # ones, and process_args below serves much of the same question for
-      # almost nothing.
+      # The ngram index to drop first: process_args answers much the same question.
       - name: process_command_line
         index: substring_search
       - name: process_args

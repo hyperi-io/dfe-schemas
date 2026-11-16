@@ -30,7 +30,7 @@ from dfe_schemas.manifest import load_manifest
 from dfe_schemas.render import Renderer
 
 probe = PlatformProbe(client, host="clickhouse.example.internal")
-probe.require_replication()  # a self-hosted server without Keeper is refused here
+probe.require_replication()  # a self-hosted server without Keeper is rejected here
 manifest = load_manifest()
 renderer = Renderer(manifest, platform=probe.platform, data_database="dfe")
 for obj in manifest.objects:
@@ -42,7 +42,7 @@ From a clone, `make render` renders every object on every platform with nothing 
 
 ## Configuration
 
-The package reads its shipped trees unless a caller passes `load_manifest(root=...)`. `DFE_ENGINE_SCHEMAS_DIR` is a dfe-engine setting that points the engine at a directory of your own, holding only the profiles you override. The shipped files are read-only defaults. The wheel's own semver is the only version this package has. dfe-infra's `versions.yaml` records that wheel version per stack, and dfe-engine pins it as a floor.
+The package reads its shipped trees unless a caller passes `load_manifest(root=...)`. `DFE_ENGINE_SCHEMAS_DIR` is a dfe-engine setting that points the engine at a directory you supply, holding the profiles you override and nothing else. The shipped files are read-only defaults. The wheel's semver is the one version this package has. dfe-infra's `versions.yaml` records that wheel version per stack, and dfe-engine pins it as a floor.
 
 ## Adding a table
 
@@ -51,7 +51,7 @@ The package reads its shipped trees unless a caller passes `load_manifest(root=.
 3. `make render` and `make test`.
 4. Merge, cut a release so the wheel reaches PyPI, then raise the `dfe-schemas` floor in dfe-engine and release it. The engine image ships the wheel its `uv.lock` pins.
 
-Changing an existing table is a new version entry, never an edit. Each version is a complete column snapshot and a published one is immutable.
+Changing a table is another version entry, never an edit. Each version is a complete column snapshot and a published one is immutable.
 
 ## Documentation
 
@@ -61,6 +61,8 @@ Changing an existing table is a new version entry, never an edit. Each version i
 - [docs/compat-profiles.md](docs/compat-profiles.md): the compatibility profile format.
 - [docs/catalogue.md](docs/catalogue.md): the source catalogue, one ready-to-create source body per file.
 - [docs/registries.md](docs/registries.md): the engine, type, DDL, field-map and catalogue registries.
+- [docs/topics.md](docs/topics.md): the Kafka topic naming rule, defaults and bootstrap set.
+- [docs/roles.md](docs/roles.md): the ClickHouse tiers, service roles and org isolation.
 - [docs/clickhouse-platform.md](docs/clickhouse-platform.md): how the platform is probed and what differs on Cloud.
 - [docs/architecture.md](docs/architecture.md): why it is built this way, and the invariants.
 
@@ -68,7 +70,7 @@ The suite's published docs are at <https://dfe.docs.hyperi.io>, and this reposit
 
 ## Help and contributing
 
-How to work in this repo, the commands that prove a change and what tends to bite are in [CONTRIBUTING.md](CONTRIBUTING.md). A question that is not a bug goes in a new issue.
+How to work in this repo, the commands that check a change and what tends to bite are in [CONTRIBUTING.md](CONTRIBUTING.md). A question that is not a bug goes in an issue.
 
 Open bugs: [this repo](https://github.com/hyperi-io/dfe-schemas/issues?q=is%3Aopen+is%3Aissue+type%3ABug+-label%3Abacklog+-label%3Anext-minor) | [whole DFE suite](https://github.com/search?type=issues&q=is%3Aopen+is%3Aissue+type%3ABug+-label%3Abacklog+-label%3Anext-minor+repo%3Ahyperi-io%2Fdfe-infra+repo%3Ahyperi-io%2Fdfe-docker+repo%3Ahyperi-io%2Fdfe-deploy+repo%3Ahyperi-io%2Fdfe-engine+repo%3Ahyperi-io%2Fdfe-loader+repo%3Ahyperi-io%2Fdfe-receiver+repo%3Ahyperi-io%2Fdfe-fetcher+repo%3Ahyperi-io%2Fdfe-archiver+repo%3Ahyperi-io%2Fdfe-transform-vrl+repo%3Ahyperi-io%2Fdfe-transform-vector+repo%3Ahyperi-io%2Fdfe-transform-elastic+repo%3Ahyperi-io%2Fdfe-ui+repo%3Ahyperi-io%2Fdfe-hyperdx+repo%3Ahyperi-io%2Fscalo-rs+repo%3Ahyperi-io%2Fscalo-py+repo%3Ahyperi-io%2Flogreducer+repo%3Ahyperi-io%2Fdfe-schemas+repo%3Ahyperi-io%2Fvector-vrl+repo%3Ahyperi-io%2Fculvert+repo%3Ahyperi-io%2Fdfe-clickhouse-rs+repo%3Ahyperi-io%2Ffactbook-rs)
 

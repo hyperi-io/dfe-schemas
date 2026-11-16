@@ -1,29 +1,10 @@
 # Table definitions (`tables/`)
 
-`tables/` holds tables written directly in ClickHouse types, as opposed to the
-`meta/` schemas that map the primitives in `registries/types.yaml` onto
-ClickHouse. Five sets live here: `core/` (the landing, dead-letter and detection
-tables, whose columns the manifest composes from a common-header profile, and
-the detection checkpoint, whose columns come from
-`hunts/detection_checkpoint.yaml`), `otel/` (the telemetry tables the collector
-writes into and dfe-hyperdx reads), `internal/` (the engine's own working state,
-including the applier's migration ledger and its lock), `usage/` (the usage
-rollup a deployment is licensed on, and the views that refresh it) and `meta/`
-(the governance projection, which lands in `dfe_meta` rather than the data
-database).
+`tables/` holds tables written directly in ClickHouse types, as opposed to the `meta/` schemas that map the primitives in `registries/types.yaml` onto ClickHouse. Five sets live here: `core/` (the landing, dead-letter and detection tables, with columns the manifest composes from a common-header profile, and the detection checkpoint, with columns from `hunts/detection_checkpoint.yaml`), `otel/` (the telemetry tables the collector writes into and dfe-hyperdx reads), `internal/` (the engine's working state, including the applier's migration ledger and its lock), `usage/` (the usage rollup a deployment is licensed on, and the views that refresh it) and `meta/` (the governance projection, which lands in `dfe_meta` rather than the data database).
 
-They are here for the same reason every other schema is -- one definition, in
-one repo. Owning the OTel tables is also what makes them correct on a cluster:
-the exporter creates its tables over whichever connection it resolved and
-senses no topology, so the same table ended up plain on one replica and
-Replicated on the others, and a row written to the plain copy never
-replicated.
+They are here for the same reason every other schema is: one definition, in one repo. Owning the OTel tables is what makes them correct on a cluster. The exporter creates its tables over whichever connection it resolved and senses no topology, so the same table ended up plain on one replica and Replicated on the others, and a row written to the plain copy never replicated.
 
-## File format
-
-Same version tree as the rest of the repo -- `current` names the default
-version, each version entry is a complete snapshot. A version entry carries
-`table` (the DDL clauses), `columns`, and optionally `materialized_view`.
+The file has the same version tree as the rest of the repo: `current` names the default version, and each version entry is a complete snapshot. A version entry holds `table` (the DDL clauses), `columns`, and optionally `materialized_view`.
 
 ```yaml
 current: "1.0.0"
@@ -48,26 +29,24 @@ versions:
         codec: "Delta(4), ZSTD(1)"
 ```
 
-## `table` keys
+The `table` block takes these keys:
 
 | Key | Meaning |
 |---|---|
-| `name` | The table name. Required: the renderer refuses a file that does not name its table. |
+| `name` | The table name. Required: the renderer rejects a file that does not name its table. |
 | `engine` | The engine INTENT (`MergeTree`, `ReplacingMergeTree(updated_at)`). The renderer adds the `Replicated` prefix every DFE table takes, on every platform. |
 | `partition_by` | Raw PARTITION BY expression. Wins over `partition_column`. |
 | `partition_column` / `partition_granularity` | The column PARTITION BY wraps, and `day` (`toYYYYMMDD`) or `month` (`toYYYYMM`). Either one left out takes the `table` block of `registries/ddl.yaml`, and a table without the column gets no PARTITION BY. |
-| `order_by` | Raw ORDER BY expression. Used when the sorting key is expressions rather than bare columns. |
+| `order_by` | Raw ORDER BY expression, for a sorting key of expressions rather than bare columns. |
 | `index_granularity` | Rows per granule. 8192 for range scans, 2048 for point lookups. Left out, it takes the `table` block of `registries/ddl.yaml`. |
 | `ttl_days` / `ttl_columns` | Retention. `ttl_columns` alone takes the deployment default, the `default_ttl_days` parameter `DFE_ENGINE_CLICKHOUSE_DEFAULT_TTL_DAYS` sets, and `ttl_days` overrides it for this table. Omit both for a table that keeps everything. The landing and detection tables and every `otel/` table take the default. |
 | `projection_order_by` | A column for a `SELECT * ORDER BY` projection. Off unless set. |
 | `indexes` | Data-skipping indexes, emitted verbatim. |
 | `reader_grant` | `true` renders `GRANT SELECT` on the table to the reader role after the CREATE, as every view does. |
 
-A TTL over a `Date` column renders without the `>= 0` guard, which 26.3 refuses
-there (code 43).
+A TTL over a `Date` column renders without the `>= 0` guard, which 26.3 rejects there (code 43).
 
-A `Merge` engine, which stores no rows, renders as written with `{db}` filled
-in, and takes none of the MergeTree clauses above:
+Given a `Merge` engine, which stores no rows, the renderer writes it as declared, with `{db}` filled in, and the table takes none of the MergeTree clauses above:
 
 ```yaml
     table:
@@ -75,38 +54,28 @@ in, and takes none of the MergeTree clauses above:
       engine: "Merge({db}, '^all_sources$')"
 ```
 
-An ORDER BY built from bare columns is expressed on the columns instead: give
-each key column an `order` and leave `order_by` out.
+An ORDER BY built from bare columns is expressed on the columns instead: give each key column an `order` and leave `order_by` out.
 
-## `columns` keys
+Each entry under `columns` takes these keys:
 
 | Key | Meaning |
 |---|---|
 | `name` | Column name, verbatim. |
 | `ch_type` | Exact ClickHouse type, without any `LowCardinality` wrapper. |
 | `cardinality` | `low`, `high` or `unknown` (the default). `low` wraps `ch_type` in `LowCardinality(...)`. |
-| `lowcardinality` | Retired -- the old boolean spelling of `cardinality: low`. |
+| `lowcardinality` | Retired: the old boolean spelling of `cardinality: low`. |
 | `order` | Position in the sorting key, from 0. |
 | `default` | DEFAULT expression. |
-| `materialized` | MATERIALIZED expression. Mutually exclusive with `default`. |
-| `codec` | CODEC arguments, e.g. `Delta(8), ZSTD(1)`. |
+| `materialized` | MATERIALIZED expression. Cannot be set with `default`. |
+| `codec` | CODEC arguments, such as `Delta(8), ZSTD(1)`. |
 | `comment` | Column comment. |
 | `max_dynamic_paths` | Typed sub-paths a `JSON` column holds before the rest spill to a shared map. `inherit` reads the value from the common header's `_json`. |
 
-A nested `LowCardinality` is part of the type and stays in `ch_type`
-(`Map(LowCardinality(String), String)`). Only a top-level wrapper is declared as
-`cardinality: low`.
+Nested inside a type, `LowCardinality` is part of it and stays in `ch_type` (`Map(LowCardinality(String), String)`). A top-level wrapper is declared as `cardinality: low`.
 
-## `materialized_view`
+`materialized_view` declares a view with no columns to reconcile, just a SELECT. `to` names the target table, and `{db}` in `select` is substituted at apply time.
 
-A materialised view has no columns to reconcile, only a SELECT. `to` names the
-target table, and `{db}` in `select` is substituted at apply time.
-
-`refresh` makes it a refreshable view, `EVERY` or `AFTER` a count and a unit,
-with an optional `OFFSET`. It always renders `APPEND`, and inside the
-Replicated database each scheduled refresh runs on one replica. A file holding
-several views lists them under `materialized_views`, and each manifest object
-picks one by `key`:
+`refresh` makes it a refreshable view, `EVERY` or `AFTER` a count and a unit, with an optional `OFFSET`. It always renders `APPEND`, and inside the Replicated database each scheduled refresh runs on one replica. A file holding several views lists them under `materialized_views`, and each manifest object picks one by `key`:
 
 ```yaml
     materialized_views:

@@ -1,6 +1,6 @@
 # ClickHouse platforms: one probe, one DDL
 
-Every DFE table is created with the same DDL on every ClickHouse. What differs between ClickHouse Cloud and self-hosted ClickHouse is detected from the server, so pointing a deployment at the other platform works with no setting changed. An operator can still pin the platform where the probe is wrong for them.
+Every DFE table is created with the same DDL on every ClickHouse. What differs between ClickHouse Cloud and self-hosted ClickHouse is detected from the server, so pointing a deployment at the other platform works with no setting changed. An operator can pin the platform where the probe gets it wrong.
 
 ## One DDL, and what it needs
 
@@ -11,22 +11,22 @@ CREATE TABLE IF NOT EXISTS `dfe`.`hunt_lease` ( ... )
 ENGINE = ReplicatedReplacingMergeTree(claimed)
 ```
 
-Cloud rewrites it to `SharedMergeTree` on CREATE, plain `MergeTree` included (measured on Cloud 26.6). Self-hosted takes it inside a Replicated database, which supplies the replica path and name and replicates every DDL issued inside it to every replica. `dfe_schemas.clickhouse.engine_clause()` is the one place the form is written, and a variant's own arguments, such as a version column, are kept.
+Cloud rewrites it to `SharedMergeTree` on CREATE, plain `MergeTree` included (Cloud 26.6). Self-hosted takes it inside a Replicated database, which supplies the replica path and name and replicates every DDL issued inside it to every replica. `dfe_schemas.clickhouse.engine_clause()` is the one place the form is written, and a variant's arguments, such as a version column, are kept.
 
-The database is the only statement that fans out. On self-hosted it is:
+The database is the one statement that fans out. On self-hosted it is:
 
 ```sql
 CREATE DATABASE IF NOT EXISTS dfe ON CLUSTER '{cluster}'
 ENGINE = Replicated('/clickhouse/databases/dfe', '{shard}', '{replica}')
 ```
 
-Inside a Replicated database ClickHouse refuses `ON CLUSTER` on a table outright (code 80), so nothing else may carry it. It also refuses a Keeper path and replica name written into the engine (code 36, or 80 when the path names no macros). `scripts/render_manifest.py` and `tests/test_render.py` fail the build on any table that is not `Replicated*`, any table naming its own Keeper path, and any other statement carrying `ON CLUSTER`.
+Inside a Replicated database ClickHouse rejects `ON CLUSTER` on a table outright (code 80), so nothing else may have it. It rejects a Keeper path and replica name written into the engine as well (code 36, or 80 when the path names no macros). `scripts/render_manifest.py` and `tests/test_render.py` fail the build on any table that is not `Replicated*`, any table naming a Keeper path, and any other statement carrying `ON CLUSTER`.
 
-Self-hosted ClickHouse therefore needs Keeper (embedded `keeper_server` on a single node, an ensemble on a cluster), the `{cluster}`, `{shard}` and `{replica}` macros, and a `remote_servers` cluster named by `{cluster}`. A single node declares a cluster of one. Keeper's data lives on the same persistent volume as ClickHouse's: lose one without the other and every replicated table goes read-only until `SYSTEM RESTORE REPLICA`.
+Self-hosted ClickHouse therefore needs Keeper (embedded `keeper_server` on a single node, an ensemble on a cluster), the `{cluster}`, `{shard}` and `{replica}` macros, and a `remote_servers` cluster that `{cluster}` names. A single node declares a cluster of one. Keeper's data lives on the same persistent volume as ClickHouse's: lose one without the other and every replicated table goes read-only until `SYSTEM RESTORE REPLICA`.
 
-A cluster of more than one server also needs its SQL users and roles in Keeper. DFE creates them once, and a `local_directory` storage keeps them on the one server that ran the statement. The `user_directories` block must REPLACE the default. Appending `<replicated>` leaves `local_directory` ahead of it, and the first writable storage takes every `CREATE ROLE`. A server with replicated access storage does not start while Keeper is unreachable (it exits 231, measured on 26.3), so Keeper comes up first. A single node may keep local access storage.
+A cluster of more than one server needs its SQL users and roles in Keeper as well. DFE creates them once, and a `local_directory` storage keeps them on the one server that ran the statement. The `user_directories` block must REPLACE the default. Appending `<replicated>` leaves `local_directory` ahead of it, and the first writable storage takes every `CREATE ROLE`. A server with replicated access storage does not start when Keeper is unreachable (it exits 231 on 26.3), so Keeper comes up first. A single node may keep local access storage.
 
-A server missing any of these is refused at startup with a message naming what is missing. There is no plain `MergeTree` fallback, because a second engine form is how one table ended up plain on one replica and replicated on the others. A single node, for reference, with the access storage a cluster needs:
+dfe-engine rejects a server missing any of these at startup, with a message that says what is missing. There is no plain `MergeTree` fallback, because a second engine form is how one table ended up plain on one replica and replicated on the others. A single node, for reference, with the access storage a cluster needs:
 
 ```xml
 <clickhouse>
@@ -54,13 +54,13 @@ A server missing any of these is refused at startup with a message naming what i
 </clickhouse>
 ```
 
-The `<identity>` is `dfe:<password>` from a generated secret, fixed for the life of the Keeper data: changing it later locks ClickHouse out (it exits 231, measured on 26.9).
+The `<identity>` is `dfe:<password>` from a generated secret, fixed for the life of the Keeper data: changing it later locks ClickHouse out (it exits 231 on 26.9).
 
 ## Inserts deduplicate
 
-The Replicated engines drop an insert whose data is byte-identical to a recent one, so a single node deduplicates too, where a plain `MergeTree` keeps no deduplication window by default. That absorbs only a resend of the same data. An async insert is hashed per insert, so a resend is caught even when `async_insert` coalesces it with other rows (measured on 26.3). A retry that re-batches its rows with new ones is different data and lands again, so at-least-once delivery can still store a duplicate, and that is accepted.
+The Replicated engines drop an insert with data byte-identical to a recent one, so a single node deduplicates as well, where a plain `MergeTree` keeps no deduplication window by default. That absorbs a resend of the same data and nothing more. An async insert is hashed per insert, so a resend is caught even when `async_insert` coalesces it with other rows (26.3). A retry that re-batches its rows with other rows is different data and lands again, so at-least-once delivery can still store a duplicate, and that is accepted.
 
-On 26.3 `deduplicate_insert` (default `enable`) overrides `insert_deduplicate` and `async_insert_deduplicate`, so `insert_deduplicate = 0` alone does not turn it off. A writer whose identical rows must all land, such as a ledger, sends `deduplicate_insert = 'disable'`.
+On 26.3 `deduplicate_insert` (default `enable`) overrides `insert_deduplicate` and `async_insert_deduplicate`, so `insert_deduplicate = 0` alone does not turn it off. A writer that needs every identical row to land, such as a ledger, sends `deduplicate_insert = 'disable'`.
 
 ## The probe, and the SQL it picks from
 
@@ -73,7 +73,7 @@ On 26.3 `deduplicate_insert` (default `enable`) overrides `insert_deduplicate` a
 
 `cloud_mode` is not the signal, because any server can set it (ClickHouse #76545).
 
-ClickHouse cannot branch its own DDL. `ENGINE = if(...)` is refused (code 56 self-hosted, 497 Cloud) and so is an expression in `SETTINGS` (code 62). So each difference is written out once per platform in `dfe_schemas/sql/platform.sql`:
+ClickHouse cannot branch its DDL. `ENGINE = if(...)` is rejected (code 56 self-hosted, 497 Cloud) and so is an expression in `SETTINGS` (code 62). So each difference is written out once per platform in `dfe_schemas/sql/platform.sql`:
 
 ```sql
 -- @block json_table_settings self_hosted
@@ -87,6 +87,6 @@ write_marks_for_substreams_in_compact_parts = 0
 | `create_database` | Replicated database, `ON CLUSTER '{cluster}'` | `CREATE DATABASE`, which Cloud makes Shared |
 | `json_table_settings` | `write_marks_for_substreams_in_compact_parts = 0` | nothing |
 
-`dfe_schemas/variants.py` picks a block by the probe's answer. It knows nothing about ClickHouse, and it fails the load when a block leaves a platform out. A new Cloud-versus-self-hosted difference is a new block in that file, never an `if` in a caller.
+`dfe_schemas/variants.py` picks a block by the probe's answer. It knows nothing about ClickHouse, and it fails the load when a block leaves a platform out. Another Cloud-versus-self-hosted difference is another block in that file, never an `if` in a caller.
 
-dfe-engine realigns existing JSON tables on every schema apply: `MODIFY SETTING` where a self-hosted table lacks the setting, `RESET SETTING` where a Cloud table carries it. A setting no platform manages is left alone.
+dfe-engine realigns existing JSON tables on every schema apply: `MODIFY SETTING` where a self-hosted table lacks the setting, `RESET SETTING` where a Cloud table has it. A setting no platform manages is left alone.

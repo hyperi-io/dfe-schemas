@@ -193,7 +193,8 @@ objects:
     database: data
     defines: tables/otel/traces_trace_id_ts
     topology: resolved
-    # Aggregated state: a changed SELECT is a migration, not an apply.
+    # The engine's applier swaps a changed SELECT in place with MODIFY QUERY, never a drop.
+    # additive governs the table's columns, not the view.
     additive: false
     depends_on: [data.otel_traces, data.otel_traces_trace_id_ts]
 

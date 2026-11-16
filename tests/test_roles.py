@@ -65,6 +65,24 @@ def test_the_loader_reads_the_two_system_tables_it_queries(roles):
     assert _grants(loader, "INSERT") == {f"{DB}.*"}
 
 
+@pytest.mark.parametrize(
+    "table", ["merge_tree_settings", "shared_merge_tree_settings", "columns", "settings", "tables"]
+)
+def test_the_platform_reader_and_a_tenant_both_read_what_hyperdx_asks_the_server(
+    catalogue, roles, table
+):
+    """HyperDX reads the MergeTree settings tables to tell which block columns a table keeps.
+
+    system.shared_merge_tree_settings is read on ClickHouse Cloud only, and ClickHouse
+    accepts a grant on it where the table does not exist. The query runs on the platform
+    connection and on every org connection, so a role missing the grant gets code 497 and
+    the proxy answers 500.
+    """
+    assert roles["query_reader"]["system_introspection"] is True
+    assert table in catalogue["system_introspection_tables"]
+    assert table in catalogue["tenant"]["system_tables"]
+
+
 def test_the_otel_writer_is_a_minted_user(roles):
     assert roles["otel_writer"]["mint_user"] is True
 

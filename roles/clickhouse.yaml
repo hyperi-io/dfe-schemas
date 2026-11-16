@@ -1,9 +1,222 @@
 # The ClickHouse role, tier and grant catalogue. docs/roles.md explains it.
 
-current: "1.3.0"
+current: "1.4.0"
 resource_type: core
 
 versions:
+  "1.4.0":
+    date: "2026-11-16"
+    type: revision
+    summary: "HyperDX 2.45 reads system.merge_tree_settings and, on ClickHouse Cloud, system.shared_merge_tree_settings, so the tenant role and the platform reader are granted both"
+
+    # Setting forms, and why the caps are constraints: docs/roles.md
+
+    database_placeholder: "{db}"
+
+    # Deterministic names, so a drop is computable from config alone.
+    naming:
+      role: "dfe_{name}_role"
+      settings_profile: "dfe_{name}_profile"
+      quota: "dfe_{name}_quota"
+      service_user: "dfe_{name}"
+      org_user: "dfe_org_{org}"
+      group_user: "dfe_grp_{group}"
+      row_policy: "dfe_rowpol_tenant_{database}_{table}"
+
+    tenant:
+      role: "dfe_tenant_role"
+      # Pinned READONLY on each org user, so no query can override it.
+      setting: "SQL_current_tenant_id"
+      predicate: "has(splitByChar(',', getSetting('SQL_current_tenant_id')), _org_id)"
+      # What HyperDX needs, and nothing that describes the deployment.
+      system_tables:
+        - columns
+        - merge_tree_settings
+        - settings
+        - shared_merge_tree_settings
+        - table_engines
+        - tables
+
+    # Named one by one so a tenant never reaches them (docs/roles.md).
+    system_introspection_tables:
+      - asynchronous_metric_log
+      - asynchronous_metrics
+      - clusters
+      - columns
+      - dashboards
+      - data_skipping_indices
+      - databases
+      - detached_parts
+      - disks
+      - error_log
+      - errors
+      - events
+      - merge_tree_settings
+      - merges
+      - metric_log
+      - metrics
+      - mutations
+      - part_log
+      - parts
+      - processes
+      - query_log
+      - replicas
+      - replication_queue
+      - settings
+      - shared_merge_tree_settings
+      - table_engines
+      - tables
+      - text_log
+
+    # Caps sized for an org sharing one user (docs/roles.md).
+    tiers:
+      - name: analyst_tier_1
+        kind: analyst
+        default: false
+        grants: ["SELECT ON {db}.*"]
+        settings:
+          # readonly=2: clients send output settings with every query.
+          readonly: 2
+          max_memory_usage: {value: 17179869184, min: 1, max: 17179869184}
+          max_execution_time: {value: 600, min: 1, max: 600}
+          max_rows_to_read: 0
+        quota:
+          interval: "1 hour"
+          queries: 50000
+          # A tight errors cap locks the whole org out for the interval.
+          errors: 1000
+          result_rows: 1000000000
+
+      - name: analyst_tier_2
+        kind: analyst
+        default: true
+        grants: ["SELECT ON {db}.*"]
+        settings:
+          readonly: 2
+          max_memory_usage: {value: 4294967296, min: 1, max: 4294967296}
+          max_execution_time: {value: 300, min: 1, max: 300}
+          max_rows_to_read: 0
+        quota:
+          interval: "1 hour"
+          queries: 20000
+          errors: 1000
+          result_rows: 1000000000
+
+      - name: analyst_tier_3
+        kind: analyst
+        default: false
+        grants: ["SELECT ON {db}.*"]
+        settings:
+          readonly: 2
+          max_memory_usage: {value: 1073741824, min: 1, max: 1073741824}
+          max_execution_time: {value: 2, min: 1, max: 60}
+          max_rows_to_read: 0
+        quota:
+          interval: "1 hour"
+          queries: 2000
+          errors: 1000
+          result_rows: 1000000000
+
+      # Hunts read the data and write detections, so no readonly.
+      - name: hunt_tier_1
+        kind: hunt
+        default: false
+        grants: ["SELECT ON {db}.*", "INSERT ON {db}.*"]
+        settings:
+          max_memory_usage: {value: 17179869184, min: 1, max: 17179869184}
+          max_execution_time: {value: 600, min: 1, max: 600}
+        quota:
+          interval: "1 hour"
+          queries: 10000
+          result_rows: 10000000000
+          errors: 500
+
+      - name: hunt_tier_2
+        kind: hunt
+        default: true
+        grants: ["SELECT ON {db}.*", "INSERT ON {db}.*"]
+        settings:
+          max_memory_usage: {value: 4294967296, min: 1, max: 4294967296}
+          max_execution_time: {value: 120, min: 1, max: 120}
+        quota:
+          interval: "1 hour"
+          queries: 5000
+          result_rows: 10000000000
+          errors: 500
+
+      - name: hunt_tier_3
+        kind: hunt
+        default: false
+        grants: ["SELECT ON {db}.*", "INSERT ON {db}.*"]
+        settings:
+          max_memory_usage: {value: 1073741824, min: 1, max: 1073741824}
+          max_execution_time: {value: 15, min: 1, max: 60}
+        quota:
+          interval: "1 hour"
+          queries: 1000
+          result_rows: 10000000000
+          errors: 500
+
+    # Fixed identities, not tiered (docs/roles.md).
+    service_roles:
+      # ClickHouse lets any user read these two, and the grants hold if that changes.
+      - name: loader
+        mint_user: true
+        grants:
+          - "INSERT ON {db}.*"
+          - "SELECT ON system.columns"
+          - "SELECT ON system.tables"
+        settings:
+          async_insert: 1
+          wait_for_async_insert: 1
+          wait_for_async_insert_timeout: 120
+          async_insert_busy_timeout_max_ms: 1000
+          async_insert_max_data_size: 134217728
+
+      # HyperDX's platform connection and the KEDA shim.
+      - name: query_reader
+        mint_user: true
+        grants: ["SELECT ON {db}.*"]
+        system_introspection: true
+        settings:
+          # readonly=2: clients send output settings with every query.
+          readonly: 2
+          allow_ddl: 0
+          max_execution_time: {value: 30, min: 1, max: 60}
+          max_rows_to_read: 10000000
+          max_memory_usage: {value: 2147483648, min: 1, max: 2147483648}
+
+      # INSERT ... SELECT from rule text: the data grants and nothing else.
+      - name: hunt_runner
+        mint_user: true
+        grants:
+          - "SELECT ON {db}.*"
+          - "INSERT ON {db}.*"
+          # The safe horizon: how far behind each replica of a hunted table is.
+          - "SELECT ON system.replicas"
+
+      - name: otel_writer
+        mint_user: true
+        grants:
+          - "INSERT ON {db}.otel_*"
+          # otel_traces_trace_id_ts_mv runs its SELECT as the inserting user.
+          - "SELECT ON {db}.otel_traces"
+          # The collector's health scrape.
+          - "SELECT ON system.metrics"
+          - "SELECT ON system.events"
+          - "SELECT ON system.parts"
+          # system.parts lists the tables a user can see, and SHOW TABLES reads no rows.
+          - "SHOW TABLES ON {db}.*"
+          - "SHOW TABLES ON system.*"
+
+      # Bound to admin and infra-admin group users, never an analyst tier.
+      - name: otel_reader
+        mint_user: false
+        grants: ["SELECT ON {db}.*"]
+
+    # Each view grants SELECT to this role on apply.
+    view_reader_role: "dfe_query_reader_role"
+
   "1.3.0":
     date: "2026-11-11"
     type: revision

@@ -7,7 +7,7 @@ versions:
   "1.4.0":
     date: "2026-11-16"
     type: revision
-    summary: "HyperDX 2.45 reads system.merge_tree_settings, so the tenant role and the platform reader are granted it"
+    summary: "HyperDX 2.45 reads system.merge_tree_settings and, on ClickHouse Cloud, system.shared_merge_tree_settings, so the tenant role and the platform reader are granted both"
 
     # Setting forms, and why the caps are constraints: docs/roles.md
 
@@ -33,6 +33,7 @@ versions:
         - columns
         - merge_tree_settings
         - settings
+        - shared_merge_tree_settings
         - table_engines
         - tables
 
@@ -62,6 +63,7 @@ versions:
       - replicas
       - replication_queue
       - settings
+      - shared_merge_tree_settings
       - table_engines
       - tables
       - text_log

@@ -3,6 +3,12 @@
 Rendered by CI and committed back at the end of a release -- do not edit by
 hand. Release notes also appear on the GitHub Releases page, one per tag.
 
+## [0.2.31](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.30...v0.2.31) (2026-11-16)
+
+### Bug Fixes
+
+* **query_log_archive:** cpu time and cpu wait per query ([3ca773d](https://github.com/hyperi-io/dfe-schemas/commit/3ca773d132a8321d1518ec383bca50839d4e690f)), closes [#70063](https://github.com/hyperi-io/dfe-schemas/issues/70063)
+
 ## [0.2.30](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.29...v0.2.30) (2026-11-16)
 
 ### Bug Fixes

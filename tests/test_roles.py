@@ -65,6 +65,31 @@ def test_the_loader_reads_the_two_system_tables_it_queries(roles):
     assert _grants(loader, "INSERT") == {f"{DB}.*"}
 
 
+@pytest.mark.parametrize("table", ["merge_tree_settings", "columns", "settings", "tables"])
+def test_the_platform_reader_and_a_tenant_both_read_what_hyperdx_asks_the_server(
+    catalogue, roles, table
+):
+    """HyperDX reads system.merge_tree_settings to tell which block columns a table keeps.
+
+    The query runs on the platform connection and on every org connection, so a role
+    missing the grant gets code 497 and the proxy answers 500.
+    """
+    assert roles["query_reader"]["system_introspection"] is True
+    assert table in catalogue["system_introspection_tables"]
+    assert table in catalogue["tenant"]["system_tables"]
+
+
+def test_a_tenant_reads_no_system_table_that_describes_the_deployment(catalogue):
+    """Only server settings and table shape: nothing about the cluster, other orgs or query history."""
+    assert set(catalogue["tenant"]["system_tables"]) == {
+        "columns",
+        "merge_tree_settings",
+        "settings",
+        "table_engines",
+        "tables",
+    }
+
+
 def test_the_otel_writer_is_a_minted_user(roles):
     assert roles["otel_writer"]["mint_user"] is True
 

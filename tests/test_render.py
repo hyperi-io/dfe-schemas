@@ -400,11 +400,11 @@ def test_a_role_grant_names_the_deployment_database(manifest):
     ) in statements
 
 
-def test_the_tenant_role_grants_only_the_four_system_tables(rendered):
+def test_the_tenant_role_grants_only_the_five_system_tables(rendered):
     statements = rendered[Platform.SELF_HOSTED]["role.tenant"].statements
     (grant,) = [s for s in statements if s.startswith("GRANT")]
     granted = {target.split(" ")[0].rstrip(",") for target in grant.split("system.")[1:]}
-    assert granted == {"columns", "settings", "table_engines", "tables"}
+    assert granted == {"columns", "merge_tree_settings", "settings", "table_engines", "tables"}
     assert grant.endswith("WITH REPLACE OPTION")
 
 

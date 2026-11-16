@@ -3,6 +3,14 @@
 Rendered by CI and committed back at the end of a release -- do not edit by
 hand. Release notes also appear on the GitHub Releases page, one per tag.
 
+## [0.2.30](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.29...v0.2.30) (2026-11-16)
+
+### Bug Fixes
+
+* **hunt_state:** record when the runner auto-disabled a hunt and why ([b00fd9f](https://github.com/hyperi-io/dfe-schemas/commit/b00fd9f080d07afc70660c5d829c8d89b1808682))
+* **registries:** label the cardinality values ([c622977](https://github.com/hyperi-io/dfe-schemas/commit/c62297777e7b76612987bfaf29de33580475b9fb))
+* **registries:** limit lowcardinality to string and text ([#124](https://github.com/hyperi-io/dfe-schemas/issues/124)) ([ec8ebc5](https://github.com/hyperi-io/dfe-schemas/commit/ec8ebc549a866ec76061b559d638b573e0e8a7c1)), closes [#123](https://github.com/hyperi-io/dfe-schemas/issues/123)
+
 ## [0.2.29](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.28...v0.2.29) (2026-11-11)
 
 ### Bug Fixes

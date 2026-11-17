@@ -12,7 +12,7 @@ The tenant axis is one shared role, `dfe_tenant_role`, plus a per-user `SQL_curr
 
 Every policy is RESTRICTIVE. A user without the tenant role is targeted by no policy and reads everything, and a holder reads the ids pinned on it. A PERMISSIVE policy would turn the table to default-deny for everyone else.
 
-A tenant reaches six system tables: `columns`, `merge_tree_settings`, `settings`, `shared_merge_tree_settings`, `table_engines` and `tables`. HyperDX builds its field list from `system.columns` and detects server capabilities from the other five, so a tenant without them sees an empty source or a failed metadata call (code 497, which the HyperDX proxy returns as a 500). `merge_tree_settings` is the server's MergeTree defaults, one row per setting, the same shape as `system.settings`. HyperDX reads `shared_merge_tree_settings` on ClickHouse Cloud only. A self-hosted server has no such table, and ClickHouse 26.3 still accepts the grant. None of the six describes the cluster, other tenants or query history.
+A tenant reaches six system tables: `columns`, `merge_tree_settings`, `settings`, `shared_merge_tree_settings`, `table_engines` and `tables`. HyperDX builds its field list from `system.columns` and detects server capabilities from the other five, so a tenant without them sees an empty source or a failed metadata call (code 497, which the HyperDX proxy returns as a 500). `merge_tree_settings` is the server's MergeTree defaults, one row per setting, with the same columns as `system.settings`. HyperDX reads `shared_merge_tree_settings` on ClickHouse Cloud only. A self-hosted server has no such table, and ClickHouse 26.3 still accepts the grant. None of the six describes the cluster, other tenants or query history.
 
 ## Settings profiles and caps
 

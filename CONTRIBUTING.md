@@ -154,7 +154,23 @@ database -- this repo supplies definitions and dfe-engine applies them.
 | `sources/` | The core sources dfe-engine owns, such as `main` |
 | `catalogue/` | Sources shipped ready to create, one `POST /sources` body per file |
 | `registries/` | The allow-lists dfe-engine validates against, and the DDL catalogue every table renders from |
-| `docs/architecture.md` | Why it is built this way, and the invariants |
+| `docs/architecture.md` | The parts, how they fit, and why it is built this way |
+
+The package modules, by the part on [docs/architecture.md](docs/architecture.md) they belong to. Manifest is `manifest.py`. Renderer is `render.py`, `clickhouse.py`, `variants.py` and `ddl_catalogue.py`. Definitions are read by `loader.py`, `compat.py`, `topics.py`, `usage.py` and `deploy_defaults.py`.
+
+| Module | What it owns |
+|--------|--------------|
+| `__init__.py` | `schemas_root()` and `manifest_path()`, the one path resolution |
+| `manifest.py` | Reads the manifest and rejects a bad one |
+| `loader.py` | Version trees, the two ways to declare a column, composition, the type registry, `quote_ident` |
+| `compat.py` | The compatibility profiles, each version handed out as a scalo.rules rule set |
+| `clickhouse.py` | The platform probe, the Keeper check and the one `ENGINE` form |
+| `variants.py` | Picks one platform's block out of `sql/platform.sql`, knowing nothing of ClickHouse |
+| `ddl_catalogue.py` | Reads `registries/ddl.yaml`: the table defaults and the index each use case renders |
+| `render.py` | One object to statements, for one platform, with a checksum, and the one-DDL gate |
+| `topics.py` | The Kafka naming rule, defaults and bootstrap set |
+| `usage.py` | The names the usage views read and write, filled into their SQL |
+| `deploy_defaults.py` | The declared deployment defaults |
 
 ### Commands that prove a change
 
@@ -186,6 +202,19 @@ Without docker those tests skip, and in CI they fail instead.
 | Merge a table and expect a deployment to get it | Release the wheel, raise the floor in dfe-engine, relock, release the engine | Nothing reads this repo directly. The engine image ships the wheel its lock pins, so the engine release is what puts an object in front of a deployment |
 | Wrap an `ORDER BY` key in `Nullable` | Leave it bare, or mark it `not_null` | `_sorting_key` refuses a Nullable key rather than dropping it. JSON inside Nullable is a different case: ClickHouse 24.8 refused it, code 43 (`2f28227`), but 26.3.32.14 creates and fills a `Nullable(JSON)` column |
 | Point `PY` at a bare `python` | Leave it at `uv run python`, or name an interpreter with dfe-engine installed | A bare `python` is absent on a stock Linux box (`6c79570`) |
+
+The invariants below are checks, not conventions. Without each one, the failure looks like success.
+
+- A duplicate object id is rejected: two definitions claiming one name means whichever applies second wins.
+- A dependency that is unknown or declared later is rejected: a view over a table that does not exist yet fails on a fresh cluster and succeeds on every re-run, the worst failure a bootstrap can have.
+- A Nullable `ORDER BY` key is rejected rather than dropped. ClickHouse rejects one unless `allow_nullable_key` is on.
+- A TTL over an absent column is rejected, because the table would keep every row forever. `ttl_only_drop_parts` is 1 when every TTL column appears in the partition expression, else 0: it waits for every row in a part to expire, so an unaligned table takes the row-level delete instead.
+- A refreshable materialised view renders `APPEND` and an `EVERY` or `AFTER` schedule, and nothing else. Without `APPEND` each refresh swaps the target for its result and drops every day the source no longer holds. A `SETTINGS all_replicas = 1` would run every refresh on every replica, where the Replicated database hands each one to a single replica.
+- A `${name}` placeholder in a view with no value in `dfe_schemas.usage.SQL_VALUES` is rejected, so the names the usage views read cannot drift from the ones the engine imports.
+- A role is created before its quota, because ClickHouse rejects a quota naming a role that does not exist yet, and that shows up against a cluster where the role was not present.
+- In a CREATE TABLE the database, table, column and index names go through `quote_ident`, which rejects a backtick, quote, parenthesis, semicolon, backslash or whitespace. Everything shipped here is committed, so this catches an edit rather than an attack, but such a name would end the statement early and start another one.
+
+Every rendered statement converges. An `IF NOT EXISTS` creates and an `ALTER` re-asserts mutable state, so an edit reaches an object that exists.
 
 ### Where this sits
 

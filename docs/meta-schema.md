@@ -50,16 +50,25 @@ config:
     .ui .label-icon{color:#D9480F}
     .ext .label-icon{color:#64748B}
 ---
-flowchart LR
+flowchart TB
   accTitle: L4 Detail -- Meta schema to source table
   accDescr: dfe-engine's SchemaBuilderV2 reads the meta schema YAML, composes and validates the columns, and creates the source table. dfe-loader reads the deployed table's columns from system.columns at runtime.
-  yaml("<b>Meta schema YAML</b><br/><span>what the schema should be</span>")
-  builder("<b>dfe-engine</b><br/><span>SchemaBuilderV2</span>")
-  table[("<b>Source table</b><br/><span>what the schema is</span>")]
-  loader("<b>dfe-loader</b><br/><span>reads system.columns</span>")
-  yaml -->|columns| builder
-  builder --> table
-  table -.-> loader
+  subgraph should["Should be"]
+    direction LR
+    yaml("<b>Meta schema YAML</b><br/><span>what the schema should be</span>")
+    builder("<b>dfe-engine</b><br/><span>SchemaBuilderV2</span>")
+    yaml -->|columns| builder
+  end
+  subgraph is["Is"]
+    direction LR
+    table[("<b>Source table</b><br/><span>what the schema is</span>")]
+    loader("<b>dfe-loader</b><br/><span>reads system.columns</span>")
+    table -.-> loader
+  end
+  should -->|creates| is
+  class yaml,table store
+  class builder control
+  class loader load
   classDef ext fill:#F4F6F8,stroke:#94A3B8,stroke-width:1.5px,stroke-dasharray:5 4,color:#0F172A
   classDef ingest fill:#FFFFFF,stroke:#0E8A7D,stroke-width:3px,color:#0F172A
   classDef xform fill:#FFFFFF,stroke:#7B4FB0,stroke-width:3px,color:#0F172A
@@ -71,12 +80,11 @@ flowchart LR
   classDef error fill:#FFFFFF,stroke:#C2410C,stroke-width:3px,color:#0F172A
   classDef control fill:#FFFFFF,stroke:#334155,stroke-width:3px,color:#0F172A
   classDef part fill:#FFFFFF,stroke:#94A3B8,stroke-width:1.5px,color:#0F172A
-  class yaml,table store
-  class builder control
-  class loader load
+  style should fill:none,stroke:#0072B2,stroke-width:1.5px,stroke-dasharray:6 4
+  style is fill:none,stroke:#0072B2,stroke-width:1.5px,stroke-dasharray:6 4
 ```
 
-*Figure 1. L4 Detail -- Meta schema to source table. The dotted arrow is dfe-loader reading `system.columns` at runtime.* Up: [L3 Components -- dfe-schemas](architecture.md).
+*Figure 1. L4 Detail -- Meta schema to source table. The dotted arrow is dfe-loader reading `system.columns` at runtime.* Up: [L4 Detail -- Definitions](definitions.md).
 
 The YAML is what the schema should be, and the ClickHouse table is what it is. At runtime the deployed table is the authority.
 
@@ -539,22 +547,26 @@ config:
     .ui .label-icon{color:#D9480F}
     .ext .label-icon{color:#64748B}
 ---
-flowchart LR
+flowchart TB
   accTitle: L4 Detail -- Column composition
   accDescr: The source columns start from the meta schema, an optional derived schema narrows them and optional additional fields extend them. Compose puts the header profile's columns first and the source columns after, which gives the table's ordered column list.
-  profile("<b>Header profile</b><br/><span>always first</span>")
   subgraph source["Source columns"]
     direction LR
     meta("<b>Meta schema</b><br/><span>the base columns</span>")
-    derived("<b>Derived schema</b><br/><span>narrows to its select list</span>")
-    additional("<b>Additional fields</b><br/><span>adds the columns the base lacks</span>")
+    derived("<b>Derived schema</b><br/><span>narrows to a select list</span>")
+    additional("<b>Additional fields</b><br/><span>adds what the base lacks</span>")
     meta -.-> derived -.-> additional
   end
-  compose("<b>Compose</b><br/><span>profile first, source after</span>")
-  columns(["<b>Table columns</b><br/><span>the ordered list</span>"])
-  profile -->|first| compose
-  source -->|after| compose
-  compose -->|ordered| columns
+  subgraph out["Compose"]
+    direction LR
+    profile("<b>Header profile</b><br/><span>always first</span>")
+    compose("<b>Compose</b><br/><span>profile first, source after</span>")
+    columns(["<b>Table columns</b><br/><span>the ordered list</span>"])
+    profile -->|first| compose -->|ordered| columns
+  end
+  source -->|after| out
+  class profile,meta,derived,additional store
+  class compose,columns part
   classDef ext fill:#F4F6F8,stroke:#94A3B8,stroke-width:1.5px,stroke-dasharray:5 4,color:#0F172A
   classDef ingest fill:#FFFFFF,stroke:#0E8A7D,stroke-width:3px,color:#0F172A
   classDef xform fill:#FFFFFF,stroke:#7B4FB0,stroke-width:3px,color:#0F172A
@@ -566,11 +578,11 @@ flowchart LR
   classDef error fill:#FFFFFF,stroke:#C2410C,stroke-width:3px,color:#0F172A
   classDef control fill:#FFFFFF,stroke:#334155,stroke-width:3px,color:#0F172A
   classDef part fill:#FFFFFF,stroke:#94A3B8,stroke-width:1.5px,color:#0F172A
-  class profile,meta,derived,additional store
-  class compose,columns part
+  style source fill:none,stroke:#0072B2,stroke-width:1.5px,stroke-dasharray:6 4
+  style out fill:none,stroke:#0072B2,stroke-width:1.5px,stroke-dasharray:6 4
 ```
 
-*Figure 2. L4 Detail -- Column composition. Dotted arrows lead to the optional layers.* Up: [L3 Components -- dfe-schemas](architecture.md).
+*Figure 2. L4 Detail -- Column composition. Dotted arrows lead to the optional layers.* Up: [L4 Detail -- Definitions](definitions.md).
 
 dfe-engine's `SchemaLoader` runs each layer: `load_profile` for the header, `load_columns` for the meta schema, `apply_derived_schema` and `apply_additional_fields` for the optional two, then `compose`.
 

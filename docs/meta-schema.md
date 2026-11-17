@@ -5,24 +5,75 @@ A meta schema is a YAML file that defines the columns for a ClickHouse table: wh
 At runtime dfe-loader reads the deployed columns from ClickHouse, never the YAML.
 
 ```mermaid
+---
+config:
+  theme: base
+  look: neo
+  fontFamily: Inter, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif
+  flowchart:
+    curve: linear
+    nodeSpacing: 40
+    rankSpacing: 64
+    padding: 18
+    wrappingWidth: 280
+    htmlLabels: true
+  elk:
+    preset: modelOrder
+  themeVariables:
+    fontSize: 15px
+    lineColor: "#64748B"
+    primaryTextColor: "#0F172A"
+    clusterBorder: "#0072B2"
+    edgeLabelBackground: "#FFFFFF"
+  themeCSS: >-
+    p{margin:0}
+    .node[data-look] rect,.node[data-look] path,.node[data-look] polygon,.node[data-look] .outer-path{filter:drop-shadow(0 1px 2px rgba(15,23,42,.10)) drop-shadow(0 6px 14px rgba(15,23,42,.10))}
+    .node rect{rx:10px;ry:10px}
+    .cluster rect{rx:16px;ry:16px}
+    .node .label div{min-width:150px}
+    .node.decision .label div{min-width:0}
+    .cluster[data-look] rect{filter:none}
+    .nodeLabel{line-height:1.35}
+    .nodeLabel b{font-weight:600;font-size:15px;letter-spacing:-0.01em}
+    .nodeLabel span{font-size:12.5px;font-weight:400;color:#334155}
+    .cluster-label span.nodeLabel{display:inline-block;background:#FFFFFF;color:#0B2A3F;border:1.5px solid #0072B2;border-radius:999px;padding:2px 12px;font-size:11.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase}
+    .flowchart-link{stroke-width:1.75px}
+    .labelBkg{background:transparent!important}
+    span.edgeLabel{display:inline-block;background:#FFFFFF!important;color:#1E293B;border:1px solid #94A3B8;border-radius:999px;padding:2px 10px;font-size:12px;font-weight:500}
+    span.edgeLabel p{background:transparent!important}
+    .label-icon{width:20px;height:20px;vertical-align:-4px;margin-right:6px}
+    .ingest .label-icon{color:#0E8A7D}
+    .xform .label-icon{color:#7B4FB0}
+    .load .label-icon{color:#0072B2}
+    .bus .label-icon{color:#A8517F}
+    .store .label-icon{color:#00785A}
+    .ui .label-icon{color:#D9480F}
+    .ext .label-icon{color:#64748B}
+---
 flowchart LR
-    accTitle: L4 Detail -- Meta schema to source table
-    accDescr: dfe-engine's SchemaBuilderV2 reads the meta schema YAML, composes and validates the columns, and creates the source table. dfe-loader reads the deployed table's columns from system.columns at runtime.
-
-    yaml["Meta schema YAML"]
-    builder["dfe-engine<br/>SchemaBuilderV2"]
-    table[("Source table")]
-    loader["dfe-loader"]
-
-    yaml -->|columns| builder
-    builder --> table
-    table -.-> loader
-
-    classDef default fill:#F8FAFC,stroke:#64748B,stroke-width:1px,color:#0F172A
-    classDef core fill:#DCEBF7,stroke:#0072B2,stroke-width:2px,color:#0B2A3F
-    classDef store fill:#DDF3EC,stroke:#00785A,stroke-width:1px,color:#0B3327
-    class yaml core
-    class table store
+  accTitle: L4 Detail -- Meta schema to source table
+  accDescr: dfe-engine's SchemaBuilderV2 reads the meta schema YAML, composes and validates the columns, and creates the source table. dfe-loader reads the deployed table's columns from system.columns at runtime.
+  yaml("<b>Meta schema YAML</b><br/><span>what the schema should be</span>")
+  builder("<b>dfe-engine</b><br/><span>SchemaBuilderV2</span>")
+  table[("<b>Source table</b><br/><span>what the schema is</span>")]
+  loader("<b>dfe-loader</b><br/><span>reads system.columns</span>")
+  yaml -->|columns| builder
+  builder --> table
+  table -.-> loader
+  classDef ext fill:#F4F6F8,stroke:#94A3B8,stroke-width:1.5px,stroke-dasharray:5 4,color:#0F172A
+  classDef ingest fill:#FFFFFF,stroke:#0E8A7D,stroke-width:3px,color:#0F172A
+  classDef xform fill:#FFFFFF,stroke:#7B4FB0,stroke-width:3px,color:#0F172A
+  classDef load fill:#FFFFFF,stroke:#0072B2,stroke-width:3px,color:#0F172A
+  classDef bus fill:#FFFFFF,stroke:#A8517F,stroke-width:3px,color:#0F172A
+  classDef store fill:#FFFFFF,stroke:#00785A,stroke-width:3px,color:#0F172A
+  classDef ui fill:#FFFFFF,stroke:#D9480F,stroke-width:3px,color:#0F172A
+  classDef decision fill:#FFFFFF,stroke:#9A6700,stroke-width:3px,color:#0F172A
+  classDef error fill:#FFFFFF,stroke:#C2410C,stroke-width:3px,color:#0F172A
+  classDef control fill:#FFFFFF,stroke:#334155,stroke-width:3px,color:#0F172A
+  classDef part fill:#FFFFFF,stroke:#94A3B8,stroke-width:1.5px,color:#0F172A
+  class yaml,table store
+  class builder control
+  class loader load
 ```
 
 *Figure 1. L4 Detail -- Meta schema to source table. The dotted arrow is dfe-loader reading `system.columns` at runtime.* Up: [L3 Components -- dfe-schemas](architecture.md).
@@ -443,29 +494,80 @@ Profile columns come first and source columns follow. A source column that repea
 A composed schema is built from up to four layers: the header profile, then the meta schema, narrowed by a derived schema and extended by additional fields.
 
 ```mermaid
+---
+config:
+  theme: base
+  look: neo
+  fontFamily: Inter, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif
+  flowchart:
+    curve: linear
+    nodeSpacing: 40
+    rankSpacing: 64
+    padding: 18
+    wrappingWidth: 280
+    htmlLabels: true
+  elk:
+    preset: modelOrder
+  themeVariables:
+    fontSize: 15px
+    lineColor: "#64748B"
+    primaryTextColor: "#0F172A"
+    clusterBorder: "#0072B2"
+    edgeLabelBackground: "#FFFFFF"
+  themeCSS: >-
+    p{margin:0}
+    .node[data-look] rect,.node[data-look] path,.node[data-look] polygon,.node[data-look] .outer-path{filter:drop-shadow(0 1px 2px rgba(15,23,42,.10)) drop-shadow(0 6px 14px rgba(15,23,42,.10))}
+    .node rect{rx:10px;ry:10px}
+    .cluster rect{rx:16px;ry:16px}
+    .node .label div{min-width:150px}
+    .node.decision .label div{min-width:0}
+    .cluster[data-look] rect{filter:none}
+    .nodeLabel{line-height:1.35}
+    .nodeLabel b{font-weight:600;font-size:15px;letter-spacing:-0.01em}
+    .nodeLabel span{font-size:12.5px;font-weight:400;color:#334155}
+    .cluster-label span.nodeLabel{display:inline-block;background:#FFFFFF;color:#0B2A3F;border:1.5px solid #0072B2;border-radius:999px;padding:2px 12px;font-size:11.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase}
+    .flowchart-link{stroke-width:1.75px}
+    .labelBkg{background:transparent!important}
+    span.edgeLabel{display:inline-block;background:#FFFFFF!important;color:#1E293B;border:1px solid #94A3B8;border-radius:999px;padding:2px 10px;font-size:12px;font-weight:500}
+    span.edgeLabel p{background:transparent!important}
+    .label-icon{width:20px;height:20px;vertical-align:-4px;margin-right:6px}
+    .ingest .label-icon{color:#0E8A7D}
+    .xform .label-icon{color:#7B4FB0}
+    .load .label-icon{color:#0072B2}
+    .bus .label-icon{color:#A8517F}
+    .store .label-icon{color:#00785A}
+    .ui .label-icon{color:#D9480F}
+    .ext .label-icon{color:#64748B}
+---
 flowchart LR
-    accTitle: L4 Detail -- Column composition
-    accDescr: The source columns start from the meta schema, an optional derived schema narrows them and optional additional fields extend them. Compose puts the header profile's columns first and the source columns after, which gives the table's ordered column list.
-
-    profile["Header profile"]
-
-    subgraph source["Source columns"]
-        direction LR
-        meta["Meta schema"] -.-> derived["Derived schema"] -.-> additional["Additional fields"]
-    end
-
-    compose["Compose"]
-    columns(["Table columns"])
-
-    profile -->|first| compose
-    source -->|after| compose
-    compose -->|ordered| columns
-
-    classDef default fill:#F8FAFC,stroke:#64748B,stroke-width:1px,color:#0F172A
-    classDef core fill:#DCEBF7,stroke:#0072B2,stroke-width:2px,color:#0B2A3F
-    classDef group fill:none,stroke:#64748B,stroke-width:1px,stroke-dasharray:2 4
-    class compose core
-    class source group
+  accTitle: L4 Detail -- Column composition
+  accDescr: The source columns start from the meta schema, an optional derived schema narrows them and optional additional fields extend them. Compose puts the header profile's columns first and the source columns after, which gives the table's ordered column list.
+  profile("<b>Header profile</b><br/><span>always first</span>")
+  subgraph source["Source columns"]
+    direction LR
+    meta("<b>Meta schema</b><br/><span>the base columns</span>")
+    derived("<b>Derived schema</b><br/><span>narrows to its select list</span>")
+    additional("<b>Additional fields</b><br/><span>adds the columns the base lacks</span>")
+    meta -.-> derived -.-> additional
+  end
+  compose("<b>Compose</b><br/><span>profile first, source after</span>")
+  columns(["<b>Table columns</b><br/><span>the ordered list</span>"])
+  profile -->|first| compose
+  source -->|after| compose
+  compose -->|ordered| columns
+  classDef ext fill:#F4F6F8,stroke:#94A3B8,stroke-width:1.5px,stroke-dasharray:5 4,color:#0F172A
+  classDef ingest fill:#FFFFFF,stroke:#0E8A7D,stroke-width:3px,color:#0F172A
+  classDef xform fill:#FFFFFF,stroke:#7B4FB0,stroke-width:3px,color:#0F172A
+  classDef load fill:#FFFFFF,stroke:#0072B2,stroke-width:3px,color:#0F172A
+  classDef bus fill:#FFFFFF,stroke:#A8517F,stroke-width:3px,color:#0F172A
+  classDef store fill:#FFFFFF,stroke:#00785A,stroke-width:3px,color:#0F172A
+  classDef ui fill:#FFFFFF,stroke:#D9480F,stroke-width:3px,color:#0F172A
+  classDef decision fill:#FFFFFF,stroke:#9A6700,stroke-width:3px,color:#0F172A
+  classDef error fill:#FFFFFF,stroke:#C2410C,stroke-width:3px,color:#0F172A
+  classDef control fill:#FFFFFF,stroke:#334155,stroke-width:3px,color:#0F172A
+  classDef part fill:#FFFFFF,stroke:#94A3B8,stroke-width:1.5px,color:#0F172A
+  class profile,meta,derived,additional store
+  class compose,columns part
 ```
 
 *Figure 2. L4 Detail -- Column composition. Dotted arrows lead to the optional layers.* Up: [L3 Components -- dfe-schemas](architecture.md).

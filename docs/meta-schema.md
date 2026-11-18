@@ -473,7 +473,7 @@ A source table starts with a header of underscore-prefixed system fields from a 
 | Column | Type | Cardinality | Use case | ORDER BY | Expr |
 |--------|------|-------------|----------|----------|------|
 | `_timestamp_load` | `timestamp` | | | 0 | `@generated: now64(3)` |
-| `_timestamp` | `timestamp` | | `range` | 1 | `@source: timestamp \| now()` |
+| `_timestamp` | `timestamp` | | `range` | 1 | `@source: first(timestamp/@timestamp/_timestamp) \| now()` |
 | `_timestamp_received` | `timestamp` | | | | `@source: first(_timestamp_received/timestamp_received/received_at)` |
 | `_uuid` | `uuid` | | | | `@generated: generateUUIDv7()` |
 | `_org_id` | `string` | `low` | `dimension` | 2 | `@source: _org_id` |
@@ -482,7 +482,7 @@ A source table starts with a header of underscore-prefixed system fields from a 
 | `_json` | `json` | | | | capture mode |
 | `_tags` | `json` | | | | `@source: first(_tags/tags/meta/metadata.tags)` |
 
-Each header field reads its `_`-prefixed wire name first, except the event timestamp. The header expects the first hop, dfe-receiver or dfe-fetcher, to stamp `_org_id` and `_timestamp_received` on every record. dfe-loader fills `_org_id` from its `routing.org_id_field`, `_org_id` by default, and never from the column's directive, which records the field rather than choosing it. A sender's spelling of the tenant, such as a DFE 2.x `org_id`, reaches `_org_id` through a [compatibility profile](compat-profiles.md) at the first hop and no other way.
+Each header field reads its `_`-prefixed wire name first, except the event timestamp, which reads `timestamp`, then ECS's `@timestamp`, then `_timestamp`, and takes the load time when none is present. The header expects the first hop, dfe-receiver or dfe-fetcher, to stamp `_org_id` and `_timestamp_received` on every record. dfe-loader fills `_org_id` from its `routing.org_id_field`, `_org_id` by default, and never from the column's directive, which records the field rather than choosing it. A sender's spelling of the tenant, such as a DFE 2.x `org_id`, reaches `_org_id` through a [compatibility profile](compat-profiles.md) at the first hop and no other way.
 
 `minimal` has `_timestamp_load`, `_timestamp`, `_uuid`, `_org_id` and `_json`. `passthrough` has `_timestamp_load`, `_uuid`, `_org_id` and `_json`.
 
@@ -628,7 +628,7 @@ The engine generates the complete DDL from the composed columns. This is the `CR
 CREATE TABLE IF NOT EXISTS `{db}`.`windows_audit`
 (
     `_timestamp_load` DateTime64(3,'UTC') DEFAULT now64(3) COMMENT '@generated: now64(3) - Insertion timestamp (ms precision)' CODEC(Delta, LZ4),
-    `_timestamp` DateTime64(3,'UTC') COMMENT '@source: timestamp | now() - Event timestamp from source data' CODEC(Delta, LZ4),
+    `_timestamp` DateTime64(3,'UTC') COMMENT '@source: first(timestamp/@timestamp/_timestamp) | now() - Event timestamp from source data' CODEC(Delta, LZ4),
     `_timestamp_received` DateTime64(3,'UTC') COMMENT '@source: first(_timestamp_received/timestamp_received/received_at) - When DFE first received the event: the dfe-receiver or dfe-fetcher stamp' CODEC(Delta, LZ4),
     `_uuid` Nullable(UUID) DEFAULT generateUUIDv7() COMMENT '@generated: generateUUIDv7() - Time-ordered unique event identifier',
     `_org_id` LowCardinality(String) COMMENT '@source: _org_id - Tenant/organisation identifier' CODEC(ZSTD(1)),
@@ -657,7 +657,7 @@ SETTINGS
     ttl_only_drop_parts = 1,
     merge_max_dynamic_subcolumns_in_wide_part = 64,
     write_marks_for_substreams_in_compact_parts = 0
-COMMENT '@profile: timeseries | @profile_version: 1.0.3 | @windows_audit_version: 2';
+COMMENT '@profile: timeseries | @profile_version: 1.0.4 | @windows_audit_version: 2';
 ```
 
 `_source` and `user_name` are Nullable dimensions, so they take `bloom_filter`, where `_org_id`, which is not, takes `set(0)`. On ClickHouse Cloud the last setting is left out.

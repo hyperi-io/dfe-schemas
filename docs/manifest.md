@@ -154,4 +154,4 @@ The checksum and the one engine form are on the [Renderer](renderer.md) page.
 
 ## Related
 
-- [Definitions](definitions.md), [Renderer](renderer.md), [ClickHouse platforms](clickhouse-platform.md)
+* [Definitions](definitions.md), [Renderer](renderer.md), [ClickHouse platforms](clickhouse-platform.md)

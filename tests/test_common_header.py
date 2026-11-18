@@ -64,6 +64,21 @@ def test_the_received_time_drops_the_retired_receiver_stamp(manifest):
     assert "_timestamp_receiver" not in line, line
 
 
+@pytest.mark.parametrize("header", ["timeseries", "minimal"])
+def test_the_event_time_names_every_key_it_is_read_from(manifest, header):
+    """The loader takes the event time from this directive, so the list of keys lives here."""
+    line = _column_lines(manifest, header)["_timestamp"]
+    assert "COMMENT '@source: first(timestamp/@timestamp/_timestamp) | now() - " in line, line
+
+
+@pytest.mark.parametrize("header", ["timeseries", "minimal"])
+def test_a_published_version_keeps_the_event_time_it_read(header):
+    """Published versions are immutable: a source pinned at 1.0.3 reads `timestamp` alone."""
+    columns = read_yaml(ROOT / "common-header" / f"{header}.yaml")["versions"]["1.0.3"]["columns"]
+    expr = next(col["expr"] for col in columns if col["name"] == "_timestamp")
+    assert expr == "@source: timestamp | now()"
+
+
 def test_every_profile_is_current_at_one_version():
     """dfe-engine applies one deployment-wide header version to whichever profile a source names."""
     current = {

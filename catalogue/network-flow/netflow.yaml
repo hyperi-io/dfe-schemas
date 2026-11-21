@@ -1,0 +1,17 @@
+# Catalogue source netflow: the POST /sources write body that creates it.
+# See docs/catalogue.md.
+
+source: netflow
+display_name: NetFlow
+description: NetFlow v5, v9 and IPFIX records dfe-receiver's flow listener decodes.
+match:
+  field: _source
+  operator: equals
+  value: netflow
+schema:
+  meta_schema: meta/flow/netflow
+catalogue:
+  package: netflow
+  data_stream: flow
+  intakes: [receiver]
+  framing: body

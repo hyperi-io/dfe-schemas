@@ -1,0 +1,297 @@
+# Meta schema: NetFlow and IPFIX records
+#
+# dfe-receiver's exploded flow output for NetFlow v5, v9 and IPFIX: one row per record,
+# the record under `flow` and the datagram's own fields beside it.
+
+current: "1.0.0"
+resource_type: core
+
+versions:
+  "1.0.0":
+    date: "2026-11-21"
+    type: model
+    summary: "Initial netflow schema"
+    columns:
+      - name: exporter_ip
+        type: ip
+        use_case: exact_match
+        expr: "@source: exporter_ip"
+        comment: "Address of the exporter that sent the datagram"
+        _field_type: base
+
+      - name: observation_domain
+        type: integer
+        ch_override: UInt32
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: observation_domain"
+        comment: "Observation domain, source id or sub-agent id of the exporter"
+        _field_type: base
+
+      - name: flow_version
+        type: string
+        cardinality: low
+        use_case: dimension
+        expr: "@source: version"
+        comment: "Protocol version tag: netflow_v5, netflow_v9 or ipfix"
+        _field_type: base
+
+      - name: packet_seq
+        type: integer
+        ch_override: UInt64
+        attribute: [nullable]
+        expr: "@source: packet_seq"
+        comment: "Sequence number the exporter gave the datagram"
+        _field_type: base
+
+      - name: t_collected
+        type: datetime
+        use_case: range
+        expr: "@source: t_collected"
+        comment: "When the receiver took the datagram in"
+        _field_type: base
+
+      - name: record_kind
+        type: string
+        cardinality: low
+        use_case: dimension
+        expr: "@source: flow.record_kind"
+        comment: "flow, counter, security_event or nat_translation"
+        _field_type: base
+
+      - name: src_ip
+        type: ip
+        use_case: exact_match
+        expr: "@source: flow.src_ip"
+        comment: "Source address"
+        _field_type: base
+
+      - name: dst_ip
+        type: ip
+        use_case: exact_match
+        expr: "@source: flow.dst_ip"
+        comment: "Destination address"
+        _field_type: base
+
+      - name: src_port
+        type: integer
+        ch_override: UInt16
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: flow.src_port"
+        comment: "Source transport port"
+        _field_type: base
+
+      - name: dst_port
+        type: integer
+        ch_override: UInt16
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: flow.dst_port"
+        comment: "Destination transport port"
+        _field_type: base
+
+      - name: ip_protocol
+        type: integer
+        ch_override: UInt8
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: flow.protocol"
+        comment: "IP protocol number, 6 for TCP and 17 for UDP"
+        _field_type: base
+
+      - name: ip_version
+        type: integer
+        ch_override: UInt8
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: flow.ip_version"
+        comment: "IP version, 4 or 6"
+        _field_type: base
+
+      - name: tcp_flags
+        type: integer
+        ch_override: UInt8
+        attribute: [nullable]
+        expr: "@source: flow.tcp_flags"
+        comment: "TCP flags seen on the flow, as a bit field"
+        _field_type: base
+
+      - name: input_iface
+        type: integer
+        ch_override: UInt32
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: flow.input_iface"
+        comment: "SNMP index of the ingress interface"
+        _field_type: base
+
+      - name: output_iface
+        type: integer
+        ch_override: UInt32
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: flow.output_iface"
+        comment: "SNMP index of the egress interface"
+        _field_type: base
+
+      - name: sampling_rate
+        type: integer
+        ch_override: UInt32
+        attribute: [nullable]
+        expr: "@source: flow.sampling_rate"
+        comment: "One packet in this many was sampled"
+        _field_type: base
+
+      - name: bytes
+        type: integer
+        ch_override: UInt64
+        attribute: [nullable]
+        expr: "@source: flow.bytes"
+        comment: "Bytes in the flow"
+        _field_type: base
+
+      - name: packets
+        type: integer
+        ch_override: UInt64
+        attribute: [nullable]
+        expr: "@source: flow.packets"
+        comment: "Packets in the flow"
+        _field_type: base
+
+      - name: t_flow_start
+        type: string
+        expr: "@source: flow.t_flow_start"
+        comment: "Flow start as RFC 3339, or sysup:<ms> where the exporter sent only its uptime"
+        _field_type: base
+
+      - name: t_flow_end
+        type: string
+        expr: "@source: flow.t_flow_end"
+        comment: "Flow end as RFC 3339, or sysup:<ms> where the exporter sent only its uptime"
+        _field_type: base
+
+      - name: duration_ms
+        type: integer
+        ch_override: UInt64
+        attribute: [nullable]
+        expr: "@source: flow.duration_ms"
+        comment: "Flow duration in milliseconds"
+        _field_type: base
+
+      - name: src_as
+        type: integer
+        ch_override: UInt32
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: flow.src_as"
+        comment: "Source autonomous system"
+        _field_type: base
+
+      - name: dst_as
+        type: integer
+        ch_override: UInt32
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: flow.dst_as"
+        comment: "Destination autonomous system"
+        _field_type: base
+
+      - name: next_hop
+        type: ip
+        use_case: exact_match
+        expr: "@source: flow.next_hop"
+        comment: "Next hop address"
+        _field_type: base
+
+      - name: vlan_id
+        type: integer
+        ch_override: UInt16
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: flow.vlan_id"
+        comment: "VLAN id"
+        _field_type: base
+
+      - name: event_type
+        type: integer
+        ch_override: UInt8
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: flow.event_type"
+        comment: "Firewall event: 1 created, 2 deleted, 3 denied, 4 teardown, 5 updated"
+        _field_type: base
+
+      - name: event_subtype
+        type: integer
+        ch_override: UInt16
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: flow.event_subtype"
+        comment: "Extended firewall event code"
+        _field_type: base
+
+      - name: username
+        type: string
+        use_case: dimension
+        expr: "@source: flow.username"
+        comment: "User the firewall tied to the flow"
+        _field_type: base
+
+      - name: acl_in_id
+        type: string
+        expr: "@source: flow.acl_in_id"
+        comment: "Ingress ACL id"
+        _field_type: base
+
+      - name: acl_out_id
+        type: string
+        expr: "@source: flow.acl_out_id"
+        comment: "Egress ACL id"
+        _field_type: base
+
+      - name: nat_event_type
+        type: integer
+        ch_override: UInt8
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: flow.nat_event_type"
+        comment: "NAT event type"
+        _field_type: base
+
+      - name: pre_nat_src_ip
+        type: ip
+        use_case: exact_match
+        expr: "@source: flow.pre_nat_src_ip"
+        comment: "Source address the NAT device reported"
+        _field_type: base
+
+      - name: pre_nat_dst_ip
+        type: ip
+        use_case: exact_match
+        expr: "@source: flow.pre_nat_dst_ip"
+        comment: "Destination address the NAT device reported"
+        _field_type: base
+
+      - name: pre_nat_src_port
+        type: integer
+        ch_override: UInt16
+        attribute: [nullable]
+        expr: "@source: flow.pre_nat_src_port"
+        comment: "Source port the NAT device reported"
+        _field_type: base
+
+      - name: pre_nat_dst_port
+        type: integer
+        ch_override: UInt16
+        attribute: [nullable]
+        expr: "@source: flow.pre_nat_dst_port"
+        comment: "Destination port the NAT device reported"
+        _field_type: base
+
+      - name: nat_pool_name
+        type: string
+        use_case: dimension
+        expr: "@source: flow.nat_pool_name"
+        comment: "NAT pool"
+        _field_type: base

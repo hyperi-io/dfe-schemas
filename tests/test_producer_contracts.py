@@ -156,3 +156,45 @@ def test_the_traced_record_lands_severity_trace_and_body(mode):
 
 def test_a_record_with_none_of_the_keys_leaves_the_column_absent():
     assert all(resolve(expr, {"unrelated": 1}) is None for expr in _columns().values())
+
+
+# dfe-receiver's exploded flow events for the files in its tests/fixtures/flow/external, rendered
+# by tests/integration/flow_exploded.rs (one fresh decoder per file), one per line.
+FLOW_FIXTURES = {
+    "flow/netflow": "flow_netflow_receiver_exploded",
+    "flow/sflow": "flow_sflow_receiver_exploded",
+}
+
+# The envelope keys no column reads: the label the source routes on, the protocol family
+# the column flow_version replaces, and the packet's record counters.
+FLOW_UNREAD = {"_source", "protocol", "record_count", "record_index", "record_total"}
+
+
+def _paths(node: dict, prefix: str = "") -> set[str]:
+    """Every dotted path to a leaf of *node*."""
+    found = set()
+    for key, value in node.items():
+        path = f"{prefix}{key}"
+        found |= _paths(value, f"{path}.") if isinstance(value, dict) else {path}
+    return found
+
+
+@pytest.mark.parametrize("schema_ref", FLOW_FIXTURES)
+def test_every_key_the_flow_listener_writes_has_a_column(schema_ref):
+    """A key the receiver adds that no column reads would be dropped at the loader."""
+    read = {path for expr in _columns(schema_ref).values() for path in _candidates(expr)}
+    written = set()
+    for record in _records(FLOW_FIXTURES[schema_ref]):
+        written |= _paths(record)
+    assert written - FLOW_UNREAD <= read
+
+
+@pytest.mark.parametrize("schema_ref", FLOW_FIXTURES)
+def test_a_flow_column_takes_the_value_its_key_holds(schema_ref):
+    """Each column whose key an event holds resolves to the value the receiver wrote."""
+    columns = _columns(schema_ref)
+    for record in _records(FLOW_FIXTURES[schema_ref]):
+        for path in _paths(record) - FLOW_UNREAD:
+            matches = [name for name, expr in columns.items() if _candidates(expr) == [path]]
+            assert len(matches) == 1, f"{path} is read by {matches}"
+            assert resolve(columns[matches[0]], record) == _lookup(record, path)

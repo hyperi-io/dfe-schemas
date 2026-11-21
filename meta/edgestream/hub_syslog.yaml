@@ -1,0 +1,160 @@
+# Meta schema: EdgeStream Hub syslog
+#
+# syslog-ng RFC 5424 events an EdgeStream Hub forwards, each with the hub's `@edgestream` object.
+
+current: "1.0.0"
+resource_type: core
+
+versions:
+  "1.0.0":
+    date: "2026-11-21"
+    type: model
+    summary: "Initial EdgeStream Hub syslog schema"
+    columns:
+      - name: timestamp
+        type: datetime
+        use_case: range
+        expr: "@source: first(@timestamp/timestamp)"
+        comment: "Event time as syslog-ng stamped it"
+        _field_type: base
+
+      - name: host
+        type: string
+        use_case: dimension
+        expr: "@source: host"
+        comment: "Host the event is about: the HOST of the RFC 5424 header, often an address"
+        _field_type: base
+
+      - name: host_from
+        type: string
+        use_case: dimension
+        expr: "@source: host_from"
+        comment: "Host syslog-ng received the event from"
+        _field_type: base
+
+      - name: source_ip
+        type: ip
+        use_case: range
+        expr: "@source: first(sourceip/source_ip)"
+        comment: "Address of the sender, as syslog-ng saw it"
+        _field_type: base
+
+      - name: facility
+        type: string
+        cardinality: low
+        use_case: dimension
+        expr: "@source: facility"
+        comment: "Syslog facility keyword"
+        _field_type: base
+
+      - name: severity
+        type: string
+        cardinality: low
+        use_case: dimension
+        expr: "@source: first(severity/level)"
+        comment: "Syslog severity keyword"
+        _field_type: base
+
+      - name: program
+        type: string
+        use_case: dimension
+        expr: "@source: program"
+        comment: "RFC 5424 APP-NAME"
+        _field_type: base
+
+      - name: pid
+        type: string
+        use_case: exact_match
+        expr: "@source: pid"
+        comment: "RFC 5424 PROCID, free text and often absent"
+        _field_type: base
+
+      - name: msgid
+        type: string
+        use_case: dimension
+        expr: "@source: msgid"
+        comment: "RFC 5424 MSGID"
+        _field_type: base
+
+      - name: legacy_msghdr
+        type: string
+        expr: "@source: legacy_msghdr"
+        comment: "The RFC 3164 tag and PID syslog-ng split off the message"
+        _field_type: base
+
+      - name: message
+        type: text
+        use_case: word_search
+        expr: "@source: message"
+        comment: "Log message body"
+        _field_type: base
+
+      - name: event_name
+        type: string
+        cardinality: low
+        use_case: dimension
+        expr: "@source: @edgestream.event.name"
+        comment: "The hub label the event was collected under, such as estate-syslog"
+        _field_type: base
+
+      - name: event_src_type
+        type: string
+        cardinality: low
+        use_case: dimension
+        expr: "@source: @edgestream.event.src_type"
+        comment: "The hub's name for the event's source, the field this source routes on"
+        _field_type: base
+
+      - name: hub_hostname
+        type: string
+        cardinality: low
+        use_case: dimension
+        expr: "@source: @edgestream.hub.hostname"
+        comment: "Hostname of the hub that collected the event"
+        _field_type: base
+
+      - name: hub_host
+        type: string
+        cardinality: low
+        use_case: dimension
+        expr: "@source: @edgestream.hub.host"
+        comment: "The hub's name for the host the event came from"
+        _field_type: base
+
+      - name: hub_org_id
+        type: string
+        cardinality: low
+        use_case: dimension
+        expr: "@source: @edgestream.hub.org_id"
+        comment: "Organisation the hub files the event under, which is not the DFE tenant"
+        _field_type: base
+
+      - name: hub_site_id
+        type: string
+        cardinality: low
+        use_case: dimension
+        expr: "@source: @edgestream.hub.site_id"
+        comment: "Site the hub files the event under"
+        _field_type: base
+
+      - name: hub_source_type
+        type: string
+        cardinality: low
+        use_case: dimension
+        expr: "@source: @edgestream.hub.source_type"
+        comment: "How the hub received the event, such as socket"
+        _field_type: base
+
+      - name: hub_timezone
+        type: string
+        cardinality: low
+        expr: "@source: @edgestream.hub.timezone"
+        comment: "Timezone the hub stamped on the event"
+        _field_type: base
+
+      - name: hub_timestamp
+        type: datetime
+        use_case: range
+        expr: "@source: @edgestream.hub.timestamp"
+        comment: "When the hub took the event in"
+        _field_type: base

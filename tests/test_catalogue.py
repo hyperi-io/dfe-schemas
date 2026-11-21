@@ -90,6 +90,15 @@ _FETCHER = {"source_type": "acme", "topic": "own"}
 
 _FETCHER_ORIGIN = {"match": None, "fetcher": _FETCHER}
 
+# A pushed source with no transform, whose receiver match is on the shipper's field.
+_SHIPPER_ONLY = {
+    "catalogue.intakes": ["receiver"],
+    "catalogue.variants": None,
+    "transform": None,
+    "match.field": SOURCE_LABEL_FIELD,
+    "match.value": "acme-log",
+}
+
 _CEF = {"priority": 60, "cef": {"vendor": "Acme", "product": "Widget"}}
 
 _LINE = {"priority": 50, "any": ["acme: "]}
@@ -119,6 +128,11 @@ WELL_FORMED_CASES = [
         id="receiver",
     ),
     pytest.param({**_FETCHER_ORIGIN, "catalogue.intakes": ["beats", "fetcher"]}, id="fetcher"),
+    pytest.param(
+        {**_SHIPPER_ONLY, "match.field": "@acme.event.kind", "match.value": "acme_log"},
+        id="receiver-only-on-a-shipper-field",
+    ),
+    pytest.param(_SHIPPER_ONLY, id="receiver-only-on-the-source-label"),
     pytest.param(
         {"catalogue.beats": {"module": "acme", "fileset": "log"}, "catalogue.framing": "line"},
         id="with-beats-and-framing",
@@ -175,6 +189,25 @@ MALFORMED_CASES = [
         {"catalogue.intakes": ["beats", "receiver"], "match.field": SOURCE_LABEL_FIELD},
         "default origin is 'receiver'",
         id="receiver-match-on-the-dataset-not-the-source",
+    ),
+    pytest.param(
+        {
+            "catalogue.intakes": ["beats", "receiver"],
+            "match.field": "@acme.event.kind",
+            "match.value": "acme_log",
+        },
+        "default origin is 'receiver'",
+        id="shipper-field-on-an-entry-with-another-intake",
+    ),
+    pytest.param(
+        {**_SHIPPER_ONLY, "match.operator": "includes"},
+        "must be one equals test",
+        id="receiver-only-match-is-not-equals",
+    ),
+    pytest.param(
+        {**_SHIPPER_ONLY, "match.value": "acme-other"},
+        "must name the source",
+        id="receiver-only-label-match-names-another-source",
     ),
     pytest.param({"catalogue.variants": []}, "variants", id="no-variants"),
     pytest.param(
@@ -442,6 +475,26 @@ def _mutated(*, changes: dict[str, object], doc: dict) -> dict:
     return result
 
 
+def _shipper_match_violations(*, doc: dict) -> list[str]:
+    """Why a receiver-only body's match is not one equals test on a field the shipper sends.
+
+    dfe-engine keeps this match as written, where it replaces the match of an entry with
+    another intake. The ``_source`` label is the one field no shipper sends, so the value
+    there is still the source's name.
+    """
+    match = doc.get("match")
+    if not isinstance(match, dict) or doc.get("fetcher"):
+        return ["a receiver-only body carries a match and no fetcher"]
+    found = []
+    if set(match) != {"field", "operator", "value"} or match.get("operator") != "equals":
+        found.append(f"a receiver-only match {match!r} must be one equals test of field and value")
+    elif not (match["field"] and match["value"]):
+        found.append(f"a receiver-only match {match!r} must name a field and a value")
+    elif match["field"] == SOURCE_LABEL_FIELD and match["value"] != doc.get("source"):
+        found.append(f"a receiver-only match on {SOURCE_LABEL_FIELD} must name the source")
+    return found
+
+
 def _origin_violations(*, block: dict, doc: dict, intakes: list[str]) -> list[str]:
     """Why the body's origin is not the one its preferred listed intake derives."""
     default = next(intake for intake in DEFAULT_ORIGIN_ORDER if intake in intakes)
@@ -455,6 +508,8 @@ def _origin_violations(*, block: dict, doc: dict, intakes: list[str]) -> list[st
         if ("match" in doc) or (not (doc.get("fetcher"))):
             found.append(f"default origin is {default!r}, so the body carries fetcher and no match")
         return found
+    if default == "receiver" and intakes == ["receiver"]:
+        return found + _shipper_match_violations(doc=doc)
     if default == "beats":
         field = BEATS_DATASET_FIELD
         value = f"{block.get('package')}.{block.get('data_stream')}"
@@ -504,11 +559,13 @@ def _shape_violations(*, block: dict, doc: dict) -> list[str]:
     framing = block.get("framing", FRAMINGS[0])
     if framing not in FRAMINGS:
         found.append(f"catalogue.framing {framing!r} must be one of {FRAMINGS!r}")
-    variants = block.get("variants")
+    # A body with no transform runs no compiled variant, so it lists none.
+    runs_a_transform = "transform" in doc
+    variants = block.get("variants", None if runs_a_transform else [])
     variants_are_text = isinstance(variants, list) and all(
         isinstance(variant, str) for variant in variants
     )
-    if not (variants_are_text) or not (variants):
+    if not (variants_are_text) or (runs_a_transform and not (variants)):
         found.append(f"catalogue.variants {variants!r} must be a non-empty list of strings")
     return found
 
@@ -530,6 +587,8 @@ def _tag_violations(*, tags: dict) -> list[str]:
 def _variant_violations(*, block: dict, doc: dict) -> list[str]:
     """Why the body's transform variant is not the first of the entry's variants."""
     variants = block.get("variants") or []
+    if "transform" not in doc and not variants:
+        return []
     variant = (doc.get("transform") or {}).get("variant")
     if (variants) and (variant == variants[0]):
         return []

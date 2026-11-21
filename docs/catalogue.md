@@ -54,6 +54,8 @@ The highest priority wins. A tie between literal markers goes to the source with
 
 The body is written for the first of `fetcher`, `receiver` and `beats` the entry lists, so it has a `fetcher` block exactly when `fetcher` is an intake. dfe-engine replaces the match for the intake a create names: `beats` matches `data_stream.dataset` equal to `<package>.<data_stream>`, and `receiver` matches `_source` equal to the source name. A create that names no intake takes the first of `fetcher`, `beats` and `receiver` the entry lists.
 
+An entry whose sole intake is `receiver` keeps the `match` it is written with, which is one `equals` test on a field the shipper sends, such as `@edgestream.event.src_type` for `edgestream/edgestream-hub-syslog.yaml`. A `_source` match there must still name the source. An entry may carry no `transform`, and then lists no `variants`.
+
 Schema layers name no version pin. dfe-engine binds no schema for a body without `schema`. `fetcher` is an intake on a body with a schema and never on one without, because dfe-engine rejects a fetcher source that has a dedicated topic and no schema.
 
 `tests/test_catalogue.py` checks the format, and `make validate` builds every body as dfe-engine's `SourceWriteRequest`.

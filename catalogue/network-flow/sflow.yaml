@@ -1,0 +1,17 @@
+# Catalogue source sflow: the POST /sources write body that creates it.
+# See docs/catalogue.md.
+
+source: sflow
+display_name: sFlow
+description: sFlow v5 flow and counter samples dfe-receiver's flow listener decodes.
+match:
+  field: _source
+  operator: equals
+  value: sflow
+schema:
+  meta_schema: meta/flow/sflow
+catalogue:
+  package: sflow
+  data_stream: flow
+  intakes: [receiver]
+  framing: body

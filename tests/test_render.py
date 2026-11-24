@@ -263,6 +263,43 @@ def test_a_comment_reaches_clickhouse_as_written(manifest, comment, literal):
     assert Renderer(manifest).tables.column_def(column) == f"`c` String COMMENT {literal}"
 
 
+@pytest.mark.parametrize(
+    ("expr", "renders"),
+    [
+        pytest.param("@source: host.name", True, id="loader-source"),
+        pytest.param("@skip", True, id="loader-skip"),
+        pytest.param("@coerce: string", True, id="loader-coerce"),
+        pytest.param("@generated: now64(3)", True, id="descriptive-generated"),
+        pytest.param("@captured: raw_payload", True, id="descriptive-captured"),
+        pytest.param("plain text, no directive", True, id="no-directive"),
+        pytest.param("@config: x", False, id="unknown-config"),
+        pytest.param("@sourc: host.name", False, id="typo"),
+        pytest.param("@", False, id="bare-at"),
+    ],
+)
+def test_a_column_renders_only_known_directives(manifest, expr, renders):
+    column = Column(name="c", ch_override="String", expr=expr)
+    if renders:
+        assert Renderer(manifest).tables.column_def(column).startswith("`c` String COMMENT")
+    else:
+        with pytest.raises(SchemaError, match="not a known directive"):
+            Renderer(manifest).tables.column_def(column)
+
+
+def test_the_directive_list_ships_in_the_package():
+    assert {
+        "skip",
+        "default",
+        "source",
+        "renamed",
+        "computed",
+        "coerce",
+    } == dfe_schemas.LOADER_DIRECTIVES
+    assert (
+        dfe_schemas.directives == dfe_schemas.LOADER_DIRECTIVES | dfe_schemas.DESCRIPTIVE_DIRECTIVES
+    )
+
+
 def test_the_landing_table_is_named_main(rendered):
     assert rendered[Platform.SELF_HOSTED]["data.main"].name == "main"
     assert "`dfe`.`main`" in rendered[Platform.SELF_HOSTED]["data.main"].statements[0]

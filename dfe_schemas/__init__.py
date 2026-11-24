@@ -24,12 +24,24 @@ Installed as a wheel, the schema trees (``tables/``, ``hunts/``,
 from importlib.metadata import PackageNotFoundError, version
 from pathlib import Path
 
+from dfe_schemas._directives import DESCRIPTIVE_DIRECTIVES, DIRECTIVES, LOADER_DIRECTIVES
+
+# Every directive a column expr may lead with, the name the loader and engine import.
+directives: frozenset[str] = DIRECTIVES
+
 try:
     __version__ = version("dfe-schemas")
 except PackageNotFoundError:  # a checkout used as a submodule, not installed
     __version__ = "0.0.0"
 
-__all__ = ["__version__", "manifest_path", "schemas_root"]
+__all__ = [
+    "DESCRIPTIVE_DIRECTIVES",
+    "LOADER_DIRECTIVES",
+    "__version__",
+    "directives",
+    "manifest_path",
+    "schemas_root",
+]
 
 
 def schemas_root() -> Path:

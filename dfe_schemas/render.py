@@ -28,6 +28,7 @@ from dataclasses import dataclass, replace
 from pathlib import Path
 from typing import Any
 
+from dfe_schemas._directives import DIRECTIVES, leading_directive
 from dfe_schemas.clickhouse import (
     Platform,
     create_database,
@@ -556,6 +557,14 @@ class TableDDL:
                 parts.append(f"ALIAS {column.default}")
             else:
                 parts.append(f"DEFAULT {column.default}")
+
+        # An unknown directive renders fine and the loader silently leaves the column NULL.
+        directive = leading_directive(column.expr) if column.expr else None
+        if directive is not None and directive not in DIRECTIVES:
+            known = ", ".join(f"@{name}" for name in sorted(DIRECTIVES))
+            raise SchemaError(
+                f"column {column.name!r}: @{directive} is not a known directive ({known})"
+            )
 
         # The expr comes first when both are present: the loader parses the
         # directive off the front of the comment.

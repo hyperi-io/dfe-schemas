@@ -3,7 +3,6 @@
 # One record per metric from Telegraf's JSON serializer, sent by its HTTP output.
 # Each record is {"name", "tags", "fields", "timestamp"}, per the serializer README:
 # https://github.com/influxdata/telegraf/blob/master/plugins/serializers/json/README.md
-# That page was read at master, not at a pinned release, so re-check it when Telegraf is pinned.
 #
 # Only the keys every record carries get a column. Every other tag and every
 # field stays in _json (_json.tags.*, _json.fields.*). A signal that needs a
@@ -31,7 +30,7 @@ versions:
         type: datetime
         use_case: range
         expr: "@source: timestamp"
-        comment: "Metric timestamp from Telegraf, in the units and format the output sets"
+        comment: "Metric time: epoch seconds by default, RFC 3339 text when json_timestamp_format is set"
         _field_type: base
 
       - name: host

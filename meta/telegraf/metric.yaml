@@ -1,0 +1,44 @@
+# Meta schema: Telegraf metric (JSON output)
+#
+# One record per metric from Telegraf's JSON serializer, sent by its HTTP output.
+# Each record is {"name", "tags", "fields", "timestamp"}, per the serializer README:
+# https://github.com/influxdata/telegraf/blob/master/plugins/serializers/json/README.md
+# That page was read at master, not at a pinned release, so re-check it when Telegraf is pinned.
+#
+# Only the keys every record carries get a column. Every other tag and every
+# field stays in _json (_json.tags.*, _json.fields.*). A signal that needs a
+# typed column goes in a per-source derived schema, which is where a whole-number
+# float gets cast to Float64.
+
+current: "1.0.0"
+resource_type: core
+
+versions:
+  "1.0.0":
+    date: "2026-11-26"
+    type: model
+    summary: "Initial Telegraf metric schema: name, timestamp and tags.host"
+    columns:
+      - name: name
+        type: string
+        cardinality: low
+        use_case: dimension
+        expr: "@source: name"
+        comment: "Telegraf measurement name (e.g. snmp, opcua, modbus, snmp_trap)"
+        _field_type: base
+
+      - name: timestamp
+        type: datetime
+        use_case: range
+        expr: "@source: timestamp"
+        comment: "Metric timestamp from Telegraf, in the units and format the output sets"
+        _field_type: base
+
+      - name: host
+        type: string
+        attribute: [nullable]
+        cardinality: low
+        use_case: dimension
+        expr: "@source: tags.host"
+        comment: "Host tag Telegraf attaches to the metric, null when the tag is absent"
+        _field_type: base

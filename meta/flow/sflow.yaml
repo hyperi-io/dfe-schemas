@@ -1,0 +1,225 @@
+# Meta schema: sFlow v5 records
+#
+# dfe-receiver's exploded flow output for sFlow v5: one row per flow sample or counter sample,
+# the record under `flow` and the datagram's own fields beside it.
+
+current: "1.0.0"
+resource_type: core
+
+versions:
+  "1.0.0":
+    date: "2026-11-21"
+    type: model
+    summary: "Initial sflow schema"
+    columns:
+      - name: exporter_ip
+        type: ip
+        use_case: exact_match
+        expr: "@source: exporter_ip"
+        comment: "Address of the exporter that sent the datagram"
+        _field_type: base
+
+      - name: observation_domain
+        type: integer
+        ch_override: UInt32
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: observation_domain"
+        comment: "Observation domain, source id or sub-agent id of the exporter"
+        _field_type: base
+
+      - name: flow_version
+        type: string
+        cardinality: low
+        use_case: dimension
+        expr: "@source: version"
+        comment: "Protocol version tag: sflow_v5"
+        _field_type: base
+
+      - name: packet_seq
+        type: integer
+        ch_override: UInt64
+        attribute: [nullable]
+        expr: "@source: packet_seq"
+        comment: "Sequence number the exporter gave the datagram"
+        _field_type: base
+
+      - name: t_collected
+        type: datetime
+        use_case: range
+        expr: "@source: t_collected"
+        comment: "When the receiver took the datagram in"
+        _field_type: base
+
+      - name: record_kind
+        type: string
+        cardinality: low
+        use_case: dimension
+        expr: "@source: flow.record_kind"
+        comment: "flow, counter, security_event or nat_translation"
+        _field_type: base
+
+      - name: src_ip
+        type: ip
+        use_case: exact_match
+        expr: "@source: flow.src_ip"
+        comment: "Source address"
+        _field_type: base
+
+      - name: dst_ip
+        type: ip
+        use_case: exact_match
+        expr: "@source: flow.dst_ip"
+        comment: "Destination address"
+        _field_type: base
+
+      - name: src_port
+        type: integer
+        ch_override: UInt16
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: flow.src_port"
+        comment: "Source transport port"
+        _field_type: base
+
+      - name: dst_port
+        type: integer
+        ch_override: UInt16
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: flow.dst_port"
+        comment: "Destination transport port"
+        _field_type: base
+
+      - name: ip_protocol
+        type: integer
+        ch_override: UInt8
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: flow.protocol"
+        comment: "IP protocol number, 6 for TCP and 17 for UDP"
+        _field_type: base
+
+      - name: ip_version
+        type: integer
+        ch_override: UInt8
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: flow.ip_version"
+        comment: "IP version, 4 or 6"
+        _field_type: base
+
+      - name: tcp_flags
+        type: integer
+        ch_override: UInt8
+        attribute: [nullable]
+        expr: "@source: flow.tcp_flags"
+        comment: "TCP flags seen on the flow, as a bit field"
+        _field_type: base
+
+      - name: input_iface
+        type: integer
+        ch_override: UInt32
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: flow.input_iface"
+        comment: "SNMP index of the ingress interface"
+        _field_type: base
+
+      - name: output_iface
+        type: integer
+        ch_override: UInt32
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: flow.output_iface"
+        comment: "SNMP index of the egress interface"
+        _field_type: base
+
+      - name: sampling_rate
+        type: integer
+        ch_override: UInt32
+        attribute: [nullable]
+        expr: "@source: flow.sampling_rate"
+        comment: "One packet in this many was sampled"
+        _field_type: base
+
+      - name: if_index
+        type: integer
+        ch_override: UInt32
+        attribute: [nullable]
+        use_case: dimension
+        expr: "@source: flow.if_index"
+        comment: "Interface index of a counter sample"
+        _field_type: base
+
+      - name: if_speed
+        type: integer
+        ch_override: UInt64
+        attribute: [nullable]
+        expr: "@source: flow.if_speed"
+        comment: "Interface speed in bits per second"
+        _field_type: base
+
+      - name: if_in_octets
+        type: integer
+        ch_override: UInt64
+        attribute: [nullable]
+        expr: "@source: flow.if_in_octets"
+        comment: "Octets received"
+        _field_type: base
+
+      - name: if_in_packets
+        type: integer
+        ch_override: UInt64
+        attribute: [nullable]
+        expr: "@source: flow.if_in_packets"
+        comment: "Packets received"
+        _field_type: base
+
+      - name: if_in_errors
+        type: integer
+        ch_override: UInt64
+        attribute: [nullable]
+        expr: "@source: flow.if_in_errors"
+        comment: "Receive errors"
+        _field_type: base
+
+      - name: if_in_discards
+        type: integer
+        ch_override: UInt64
+        attribute: [nullable]
+        expr: "@source: flow.if_in_discards"
+        comment: "Receive discards"
+        _field_type: base
+
+      - name: if_out_octets
+        type: integer
+        ch_override: UInt64
+        attribute: [nullable]
+        expr: "@source: flow.if_out_octets"
+        comment: "Octets sent"
+        _field_type: base
+
+      - name: if_out_packets
+        type: integer
+        ch_override: UInt64
+        attribute: [nullable]
+        expr: "@source: flow.if_out_packets"
+        comment: "Packets sent"
+        _field_type: base
+
+      - name: if_out_errors
+        type: integer
+        ch_override: UInt64
+        attribute: [nullable]
+        expr: "@source: flow.if_out_errors"
+        comment: "Send errors"
+        _field_type: base
+
+      - name: if_out_discards
+        type: integer
+        ch_override: UInt64
+        attribute: [nullable]
+        expr: "@source: flow.if_out_discards"
+        comment: "Send discards"
+        _field_type: base

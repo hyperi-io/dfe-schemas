@@ -3,6 +3,22 @@
 Rendered by CI and committed back at the end of a release -- do not edit by
 hand. Release notes also appear on the GitHub Releases page, one per tag.
 
+## [0.2.33](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.32...v0.2.33) (2026-11-27)
+
+### What's Changed
+* docs(roles): say merge_tree_settings has the columns of system.settings by @catinspace-au in https://github.com/hyperi-io/dfe-schemas/pull/132
+* docs(diagrams): apply the house diagram style by @catinspace-au in https://github.com/hyperi-io/dfe-schemas/pull/133
+* docs(architecture): reshape the architecture page and split its parts by @catinspace-au in https://github.com/hyperi-io/dfe-schemas/pull/134
+* chore(ci): drop the unread license key by @catinspace-au in https://github.com/hyperi-io/dfe-schemas/pull/135
+* fix(common-header): publish 1.0.4 with the event-time directive by @catinspace-au in https://github.com/hyperi-io/dfe-schemas/pull/136
+* fix(ci): default main releases to candidates by @catinspace-au in https://github.com/hyperi-io/dfe-schemas/pull/137
+* fix(catalogue): add EdgeStream Hub syslog by @catinspace-au in https://github.com/hyperi-io/dfe-schemas/pull/138
+* fix(render): list known directives and reject unknown ones by @catinspace-au in https://github.com/hyperi-io/dfe-schemas/pull/141
+* fix(meta): add Telegraf metric meta schema by @catinspace-au in https://github.com/hyperi-io/dfe-schemas/pull/142
+* fix(meta): read the ECS syslog fields in meta/syslog by @catinspace-au in https://github.com/hyperi-io/dfe-schemas/pull/143
+* fix(hunt_run): store a fire's error, duration and cost by @catinspace-au in https://github.com/hyperi-io/dfe-schemas/pull/144
+* fix(catalogue): add NetFlow and sFlow sources by @catinspace-au in https://github.com/hyperi-io/dfe-schemas/pull/139
+
 ## [0.2.32](https://github.com/hyperi-io/dfe-schemas/compare/v0.2.31...v0.2.32) (2026-11-16)
 
 ### Bug Fixes

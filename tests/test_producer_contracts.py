@@ -14,7 +14,8 @@ CloudWatch fixture is the row dfe-fetcher's cloudwatch_logs row builder writes
 in its own test (crates/rest/src/hooks/cloudwatch_logs.rs). A fixture typed
 from the schema would carry whatever key spelling the schema author expected,
 which is how meta/otel/logs came to read camelCase keys neither receiver mode
-writes.
+writes. The syslog fixtures are dfe-receiver's syslog_to_json record and the same
+record after dfe-transform-elastic's lift_to_ecs (src/envelope.rs SYSLOG_TO_ECS).
 
 `resolve` follows dfe-loader's source lookup: the candidates of `first(a/b/c)` in
 order, a dotted candidate descending nested objects.
@@ -113,6 +114,33 @@ def test_a_column_takes_its_value_from_the_producer_output(schema_ref, fixture, 
     for record in _records(fixture):
         assert key in record, f"the {fixture} fixture has no {key}"
         assert resolve(columns[column], record) == record[key]
+
+
+SYSLOG = "syslog"
+
+# (producer fixture, column, the path the producer writes the value under)
+SYSLOG_PATHS = [
+    ("syslog_receiver", "hostname", "hostname"),
+    ("syslog_receiver", "app_name", "appname"),
+    ("syslog_receiver", "proc_id", "procid"),
+    ("syslog_receiver", "facility", "facility"),
+    ("syslog_receiver", "severity", "severity"),
+    ("syslog_transform_elastic_ecs", "hostname", "host.hostname"),
+    ("syslog_transform_elastic_ecs", "app_name", "log.syslog.appname"),
+    ("syslog_transform_elastic_ecs", "proc_id", "log.syslog.procid"),
+    ("syslog_transform_elastic_ecs", "facility", "log.syslog.facility.name"),
+    ("syslog_transform_elastic_ecs", "severity", "log.syslog.severity.name"),
+]
+
+
+@pytest.mark.parametrize(("fixture", "column", "path"), SYSLOG_PATHS)
+def test_a_syslog_column_reads_both_the_flat_and_the_ecs_shape(fixture, column, path):
+    """The ECS shape once filled hostname with the whole host object and left the rest NULL."""
+    expr = _columns(SYSLOG)[column]
+    for record in _records(fixture):
+        expected = _lookup(record, path)
+        assert expected is not None, f"the {fixture} fixture has no {path}"
+        assert resolve(expr, record) == expected
 
 
 @pytest.mark.parametrize(("schema_ref", "fixture"), FULLY_PRODUCED)

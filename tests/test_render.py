@@ -394,6 +394,21 @@ def test_ledgers_and_leases_carry_no_ttl(rendered, object_id):
         assert "TTL " not in rendered[platform][object_id].statements[0], object_id
 
 
+@pytest.mark.parametrize(
+    "column",
+    [
+        "`error` String DEFAULT ''",
+        "`duration_ms` Float64 DEFAULT 0",
+        "`cost_window_minutes` UInt32 DEFAULT 0",
+        "`cost_estimate` String DEFAULT ''",
+    ],
+)
+def test_a_hunt_fire_stores_its_error_duration_and_cost(rendered, column):
+    """The engine's hunt runner writes these on every finished fire, so each needs a default."""
+    for platform in PLATFORMS:
+        assert column in rendered[platform]["data.hunt_run"].statements[0], platform
+
+
 def test_the_data_database_is_a_parameter(manifest):
     sql = (
         Renderer(manifest, data_database="warehouse")

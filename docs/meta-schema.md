@@ -23,6 +23,7 @@ config:
     fontSize: 15px
     lineColor: "#64748B"
     primaryTextColor: "#0F172A"
+    nodeBorder: "#334155"
     clusterBorder: "#0072B2"
     edgeLabelBackground: "#FFFFFF"
   themeCSS: >-
@@ -42,6 +43,8 @@ config:
     span.edgeLabel{display:inline-block;background:#FFFFFF!important;color:#1E293B;border:1px solid #94A3B8;border-radius:999px;padding:2px 10px;font-size:12px;font-weight:500}
     span.edgeLabel p{background:transparent!important}
     .label-icon{width:20px;height:20px;vertical-align:-4px;margin-right:6px}
+    .icon-shape path[stroke-width="0"][fill="none"]{fill:#FFFFFF;stroke:#FFFFFF;stroke-width:12px;stroke-linejoin:round}
+    .icon-shape p{background:transparent!important;color:#0F172A}
     .ingest .label-icon{color:#0E8A7D}
     .xform .label-icon{color:#7B4FB0}
     .load .label-icon{color:#0072B2}
@@ -84,7 +87,7 @@ flowchart TB
   style is fill:none,stroke:#0072B2,stroke-width:1.5px,stroke-dasharray:6 4
 ```
 
-*Figure 1. L4 Detail -- Meta schema to source table. The dotted arrow is dfe-loader reading `system.columns` at runtime.* Up: [L4 Detail -- Definitions](definitions.md).
+*Figure 1. L4 Detail -- Meta schema to source table. The arrow from the table to dfe-loader is dfe-loader reading `system.columns` at runtime.* Up: [L4 Detail -- Definitions](definitions.md).
 
 The YAML is what the schema should be, and the ClickHouse table is what it is. At runtime the deployed table is the authority.
 
@@ -520,6 +523,7 @@ config:
     fontSize: 15px
     lineColor: "#64748B"
     primaryTextColor: "#0F172A"
+    nodeBorder: "#334155"
     clusterBorder: "#0072B2"
     edgeLabelBackground: "#FFFFFF"
   themeCSS: >-
@@ -539,6 +543,8 @@ config:
     span.edgeLabel{display:inline-block;background:#FFFFFF!important;color:#1E293B;border:1px solid #94A3B8;border-radius:999px;padding:2px 10px;font-size:12px;font-weight:500}
     span.edgeLabel p{background:transparent!important}
     .label-icon{width:20px;height:20px;vertical-align:-4px;margin-right:6px}
+    .icon-shape path[stroke-width="0"][fill="none"]{fill:#FFFFFF;stroke:#FFFFFF;stroke-width:12px;stroke-linejoin:round}
+    .icon-shape p{background:transparent!important;color:#0F172A}
     .ingest .label-icon{color:#0E8A7D}
     .xform .label-icon{color:#7B4FB0}
     .load .label-icon{color:#0072B2}
@@ -582,7 +588,7 @@ flowchart TB
   style out fill:none,stroke:#0072B2,stroke-width:1.5px,stroke-dasharray:6 4
 ```
 
-*Figure 2. L4 Detail -- Column composition. Dotted arrows lead to the optional layers.* Up: [L4 Detail -- Definitions](definitions.md).
+*Figure 2. L4 Detail -- Column composition. The derived and additional layers are optional.* Up: [L4 Detail -- Definitions](definitions.md).
 
 dfe-engine's `SchemaLoader` runs each layer: `load_profile` for the header, `load_columns` for the meta schema, `apply_derived_schema` and `apply_additional_fields` for the optional two, then `compose`.
 
